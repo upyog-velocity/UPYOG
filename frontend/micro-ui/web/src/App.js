@@ -2,14 +2,14 @@ import React from 'react';
 
 import { initPGRComponents, PGRReducers } from "@egovernments/digit-ui-module-pgr";
 import { initFSMComponents } from "@egovernments/digit-ui-module-fsm";
-import { PTModule, PTLinks, PTComponents } from "@digit-ui/digit-ui-module-pt";
+import { PTModule, PTLinks, PTComponents } from "@egovernments/digit-ui-module-pt";
 import { MCollectModule, MCollectLinks, initMCollectComponents } from "@egovernments/digit-ui-module-mcollect";
 import { initDSSComponents } from "@egovernments/digit-ui-module-dss";
 import { PaymentModule, PaymentLinks, paymentConfigs } from "@egovernments/digit-ui-module-common";
 import { DigitUI } from "@egovernments/digit-ui-module-core";
-import { initLibraries } from "@digit-ui/digit-ui-libraries";
+import { initLibraries } from "@egovernments/digit-ui-libraries";
 import { HRMSModule ,initHRMSComponents  } from "@egovernments/digit-ui-module-hrms";
-import { TLModule, TLLinks,initTLComponents } from "@digit-ui/digit-ui-module-tl";
+import { TLModule, TLLinks,initTLComponents } from "@egovernments/digit-ui-module-tl";
 import { initReceiptsComponents, ReceiptsModule } from "@egovernments/digit-ui-module-receipts";
 
 initLibraries();
