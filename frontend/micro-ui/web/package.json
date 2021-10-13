@@ -1,6 +1,6 @@
 {
   "name": "digit-ui",
-  "version": "1.3.0",
+  "version": "1.3.2",
   "homepage": "/digit-ui",
   "dependencies": {
     "@egovernments/digit-ui-css": "^1.0.0",
