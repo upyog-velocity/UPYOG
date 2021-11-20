@@ -14,7 +14,7 @@ import { initReceiptsComponents, ReceiptsModule } from "@egovernments/digit-ui-m
 
 initLibraries();
 
-const enabledModules = ["PGR", "FSM", "Payment", "PT", "QuickPayLinks", "DSS", "MCollect","HRMS", "TL","Receipts"];
+const enabledModules = ["PGR", "FSM", "Payment", "PT", "QuickPayLinks", "DSS"];
 window.Digit.ComponentRegistryService.setupRegistry({
   ...paymentConfigs,
   PTModule,
