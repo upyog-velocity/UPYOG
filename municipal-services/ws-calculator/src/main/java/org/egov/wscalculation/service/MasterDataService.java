@@ -202,10 +202,11 @@ public class MasterDataService {
 			Map<String, Object> masterMap, String connectiontype) {
 		log.info("Billing Frequency Map {}", mdmsResponse.toString());
 		log.info("ConnectionType:: ", connectiontype);
+		log.info("ConnectionType:: ", criteria.getWaterConnection().getConnectionType()));
 		Map<String, Object> master = new HashMap<>();
 		for (Object o : mdmsResponse) {
 			if ((((Map<String, Object>) o).get(WSCalculationConstant.ConnectionType).toString())
-					.equalsIgnoreCase(connectiontype)) {
+					.equalsIgnoreCase(criteria.getWaterConnection().getConnectionType())) {
 				master = (Map<String, Object>) o;
 				break;
 			}
