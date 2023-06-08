@@ -2,13 +2,13 @@ import { HRIcon, EmployeeModuleCard, AttendanceIcon, PropertyHouse } from "@egov
 import React from "react";
 import { useTranslation } from "react-i18next";
 
-const MuktaCard = () => {
+const SampleCard = () => {
  
   const { t } = useTranslation();
 
   const propsForModuleCard = {
     Icon: <PropertyHouse />,
-    moduleName: t("Sample Module"),
+    moduleName: t("Sample"),
     kpis: [
       // {
       //     count:  isLoading ? "-" : data?.EmployeCount?.totalEmployee,
@@ -24,20 +24,12 @@ const MuktaCard = () => {
     links: [
       {
         label: t("Create"),
-        link: `/${window?.contextPath}/employee/Mukta/create`,
-      },
-      {
-        label: t("Inbox"),
-        link: `/${window?.contextPath}/employee/Mukta/inbox`,
-      },
-      {
-        label: t("Search"),
-        link: `/${window?.contextPath}/employee/Mukta/search`,
-      },
+        link: `/${window?.contextPath}/employee/sample/pageone`,
+      }
     ],
   };
 
   return <EmployeeModuleCard {...propsForModuleCard} />;
 };
 
-export default MuktaCard;
+export default SampleCard;

@@ -5,13 +5,13 @@ import EmployeeApp from "./pages/employee";
 import { CustomisedHooks } from "./hooks";
 import { UICustomizations } from "./configs/UICustomizations";
 import HRMSCard from "./components/HRMSCard";
-import MuktaCard from "./components/MuktaCard";
+import UpyogCard from "./components/UpyogCard";
 import SampleComponent from "./components/SampleComponent";
 
 
-const MuktaModule = ({ stateCode, userType, tenants }) => {
+const UpyogModule = ({ stateCode, userType, tenants }) => {
   stateCode=Digit.ULBService.getStateId();
-  const moduleCode = ["Mukta"];
+  const moduleCode = ["Upyog"];
   const { path, url } = useRouteMatch();
   const language = Digit.StoreData.getCurrentLanguage();
   const { isLoading, data: store } = Digit.Services.useStore({
@@ -28,8 +28,8 @@ const MuktaModule = ({ stateCode, userType, tenants }) => {
 };
 
 const componentsToRegister = {
-  MuktaModule,
-  MuktaCard,
+  UpyogModule,
+  UpyogCard,
   DSSCard:null,  // TO HIDE THE DSS CARD IN HOME SCREEN as per MUKTA
   AttendenceMgmtCard:null , // TO HIDE THE Attendance Mgmt CARD IN HOME SCREEN as per MUKTA
   HRMSCard ,// Overridden the HRMS card as per MUKTA
@@ -72,7 +72,7 @@ const updateCustomConfigs = () => {
   setupLibraries("Customizations", "commonUiConfig", { ...window?.Digit?.Customizations?.commonUiConfig, ...UICustomizations });
 };
 
-export const initMuktaCustomisations = () => {
+export const initUpyogCustomisations = () => {
   overrideHooks();
   updateCustomConfigs();
   Object.entries(componentsToRegister).forEach(([key, value]) => {

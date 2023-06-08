@@ -31,7 +31,7 @@ const App = ({ path, stateCode, userType, tenants }) => {
           <ProjectBreadCrumb location={location} />
         </React.Fragment>
        
-        <Route path={`${path}/sample`} component={() => <span>Sample Screen Created</span>} />
+        <Route path={`${path}/pageone`} component={() => <span>Sample Screen Created</span>} />
       </AppContainer>
     </Switch>
   );
