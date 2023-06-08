@@ -4,9 +4,7 @@
   "author": "Jagankumar <jagan.kumar@egov.org.in>",
   "license": "MIT",
   "private": true,
-  "engines": {
-    "node": ">=14"
-  },
+  "engines": { "node" : "14.18.1" },
   "workspaces": [
     "micro-ui-internals/packages/libraries",
     "micro-ui-internals/packages/react-components",
