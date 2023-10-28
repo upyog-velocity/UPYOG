@@ -123,7 +123,7 @@ public class FSMService {
 		fsmValidator.validateCreate(fsmRequest, mdmsData);
 		enrichmentService.enrichFSMCreateRequest(fsmRequest);
 		wfIntegrator.callWorkFlow(fsmRequest);
-		log.info("FSM Payload Request Save {}", fsmRequest.toString());
+		log.info("FSM Payload Request Create {}", fsmRequest.toString());
 		repository.save(fsmRequest);
 
 		if (fsmRequest.getFsm().getAdvanceAmount()!=null && fsmRequest.getFsm().getAdvanceAmount().intValue()>0) {
