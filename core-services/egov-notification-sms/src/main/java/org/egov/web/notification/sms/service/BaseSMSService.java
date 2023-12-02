@@ -90,6 +90,7 @@ abstract public class BaseSMSService implements SMSService, SMSBodyBuilder {
 
         String responseString = res.getBody().toString();
 
+        boolean status = responseString.contains("SUBMIT_SUCCESS");
         //String dummyResponse = "Message Accepted For Request ID=1231457859641254687954~code=API00 & info=Sms platform accepted & Time = 2007/10/04/09/58";
 
         /*
@@ -105,7 +106,7 @@ abstract public class BaseSMSService implements SMSService, SMSBodyBuilder {
          * RuntimeException(SMS_RESPONSE_NOT_SUCCESSFUL); }
          */
 
-        StringTokenizer tokenizer = new StringTokenizer(responseString, "&");
+       /* StringTokenizer tokenizer = new StringTokenizer(responseString, "&");
         HashMap<String,String> responseMap = new HashMap<String, String>();
         String pair = null, pname = null, pvalue = null;
         while (tokenizer.hasMoreTokens()) {
@@ -123,10 +124,10 @@ abstract public class BaseSMSService implements SMSService, SMSBodyBuilder {
             }
         }
         boolean status = responseString.contains("API000");
-
+*/
         if(!status) {
-            log.error("error response from third party api: info:"+responseMap.get("info"));
-            throw new RuntimeException(responseMap.get("info"));
+            log.error("error response from third party api: info:");
+            throw new RuntimeException();
         }
 
         log.info("executeAPI() end");
@@ -202,6 +203,7 @@ abstract public class BaseSMSService implements SMSService, SMSBodyBuilder {
 
         return map;
     }
+
     public MultiValueMap<String, String> getExternalSmsRequestBody(Sms sms) {
         MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
         map.add("apikey", "sdciSVe9db94fd57de01fc34");
