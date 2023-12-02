@@ -424,7 +424,8 @@ public class UserRepository {
         updateuserInputs.put("alternatemobilenumber", user.getAlternateMobileNumber());
 
         updateuserInputs.put("LastModifiedDate", new Date());
-        //updateuserInputs.put("LastModifiedBy", userId );
+        long userId = 1234l;
+        updateuserInputs.put("LastModifiedBy", userId );
 
         updateNonLoginAuditDetails(oldUser);
 
