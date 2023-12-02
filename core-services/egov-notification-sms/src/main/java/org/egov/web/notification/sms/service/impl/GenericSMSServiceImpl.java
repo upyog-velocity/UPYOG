@@ -11,6 +11,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.http.*;
 
 import org.springframework.stereotype.Service;
+import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestClientException;
 
@@ -40,7 +41,8 @@ public class GenericSMSServiceImpl extends BaseSMSService {
                 executeAPI(URI.create(url), HttpMethod.POST, request, String.class);
 
             } else {
-                final MultiValueMap<String, String> requestBody = getSmsRequestBody(sms);
+                final MultiValueMap<String, String> requestBody = getExternalSmsRequestBody(sms);
+                //String requestBody = getSmsRequestBody(sms);
 
                 URI final_url = UriComponentsBuilder.fromHttpUrl(url).queryParams(requestBody).build().encode().toUri();
 
