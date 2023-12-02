@@ -306,6 +306,137 @@ public class UserRepository {
         }
     }
 
+    public void updateNonLoginUser(final User user, User oldUser) {
+
+
+        Map<String, Object> updateuserInputs = new HashMap<>();
+
+        updateuserInputs.put("username", oldUser.getUsername());
+        updateuserInputs.put("type", oldUser.getType().toString());
+        updateuserInputs.put("tenantid", oldUser.getTenantId());
+        updateuserInputs.put("AadhaarNumber", user.getAadhaarNumber());
+
+        if (isNull(user.getAccountLocked()))
+            updateuserInputs.put("AccountLocked", oldUser.getAccountLocked());
+        else
+            updateuserInputs.put("AccountLocked", user.getAccountLocked());
+
+        if (isNull(user.getAccountLockedDate()))
+            updateuserInputs.put("AccountLockedDate", oldUser.getAccountLockedDate());
+        else
+            updateuserInputs.put("AccountLockedDate", user.getAccountLockedDate());
+
+        updateuserInputs.put("Active", user.getActive());
+        updateuserInputs.put("AltContactNumber", user.getAltContactNumber());
+
+        List<Enum> bloodGroupEnumValues = Arrays.asList(BloodGroup.values());
+        if (user.getBloodGroup() != null) {
+            if (bloodGroupEnumValues.contains(user.getBloodGroup()))
+                updateuserInputs.put("BloodGroup", user.getBloodGroup().toString());
+            else
+                updateuserInputs.put("BloodGroup", "");
+        }
+        else if (oldUser != null && oldUser.getBloodGroup() != null) {
+            if (bloodGroupEnumValues.contains(oldUser.getBloodGroup()))
+                updateuserInputs.put("BloodGroup", oldUser.getBloodGroup().toString());
+            else
+                updateuserInputs.put("BloodGroup", "");
+        }
+        else {
+            updateuserInputs.put("BloodGroup", "");
+        }
+
+        if (user.getDob() != null) {
+            updateuserInputs.put("Dob", user.getDob());
+        } else {
+            updateuserInputs.put("Dob", oldUser.getDob());
+        }
+        updateuserInputs.put("EmailId", user.getEmailId());
+
+        if (user.getGender() != null) {
+            if (Gender.FEMALE.toString().equals(user.getGender().toString())) {
+                updateuserInputs.put("Gender", 1);
+            } else if (Gender.MALE.toString().equals(user.getGender().toString())) {
+                updateuserInputs.put("Gender", 2);
+            } else if (Gender.OTHERS.toString().equals(user.getGender().toString())) {
+                updateuserInputs.put("Gender", 3);
+            } else if (Gender.TRANSGENDER.toString().equals(user.getGender().toString())) {
+                updateuserInputs.put("Gender", 4);
+            } else {
+                updateuserInputs.put("Gender", 0);
+            }
+        } else {
+            updateuserInputs.put("Gender", 0);
+        }
+        updateuserInputs.put("Guardian", user.getGuardian());
+
+        List<Enum> enumValues = Arrays.asList(GuardianRelation.values());
+        if (user.getGuardianRelation() != null) {
+            if(enumValues.contains(user.getGuardianRelation()))
+                updateuserInputs.put("GuardianRelation", user.getGuardianRelation().toString());
+            else {
+                updateuserInputs.put("GuardianRelation", "");
+            }
+
+        } else {
+            updateuserInputs.put("GuardianRelation", "");
+        }
+        updateuserInputs.put("IdentificationMark", user.getIdentificationMark());
+        updateuserInputs.put("Locale", user.getLocale());
+        if (null != user.getMobileNumber())
+            updateuserInputs.put("MobileNumber", user.getMobileNumber());
+        else
+            updateuserInputs.put("MobileNumber", oldUser.getMobileNumber());
+        updateuserInputs.put("Name", user.getName());
+        updateuserInputs.put("Pan", user.getPan());
+
+        if (!isEmpty(user.getPassword()))
+            updateuserInputs.put("Password", user.getPassword());
+        else
+            updateuserInputs.put("Password", oldUser.getPassword());
+
+        if (oldUser != null && user.getPhoto() != null && user.getPhoto().contains("http"))
+            updateuserInputs.put("Photo", oldUser.getPhoto());
+        else
+            updateuserInputs.put("Photo", user.getPhoto());
+
+        if (null != user.getPasswordExpiryDate())
+            updateuserInputs.put("PasswordExpiryDate", user.getPasswordExpiryDate());
+        else
+            updateuserInputs.put("PasswordExpiryDate", oldUser.getPasswordExpiryDate());
+        updateuserInputs.put("Salutation", user.getSalutation());
+        updateuserInputs.put("Signature", user.getSignature());
+        updateuserInputs.put("Title", user.getTitle());
+
+
+        List<Enum> userTypeEnumValues = Arrays.asList(UserType.values());
+        if (user.getType() != null) {
+            if (userTypeEnumValues.contains(user.getType()))
+                updateuserInputs.put("Type", user.getType().toString());
+            else {
+                updateuserInputs.put("Type", "");
+            }
+        }
+        else {
+            updateuserInputs.put("Type", oldUser.getType().toString());
+        }
+
+        updateuserInputs.put("alternatemobilenumber", user.getAlternateMobileNumber());
+
+        updateuserInputs.put("LastModifiedDate", new Date());
+        //updateuserInputs.put("LastModifiedBy", userId );
+
+        updateNonLoginAuditDetails(oldUser);
+
+        namedParameterJdbcTemplate.update(userTypeQueryBuilder.getUpdateUserQuery(), updateuserInputs);
+        if (user.getRoles() != null && !CollectionUtils.isEmpty(user.getRoles()) && !oldUser.getRoles().equals(user.getRoles())) {
+            validateAndEnrichRoles(Collections.singletonList(user));
+            updateRoles(user);
+        }
+        if (user.getPermanentAndCorrespondenceAddresses() != null) {
+            addressRepository.update(user.getPermanentAndCorrespondenceAddresses(), user.getId(), user.getTenantId());
+        }
+    }
 	public void fetchFailedLoginAttemptsByUser(String uuid) {
         fetchFailedAttemptsByUserAndTime(uuid, 0L);
     }
@@ -591,5 +722,9 @@ public class UserRepository {
 		auditRepository.auditUser(oldUser,userId,uuid);
 		
 	}
+    private void updateNonLoginAuditDetails(User oldUser) {
+        auditRepository.auditNonLoginUser(oldUser);
+
+    }
 
 }
