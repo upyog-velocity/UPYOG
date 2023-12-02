@@ -159,7 +159,7 @@ public class AuditRepository {
         Map<String, Object> auditInputs = new HashMap<String, Object>();
 
 
-        //auditInputs.put("auditcreatedby", uuid);
+        auditInputs.put("auditcreatedby", "owner");
         auditInputs.put("auditcreatedtime", System.currentTimeMillis() );
 
         auditInputs.put("id", oldUser.getId());
