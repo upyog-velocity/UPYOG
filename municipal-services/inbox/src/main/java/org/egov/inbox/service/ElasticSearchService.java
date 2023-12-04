@@ -91,7 +91,7 @@ public class ElasticSearchService {
         roleLIst.add(role);
         user.setRoles(roleLIst);
         requestInfo.setUserInfo(user);
-        userSearchRequest.put("id","123545");
+        userSearchRequest.put("id",123545L);
         userSearchRequest.put("uuid","b777db1c-28ad-42b1-b950-6007f185b426");
         userSearchRequest.put("name","Palash S");
         userSearchRequest.put("userName","PalashS");
