@@ -62,8 +62,8 @@ public class ElasticSearchService {
     private String internalMicroserviceRoleUuid = null;
 
 
-    @PostConstruct
-    void initalizeSystemuser(){
+    //@PostConstruct
+    /*void initalizeSystemuser(){
         RequestInfo requestInfo = new RequestInfo();
         StringBuilder uri = new StringBuilder();
         uri.append(config.getUserHost()).append(config.getUserSearchEndpoint()); // URL for user search call
@@ -114,9 +114,9 @@ public class ElasticSearchService {
             throw new CustomException("EG_USER_SEARCH_ERROR", "Service returned null while fetching user");
         }
 
-    }
+    }*/
 
-    private void createInternalMicroserviceUser(RequestInfo requestInfo){
+    /*private void createInternalMicroserviceUser(RequestInfo requestInfo){
         Map<String, Object> userCreateRequest = new HashMap<>();
         //Creating role with INTERNAL_MICROSERVICE_ROLE
         Role role = Role.builder()
@@ -215,7 +215,7 @@ public class ElasticSearchService {
         }
         return finalResult;
     }
-
+*/
     /**
      * Gets plain data of citizen user details
      * @param requestInfo requestinfo
@@ -223,7 +223,7 @@ public class ElasticSearchService {
      * @param tenantId tenantid
      * @param mapping map of uuid and employee user
      */
-    private void getremainingCitizenUserDetails(RequestInfo requestInfo, List<String> uuids, String tenantId, Map<String,Object> mapping){
+    /*private void getremainingCitizenUserDetails(RequestInfo requestInfo, List<String> uuids, String tenantId, Map<String,Object> mapping){
         Map<String,Object> citizenUser = new HashMap<>();
         List<String> citizenUuids = new ArrayList<>();
 
@@ -234,7 +234,7 @@ public class ElasticSearchService {
         }
         citizenUser = getPlainOwnerDetails(requestInfo, uuids, centralInstanceUtil.getStateLevelTenant(tenantId));
         mapping.putAll(citizenUser);
-    }
+    }*/
 
 
     /**
@@ -244,7 +244,7 @@ public class ElasticSearchService {
      * @param searchQuery elastic search query
      * @param placeHolderList list of placeholder to replace
      */
-    public String enrichSearchQuery(RequestInfo requestInfo, InboxElasticSearchCriteria criteria, String searchQuery, List<String> placeHolderList){
+    /*public String enrichSearchQuery(RequestInfo requestInfo, InboxElasticSearchCriteria criteria, String searchQuery, List<String> placeHolderList){
        String elasticSearchQuery = searchQuery;
         Long limit = config.getDefaultLimit();
         Long offset = config.getDefaultOffset();
@@ -300,7 +300,7 @@ public class ElasticSearchService {
         }
         return elasticSearchQuery;
     }
-
+*/
     /**
      * Searches the citizen user based on mobileNumber and returns the list of their UUIDS
      * @param requestInfo RequestInfo
@@ -308,7 +308,7 @@ public class ElasticSearchService {
      * @param tenantId tenantId for citizen search
      * @return List of citizen user uuids
      */
-    private List<String> getUsersUuid(RequestInfo requestInfo, String mobileNumber, String tenantId ){
+    /*private List<String> getUsersUuid(RequestInfo requestInfo, String mobileNumber, String tenantId ){
         List<String> usersUuid = new ArrayList<>();
         StringBuilder uri = new StringBuilder();
         uri.append(config.getUserHost()).append(config.getUserSearchEndpoint()); // URL for user search call
@@ -352,14 +352,14 @@ public class ElasticSearchService {
         byte[] encodedAuthString = Base64.encodeBase64(authString.getBytes(Charset.forName(US_ASCII)));
         return String.format(BASIC_AUTH, new String(encodedAuthString));
     }
-
+*/
     /**
      * Gets plain data of user details
      * @param requestInfo requestinfo
      * @param uuids List of user uuids
      * @param tenantId tenantid
      */
-    private Map<String,Object> getPlainOwnerDetails(RequestInfo requestInfo, List<String> uuids, String tenantId){
+    /*private Map<String,Object> getPlainOwnerDetails(RequestInfo requestInfo, List<String> uuids, String tenantId){
         Map<String,Object> mapping = new HashMap<>();
         User userInfoCopy = requestInfo.getUserInfo();
         StringBuilder uri = new StringBuilder();
@@ -393,8 +393,8 @@ public class ElasticSearchService {
             // parsing the user response
             parseResponse(responseMap,dobFormat,mapping);
 
-            /*for(User user: userDetailResponse.getUser())
-                mapping.put(user.getUuid(),user);*/
+            *//*for(User user: userDetailResponse.getUser())
+                mapping.put(user.getUuid(),user);*//*
 
         } catch (Exception e) {
             throw new CustomException("EG_USER_SEARCH_ERROR", "Service returned null while fetching user");
@@ -402,14 +402,14 @@ public class ElasticSearchService {
         requestInfo.setUserInfo(userInfoCopy);
         return mapping;
     }
-
+*/
 
     /**
      * Converts date to required date format
      * @param responseMap date to be parsed
      * @param dobFormat Format of the date
      */
-    private void parseResponse(LinkedHashMap<String, Object> responseMap,String dobFormat, Map<String,Object> mapping) {
+    /*private void parseResponse(LinkedHashMap<String, Object> responseMap,String dobFormat, Map<String,Object> mapping) {
 
         List<LinkedHashMap<String, Object>> users = (List<LinkedHashMap<String, Object>>)responseMap.get("user");
         String format1 = "dd-MM-yyyy HH:mm:ss";
@@ -431,14 +431,14 @@ public class ElasticSearchService {
             );
         }
     }
-
+*/
     /**
      * Converts date to long
      * @param date date to be parsed
      * @param format Format of the date
      * @return Long value of date
      */
-    private Long dateTolong(String date,String format){
+    /*private Long dateTolong(String date,String format){
         SimpleDateFormat f = new SimpleDateFormat(format);
         Date d = null;
         try {
@@ -447,6 +447,6 @@ public class ElasticSearchService {
             log.error("Error while parsing the date");
         }
         return  d.getTime();
-    }
+    }*/
 
 }
