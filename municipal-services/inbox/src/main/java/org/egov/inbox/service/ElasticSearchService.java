@@ -91,11 +91,16 @@ public class ElasticSearchService {
         roleLIst.add(role);
         user.setRoles(roleLIst);
         requestInfo.setUserInfo(user);
-        userSearchRequest.put("id",123545L);
-        userSearchRequest.put("uuid","b777db1c-28ad-42b1-b950-6007f185b426");
+        List<Long> ids = new ArrayList<>();
+        ids.add(12345L);
+        List<String> uuids = new ArrayList<>();
+        uuids.add("b777db1c-28ad-42b1-b950-6007f185b426");
+        userSearchRequest.put("id",ids);
+        userSearchRequest.put("uuid",uuids);
         userSearchRequest.put("name","Palash S");
         userSearchRequest.put("userName","PalashS");
         userSearchRequest.put("mobileNumber","9949032246");
+        userSearchRequest.put("userType","SYSTEM");
         userSearchRequest.put("RequestInfo", requestInfo);
         userSearchRequest.put("tenantId", config.getParentLevelTenantId());
         userSearchRequest.put("roleCodes", Collections.singletonList(INTERNALMICROSERVICEROLE_CODE));
