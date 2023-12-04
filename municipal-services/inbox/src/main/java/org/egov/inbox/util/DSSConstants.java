@@ -60,11 +60,11 @@ public class DSSConstants {
 
     public static final String PLACEHOLDER_SORT_ORDER_KEY = "$sortOrder";
 
-    public static final String INTERNALMICROSERVICEROLE_NAME = "Internal Microservice Role";
+    public static final String INTERNALMICROSERVICEROLE_NAME = "Internal Microservice Role22";
 
     public static final String INTERNALMICROSERVICEROLE_CODE = "INTERNAL_MICROSERVICE_ROLE";
 
-    public static final String INTERNALMICROSERVICEUSER_NAME = "Internal Microservice User";
+    public static final String INTERNALMICROSERVICEUSER_NAME = "Internal Microservice User22";
 
     public static final String INTERNALMICROSERVICEUSER_USERNAME = "INTERNAL_USER";
 
