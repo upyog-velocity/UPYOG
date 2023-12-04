@@ -78,8 +78,8 @@ public class ElasticSearchService {
         User user = new User();
         user.setId(23287L);
         user.setUuid("b777db1c-28ad-42b1-b950-6007f185b426");
-        user.setName("Internal Microservice User Test");
-        user.setUserName("Internal Microservice User Test");
+        user.setName("Internal Microservice User Test22");
+        user.setUserName("Internal Microservice User Test22");
         user.setEmailId(null);
         user.setMobileNumber("9949032246");
         user.setType("SYSTEM");
@@ -97,8 +97,8 @@ public class ElasticSearchService {
         uuids.add("b777db1c-28ad-42b1-b950-6007f185b426");
         userSearchRequest.put("id",ids);
         userSearchRequest.put("uuid",uuids);
-        userSearchRequest.put("name","Internal Microservice User Test");
-        userSearchRequest.put("userName","Internal Microservice User Test");
+        userSearchRequest.put("name","Internal Microservice User Test22");
+        userSearchRequest.put("userName","Internal Microservice User Test22");
         userSearchRequest.put("mobileNumber","9949032246");
         userSearchRequest.put("userType","SYSTEM");
         userSearchRequest.put("RequestInfo", requestInfo);
