@@ -105,11 +105,11 @@ public class ElasticSearchService {
         userSearchRequest.put("tenantId", config.getParentLevelTenantId());
         userSearchRequest.put("roleCodes", Collections.singletonList(INTERNALMICROSERVICEROLE_CODE));
         try {
-            LinkedHashMap<String, Object> responseMap = (LinkedHashMap<String, Object>) serviceRequestRepository.fetchResult(uri, userSearchRequest);
-            List<LinkedHashMap<String, Object>> users = (List<LinkedHashMap<String, Object>>) responseMap.get("user");
-            if(users.size()==0)
-                createInternalMicroserviceUser(requestInfo);
-            internalMicroserviceRoleUuid = (String) users.get(0).get("uuid");
+           // LinkedHashMap<String, Object> responseMap = (LinkedHashMap<String, Object>) serviceRequestRepository.fetchResult(uri, userSearchRequest);
+           // List<LinkedHashMap<String, Object>> users = (List<LinkedHashMap<String, Object>>) responseMap.get("user");
+            //if(users.size()==0)
+            createInternalMicroserviceUser(requestInfo);
+            internalMicroserviceRoleUuid = "b777db1c-28ad-42b1-b950-6007f185b426";
         }catch (Exception e) {
             throw new CustomException("EG_USER_SEARCH_ERROR", "Service returned null while fetching user");
         }
