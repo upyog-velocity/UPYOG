@@ -97,5 +97,9 @@ public class Address   {
   @JsonProperty("geoLocation")
   private GeoLocation geoLocation ;
 
+ @Size(max=256)
+ @JsonProperty("sector")
+ private String sector ;
+
  
 }

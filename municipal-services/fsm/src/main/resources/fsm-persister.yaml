@@ -67,6 +67,8 @@ serviceMaps:
               jsonPath: $.fsm.address.tenantId
             - 
               jsonPath: $.fsm.address.doorNo
+            -
+              jsonPath: $.fsm.address.sector
             - 
               jsonPath: $.fsm.address.plotNo
             - 
@@ -105,7 +107,7 @@ serviceMaps:
               jsonPath: $.fsm.address.auditDetails.createdTime
             - 
               jsonPath: $.fsm.address.auditDetails.lastModifiedTime
-          query: "INSERT INTO  eg_fsm_address(id, tenantid, doorno, plotno, landmark, city, district, region, state, country, locality, pincode, additionalDetails, buildingname, street,slumname, fsm_id, createdby, lastmodifiedby, createdtime, lastmodifiedtime) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"
+          query: "INSERT INTO  eg_fsm_address(id, tenantid, doorno, sector, plotno, landmark, city, district, region, state, country, locality, pincode, additionalDetails, buildingname, street,slumname, fsm_id, createdby, lastmodifiedby, createdtime, lastmodifiedtime) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"
         - 
           basePath: fsm.address.geoLocation
           jsonMaps: 
@@ -227,6 +229,8 @@ serviceMaps:
           jsonMaps: 
             - 
               jsonPath: $.fsm.address.doorNo
+            -
+              jsonPath: $.fsm.address.sector
             - 
               jsonPath: $.fsm.address.plotNo
             - 
@@ -265,7 +269,7 @@ serviceMaps:
               jsonPath: $.fsm.address.auditDetails.lastModifiedTime
             - 
               jsonPath: $.fsm.address.id
-          query: "UPDATE  eg_fsm_address SET  doorno=?, plotno=?, landmark=?, city=?, district=?, region=?, state=?,slumname=?, country=?, locality=?, pincode=?, additionalDetails=?, buildingname=?, street=?, createdby=?, lastmodifiedby=?, createdtime=?, lastmodifiedtime=? where id=?"
+          query: "UPDATE  eg_fsm_address SET  doorno=?, sector=?, plotno=?, landmark=?, city=?, district=?, region=?, state=?,slumname=?, country=?, locality=?, pincode=?, additionalDetails=?, buildingname=?, street=?, createdby=?, lastmodifiedby=?, createdtime=?, lastmodifiedtime=? where id=?"
         - 
           basePath: fsm.address.geoLocation
           jsonMaps: 
