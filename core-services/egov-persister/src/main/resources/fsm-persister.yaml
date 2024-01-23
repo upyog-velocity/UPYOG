@@ -64,6 +64,8 @@ serviceMaps:
 
           - jsonPath: $.fsm.address.doorNo
 
+          - jsonPath: $.fsm.address.sector
+
           - jsonPath: $.fsm.address.plotNo
 
           - jsonPath: $.fsm.address.landmark
@@ -223,6 +225,8 @@ serviceMaps:
          jsonMaps:
                 
                 - jsonPath: $.fsm.address.doorNo
+
+                - jsonPath: $.fsm.address.sector
                 
                 - jsonPath: $.fsm.address.plotNo
                 
