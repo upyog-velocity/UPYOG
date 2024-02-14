@@ -60,6 +60,7 @@ public class OtpSMSRepository {
         String tenantId = getRequiredTenantId(otpRequest.getTenantId());
         Map<String, String> localisedMsgs = localizationService.getLocalisedMessages(tenantId, "en_IN", "egov-user");
         if (localisedMsgs.isEmpty()) {
+            
             log.info("Localization Service didn't return any msgs so using default...");
             localisedMsgs.put(LOCALIZATION_KEY_REGISTER_SMS, "Your OTP for account verification to Bal Pitara is %s ICDLKO.");
             localisedMsgs.put(LOCALIZATION_KEY_LOGIN_SMS, "Your OTP for account verification to Bal Pitara is %s ICDLKO.");
