@@ -170,6 +170,9 @@ public class FSM   {
   
   @JsonProperty("paymentPreference")
   private String paymentPreference ;
+
+  @JsonProperty("propertyId")
+  private String propertyId ;
   
  // @JsonProperty("receivedPayment")
  // private String receivedPayment;
