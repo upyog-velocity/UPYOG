@@ -57,7 +57,9 @@ serviceMaps:
               jsonPath: $.fsm.auditDetails.createdTime
             - 
               jsonPath: $.fsm.auditDetails.lastModifiedTime
-          query: "INSERT INTO  eg_fsm_application( id, applicationno, tenantid, additionaldetails, accountid, description, applicationstatus, source, sanitationtype, propertyusage, nooftrips, status, vehicle_id, vehicletype, vehicleCapacity, paymentPreference,advanceAmount, applicationType, oldApplicationNo, createdby, lastmodifiedby, createdtime, lastmodifiedtime) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?, ?);"
+            - 
+              jsonPath: $.fsm.propertyId
+          query: "INSERT INTO  eg_fsm_application( id, applicationno, tenantid, additionaldetails, accountid, description, applicationstatus, source, sanitationtype, propertyusage, nooftrips, status, vehicle_id, vehicletype, vehicleCapacity, paymentPreference,advanceAmount, applicationType, oldApplicationNo, createdby, lastmodifiedby, createdtime, lastmodifiedtime, propertyId) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?, ?, ?);"
         - 
           basePath: fsm.address
           jsonMaps: 
