@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { CardText, FormStep, CitizenConsentForm, Loader, CheckBox } from "@egovernments/digit-ui-react-components";
 import { Link } from "react-router-dom";
 
-const SelectMobileNumber = ({ t, onSelect, showRegisterLink, mobileNumber, holdingId, onMobileChange, config, canSubmit, CitizenHomePageTenantId }) => {
+const SelectHoldingId = ({ t, onSelect, showRegisterLink, mobileNumber, holdingId, onMobileChange, config, canSubmit, CitizenHomePageTenantId }) => {
 
   const [isCheckBox, setIsCheckBox] = useState(false);
   const [isCCFEnabled, setisCCFEnabled] = useState(false);
@@ -16,9 +16,10 @@ const SelectMobileNumber = ({ t, onSelect, showRegisterLink, mobileNumber, holdi
 
   const checkDisbaled = () => {
     if (isCCFEnabled?.isCitizenConsentFormEnabled) {
-      return !(mobileNumber.length === 10 && canSubmit && isCheckBox)
+      return !(isCheckBox)
     } else {
-      return !(mobileNumber.length === 10 && canSubmit)
+      // return !(mobileNumber.length === 10 && canSubmit)
+      return false;
     }
   }
 
@@ -57,7 +58,7 @@ const SelectMobileNumber = ({ t, onSelect, showRegisterLink, mobileNumber, holdi
       config={config}
       t={t}
       componentInFront="+91"
-      onChange={onMobileChange}
+      onChange={onMobileChange}      
       value={mobileNumber}
       holdingId={holdingId}
       CitizenHomePageTenantId={CitizenHomePageTenantId}
@@ -86,4 +87,4 @@ const SelectMobileNumber = ({ t, onSelect, showRegisterLink, mobileNumber, holdi
   );
 };
 
-export default SelectMobileNumber;
+export default SelectHoldingId;

@@ -4,6 +4,7 @@ import { AppContainer, BackButton, Toast } from "@egovernments/digit-ui-react-co
 import { Route, Switch, useHistory, useRouteMatch, useLocation } from "react-router-dom";
 import { loginSteps } from "./config";
 import SelectMobileNumber from "./SelectMobileNumber";
+// import SelectHoldingId from "./SelectHoldingId";
 import SelectOtp from "./SelectOtp";
 import SelectName from "./SelectName";
 
@@ -80,6 +81,7 @@ const Login = ({ stateCode, isUserRegistered = true }) => {
     }
   }, [user]);
 
+  const CitizenHomePageTenantId = Digit.SessionStorage.get("CITIZEN.COMMON.HOME.CITY");
   const stepItems = useMemo(() =>
     loginSteps.map(
       (step) => {
@@ -100,8 +102,12 @@ const Login = ({ stateCode, isUserRegistered = true }) => {
   };
 
   const handleMobileChange = (event) => {
-    const { value } = event.target;
-    setParmas({ ...params, mobileNumber: value });
+    const { value } = event.target;    
+    if(event.target.name === 'holdingId'){
+      setParmas({ ...params, holdingId: value });
+    }else{
+      setParmas({ ...params, mobileNumber: value });
+    }   
   };
 
   const selectMobileNumber = async (mobileNumber) => {
@@ -239,11 +245,24 @@ const Login = ({ stateCode, isUserRegistered = true }) => {
               onSelect={selectMobileNumber}
               config={stepItems[0]}
               mobileNumber={params.mobileNumber || ""}
+              holdingId = {params.holdingId || ""}
               onMobileChange={handleMobileChange}
               canSubmit={canSubmitNo}
               showRegisterLink={isUserRegistered && !location.state?.role}
+              CitizenHomePageTenantId={CitizenHomePageTenantId}
               t={t}
             />
+            {/* <SelectHoldingId
+              onSelect={selectMobileNumber}
+              config={stepItems[0]}
+              mobileNumber={params.mobileNumber || ""}
+              holdingId = {params.holdingId || ""}
+              onMobileChange={handleMobileChange}              
+              canSubmit={canSubmitNo}
+              showRegisterLink={isUserRegistered && !location.state?.role}
+              CitizenHomePageTenantId={CitizenHomePageTenantId}
+              t={t}
+            /> */}
           </Route>
           <Route path={`${path}/otp`}>
             <SelectOtp

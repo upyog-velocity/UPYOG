@@ -8,10 +8,22 @@ export const loginSteps = [
     },
     inputs: [
       {
+        label: "CORE_COMMON_HOLDING_ID",
+        type: "text",
+        name: "holdingId",
+        error: "ERR_HRMS_INVALID_HOLDING_ID",        
+        validation: {
+          required: true,
+          minLength: 15,
+          maxLength: 15,
+        },
+      },
+      {
         label: "CORE_COMMON_MOBILE_NUMBER",
         type: "text",
         name: "mobileNumber",
         error: "ERR_HRMS_INVALID_MOB_NO",
+        componentInFront : "+91",
         validation: {
           required: true,
           minLength: 10,

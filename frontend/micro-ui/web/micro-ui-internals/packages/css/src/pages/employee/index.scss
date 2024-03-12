@@ -54,7 +54,7 @@
       margin-top: 12px;
 
       .user-img-txt {
-        background: #a82227;
+        background: #00AEEF;
         padding: 10px 15px;
         border-radius: 50%;
         color: white;
@@ -196,7 +196,7 @@
     white-space: nowrap;
     height: calc(100vh - 36px);
     padding-bottom: 5rem;
-    background-image: url(https://in-egov-assets.s3.ap-south-1.amazonaws.com/images/top-green-card.png), url(https://in-egov-assets.s3.ap-south-1.amazonaws.com/images/top-red-card.png);
+    background-image: url(https://velocity-upyog-assets.s3.ap-south-1.amazonaws.com/green-bg.png), url(https://velocity-upyog-assets.s3.ap-south-1.amazonaws.com/blue-bg.png);
     background-blend-mode: lighten;
     background-size: cover;
 
@@ -226,11 +226,11 @@
       padding: 20px;
       font-size: 14px;
       &.active {
-        color: #a82227 !important;
+        color: #00AEEF !important;
 
-        border-right: 4px solid #a82227;
+        border-right: 4px solid #00AEEF;
         svg {
-          fill: #a82227 !important;
+          fill: #00AEEF !important;
         }
       }
       .employee-search-input {
@@ -256,12 +256,12 @@
       }
 
       &:hover {
-        color: #a82227 !important;
+        color: #00AEEF !important;
         background-color: #486480;
 
         cursor: pointer;
         svg {
-          fill: #a82227 !important;
+          fill: #00AEEF !important;
         }
       }
       .search-icon-wrapper {
@@ -303,11 +303,11 @@
         }
       }
       &.active {
-        color: #a82227 !important;
+        color: #00AEEF !important;
 
-        border-right: 4px solid #a82227;
+        border-right: 4px solid #00AEEF;
         svg {
-          fill: #a82227 !important;
+          fill: #00AEEF !important;
         }
       }
     }

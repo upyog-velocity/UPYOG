@@ -14,6 +14,7 @@ const FormStep = ({
   onSelect,
   onSkip,
   value,
+  holdingId,
   onChange,
   isDisabled,
   _defaultValues = {},
@@ -24,7 +25,8 @@ const FormStep = ({
   isMultipleAllow = false,
   showErrorBelowChildren = false,
   childrenAtTheBottom = true,
-  textInputStyle
+  textInputStyle,
+  CitizenHomePageTenantId
 }) => {
   const { register, watch, errors, handleSubmit } = useForm({
     defaultValues: _defaultValues,
@@ -38,29 +40,79 @@ const FormStep = ({
 
   const inputs = config.inputs?.map((input, index) => {
     if (input.type === "text") {
-      return (
-        <React.Fragment key={index}>
-          <CardLabel>{t(input.label)} {input.labelChildren && input.labelChildren}</CardLabel>
-          {errors[input.name] && <CardLabelError>{t(input.error)}</CardLabelError>}
-          <div className="field-container" style={{ justifyContent: "left" }}>
-            {componentInFront ? <span className="citizen-card-input citizen-card-input--front">{componentInFront}</span> : null}
-            <TextInput
-              key={index}
-              name={input.name}
-              value={value}
-              onChange={onChange}
-              minlength={input.validation.minlength}
-              maxlength={input.validation.maxlength}
-              pattern={input.validation?.pattern}
-              title={input.validation?.title}
-              inputRef={register(input.validation)}
-              isMandatory={errors[input.name]}
-              disable={input.disable ? input.disable : false}
-              textInputStyle={textInputStyle}
-            />
-          </div>
-        </React.Fragment>
-      );
+      if(input.name !== 'holdingId' && input.name !== 'mobileNumber'){
+        return (
+          <React.Fragment key={index}>
+            <CardLabel>{t(input.label)} {input.labelChildren && input.labelChildren}</CardLabel>
+            {errors[input.name] && <CardLabelError>{t(input.error)}</CardLabelError>}
+            <div className="field-container" style={{ justifyContent: "left" }}>
+              {input?.componentInFront ? <span className="citizen-card-input citizen-card-input--front">{componentInFront}</span> : null}
+              <TextInput
+                key={index}
+                name={input.name}
+                value={value}
+                onChange={onChange}
+                minlength={input.validation.minlength}
+                maxlength={input.validation.maxlength}
+                pattern={input.validation?.pattern}
+                title={input.validation?.title}
+                inputRef={register(input.validation)}
+                isMandatory={errors[input.name]}
+                disable={input.disable ? input.disable : false}
+                textInputStyle={textInputStyle}
+              />
+            </div>
+          </React.Fragment>
+        );
+      }else if(input.name === 'holdingId'){
+        return (
+          <React.Fragment key={index}>
+            <CardLabel>{t(input.label)} {input.labelChildren && input.labelChildren}</CardLabel>
+            {errors[input.name] && <CardLabelError>{t(input.error)}</CardLabelError>}
+            <div className="field-container" style={{ justifyContent: "left" }}>
+              {input?.componentInFront ? <span className="citizen-card-input citizen-card-input--front">{componentInFront}</span> : null}
+              <TextInput
+                key={index}
+                name={input.name}
+                value={holdingId}
+                onChange={onChange}
+                minlength={input.validation.minlength}
+                maxlength={input.validation.maxlength}
+                pattern={input.validation?.pattern}
+                title={input.validation?.title}
+                inputRef={register(input.validation)}
+                isMandatory={errors[input.name]}
+                disable={input.disable ? input.disable : false}
+                textInputStyle={textInputStyle}
+              />
+            </div>
+          </React.Fragment>
+        );
+      }else if(input.name === 'mobileNumber' && !CitizenHomePageTenantId?.propertyIdEnabled){
+        return (
+          <React.Fragment key={index}>
+            <CardLabel>{t(input.label)} {input.labelChildren && input.labelChildren}</CardLabel>
+            {errors[input.name] && <CardLabelError>{t(input.error)}</CardLabelError>}
+            <div className="field-container" style={{ justifyContent: "left" }}>
+              {input?.componentInFront ? <span className="citizen-card-input citizen-card-input--front">{componentInFront}</span> : null}
+              <TextInput
+                key={index}
+                name={input.name}
+                value={value}
+                onChange={onChange}
+                minlength={input.validation.minlength}
+                maxlength={input.validation.maxlength}
+                pattern={input.validation?.pattern}
+                title={input.validation?.title}
+                inputRef={register(input.validation)}
+                isMandatory={errors[input.name]}
+                disable={input.disable ? input.disable : false}
+                textInputStyle={textInputStyle}
+              />
+            </div>
+          </React.Fragment>
+        );
+      }
     }
     if (input.type === "textarea")
       return (

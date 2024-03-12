@@ -37,7 +37,7 @@ const TopBar = ({
           <a href={window.location.href.includes("citizen")?"/digit-ui/citizen":"/digit-ui/employee"}><img
             className="city"
             id="topbar-logo"
-            src={"https://in-egov-assets.s3.ap-south-1.amazonaws.com/images/Upyog-logo.png" || "https://cdn.jsdelivr.net/npm/@egovernments/digit-ui-css@1.0.7/img/m_seva_white_logo.png"}
+            src={"https://velocity-upyog-assets.s3.ap-south-1.amazonaws.com/coat-of-arms-of-chhattisgarh.svg.png" || "https://in-egov-assets.s3.ap-south-1.amazonaws.com/images/Upyog-logo.png"}
             alt="UPYOG"
           />
           </a>
@@ -60,8 +60,8 @@ const TopBar = ({
           <img
           className="city"
           id="topbar-logo" 
-          src={"https://in-egov-assets.s3.ap-south-1.amazonaws.com/images/Upyog-logo.png" || "https://cdn.jsdelivr.net/npm/@egovernments/digit-ui-css@1.0.7/img/m_seva_white_logo.png"}
-          alt="mSeva"
+          src={"https://velocity-upyog-assets.s3.ap-south-1.amazonaws.com/unicef_logo_432x150.png" || "https://in-egov-assets.s3.ap-south-1.amazonaws.com/images/Upyog-logo.png"}
+          alt="unicef"
           style={{marginLeft:"10px"}}
         />
         </div>
