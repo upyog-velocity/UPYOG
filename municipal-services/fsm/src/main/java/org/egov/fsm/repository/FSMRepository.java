@@ -72,6 +72,17 @@ public class FSMRepository {
 
 		FSM fsm = fsmRequest.getFsm();
 
+		if(fsm.getApplicationStatus() != null && fsm.getApplicationStatus().equalsIgnoreCase("ASSING_DSO"))
+		{
+			if(fsmRequest.getWorkflow() != null) {
+				if (fsmRequest.getWorkflow().getAction().equalsIgnoreCase("PAY")) {
+					fsm.setApplicationStatus(FSMConstants.ASSIGN_DSO);
+				} else {
+					fsm.setApplicationStatus(FSMConstants.FSM_PENDING_DSO_APPROVAL);
+					isStateUpdatable = true;
+				}
+			}
+		}
 		if (isStateUpdatable) {
 			fsmForUpdate = fsm;
 		} else {
