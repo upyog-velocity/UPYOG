@@ -79,6 +79,7 @@ public class FSMRepository {
 					fsm.setApplicationStatus(FSMConstants.ASSIGN_DSO);
 				} else {
 					fsm.setApplicationStatus(FSMConstants.FSM_PENDING_DSO_APPROVAL);
+					isStateUpdatable = true;
 				}
 			}
 		}
