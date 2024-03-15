@@ -225,5 +225,7 @@ public class FSMConstants {
 	public static final String FSM_ZERO_PRICE_SERVICE = "FSM_ZERO_PAY_SERVICE";
 	public static final String FSM_LATER_PAY_SERVICE = "PAY_LATER_SERVICE";
 
+	public static final String FSM_PENDING_DSO_APPROVAL="PENDING_DSO_APPROVAL";
+
 	
 }
