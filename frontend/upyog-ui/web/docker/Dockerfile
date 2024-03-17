@@ -19,7 +19,7 @@ RUN cd web/ \
     && yarn install \
     && yarn build 
 
-FROM nginx:mainline-alpine
+FROM nginx:1.25.4-alpine3.18
 #FROM ghcr.io/egovernments/nginx:mainline-alpine
 ENV WORK_DIR=/var/web/upyog-ui
 
