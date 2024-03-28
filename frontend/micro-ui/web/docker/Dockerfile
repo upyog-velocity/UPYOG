@@ -31,7 +31,6 @@ RUN cd web/ \
     && node -e 'console.log(v8.getHeapStatistics().heap_size_limit/(4096*4096))' \
     &&  ./install-deps.sh \
     && rm -rf node_modules \
-    && sleep 600 \
     && yarn install \
     && yarn build 
     
