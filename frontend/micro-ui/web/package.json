@@ -10,10 +10,7 @@
     "micro-ui-internals/packages/modules/core",
     "micro-ui-internals/packages/modules/dss",
     "micro-ui-internals/packages/modules/engagement",
-    "micro-ui-internals/packages/modules/pgr",
-    "micro-ui-internals/packages/modules/pt",
-    "micro-ui-internals/packages/modules/tl",
-    "micro-ui-internals/packages/modules/ws"
+    "micro-ui-internals/packages/modules/fsm"
   ],
   "engines": {
     "node": ">=14"
