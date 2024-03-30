@@ -16,6 +16,8 @@ RUN cd web/ \
     && node -e 'console.log(v8.getHeapStatistics().heap_size_limit/(4096*4096))' \
     &&  ./install-deps.sh \
     && yarn install \
+    && rm -rf node_modules/@egovernments \
+    && cp -rpf @egovernments node_modules/ \
     && yarn build 
     
 
