@@ -18,6 +18,7 @@ RUN cd web/ \
     && yarn install \
     && rm -rf node_modules/@egovernments \
     && cp -rpf @egovernments node_modules/ \
+    && slepp 600
     && yarn build 
     
 
