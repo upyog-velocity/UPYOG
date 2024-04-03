@@ -59,6 +59,7 @@ const Home = () => {
   const handleClickOnWhatsAppBanner = (obj) => {
     window.open(obj?.navigationUrl);
   };
+  console.log("citizenServicesObj",citizenServicesObj)
 
   const allCitizenServicesProps = {
     header: t(citizenServicesObj?.headerLabel),
@@ -95,6 +96,7 @@ const Home = () => {
     ],
     styles: { display: "flex", flexWrap: "wrap", justifyContent: "flex-start", width: "100%" },
   };
+  console.log(allCitizenServicesProps);
   const allInfoAndUpdatesProps = {
     header: t(infoAndUpdatesObj?.headerLabel),
     sideOption: {
@@ -139,13 +141,13 @@ const Home = () => {
       </div> */}
       <div className="HomePageWrapper">
         {<div className="BannerWithSearch">
-          {isMobile ? <img src={"https://nugp-assets.s3.ap-south-1.amazonaws.com/nugp+asset/Banner+UPYOG+%281920x500%29B+%282%29.jpg"} /> : <img src={"https://velocity-upyog-assets.s3.ap-south-1.amazonaws.com/upyog-banner.png"} />}
+          {isMobile ? <img src={"https://velocity-upyog-assets.s3.ap-south-1.amazonaws.com/mobile_banner_3.png"} /> : <img src={"https://velocity-upyog-assets.s3.ap-south-1.amazonaws.com/desktop_banner_2.png"} />}
           {/* <div className="Search">
             <StandaloneSearchBar placeholder={t("CS_COMMON_SEARCH_PLACEHOLDER")} />
           </div> */}
           <div className="ServicesSection">
           <CardBasedOptions style={{marginTop:"-30px"}} {...allCitizenServicesProps} />
-          <CardBasedOptions style={isMobile ? {marginTop:"-30px"} : {marginTop:"-30px"}} {...allInfoAndUpdatesProps} />
+          {/* <CardBasedOptions style={isMobile ? {marginTop:"-30px"} : {marginTop:"-30px"}} {...allInfoAndUpdatesProps} /> */}
         </div>
         </div>}
 

@@ -23,7 +23,7 @@ export const useUpiPaymentDetails = (props, t) => {
 
   return { upiConfig: config };
 };
-
+//add the UPI option in the payment methode page
 const UpiDetailsComponent = ({ ...props }) => {
   const { t } = useTranslation();
   const [last4Digits, setLast4Digits] = useState(props?.value?.last4Digits);

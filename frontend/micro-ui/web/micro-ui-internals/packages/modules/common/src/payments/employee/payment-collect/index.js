@@ -44,7 +44,7 @@ export const CollectPayment = (props) => {
   // });
 
   const { cardConfig } = useCardPaymentDetails(props, t);
-  const { upiConfig } = useUpiPaymentDetails(props, t);
+  const { upiConfig } = useUpiPaymentDetails(props, t);//add the UPI option in the payment methode page
   const { chequeConfig } = useChequeDetails(props, t);
   const { cashConfig } = useCashPaymentDetails(props, t);
 
