@@ -36,7 +36,8 @@ const getName = (places) => {
 };
 
 const loadGoogleMaps = (callback) => {
-  const key = globalConfigs?.getConfig("GMAPS_API_KEY");
+  // const key = globalConfigs?.getConfig("GMAPS_API_KEY");  
+  const key = 'AIzaSyBfmW9F1rx7wZWgoPzd9zOXleOQc03wGrw';
   const loader = new Loader({
     apiKey: key,
     version: "weekly",

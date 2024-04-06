@@ -1,5 +1,5 @@
 .HomePageWrapper {
-  margin-top: -25px;
+  // margin-top: -25px;
 
   .BannerWithSearch {
     margin-bottom: 40px;
@@ -61,7 +61,7 @@
   .SideBarStatic {
     width: 219px;
     background: #ffffff;
-    margin-top: -24px;
+    // margin-top: -24px;
   }
 }
 @media (max-width: 780px) {
@@ -128,7 +128,7 @@
         padding: 0 15px 0 15px;
       }
       img {
-        height: 20vw;
+        // height: 20vw;
       }
     }
 
@@ -160,4 +160,40 @@
     max-width: unset;
     width:100%
   }
+  
+  .citizen-desludging-content{
+      padding: 0px 20px;
+  }
+  .citizen-desludging-content{
+    h2 {
+        font-size: 25px;
+        font-weight: 900;
+        margin-bottom: 30px;
+    }
+  }
+  .citizen-desludging-conten-wrapper {
+    display: flex;
+    align-items: center;
+    padding: 10px 0px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid grey;
+  }
+  @media (max-width: 565px) {
+  .citizen-desludging-conten-wrapper-inner-img {
+        height: 50px;
+        width: 50px;
+        border: 1px solid;
+        border-radius: 50%;
+        background-color: #FEEEE7;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 10px;
+    }
+    .citizen-desludging-conten-wrapper-inner-img{
+      img {
+        width: 70% !important;
+      }
+    }
+  }  
 }

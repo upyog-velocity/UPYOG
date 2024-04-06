@@ -16,7 +16,7 @@ import {
   WSICon,
 } from "@egovernments/digit-ui-react-components";
 import { useTranslation } from "react-i18next";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { CitizenSideBar } from "../../../components/TopBarSideBar/SideBar/CitizenSideBar";
 import StaticCitizenSideBar from "../../../components/TopBarSideBar/SideBar/StaticCitizenSideBar";
 
@@ -59,7 +59,28 @@ const Home = () => {
   const handleClickOnWhatsAppBanner = (obj) => {
     window.open(obj?.navigationUrl);
   };
-  console.log("citizenServicesObj",citizenServicesObj)
+
+
+  const citizenDesludgingService = {
+    header: t("CS_COMMON_CITIZEN_DESLUDGING_SERVICE"),
+    options: [
+      {
+        name: t("CS_HOME_APPLY_FOR_DESLUDGING"),
+        link: '/digit-ui/citizen/fsm/new-application',   
+        src: 'https://velocity-upyog-assets.s3.ap-south-1.amazonaws.com/Septic+Tank__80x80.png'
+      },
+      {
+        name: t("CS_HOME_MY_APPLICATIONS"),
+        link: '/digit-ui/citizen/fsm/my-applications',
+        src: 'https://velocity-upyog-assets.s3.ap-south-1.amazonaws.com/Applications_80x80.png'
+      },
+      {
+        name: t("CS_LINK_LOGIN_DSO"),
+        link: '/digit-ui/citizen/login',
+        src: 'https://velocity-upyog-assets.s3.ap-south-1.amazonaws.com/Login__80x80.png'
+      }
+    ]
+  }
 
   const allCitizenServicesProps = {
     header: t(citizenServicesObj?.headerLabel),
@@ -96,7 +117,6 @@ const Home = () => {
     ],
     styles: { display: "flex", flexWrap: "wrap", justifyContent: "flex-start", width: "100%" },
   };
-  console.log(allCitizenServicesProps);
   const allInfoAndUpdatesProps = {
     header: t(infoAndUpdatesObj?.headerLabel),
     sideOption: {
@@ -141,14 +161,25 @@ const Home = () => {
       </div> */}
       <div className="HomePageWrapper">
         {<div className="BannerWithSearch">
-          {isMobile ? <img src={"https://velocity-upyog-assets.s3.ap-south-1.amazonaws.com/mobile_banner_3.png"} /> : <img src={"https://velocity-upyog-assets.s3.ap-south-1.amazonaws.com/desktop_banner_2.png"} />}
+          {isMobile ? <img src={"https://velocity-upyog-assets.s3.ap-south-1.amazonaws.com/mobile_banner_3.png"} /> : <img src={"https://velocity-upyog-assets.s3.ap-south-1.amazonaws.com/home_banner_3.png"} />}
           {/* <div className="Search">
             <StandaloneSearchBar placeholder={t("CS_COMMON_SEARCH_PLACEHOLDER")} />
           </div> */}
           <div className="ServicesSection">
-          <CardBasedOptions style={{marginTop:"-30px"}} {...allCitizenServicesProps} />
+          {/* <CardBasedOptions style={{marginTop:"-30px"}} {...allCitizenServicesProps} /> */}
           {/* <CardBasedOptions style={isMobile ? {marginTop:"-30px"} : {marginTop:"-30px"}} {...allInfoAndUpdatesProps} /> */}
         </div>
+            <div className="citizen-desludging-content">
+                <h2>{citizenDesludgingService?.header}</h2>
+                {citizenDesludgingService?.options.map((props, index) => (
+                  <div className="citizen-desludging-conten-wrapper">
+                    <div className="citizen-desludging-conten-wrapper-inner-img"><img src={props.src} style={{width:"70%"}}/></div>
+                    <Link key={index} to={props.link}>
+                      <p>{props.name}</p>
+                    </Link>
+                  </div> 
+                ))}
+            </div>
         </div>}
 
 
