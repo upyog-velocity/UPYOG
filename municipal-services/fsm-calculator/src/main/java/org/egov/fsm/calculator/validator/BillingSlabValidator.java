@@ -48,7 +48,8 @@ public class BillingSlabValidator {
 				.propertyType(request.getBillingSlab().getPropertyType())
 				.tenantId(request.getBillingSlab().getTenantId())
 				.capacity(request.getBillingSlab().getCapacityFrom().doubleValue())
-				.slum(SlumEnum.valueOf(request.getBillingSlab().getSlum().toString())).build();
+				.slum(SlumEnum.valueOf(request.getBillingSlab().getSlum().toString()))
+				.ward(request.getBillingSlab().getWard()).build();
 		List<BillingSlab> billingSlabs = repository.getBillingSlabData(searchCriteria);
 		if (!CollectionUtils.isEmpty(billingSlabs)) {
 			throw new CustomException(CalculatorConstants.INVALID_BILLING_SLAB_ERROR,

@@ -79,6 +79,10 @@ public class BillingSlabQueryBuilder {
 			query.append(" AND slum=?");
 			preparedStmtList.add(criteria.getSlum().toString());
 		}
+		if (criteria.getWard() != null) {
+			query.append(" AND ward=?");
+			preparedStmtList.add(criteria.getWard().toString());
+		}
 		return addPaginationWrapper(query.toString(), preparedStmtList, criteria);
 	}
 

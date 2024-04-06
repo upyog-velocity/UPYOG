@@ -7,7 +7,7 @@ serviceMaps:
    isTransaction: true
    queryMaps:
 
-       - query: INSERT INTO public.eg_billing_slab(id,tenantid,capacityfrom,capacityto,propertytype,slum,price,status,createdby,lastmodifiedby,createdtime,lastmodifiedtime) VALUES (?,?,?,?,?,?,?,?,?,?,?,?);
+       - query: INSERT INTO public.eg_billing_slab(id,tenantid,capacityfrom,capacityto,propertytype,slum,price,status,createdby,lastmodifiedby,createdtime,lastmodifiedtime,ward) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);
          basePath: billingSlab
          jsonMaps:
           - jsonPath: $.billingSlab.id
@@ -33,6 +33,8 @@ serviceMaps:
           - jsonPath: $.billingSlab.auditDetails.createdTime
 
           - jsonPath: $.billingSlab.auditDetails.lastModifiedTime
+
+          - jsonPath: $.billingSlab.ward
 
  - version: 1.0
    description: updates FSM-CALCULATOR Application details in eg_billing_slab  table

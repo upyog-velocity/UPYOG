@@ -48,6 +48,9 @@ public class BillingSlabSearchCriteria {
 	@JsonProperty("slum")
 	private SlumEnum slum;
 
+	@JsonProperty("ward")
+	private String ward;
+
 	public enum SortOrder {
 		ASC, DESC
 	}

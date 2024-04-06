@@ -48,6 +48,9 @@ public class BillingSlab {
 	@JsonProperty("price")
 	private BigDecimal price = null;
 
+	@JsonProperty("ward")
+	private String ward = null;
+
 	/**
 	 * Gets or Sets status
 	 */
