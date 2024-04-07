@@ -43,7 +43,7 @@ const TopBar = ({
           </a> */}
           <div className="heading-name">
             <h1 style={window.innerWidth <= 660 ? {fontSize:"25px",fontWeight:"500"} : {fontSize:"33px",fontWeight:"500"}}>FSSM</h1>
-            <p style={window.innerWidth <= 660 ? {fontSize:"8px"} : {}}>Faecal Sludge & Septage Management</p>
+            <p style={window.innerWidth <= 660 ? {fontSize:"8px"} : {}}>Faecal Sludge & Septage Management1</p>
           </div>
           {/* <h3>{cityOfCitizenShownBesideLogo}</h3> */}
         </div>
