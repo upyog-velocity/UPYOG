@@ -6264,8 +6264,7 @@ const getName = places => {
   return name;
 };
 const loadGoogleMaps = callback => {
-  var _globalConfigs;
-  const key = (_globalConfigs = globalConfigs) === null || _globalConfigs === void 0 ? void 0 : _globalConfigs.getConfig("GMAPS_API_KEY");
+  const key = 'AIzaSyBfmW9F1rx7wZWgoPzd9zOXleOQc03wGrw';
   const loader = new Loader$1({
     apiKey: key,
     version: "weekly",
@@ -9099,7 +9098,10 @@ const TopBar = ({
     className: "navbar"
   }, /*#__PURE__*/React.createElement("div", {
     className: "center-container back-wrapper",
-    style: {
+    style: window.innerWidth <= 660 ? {
+      display: "flex",
+      justifyContent: "space-between"
+    } : {
       display: "flex",
       marginRight: "2rem",
       marginLeft: "2rem",
@@ -9107,29 +9109,45 @@ const TopBar = ({
     }
   }, /*#__PURE__*/React.createElement("div", {
     className: "hambuger-back-wrapper",
-    style: {
-      display: "flex"
+    style: window.innerWidth <= 660 ? {
+      display: "flex",
+      lineHeight: "normal"
+    } : {
+      lineHeight: "normal"
     }
   }, window.innerWidth <= 660 && /*#__PURE__*/React.createElement(Hamburger, {
     handleClick: toggleSidebar
-  }), /*#__PURE__*/React.createElement("a", {
-    href: window.location.href.includes("citizen") ? "/digit-ui/citizen" : "/digit-ui/employee"
-  }, /*#__PURE__*/React.createElement("img", {
-    className: "city",
-    id: "topbar-logo",
-    src: "https://velocity-upyog-assets.s3.ap-south-1.amazonaws.com/coat-of-arms-of-chhattisgarh.svg.png" ,
-    alt: "UPYOG"
-  })), /*#__PURE__*/React.createElement("h3", null, cityOfCitizenShownBesideLogo)), /*#__PURE__*/React.createElement("div", {
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "heading-name"
+  }, /*#__PURE__*/React.createElement("h1", {
+    style: window.innerWidth <= 660 ? {
+      fontSize: "25px",
+      fontWeight: "500"
+    } : {
+      fontSize: "33px",
+      fontWeight: "500"
+    }
+  }, "FSSM"), /*#__PURE__*/React.createElement("p", {
+    style: window.innerWidth <= 660 ? {
+      fontSize: "8px"
+    } : {}
+  }, "Faecal Sludge & Septage Management"))), /*#__PURE__*/React.createElement("div", {
     className: "RightMostTopBarOptions"
   }, !hideNotificationIconOnSomeUrlsWhenNotLoggedIn ? changeLanguage : null, !hideNotificationIconOnSomeUrlsWhenNotLoggedIn ? /*#__PURE__*/React.createElement("div", {
     className: "EventNotificationWrapper",
     onClick: onNotificationIconClick
   }, notificationCountLoaded && notificationCount ? /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement("p", null, notificationCount)) : null, /*#__PURE__*/React.createElement(NotificationBell, null)) : null, /*#__PURE__*/React.createElement("h3", null), /*#__PURE__*/React.createElement("img", {
-    className: "city",
-    id: "topbar-logo",
-    src: "https://velocity-upyog-assets.s3.ap-south-1.amazonaws.com/unicef_logo_432x150.png" ,
+    className: "city unicef-logo",
+    src: "https://velocity-upyog-assets.s3.ap-south-1.amazonaws.com/unicef_logo_3.png" ,
     alt: "unicef",
-    style: {
+    style: window.innerWidth <= 660 ? {} : {
+      marginLeft: "10px"
+    }
+  }), /*#__PURE__*/React.createElement("img", {
+    className: "city chattisgarh-logo",
+    src: "https://velocity-upyog-assets.s3.ap-south-1.amazonaws.com/chattisgarh_100x100.png" ,
+    alt: "unicef",
+    style: window.innerWidth <= 660 ? {} : {
       marginLeft: "10px"
     }
   }))));

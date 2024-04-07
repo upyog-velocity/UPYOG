@@ -6,6 +6,7 @@ import { useQueryClient } from "react-query";
 import { useCashPaymentDetails } from "./ManualReciept";
 import { useCardPaymentDetails } from "./card";
 import { useChequeDetails } from "./cheque";
+import { useUpiPaymentDetails } from "./Upi";
 import isEqual from "lodash/isEqual";
 import { BillDetailsFormConfig } from "./Bill-details/billDetails";
 
@@ -43,6 +44,7 @@ export const CollectPayment = (props) => {
   // });
 
   const { cardConfig } = useCardPaymentDetails(props, t);
+  const { upiConfig } = useUpiPaymentDetails(props, t);//add the UPI option in the payment methode page
   const { chequeConfig } = useChequeDetails(props, t);
   const { cashConfig } = useCashPaymentDetails(props, t);
 
@@ -59,6 +61,7 @@ export const CollectPayment = (props) => {
     { code: "CASH", label: t("COMMON_MASTERS_PAYMENTMODE_CASH") },
     { code: "CHEQUE", label: t("COMMON_MASTERS_PAYMENTMODE_CHEQUE") },
     { code: "CARD", label: t("COMMON_MASTERS_PAYMENTMODE_CREDIT/DEBIT CARD") },
+    { code: "UPI", label: t("COMMON_MASTERS_PAYMENTMODE_UPI") },
     // { code: "DD", label: "Demand Draft" },
     // { code: "OFFLINE_NEFT", label: "Offline NEFT" },
     // { code: "OFFLINE_RTGS", label: "Offline RTGS" },
@@ -68,6 +71,7 @@ export const CollectPayment = (props) => {
   const formConfigMap = {
     CHEQUE: chequeConfig,
     CARD: cardConfig,
+    UPI: upiConfig,
   };
 
   useEffect(() => {

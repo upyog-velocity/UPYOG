@@ -174,9 +174,13 @@ const BillDetails = ({ businessService, consumerCode, _amount, onChange }) => {
   const billDetails = yearWiseBills?.[0] || [];
   // const currentYear = new Date().getFullYear();
   const getTotal = () => (bill?.totalAmount ? bill?.totalAmount : 0);
+  const [totalFSM, setTotalFSM] = useState(application?.totalAmount ? application?.totalAmount : 0);
   const getTotalFSM = () => (application?.totalAmount ? application?.totalAmount : 0);
+  const [advanceAmount, setAdvanceAmount] = useState(applicationData?.advanceAmount ? applicationData?.advanceAmount : 0);
   const getAdvanceAmount = () => (applicationData?.advanceAmount ? applicationData?.advanceAmount : 0);
+  const [dueAmount, setDueAmount] = useState(bill?.totalAmount ? bill?.totalAmount : 0);
   const dueAmountTobePaid = () => (bill?.totalAmount ? bill?.totalAmount : 0);
+  const [amountPerTrip, setAmountPerTrip] = useState(application?.additionalDetails?.tripAmount ? application?.additionalDetails?.tripAmount : 0);
   const getAmountPerTrip = () => (application?.additionalDetails?.tripAmount ? application?.additionalDetails?.tripAmount : 0);
 
   const arrears =
@@ -334,6 +338,30 @@ const BillDetails = ({ businessService, consumerCode, _amount, onChange }) => {
     );
   };
 
+  const handleAmountPerTrip = (event) => {
+    const { value } = event.target;   
+    setAmountPerTrip(value);
+    application.additionalDetails.tripAmount = value;        
+  };
+
+  const handleTotalFSM = (event) => {
+    const { value } = event.target;   
+    setTotalFSM(value);    
+    application.totalAmount = value;        
+  };
+
+  const handleAdvanceAmount = (event) => {
+    const { value } = event.target;   
+    setAdvanceAmount(value);    
+    applicationData.advanceAmount = value;
+  };
+
+  const handleAmountTobePaid = (event) => {
+    const { value } = event.target;   
+    setDueAmount(value);    
+    bill.totalAmount = value;
+  };
+
   return (
     <React.Fragment>
       <StatusTable>
@@ -355,32 +383,88 @@ const BillDetails = ({ businessService, consumerCode, _amount, onChange }) => {
             textStyle={{ textAlign: "left" }}
             text={"₹ " + Number(getAmountPerTrip()).toFixed(2)}
           />
+          <label>{t("ES_PAYMENT_DETAILS_AMOUNT_PER_TRIP")} : </label>          
+          <TextInput
+              style={{ width: "30%" }}
+              className="amountPrTrip"
+              key="1"
+              name="amountPrTrip"
+              value={Number(getAmountPerTrip())}
+              onChange={handleAmountPerTrip}                                
+              title={t("ES_PAYMENT_DETAILS_AMOUNT_PER_TRIP")}                                         
+            />            
           <Row
             label={t("ES_PAYMENT_DETAILS_TOTAL_AMOUNT")}
             textStyle={{ textAlign: "left" }}
             text={!applicationData?.paymentPreference ? "₹ " + Number(getTotalFSM()).toFixed(2) : "₹ " + Number(bill?.totalAmount).toFixed(2)}
           />
+          <label>{t("ES_PAYMENT_DETAILS_TOTAL_AMOUNT")} : </label>          
+          <TextInput
+              style={{ width: "30%" }}
+              className="amountTotalAmount"
+              key="2"
+              name="amountTotalAmount"
+              value={Number(getTotalFSM())}
+              onChange={handleTotalFSM}                                
+              title={t("ES_PAYMENT_DETAILS_TOTAL_AMOUNT")}                                         
+            /> 
           {!applicationData?.paymentPreference &&
             (getAdvanceAmountPaid ? (
+              <>
               <Row
                 label={t("ES_PAYMENT_DETAILS_ADV_AMOUNT_PAID")}
                 textStyle={{ fontWeight: "bold", textAlign: "left" }}
                 text={"₹ " + Number(getAdvanceAmount()).toFixed(2)}
               />
+              <label>{t("ES_PAYMENT_DETAILS_ADV_AMOUNT_PAID")} : </label>          
+              <TextInput
+                  style={{ width: "30%" }}
+                  className="amountTotalPaid"
+                  key="3"
+                  name="amountTotalPaid"
+                  value={Number(getAdvanceAmount())}
+                  onChange={handleAdvanceAmount}                                
+                  title={t("ES_PAYMENT_DETAILS_ADV_AMOUNT_PAID")}                                         
+                />
+              </>
             ) : (
+              <>
               <Row
                 label={t("ES_PAYMENT_DETAILS_ADV_AMOUNT_DUE")}
                 textStyle={{ fontWeight: "bold", textAlign: "left" }}
                 text={"₹ " + Number(getAdvanceAmount()).toFixed(2)}
               />
+              <label>{t("ES_PAYMENT_DETAILS_ADV_AMOUNT_DUE")} : </label>          
+              <TextInput
+                  style={{ width: "30%" }}
+                  className="amountTotalDue"
+                  key="4"
+                  name="amountTotalDue"
+                  value={Number(getAdvanceAmount())}
+                  onChange={handleAdvanceAmount}                                
+                  title={t("ES_PAYMENT_DETAILS_ADV_AMOUNT_DUE")}                                         
+                />              
+              </>
             ))}
 
           {applicationData?.applicationStatus !== "PENDING_APPL_FEE_PAYMENT" ? (
+            <>
             <Row
               label={t("FSM_DUE_AMOUNT_TO_BE_PAID")}
               textStyle={{ fontWeight: "bold", textAlign: "left" }}
               text={"₹ " + Number(dueAmountTobePaid()).toFixed(2)}
             />
+            <label>{t("FSM_DUE_AMOUNT_TO_BE_PAID")} : </label>          
+              <TextInput
+                  style={{ width: "30%" }}
+                  className="amountTotalDuePaid"
+                  key="4"
+                  name="amountTotalDuePaid"
+                  value={Number(dueAmountTobePaid())}
+                  onChange={handleAmountTobePaid}                                
+                  title={t("FSM_DUE_AMOUNT_TO_BE_PAID")}                                         
+                />              
+              </>
           ) : null}
         </StatusTable>
       ) : (

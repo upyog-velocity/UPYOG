@@ -1,1 +1,4695 @@
-function e(e){return e&&"object"==typeof e&&"default"in e?e.default:e}var n=require("react"),l=e(n),a=require("react-router-dom"),o=require("react-i18next"),r=require("@egovernments/digit-ui-react-components"),i=require("redux"),s=require("react-redux"),c=e(require("lodash.merge")),u=require("react-hook-form"),m=require("react-query");function d(e,t){switch(void 0===e&&(e={}),t.type){case"CREATE_COMPLAINT":return{...e,response:t.payload};case"FETCH_COMPLAINTS":return{...e,list:t.payload.complaints};case"UPDATE_COMPLAINT":return{...e,response:t.payload};case"APPLY_INBOX_FILTER":return{...e,response:t.payload.response.instances};default:return e}}const p=(e,t)=>""+e.path+t,E=e=>{const t=a.useHistory(),{t:i}=o.useTranslation(),{id:s}=a.useParams(),[c,u]=n.useState(null),[m,d]=n.useState(!0);return l.createElement(r.Card,null,l.createElement(r.CardHeader,null,i("CS_REOPEN_COMPLAINT")),l.createElement(r.CardText,null),m?null:l.createElement(r.CardLabelError,null,i("CS_ADDCOMPLAINT_ERROR_REOPEN_REASON")),l.createElement(r.RadioButtons,{onSelect:e=>{let t=Digit.SessionStorage.get("reopen."+s);Digit.SessionStorage.set("reopen."+s,{...t,reason:e}),u(e)},selectedOption:c,options:[i("CS_REOPEN_OPTION_ONE"),i("CS_REOPEN_OPTION_TWO"),i("CS_REOPEN_OPTION_THREE"),i("CS_REOPEN_OPTION_FOUR")]}),l.createElement(r.SubmitBar,{label:i("CS_COMMON_NEXT"),onSubmit:function(){null===c?d(!1):t.push(e.match.path+"/upload-photo/"+s)}}))},C=e=>{var t,i;const{t:s}=o.useTranslation(),c=a.useHistory();let{id:u}=a.useParams();const[m,d]=n.useState(null),[p,E]=n.useState(!0);return n.useEffect(()=>{let e=Digit.SessionStorage.get("reopen."+u);Digit.SessionStorage.set("reopen."+u,{...e,verificationDocuments:m})},[m,u]),l.createElement(l.Fragment,null,l.createElement(r.Card,null,l.createElement(r.ImageUploadHandler,{header:s("CS_ADDCOMPLAINT_UPLOAD_PHOTO"),tenantId:null==e||null===(t=e.complaintDetails)||void 0===t||null===(i=t.service)||void 0===i?void 0:i.tenantId,cardText:"",onPhotoChange:e=>{(e=>{if(null!=e&&e.length){const t=e.map(e=>({documentType:"PHOTO",fileStoreId:e,documentUid:"",additionalDetails:{}}));d(t)}})(e)},uploadedImages:null}),p?null:l.createElement(r.CardLabelError,null,s("CS_ADDCOMPLAINT_UPLOAD_ERROR_MESSAGE")),l.createElement(r.SubmitBar,{label:s("PT_COMMONS_NEXT"),onSubmit:function(){null===m?E(!1):c.push(e.match.path+"/addional-details/"+u)}}),e.skip?l.createElement(r.LinkButton,{label:s("CORE_COMMON_SKIP_CONTINUE"),onClick:function(){c.push(e.match.path+"/addional-details/"+u)}}):null))},S=e=>{let{cityCode:t,complaintType:n,description:l,landmark:a,city:o,district:r,region:i,state:s,pincode:c,localityCode:u,localityName:m,uploadedImages:d,mobileNumber:p,name:E}=e;return function(e,C){try{return Promise.resolve(Digit.Complaint.create({cityCode:t,complaintType:n,description:l,landmark:a,city:o,district:r,region:i,state:s,pincode:c,localityCode:u,localityName:m,uploadedImages:d,mobileNumber:p,name:E})).then(function(t){e({type:"CREATE_COMPLAINT",payload:t})})}catch(e){return Promise.reject(e)}}},_=e=>function(t){try{return Promise.resolve(Digit.PGRService.update(e)).then(function(e){t({type:"UPDATE_COMPLAINT",payload:e})})}catch(e){return Promise.reject(e)}},O=e=>{const t=a.useHistory();let{id:i}=a.useParams();const c=s.useDispatch(),u=s.useSelector(e=>e).common;let{t:m}=o.useTranslation();const{complaintDetails:d}=e;n.useEffect(()=>{if(u.complaints){const{response:n}=u.complaints;n&&"successful"===n.responseInfo.status&&t.push(e.match.path+"/response/:"+i)}},[u.complaints,e.history]);const p=n.useCallback(function(n){try{return Promise.resolve(c(_(n))).then(function(){t.push(e.match.path+"/response/"+i)})}catch(e){return Promise.reject(e)}},[c]);return l.createElement(l.Fragment,null,l.createElement(r.Card,null,l.createElement(r.CardHeader,null,m("CS_ADDCOMPLAINT_PROVIDE_ADDITIONAL_DETAILS")),l.createElement(r.CardText,null,m("CS_ADDCOMPLAINT_ADDITIONAL_DETAILS_TEXT")),l.createElement(r.TextArea,{name:"AdditionalDetails",onChange:function(e){let t=Digit.SessionStorage.get("reopen."+i);Digit.SessionStorage.set("reopen."+i,{...t,addtionalDetail:e.target.value})}}),l.createElement("div",{onClick:function(){let t=Digit.SessionStorage.get("reopen."+i);return d&&(d.workflow=((e,t)=>({action:"REOPEN",comments:e.addtionalDetail,assignes:[],verificationDocuments:e.verificationDocuments}))(t),d.service.additionalDetail={REOPEN_REASON:t.reason},p({service:d.service,workflow:d.workflow})),l.createElement(a.Redirect,{to:{pathname:e.parentRoute+"/response",state:{complaintDetails:d}}})}},l.createElement(r.SubmitBar,{label:m("CS_HEADER_REOPEN_COMPLAINT")}))))},f=e=>{let{action:t}=e;const{t:n}=o.useTranslation();switch(t){case"REOPEN":return n("CS_COMMON_COMPLAINT_REOPENED");case"RATE":return n("CS_COMMON_THANK_YOU");default:return n("CS_COMMON_COMPLAINT_SUBMITTED")}},T=e=>{let{response:t}=e;const{complaints:n}=t,{t:a}=o.useTranslation();return l.createElement(r.Banner,n&&n.response&&n.response.responseInfo?{message:f(n.response.ServiceWrappers[0].workflow),complaintNumber:n.response.ServiceWrappers[0].service.serviceRequestId,successful:!0}:{message:a("CS_COMMON_COMPLAINT_NOT_SUBMITTED"),successful:!1})},v=e=>{let{response:t}=e;const{complaints:n}=t,{t:a}=o.useTranslation();if(n&&n.response&&n.response.responseInfo){const{action:e}=n.response.ServiceWrappers[0].workflow;return l.createElement(r.CardText,null,a("RATE"===e?"CS_COMMON_RATING_SUBMIT_TEXT":"CS_COMMON_TRACK_COMPLAINT_TEXT"))}},g=e=>{const{t:t}=o.useTranslation(),n=s.useSelector(e=>e).pgr;return l.createElement(r.Card,null,n.complaints.response&&l.createElement(T,{response:n}),n.complaints.response&&l.createElement(v,{response:n}),l.createElement(a.Link,{to:"/digit-ui/citizen"},l.createElement(r.SubmitBar,{label:t("CORE_COMMON_GO_TO_HOME")})))},N=e=>{var t;let{match:n,parentRoute:o}=e;const r=window.location.pathname.split("/"),i=r[r.length-1],s=(null===(t=Digit.SessionStorage.get("CITIZEN.COMMON.HOME.CITY"))||void 0===t?void 0:t.code)||Digit.ULBService.getCurrentTenantId(),c=Digit.Hooks.pgr.useComplaintDetails({tenantId:s,id:i}).complaintDetails;return l.createElement(a.Switch,null,l.createElement(a.Route,{exact:!0,path:p(n,"/:id"),component:()=>l.createElement(E,{match:n,complaintDetails:c})}),l.createElement(a.Route,{path:p(n,"/upload-photo/:id"),component:()=>l.createElement(C,{match:n,skip:!0,complaintDetails:c})}),l.createElement(a.Route,{path:p(n,"/addional-details/:id"),component:()=>l.createElement(O,{match:n,parentRoute:o,complaintDetails:c})}),l.createElement(a.Route,{path:p(n,"/response"),component:()=>l.createElement(g,{match:n})}))},y=e=>{let{action:t}=e;const{t:n}=o.useTranslation();switch(t){case"REOPEN":return n("CS_COMMON_COMPLAINT_REOPENED");case"RATE":return n("CS_COMMON_THANK_YOU");default:return n("CS_COMMON_COMPLAINT_SUBMITTED")}},h=e=>{let{response:n}=e;const{complaints:a}=n;return l.createElement(r.Banner,a&&a.response&&a.response.responseInfo?{message:y(a.response.ServiceWrappers[0].workflow),complaintNumber:a.response.ServiceWrappers[0].service.serviceRequestId,successful:!0}:{message:t("CS_COMMON_COMPLAINT_NOT_SUBMITTED"),successful:!1})},M=e=>{const{t:t}=o.useTranslation(),n=s.useSelector(e=>e).pgr;return l.createElement(r.Card,null,n.complaints.response&&l.createElement(h,{response:n}),l.createElement(r.CardText,null,t("CS_COMMON_TRACK_COMPLAINT_TEXT")),l.createElement(a.Link,{to:"/digit-ui/citizen"},l.createElement(r.SubmitBar,{label:t("CORE_COMMON_GO_TO_HOME")})))};function I(){return(I=Object.assign?Object.assign.bind():function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var l in n)Object.prototype.hasOwnProperty.call(n,l)&&(e[l]=n[l])}return e}).apply(this,arguments)}const A={routes:{"complaint-type":{component:e=>{let{t:t,config:a,onSelect:o,value:i}=e;const[s,c]=n.useState(()=>{const{complaintType:e}=i;return e||{}}),u=a.texts,m=Digit.Hooks.pgr.useComplaintTypes({stateCode:Digit.ULBService.getCurrentTenantId()});return l.createElement(r.TypeSelectCard,I({},u,{menu:m,optionsKey:"name",selected:function(e){c(e)},selectedOption:s,onSave:()=>{o({complaintType:s})},t:t,disabled:0===Object.keys(s).length||null===s}))},texts:{headerCaption:"",header:"CS_ADDCOMPLAINT_COMPLAINT_TYPE_PLACEHOLDER",cardText:"CS_COMPLAINT_TYPE_TEXT",submitBarLabel:"CS_COMMON_NEXT"},nextStep:"sub-type"},"sub-type":{component:e=>{let{t:t,config:a,onSelect:o,value:i}=e;const[s,c]=n.useState(()=>{const{subType:e}=i;return e||{}}),{complaintType:u}=i,m=Digit.Hooks.pgr.useComplaintSubType(u,t),d={...a.texts,headerCaption:t("SERVICEDEFS."+u.key.toUpperCase()),menu:m,optionsKey:"name",selected:function(e){c(e)},selectedOption:s,onSave:()=>{o({subType:s})}};return l.createElement(r.TypeSelectCard,I({},d,{disabled:0===Object.keys(s).length||null===s,t:t}))},texts:{header:"CS_ADDCOMPLAINT_COMPLAINT_SUBTYPE_PLACEHOLDER",cardText:"CS_COMPLAINT_SUBTYPE_TEXT",submitBarLabel:"CS_COMMON_NEXT"},nextStep:"map"},map:{component:e=>{let{onSelect:t,t:n}=e,a="";return l.createElement(r.LocationSearchCard,{header:n("CS_ADDCOMPLAINT_SELECT_GEOLOCATION_HEADER"),cardText:n("CS_ADDCOMPLAINT_SELECT_GEOLOCATION_TEXT"),nextText:n("CS_COMMON_NEXT"),skipAndContinueText:n("CS_COMMON_SKIP"),skip:()=>t(),onSave:()=>t({pincode:a}),onChange:e=>a=e})},nextStep:"pincode"},pincode:{component:e=>{let{t:t,config:a,onSelect:o,value:i}=e;const s=Digit.Hooks.pgr.useTenants(),[c,u]=n.useState(()=>{const{pincode:e}=i;return e});let m=!c;const[d,p]=n.useState(null);return l.createElement(r.FormStep,{t:t,config:a,onSelect:function(e){try{var t=s.find(t=>{var n;return null===(n=t.pincode)||void 0===n?void 0:n.find(t=>t==(null==e?void 0:e.pincode))});const n=function(){if(t)return Digit.SessionStorage.set("city_complaint",t),Promise.resolve(Digit.LocationService.getLocalities(t.code)).then(function(n){Digit.LocalityService.get(n.TenantBoundary[0]).filter(t=>{var n;return null===(n=t.pincode)||void 0===n?void 0:n.find(t=>t==e.pincode)}),o({...e,city_complaint:t})});Digit.SessionStorage.set("city_complaint",void 0),Digit.SessionStorage.set("selected_localities",void 0),p("CS_COMMON_PINCODE_NOT_SERVICABLE")}();return Promise.resolve(n&&n.then?n.then(function(){}):void 0)}catch(e){return Promise.reject(e)}},value:c,onChange:function(e){u(e.target.value),m=!e.target.value,p(null)},onSkip:()=>o(),forcedError:t(d),isDisabled:m})},texts:{headerCaption:"CS_ADDCOMPLAINT_COMPLAINT_LOCATION",header:"CS_FILE_APPLICATION_PINCODE_LABEL",cardText:"CS_ADDCOMPLAINT_CHANGE_PINCODE_TEXT",submitBarLabel:"CS_COMMON_NEXT",skipText:"CORE_COMMON_SKIP_CONTINUE"},inputs:[{label:"CORE_COMMON_PINCODE",type:"text",name:"pincode",validation:{minLength:6,maxLength:7},error:"CORE_COMMON_PINCODE_INVALID"}],nextStep:"address"},address:{component:e=>{let{t:t,config:a,onSelect:o,value:i}=e;const s=Digit.Hooks.pgr.useTenants(),c=null!=i&&i.pincode?s.filter(e=>{var t;return null==e||null===(t=e.pincode)||void 0===t?void 0:t.some(e=>e==i.pincode)}):s,[u,m]=n.useState(()=>{const{city_complaint:e}=i;return e||null}),{data:d}=Digit.Hooks.useBoundaryLocalities(null==u?void 0:u.code,"admin",{enabled:!!u},t),[p,E]=n.useState(null),[C,S]=n.useState(()=>{const{locality_complaint:e}=i;return e||null});function _(e){S(null),E(null),m(e)}function O(e){S(e)}return n.useEffect(()=>{if(u&&d){const{pincode:e}=i;let t=e?d.filter(t=>t.pincode==e):d;E(t)}},[u,d]),l.createElement(r.FormStep,{config:a,onSelect:function(){o({city_complaint:u,locality_complaint:C})},t:t,isDisabled:!C},l.createElement("div",null,l.createElement(r.CardLabel,null,t("MYCITY_CODE_LABEL")),(null==c?void 0:c.length)<5?l.createElement(r.RadioButtons,{selectedOption:u,options:c,optionsKey:"i18nKey",onSelect:_}):l.createElement(r.Dropdown,{isMandatory:!0,selected:u,option:c,select:_,optionKey:"i18nKey",t:t}),u&&p&&l.createElement(r.CardLabel,null,t("CS_CREATECOMPLAINT_MOHALLA")),u&&p&&l.createElement(l.Fragment,null,(null==p?void 0:p.length)<5?l.createElement(r.RadioButtons,{selectedOption:C,options:p,optionsKey:"i18nkey",onSelect:O}):l.createElement(r.Dropdown,{isMandatory:!0,selected:C,optionKey:"i18nkey",option:p,select:O,t:t}))))},texts:{headerCaption:"CS_ADDCOMPLAINT_COMPLAINT_LOCATION",header:"CS_ADDCOMPLAINT_PROVIDE_COMPLAINT_ADDRESS",cardText:"CS_ADDCOMPLAINT_CITY_MOHALLA_TEXT",submitBarLabel:"CS_COMMON_NEXT"},nextStep:"landmark"},landmark:{component:e=>{let{t:t,config:a,onSelect:o,value:i}=e;const[s,c]=n.useState(()=>{const{landmark:e}=i;return e||""});return l.createElement(r.FormStep,{config:a,value:s,onChange:function(e){c(e.target.value)},onSelect:e=>o(e),onSkip:()=>o(),t:t})},texts:{headerCaption:"CS_ADDCOMPLAINT_COMPLAINT_LOCATION",header:"CS_FILE_APPLICATION_PROPERTY_LOCATION_PROVIDE_LANDMARK_TITLE",cardText:"CS_FILE_APPLICATION_PROPERTY_LOCATION_PROVIDE_LANDMARK_TITLE_TEXT",submitBarLabel:"CS_COMMON_NEXT",skipText:"CORE_COMMON_SKIP_CONTINUE"},inputs:[{label:"CS_ADDCOMPLAINT_LANDMARK",type:"textarea",name:"landmark"}],nextStep:"upload-photos"},"upload-photos":{component:e=>{var t;let{t:a,config:o,onSelect:i,onSkip:s,value:c}=e;const[u,m]=n.useState(()=>{const{uploadedImages:e}=c;return e||null});return l.createElement(r.FormStep,{config:o,onSelect:()=>{if(!u||0===u.length)return s();i({uploadedImages:u})},onSkip:s,t:a},l.createElement(r.ImageUploadHandler,{tenantId:null===(t=c.city_complaint)||void 0===t?void 0:t.code,uploadedImages:u,onPhotoChange:e=>{m(e)}}))},texts:{header:"CS_ADDCOMPLAINT_UPLOAD_PHOTO",cardText:"CS_ADDCOMPLAINT_UPLOAD_PHOTO_TEXT",submitBarLabel:"CS_COMMON_NEXT",skipText:"CORE_COMMON_SKIP_CONTINUE"},nextStep:"additional-details"},"additional-details":{component:e=>{let{t:t,config:a,onSelect:o,value:i}=e;const[s,c]=n.useState(()=>{const{details:e}=i;return e||""});return l.createElement(r.FormStep,{config:a,onChange:e=>{const{value:t}=e.target;c(t)},onSelect:()=>o({details:s}),value:s,t:t})},texts:{header:"CS_ADDCOMPLAINT_PROVIDE_ADDITIONAL_DETAILS",cardText:"CS_ADDCOMPLAINT_ADDITIONAL_DETAILS_TEXT",submitBarLabel:"CS_COMMON_NEXT"},inputs:[{label:"CS_ADDCOMPLAINT_ADDITIONAL_DETAILS",type:"textarea",name:"details"}],nextStep:null}},indexRoute:"complaint-type"},P=e=>{let{data:t,path:n}=e,{serviceCode:i,serviceRequestId:s,applicationStatus:c}=t;const u=a.useHistory(),{t:m}=o.useTranslation(),d=["RESOLVED","REJECTED","CLOSEDAFTERREJECTION","CLOSEDAFTERRESOLUTION"];return l.createElement(l.Fragment,null,l.createElement(r.Card,{onClick:()=>{u.push(n+"/"+s)}},l.createElement(r.CardSubHeader,null,m("SERVICEDEFS."+i.toUpperCase())),l.createElement(r.DateWrap,{date:Digit.DateUtils.ConvertTimestampToDate(t.auditDetails.createdTime)}),l.createElement(r.KeyNote,{keyValue:m("CS_COMMON_COMPLAINT_NO"),note:s}),l.createElement("div",{className:"status-highlight "+(d.includes(c)?"success":"")},l.createElement("p",null,(d.includes(c)?m("CS_COMMON_CLOSED"):m("CS_COMMON_OPEN")).toUpperCase())),m("CS_COMMON_"+c)))};"undefined"!=typeof Symbol&&(Symbol.iterator||(Symbol.iterator=Symbol("Symbol.iterator"))),"undefined"!=typeof Symbol&&(Symbol.asyncIterator||(Symbol.asyncIterator=Symbol("Symbol.asyncIterator")));const D=e=>{let{name:t,isCompleted:n,mobile:a,text:i,customChild:s}=e,{t:c}=o.useTranslation();return l.createElement(r.CheckPoint,{label:c("CS_COMMON_PENDINGATLME"),isCompleted:n,customChild:l.createElement("div",null,t&&a?l.createElement(r.TelePhone,{mobile:a,text:i+" "+t}):null,s)})},L=e=>{let{isCompleted:t,text:n,customChild:a}=e;return l.createElement(r.CheckPoint,{isCompleted:t,label:n,customChild:a})},b=e=>{let{text:t,rating:n}=e;return l.createElement(r.Rating,{text:t,withText:!0,currentRating:n,maxRating:5,onFeedback:()=>{}})},R=e=>{let{action:t,nextActions:n,complaintDetails:i,ComplainMaxIdleTime:s=36e5,serviceRequestId:c,reopenDate:u,isCompleted:m,customChild:d}=e;const{t:p}=o.useTranslation();if("RESOLVE"===t){let e=n&&n.map((e,t)=>{if(e&&"COMMENT"!==e)return l.createElement(a.Link,{key:t,to:"/digit-ui/citizen/pgr/"+e.toLowerCase()+"/"+c},l.createElement(r.ActionLinks,null,p("CS_COMMON_"+e)))});return l.createElement(r.CheckPoint,{isCompleted:m,label:p("CS_COMMON_COMPLAINT_RESOLVED"),customChild:l.createElement("div",null,e,d)})}if("RATE"===t)return l.createElement(r.CheckPoint,{isCompleted:m,label:p("CS_COMMON_COMPLAINT_RESOLVED"),customChild:l.createElement("div",null,d)});if("REOPEN"===t)return l.createElement(r.CheckPoint,{isCompleted:m,label:p("CS_COMMON_COMPLAINT_REOPENED"),info:u,customChild:d});{let e=n&&n.map((e,t)=>{var n,o;if(e&&"COMMENT"!==e&&("REOPEN"!==e||"REOPEN"===e&&(null===Date||void 0===Date?void 0:Date.now())-(null==i||null===(n=i.service)||void 0===n||null===(o=n.auditDetails)||void 0===o?void 0:o.lastModifiedTime)<s))return l.createElement(a.Link,{key:t,to:"/digit-ui/citizen/pgr/"+e.toLowerCase()+"/"+c},l.createElement(r.ActionLinks,null,p("CS_COMMON_"+e)))});return l.createElement(r.CheckPoint,{isCompleted:m,label:p("CS_COMMON_COMPLAINT_RESOLVED"),customChild:l.createElement("div",null,e,d)})}},k=e=>{let{action:t,nextActions:n,complaintDetails:i,ComplainMaxIdleTime:s=36e5,rating:c,serviceRequestId:u,reopenDate:m,isCompleted:d}=e;const{t:p}=o.useTranslation();if("REJECTED"===t){let e=n&&n.map((e,t)=>{if(e&&"COMMENT"!==e)return l.createElement(a.Link,{key:t,to:"/digit-ui/citizen/pgr/"+e.toLowerCase()+"/"+u},l.createElement(r.ActionLinks,null,p("CS_COMMON_"+e)))});return l.createElement(r.CheckPoint,{isCompleted:d,label:p("CS_COMMON_COMPLAINT_REJECTED"),customChild:l.createElement("div",null,e)})}if("RATE"===t&&c)return l.createElement(r.CheckPoint,{isCompleted:d,label:p("CS_COMMON_COMPLAINT_REJECTED"),customChild:l.createElement("div",null,c?l.createElement(b,{text:p("CS_ADDCOMPLAINT_YOU_RATED"),rating:c}):null,customChild)});if("REOPEN"===t)return l.createElement(r.CheckPoint,{isCompleted:d,label:p("CS_COMMON_COMPLAINT_REOPENED"),info:m});{let e=n&&n.map((e,t)=>{var n,o;if(e&&"COMMENT"!==e&&("REOPEN"!==e||"REOPEN"===e&&(null===Date||void 0===Date?void 0:Date.now())-(null==i||null===(n=i.service)||void 0===n||null===(o=n.auditDetails)||void 0===o?void 0:o.lastModifiedTime)<s))return l.createElement(a.Link,{key:t,to:"/digit-ui/citizen/pgr/"+e.toLowerCase()+"/"+u},l.createElement(r.ActionLinks,null,p("CS_COMMON_"+e)))});return l.createElement(r.CheckPoint,{isCompleted:d,label:p("CS_COMMON_COMPLAINT_REJECTED"),customChild:l.createElement("div",null,e)})}},x=e=>{let{data:t}=e;const{t:n}=o.useTranslation();return l.createElement("div",null,(null==t?void 0:t.date)&&l.createElement("p",null,null==t?void 0:t.date),l.createElement("p",null,null==t?void 0:t.name),l.createElement("p",null,null==t?void 0:t.mobileNumber),(null==t?void 0:t.source)&&l.createElement("p",null,n("ES_COMMON_FILED_VIA_"+(null==t?void 0:t.source.toUpperCase()))))},w=e=>{let{data:t,serviceRequestId:a,complaintWorkflow:i,rating:s,zoomImage:c,complaintDetails:u,ComplainMaxIdleTime:m}=e;const{t:d}=o.useTranslation();let{timeline:p}=t;const E=n.useMemo(()=>null==p?void 0:p.length,[p]);n.useEffect(()=>{null==p||p.filter((e,t,n)=>t===n.length-1&&"PENDINGFORASSIGNMENT"===e.status);const e=(null==p?void 0:p.filter(e=>"PENDINGFORASSIGNMENT"===(null==e?void 0:e.status))).at(-1);null==p||p.push({...e,performedAction:"FILED",status:"COMPLAINT_FILED"})},[p]);const C=e=>{var t;let{comment:a,thumbnailsToShow:o,auditDetails:i,assigner:s,status:m}=e;const p={date:null==i?void 0:i.lastModified,name:null==s?void 0:s.name,mobileNumber:null==s?void 0:s.mobileNumber,source:"COMPLAINT_FILED"==m?null==u?void 0:u.audit.source:""};return l.createElement(n.Fragment,null,a?l.createElement("div",null,null==a?void 0:a.map(e=>l.createElement("div",{className:"TLComments"},l.createElement("h3",null,d("WF_COMMON_COMMENTS")),l.createElement("p",null,e)))):null,(null==o||null===(t=o.thumbs)||void 0===t?void 0:t.length)>0?l.createElement("div",{className:"TLComments"},l.createElement("h3",null,d("CS_COMMON_ATTACHMENTS")),l.createElement(r.DisplayPhotos,{srcs:o.thumbs,onClick:(e,t)=>{!function(e,t,n){var l,a;let o=null===(l=n.thumbs)||void 0===l?void 0:l.findIndex(t=>t===e);c(o>-1&&(null==n||null===(a=n.fullImage)||void 0===a?void 0:a[o])||e)}(e,0,o)}})):null,null!=p&&p.date?l.createElement(x,{data:p,comments:a}):null)};return l.createElement(l.Fragment,null,l.createElement(r.CardSubHeader,null,d("CS_COMPLAINT_DETAILS_COMPLAINT_TIMELINE")),p&&E>0?l.createElement(r.ConnectingCheckPoints,null,p.map((e,t,n)=>{let{status:o,caption:c,auditDetails:p,timeLineActions:S,performedAction:_,wfComment:O,thumbnailsToShow:f,assigner:T}=e;return(e=>{let{status:t,caption:n,auditDetails:o,timeLineActions:c,index:p,comment:E,thumbnailsToShow:S,assigner:_,totalTimelineLength:O}=e;const f=0===p;switch(t){case"PENDINGFORREASSIGNMENT":return l.createElement(r.CheckPoint,{isCompleted:f,key:p,label:d("CS_COMMON_"+t),customChild:C({comment:E,thumbnailsToShow:S,auditDetails:o,assigner:_})});case"PENDINGFORASSIGNMENT":const e=O-(p+1)==0;return l.createElement(L,{key:p,isCompleted:f,text:d("CS_COMMON_"+t),customChild:C({comment:E,...e?{auditDetails:o}:{thumbnailsToShow:S,auditDetails:o}})});case"PENDINGFORASSIGNMENT_AFTERREOPEN":return l.createElement(L,{isCompleted:f,key:p,text:d("CS_COMMON_"+t),customChild:C({comment:E,thumbnailsToShow:S,auditDetails:o,assigner:_})});case"PENDINGATLME":let{name:T,mobileNumber:v}=n&&n.length>0?n[0]:{name:"",mobileNumber:""};const g=""+d("CS_COMMON_"+t);return l.createElement(D,{isCompleted:f,key:p,name:T,mobile:v,text:g,customChild:C({comment:E,thumbnailsToShow:S,auditDetails:o,assigner:_})});case"RESOLVED":return l.createElement(R,{key:p,isCompleted:f,action:i.action,nextActions:p<=1&&c,complaintDetails:u,ComplainMaxIdleTime:m,serviceRequestId:a,reopenDate:Digit.DateUtils.ConvertTimestampToDate(o.lastModifiedTime),customChild:C({comment:E,thumbnailsToShow:S,auditDetails:o,assigner:_})});case"REJECTED":return l.createElement(k,{key:p,isCompleted:f,action:i.action,nextActions:p<=1&&c,complaintDetails:u,ComplainMaxIdleTime:m,serviceRequestId:a,reopenDate:Digit.DateUtils.ConvertTimestampToDate(o.lastModifiedTime),customChild:C({comment:E,thumbnailsToShow:S,auditDetails:o,assigner:_})});case"CLOSEDAFTERRESOLUTION":return l.createElement(r.CheckPoint,{isCompleted:f,key:p,label:d("CS_COMMON_CS_COMMON_"+t),customChild:l.createElement("div",null,C({comment:E,thumbnailsToShow:S,auditDetails:o,assigner:_}),s?l.createElement(b,{text:d("CS_ADDCOMPLAINT_YOU_RATED"),rating:s}):null)});case"COMPLAINT_FILED":return l.createElement(r.CheckPoint,{isCompleted:f,key:p,label:d("CS_COMMON_COMPLAINT_FILED"),customChild:C({comment:E,auditDetails:o,assigner:_,status:t})});default:return l.createElement(r.CheckPoint,{isCompleted:f,key:p,label:d("CS_COMMON_"+t),customChild:C({comment:E,thumbnailsToShow:S,auditDetails:o,assigner:_,status:t})})}})({status:o,caption:c,auditDetails:p,timeLineActions:S,index:t,array:n,performedAction:_,comment:O,thumbnailsToShow:f,assigner:T,totalTimelineLength:E})})):l.createElement(r.Loader,null))},F=e=>{var t;let{complaintDetails:a,id:o,getWorkFlow:r,zoomImage:i}=e;const s=(null===(t=Digit.SessionStorage.get("CITIZEN.COMMON.HOME.CITY"))||void 0===t?void 0:t.code)||a.service.tenantId;let c=Digit.Hooks.useWorkflowDetails({tenantId:s,id:o,moduleCode:"PGR"});const{data:u}=Digit.Hooks.pgr.useMDMS.ComplainClosingTime(null==s?void 0:s.split(".")[0]);return n.useEffect(()=>{r(c.data)},[c.data]),n.useEffect(()=>{c.revalidate()},[]),!c.isLoading&&l.createElement(w,{data:c.data,serviceRequestId:o,complaintWorkflow:a.workflow,rating:a.audit.rating,zoomImage:i,complaintDetails:a,ComplainMaxIdleTime:u})},H=()=>{var e,t,n,i,s,c,u,m,d,p;const{t:E}=o.useTranslation(),{path:C,url:S,..._}=a.useRouteMatch(),O=a.useLocation(),f=null===(e=Digit)||void 0===e||null===(t=e.ComponentRegistryService)||void 0===t?void 0:t.getComponent("PGRCreateComplaintCitizen"),T=null===(n=Digit)||void 0===n||null===(i=n.ComponentRegistryService)||void 0===i?void 0:i.getComponent("PGRComplaintsList"),v=null===(s=Digit)||void 0===s||null===(c=s.ComponentRegistryService)||void 0===c?void 0:c.getComponent("PGRComplaintDetailsPage"),g=null===(u=Digit)||void 0===u||null===(m=u.ComponentRegistryService)||void 0===m?void 0:m.getComponent("PGRSelectRating"),y=null===(d=Digit)||void 0===d||null===(p=d.ComponentRegistryService)||void 0===p?void 0:p.getComponent("PGRResponseCitzen");return l.createElement(l.Fragment,null,l.createElement("div",{className:"pgr-citizen-wrapper"},!O.pathname.includes("/response")&&l.createElement(r.BackButton,null,E("CS_COMMON_BACK")),l.createElement(a.Switch,null,l.createElement(r.PrivateRoute,{path:C+"/create-complaint",component:f}),l.createElement(r.PrivateRoute,{path:C+"/complaints",exact:!0,component:T}),l.createElement(r.PrivateRoute,{path:C+"/complaints/:id*",component:v}),l.createElement(r.PrivateRoute,{path:C+"/reopen",component:()=>l.createElement(N,{match:{..._,url:S,path:C+"/reopen"},parentRoute:C})}),l.createElement(r.PrivateRoute,{path:C+"/rate/:id*",component:()=>l.createElement(g,{parentRoute:C})}),l.createElement(r.PrivateRoute,{path:C+"/response",component:()=>l.createElement(y,{match:{..._,url:S,path:C}})}))))},U=()=>{var e,t,i,s,c,u,m,d;const[p,E]=n.useState(!1),[C,S]=n.useState(!1),_=a.useRouteMatch(),{t:O}=o.useTranslation(),f={home:{content:O("CS_COMMON_HOME"),path:"/digit-ui/employee"},inbox:{content:O("CS_COMMON_INBOX"),path:_.url+"/inbox"},createComplaint:{content:O("CS_PGR_CREATE_COMPLAINT"),path:_.url+"/complaint/create"},complaintDetails:{content:O("CS_PGR_COMPLAINT_DETAILS"),path:_.url+"/complaint/details/:id"},response:{content:O("CS_PGR_RESPONSE"),path:_.url+"/response"}};let T=a.useLocation().pathname;const v=null===(e=Digit)||void 0===e||null===(t=e.ComponentRegistryService)||void 0===t?void 0:t.getComponent("PGRCreateComplaintEmp"),g=null===(i=Digit)||void 0===i||null===(s=i.ComponentRegistryService)||void 0===s?void 0:s.getComponent("PGRComplaintDetails"),N=null===(c=Digit)||void 0===c||null===(u=c.ComponentRegistryService)||void 0===u?void 0:u.getComponent("PGRInbox"),y=null===(m=Digit)||void 0===m||null===(d=m.ComponentRegistryService)||void 0===d?void 0:d.getComponent("PGRResponseEmp");return l.createElement(l.Fragment,null,l.createElement("div",{className:"ground-container"},!T.includes("/response")&&l.createElement(a.Switch,null,l.createElement(a.Route,{path:_.url+"/complaint/create",component:()=>l.createElement(r.BreadCrumb,{crumbs:[f.home,f.createComplaint]})}),l.createElement(a.Route,{path:_.url+"/complaint/details/:id",component:()=>l.createElement(r.BreadCrumb,{crumbs:[f.home,f.inbox,f.complaintDetails]})}),l.createElement(a.Route,{path:_.url+"/inbox",component:()=>l.createElement(r.BreadCrumb,{crumbs:[f.home,f.inbox]})}),l.createElement(a.Route,{path:_.url+"/response",component:l.createElement(r.BreadCrumb,{crumbs:[f.home,f.response]})})),l.createElement(a.Switch,null,l.createElement(a.Route,{path:_.url+"/complaint/create",component:()=>l.createElement(v,{parentUrl:_.url})}),l.createElement(a.Route,{path:_.url+"/complaint/details/:id*",component:()=>l.createElement(g,null)}),l.createElement(a.Route,{path:_.url+"/inbox",component:N}),l.createElement(a.Route,{path:_.url+"/response",component:y}))))},B=()=>l.createElement(r.EmployeeAppContainer,null,l.createElement(U,null)),G=()=>l.createElement("svg",{xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 24 24",fill:"#FFFFFF"},l.createElement("path",{d:"M0 0h24v24H0V0z",fill:"none"}),l.createElement("path",{d:"M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"})),j=e=>l.createElement("h1",{className:"heading-m"},e.label),$=e=>l.createElement("div",{className:"icon-bg-secondary",onClick:e.onClick},l.createElement(G,null)),V=e=>{let{data:t,comments:n}=e;const{t:a}=o.useTranslation();return l.createElement("div",null,(null==t?void 0:t.date)&&l.createElement("p",null,null==t?void 0:t.date),l.createElement("p",null,null==t?void 0:t.name),l.createElement("p",null,null==t?void 0:t.mobileNumber),(null==t?void 0:t.source)&&l.createElement("p",null,a("ES_COMMON_FILED_VIA_"+(null==t?void 0:t.source.toUpperCase()))),null==n?void 0:n.map(e=>l.createElement("div",{className:"TLComments"},l.createElement("h3",null,a("WF_COMMON_COMMENTS")),l.createElement("p",null,e))))},W=e=>{var t,a,o,i,s,c,u;let{workflowDetails:m,complaintDetails:d,close:p,popup:E,selectedAction:C,onAssign:S,tenantId:_,t:O}=e;const f=null==m||null===(t=m.data)||void 0===t||null===(a=t.initialActionState)||void 0===a||null===(o=a.nextActions)||void 0===o?void 0:o.filter(e=>(null==e?void 0:e.action)==C),T=Digit.Hooks.pgr.useEmployeeFilter(_,(null==f||null===(i=f[0])||void 0===i||null===(s=i.assigneeRoles)||void 0===s?void 0:s.length)>0?null==f||null===(c=f[0])||void 0===c||null===(u=c.assigneeRoles)||void 0===u?void 0:u.join(","):"",d),v=T?T.map(e=>({heading:e.department,options:e.employees})):null,[g,N]=n.useState(null),[y,h]=n.useState(""),[M,I]=n.useState(null),[A,P]=n.useState(null),[D,L]=n.useState(null),b=Digit.ULBService.getCurrentUlb(),[R,k]=n.useState(null);n.useEffect(()=>{!function(){try{L(null);const e=function(){if(M){const e=function(){if(M.size>=5242880)L(O("CS_MAXIMUM_UPLOAD_SIZE_EXCEEDED"));else{const e=function(e,t){try{var n=Promise.resolve(Digit.UploadServices.Filestorage("property-upload",M,b.code)).then(function(e){var t,n,l,a;(null==e||null===(t=e.data)||void 0===t||null===(n=t.files)||void 0===n?void 0:n.length)>0?P(null==e||null===(l=e.data)||void 0===l||null===(a=l.files[0])||void 0===a?void 0:a.fileStoreId):L(O("CS_FILE_UPLOAD_ERROR"))})}catch(e){return t()}return n&&n.then?n.then(void 0,t):n}(0,function(){L(O("CS_FILE_UPLOAD_ERROR"))});if(e&&e.then)return e.then(function(){})}}();if(e&&e.then)return e.then(function(){})}}();e&&e.then&&e.then(function(){})}catch(e){Promise.reject(e)}}()},[M]);const x=[O("CS_REOPEN_OPTION_ONE"),O("CS_REOPEN_OPTION_TWO"),O("CS_REOPEN_OPTION_THREE"),O("CS_REOPEN_OPTION_FOUR")];return l.createElement(r.Modal,{headerBarMain:l.createElement(j,{label:O("ASSIGN"===C||"REASSIGN"===C?"CS_ACTION_ASSIGN":"REJECT"===C?"CS_ACTION_REJECT":"REOPEN"===C?"CS_COMMON_REOPEN":"CS_COMMON_RESOLVE")}),headerBarEnd:l.createElement($,{onClick:()=>p(E)}),actionCancelLabel:O("CS_COMMON_CANCEL"),actionCancelOnSubmit:()=>p(E),actionSaveLabel:O("ASSIGN"===C||"REASSIGN"===C?"CS_COMMON_ASSIGN":"REJECT"===C?"CS_COMMON_REJECT":"REOPEN"===C?"CS_COMMON_REOPEN":"CS_COMMON_RESOLVE"),actionSaveOnSubmit:()=>{"REJECT"!==C||y?S(g,y,A):L(O("CS_MANDATORY_COMMENTS"))},error:D,setError:L},l.createElement(r.Card,null,"REJECT"===C||"RESOLVE"===C||"REOPEN"===C?null:l.createElement(l.Fragment,null,l.createElement(r.CardLabel,null,O("CS_COMMON_EMPLOYEE_NAME")),v&&l.createElement(r.SectionalDropdown,{selected:g,menuData:v,displayKey:"name",select:function(e){N(e)}})),"REOPEN"===C?l.createElement(l.Fragment,null,l.createElement(r.CardLabel,null,O("CS_REOPEN_COMPLAINT")),l.createElement(r.Dropdown,{selected:R,option:x,select:function(e){k(e)}})):null,l.createElement(r.CardLabel,null,O("CS_COMMON_EMPLOYEE_COMMENTS")),l.createElement(r.TextArea,{name:"comment",onChange:function(e){L(null),h(e.target.value)},value:y}),l.createElement(r.CardLabel,null,O("CS_ACTION_SUPPORTING_DOCUMENTS")),l.createElement(r.CardLabelDesc,null,O("CS_UPLOAD_RESTRICTIONS")),l.createElement(r.UploadFile,{id:"pgr-doc",accept:".jpg",onUpload:function(e){I(e.target.files[0])},onDelete:()=>{P(null)},message:A?"1 "+O("CS_ACTION_FILEUPLOADED"):O("CS_ACTION_NO_FILEUPLOADED")})))},z=e=>{const{register:t,handleSubmit:a,errors:i}=u.useForm(),{t:s}=o.useTranslation(),c=n.useMemo(()=>{var n;return null===(n=e.config)||void 0===n?void 0:n.map((e,n,a)=>l.createElement(l.Fragment,{key:n},l.createElement(r.CardSectionHeader,null,e.head),e.body.map((e,n)=>{var a;return l.createElement(l.Fragment,{key:n},i[e.populators.name]&&(null===(a=e.populators)||void 0===a||!a.validate||i[e.populators.validate])&&l.createElement(r.CardLabelError,null,e.populators.error),l.createElement(r.LabelFieldPair,null,l.createElement(r.CardLabel,null,e.label,e.isMandatory?" * ":null),l.createElement("div",{className:"field"},((e,n)=>{switch(e){case"text":return l.createElement("div",{className:"field-container"},n.componentInFront?n.componentInFront:null,l.createElement(r.TextInput,I({className:"field desktop-w-full"},n,{inputRef:t(n.validation)})));case"textarea":return l.createElement(r.TextArea,I({className:"field desktop-w-full",name:n.name||""},n,{inputRef:t(n.validation)}));default:return!1!==n.dependency?n:null}})(e.type,e.populators))))}),a.length-1===n?null:l.createElement(r.BreakLine,null)))},[e.config,i]),m=e.isDisabled||!1;return l.createElement("form",{onSubmit:a(function(t){e.onSubmit(t)})},l.createElement(r.Card,null,l.createElement(r.CardSubHeader,null,e.heading),c,e.children,l.createElement(r.ActionBar,null,l.createElement(r.SubmitBar,{disabled:m,label:s(e.label),submit:"submit"}))))},Y=e=>{const{t:t}=o.useTranslation(),i=[{text:"ES_PGR_NEW_COMPLAINT",link:"/digit-ui/employee/pgr/complaint/create",accessTo:["CSR"]}],[s,c]=n.useState([]);return n.useEffect(()=>{let e=[];i.forEach(t=>{t.accessTo?Digit.UserService.hasAccess(t.accessTo)&&e.push(t):e.push(t)}),c(e)},[]),l.createElement(r.Card,{className:"employeeCard filter inboxLinks"},l.createElement("div",{className:"complaint-links-container"},l.createElement("div",{className:"header"},l.createElement("span",{className:"logo"},l.createElement("svg",{xmlns:"http://www.w3.org/2000/svg",height:"24",viewBox:"0 0 24 24",width:"24"},l.createElement("path",{d:"M0 0h24v24H0z",fill:"none"}),l.createElement("path",{d:"M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-7 9h-2V5h2v6zm0 4h-2v-2h2v2z",fill:"white"})))," ",l.createElement("span",{className:"text"},t("ES_PGR_HEADER_COMPLAINT"))),l.createElement("div",{className:"body"},s.map((e,n)=>{let{link:o,text:r}=e;return l.createElement("span",{className:"link",key:n},l.createElement(a.Link,{to:o},t(r)))}))))},K=e=>{let{t:t,columns:n,data:a,getCellProps:o,onNextPage:i,onPrevPage:s,currentPage:c,totalRecords:u,pageSizeLimit:m,onPageSizeChange:d}=e;return l.createElement(r.Table,{t:t,data:a,columns:n,getCellProps:o,onNextPage:i,onPrevPage:s,currentPage:c,totalRecords:u,onPageSizeChange:d,pageSizeLimit:m})},q=e=>{var t;let{complaints:n,onAssignmentChange:a,pgrfilters:i}=e;const{t:s}=o.useTranslation(),c=Digit.Hooks.pgr.useComplaintStatusCount(n);let u=null==i||null===(t=i.applicationStatus)||void 0===t?void 0:t.length;return l.createElement("div",{className:"status-container"},l.createElement("div",{className:"filter-label"},s("ES_PGR_FILTER_STATUS")),0===c.length&&l.createElement(r.Loader,null),c.map((e,t)=>l.createElement(r.CheckBox,{key:t,onChange:t=>a(t,e),checked:!!u&&0!==i.applicationStatus.filter(t=>t.code===e.code).length,label:e.name+" ("+(e.count||0)+")"})))};let X={},J={};const Z=e=>{var t,a,i,s,c,u,m;let{uuid:d}=Digit.UserService.getUser().info;const{searchParams:p}=e,{t:E}=o.useTranslation(),C=!(null==p||null===(t=p.filters)||void 0===t||null===(a=t.wfFilters)||void 0===a||!a.assignee||null==p||null===(i=p.filters)||void 0===i||null===(s=i.wfFilters)||void 0===s||null===(c=s.assignee[0])||void 0===c||!c.code),S=n.useMemo(()=>[{code:"ASSIGNED_TO_ME",name:E("ASSIGNED_TO_ME")},{code:"ASSIGNED_TO_ALL",name:E("ASSIGNED_TO_ALL")}],[E]),[_,O]=n.useState(C?S[0]:S[1]);n.useEffect(()=>O(C?S[0]:S[1]),[E]);const[f,T]=n.useState(null),[v,g]=n.useState(null),[N,y]=n.useState((null==p||null===(u=p.filters)||void 0===u?void 0:u.pgrfilters)||{serviceCode:[],locality:[],applicationStatus:[]}),[h,M]=n.useState((null==p||null===(m=p.filters)||void 0===m?void 0:m.wfFilters)||{assignee:[{code:d}]}),I=Digit.ULBService.getCurrentTenantId(),{data:A}=Digit.Hooks.useBoundaryLocalities(I,"admin",{},E);let P=Digit.Hooks.pgr.useServiceDefs(I,"PGR");n.useEffect(()=>{var t;let n=0;for(const e in N)if(Array.isArray(N[e])){n+=N[e].length;let t=N[e].map(e=>e.code).join();var l;t?X[e]=t:null===(l=X)||void 0===l||delete l[e]}for(const e in h)if(Array.isArray(h[e])){let t=h[e].map(e=>e.code).join();t?J[e]=t:J={}}n+=(null==h||null===(t=h.assignee)||void 0===t?void 0:t.length)||0,"mobile"!==e.type&&R(),Digit.inboxFilterCount=n},[N,h]);const D=(e,t)=>e.filter(e=>e.code===t.code).length;n.useEffect(()=>{T(N.serviceCode.length>1?{i18nKey:N.serviceCode.length+" selected"}:N.serviceCode[0])},[N.serviceCode]),n.useEffect(()=>{g(N.locality.length>1?{name:N.locality.length+" selected"}:N.locality[0])},[N.locality]);const L=(e,t)=>{let n=N[t].filter((t,n)=>n!==e);y({...N,[t]:n})};function b(){y({serviceCode:[],locality:[],applicationStatus:[]}),M({assigned:[{code:[]}]}),X={},J={},O(""),T(null),g(null)}const R=()=>{e.onFilterChange({pgrQuery:X,wfQuery:J,wfFilters:h,pgrfilters:N})},k=function(e,t,n,a,o,i,s){return void 0===n&&(n=null),n=n||{[o]:" ",code:""},l.createElement("div",null,l.createElement("div",{className:"filter-label"},e),l.createElement(r.Dropdown,{option:t,selected:n,select:e=>a(e,s),optionKey:o}),l.createElement("div",{className:"tag-container"},N[s].length>0&&N[s].map((e,t)=>l.createElement(r.RemoveableTag,{key:t,text:e[o].slice(0,22)+" ...",onClick:()=>i(t,s)}))))};return l.createElement(l.Fragment,null,l.createElement("div",{className:"filter"},l.createElement("div",{className:"filter-card"},l.createElement("div",{className:"heading"},l.createElement("div",{className:"filter-label"},E("ES_COMMON_FILTER_BY"),":"),l.createElement("div",{className:"clearAll",onClick:b},E("ES_COMMON_CLEAR_ALL")),"desktop"===e.type&&l.createElement("span",{className:"clear-search",onClick:b},E("ES_COMMON_CLEAR_ALL")),"mobile"===e.type&&l.createElement("span",{onClick:e.onClose},l.createElement(r.CloseSvg,null))),l.createElement("div",null,l.createElement(r.RadioButtons,{onSelect:e=>{O(e),d="ASSIGNED_TO_ME"===e.code?d:"",M({...h,assignee:[{code:d}]})},selectedOption:_,optionsKey:"name",options:S}),l.createElement("div",null,k(E("CS_COMPLAINT_DETAILS_COMPLAINT_SUBTYPE"),P,f,function(e){const t={i18nKey:E("SERVICEDEFS."+e.serviceCode.toUpperCase()),code:e.serviceCode};D(N.serviceCode,t)||y({...N,serviceCode:[...N.serviceCode,t]})},"i18nKey",L,"serviceCode")),l.createElement("div",null,k(E("CS_PGR_LOCALITY"),A,v,function(e,t){D(N.locality,e)||y({...N,locality:[...N.locality,e]})},"i18nkey",L,"locality")),l.createElement(q,{complaints:e.complaints,onAssignmentChange:(e,t)=>{if(e.target.checked)y({...N,applicationStatus:[...N.applicationStatus,{code:t.code}]});else{const e=N.applicationStatus.filter(e=>e.code!==t.code);y({...N,applicationStatus:e})}},pgrfilters:N})))),l.createElement(r.ActionBar,null,"mobile"===e.type&&l.createElement(r.ApplyFilterBar,{labelLink:E("ES_COMMON_CLEAR_ALL"),buttonLink:E("ES_COMMON_FILTER"),onClear:b,onSubmit:function(){R(),e.onClose()}})))},Q=e=>{var t,a;let{onSearch:i,type:s,onClose:c,searchParams:m}=e;const[d,p]=n.useState((null==m||null===(t=m.search)||void 0===t?void 0:t.serviceRequestId)||""),[E,C]=n.useState((null==m||null===(a=m.search)||void 0===a?void 0:a.mobileNumber)||""),{register:S,errors:_,handleSubmit:O,reset:f}=u.useForm(),{t:T}=o.useTranslation();return l.createElement("form",{onSubmit:O(e=>{Object.keys(_).filter(e=>_[e]).length||(i(""!==e.serviceRequestId?{serviceRequestId:e.serviceRequestId}:""!==e.mobileNumber?{mobileNumber:e.mobileNumber}:{}),"mobile"===s&&c())}),style:{marginLeft:"24px"}},l.createElement(l.Fragment,null,l.createElement("div",{className:"search-container",style:{width:"auto"}},l.createElement("div",{className:"search-complaint-container"},"mobile"===s&&l.createElement("div",{className:"complaint-header"},l.createElement("h2",null," ",T("CS_COMMON_SEARCH_BY"),":"),l.createElement("span",{onClick:c},l.createElement(r.CloseSvg,null))),l.createElement("div",{className:"complaint-input-container",style:{display:"grid"}},l.createElement("span",{className:"complaint-input"},l.createElement(r.Label,null,T("CS_COMMON_COMPLAINT_NO"),"."),l.createElement(r.TextInput,{name:"serviceRequestId",value:d,onChange:function(e){p(e.target.value)},inputRef:S({pattern:/(?!^$)([^\s])/}),style:{marginBottom:"8px"}})),l.createElement("span",{className:"mobile-input"},l.createElement(r.Label,null,T("CS_COMMON_MOBILE_NO"),"."),l.createElement(r.TextInput,{name:"mobileNumber",value:E,onChange:function(e){C(e.target.value)},inputRef:S({pattern:/^[6-9]\d{9}$/})})),"desktop"===s&&l.createElement(r.SubmitBar,{style:{marginTop:32,marginLeft:"16px",width:"calc( 100% - 16px )"},label:T("ES_COMMON_SEARCH"),submit:!0,disabled:Object.keys(_).filter(e=>_[e]).length})),"desktop"===s&&l.createElement("span",{className:"clear-search"},l.createElement(r.LinkLabel,{className:"clear-search-label",onClick:function(){f(),i({}),p(""),C("")}},T("ES_COMMON_CLEAR_SEARCH"))))),"mobile"===s&&l.createElement(r.ActionBar,null,l.createElement(r.SubmitBar,{label:"Search",submit:!0}))))},ee=e=>{let{data:t,onFilterChange:n,onSearch:i,isLoading:s,searchParams:c,onNextPage:u,onPrevPage:m,currentPage:d,pageSizeLimit:p,onPageSizeChange:E,totalRecords:C}=e;const{t:S}=o.useTranslation(),_=e=>l.createElement("span",{className:"cell-text"},e),O=l.useMemo(()=>[{Header:S("CS_COMMON_COMPLAINT_NO"),Cell:e=>{let{row:t}=e;return l.createElement("div",null,l.createElement("span",{className:"link"},l.createElement(a.Link,{to:"/digit-ui/employee/pgr/complaint/details/"+t.original.serviceRequestId},t.original.serviceRequestId)),l.createElement("br",null),l.createElement("span",{className:"complain-no-cell-text"},S("SERVICEDEFS."+t.original.complaintSubType.toUpperCase())))}},{Header:S("WF_INBOX_HEADER_LOCALITY"),Cell:e=>{let{row:t}=e;return _(S(Digit.Utils.locale.getLocalityCode(t.original.locality,t.original.tenantId)))}},{Header:S("CS_COMPLAINT_DETAILS_CURRENT_STATUS"),Cell:e=>{let{row:t}=e;return _(S("CS_COMMON_"+t.original.status))}},{Header:S("WF_INBOX_HEADER_CURRENT_OWNER"),Cell:e=>{let{row:t}=e;return _(t.original.taskOwner)}},{Header:S("WF_INBOX_HEADER_SLA_DAYS_REMAINING"),Cell:e=>{let{row:t}=e;return l.createElement("span",(n=t.original.sla)<0?{className:"sla-cell-error"}:{className:"sla-cell-success"},n||"");var n}}],[S]);let f;return f=s?l.createElement(r.Loader,null):t&&0===t.length?l.createElement(r.Card,{style:{marginTop:20}},S("CS_MYCOMPLAINTS_NO_COMPLAINTS_EMPLOYEE").split("\\n").map((e,t)=>l.createElement("p",{key:t,style:{textAlign:"center"}},e))):t.length>0?l.createElement(K,{t:S,data:t,columns:O,getCellProps:e=>({style:{minWidth:e.column.Header===S("CS_COMMON_COMPLAINT_NO")?"240px":"",padding:"20px 18px",fontSize:"16px"}}),onNextPage:u,onPrevPage:m,totalRecords:C,onPageSizeChagne:E,currentPage:d,pageSizeLimit:p}):l.createElement(r.Card,{style:{marginTop:20}},S("CS_COMMON_ERROR_LOADING_RESULTS").split("\\n").map((e,t)=>l.createElement("p",{key:t,style:{textAlign:"center"}},e))),l.createElement("div",{className:"inbox-container"},l.createElement("div",{className:"filters-container"},l.createElement(Y,null),l.createElement("div",null,l.createElement(Z,{complaints:t,onFilterChange:n,type:"desktop",searchParams:c}))),l.createElement("div",{style:{flex:1}},l.createElement(Q,{onSearch:i,type:"desktop"}),l.createElement("div",{style:{marginTop:"24px",marginTop:"24px",marginLeft:"24px",flex:1}},f)))},te=e=>{let{data:t,onFilterChange:a,onSearch:i,serviceRequestIdKey:s,searchParams:c}=e;const{t:u}=o.useTranslation(),[m,d]=n.useState(!1),[p,E]=n.useState(null),[C,S]=n.useState(Digit.inboxFilterCount||1),_=e=>{"SEARCH"===e?E(l.createElement(Q,{type:"mobile",onClose:O,onSearch:i,searchParams:c})):"FILTER"===e&&E(l.createElement(Z,{complaints:t,onFilterChange:a,onClose:O,type:"mobile",searchParams:c})),d(!0)},O=()=>{d(!1),E(null)};let f;return f=t&&0===(null==t?void 0:t.length)?l.createElement(r.Card,{style:{marginTop:20}},u("CS_MYCOMPLAINTS_NO_COMPLAINTS_EMPLOYEE").split("\\n").map((e,t)=>l.createElement("p",{key:t,style:{textAlign:"center"}},e))):t&&(null==t?void 0:t.length)>0?l.createElement(r.DetailsCard,{data:t,serviceRequestIdKey:s,linkPrefix:"/digit-ui/employee/pgr/complaint/details/"}):l.createElement(r.Card,{style:{marginTop:20}},u("CS_COMMON_ERROR_LOADING_RESULTS").split("\\n").map((e,t)=>l.createElement("p",{key:t,style:{textAlign:"center"}},e))),l.createElement(l.Fragment,null,l.createElement("div",{className:"searchBox"},l.createElement(r.SearchAction,{text:"SEARCH",handleActionClick:()=>_("SEARCH")}),l.createElement(r.FilterAction,{filterCount:C,text:"FILTER",handleActionClick:()=>_("FILTER")})),f,m&&l.createElement(r.PopUp,null,l.createElement("div",{className:"popup-module"},p)))};function ne(e,t){return e(t={exports:{}},t.exports),t.exports}var le="function"==typeof Symbol&&Symbol.for,ae=le?Symbol.for("react.element"):60103,oe=le?Symbol.for("react.portal"):60106,re=le?Symbol.for("react.fragment"):60107,ie=le?Symbol.for("react.strict_mode"):60108,se=le?Symbol.for("react.profiler"):60114,ce=le?Symbol.for("react.provider"):60109,ue=le?Symbol.for("react.context"):60110,me=le?Symbol.for("react.async_mode"):60111,de=le?Symbol.for("react.concurrent_mode"):60111,pe=le?Symbol.for("react.forward_ref"):60112,Ee=le?Symbol.for("react.suspense"):60113,Ce=le?Symbol.for("react.suspense_list"):60120,Se=le?Symbol.for("react.memo"):60115,_e=le?Symbol.for("react.lazy"):60116,Oe=le?Symbol.for("react.block"):60121,fe=le?Symbol.for("react.fundamental"):60117,Te=le?Symbol.for("react.responder"):60118,ve=le?Symbol.for("react.scope"):60119;function ge(e){if("object"==typeof e&&null!==e){var t=e.$$typeof;switch(t){case ae:switch(e=e.type){case me:case de:case re:case se:case ie:case Ee:return e;default:switch(e=e&&e.$$typeof){case ue:case pe:case _e:case Se:case ce:return e;default:return t}}case oe:return t}}}function Ne(e){return ge(e)===de}var ye={AsyncMode:me,ConcurrentMode:de,ContextConsumer:ue,ContextProvider:ce,Element:ae,ForwardRef:pe,Fragment:re,Lazy:_e,Memo:Se,Portal:oe,Profiler:se,StrictMode:ie,Suspense:Ee,isAsyncMode:function(e){return Ne(e)||ge(e)===me},isConcurrentMode:Ne,isContextConsumer:function(e){return ge(e)===ue},isContextProvider:function(e){return ge(e)===ce},isElement:function(e){return"object"==typeof e&&null!==e&&e.$$typeof===ae},isForwardRef:function(e){return ge(e)===pe},isFragment:function(e){return ge(e)===re},isLazy:function(e){return ge(e)===_e},isMemo:function(e){return ge(e)===Se},isPortal:function(e){return ge(e)===oe},isProfiler:function(e){return ge(e)===se},isStrictMode:function(e){return ge(e)===ie},isSuspense:function(e){return ge(e)===Ee},isValidElementType:function(e){return"string"==typeof e||"function"==typeof e||e===re||e===de||e===se||e===ie||e===Ee||e===Ce||"object"==typeof e&&null!==e&&(e.$$typeof===_e||e.$$typeof===Se||e.$$typeof===ce||e.$$typeof===ue||e.$$typeof===pe||e.$$typeof===fe||e.$$typeof===Te||e.$$typeof===ve||e.$$typeof===Oe)},typeOf:ge},he=ne(function(e,t){"production"!==process.env.NODE_ENV&&function(){var e="function"==typeof Symbol&&Symbol.for,n=e?Symbol.for("react.element"):60103,l=e?Symbol.for("react.portal"):60106,a=e?Symbol.for("react.fragment"):60107,o=e?Symbol.for("react.strict_mode"):60108,r=e?Symbol.for("react.profiler"):60114,i=e?Symbol.for("react.provider"):60109,s=e?Symbol.for("react.context"):60110,c=e?Symbol.for("react.async_mode"):60111,u=e?Symbol.for("react.concurrent_mode"):60111,m=e?Symbol.for("react.forward_ref"):60112,d=e?Symbol.for("react.suspense"):60113,p=e?Symbol.for("react.suspense_list"):60120,E=e?Symbol.for("react.memo"):60115,C=e?Symbol.for("react.lazy"):60116,S=e?Symbol.for("react.block"):60121,_=e?Symbol.for("react.fundamental"):60117,O=e?Symbol.for("react.responder"):60118,f=e?Symbol.for("react.scope"):60119;function T(e){if("object"==typeof e&&null!==e){var t=e.$$typeof;switch(t){case n:var p=e.type;switch(p){case c:case u:case a:case r:case o:case d:return p;default:var S=p&&p.$$typeof;switch(S){case s:case m:case C:case E:case i:return S;default:return t}}case l:return t}}}var v=u,g=s,N=i,y=n,h=m,M=a,I=C,A=E,P=l,D=r,L=o,b=d,R=!1;function k(e){return T(e)===u}t.AsyncMode=c,t.ConcurrentMode=v,t.ContextConsumer=g,t.ContextProvider=N,t.Element=y,t.ForwardRef=h,t.Fragment=M,t.Lazy=I,t.Memo=A,t.Portal=P,t.Profiler=D,t.StrictMode=L,t.Suspense=b,t.isAsyncMode=function(e){return R||(R=!0,console.warn("The ReactIs.isAsyncMode() alias has been deprecated, and will be removed in React 17+. Update your code to use ReactIs.isConcurrentMode() instead. It has the exact same API.")),k(e)||T(e)===c},t.isConcurrentMode=k,t.isContextConsumer=function(e){return T(e)===s},t.isContextProvider=function(e){return T(e)===i},t.isElement=function(e){return"object"==typeof e&&null!==e&&e.$$typeof===n},t.isForwardRef=function(e){return T(e)===m},t.isFragment=function(e){return T(e)===a},t.isLazy=function(e){return T(e)===C},t.isMemo=function(e){return T(e)===E},t.isPortal=function(e){return T(e)===l},t.isProfiler=function(e){return T(e)===r},t.isStrictMode=function(e){return T(e)===o},t.isSuspense=function(e){return T(e)===d},t.isValidElementType=function(e){return"string"==typeof e||"function"==typeof e||e===a||e===u||e===r||e===o||e===d||e===p||"object"==typeof e&&null!==e&&(e.$$typeof===C||e.$$typeof===E||e.$$typeof===i||e.$$typeof===s||e.$$typeof===m||e.$$typeof===_||e.$$typeof===O||e.$$typeof===f||e.$$typeof===S)},t.typeOf=T}()}),Me=ne(function(e){e.exports="production"===process.env.NODE_ENV?ye:he}),Ie=Object.getOwnPropertySymbols,Ae=Object.prototype.hasOwnProperty,Pe=Object.prototype.propertyIsEnumerable;function De(e){if(null==e)throw new TypeError("Object.assign cannot be called with null or undefined");return Object(e)}var Le=function(){try{if(!Object.assign)return!1;var e=new String("abc");if(e[5]="de","5"===Object.getOwnPropertyNames(e)[0])return!1;for(var t={},n=0;n<10;n++)t["_"+String.fromCharCode(n)]=n;if("0123456789"!==Object.getOwnPropertyNames(t).map(function(e){return t[e]}).join(""))return!1;var l={};return"abcdefghijklmnopqrst".split("").forEach(function(e){l[e]=e}),"abcdefghijklmnopqrst"===Object.keys(Object.assign({},l)).join("")}catch(e){return!1}}()?Object.assign:function(e,t){for(var n,l,a=De(e),o=1;o<arguments.length;o++){for(var r in n=Object(arguments[o]))Ae.call(n,r)&&(a[r]=n[r]);if(Ie){l=Ie(n);for(var i=0;i<l.length;i++)Pe.call(n,l[i])&&(a[l[i]]=n[l[i]])}}return a},be="SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED",Re=Function.call.bind(Object.prototype.hasOwnProperty),ke=function(){};if("production"!==process.env.NODE_ENV){var xe=be,we={},Fe=Re;ke=function(e){var t="Warning: "+e;"undefined"!=typeof console&&console.error(t);try{throw new Error(t)}catch(e){}}}function He(e,t,n,l,a){if("production"!==process.env.NODE_ENV)for(var o in e)if(Fe(e,o)){var r;try{if("function"!=typeof e[o]){var i=Error((l||"React class")+": "+n+" type `"+o+"` is invalid; it must be a function, usually from the `prop-types` package, but received `"+typeof e[o]+"`.This often happens because of typos such as `PropTypes.function` instead of `PropTypes.func`.");throw i.name="Invariant Violation",i}r=e[o](t,o,l,n,null,xe)}catch(e){r=e}if(!r||r instanceof Error||ke((l||"React class")+": type specification of "+n+" `"+o+"` is invalid; the type checker function must return `null` or an `Error` but returned a "+typeof r+". You may have forgotten to pass an argument to the type checker creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and shape all require an argument)."),r instanceof Error&&!(r.message in we)){we[r.message]=!0;var s=a?a():"";ke("Failed "+n+" type: "+r.message+(null!=s?s:""))}}}He.resetWarningCache=function(){"production"!==process.env.NODE_ENV&&(we={})};var Ue=He,Be=function(){};function Ge(){return null}function je(){}function $e(){}"production"!==process.env.NODE_ENV&&(Be=function(e){var t="Warning: "+e;"undefined"!=typeof console&&console.error(t);try{throw new Error(t)}catch(e){}}),$e.resetWarningCache=je;var Ve=ne(function(e){e.exports="production"!==process.env.NODE_ENV?function(e,t){var n="function"==typeof Symbol&&Symbol.iterator,l={array:i("array"),bigint:i("bigint"),bool:i("boolean"),func:i("function"),number:i("number"),object:i("object"),string:i("string"),symbol:i("symbol"),any:r(Ge),arrayOf:function(e){return r(function(t,n,l,a,r){if("function"!=typeof e)return new o("Property `"+r+"` of component `"+l+"` has invalid PropType notation inside arrayOf.");var i=t[n];if(!Array.isArray(i))return new o("Invalid "+a+" `"+r+"` of type `"+u(i)+"` supplied to `"+l+"`, expected an array.");for(var s=0;s<i.length;s++){var c=e(i,s,l,a,r+"["+s+"]",be);if(c instanceof Error)return c}return null})},element:r(function(t,n,l,a,r){var i=t[n];return e(i)?null:new o("Invalid "+a+" `"+r+"` of type `"+u(i)+"` supplied to `"+l+"`, expected a single ReactElement.")}),elementType:r(function(e,t,n,l,a){var r=e[t];return Me.isValidElementType(r)?null:new o("Invalid "+l+" `"+a+"` of type `"+u(r)+"` supplied to `"+n+"`, expected a single ReactElement type.")}),instanceOf:function(e){return r(function(t,n,l,a,r){var i;return t[n]instanceof e?null:new o("Invalid "+a+" `"+r+"` of type `"+((i=t[n]).constructor&&i.constructor.name?i.constructor.name:"<<anonymous>>")+"` supplied to `"+l+"`, expected instance of `"+(e.name||"<<anonymous>>")+"`.")})},node:r(function(e,t,n,l,a){return c(e[t])?null:new o("Invalid "+l+" `"+a+"` supplied to `"+n+"`, expected a ReactNode.")}),objectOf:function(e){return r(function(t,n,l,a,r){if("function"!=typeof e)return new o("Property `"+r+"` of component `"+l+"` has invalid PropType notation inside objectOf.");var i=t[n],s=u(i);if("object"!==s)return new o("Invalid "+a+" `"+r+"` of type `"+s+"` supplied to `"+l+"`, expected an object.");for(var c in i)if(Re(i,c)){var m=e(i,c,l,a,r+"."+c,be);if(m instanceof Error)return m}return null})},oneOf:function(e){if(!Array.isArray(e))return"production"!==process.env.NODE_ENV&&Be(arguments.length>1?"Invalid arguments supplied to oneOf, expected an array, got "+arguments.length+" arguments. A common mistake is to write oneOf(x, y, z) instead of oneOf([x, y, z]).":"Invalid argument supplied to oneOf, expected an array."),Ge;function t(t,n,l,r,i){for(var s=t[n],c=0;c<e.length;c++)if(a(s,e[c]))return null;var u=JSON.stringify(e,function(e,t){return"symbol"===m(t)?String(t):t});return new o("Invalid "+r+" `"+i+"` of value `"+String(s)+"` supplied to `"+l+"`, expected one of "+u+".")}return r(t)},oneOfType:function(e){if(!Array.isArray(e))return"production"!==process.env.NODE_ENV&&Be("Invalid argument supplied to oneOfType, expected an instance of array."),Ge;for(var t=0;t<e.length;t++){var n=e[t];if("function"!=typeof n)return Be("Invalid argument supplied to oneOfType. Expected an array of check functions, but received "+d(n)+" at index "+t+"."),Ge}return r(function(t,n,l,a,r){for(var i=[],s=0;s<e.length;s++){var c=(0,e[s])(t,n,l,a,r,be);if(null==c)return null;c.data&&Re(c.data,"expectedType")&&i.push(c.data.expectedType)}return new o("Invalid "+a+" `"+r+"` supplied to `"+l+"`"+(i.length>0?", expected one of type ["+i.join(", ")+"]":"")+".")})},shape:function(e){return r(function(t,n,l,a,r){var i=t[n],c=u(i);if("object"!==c)return new o("Invalid "+a+" `"+r+"` of type `"+c+"` supplied to `"+l+"`, expected `object`.");for(var d in e){var p=e[d];if("function"!=typeof p)return s(l,a,r,d,m(p));var E=p(i,d,l,a,r+"."+d,be);if(E)return E}return null})},exact:function(e){return r(function(t,n,l,a,r){var i=t[n],c=u(i);if("object"!==c)return new o("Invalid "+a+" `"+r+"` of type `"+c+"` supplied to `"+l+"`, expected `object`.");var d=Le({},t[n],e);for(var p in d){var E=e[p];if(Re(e,p)&&"function"!=typeof E)return s(l,a,r,p,m(E));if(!E)return new o("Invalid "+a+" `"+r+"` key `"+p+"` supplied to `"+l+"`.\nBad object: "+JSON.stringify(t[n],null,"  ")+"\nValid keys: "+JSON.stringify(Object.keys(e),null,"  "));var C=E(i,p,l,a,r+"."+p,be);if(C)return C}return null})}};function a(e,t){return e===t?0!==e||1/e==1/t:e!=e&&t!=t}function o(e,t){this.message=e,this.data=t&&"object"==typeof t?t:{},this.stack=""}function r(e){function t(t,n,l,a,r,i,s){if(a=a||"<<anonymous>>",i=i||l,s!==be){var c=new Error("Calling PropTypes validators directly is not supported by the `prop-types` package. Use `PropTypes.checkPropTypes()` to call them. Read more at http://fb.me/use-check-prop-types");throw c.name="Invariant Violation",c}return null==n[l]?t?new o(null===n[l]?"The "+r+" `"+i+"` is marked as required in `"+a+"`, but its value is `null`.":"The "+r+" `"+i+"` is marked as required in `"+a+"`, but its value is `undefined`."):null:e(n,l,a,r,i)}process;var n=t.bind(null,!1);return n.isRequired=t.bind(null,!0),n}function i(e){return r(function(t,n,l,a,r,i){var s=t[n];return u(s)!==e?new o("Invalid "+a+" `"+r+"` of type `"+m(s)+"` supplied to `"+l+"`, expected `"+e+"`.",{expectedType:e}):null})}function s(e,t,n,l,a){return new o((e||"React class")+": "+t+" type `"+n+"."+l+"` is invalid; it must be a function, usually from the `prop-types` package, but received `"+a+"`.")}function c(t){switch(typeof t){case"number":case"string":case"undefined":return!0;case"boolean":return!t;case"object":if(Array.isArray(t))return t.every(c);if(null===t||e(t))return!0;var l=function(e){var t=e&&(n&&e[n]||e["@@iterator"]);if("function"==typeof t)return t}(t);if(!l)return!1;var a,o=l.call(t);if(l!==t.entries){for(;!(a=o.next()).done;)if(!c(a.value))return!1}else for(;!(a=o.next()).done;){var r=a.value;if(r&&!c(r[1]))return!1}return!0;default:return!1}}function u(e){var t=typeof e;return Array.isArray(e)?"array":e instanceof RegExp?"object":function(e,t){return"symbol"===e||!!t&&("Symbol"===t["@@toStringTag"]||"function"==typeof Symbol&&t instanceof Symbol)}(t,e)?"symbol":t}function m(e){if(null==e)return""+e;var t=u(e);if("object"===t){if(e instanceof Date)return"date";if(e instanceof RegExp)return"regexp"}return t}function d(e){var t=m(e);switch(t){case"array":case"object":return"an "+t;case"boolean":case"date":case"regexp":return"a "+t;default:return t}}return o.prototype=Error.prototype,l.checkPropTypes=Ue,l.resetWarningCache=Ue.resetWarningCache,l.PropTypes=l,l}(Me.isElement):function(){function e(e,t,n,l,a,o){if(o!==be){var r=new Error("Calling PropTypes validators directly is not supported by the `prop-types` package. Use PropTypes.checkPropTypes() to call them. Read more at http://fb.me/use-check-prop-types");throw r.name="Invariant Violation",r}}function t(){return e}e.isRequired=e;var n={array:e,bigint:e,bool:e,func:e,number:e,object:e,string:e,symbol:e,any:e,arrayOf:t,element:e,elementType:e,instanceOf:t,node:e,objectOf:t,oneOf:t,oneOfType:t,shape:t,exact:t,checkPropTypes:$e,resetWarningCache:je};return n.PropTypes=n,n}()});const We=e=>{let{data:t,onFilterChange:n,onSearch:a,isLoading:i,searchParams:s}=e;const{t:c}=o.useTranslation(),u=null==t?void 0:t.map(e=>{let{locality:t,tenantId:n,serviceRequestId:a,complaintSubType:o,sla:r,status:i,taskOwner:s}=e;return{[c("CS_COMMON_COMPLAINT_NO")]:a,[c("CS_ADDCOMPLAINT_COMPLAINT_SUB_TYPE")]:c("SERVICEDEFS."+o.toUpperCase()),[c("WF_INBOX_HEADER_LOCALITY")]:c(Digit.Utils.locale.getLocalityCode(t,n)),[c("CS_COMPLAINT_DETAILS_CURRENT_STATUS")]:c("CS_COMMON_"+i),[c("WF_INBOX_HEADER_CURRENT_OWNER")]:s,[c("WF_INBOX_HEADER_SLA_DAYS_REMAINING")]:(u=r,l.createElement("span",u<0?{className:"sla-cell-error"}:{className:"sla-cell-success"},u))};var u});let m;return m=i?l.createElement(r.Loader,null):l.createElement(te,{data:u,onFilterChange:n,serviceRequestIdKey:c("CS_COMMON_COMPLAINT_NO"),onSearch:a,searchParams:s}),l.createElement("div",{style:{padding:0}},l.createElement("div",{className:"inbox-container"},l.createElement("div",{className:"filters-container"},l.createElement(Y,{isMobile:!0}),m)))};We.propTypes={data:Ve.any,onFilterChange:Ve.func,onSearch:Ve.func,isLoading:Ve.bool,searchParams:Ve.any},We.defaultProps={onFilterChange:()=>{},searchParams:{}};const ze=e=>{let{action:t}=e;const{t:n}=o.useTranslation();return n("REOPEN"===t?"CS_COMMON_COMPLAINT_REOPENED":"CS_COMMON_COMPLAINT_SUBMITTED")},Ye=e=>{let{response:n}=e;const{complaints:a}=n;return l.createElement(r.Banner,a&&a.response&&a.response.responseInfo?{message:ze(a.response.ServiceWrappers[0].workflow),complaintNumber:a.response.ServiceWrappers[0].service.serviceRequestId,successful:!0}:{message:t("CS_COMMON_COMPLAINT_NOT_SUBMITTED"),successful:!1})},Ke={PGRModule:e=>{let{stateCode:t,userType:n,tenants:a}=e;const o=Digit.StoreData.getCurrentLanguage(),{isLoading:i}=Digit.Services.useStore({stateCode:t,moduleCode:"PGR",language:o});return i?l.createElement(r.Loader,null):(Digit.SessionStorage.set("PGR_TENANTS",a),l.createElement("citizen"===n?H:B,null))},PGRLinks:e=>{let{matchPath:t}=e;const{t:a}=o.useTranslation(),[i,s,c]=Digit.Hooks.useSessionStorage("PGR_CITIZEN_CREATE_COMPLAINT",{});n.useEffect(()=>{c()},[]);const u=[{link:t+"/create-complaint/complaint-type",i18nKey:a("CS_COMMON_FILE_A_COMPLAINT")},{link:t+"/complaints",i18nKey:a("CS_HOME_MY_COMPLAINTS")}];return l.createElement(r.CitizenHomeCard,{header:a("CS_COMMON_HOME_COMPLAINTS"),links:u,Icon:r.ComplaintIcon})},PGRCard:()=>{const{t:e}=o.useTranslation();if(e("ES_PGR_INBOX"),e("ES_PGR_NEW_COMPLAINT"),!Digit.Utils.pgrAccess())return null;const t=()=>l.createElement("svg",{xmlns:"http://www.w3.org/2000/svg",height:"24",viewBox:"0 0 24 24",width:"24"},l.createElement("path",{d:"M0 0h24v24H0z",fill:"none"}),l.createElement("path",{d:"M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-7 9h-2V5h2v6zm0 4h-2v-2h2v2z",fill:"white"}));let n=[{label:e("ES_PGR_NEW_COMPLAINT"),link:"/digit-ui/employee/pgr/complaint/create",role:"CSR"}];n=n.filter(e=>e.role&&Digit.Utils.didEmployeeHasRole(e.role));const a={Icon:l.createElement(t,null),moduleName:e("ES_PGR_HEADER_COMPLAINT"),kpis:[{label:e("TOTAL_PGR"),link:"/digit-ui/employee/pgr/inbox"},{label:e("TOTAL_NEARING_SLA"),link:"/digit-ui/employee/pgr/inbox"}],links:[{label:e("ES_PGR_INBOX"),link:"/digit-ui/employee/pgr/inbox"},...n]};return l.createElement(r.EmployeeModuleCard,a)},PGRComplaintDetails:e=>{var t,i,s,c,u,d,p,E,C,S,_;let{id:O}=a.useParams();const{t:f}=o.useTranslation(),[T,v]=n.useState(!1),[g,N]=n.useState(null),[y,h]=n.useState(!1),M=Digit.ULBService.getCurrentTenantId(),{isLoading:I,complaintDetails:A,revalidate:P}=Digit.Hooks.pgr.useComplaintDetails({tenantId:M,id:O}),D=Digit.Hooks.useWorkflowDetails({tenantId:M,id:O,moduleCode:"PGR",role:"EMPLOYEE"}),[L,R]=n.useState([]);var k,x;D&&null!=D&&D.data&&(D.data.initialActionState=(null==D||null===(k=D.data)||void 0===k?void 0:k.initialActionState)||{...null==D||null===(x=D.data)||void 0===x?void 0:x.actionState}||{},D.data.actionState={...D.data}),n.useEffect(()=>{if(D){const{data:{timeline:e}={}}=D;if(e){const t=null==e?void 0:e.find(e=>"APPLY"===(null==e?void 0:e.performedAction)),{thumbnailsToShow:n}=t;n&&R(n)}}},[D]);const[w,F]=n.useState(!1),[H,U]=n.useState(!1),[B,G]=n.useState(null),[z,Y]=n.useState(null),[K,q]=n.useState(!1),[X,J]=n.useState(1),Z=m.useQueryClient();n.useEffect(()=>{try{return Promise.resolve(null===(_Digit=Digit)||void 0===_Digit||null===(_Digit$WorkflowServic=_Digit.WorkflowService)||void 0===_Digit$WorkflowServic?void 0:_Digit$WorkflowServic.getByBusinessId(M,O)).then(function(){})}catch(e){Promise.reject(e)}},[A]);const Q=function(){try{return Promise.resolve(Z.refetchQueries(["fetchInboxData"])).then(function(){return Promise.resolve(D.revalidate()).then(function(){return Promise.resolve(P()).then(function(){})})})}catch(e){return Promise.reject(e)}};function ee(e){switch(e){case T:v(!T);break;case H:U(!H)}}function te(e,t){N(e)}if(n.useEffect(()=>{!function(){try{const e=function(){if(A)return q(!0),Promise.resolve(Q()).then(function(){q(!1)})}();e&&e.then&&e.then(function(){})}catch(e){Promise.reject(e)}}()},[]),I||D.isLoading||K)return l.createElement(r.Loader,null);if(D.isError)return l.createElement(l.Fragment,null,D.error);const ne=(e,t,a)=>{var o,i,s,c;const{wfComment:u,thumbnailsToShow:m}=e;function d(e,t,n){var l,a;let o=null===(l=n.thumbs)||void 0===l?void 0:l.findIndex(t=>t===e);te(o>-1&&(null==n||null===(a=n.fullImage)||void 0===a?void 0:a[o])||e)}const p={date:null==e||null===(o=e.auditDetails)||void 0===o?void 0:o.lastModified,name:null==e||null===(i=e.assigner)||void 0===i?void 0:i.name,mobileNumber:null==e||null===(s=e.assigner)||void 0===s?void 0:s.mobileNumber,..."COMPLAINT_FILED"===e.status&&null!=A&&A.audit?{source:A.audit.source}:{}};if("PENDINGFORASSIGNMENT"===e.status&&null!=A&&A.audit){if(a.length-(t+1)==1){const t={date:Digit.DateUtils.ConvertTimestampToDate(A.audit.details.createdTime)};return l.createElement(V,{data:t,comments:null==e?void 0:e.wfComment})}{var E,C;const t={date:Digit.DateUtils.ConvertTimestampToDate(A.audit.details.createdTime)};return l.createElement(n.Fragment,null,null!=e&&e.wfComment?l.createElement("div",null,null==e||null===(E=e.wfComment)||void 0===E?void 0:E.map(e=>l.createElement("div",{className:"TLComments"},l.createElement("h3",null,f("WF_COMMON_COMMENTS")),l.createElement("p",null,e)))):null,"COMPLAINT_FILED"!==e.status&&(null==m||null===(C=m.thumbs)||void 0===C?void 0:C.length)>0?l.createElement("div",{className:"TLComments"},l.createElement("h3",null,f("CS_COMMON_ATTACHMENTS")),l.createElement(r.DisplayPhotos,{srcs:m.thumbs,onClick:(e,t)=>d(e,0,m)})):null,null!=t&&t.date?l.createElement(V,{data:t}):null)}}return l.createElement(n.Fragment,null,u?l.createElement("div",null,null==u?void 0:u.map(e=>l.createElement("div",{className:"TLComments"},l.createElement("h3",null,f("WF_COMMON_COMMENTS")),l.createElement("p",null,e)))):null,"COMPLAINT_FILED"!==e.status&&(null==m||null===(c=m.thumbs)||void 0===c?void 0:c.length)>0?l.createElement("div",{className:"TLComments"},l.createElement("h3",null,f("CS_COMMON_ATTACHMENTS")),l.createElement(r.DisplayPhotos,{srcs:m.thumbs,onClick:(e,t)=>d(e,0,m)})):null,null!=p&&p.date?l.createElement(V,{data:p}):null,"CLOSEDAFTERRESOLUTION"==e.status&&"RATE"==A.workflow.action&&t<=1&&A.audit.rating?l.createElement(b,{text:f("CS_ADDCOMPLAINT_YOU_RATED"),rating:A.audit.rating}):null)};return l.createElement(l.Fragment,null,l.createElement(r.Card,null,l.createElement(r.CardSubHeader,null,f("CS_HEADER_COMPLAINT_SUMMARY")),l.createElement(r.CardLabel,{style:{fontWeight:"700"}},f("CS_COMPLAINT_DETAILS_COMPLAINT_DETAILS")),I?l.createElement(r.Loader,null):l.createElement(r.StatusTable,null,A&&Object.keys(null==A?void 0:A.details).map((e,t,n)=>l.createElement(r.Row,{key:e,label:f(e),text:Array.isArray(null==A?void 0:A.details[e])?null==A?void 0:A.details[e].map(e=>f("object"==typeof e?null==e?void 0:e.code:e)):f(null==A?void 0:A.details[e])||"N/A",last:n.length-1===t})),null),null!=L&&L.thumbs?l.createElement(r.DisplayPhotos,{srcs:null==L?void 0:L.thumbs,onClick:(e,t)=>function(e,t){te(null==L?void 0:L.fullImage[t])}(0,t)}):null,l.createElement(r.BreakLine,null),(null==D?void 0:D.isLoading)&&l.createElement(r.Loader,null),!(null!=D&&D.isLoading)&&l.createElement(l.Fragment,null,l.createElement(r.CardSubHeader,null,f("CS_COMPLAINT_DETAILS_COMPLAINT_TIMELINE")),null!=D&&null!==(t=D.data)&&void 0!==t&&t.timeline&&1===(null==D||null===(i=D.data)||void 0===i||null===(s=i.timeline)||void 0===s?void 0:s.length)?l.createElement(r.CheckPoint,{isCompleted:!0,label:f("CS_COMMON_"+(null==D||null===(c=D.data)||void 0===c||null===(u=c.timeline[0])||void 0===u?void 0:u.status))}):l.createElement(r.ConnectingCheckPoints,null,(null==D||null===(d=D.data)||void 0===d?void 0:d.timeline)&&(null==D||null===(p=D.data)||void 0===p?void 0:p.timeline.map((e,t,n)=>l.createElement(l.Fragment,{key:t},l.createElement(r.CheckPoint,{keyValue:t,isCompleted:0===t,label:f("CS_COMMON_"+e.status),customChild:ne(e,t,n)}))))))),T?l.createElement(r.PopUp,null,l.createElement("div",{className:"popup-module"},l.createElement(r.HeaderBar,{main:l.createElement(j,{label:"Complaint Geolocation"}),end:l.createElement($,{onClick:()=>ee(T)})}),l.createElement("div",{className:"popup-module-main"},l.createElement("img",{src:"https://via.placeholder.com/912x568"})))):null,g?l.createElement(r.ImageViewer,{imageSrc:g,onClose:function(){N(null)}}):null,H?l.createElement(W,{workflowDetails:D,complaintDetails:A,close:ee,popup:H,selectedAction:B,onAssign:function(e,t,n){try{return U(!1),Promise.resolve(Digit.Complaint.assign(A,B,e,t,n,M)).then(function(e){return Y(e),h(!0),q(!0),Promise.resolve(Q()).then(function(){q(!1),J(X+1),setTimeout(()=>h(!1),1e4)})})}catch(e){return Promise.reject(e)}},tenantId:M,t:f}):null,y&&l.createElement(r.Toast,{label:f(z?"CS_ACTION_"+B+"_TEXT":"CS_ACTION_ASSIGN_FAILED"),onClose:function(){h(!1)}}),!(null!=D&&D.isLoading)&&(null==D||null===(E=D.data)||void 0===E||null===(C=E.nextActions)||void 0===C?void 0:C.length)>0&&l.createElement(r.ActionBar,null,w&&null!=D&&null!==(S=D.data)&&void 0!==S&&S.nextActions?l.createElement(r.Menu,{options:null==D||null===(_=D.data)||void 0===_?void 0:_.nextActions.map(e=>e.action),t:f,onSelect:function(e){switch(G(e),e){case"ASSIGN":case"REASSIGN":case"RESOLVE":case"REJECT":case"REOPEN":U(!0),F(!1);break;default:F(!1)}}}):null,l.createElement(r.SubmitBar,{label:f("WF_TAKE_ACTION"),onSubmit:()=>F(!w)})))},PGRCreateComplaintEmp:e=>{var t;let{parentUrl:i}=e;const c=Digit.Hooks.pgr.useTenants(),{t:u}=o.useTranslation(),d=()=>(null==c?void 0:c.filter(e=>e.code===Digit.ULBService.getCurrentTenantId()))||[],[p,E]=n.useState({}),[C,_]=n.useState([]),[O,f]=n.useState({}),[T,v]=n.useState(""),[g,N]=n.useState(d()[0]?d()[0]:null),{data:y}=Digit.Hooks.useBoundaryLocalities(null===(t=d()[0])||void 0===t?void 0:t.code,"admin",{enabled:!!d()[0]},u),[h,M]=n.useState(y),[I,A]=n.useState(null),[P,D]=n.useState(!1),[L,b]=n.useState(!1),[R,k]=n.useState(!1),[x,w]=n.useState({}),F=window.Digit.SessionStorage.get("Employee.tenantId"),H=Digit.Hooks.pgr.useComplaintTypes({stateCode:F}),U=s.useDispatch(),B=(a.useRouteMatch(),a.useHistory()),G=Digit.GetServiceDefinitions,j=m.useQueryClient();n.useEffect(()=>{D(!!(null!=p&&p.key&&null!=O&&O.key&&null!=g&&g.code&&null!=I&&I.code))},[p,O,g,I]),n.useEffect(()=>{M(y)},[y]),n.useEffect(()=>{var e;const t=c.find(e=>{var t;return null===(t=e.pincode)||void 0===t?void 0:t.find(e=>e==T)});if((null==t?void 0:t.code)===(null===(e=d()[0])||void 0===e?void 0:e.code)){k(!1),N(t),A(null);const e=y.filter(e=>e.pincode==T);M(e)}else""===T||null===T?(k(!1),M(y)):k(!0)},[T]);const $=[{head:u("ES_CREATECOMPLAINT_PROVIDE_COMPLAINANT_DETAILS"),body:[{label:u("ES_CREATECOMPLAINT_MOBILE_NUMBER"),isMandatory:!0,type:"text",populators:{name:"mobileNumber",validation:{required:!0,pattern:/^[6-9]\d{9}$/},componentInFront:l.createElement("div",{className:"employee-card-input employee-card-input--front"},"+91"),error:u("CORE_COMMON_MOBILE_ERROR")}},{label:u("ES_CREATECOMPLAINT_COMPLAINT_NAME"),isMandatory:!0,type:"text",populators:{name:"name",validation:{required:!0,pattern:/^[A-Za-z]/},error:u("CS_ADDCOMPLAINT_NAME_ERROR")}}]},{head:u("CS_COMPLAINT_DETAILS_COMPLAINT_DETAILS"),body:[{label:u("CS_COMPLAINT_DETAILS_COMPLAINT_TYPE"),isMandatory:!0,type:"dropdown",populators:l.createElement(r.Dropdown,{option:H,optionKey:"name",id:"complaintType",selected:p,select:function(e){try{const t=function(){if(e.key!==p.key){const t=function(){if("Others"!==e.key)return f({name:""}),E(e),Promise.resolve(G.getSubMenu(F,e,u)).then(function(e){_(e)});f({name:""}),E(e),_([{key:"Others",name:u("SERVICEDEFS.OTHERS")}])}();if(t&&t.then)return t.then(function(){})}}();return Promise.resolve(t&&t.then?t.then(function(){}):void 0)}catch(e){return Promise.reject(e)}}})},{label:u("CS_COMPLAINT_DETAILS_COMPLAINT_SUBTYPE"),isMandatory:!0,type:"dropdown",menu:{...C},populators:l.createElement(r.Dropdown,{option:C,optionKey:"name",id:"complaintSubType",selected:O,select:function(e){f(e)}})}]},{head:u("CS_ADDCOMPLAINT_LOCATION"),body:[{label:u("CORE_COMMON_PINCODE"),type:"text",populators:{name:"pincode",validation:{pattern:/^[1-9][0-9]{5}$/,validate:()=>!R},error:u("CORE_COMMON_PINCODE_INVALID"),onChange:e=>{const{value:t}=e.target;v(t),t||k(!1)}}},{label:u("CS_COMPLAINT_DETAILS_CITY"),isMandatory:!0,type:"dropdown",populators:l.createElement(r.Dropdown,{isMandatory:!0,selected:g,freeze:!0,option:d(),id:"city",select:function(e){return Promise.resolve()},optionKey:"i18nKey",t:u})},{label:u("CS_CREATECOMPLAINT_MOHALLA"),type:"dropdown",isMandatory:!0,dependency:!(!g||!h),populators:l.createElement(r.Dropdown,{isMandatory:!0,selected:I,optionKey:"i18nkey",id:"locality",option:h,select:function(e){A(e)},t:u})},{label:u("CS_COMPLAINT_DETAILS_LANDMARK"),type:"textarea",populators:{name:"landmark"}}]},{head:u("CS_COMPLAINT_DETAILS_ADDITIONAL_DETAILS"),body:[{label:u("CS_COMPLAINT_DETAILS_ADDITIONAL_DETAILS"),type:"textarea",populators:{name:"description"}}]}];return l.createElement(z,{heading:u("ES_CREATECOMPLAINT_NEW_COMPLAINT"),config:$,onSubmit:e=>{P&&(b(!0),!L&&function(e){try{if(!P)return Promise.resolve();const t=g.code,n=g.city.name,l=g.city.name,a=g.city.name,o=I.code,r=I.name,s=e.landmark,{key:c}=O,u=c,m=e.mobileNumber,d=e.name,p={...e,cityCode:t,city:n,district:l,region:a,localityCode:o,localityName:r,landmark:s,complaintType:u,mobileNumber:m,name:d};Promise.resolve(U(S(p))).then(function(){return Promise.resolve(j.refetchQueries(["fetchInboxData"])).then(function(){B.push(i+"/response")})})}catch(e){return Promise.reject(e)}}(e))},isDisabled:!P&&!L,label:u("CS_ADDCOMPLAINT_ADDITIONAL_DETAILS_SUBMIT_COMPLAINT")})},PGRInbox:()=>{const{t:e}=o.useTranslation(),t=Digit.ULBService.getCurrentTenantId(),{uuid:a}=Digit.UserService.getUser().info,[i,s]=n.useState(0),[c,u]=n.useState(10),[m,d]=n.useState(0),[p,E]=n.useState({filters:{wfFilters:{assignee:[{code:a}]}},search:"",sort:{}});n.useEffect(()=>{try{const e=null==p||null===(_searchParams$filters=p.filters)||void 0===_searchParams$filters||null===(_searchParams$filters2=_searchParams$filters.pgrfilters)||void 0===_searchParams$filters2||null===(_searchParams$filters3=_searchParams$filters2.applicationStatus)||void 0===_searchParams$filters3?void 0:_searchParams$filters3.map(e=>e.code).join(",");return Promise.resolve(Digit.PGRService.count(t,(null==e?void 0:e.length)>0?{applicationStatus:e}:{})).then(function(e){null!=e&&e.count&&d(e.count)})}catch(e){Promise.reject(e)}},[p]);const C=e=>{E({...p,filters:e})},S=function(e){void 0===e&&(e=""),E({...p,search:e})};let{data:_,isLoading:O}=Digit.Hooks.pgr.useInboxData({...p,offset:i,limit:c}),f=Digit.Utils.browser.isMobile();return null!==(null==_?void 0:_.length)?f?l.createElement(We,{data:_,isLoading:O,onFilterChange:C,onSearch:S,searchParams:p}):l.createElement("div",null,l.createElement(r.Header,null,e("ES_COMMON_INBOX")),l.createElement(ee,{data:_,isLoading:O,onFilterChange:C,onSearch:S,searchParams:p,onNextPage:()=>{s(e=>e+10)},onPrevPage:()=>{s(e=>e-10)},onPageSizeChange:e=>{u(Number(e.target.value))},currentPage:Math.floor(i/c),totalRecords:m,pageSizeLimit:c})):l.createElement(r.Loader,null)},PGRResponseEmp:e=>{const{t:t}=o.useTranslation(),n=(a.useRouteMatch(),s.useSelector(e=>e).pgr);return l.createElement(r.Card,null,n.complaints.response&&l.createElement(Ye,{response:n}),l.createElement(r.CardText,null,t("ES_COMMON_TRACK_COMPLAINT_TEXT")),l.createElement(a.Link,{to:"/digit-ui/employee"},l.createElement(r.SubmitBar,{label:t("CORE_COMMON_GO_TO_HOME")})))},PGRCreateComplaintCitizen:()=>{const e=Digit.Contexts.ComponentProvider,{t:t}=o.useTranslation(),{pathname:r}=a.useLocation(),i=a.useRouteMatch(),u=a.useHistory(),d=(n.useContext(e),s.useDispatch()),{data:p,isLoading:E}=Digit.Hooks.useStore.getInitData(),{stateInfo:C}=p||{},[_,O,f]=Digit.Hooks.useSessionStorage("PGR_CITIZEN_CREATE_COMPLAINT",{}),T=n.useMemo(()=>c(A,Digit.Customizations.PGR.complaintConfig),[Digit.Customizations.PGR.complaintConfig]),[v,g]=n.useState(_),[N,y]=n.useState(""),[h,I]=n.useState(!1),[P,D]=n.useState(0),L=m.useQueryClient();n.useEffect(()=>{I(!1)},[]),n.useEffect(()=>{g(_),null===N?R():u.push(i.path+"/"+N)},[_,N]);const b=()=>{const e=r.split("/").pop();let{nextStep:n}=T.routes[e],l=Digit.SessionStorage.get("PGR_CITIZEN_CREATE_COMPLAINT");"sub-type"===n&&"Others"===l.complaintType.key&&(O({..._,complaintType:{key:"Others",name:t("SERVICEDEFS.OTHERS")},subType:{key:"Others",name:t("SERVICEDEFS.OTHERS")}}),n=T.routes[n].nextStep),y(n)},R=()=>{h||(I(!0),k())},k=function(){try{const e=function(){if(null!=v&&v.complaintType){const{city_complaint:e,locality_complaint:t,uploadedImages:n,subType:l,details:a,...o}=v,{code:r,name:s}=e,{code:c,name:m}=t,p=null==n?void 0:n.map(e=>({documentType:"PHOTO",fileStoreId:e,documentUid:"",additionalDetails:{}})),E={...o,complaintType:l.key,cityCode:r,city:s,description:a,district:s,region:s,localityCode:c,localityName:m,state:C.name,uploadedImages:p};return Promise.resolve(d(S(E))).then(function(){return Promise.resolve(L.refetchQueries(["complaintsList"])).then(function(){u.push(i.path+"/response")})})}}();return Promise.resolve(e&&e.then?e.then(function(){}):void 0)}catch(e){return Promise.reject(e)}},x=e=>{O({..._,...e}),b()},w=()=>{b()};return E?null:l.createElement(a.Switch,null,Object.keys(T.routes).map((e,n)=>{const{component:o,texts:r,inputs:s}=T.routes[e],c="string"==typeof o?Digit.ComponentRegistryService.getComponent(o):o;return l.createElement(a.Route,{path:i.path+"/"+e,key:n},l.createElement(c,{config:{texts:r,inputs:s},onSelect:x,onSkip:w,value:_,t:t}))}),l.createElement(a.Route,{path:i.path+"/response"},l.createElement(M,{match:i})),l.createElement(a.Route,null,l.createElement(a.Redirect,{to:i.path+"/"+T.indexRoute})))},PGRComplaintsList:e=>{var t,i,s,c;const u=Digit.UserService.getUser(),m=u.mobileNumber||(null==u||null===(t=u.info)||void 0===t?void 0:t.mobileNumber)||(null==u||null===(i=u.info)||void 0===i||null===(s=i.userInfo)||void 0===s?void 0:s.mobileNumber),d=(null===(c=Digit.SessionStorage.get("CITIZEN.COMMON.HOME.CITY"))||void 0===c?void 0:c.code)||Digit.ULBService.getCurrentTenantId(),{t:p}=o.useTranslation(),{path:E}=a.useRouteMatch();let{isLoading:C,error:S,data:_,revalidate:O}=Digit.Hooks.pgr.useComplaintsListByMobile(d,m);if(n.useEffect(()=>{O()},[]),C)return l.createElement(l.Fragment,null,l.createElement(r.Header,null,p("CS_HOME_MY_COMPLAINTS")),l.createElement(r.Loader,null));let f,T=null==_?void 0:_.ServiceWrappers;return f=S?l.createElement(r.Card,null,p("CS_COMMON_ERROR_LOADING_RESULTS").split("\\n").map((e,t)=>l.createElement("p",{key:t,style:{textAlign:"center"}},e))):0===T.length?l.createElement(r.Card,null,p("CS_MYCOMPLAINTS_NO_COMPLAINTS").split("\\n").map((e,t)=>l.createElement("p",{key:t,style:{textAlign:"center"}},e))):T.map((e,t)=>{let{service:n}=e;return l.createElement(P,{key:t,data:n,path:E})}),l.createElement(l.Fragment,null,l.createElement("div",{className:"applications-list-container"},l.createElement(r.Header,null,p("CS_HOME_MY_COMPLAINTS")),f))},PGRComplaintDetailsPage:e=>{var t;let{t:i}=o.useTranslation(),{id:s}=a.useParams(),c=(null===(t=Digit.SessionStorage.get("CITIZEN.COMMON.HOME.CITY"))||void 0===t?void 0:t.code)||Digit.ULBService.getCurrentTenantId();const{isLoading:u,isError:m,complaintDetails:d,revalidate:p}=Digit.Hooks.pgr.useComplaintDetails({tenantId:c,id:s}),[E,C]=n.useState({}),[S,_]=n.useState(null),[O,f]=n.useState(""),[T,v]=n.useState(!1),[g,N]=n.useState(null),[y,h]=n.useState(!0),[M,I]=n.useState(!1);function A(e,t){_(e)}return n.useEffect(()=>{!function(){try{const e=function(){if(d)return I(!0),Promise.resolve(p()).then(function(){I(!1)})}();e&&e.then&&e.then(function(){})}catch(e){Promise.reject(e)}}()},[]),u||M?l.createElement(r.Loader,null):m?l.createElement("h2",null,"Error"):l.createElement(l.Fragment,null,l.createElement("div",{className:"complaint-summary"},l.createElement(r.Header,null,i("CS_HEADER_COMPLAINT_SUMMARY")),Object.keys(d).length>0?l.createElement(l.Fragment,null,l.createElement(r.Card,null,l.createElement(r.CardSubHeader,null,i("SERVICEDEFS."+d.audit.serviceCode.toUpperCase())),l.createElement(r.StatusTable,null,Object.keys(d.details).map((e,t,n)=>l.createElement(r.Row,{key:t,label:i(e),text:Array.isArray(d.details[e])?d.details[e].map(e=>i("object"==typeof e?null==e?void 0:e.code:e)):i(d.details[e])||"N/A",last:t===n.length-1}))),null!=E&&E.thumbs?l.createElement(r.DisplayPhotos,{srcs:null==E?void 0:E.thumbs,onClick:(e,t)=>function(e,t){A(null==E?void 0:E.fullImage[t])}(0,t)}):null,S?l.createElement(r.ImageViewer,{imageSrc:S,onClose:function(){_(null)}}):null),l.createElement(r.Card,null,(null==d?void 0:d.service)&&l.createElement(F,{getWorkFlow:e=>{var t;let n=null==e?void 0:e.timeline;if(n&&null!==(t=n[0].timeLineActions)&&void 0!==t&&t.filter(e=>"COMMENT"===e).length?h(!1):h(!0),n){const e=n.find(e=>"APPLY"===(null==e?void 0:e.performedAction)),{thumbnailsToShow:t}=e;C(t)}},complaintDetails:d,id:s,zoomImage:A})),T&&l.createElement(r.Toast,{error:g,label:i(g?"CS_COMPLAINT_COMMENT_ERROR":"CS_COMPLAINT_COMMENT_SUCCESS"),onClose:()=>v(!1)})," "):l.createElement(r.Loader,null)))},PGRSelectRating:e=>{var t;let{parentRoute:i}=e;const{t:c}=o.useTranslation(),{id:u}=a.useParams(),m=s.useDispatch(),d=a.useHistory();let p=(null===(t=Digit.SessionStorage.get("CITIZEN.COMMON.HOME.CITY"))||void 0===t?void 0:t.code)||Digit.ULBService.getCurrentTenantId();const E=Digit.Hooks.pgr.useComplaintDetails({tenantId:p,id:u}).complaintDetails,C=n.useCallback(e=>m(_(e)),[m]),[S,O]=n.useState(!1),f={texts:{header:"CS_COMPLAINT_RATE_HELP_TEXT",submitBarLabel:"CS_COMMONS_NEXT"},inputs:[{type:"rate",maxRating:5,label:c("CS_COMPLAINT_RATE_TEXT"),error:S?l.createElement(r.CardLabelError,null,c("CS_FEEDBACK_ENTER_RATING_ERROR")):null},{type:"checkbox",label:"CS_FEEDBACK_WHAT_WAS_GOOD",checkLabels:[c("CS_FEEDBACK_SERVICES"),c("CS_FEEDBACK_RESOLUTION_TIME"),c("CS_FEEDBACK_QUALITY_OF_WORK"),c("CS_FEEDBACK_OTHERS")]},{type:"textarea",label:c("CS_COMMON_COMMENTS"),name:"comments"}]};return l.createElement(r.RatingCard,{config:f,t:c,onSelect:function(e){E&&e.rating>0?(E.service.rating=e.rating,E.service.additionalDetail=e.CS_FEEDBACK_WHAT_WAS_GOOD.join(","),E.workflow={action:"RATE",comments:e.comments,verificationDocuments:[]},C({service:E.service,workflow:E.workflow}),d.push(i+"/response")):O(!0)}})},PGRResponseCitzen:g};exports.PGRReducers=()=>i.combineReducers({complaints:d}),exports.initPGRComponents=()=>{Object.entries(Ke).forEach(e=>{let[t,n]=e;Digit.ComponentRegistryService.setComponent(t,n)})};
+function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
+
+var React = require('react');
+var React__default = _interopDefault(React);
+var reactRouterDom = require('react-router-dom');
+var reactI18next = require('react-i18next');
+var digitUiReactComponents = require('@egovernments/digit-ui-react-components');
+var redux = require('redux');
+var reactRedux = require('react-redux');
+var merge = _interopDefault(require('lodash.merge'));
+var reactHookForm = require('react-hook-form');
+var reactQuery = require('react-query');
+
+const PGRCard = () => {
+  const {
+    t
+  } = reactI18next.useTranslation();
+  const allLinks = [{
+    text: t("ES_PGR_INBOX"),
+    link: "/digit-ui/employee/pgr/inbox"
+  }, {
+    text: t("ES_PGR_NEW_COMPLAINT"),
+    link: "/digit-ui/employee/pgr/complaint/create",
+    accessTo: ["CSR"]
+  }];
+  if (!Digit.Utils.pgrAccess()) {
+    return null;
+  }
+  const Icon = () => /*#__PURE__*/React__default.createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    height: "24",
+    viewBox: "0 0 24 24",
+    width: "24"
+  }, /*#__PURE__*/React__default.createElement("path", {
+    d: "M0 0h24v24H0z",
+    fill: "none"
+  }), /*#__PURE__*/React__default.createElement("path", {
+    d: "M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-7 9h-2V5h2v6zm0 4h-2v-2h2v2z",
+    fill: "white"
+  }));
+  let propsForCSR = [{
+    label: t("ES_PGR_NEW_COMPLAINT"),
+    link: "/digit-ui/employee/pgr/complaint/create",
+    role: "CSR"
+  }];
+  propsForCSR = propsForCSR.filter(link => link.role && Digit.Utils.didEmployeeHasRole(link.role));
+  const propsForModuleCard = {
+    Icon: /*#__PURE__*/React__default.createElement(Icon, null),
+    moduleName: t("ES_PGR_HEADER_COMPLAINT"),
+    kpis: [{
+      label: t("TOTAL_PGR"),
+      link: "/digit-ui/employee/pgr/inbox"
+    }, {
+      label: t("TOTAL_NEARING_SLA"),
+      link: "/digit-ui/employee/pgr/inbox"
+    }],
+    links: [{
+      label: t("ES_PGR_INBOX"),
+      link: "/digit-ui/employee/pgr/inbox"
+    }, ...propsForCSR]
+  };
+  return /*#__PURE__*/React__default.createElement(digitUiReactComponents.EmployeeModuleCard, propsForModuleCard);
+};
+
+const FETCH_COMPLAINTS = "FETCH_COMPLAINTS";
+const UPDATE_COMPLAINT = "UPDATE_COMPLAINT";
+const CREATE_COMPLAINT = "CREATE_COMPLAINT";
+const APPLY_INBOX_FILTER = "APPLY_INBOX_FILTER";
+
+function complaintReducer(state, action) {
+  if (state === void 0) {
+    state = {};
+  }
+  switch (action.type) {
+    case CREATE_COMPLAINT:
+      return {
+        ...state,
+        response: action.payload
+      };
+    case FETCH_COMPLAINTS:
+      return {
+        ...state,
+        list: action.payload.complaints
+      };
+    case UPDATE_COMPLAINT:
+      return {
+        ...state,
+        response: action.payload
+      };
+    case APPLY_INBOX_FILTER:
+      return {
+        ...state,
+        response: action.payload.response.instances
+      };
+    default:
+      return state;
+  }
+}
+
+const getRootReducer = () => redux.combineReducers({
+  complaints: complaintReducer
+});
+
+const PGR_EMPLOYEE_COMPLAINT_DETAILS = "/complaint/details/";
+const PGR_EMPLOYEE_CREATE_COMPLAINT = "/complaint/create";
+
+const PgrRoutes = {
+  ComplaintsPage: "/complaints",
+  RatingAndFeedBack: "/rate/:id*",
+  ComplaintDetailsPage: "/complaint/details/:id",
+  ReasonPage: "/:id",
+  UploadPhoto: "/upload-photo/:id",
+  AddtionalDetails: "/addional-details/:id",
+  CreateComplaint: "/create-complaint",
+  ReopenComplaint: "/reopen",
+  Response: "/response",
+  CreateComplaintStart: "",
+  SubType: "/subtype",
+  LocationSearch: "/location",
+  Pincode: "/pincode",
+  Address: "/address",
+  Landmark: "/landmark",
+  UploadPhotos: "/upload-photos",
+  Details: "/details",
+  CreateComplaintResponse: "/response"
+};
+const Employee = {
+  Inbox: "/inbox",
+  ComplaintDetails: PGR_EMPLOYEE_COMPLAINT_DETAILS,
+  CreateComplaint: PGR_EMPLOYEE_CREATE_COMPLAINT,
+  Response: "/response",
+  Home: "/digit-ui/employee"
+};
+const getRoute = (match, route) => "" + match.path + route;
+
+const LOCALIZATION_KEY = {
+  CS_COMPLAINT_DETAILS: "CS_COMPLAINT_DETAILS",
+  CS_COMMON: "CS_COMMON",
+  CS_COMPLAINT: "CS_COMPLAINT",
+  CS_FEEDBACK: "CS_FEEDBACK",
+  CS_HEADER: "CS_HEADER",
+  CS_HOME: "CS_HOME",
+  CS_ADDCOMPLAINT: "CS_ADDCOMPLAINT",
+  CS_REOPEN: "CS_REOPEN",
+  CS_CREATECOMPLAINT: "CS_CREATECOMPLAINT",
+  PT_COMMONS: "PT_COMMONS",
+  CORE_COMMON: "CORE_COMMON"
+};
+const LOCALE = {
+  MY_COMPLAINTS: "CS_HOME_MY_COMPLAINTS",
+  NO_COMPLAINTS: "CS_MYCOMPLAINTS_NO_COMPLAINTS",
+  NO_COMPLAINTS_EMPLOYEE: "CS_MYCOMPLAINTS_NO_COMPLAINTS_EMPLOYEE",
+  ERROR_LOADING_RESULTS: "CS_COMMON_ERROR_LOADING_RESULTS"
+};
+
+const ReasonPage = props => {
+  const history = reactRouterDom.useHistory();
+  const {
+    t
+  } = reactI18next.useTranslation();
+  const {
+    id
+  } = reactRouterDom.useParams();
+  const [selected, setSelected] = React.useState(null);
+  const [valid, setValid] = React.useState(true);
+  const onRadioChange = value => {
+    let reopenDetails = Digit.SessionStorage.get("reopen." + id);
+    Digit.SessionStorage.set("reopen." + id, {
+      ...reopenDetails,
+      reason: value
+    });
+    setSelected(value);
+  };
+  function onSave() {
+    if (selected === null) {
+      setValid(false);
+    } else {
+      history.push(props.match.path + "/upload-photo/" + id);
+    }
+  }
+  return /*#__PURE__*/React__default.createElement(digitUiReactComponents.Card, null, /*#__PURE__*/React__default.createElement(digitUiReactComponents.CardHeader, null, t(LOCALIZATION_KEY.CS_REOPEN + "_COMPLAINT")), /*#__PURE__*/React__default.createElement(digitUiReactComponents.CardText, null), valid ? null : /*#__PURE__*/React__default.createElement(digitUiReactComponents.CardLabelError, null, t(LOCALIZATION_KEY.CS_ADDCOMPLAINT + "_ERROR_REOPEN_REASON")), /*#__PURE__*/React__default.createElement(digitUiReactComponents.RadioButtons, {
+    onSelect: onRadioChange,
+    selectedOption: selected,
+    options: [t(LOCALIZATION_KEY.CS_REOPEN + "_OPTION_ONE"), t(LOCALIZATION_KEY.CS_REOPEN + "_OPTION_TWO"), t(LOCALIZATION_KEY.CS_REOPEN + "_OPTION_THREE"), t(LOCALIZATION_KEY.CS_REOPEN + "_OPTION_FOUR")]
+  }), /*#__PURE__*/React__default.createElement(digitUiReactComponents.SubmitBar, {
+    label: t("CS_COMMON_NEXT"),
+    onSubmit: onSave
+  }));
+};
+
+const UploadPhoto = props => {
+  var _props$complaintDetai, _props$complaintDetai2;
+  const {
+    t
+  } = reactI18next.useTranslation();
+  const history = reactRouterDom.useHistory();
+  let {
+    id
+  } = reactRouterDom.useParams();
+  const [verificationDocuments, setVerificationDocuments] = React.useState(null);
+  const [valid, setValid] = React.useState(true);
+  const handleUpload = ids => {
+    setDocState(ids);
+  };
+  const setDocState = ids => {
+    if (ids !== null && ids !== void 0 && ids.length) {
+      const documents = ids.map(id => ({
+        documentType: "PHOTO",
+        fileStoreId: id,
+        documentUid: "",
+        additionalDetails: {}
+      }));
+      setVerificationDocuments(documents);
+    }
+  };
+  function save() {
+    if (verificationDocuments === null) {
+      setValid(false);
+    } else {
+      history.push(props.match.path + "/addional-details/" + id);
+    }
+  }
+  function skip() {
+    history.push(props.match.path + "/addional-details/" + id);
+  }
+  React.useEffect(() => {
+    let reopenDetails = Digit.SessionStorage.get("reopen." + id);
+    Digit.SessionStorage.set("reopen." + id, {
+      ...reopenDetails,
+      verificationDocuments
+    });
+  }, [verificationDocuments, id]);
+  return /*#__PURE__*/React__default.createElement(React__default.Fragment, null, /*#__PURE__*/React__default.createElement(digitUiReactComponents.Card, null, /*#__PURE__*/React__default.createElement(digitUiReactComponents.ImageUploadHandler, {
+    header: t(LOCALIZATION_KEY.CS_ADDCOMPLAINT + "_UPLOAD_PHOTO"),
+    tenantId: props === null || props === void 0 ? void 0 : (_props$complaintDetai = props.complaintDetails) === null || _props$complaintDetai === void 0 ? void 0 : (_props$complaintDetai2 = _props$complaintDetai.service) === null || _props$complaintDetai2 === void 0 ? void 0 : _props$complaintDetai2.tenantId,
+    cardText: "",
+    onPhotoChange: handleUpload,
+    uploadedImages: null
+  }), valid ? null : /*#__PURE__*/React__default.createElement(digitUiReactComponents.CardLabelError, null, t(LOCALIZATION_KEY.CS_ADDCOMPLAINT + "_UPLOAD_ERROR_MESSAGE")), /*#__PURE__*/React__default.createElement(digitUiReactComponents.SubmitBar, {
+    label: t(LOCALIZATION_KEY.PT_COMMONS + "_NEXT"),
+    onSubmit: save
+  }), props.skip ? /*#__PURE__*/React__default.createElement(digitUiReactComponents.LinkButton, {
+    label: t(LOCALIZATION_KEY.CORE_COMMON + "_SKIP_CONTINUE"),
+    onClick: skip
+  }) : null));
+};
+
+const createComplaint = _ref => {
+  let {
+    cityCode,
+    complaintType,
+    description,
+    landmark,
+    city,
+    district,
+    region,
+    state,
+    pincode,
+    localityCode,
+    localityName,
+    uploadedImages,
+    mobileNumber,
+    name
+  } = _ref;
+  return function (dispatch, getState) {
+    try {
+      return Promise.resolve(Digit.Complaint.create({
+        cityCode,
+        complaintType,
+        description,
+        landmark,
+        city,
+        district,
+        region,
+        state,
+        pincode,
+        localityCode,
+        localityName,
+        uploadedImages,
+        mobileNumber,
+        name
+      })).then(function (response) {
+        dispatch({
+          type: CREATE_COMPLAINT,
+          payload: response
+        });
+      });
+    } catch (e) {
+      return Promise.reject(e);
+    }
+  };
+};
+
+const updateComplaints = data => function (dispatch) {
+  try {
+    return Promise.resolve(Digit.PGRService.update(data)).then(function (ServiceWrappers) {
+      dispatch({
+        type: UPDATE_COMPLAINT,
+        payload: ServiceWrappers
+      });
+    });
+  } catch (e) {
+    return Promise.reject(e);
+  }
+};
+
+const AddtionalDetails = props => {
+  const history = reactRouterDom.useHistory();
+  let {
+    id
+  } = reactRouterDom.useParams();
+  const dispatch = reactRedux.useDispatch();
+  const appState = reactRedux.useSelector(state => state)["common"];
+  let {
+    t
+  } = reactI18next.useTranslation();
+  const {
+    complaintDetails
+  } = props;
+  React.useEffect(() => {
+    if (appState.complaints) {
+      const {
+        response
+      } = appState.complaints;
+      if (response && response.responseInfo.status === "successful") {
+        history.push(props.match.path + "/response/:" + id);
+      }
+    }
+  }, [appState.complaints, props.history]);
+  const updateComplaint = React.useCallback(function (complaintDetails) {
+    try {
+      return Promise.resolve(dispatch(updateComplaints(complaintDetails))).then(function () {
+        history.push(props.match.path + "/response/" + id);
+      });
+    } catch (e) {
+      return Promise.reject(e);
+    }
+  }, [dispatch]);
+  const getUpdatedWorkflow = (reopenDetails, type) => {
+    switch (type) {
+      case "REOPEN":
+        return {
+          action: "REOPEN",
+          comments: reopenDetails.addtionalDetail,
+          assignes: [],
+          verificationDocuments: reopenDetails.verificationDocuments
+        };
+      default:
+        return "";
+    }
+  };
+  function reopenComplaint() {
+    let reopenDetails = Digit.SessionStorage.get("reopen." + id);
+    if (complaintDetails) {
+      complaintDetails.workflow = getUpdatedWorkflow(reopenDetails, "REOPEN");
+      complaintDetails.service.additionalDetail = {
+        REOPEN_REASON: reopenDetails.reason
+      };
+      updateComplaint({
+        service: complaintDetails.service,
+        workflow: complaintDetails.workflow
+      });
+    }
+    return /*#__PURE__*/React__default.createElement(reactRouterDom.Redirect, {
+      to: {
+        pathname: props.parentRoute + "/response",
+        state: {
+          complaintDetails
+        }
+      }
+    });
+  }
+  function textInput(e) {
+    let reopenDetails = Digit.SessionStorage.get("reopen." + id);
+    Digit.SessionStorage.set("reopen." + id, {
+      ...reopenDetails,
+      addtionalDetail: e.target.value
+    });
+  }
+  return /*#__PURE__*/React__default.createElement(React__default.Fragment, null, /*#__PURE__*/React__default.createElement(digitUiReactComponents.Card, null, /*#__PURE__*/React__default.createElement(digitUiReactComponents.CardHeader, null, t(LOCALIZATION_KEY.CS_ADDCOMPLAINT + "_PROVIDE_ADDITIONAL_DETAILS")), /*#__PURE__*/React__default.createElement(digitUiReactComponents.CardText, null, t(LOCALIZATION_KEY.CS_ADDCOMPLAINT + "_ADDITIONAL_DETAILS_TEXT")), /*#__PURE__*/React__default.createElement(digitUiReactComponents.TextArea, {
+    name: "AdditionalDetails",
+    onChange: textInput
+  }), /*#__PURE__*/React__default.createElement("div", {
+    onClick: reopenComplaint
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.SubmitBar, {
+    label: t(LOCALIZATION_KEY.CS_HEADER + "_REOPEN_COMPLAINT")
+  }))));
+};
+
+const GetActionMessage = _ref => {
+  let {
+    action
+  } = _ref;
+  const {
+    t
+  } = reactI18next.useTranslation();
+  switch (action) {
+    case "REOPEN":
+      return t("CS_COMMON_COMPLAINT_REOPENED");
+    case "RATE":
+      return t("CS_COMMON_THANK_YOU");
+    default:
+      return t("CS_COMMON_COMPLAINT_SUBMITTED");
+  }
+};
+const BannerPicker = _ref2 => {
+  let {
+    response
+  } = _ref2;
+  const {
+    complaints
+  } = response;
+  const {
+    t
+  } = reactI18next.useTranslation();
+  if (complaints && complaints.response && complaints.response.responseInfo) {
+    return /*#__PURE__*/React__default.createElement(digitUiReactComponents.Banner, {
+      message: GetActionMessage(complaints.response.ServiceWrappers[0].workflow),
+      complaintNumber: complaints.response.ServiceWrappers[0].service.serviceRequestId,
+      successful: true
+    });
+  } else {
+    return /*#__PURE__*/React__default.createElement(digitUiReactComponents.Banner, {
+      message: t("CS_COMMON_COMPLAINT_NOT_SUBMITTED"),
+      successful: false
+    });
+  }
+};
+const TextPicker = _ref3 => {
+  let {
+    response
+  } = _ref3;
+  const {
+    complaints
+  } = response;
+  const {
+    t
+  } = reactI18next.useTranslation();
+  if (complaints && complaints.response && complaints.response.responseInfo) {
+    const {
+      action
+    } = complaints.response.ServiceWrappers[0].workflow;
+    return action === "RATE" ? /*#__PURE__*/React__default.createElement(digitUiReactComponents.CardText, null, t("CS_COMMON_RATING_SUBMIT_TEXT")) : /*#__PURE__*/React__default.createElement(digitUiReactComponents.CardText, null, t("CS_COMMON_TRACK_COMPLAINT_TEXT"));
+  }
+};
+const Response = props => {
+  const {
+    t
+  } = reactI18next.useTranslation();
+  const appState = reactRedux.useSelector(state => state)["pgr"];
+  return /*#__PURE__*/React__default.createElement(digitUiReactComponents.Card, null, appState.complaints.response && /*#__PURE__*/React__default.createElement(BannerPicker, {
+    response: appState
+  }), appState.complaints.response && /*#__PURE__*/React__default.createElement(TextPicker, {
+    response: appState
+  }), /*#__PURE__*/React__default.createElement(reactRouterDom.Link, {
+    to: "/digit-ui/citizen"
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.SubmitBar, {
+    label: t("CORE_COMMON_GO_TO_HOME")
+  })));
+};
+
+const ReopenComplaint = _ref => {
+  var _Digit$SessionStorage;
+  let {
+    match,
+    history,
+    parentRoute
+  } = _ref;
+  const allParams = window.location.pathname.split("/");
+  const id = allParams[allParams.length - 1];
+  const tenantId = ((_Digit$SessionStorage = Digit.SessionStorage.get("CITIZEN.COMMON.HOME.CITY")) === null || _Digit$SessionStorage === void 0 ? void 0 : _Digit$SessionStorage.code) || Digit.ULBService.getCurrentTenantId();
+  const complaintDetails = Digit.Hooks.pgr.useComplaintDetails({
+    tenantId: tenantId,
+    id: id
+  }).complaintDetails;
+  return /*#__PURE__*/React__default.createElement(reactRouterDom.Switch, null, /*#__PURE__*/React__default.createElement(reactRouterDom.Route, {
+    exact: true,
+    path: getRoute(match, PgrRoutes.ReasonPage),
+    component: () => /*#__PURE__*/React__default.createElement(ReasonPage, {
+      match: match,
+      complaintDetails
+    })
+  }), /*#__PURE__*/React__default.createElement(reactRouterDom.Route, {
+    path: getRoute(match, PgrRoutes.UploadPhoto),
+    component: () => /*#__PURE__*/React__default.createElement(UploadPhoto, {
+      match: match,
+      skip: true,
+      complaintDetails
+    })
+  }), /*#__PURE__*/React__default.createElement(reactRouterDom.Route, {
+    path: getRoute(match, PgrRoutes.AddtionalDetails),
+    component: () => /*#__PURE__*/React__default.createElement(AddtionalDetails, {
+      match: match,
+      parentRoute: parentRoute,
+      complaintDetails
+    })
+  }), /*#__PURE__*/React__default.createElement(reactRouterDom.Route, {
+    path: getRoute(match, PgrRoutes.Response),
+    component: () => /*#__PURE__*/React__default.createElement(Response, {
+      match: match
+    })
+  }));
+};
+
+const SelectRating = _ref => {
+  var _Digit$SessionStorage;
+  let {
+    parentRoute
+  } = _ref;
+  const {
+    t
+  } = reactI18next.useTranslation();
+  const {
+    id
+  } = reactRouterDom.useParams();
+  const dispatch = reactRedux.useDispatch();
+  const history = reactRouterDom.useHistory();
+  let tenantId = ((_Digit$SessionStorage = Digit.SessionStorage.get("CITIZEN.COMMON.HOME.CITY")) === null || _Digit$SessionStorage === void 0 ? void 0 : _Digit$SessionStorage.code) || Digit.ULBService.getCurrentTenantId();
+  const complaintDetails = Digit.Hooks.pgr.useComplaintDetails({
+    tenantId: tenantId,
+    id: id
+  }).complaintDetails;
+  const updateComplaint = React.useCallback(complaintDetails => dispatch(updateComplaints(complaintDetails)), [dispatch]);
+  const [submitError, setError] = React.useState(false);
+  function log(data) {
+    if (complaintDetails && data.rating > 0) {
+      complaintDetails.service.rating = data.rating;
+      complaintDetails.service.additionalDetail = data.CS_FEEDBACK_WHAT_WAS_GOOD.join(",");
+      complaintDetails.workflow = {
+        action: "RATE",
+        comments: data.comments,
+        verificationDocuments: []
+      };
+      updateComplaint({
+        service: complaintDetails.service,
+        workflow: complaintDetails.workflow
+      });
+      history.push(parentRoute + "/response");
+    } else {
+      setError(true);
+    }
+  }
+  const config = {
+    texts: {
+      header: "CS_COMPLAINT_RATE_HELP_TEXT",
+      submitBarLabel: "CS_COMMONS_NEXT"
+    },
+    inputs: [{
+      type: "rate",
+      maxRating: 5,
+      label: t("CS_COMPLAINT_RATE_TEXT"),
+      error: submitError ? /*#__PURE__*/React__default.createElement(digitUiReactComponents.CardLabelError, null, t("CS_FEEDBACK_ENTER_RATING_ERROR")) : null
+    }, {
+      type: "checkbox",
+      label: "CS_FEEDBACK_WHAT_WAS_GOOD",
+      checkLabels: [t("CS_FEEDBACK_SERVICES"), t("CS_FEEDBACK_RESOLUTION_TIME"), t("CS_FEEDBACK_QUALITY_OF_WORK"), t("CS_FEEDBACK_OTHERS")]
+    }, {
+      type: "textarea",
+      label: t("CS_COMMON_COMMENTS"),
+      name: "comments"
+    }]
+  };
+  return /*#__PURE__*/React__default.createElement(digitUiReactComponents.RatingCard, {
+    config: config,
+    t: t,
+    onSelect: log
+  });
+};
+
+const PGR_CITIZEN_CREATE_COMPLAINT = "PGR_CITIZEN_CREATE_COMPLAINT";
+
+const GetActionMessage$1 = _ref => {
+  let {
+    action
+  } = _ref;
+  const {
+    t
+  } = reactI18next.useTranslation();
+  switch (action) {
+    case "REOPEN":
+      return t("CS_COMMON_COMPLAINT_REOPENED");
+    case "RATE":
+      return t("CS_COMMON_THANK_YOU");
+    default:
+      return t("CS_COMMON_COMPLAINT_SUBMITTED");
+  }
+};
+const BannerPicker$1 = _ref2 => {
+  let {
+    response
+  } = _ref2;
+  const {
+    complaints
+  } = response;
+  if (complaints && complaints.response && complaints.response.responseInfo) {
+    return /*#__PURE__*/React__default.createElement(digitUiReactComponents.Banner, {
+      message: GetActionMessage$1(complaints.response.ServiceWrappers[0].workflow),
+      complaintNumber: complaints.response.ServiceWrappers[0].service.serviceRequestId,
+      successful: true
+    });
+  } else {
+    return /*#__PURE__*/React__default.createElement(digitUiReactComponents.Banner, {
+      message: t("CS_COMMON_COMPLAINT_NOT_SUBMITTED"),
+      successful: false
+    });
+  }
+};
+const Response$1 = props => {
+  const {
+    t
+  } = reactI18next.useTranslation();
+  const appState = reactRedux.useSelector(state => state)["pgr"];
+  return /*#__PURE__*/React__default.createElement(digitUiReactComponents.Card, null, appState.complaints.response && /*#__PURE__*/React__default.createElement(BannerPicker$1, {
+    response: appState
+  }), /*#__PURE__*/React__default.createElement(digitUiReactComponents.CardText, null, t("CS_COMMON_TRACK_COMPLAINT_TEXT")), /*#__PURE__*/React__default.createElement(reactRouterDom.Link, {
+    to: "/digit-ui/citizen"
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.SubmitBar, {
+    label: t("CORE_COMMON_GO_TO_HOME")
+  })));
+};
+
+const SelectAddress = _ref => {
+  let {
+    t,
+    config,
+    onSelect,
+    value
+  } = _ref;
+  const allCities = Digit.Hooks.pgr.useTenants();
+  const cities = value !== null && value !== void 0 && value.pincode ? allCities.filter(city => {
+    var _city$pincode;
+    return city === null || city === void 0 ? void 0 : (_city$pincode = city.pincode) === null || _city$pincode === void 0 ? void 0 : _city$pincode.some(pin => pin == value["pincode"]);
+  }) : allCities;
+  const [selectedCity, setSelectedCity] = React.useState(() => {
+    const {
+      city_complaint
+    } = value;
+    return city_complaint ? city_complaint : null;
+  });
+  const {
+    data: fetchedLocalities
+  } = Digit.Hooks.useBoundaryLocalities(selectedCity === null || selectedCity === void 0 ? void 0 : selectedCity.code, "admin", {
+    enabled: !!selectedCity
+  }, t);
+  const [localities, setLocalities] = React.useState(null);
+  const [selectedLocality, setSelectedLocality] = React.useState(() => {
+    const {
+      locality_complaint
+    } = value;
+    return locality_complaint ? locality_complaint : null;
+  });
+  React.useEffect(() => {
+    if (selectedCity && fetchedLocalities) {
+      const {
+        pincode
+      } = value;
+      let __localityList = pincode ? fetchedLocalities.filter(city => city["pincode"] == pincode) : fetchedLocalities;
+      setLocalities(__localityList);
+    }
+  }, [selectedCity, fetchedLocalities]);
+  function selectCity(city) {
+    setSelectedLocality(null);
+    setLocalities(null);
+    setSelectedCity(city);
+  }
+  function selectLocality(locality) {
+    setSelectedLocality(locality);
+  }
+  function onSubmit() {
+    onSelect({
+      city_complaint: selectedCity,
+      locality_complaint: selectedLocality
+    });
+  }
+  return /*#__PURE__*/React__default.createElement(digitUiReactComponents.FormStep, {
+    config: config,
+    onSelect: onSubmit,
+    t: t,
+    isDisabled: selectedLocality ? false : true
+  }, /*#__PURE__*/React__default.createElement("div", null, /*#__PURE__*/React__default.createElement(digitUiReactComponents.CardLabel, null, t("MYCITY_CODE_LABEL")), (cities === null || cities === void 0 ? void 0 : cities.length) < 5 ? /*#__PURE__*/React__default.createElement(digitUiReactComponents.RadioButtons, {
+    selectedOption: selectedCity,
+    options: cities,
+    optionsKey: "i18nKey",
+    onSelect: selectCity
+  }) : /*#__PURE__*/React__default.createElement(digitUiReactComponents.Dropdown, {
+    isMandatory: true,
+    selected: selectedCity,
+    option: cities,
+    select: selectCity,
+    optionKey: "i18nKey",
+    t: t
+  }), selectedCity && localities && /*#__PURE__*/React__default.createElement(digitUiReactComponents.CardLabel, null, t("CS_CREATECOMPLAINT_MOHALLA")), selectedCity && localities && /*#__PURE__*/React__default.createElement(React__default.Fragment, null, (localities === null || localities === void 0 ? void 0 : localities.length) < 5 ? /*#__PURE__*/React__default.createElement(digitUiReactComponents.RadioButtons, {
+    selectedOption: selectedLocality,
+    options: localities,
+    optionsKey: "i18nkey",
+    onSelect: selectLocality
+  }) : /*#__PURE__*/React__default.createElement(digitUiReactComponents.Dropdown, {
+    isMandatory: true,
+    selected: selectedLocality,
+    optionKey: "i18nkey",
+    option: localities,
+    select: selectLocality,
+    t: t
+  }))));
+};
+
+function _extends() {
+  _extends = Object.assign ? Object.assign.bind() : function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+    return target;
+  };
+  return _extends.apply(this, arguments);
+}
+
+const SelectComplaintType = _ref => {
+  let {
+    t,
+    config,
+    onSelect,
+    value
+  } = _ref;
+  const [complaintType, setComplaintType] = React.useState(() => {
+    const {
+      complaintType
+    } = value;
+    return complaintType ? complaintType : {};
+  });
+  const goNext = () => {
+    onSelect({
+      complaintType
+    });
+  };
+  const textParams = config.texts;
+  const menu = Digit.Hooks.pgr.useComplaintTypes({
+    stateCode: Digit.ULBService.getCurrentTenantId()
+  });
+  function selectedValue(value) {
+    setComplaintType(value);
+  }
+  return /*#__PURE__*/React__default.createElement(digitUiReactComponents.TypeSelectCard, _extends({}, textParams, {
+    menu: menu,
+    optionsKey: "name",
+    selected: selectedValue,
+    selectedOption: complaintType,
+    onSave: goNext,
+    t,
+    disabled: Object.keys(complaintType).length === 0 || complaintType === null ? true : false
+  }));
+};
+
+const SelectDetails = _ref => {
+  let {
+    t,
+    config,
+    onSelect,
+    value
+  } = _ref;
+  const [details, setDetails] = React.useState(() => {
+    const {
+      details
+    } = value;
+    return details ? details : "";
+  });
+  const onChange = event => {
+    const {
+      value
+    } = event.target;
+    setDetails(value);
+  };
+  return /*#__PURE__*/React__default.createElement(digitUiReactComponents.FormStep, {
+    config: config,
+    onChange: onChange,
+    onSelect: () => onSelect({
+      details
+    }),
+    value: details,
+    t: t
+  });
+};
+
+const SelectImages = _ref => {
+  var _value$city_complaint;
+  let {
+    t,
+    config,
+    onSelect,
+    onSkip,
+    value
+  } = _ref;
+  const [uploadedImages, setUploadedImagesIds] = React.useState(() => {
+    const {
+      uploadedImages
+    } = value;
+    return uploadedImages ? uploadedImages : null;
+  });
+  const handleUpload = ids => {
+    setUploadedImagesIds(ids);
+  };
+  const handleSubmit = () => {
+    if (!uploadedImages || uploadedImages.length === 0) return onSkip();
+    onSelect({
+      uploadedImages
+    });
+  };
+  return /*#__PURE__*/React__default.createElement(digitUiReactComponents.FormStep, {
+    config: config,
+    onSelect: handleSubmit,
+    onSkip: onSkip,
+    t: t
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.ImageUploadHandler, {
+    tenantId: (_value$city_complaint = value.city_complaint) === null || _value$city_complaint === void 0 ? void 0 : _value$city_complaint.code,
+    uploadedImages: uploadedImages,
+    onPhotoChange: handleUpload
+  }));
+};
+
+const SelectLandmark = _ref => {
+  let {
+    t,
+    config,
+    onSelect,
+    value
+  } = _ref;
+  const [landmark, setLandmark] = React.useState(() => {
+    const {
+      landmark
+    } = value;
+    return landmark ? landmark : "";
+  });
+  function onChange(e) {
+    setLandmark(e.target.value);
+  }
+  const onSkip = () => onSelect();
+  return /*#__PURE__*/React__default.createElement(digitUiReactComponents.FormStep, {
+    config: config,
+    value: landmark,
+    onChange: onChange,
+    onSelect: data => onSelect(data),
+    onSkip: onSkip,
+    t: t
+  });
+};
+
+const SelectPincode = _ref => {
+  let {
+    t,
+    config,
+    onSelect,
+    value
+  } = _ref;
+  const tenants = Digit.Hooks.pgr.useTenants();
+  const [pincode, setPincode] = React.useState(() => {
+    const {
+      pincode
+    } = value;
+    return pincode;
+  });
+  let isNextDisabled = pincode ? false : true;
+  const [pincodeServicability, setPincodeServicability] = React.useState(null);
+  function onChange(e) {
+    setPincode(e.target.value);
+    if (!e.target.value) {
+      isNextDisabled = true;
+    } else {
+      isNextDisabled = false;
+    }
+    setPincodeServicability(null);
+  }
+  const goNext = function (data) {
+    try {
+      var foundValue = tenants.find(obj => {
+        var _obj$pincode;
+        return (_obj$pincode = obj.pincode) === null || _obj$pincode === void 0 ? void 0 : _obj$pincode.find(item => item == (data === null || data === void 0 ? void 0 : data.pincode));
+      });
+      const _temp = function () {
+        if (foundValue) {
+          Digit.SessionStorage.set("city_complaint", foundValue);
+          return Promise.resolve(Digit.LocationService.getLocalities(foundValue.code)).then(function (response) {
+            let __localityList = Digit.LocalityService.get(response.TenantBoundary[0]);
+            const filteredLocalities = __localityList.filter(obj => {
+              var _obj$pincode2;
+              return (_obj$pincode2 = obj.pincode) === null || _obj$pincode2 === void 0 ? void 0 : _obj$pincode2.find(item => item == data.pincode);
+            });
+            onSelect({
+              ...data,
+              city_complaint: foundValue
+            });
+          });
+        } else {
+          Digit.SessionStorage.set("city_complaint", undefined);
+          Digit.SessionStorage.set("selected_localities", undefined);
+          setPincodeServicability("CS_COMMON_PINCODE_NOT_SERVICABLE");
+        }
+      }();
+      return Promise.resolve(_temp && _temp.then ? _temp.then(function () {}) : void 0);
+    } catch (e) {
+      return Promise.reject(e);
+    }
+  };
+  const onSkip = () => onSelect();
+  return /*#__PURE__*/React__default.createElement(digitUiReactComponents.FormStep, {
+    t: t,
+    config: config,
+    onSelect: goNext,
+    value: pincode,
+    onChange: onChange,
+    onSkip: onSkip,
+    forcedError: t(pincodeServicability),
+    isDisabled: isNextDisabled
+  });
+};
+
+const SelectSubType = _ref => {
+  let {
+    t,
+    config,
+    onSelect,
+    value
+  } = _ref;
+  const [subType, setSubType] = React.useState(() => {
+    const {
+      subType
+    } = value;
+    return subType ? subType : {};
+  });
+  const {
+    complaintType
+  } = value;
+  const menu = Digit.Hooks.pgr.useComplaintSubType(complaintType, t);
+  const goNext = () => {
+    onSelect({
+      subType
+    });
+  };
+  function selectedValue(value) {
+    setSubType(value);
+  }
+  const configNew = {
+    ...config.texts,
+    ...{
+      headerCaption: t("SERVICEDEFS." + complaintType.key.toUpperCase())
+    },
+    ...{
+      menu: menu
+    },
+    ...{
+      optionsKey: "name"
+    },
+    ...{
+      selected: selectedValue
+    },
+    ...{
+      selectedOption: subType
+    },
+    ...{
+      onSave: goNext
+    }
+  };
+  return /*#__PURE__*/React__default.createElement(digitUiReactComponents.TypeSelectCard, _extends({}, configNew, {
+    disabled: Object.keys(subType).length === 0 || subType === null ? true : false,
+    t: t
+  }));
+};
+
+const SelectGeolocation = _ref => {
+  let {
+    onSelect,
+    onSkip,
+    value,
+    t
+  } = _ref;
+  let pincode = "";
+  return /*#__PURE__*/React__default.createElement(digitUiReactComponents.LocationSearchCard, {
+    header: t("CS_ADDCOMPLAINT_SELECT_GEOLOCATION_HEADER"),
+    cardText: t("CS_ADDCOMPLAINT_SELECT_GEOLOCATION_TEXT"),
+    nextText: t("CS_COMMON_NEXT"),
+    skipAndContinueText: t("CS_COMMON_SKIP"),
+    skip: () => onSelect(),
+    onSave: () => onSelect({
+      pincode
+    }),
+    onChange: code => pincode = code
+  });
+};
+
+const config = {
+  routes: {
+    "complaint-type": {
+      component: SelectComplaintType,
+      texts: {
+        headerCaption: "",
+        header: "CS_ADDCOMPLAINT_COMPLAINT_TYPE_PLACEHOLDER",
+        cardText: "CS_COMPLAINT_TYPE_TEXT",
+        submitBarLabel: "CS_COMMON_NEXT"
+      },
+      nextStep: "sub-type"
+    },
+    "sub-type": {
+      component: SelectSubType,
+      texts: {
+        header: "CS_ADDCOMPLAINT_COMPLAINT_SUBTYPE_PLACEHOLDER",
+        cardText: "CS_COMPLAINT_SUBTYPE_TEXT",
+        submitBarLabel: "CS_COMMON_NEXT"
+      },
+      nextStep: "map"
+    },
+    map: {
+      component: SelectGeolocation,
+      nextStep: "pincode"
+    },
+    pincode: {
+      component: SelectPincode,
+      texts: {
+        headerCaption: "CS_ADDCOMPLAINT_COMPLAINT_LOCATION",
+        header: "CS_FILE_APPLICATION_PINCODE_LABEL",
+        cardText: "CS_ADDCOMPLAINT_CHANGE_PINCODE_TEXT",
+        submitBarLabel: "CS_COMMON_NEXT",
+        skipText: "CORE_COMMON_SKIP_CONTINUE"
+      },
+      inputs: [{
+        label: "CORE_COMMON_PINCODE",
+        type: "text",
+        name: "pincode",
+        validation: {
+          minLength: 6,
+          maxLength: 7
+        },
+        error: "CORE_COMMON_PINCODE_INVALID"
+      }],
+      nextStep: "address"
+    },
+    address: {
+      component: SelectAddress,
+      texts: {
+        headerCaption: "CS_ADDCOMPLAINT_COMPLAINT_LOCATION",
+        header: "CS_ADDCOMPLAINT_PROVIDE_COMPLAINT_ADDRESS",
+        cardText: "CS_ADDCOMPLAINT_CITY_MOHALLA_TEXT",
+        submitBarLabel: "CS_COMMON_NEXT"
+      },
+      nextStep: "landmark"
+    },
+    landmark: {
+      component: SelectLandmark,
+      texts: {
+        headerCaption: "CS_ADDCOMPLAINT_COMPLAINT_LOCATION",
+        header: "CS_FILE_APPLICATION_PROPERTY_LOCATION_PROVIDE_LANDMARK_TITLE",
+        cardText: "CS_FILE_APPLICATION_PROPERTY_LOCATION_PROVIDE_LANDMARK_TITLE_TEXT",
+        submitBarLabel: "CS_COMMON_NEXT",
+        skipText: "CORE_COMMON_SKIP_CONTINUE"
+      },
+      inputs: [{
+        label: "CS_ADDCOMPLAINT_LANDMARK",
+        type: "textarea",
+        name: "landmark"
+      }],
+      nextStep: "upload-photos"
+    },
+    "upload-photos": {
+      component: SelectImages,
+      texts: {
+        header: "CS_ADDCOMPLAINT_UPLOAD_PHOTO",
+        cardText: "CS_ADDCOMPLAINT_UPLOAD_PHOTO_TEXT",
+        submitBarLabel: "CS_COMMON_NEXT",
+        skipText: "CORE_COMMON_SKIP_CONTINUE"
+      },
+      nextStep: "additional-details"
+    },
+    "additional-details": {
+      component: SelectDetails,
+      texts: {
+        header: "CS_ADDCOMPLAINT_PROVIDE_ADDITIONAL_DETAILS",
+        cardText: "CS_ADDCOMPLAINT_ADDITIONAL_DETAILS_TEXT",
+        submitBarLabel: "CS_COMMON_NEXT"
+      },
+      inputs: [{
+        label: "CS_ADDCOMPLAINT_ADDITIONAL_DETAILS",
+        type: "textarea",
+        name: "details"
+      }],
+      nextStep: null
+    }
+  },
+  indexRoute: "complaint-type"
+};
+
+const CreateComplaint = () => {
+  const ComponentProvider = Digit.Contexts.ComponentProvider;
+  const {
+    t
+  } = reactI18next.useTranslation();
+  const {
+    pathname
+  } = reactRouterDom.useLocation();
+  const match = reactRouterDom.useRouteMatch();
+  const history = reactRouterDom.useHistory();
+  const registry = React.useContext(ComponentProvider);
+  const dispatch = reactRedux.useDispatch();
+  const {
+    data: storeData,
+    isLoading
+  } = Digit.Hooks.useStore.getInitData();
+  const {
+    stateInfo
+  } = storeData || {};
+  const [params, setParams, clearParams] = Digit.Hooks.useSessionStorage(PGR_CITIZEN_CREATE_COMPLAINT, {});
+  const config$1 = React.useMemo(() => merge(config, Digit.Customizations.PGR.complaintConfig), [Digit.Customizations.PGR.complaintConfig]);
+  const [paramState, setParamState] = React.useState(params);
+  const [nextStep, setNextStep] = React.useState("");
+  const [canSubmit, setCanSubmit] = React.useState(false);
+  const [rerender, setRerender] = React.useState(0);
+  const client = reactQuery.useQueryClient();
+  React.useEffect(() => {
+    setCanSubmit(false);
+  }, []);
+  React.useEffect(() => {
+    setParamState(params);
+    if (nextStep === null) {
+      wrapperSubmit();
+    } else {
+      history.push(match.path + "/" + nextStep);
+    }
+  }, [params, nextStep]);
+  const goNext = () => {
+    const currentPath = pathname.split("/").pop();
+    let {
+      nextStep
+    } = config$1.routes[currentPath];
+    let compType = Digit.SessionStorage.get(PGR_CITIZEN_CREATE_COMPLAINT);
+    if (nextStep === "sub-type" && compType.complaintType.key === "Others") {
+      setParams({
+        ...params,
+        complaintType: {
+          key: "Others",
+          name: t("SERVICEDEFS.OTHERS")
+        },
+        subType: {
+          key: "Others",
+          name: t("SERVICEDEFS.OTHERS")
+        }
+      });
+      nextStep = config$1.routes[nextStep].nextStep;
+    }
+    setNextStep(nextStep);
+  };
+  const wrapperSubmit = () => {
+    if (!canSubmit) {
+      setCanSubmit(true);
+      submitComplaint();
+    }
+  };
+  const submitComplaint = function () {
+    try {
+      const _temp = function () {
+        if (paramState !== null && paramState !== void 0 && paramState.complaintType) {
+          const {
+            city_complaint,
+            locality_complaint,
+            uploadedImages,
+            complaintType,
+            subType,
+            details,
+            ...values
+          } = paramState;
+          const {
+            code: cityCode,
+            name: city
+          } = city_complaint;
+          const {
+            code: localityCode,
+            name: localityName
+          } = locality_complaint;
+          const _uploadImages = uploadedImages === null || uploadedImages === void 0 ? void 0 : uploadedImages.map(url => ({
+            documentType: "PHOTO",
+            fileStoreId: url,
+            documentUid: "",
+            additionalDetails: {}
+          }));
+          const data = {
+            ...values,
+            complaintType: subType.key,
+            cityCode,
+            city,
+            description: details,
+            district: city,
+            region: city,
+            localityCode,
+            localityName,
+            state: stateInfo.name,
+            uploadedImages: _uploadImages
+          };
+          return Promise.resolve(dispatch(createComplaint(data))).then(function () {
+            return Promise.resolve(client.refetchQueries(["complaintsList"])).then(function () {
+              history.push(match.path + "/response");
+            });
+          });
+        }
+      }();
+      return Promise.resolve(_temp && _temp.then ? _temp.then(function () {}) : void 0);
+    } catch (e) {
+      return Promise.reject(e);
+    }
+  };
+  const handleSelect = data => {
+    setParams({
+      ...params,
+      ...data
+    });
+    goNext();
+  };
+  const handleSkip = () => {
+    goNext();
+  };
+  if (isLoading) return null;
+  return /*#__PURE__*/React__default.createElement(reactRouterDom.Switch, null, Object.keys(config$1.routes).map((route, index) => {
+    const {
+      component,
+      texts,
+      inputs
+    } = config$1.routes[route];
+    const Component = typeof component === "string" ? Digit.ComponentRegistryService.getComponent(component) : component;
+    return /*#__PURE__*/React__default.createElement(reactRouterDom.Route, {
+      path: match.path + "/" + route,
+      key: index
+    }, /*#__PURE__*/React__default.createElement(Component, {
+      config: {
+        texts,
+        inputs
+      },
+      onSelect: handleSelect,
+      onSkip: handleSkip,
+      value: params,
+      t: t
+    }));
+  }), /*#__PURE__*/React__default.createElement(reactRouterDom.Route, {
+    path: match.path + "/response"
+  }, /*#__PURE__*/React__default.createElement(Response$1, {
+    match: match
+  })), /*#__PURE__*/React__default.createElement(reactRouterDom.Route, null, /*#__PURE__*/React__default.createElement(reactRouterDom.Redirect, {
+    to: match.path + "/" + config$1.indexRoute
+  })));
+};
+
+const Complaint = _ref => {
+  let {
+    data,
+    path
+  } = _ref;
+  let {
+    serviceCode,
+    serviceRequestId,
+    applicationStatus
+  } = data;
+  const history = reactRouterDom.useHistory();
+  const {
+    t
+  } = reactI18next.useTranslation();
+  const handleClick = () => {
+    history.push(path + "/" + serviceRequestId);
+  };
+  const closedStatus = ["RESOLVED", "REJECTED", "CLOSEDAFTERREJECTION", "CLOSEDAFTERRESOLUTION"];
+  return /*#__PURE__*/React__default.createElement(React__default.Fragment, null, /*#__PURE__*/React__default.createElement(digitUiReactComponents.Card, {
+    onClick: handleClick
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.CardSubHeader, null, t("SERVICEDEFS." + serviceCode.toUpperCase())), /*#__PURE__*/React__default.createElement(digitUiReactComponents.DateWrap, {
+    date: Digit.DateUtils.ConvertTimestampToDate(data.auditDetails.createdTime)
+  }), /*#__PURE__*/React__default.createElement(digitUiReactComponents.KeyNote, {
+    keyValue: t(LOCALIZATION_KEY.CS_COMMON + "_COMPLAINT_NO"),
+    note: serviceRequestId
+  }), /*#__PURE__*/React__default.createElement("div", {
+    className: "status-highlight " + (closedStatus.includes(applicationStatus) ? "success" : "")
+  }, /*#__PURE__*/React__default.createElement("p", null, (closedStatus.includes(applicationStatus) ? t("CS_COMMON_CLOSED") : t("CS_COMMON_OPEN")).toUpperCase())), t(LOCALIZATION_KEY.CS_COMMON + "_" + applicationStatus)));
+};
+
+const ComplaintsList = props => {
+  var _User$info, _User$info2, _User$info2$userInfo, _Digit$SessionStorage;
+  const User = Digit.UserService.getUser();
+  const mobileNumber = User.mobileNumber || (User === null || User === void 0 ? void 0 : (_User$info = User.info) === null || _User$info === void 0 ? void 0 : _User$info.mobileNumber) || (User === null || User === void 0 ? void 0 : (_User$info2 = User.info) === null || _User$info2 === void 0 ? void 0 : (_User$info2$userInfo = _User$info2.userInfo) === null || _User$info2$userInfo === void 0 ? void 0 : _User$info2$userInfo.mobileNumber);
+  const tenantId = ((_Digit$SessionStorage = Digit.SessionStorage.get("CITIZEN.COMMON.HOME.CITY")) === null || _Digit$SessionStorage === void 0 ? void 0 : _Digit$SessionStorage.code) || Digit.ULBService.getCurrentTenantId();
+  const {
+    t
+  } = reactI18next.useTranslation();
+  const {
+    path,
+    url
+  } = reactRouterDom.useRouteMatch();
+  let {
+    isLoading,
+    error,
+    data,
+    revalidate
+  } = Digit.Hooks.pgr.useComplaintsListByMobile(tenantId, mobileNumber);
+  React.useEffect(() => {
+    revalidate();
+  }, []);
+  if (isLoading) {
+    return /*#__PURE__*/React__default.createElement(React__default.Fragment, null, /*#__PURE__*/React__default.createElement(digitUiReactComponents.Header, null, t(LOCALE.MY_COMPLAINTS)), /*#__PURE__*/React__default.createElement(digitUiReactComponents.Loader, null));
+  }
+  let complaints = data === null || data === void 0 ? void 0 : data.ServiceWrappers;
+  let complaintsList;
+  if (error) {
+    complaintsList = /*#__PURE__*/React__default.createElement(digitUiReactComponents.Card, null, t(LOCALE.ERROR_LOADING_RESULTS).split("\\n").map((text, index) => /*#__PURE__*/React__default.createElement("p", {
+      key: index,
+      style: {
+        textAlign: "center"
+      }
+    }, text)));
+  } else if (complaints.length === 0) {
+    complaintsList = /*#__PURE__*/React__default.createElement(digitUiReactComponents.Card, null, t(LOCALE.NO_COMPLAINTS).split("\\n").map((text, index) => /*#__PURE__*/React__default.createElement("p", {
+      key: index,
+      style: {
+        textAlign: "center"
+      }
+    }, text)));
+  } else {
+    complaintsList = complaints.map((_ref, index) => {
+      let {
+        service
+      } = _ref;
+      return /*#__PURE__*/React__default.createElement(Complaint, {
+        key: index,
+        data: service,
+        path: path
+      });
+    });
+  }
+  return /*#__PURE__*/React__default.createElement(React__default.Fragment, null, /*#__PURE__*/React__default.createElement("div", {
+    className: "applications-list-container"
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.Header, null, t(LOCALE.MY_COMPLAINTS)), complaintsList));
+};
+
+const _iteratorSymbol = /*#__PURE__*/typeof Symbol !== "undefined" ? Symbol.iterator || (Symbol.iterator = Symbol("Symbol.iterator")) : "@@iterator";
+const _asyncIteratorSymbol = /*#__PURE__*/typeof Symbol !== "undefined" ? Symbol.asyncIterator || (Symbol.asyncIterator = Symbol("Symbol.asyncIterator")) : "@@asyncIterator";
+function _catch(body, recover) {
+  try {
+    var result = body();
+  } catch (e) {
+    return recover(e);
+  }
+  if (result && result.then) {
+    return result.then(void 0, recover);
+  }
+  return result;
+}
+
+const PendingAtLME = _ref => {
+  let {
+    name,
+    isCompleted,
+    mobile,
+    text,
+    customChild
+  } = _ref;
+  let {
+    t
+  } = reactI18next.useTranslation();
+  return /*#__PURE__*/React__default.createElement(digitUiReactComponents.CheckPoint, {
+    label: t("CS_COMMON_PENDINGATLME"),
+    isCompleted: isCompleted,
+    customChild: /*#__PURE__*/React__default.createElement("div", null, name && mobile ? /*#__PURE__*/React__default.createElement(digitUiReactComponents.TelePhone, {
+      mobile: mobile,
+      text: text + " " + name
+    }) : null, customChild)
+  });
+};
+
+const PendingForAssignment = _ref => {
+  let {
+    isCompleted,
+    text,
+    complaintFiledDate,
+    customChild
+  } = _ref;
+  return /*#__PURE__*/React__default.createElement(digitUiReactComponents.CheckPoint, {
+    isCompleted: isCompleted,
+    label: text,
+    customChild: customChild
+  });
+};
+
+const StarRated = _ref => {
+  let {
+    text,
+    rating
+  } = _ref;
+  return /*#__PURE__*/React__default.createElement(digitUiReactComponents.Rating, {
+    text: text,
+    withText: true,
+    currentRating: rating,
+    maxRating: 5,
+    onFeedback: () => {}
+  });
+};
+
+const Resolved = _ref => {
+  let {
+    action,
+    nextActions,
+    complaintDetails,
+    ComplainMaxIdleTime = 3600000,
+    rating,
+    serviceRequestId,
+    reopenDate,
+    isCompleted,
+    customChild
+  } = _ref;
+  const {
+    t
+  } = reactI18next.useTranslation();
+  if (action === "RESOLVE") {
+    let actions = nextActions && nextActions.map((action, index) => {
+      if (action && action !== "COMMENT") {
+        return /*#__PURE__*/React__default.createElement(reactRouterDom.Link, {
+          key: index,
+          to: "/digit-ui/citizen/pgr/" + action.toLowerCase() + "/" + serviceRequestId
+        }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.ActionLinks, null, t("CS_COMMON_" + action)));
+      }
+    });
+    return /*#__PURE__*/React__default.createElement(digitUiReactComponents.CheckPoint, {
+      isCompleted: isCompleted,
+      label: t("CS_COMMON_COMPLAINT_RESOLVED"),
+      customChild: /*#__PURE__*/React__default.createElement("div", null, actions, customChild)
+    });
+  } else if (action === "RATE") {
+    return /*#__PURE__*/React__default.createElement(digitUiReactComponents.CheckPoint, {
+      isCompleted: isCompleted,
+      label: t("CS_COMMON_COMPLAINT_RESOLVED"),
+      customChild: /*#__PURE__*/React__default.createElement("div", null, customChild)
+    });
+  } else if (action === "REOPEN") {
+    return /*#__PURE__*/React__default.createElement(digitUiReactComponents.CheckPoint, {
+      isCompleted: isCompleted,
+      label: t("CS_COMMON_COMPLAINT_REOPENED"),
+      info: reopenDate,
+      customChild: customChild
+    });
+  } else {
+    let actions = nextActions && nextActions.map((action, index) => {
+      if (action && action !== "COMMENT") {
+        var _complaintDetails$ser, _complaintDetails$ser2;
+        if (action !== "REOPEN" || action === "REOPEN" && (Date === null || Date === void 0 ? void 0 : Date.now()) - (complaintDetails === null || complaintDetails === void 0 ? void 0 : (_complaintDetails$ser = complaintDetails.service) === null || _complaintDetails$ser === void 0 ? void 0 : (_complaintDetails$ser2 = _complaintDetails$ser.auditDetails) === null || _complaintDetails$ser2 === void 0 ? void 0 : _complaintDetails$ser2.lastModifiedTime) < ComplainMaxIdleTime) return /*#__PURE__*/React__default.createElement(reactRouterDom.Link, {
+          key: index,
+          to: "/digit-ui/citizen/pgr/" + action.toLowerCase() + "/" + serviceRequestId
+        }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.ActionLinks, null, t("CS_COMMON_" + action)));
+      }
+    });
+    return /*#__PURE__*/React__default.createElement(digitUiReactComponents.CheckPoint, {
+      isCompleted: isCompleted,
+      label: t("CS_COMMON_COMPLAINT_RESOLVED"),
+      customChild: /*#__PURE__*/React__default.createElement("div", null, actions, customChild)
+    });
+  }
+};
+
+const Rejected = _ref => {
+  let {
+    action,
+    nextActions,
+    complaintDetails,
+    ComplainMaxIdleTime = 3600000,
+    rating,
+    serviceRequestId,
+    reopenDate,
+    isCompleted
+  } = _ref;
+  const {
+    t
+  } = reactI18next.useTranslation();
+  if (action === "REJECTED") {
+    let actions = nextActions && nextActions.map((action, index) => {
+      if (action && action !== "COMMENT") {
+        return /*#__PURE__*/React__default.createElement(reactRouterDom.Link, {
+          key: index,
+          to: "/digit-ui/citizen/pgr/" + action.toLowerCase() + "/" + serviceRequestId
+        }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.ActionLinks, null, t("CS_COMMON_" + action)));
+      }
+    });
+    return /*#__PURE__*/React__default.createElement(digitUiReactComponents.CheckPoint, {
+      isCompleted: isCompleted,
+      label: t("CS_COMMON_COMPLAINT_REJECTED"),
+      customChild: /*#__PURE__*/React__default.createElement("div", null, actions)
+    });
+  } else if (action === "RATE" && rating) {
+    return /*#__PURE__*/React__default.createElement(digitUiReactComponents.CheckPoint, {
+      isCompleted: isCompleted,
+      label: t("CS_COMMON_COMPLAINT_REJECTED"),
+      customChild: /*#__PURE__*/React__default.createElement("div", null, rating ? /*#__PURE__*/React__default.createElement(StarRated, {
+        text: t("CS_ADDCOMPLAINT_YOU_RATED"),
+        rating: rating
+      }) : null, customChild)
+    });
+  } else if (action === "REOPEN") {
+    return /*#__PURE__*/React__default.createElement(digitUiReactComponents.CheckPoint, {
+      isCompleted: isCompleted,
+      label: t("CS_COMMON_COMPLAINT_REOPENED"),
+      info: reopenDate
+    });
+  } else {
+    let actions = nextActions && nextActions.map((action, index) => {
+      if (action && action !== "COMMENT") {
+        var _complaintDetails$ser, _complaintDetails$ser2;
+        if (action !== "REOPEN" || action === "REOPEN" && (Date === null || Date === void 0 ? void 0 : Date.now()) - (complaintDetails === null || complaintDetails === void 0 ? void 0 : (_complaintDetails$ser = complaintDetails.service) === null || _complaintDetails$ser === void 0 ? void 0 : (_complaintDetails$ser2 = _complaintDetails$ser.auditDetails) === null || _complaintDetails$ser2 === void 0 ? void 0 : _complaintDetails$ser2.lastModifiedTime) < ComplainMaxIdleTime) return /*#__PURE__*/React__default.createElement(reactRouterDom.Link, {
+          key: index,
+          to: "/digit-ui/citizen/pgr/" + action.toLowerCase() + "/" + serviceRequestId
+        }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.ActionLinks, null, t("CS_COMMON_" + action)));
+      }
+    });
+    return /*#__PURE__*/React__default.createElement(digitUiReactComponents.CheckPoint, {
+      isCompleted: isCompleted,
+      label: t("CS_COMMON_COMPLAINT_REJECTED"),
+      customChild: /*#__PURE__*/React__default.createElement("div", null, actions)
+    });
+  }
+};
+
+const TLCaption = _ref => {
+  let {
+    data,
+    comments
+  } = _ref;
+  const {
+    t
+  } = reactI18next.useTranslation();
+  return /*#__PURE__*/React__default.createElement("div", null, (data === null || data === void 0 ? void 0 : data.date) && /*#__PURE__*/React__default.createElement("p", null, data === null || data === void 0 ? void 0 : data.date), /*#__PURE__*/React__default.createElement("p", null, data === null || data === void 0 ? void 0 : data.name), /*#__PURE__*/React__default.createElement("p", null, data === null || data === void 0 ? void 0 : data.mobileNumber), (data === null || data === void 0 ? void 0 : data.source) && /*#__PURE__*/React__default.createElement("p", null, t("ES_COMMON_FILED_VIA_" + (data === null || data === void 0 ? void 0 : data.source.toUpperCase()))));
+};
+const TimeLine = _ref2 => {
+  let {
+    isLoading,
+    data,
+    serviceRequestId,
+    complaintWorkflow,
+    rating,
+    zoomImage,
+    complaintDetails,
+    ComplainMaxIdleTime
+  } = _ref2;
+  const {
+    t
+  } = reactI18next.useTranslation();
+  function zoomImageWrapper(imageSource, index, thumbnailsToShow) {
+    var _thumbnailsToShow$thu, _thumbnailsToShow$ful;
+    let newIndex = (_thumbnailsToShow$thu = thumbnailsToShow.thumbs) === null || _thumbnailsToShow$thu === void 0 ? void 0 : _thumbnailsToShow$thu.findIndex(link => link === imageSource);
+    zoomImage(newIndex > -1 && (thumbnailsToShow === null || thumbnailsToShow === void 0 ? void 0 : (_thumbnailsToShow$ful = thumbnailsToShow.fullImage) === null || _thumbnailsToShow$ful === void 0 ? void 0 : _thumbnailsToShow$ful[newIndex]) || imageSource);
+  }
+  let {
+    timeline
+  } = data;
+  const totalTimelineLength = React.useMemo(() => timeline === null || timeline === void 0 ? void 0 : timeline.length, [timeline]);
+  React.useEffect(() => {
+    let filteredTimeline = timeline === null || timeline === void 0 ? void 0 : timeline.filter((status, index, array) => {
+      if (index === array.length - 1 && status.status === "PENDINGFORASSIGNMENT") {
+        return true;
+      } else {
+        return false;
+      }
+    });
+    const onlyPendingForAssignmentStatusArray = timeline === null || timeline === void 0 ? void 0 : timeline.filter(e => (e === null || e === void 0 ? void 0 : e.status) === "PENDINGFORASSIGNMENT");
+    const duplicateCheckpointOfPendingForAssignment = onlyPendingForAssignmentStatusArray.at(-1);
+    timeline === null || timeline === void 0 ? void 0 : timeline.push({
+      ...duplicateCheckpointOfPendingForAssignment,
+      performedAction: "FILED",
+      status: "COMPLAINT_FILED"
+    });
+  }, [timeline]);
+  const getCommentsInCustomChildComponent = _ref3 => {
+    var _thumbnailsToShow$thu2;
+    let {
+      comment,
+      thumbnailsToShow,
+      auditDetails,
+      assigner,
+      status
+    } = _ref3;
+    const captionDetails = {
+      date: auditDetails === null || auditDetails === void 0 ? void 0 : auditDetails.lastModified,
+      name: assigner === null || assigner === void 0 ? void 0 : assigner.name,
+      mobileNumber: assigner === null || assigner === void 0 ? void 0 : assigner.mobileNumber,
+      source: status == "COMPLAINT_FILED" ? complaintDetails === null || complaintDetails === void 0 ? void 0 : complaintDetails.audit.source : ""
+    };
+    return /*#__PURE__*/React__default.createElement(React.Fragment, null, comment ? /*#__PURE__*/React__default.createElement("div", null, comment === null || comment === void 0 ? void 0 : comment.map(e => /*#__PURE__*/React__default.createElement("div", {
+      className: "TLComments"
+    }, /*#__PURE__*/React__default.createElement("h3", null, t("WF_COMMON_COMMENTS")), /*#__PURE__*/React__default.createElement("p", null, e)))) : null, (thumbnailsToShow === null || thumbnailsToShow === void 0 ? void 0 : (_thumbnailsToShow$thu2 = thumbnailsToShow.thumbs) === null || _thumbnailsToShow$thu2 === void 0 ? void 0 : _thumbnailsToShow$thu2.length) > 0 ? /*#__PURE__*/React__default.createElement("div", {
+      className: "TLComments"
+    }, /*#__PURE__*/React__default.createElement("h3", null, t("CS_COMMON_ATTACHMENTS")), /*#__PURE__*/React__default.createElement(digitUiReactComponents.DisplayPhotos, {
+      srcs: thumbnailsToShow.thumbs,
+      onClick: (src, index) => {
+        zoomImageWrapper(src, index, thumbnailsToShow);
+      }
+    })) : null, captionDetails !== null && captionDetails !== void 0 && captionDetails.date ? /*#__PURE__*/React__default.createElement(TLCaption, {
+      data: captionDetails,
+      comments: comment
+    }) : null);
+  };
+  const getCheckPoint = _ref4 => {
+    let {
+      status,
+      caption,
+      auditDetails,
+      timeLineActions,
+      index,
+      array,
+      performedAction,
+      comment,
+      thumbnailsToShow,
+      assigner,
+      totalTimelineLength
+    } = _ref4;
+    const isCurrent = 0 === index;
+    switch (status) {
+      case "PENDINGFORREASSIGNMENT":
+        return /*#__PURE__*/React__default.createElement(digitUiReactComponents.CheckPoint, {
+          isCompleted: isCurrent,
+          key: index,
+          label: t("CS_COMMON_" + status),
+          customChild: getCommentsInCustomChildComponent({
+            comment,
+            thumbnailsToShow,
+            auditDetails,
+            assigner
+          })
+        });
+      case "PENDINGFORASSIGNMENT":
+        const isFirstPendingForAssignment = totalTimelineLength - (index + 1) === 0 ? true : false;
+        return /*#__PURE__*/React__default.createElement(PendingForAssignment, {
+          key: index,
+          isCompleted: isCurrent,
+          text: t("CS_COMMON_" + status),
+          customChild: getCommentsInCustomChildComponent({
+            comment,
+            ...(isFirstPendingForAssignment ? {
+              auditDetails
+            } : {
+              thumbnailsToShow,
+              auditDetails
+            })
+          })
+        });
+      case "PENDINGFORASSIGNMENT_AFTERREOPEN":
+        return /*#__PURE__*/React__default.createElement(PendingForAssignment, {
+          isCompleted: isCurrent,
+          key: index,
+          text: t("CS_COMMON_" + status),
+          customChild: getCommentsInCustomChildComponent({
+            comment,
+            thumbnailsToShow,
+            auditDetails,
+            assigner
+          })
+        });
+      case "PENDINGATLME":
+        let {
+          name,
+          mobileNumber
+        } = caption && caption.length > 0 ? caption[0] : {
+          name: "",
+          mobileNumber: ""
+        };
+        const assignedTo = "" + t("CS_COMMON_" + status);
+        return /*#__PURE__*/React__default.createElement(PendingAtLME, {
+          isCompleted: isCurrent,
+          key: index,
+          name: name,
+          mobile: mobileNumber,
+          text: assignedTo,
+          customChild: getCommentsInCustomChildComponent({
+            comment,
+            thumbnailsToShow,
+            auditDetails,
+            assigner
+          })
+        });
+      case "RESOLVED":
+        return /*#__PURE__*/React__default.createElement(Resolved, {
+          key: index,
+          isCompleted: isCurrent,
+          action: complaintWorkflow.action,
+          nextActions: index <= 1 && timeLineActions,
+          complaintDetails: complaintDetails,
+          ComplainMaxIdleTime: ComplainMaxIdleTime,
+          serviceRequestId: serviceRequestId,
+          reopenDate: Digit.DateUtils.ConvertTimestampToDate(auditDetails.lastModifiedTime),
+          customChild: getCommentsInCustomChildComponent({
+            comment,
+            thumbnailsToShow,
+            auditDetails,
+            assigner
+          })
+        });
+      case "REJECTED":
+        return /*#__PURE__*/React__default.createElement(Rejected, {
+          key: index,
+          isCompleted: isCurrent,
+          action: complaintWorkflow.action,
+          nextActions: index <= 1 && timeLineActions,
+          complaintDetails: complaintDetails,
+          ComplainMaxIdleTime: ComplainMaxIdleTime,
+          serviceRequestId: serviceRequestId,
+          reopenDate: Digit.DateUtils.ConvertTimestampToDate(auditDetails.lastModifiedTime),
+          customChild: getCommentsInCustomChildComponent({
+            comment,
+            thumbnailsToShow,
+            auditDetails,
+            assigner
+          })
+        });
+      case "CLOSEDAFTERRESOLUTION":
+        return /*#__PURE__*/React__default.createElement(digitUiReactComponents.CheckPoint, {
+          isCompleted: isCurrent,
+          key: index,
+          label: t("CS_COMMON_" + ("CS_COMMON_" + status)),
+          customChild: /*#__PURE__*/React__default.createElement("div", null, getCommentsInCustomChildComponent({
+            comment,
+            thumbnailsToShow,
+            auditDetails,
+            assigner
+          }), rating ? /*#__PURE__*/React__default.createElement(StarRated, {
+            text: t("CS_ADDCOMPLAINT_YOU_RATED"),
+            rating: rating
+          }) : null)
+        });
+      case "COMPLAINT_FILED":
+        return /*#__PURE__*/React__default.createElement(digitUiReactComponents.CheckPoint, {
+          isCompleted: isCurrent,
+          key: index,
+          label: t("CS_COMMON_COMPLAINT_FILED"),
+          customChild: getCommentsInCustomChildComponent({
+            comment,
+            auditDetails,
+            assigner,
+            status
+          })
+        });
+      default:
+        return /*#__PURE__*/React__default.createElement(digitUiReactComponents.CheckPoint, {
+          isCompleted: isCurrent,
+          key: index,
+          label: t("CS_COMMON_" + status),
+          customChild: getCommentsInCustomChildComponent({
+            comment,
+            thumbnailsToShow,
+            auditDetails,
+            assigner,
+            status
+          })
+        });
+    }
+  };
+  return /*#__PURE__*/React__default.createElement(React__default.Fragment, null, /*#__PURE__*/React__default.createElement(digitUiReactComponents.CardSubHeader, null, t(LOCALIZATION_KEY.CS_COMPLAINT_DETAILS + "_COMPLAINT_TIMELINE")), timeline && totalTimelineLength > 0 ? /*#__PURE__*/React__default.createElement(digitUiReactComponents.ConnectingCheckPoints, null, timeline.map((_ref5, index, array) => {
+    let {
+      status,
+      caption,
+      auditDetails,
+      timeLineActions,
+      performedAction,
+      wfComment: comment,
+      thumbnailsToShow,
+      assigner
+    } = _ref5;
+    return getCheckPoint({
+      status,
+      caption,
+      auditDetails,
+      timeLineActions,
+      index,
+      array,
+      performedAction,
+      comment,
+      thumbnailsToShow,
+      assigner,
+      totalTimelineLength
+    });
+  })) : /*#__PURE__*/React__default.createElement(digitUiReactComponents.Loader, null));
+};
+
+const WorkflowComponent = _ref => {
+  var _Digit$SessionStorage;
+  let {
+    complaintDetails,
+    id,
+    getWorkFlow,
+    zoomImage
+  } = _ref;
+  const tenantId = ((_Digit$SessionStorage = Digit.SessionStorage.get("CITIZEN.COMMON.HOME.CITY")) === null || _Digit$SessionStorage === void 0 ? void 0 : _Digit$SessionStorage.code) || complaintDetails.service.tenantId;
+  let workFlowDetails = Digit.Hooks.useWorkflowDetails({
+    tenantId: tenantId,
+    id,
+    moduleCode: "PGR"
+  });
+  const {
+    data: ComplainMaxIdleTime,
+    isLoading: ComplainMaxIdleTimeLoading
+  } = Digit.Hooks.pgr.useMDMS.ComplainClosingTime(tenantId === null || tenantId === void 0 ? void 0 : tenantId.split(".")[0]);
+  React.useEffect(() => {
+    getWorkFlow(workFlowDetails.data);
+  }, [workFlowDetails.data]);
+  React.useEffect(() => {
+    workFlowDetails.revalidate();
+  }, []);
+  return !workFlowDetails.isLoading && /*#__PURE__*/React__default.createElement(TimeLine, {
+    data: workFlowDetails.data,
+    serviceRequestId: id,
+    complaintWorkflow: complaintDetails.workflow,
+    rating: complaintDetails.audit.rating,
+    zoomImage: zoomImage,
+    complaintDetails: complaintDetails,
+    ComplainMaxIdleTime: ComplainMaxIdleTime
+  });
+};
+const ComplaintDetailsPage = props => {
+  var _Digit$SessionStorage2;
+  let {
+    t
+  } = reactI18next.useTranslation();
+  let {
+    id
+  } = reactRouterDom.useParams();
+  let tenantId = ((_Digit$SessionStorage2 = Digit.SessionStorage.get("CITIZEN.COMMON.HOME.CITY")) === null || _Digit$SessionStorage2 === void 0 ? void 0 : _Digit$SessionStorage2.code) || Digit.ULBService.getCurrentTenantId();
+  const {
+    isLoading,
+    error,
+    isError,
+    complaintDetails,
+    revalidate
+  } = Digit.Hooks.pgr.useComplaintDetails({
+    tenantId,
+    id
+  });
+  const [imageShownBelowComplaintDetails, setImageToShowBelowComplaintDetails] = React.useState({});
+  const [imageZoom, setImageZoom] = React.useState(null);
+  const [comment, setComment] = React.useState("");
+  const [toast, setToast] = React.useState(false);
+  const [commentError, setCommentError] = React.useState(null);
+  const [disableComment, setDisableComment] = React.useState(true);
+  const [loader, setLoader] = React.useState(false);
+  React.useEffect(() => {
+    (function () {
+      try {
+        const _temp = function () {
+          if (complaintDetails) {
+            setLoader(true);
+            return Promise.resolve(revalidate()).then(function () {
+              setLoader(false);
+            });
+          }
+        }();
+        return _temp && _temp.then ? _temp.then(function () {}) : void 0;
+      } catch (e) {
+        Promise.reject(e);
+      }
+    })();
+  }, []);
+  function zoomImage(imageSource, index) {
+    setImageZoom(imageSource);
+  }
+  function zoomImageWrapper(imageSource, index) {
+    zoomImage(imageShownBelowComplaintDetails === null || imageShownBelowComplaintDetails === void 0 ? void 0 : imageShownBelowComplaintDetails.fullImage[index]);
+  }
+  function onCloseImageZoom() {
+    setImageZoom(null);
+  }
+  const onWorkFlowChange = data => {
+    var _timeline$0$timeLineA;
+    let timeline = data === null || data === void 0 ? void 0 : data.timeline;
+    timeline && (_timeline$0$timeLineA = timeline[0].timeLineActions) !== null && _timeline$0$timeLineA !== void 0 && _timeline$0$timeLineA.filter(e => e === "COMMENT").length ? setDisableComment(false) : setDisableComment(true);
+    if (timeline) {
+      const actionByCitizenOnComplaintCreation = timeline.find(e => (e === null || e === void 0 ? void 0 : e.performedAction) === "APPLY");
+      const {
+        thumbnailsToShow
+      } = actionByCitizenOnComplaintCreation;
+      setImageToShowBelowComplaintDetails(thumbnailsToShow);
+    }
+  };
+  if (isLoading || loader) {
+    return /*#__PURE__*/React__default.createElement(digitUiReactComponents.Loader, null);
+  }
+  if (isError) {
+    return /*#__PURE__*/React__default.createElement("h2", null, "Error");
+  }
+  return /*#__PURE__*/React__default.createElement(React__default.Fragment, null, /*#__PURE__*/React__default.createElement("div", {
+    className: "complaint-summary"
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.Header, null, t(LOCALIZATION_KEY.CS_HEADER + "_COMPLAINT_SUMMARY")), Object.keys(complaintDetails).length > 0 ? /*#__PURE__*/React__default.createElement(React__default.Fragment, null, /*#__PURE__*/React__default.createElement(digitUiReactComponents.Card, null, /*#__PURE__*/React__default.createElement(digitUiReactComponents.CardSubHeader, null, t("SERVICEDEFS." + complaintDetails.audit.serviceCode.toUpperCase())), /*#__PURE__*/React__default.createElement(digitUiReactComponents.StatusTable, null, Object.keys(complaintDetails.details).map((flag, index, arr) => /*#__PURE__*/React__default.createElement(digitUiReactComponents.Row, {
+    key: index,
+    label: t(flag),
+    text: Array.isArray(complaintDetails.details[flag]) ? complaintDetails.details[flag].map(val => typeof val === "object" ? t(val === null || val === void 0 ? void 0 : val.code) : t(val)) : t(complaintDetails.details[flag]) || "N/A",
+    last: index === arr.length - 1
+  }))), imageShownBelowComplaintDetails !== null && imageShownBelowComplaintDetails !== void 0 && imageShownBelowComplaintDetails.thumbs ? /*#__PURE__*/React__default.createElement(digitUiReactComponents.DisplayPhotos, {
+    srcs: imageShownBelowComplaintDetails === null || imageShownBelowComplaintDetails === void 0 ? void 0 : imageShownBelowComplaintDetails.thumbs,
+    onClick: (source, index) => zoomImageWrapper(source, index)
+  }) : null, imageZoom ? /*#__PURE__*/React__default.createElement(digitUiReactComponents.ImageViewer, {
+    imageSrc: imageZoom,
+    onClose: onCloseImageZoom
+  }) : null), /*#__PURE__*/React__default.createElement(digitUiReactComponents.Card, null, (complaintDetails === null || complaintDetails === void 0 ? void 0 : complaintDetails.service) && /*#__PURE__*/React__default.createElement(WorkflowComponent, {
+    getWorkFlow: onWorkFlowChange,
+    complaintDetails: complaintDetails,
+    id: id,
+    zoomImage: zoomImage
+  })), toast && /*#__PURE__*/React__default.createElement(digitUiReactComponents.Toast, {
+    error: commentError,
+    label: !commentError ? t("CS_COMPLAINT_COMMENT_SUCCESS") : t("CS_COMPLAINT_COMMENT_ERROR"),
+    onClose: () => setToast(false)
+  }), " ") : /*#__PURE__*/React__default.createElement(digitUiReactComponents.Loader, null)));
+};
+
+const App = () => {
+  var _Digit, _Digit$ComponentRegis, _Digit2, _Digit2$ComponentRegi, _Digit3, _Digit3$ComponentRegi, _Digit4, _Digit4$ComponentRegi, _Digit5, _Digit5$ComponentRegi;
+  const {
+    t
+  } = reactI18next.useTranslation();
+  const {
+    path,
+    url,
+    ...match
+  } = reactRouterDom.useRouteMatch();
+  const location = reactRouterDom.useLocation();
+  const CreateComplaint = (_Digit = Digit) === null || _Digit === void 0 ? void 0 : (_Digit$ComponentRegis = _Digit.ComponentRegistryService) === null || _Digit$ComponentRegis === void 0 ? void 0 : _Digit$ComponentRegis.getComponent("PGRCreateComplaintCitizen");
+  const ComplaintsList = (_Digit2 = Digit) === null || _Digit2 === void 0 ? void 0 : (_Digit2$ComponentRegi = _Digit2.ComponentRegistryService) === null || _Digit2$ComponentRegi === void 0 ? void 0 : _Digit2$ComponentRegi.getComponent("PGRComplaintsList");
+  const ComplaintDetailsPage = (_Digit3 = Digit) === null || _Digit3 === void 0 ? void 0 : (_Digit3$ComponentRegi = _Digit3.ComponentRegistryService) === null || _Digit3$ComponentRegi === void 0 ? void 0 : _Digit3$ComponentRegi.getComponent("PGRComplaintDetailsPage");
+  const SelectRating = (_Digit4 = Digit) === null || _Digit4 === void 0 ? void 0 : (_Digit4$ComponentRegi = _Digit4.ComponentRegistryService) === null || _Digit4$ComponentRegi === void 0 ? void 0 : _Digit4$ComponentRegi.getComponent("PGRSelectRating");
+  const Response = (_Digit5 = Digit) === null || _Digit5 === void 0 ? void 0 : (_Digit5$ComponentRegi = _Digit5.ComponentRegistryService) === null || _Digit5$ComponentRegi === void 0 ? void 0 : _Digit5$ComponentRegi.getComponent("PGRResponseCitzen");
+  return /*#__PURE__*/React__default.createElement(React__default.Fragment, null, /*#__PURE__*/React__default.createElement("div", {
+    className: "pgr-citizen-wrapper"
+  }, !location.pathname.includes("/response") && /*#__PURE__*/React__default.createElement(digitUiReactComponents.BackButton, null, t("CS_COMMON_BACK")), /*#__PURE__*/React__default.createElement(reactRouterDom.Switch, null, /*#__PURE__*/React__default.createElement(digitUiReactComponents.PrivateRoute, {
+    path: path + "/create-complaint",
+    component: CreateComplaint
+  }), /*#__PURE__*/React__default.createElement(digitUiReactComponents.PrivateRoute, {
+    path: path + "/complaints",
+    exact: true,
+    component: ComplaintsList
+  }), /*#__PURE__*/React__default.createElement(digitUiReactComponents.PrivateRoute, {
+    path: path + "/complaints/:id*",
+    component: ComplaintDetailsPage
+  }), /*#__PURE__*/React__default.createElement(digitUiReactComponents.PrivateRoute, {
+    path: path + "/reopen",
+    component: () => /*#__PURE__*/React__default.createElement(ReopenComplaint, {
+      match: {
+        ...match,
+        url,
+        path: path + "/reopen"
+      },
+      parentRoute: path
+    })
+  }), /*#__PURE__*/React__default.createElement(digitUiReactComponents.PrivateRoute, {
+    path: path + "/rate/:id*",
+    component: () => /*#__PURE__*/React__default.createElement(SelectRating, {
+      parentRoute: path
+    })
+  }), /*#__PURE__*/React__default.createElement(digitUiReactComponents.PrivateRoute, {
+    path: path + "/response",
+    component: () => /*#__PURE__*/React__default.createElement(Response, {
+      match: {
+        ...match,
+        url,
+        path
+      }
+    })
+  }))));
+};
+
+const Complaint$1 = () => {
+  var _Digit, _Digit$ComponentRegis, _Digit2, _Digit2$ComponentRegi, _Digit3, _Digit3$ComponentRegi, _Digit4, _Digit4$ComponentRegi;
+  const [displayMenu, setDisplayMenu] = React.useState(false);
+  const [popup, setPopup] = React.useState(false);
+  const match = reactRouterDom.useRouteMatch();
+  const {
+    t
+  } = reactI18next.useTranslation();
+  const breadcrumConfig = {
+    home: {
+      content: t("CS_COMMON_HOME"),
+      path: Employee.Home
+    },
+    inbox: {
+      content: t("CS_COMMON_INBOX"),
+      path: match.url + Employee.Inbox
+    },
+    createComplaint: {
+      content: t("CS_PGR_CREATE_COMPLAINT"),
+      path: match.url + Employee.CreateComplaint
+    },
+    complaintDetails: {
+      content: t("CS_PGR_COMPLAINT_DETAILS"),
+      path: match.url + Employee.ComplaintDetails + ":id"
+    },
+    response: {
+      content: t("CS_PGR_RESPONSE"),
+      path: match.url + Employee.Response
+    }
+  };
+  let location = reactRouterDom.useLocation().pathname;
+  const CreateComplaint = (_Digit = Digit) === null || _Digit === void 0 ? void 0 : (_Digit$ComponentRegis = _Digit.ComponentRegistryService) === null || _Digit$ComponentRegis === void 0 ? void 0 : _Digit$ComponentRegis.getComponent('PGRCreateComplaintEmp');
+  const ComplaintDetails = (_Digit2 = Digit) === null || _Digit2 === void 0 ? void 0 : (_Digit2$ComponentRegi = _Digit2.ComponentRegistryService) === null || _Digit2$ComponentRegi === void 0 ? void 0 : _Digit2$ComponentRegi.getComponent('PGRComplaintDetails');
+  const Inbox = (_Digit3 = Digit) === null || _Digit3 === void 0 ? void 0 : (_Digit3$ComponentRegi = _Digit3.ComponentRegistryService) === null || _Digit3$ComponentRegi === void 0 ? void 0 : _Digit3$ComponentRegi.getComponent('PGRInbox');
+  const Response = (_Digit4 = Digit) === null || _Digit4 === void 0 ? void 0 : (_Digit4$ComponentRegi = _Digit4.ComponentRegistryService) === null || _Digit4$ComponentRegi === void 0 ? void 0 : _Digit4$ComponentRegi.getComponent('PGRResponseEmp');
+  return /*#__PURE__*/React__default.createElement(React__default.Fragment, null, /*#__PURE__*/React__default.createElement("div", {
+    className: "ground-container"
+  }, !location.includes(Employee.Response) && /*#__PURE__*/React__default.createElement(reactRouterDom.Switch, null, /*#__PURE__*/React__default.createElement(reactRouterDom.Route, {
+    path: match.url + Employee.CreateComplaint,
+    component: () => /*#__PURE__*/React__default.createElement(digitUiReactComponents.BreadCrumb, {
+      crumbs: [breadcrumConfig.home, breadcrumConfig.createComplaint]
+    })
+  }), /*#__PURE__*/React__default.createElement(reactRouterDom.Route, {
+    path: match.url + Employee.ComplaintDetails + ":id",
+    component: () => /*#__PURE__*/React__default.createElement(digitUiReactComponents.BreadCrumb, {
+      crumbs: [breadcrumConfig.home, breadcrumConfig.inbox, breadcrumConfig.complaintDetails]
+    })
+  }), /*#__PURE__*/React__default.createElement(reactRouterDom.Route, {
+    path: match.url + Employee.Inbox,
+    component: () => /*#__PURE__*/React__default.createElement(digitUiReactComponents.BreadCrumb, {
+      crumbs: [breadcrumConfig.home, breadcrumConfig.inbox]
+    })
+  }), /*#__PURE__*/React__default.createElement(reactRouterDom.Route, {
+    path: match.url + Employee.Response,
+    component: /*#__PURE__*/React__default.createElement(digitUiReactComponents.BreadCrumb, {
+      crumbs: [breadcrumConfig.home, breadcrumConfig.response]
+    })
+  })), /*#__PURE__*/React__default.createElement(reactRouterDom.Switch, null, /*#__PURE__*/React__default.createElement(reactRouterDom.Route, {
+    path: match.url + Employee.CreateComplaint,
+    component: () => /*#__PURE__*/React__default.createElement(CreateComplaint, {
+      parentUrl: match.url
+    })
+  }), /*#__PURE__*/React__default.createElement(reactRouterDom.Route, {
+    path: match.url + Employee.ComplaintDetails + ":id*",
+    component: () => /*#__PURE__*/React__default.createElement(ComplaintDetails, null)
+  }), /*#__PURE__*/React__default.createElement(reactRouterDom.Route, {
+    path: match.url + Employee.Inbox,
+    component: Inbox
+  }), /*#__PURE__*/React__default.createElement(reactRouterDom.Route, {
+    path: match.url + Employee.Response,
+    component: Response
+  }))));
+};
+
+const App$1 = () => {
+  return /*#__PURE__*/React__default.createElement(digitUiReactComponents.EmployeeAppContainer, null, /*#__PURE__*/React__default.createElement(Complaint$1, null));
+};
+
+const Close = () => /*#__PURE__*/React__default.createElement("svg", {
+  xmlns: "http://www.w3.org/2000/svg",
+  viewBox: "0 0 24 24",
+  fill: "#FFFFFF"
+}, /*#__PURE__*/React__default.createElement("path", {
+  d: "M0 0h24v24H0V0z",
+  fill: "none"
+}), /*#__PURE__*/React__default.createElement("path", {
+  d: "M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"
+}));
+
+const Heading = props => {
+  return /*#__PURE__*/React__default.createElement("h1", {
+    className: "heading-m"
+  }, props.label);
+};
+const CloseBtn = props => {
+  return /*#__PURE__*/React__default.createElement("div", {
+    className: "icon-bg-secondary",
+    onClick: props.onClick
+  }, /*#__PURE__*/React__default.createElement(Close, null));
+};
+const TLCaption$1 = _ref => {
+  let {
+    data,
+    comments
+  } = _ref;
+  const {
+    t
+  } = reactI18next.useTranslation();
+  return /*#__PURE__*/React__default.createElement("div", null, (data === null || data === void 0 ? void 0 : data.date) && /*#__PURE__*/React__default.createElement("p", null, data === null || data === void 0 ? void 0 : data.date), /*#__PURE__*/React__default.createElement("p", null, data === null || data === void 0 ? void 0 : data.name), /*#__PURE__*/React__default.createElement("p", null, data === null || data === void 0 ? void 0 : data.mobileNumber), (data === null || data === void 0 ? void 0 : data.source) && /*#__PURE__*/React__default.createElement("p", null, t("ES_COMMON_FILED_VIA_" + (data === null || data === void 0 ? void 0 : data.source.toUpperCase()))), comments === null || comments === void 0 ? void 0 : comments.map(e => /*#__PURE__*/React__default.createElement("div", {
+    className: "TLComments"
+  }, /*#__PURE__*/React__default.createElement("h3", null, t("WF_COMMON_COMMENTS")), /*#__PURE__*/React__default.createElement("p", null, e))));
+};
+const ComplaintDetailsModal = _ref2 => {
+  var _workflowDetails$data, _workflowDetails$data2, _workflowDetails$data3, _stateArray$, _stateArray$$assignee, _stateArray$2, _stateArray$2$assigne;
+  let {
+    workflowDetails,
+    complaintDetails,
+    close,
+    popup,
+    selectedAction,
+    onAssign,
+    tenantId,
+    t
+  } = _ref2;
+  const stateArray = workflowDetails === null || workflowDetails === void 0 ? void 0 : (_workflowDetails$data = workflowDetails.data) === null || _workflowDetails$data === void 0 ? void 0 : (_workflowDetails$data2 = _workflowDetails$data.initialActionState) === null || _workflowDetails$data2 === void 0 ? void 0 : (_workflowDetails$data3 = _workflowDetails$data2.nextActions) === null || _workflowDetails$data3 === void 0 ? void 0 : _workflowDetails$data3.filter(ele => (ele === null || ele === void 0 ? void 0 : ele.action) == selectedAction);
+  const useEmployeeData = Digit.Hooks.pgr.useEmployeeFilter(tenantId, (stateArray === null || stateArray === void 0 ? void 0 : (_stateArray$ = stateArray[0]) === null || _stateArray$ === void 0 ? void 0 : (_stateArray$$assignee = _stateArray$.assigneeRoles) === null || _stateArray$$assignee === void 0 ? void 0 : _stateArray$$assignee.length) > 0 ? stateArray === null || stateArray === void 0 ? void 0 : (_stateArray$2 = stateArray[0]) === null || _stateArray$2 === void 0 ? void 0 : (_stateArray$2$assigne = _stateArray$2.assigneeRoles) === null || _stateArray$2$assigne === void 0 ? void 0 : _stateArray$2$assigne.join(",") : "", complaintDetails);
+  const employeeData = useEmployeeData ? useEmployeeData.map(departmentData => {
+    return {
+      heading: departmentData.department,
+      options: departmentData.employees
+    };
+  }) : null;
+  const [selectedEmployee, setSelectedEmployee] = React.useState(null);
+  const [comments, setComments] = React.useState("");
+  const [file, setFile] = React.useState(null);
+  const [uploadedFile, setUploadedFile] = React.useState(null);
+  const [error, setError] = React.useState(null);
+  const cityDetails = Digit.ULBService.getCurrentUlb();
+  const [selectedReopenReason, setSelectedReopenReason] = React.useState(null);
+  React.useEffect(() => {
+    (function () {
+      try {
+        setError(null);
+        const _temp3 = function () {
+          if (file) {
+            const _temp2 = function () {
+              if (file.size >= 5242880) {
+                setError(t("CS_MAXIMUM_UPLOAD_SIZE_EXCEEDED"));
+              } else {
+                const _temp = _catch(function () {
+                  return Promise.resolve(Digit.UploadServices.Filestorage("property-upload", file, cityDetails.code)).then(function (response) {
+                    var _response$data, _response$data$files;
+                    if ((response === null || response === void 0 ? void 0 : (_response$data = response.data) === null || _response$data === void 0 ? void 0 : (_response$data$files = _response$data.files) === null || _response$data$files === void 0 ? void 0 : _response$data$files.length) > 0) {
+                      var _response$data2, _response$data2$files;
+                      setUploadedFile(response === null || response === void 0 ? void 0 : (_response$data2 = response.data) === null || _response$data2 === void 0 ? void 0 : (_response$data2$files = _response$data2.files[0]) === null || _response$data2$files === void 0 ? void 0 : _response$data2$files.fileStoreId);
+                    } else {
+                      setError(t("CS_FILE_UPLOAD_ERROR"));
+                    }
+                  });
+                }, function () {
+                  setError(t("CS_FILE_UPLOAD_ERROR"));
+                });
+                if (_temp && _temp.then) return _temp.then(function () {});
+              }
+            }();
+            if (_temp2 && _temp2.then) return _temp2.then(function () {});
+          }
+        }();
+        return _temp3 && _temp3.then ? _temp3.then(function () {}) : void 0;
+      } catch (e) {
+        Promise.reject(e);
+      }
+    })();
+  }, [file]);
+  const reopenReasonMenu = [t("CS_REOPEN_OPTION_ONE"), t("CS_REOPEN_OPTION_TWO"), t("CS_REOPEN_OPTION_THREE"), t("CS_REOPEN_OPTION_FOUR")];
+  function onSelectEmployee(employee) {
+    setSelectedEmployee(employee);
+  }
+  function addComment(e) {
+    setError(null);
+    setComments(e.target.value);
+  }
+  function selectfile(e) {
+    setFile(e.target.files[0]);
+  }
+  function onSelectReopenReason(reason) {
+    setSelectedReopenReason(reason);
+  }
+  return /*#__PURE__*/React__default.createElement(digitUiReactComponents.Modal, {
+    headerBarMain: /*#__PURE__*/React__default.createElement(Heading, {
+      label: selectedAction === "ASSIGN" || selectedAction === "REASSIGN" ? t("CS_ACTION_ASSIGN") : selectedAction === "REJECT" ? t("CS_ACTION_REJECT") : selectedAction === "REOPEN" ? t("CS_COMMON_REOPEN") : t("CS_COMMON_RESOLVE")
+    }),
+    headerBarEnd: /*#__PURE__*/React__default.createElement(CloseBtn, {
+      onClick: () => close(popup)
+    }),
+    actionCancelLabel: t("CS_COMMON_CANCEL"),
+    actionCancelOnSubmit: () => close(popup),
+    actionSaveLabel: selectedAction === "ASSIGN" || selectedAction === "REASSIGN" ? t("CS_COMMON_ASSIGN") : selectedAction === "REJECT" ? t("CS_COMMON_REJECT") : selectedAction === "REOPEN" ? t("CS_COMMON_REOPEN") : t("CS_COMMON_RESOLVE"),
+    actionSaveOnSubmit: () => {
+      if (selectedAction === "REJECT" && !comments) setError(t("CS_MANDATORY_COMMENTS"));else onAssign(selectedEmployee, comments, uploadedFile);
+    },
+    error: error,
+    setError: setError
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.Card, null, selectedAction === "REJECT" || selectedAction === "RESOLVE" || selectedAction === "REOPEN" ? null : /*#__PURE__*/React__default.createElement(React__default.Fragment, null, /*#__PURE__*/React__default.createElement(digitUiReactComponents.CardLabel, null, t("CS_COMMON_EMPLOYEE_NAME")), employeeData && /*#__PURE__*/React__default.createElement(digitUiReactComponents.SectionalDropdown, {
+    selected: selectedEmployee,
+    menuData: employeeData,
+    displayKey: "name",
+    select: onSelectEmployee
+  })), selectedAction === "REOPEN" ? /*#__PURE__*/React__default.createElement(React__default.Fragment, null, /*#__PURE__*/React__default.createElement(digitUiReactComponents.CardLabel, null, t("CS_REOPEN_COMPLAINT")), /*#__PURE__*/React__default.createElement(digitUiReactComponents.Dropdown, {
+    selected: selectedReopenReason,
+    option: reopenReasonMenu,
+    select: onSelectReopenReason
+  })) : null, /*#__PURE__*/React__default.createElement(digitUiReactComponents.CardLabel, null, t("CS_COMMON_EMPLOYEE_COMMENTS")), /*#__PURE__*/React__default.createElement(digitUiReactComponents.TextArea, {
+    name: "comment",
+    onChange: addComment,
+    value: comments
+  }), /*#__PURE__*/React__default.createElement(digitUiReactComponents.CardLabel, null, t("CS_ACTION_SUPPORTING_DOCUMENTS")), /*#__PURE__*/React__default.createElement(digitUiReactComponents.CardLabelDesc, null, t("CS_UPLOAD_RESTRICTIONS")), /*#__PURE__*/React__default.createElement(digitUiReactComponents.UploadFile, {
+    id: "pgr-doc",
+    accept: ".jpg",
+    onUpload: selectfile,
+    onDelete: () => {
+      setUploadedFile(null);
+    },
+    message: uploadedFile ? "1 " + t("CS_ACTION_FILEUPLOADED") : t("CS_ACTION_NO_FILEUPLOADED")
+  })));
+};
+const ComplaintDetails = props => {
+  var _workflowDetails$data6, _workflowDetails$data7, _workflowDetails$data8, _workflowDetails$data9, _workflowDetails$data10, _workflowDetails$data11, _workflowDetails$data12, _workflowDetails$data13, _workflowDetails$data14, _workflowDetails$data15, _workflowDetails$data16;
+  const onAssign = function (selectedEmployee, comments, uploadedFile) {
+    try {
+      setPopup(false);
+      return Promise.resolve(Digit.Complaint.assign(complaintDetails, selectedAction, selectedEmployee, comments, uploadedFile, tenantId)).then(function (response) {
+        setAssignResponse(response);
+        setToast(true);
+        setLoader(true);
+        return Promise.resolve(refreshData()).then(function () {
+          setLoader(false);
+          setRerender(rerender + 1);
+          setTimeout(() => setToast(false), 10000);
+        });
+      });
+    } catch (e) {
+      return Promise.reject(e);
+    }
+  };
+  let {
+    id
+  } = reactRouterDom.useParams();
+  const {
+    t
+  } = reactI18next.useTranslation();
+  const [fullscreen, setFullscreen] = React.useState(false);
+  const [imageZoom, setImageZoom] = React.useState(null);
+  const [toast, setToast] = React.useState(false);
+  const tenantId = Digit.ULBService.getCurrentTenantId();
+  const {
+    isLoading,
+    complaintDetails,
+    revalidate: revalidateComplaintDetails
+  } = Digit.Hooks.pgr.useComplaintDetails({
+    tenantId,
+    id
+  });
+  const workflowDetails = Digit.Hooks.useWorkflowDetails({
+    tenantId,
+    id,
+    moduleCode: "PGR",
+    role: "EMPLOYEE"
+  });
+  const [imagesToShowBelowComplaintDetails, setImagesToShowBelowComplaintDetails] = React.useState([]);
+  if (workflowDetails && workflowDetails !== null && workflowDetails !== void 0 && workflowDetails.data) {
+    var _workflowDetails$data4, _workflowDetails$data5;
+    workflowDetails.data.initialActionState = (workflowDetails === null || workflowDetails === void 0 ? void 0 : (_workflowDetails$data4 = workflowDetails.data) === null || _workflowDetails$data4 === void 0 ? void 0 : _workflowDetails$data4.initialActionState) || {
+      ...(workflowDetails === null || workflowDetails === void 0 ? void 0 : (_workflowDetails$data5 = workflowDetails.data) === null || _workflowDetails$data5 === void 0 ? void 0 : _workflowDetails$data5.actionState)
+    } || {};
+    workflowDetails.data.actionState = {
+      ...workflowDetails.data
+    };
+  }
+  React.useEffect(() => {
+    if (workflowDetails) {
+      const {
+        data: {
+          timeline: complaintTimelineData
+        } = {}
+      } = workflowDetails;
+      if (complaintTimelineData) {
+        const actionByCitizenOnComplaintCreation = complaintTimelineData === null || complaintTimelineData === void 0 ? void 0 : complaintTimelineData.find(e => (e === null || e === void 0 ? void 0 : e.performedAction) === "APPLY");
+        const {
+          thumbnailsToShow
+        } = actionByCitizenOnComplaintCreation;
+        thumbnailsToShow ? setImagesToShowBelowComplaintDetails(thumbnailsToShow) : null;
+      }
+    }
+  }, [workflowDetails]);
+  const [displayMenu, setDisplayMenu] = React.useState(false);
+  const [popup, setPopup] = React.useState(false);
+  const [selectedAction, setSelectedAction] = React.useState(null);
+  const [assignResponse, setAssignResponse] = React.useState(null);
+  const [loader, setLoader] = React.useState(false);
+  const [rerender, setRerender] = React.useState(1);
+  const client = reactQuery.useQueryClient();
+  React.useEffect(() => {
+    try {
+      return Promise.resolve((_Digit = Digit) === null || _Digit === void 0 ? void 0 : (_Digit$WorkflowServic = _Digit.WorkflowService) === null || _Digit$WorkflowServic === void 0 ? void 0 : _Digit$WorkflowServic.getByBusinessId(tenantId, id)).then(function () {});
+    } catch (e) {
+      Promise.reject(e);
+    }
+  }, [complaintDetails]);
+  const refreshData = function () {
+    try {
+      return Promise.resolve(client.refetchQueries(["fetchInboxData"])).then(function () {
+        return Promise.resolve(workflowDetails.revalidate()).then(function () {
+          return Promise.resolve(revalidateComplaintDetails()).then(function () {});
+        });
+      });
+    } catch (e) {
+      return Promise.reject(e);
+    }
+  };
+  React.useEffect(() => {
+    (function () {
+      try {
+        const _temp4 = function () {
+          if (complaintDetails) {
+            setLoader(true);
+            return Promise.resolve(refreshData()).then(function () {
+              setLoader(false);
+            });
+          }
+        }();
+        return _temp4 && _temp4.then ? _temp4.then(function () {}) : void 0;
+      } catch (e) {
+        Promise.reject(e);
+      }
+    })();
+  }, []);
+  function close(state) {
+    switch (state) {
+      case fullscreen:
+        setFullscreen(!fullscreen);
+        break;
+      case popup:
+        setPopup(!popup);
+        break;
+    }
+  }
+  function zoomImage(imageSource, index) {
+    setImageZoom(imageSource);
+  }
+  function zoomImageWrapper(imageSource, index) {
+    zoomImage(imagesToShowBelowComplaintDetails === null || imagesToShowBelowComplaintDetails === void 0 ? void 0 : imagesToShowBelowComplaintDetails.fullImage[index]);
+  }
+  function onCloseImageZoom() {
+    setImageZoom(null);
+  }
+  function onActionSelect(action) {
+    setSelectedAction(action);
+    switch (action) {
+      case "ASSIGN":
+        setPopup(true);
+        setDisplayMenu(false);
+        break;
+      case "REASSIGN":
+        setPopup(true);
+        setDisplayMenu(false);
+        break;
+      case "RESOLVE":
+        setPopup(true);
+        setDisplayMenu(false);
+        break;
+      case "REJECT":
+        setPopup(true);
+        setDisplayMenu(false);
+        break;
+      case "REOPEN":
+        setPopup(true);
+        setDisplayMenu(false);
+        break;
+      default:
+        setDisplayMenu(false);
+    }
+  }
+  function closeToast() {
+    setToast(false);
+  }
+  if (isLoading || workflowDetails.isLoading || loader) {
+    return /*#__PURE__*/React__default.createElement(digitUiReactComponents.Loader, null);
+  }
+  if (workflowDetails.isError) return /*#__PURE__*/React__default.createElement(React__default.Fragment, null, workflowDetails.error);
+  const getTimelineCaptions = (checkpoint, index, arr) => {
+    var _checkpoint$auditDeta, _checkpoint$assigner, _checkpoint$assigner2, _thumbnailsToShow$thu3;
+    const {
+      wfComment: comment,
+      thumbnailsToShow
+    } = checkpoint;
+    function zoomImageTimeLineWrapper(imageSource, index, thumbnailsToShow) {
+      var _thumbnailsToShow$thu, _thumbnailsToShow$ful;
+      let newIndex = (_thumbnailsToShow$thu = thumbnailsToShow.thumbs) === null || _thumbnailsToShow$thu === void 0 ? void 0 : _thumbnailsToShow$thu.findIndex(link => link === imageSource);
+      zoomImage(newIndex > -1 && (thumbnailsToShow === null || thumbnailsToShow === void 0 ? void 0 : (_thumbnailsToShow$ful = thumbnailsToShow.fullImage) === null || _thumbnailsToShow$ful === void 0 ? void 0 : _thumbnailsToShow$ful[newIndex]) || imageSource);
+    }
+    const captionForOtherCheckpointsInTL = {
+      date: checkpoint === null || checkpoint === void 0 ? void 0 : (_checkpoint$auditDeta = checkpoint.auditDetails) === null || _checkpoint$auditDeta === void 0 ? void 0 : _checkpoint$auditDeta.lastModified,
+      name: checkpoint === null || checkpoint === void 0 ? void 0 : (_checkpoint$assigner = checkpoint.assigner) === null || _checkpoint$assigner === void 0 ? void 0 : _checkpoint$assigner.name,
+      mobileNumber: checkpoint === null || checkpoint === void 0 ? void 0 : (_checkpoint$assigner2 = checkpoint.assigner) === null || _checkpoint$assigner2 === void 0 ? void 0 : _checkpoint$assigner2.mobileNumber,
+      ...(checkpoint.status === "COMPLAINT_FILED" && complaintDetails !== null && complaintDetails !== void 0 && complaintDetails.audit ? {
+        source: complaintDetails.audit.source
+      } : {})
+    };
+    const isFirstPendingForAssignment = arr.length - (index + 1) === 1 ? true : false;
+    if (checkpoint.status === "PENDINGFORASSIGNMENT" && complaintDetails !== null && complaintDetails !== void 0 && complaintDetails.audit) {
+      if (isFirstPendingForAssignment) {
+        const caption = {
+          date: Digit.DateUtils.ConvertTimestampToDate(complaintDetails.audit.details.createdTime)
+        };
+        return /*#__PURE__*/React__default.createElement(TLCaption$1, {
+          data: caption,
+          comments: checkpoint === null || checkpoint === void 0 ? void 0 : checkpoint.wfComment
+        });
+      } else {
+        var _checkpoint$wfComment, _thumbnailsToShow$thu2;
+        const caption = {
+          date: Digit.DateUtils.ConvertTimestampToDate(complaintDetails.audit.details.createdTime)
+        };
+        return /*#__PURE__*/React__default.createElement(React.Fragment, null, checkpoint !== null && checkpoint !== void 0 && checkpoint.wfComment ? /*#__PURE__*/React__default.createElement("div", null, checkpoint === null || checkpoint === void 0 ? void 0 : (_checkpoint$wfComment = checkpoint.wfComment) === null || _checkpoint$wfComment === void 0 ? void 0 : _checkpoint$wfComment.map(e => /*#__PURE__*/React__default.createElement("div", {
+          className: "TLComments"
+        }, /*#__PURE__*/React__default.createElement("h3", null, t("WF_COMMON_COMMENTS")), /*#__PURE__*/React__default.createElement("p", null, e)))) : null, checkpoint.status !== "COMPLAINT_FILED" && (thumbnailsToShow === null || thumbnailsToShow === void 0 ? void 0 : (_thumbnailsToShow$thu2 = thumbnailsToShow.thumbs) === null || _thumbnailsToShow$thu2 === void 0 ? void 0 : _thumbnailsToShow$thu2.length) > 0 ? /*#__PURE__*/React__default.createElement("div", {
+          className: "TLComments"
+        }, /*#__PURE__*/React__default.createElement("h3", null, t("CS_COMMON_ATTACHMENTS")), /*#__PURE__*/React__default.createElement(digitUiReactComponents.DisplayPhotos, {
+          srcs: thumbnailsToShow.thumbs,
+          onClick: (src, index) => zoomImageTimeLineWrapper(src, index, thumbnailsToShow)
+        })) : null, caption !== null && caption !== void 0 && caption.date ? /*#__PURE__*/React__default.createElement(TLCaption$1, {
+          data: caption
+        }) : null);
+      }
+    }
+    return /*#__PURE__*/React__default.createElement(React.Fragment, null, comment ? /*#__PURE__*/React__default.createElement("div", null, comment === null || comment === void 0 ? void 0 : comment.map(e => /*#__PURE__*/React__default.createElement("div", {
+      className: "TLComments"
+    }, /*#__PURE__*/React__default.createElement("h3", null, t("WF_COMMON_COMMENTS")), /*#__PURE__*/React__default.createElement("p", null, e)))) : null, checkpoint.status !== "COMPLAINT_FILED" && (thumbnailsToShow === null || thumbnailsToShow === void 0 ? void 0 : (_thumbnailsToShow$thu3 = thumbnailsToShow.thumbs) === null || _thumbnailsToShow$thu3 === void 0 ? void 0 : _thumbnailsToShow$thu3.length) > 0 ? /*#__PURE__*/React__default.createElement("div", {
+      className: "TLComments"
+    }, /*#__PURE__*/React__default.createElement("h3", null, t("CS_COMMON_ATTACHMENTS")), /*#__PURE__*/React__default.createElement(digitUiReactComponents.DisplayPhotos, {
+      srcs: thumbnailsToShow.thumbs,
+      onClick: (src, index) => zoomImageTimeLineWrapper(src, index, thumbnailsToShow)
+    })) : null, captionForOtherCheckpointsInTL !== null && captionForOtherCheckpointsInTL !== void 0 && captionForOtherCheckpointsInTL.date ? /*#__PURE__*/React__default.createElement(TLCaption$1, {
+      data: captionForOtherCheckpointsInTL
+    }) : null, checkpoint.status == "CLOSEDAFTERRESOLUTION" && complaintDetails.workflow.action == "RATE" && index <= 1 && complaintDetails.audit.rating ? /*#__PURE__*/React__default.createElement(StarRated, {
+      text: t("CS_ADDCOMPLAINT_YOU_RATED"),
+      rating: complaintDetails.audit.rating
+    }) : null);
+  };
+  return /*#__PURE__*/React__default.createElement(React__default.Fragment, null, /*#__PURE__*/React__default.createElement(digitUiReactComponents.Card, null, /*#__PURE__*/React__default.createElement(digitUiReactComponents.CardSubHeader, null, t("CS_HEADER_COMPLAINT_SUMMARY")), /*#__PURE__*/React__default.createElement(digitUiReactComponents.CardLabel, {
+    style: {
+      fontWeight: "700"
+    }
+  }, t("CS_COMPLAINT_DETAILS_COMPLAINT_DETAILS")), isLoading ? /*#__PURE__*/React__default.createElement(digitUiReactComponents.Loader, null) : /*#__PURE__*/React__default.createElement(digitUiReactComponents.StatusTable, null, complaintDetails && Object.keys(complaintDetails === null || complaintDetails === void 0 ? void 0 : complaintDetails.details).map((k, i, arr) => /*#__PURE__*/React__default.createElement(digitUiReactComponents.Row, {
+    key: k,
+    label: t(k),
+    text: Array.isArray(complaintDetails === null || complaintDetails === void 0 ? void 0 : complaintDetails.details[k]) ? complaintDetails === null || complaintDetails === void 0 ? void 0 : complaintDetails.details[k].map(val => typeof val === "object" ? t(val === null || val === void 0 ? void 0 : val.code) : t(val)) : t(complaintDetails === null || complaintDetails === void 0 ? void 0 : complaintDetails.details[k]) || "N/A",
+    last: arr.length - 1 === i
+  })),  null ), imagesToShowBelowComplaintDetails !== null && imagesToShowBelowComplaintDetails !== void 0 && imagesToShowBelowComplaintDetails.thumbs ? /*#__PURE__*/React__default.createElement(digitUiReactComponents.DisplayPhotos, {
+    srcs: imagesToShowBelowComplaintDetails === null || imagesToShowBelowComplaintDetails === void 0 ? void 0 : imagesToShowBelowComplaintDetails.thumbs,
+    onClick: (source, index) => zoomImageWrapper(source, index)
+  }) : null, /*#__PURE__*/React__default.createElement(digitUiReactComponents.BreakLine, null), (workflowDetails === null || workflowDetails === void 0 ? void 0 : workflowDetails.isLoading) && /*#__PURE__*/React__default.createElement(digitUiReactComponents.Loader, null), !(workflowDetails !== null && workflowDetails !== void 0 && workflowDetails.isLoading) && /*#__PURE__*/React__default.createElement(React__default.Fragment, null, /*#__PURE__*/React__default.createElement(digitUiReactComponents.CardSubHeader, null, t("CS_COMPLAINT_DETAILS_COMPLAINT_TIMELINE")), workflowDetails !== null && workflowDetails !== void 0 && (_workflowDetails$data6 = workflowDetails.data) !== null && _workflowDetails$data6 !== void 0 && _workflowDetails$data6.timeline && (workflowDetails === null || workflowDetails === void 0 ? void 0 : (_workflowDetails$data7 = workflowDetails.data) === null || _workflowDetails$data7 === void 0 ? void 0 : (_workflowDetails$data8 = _workflowDetails$data7.timeline) === null || _workflowDetails$data8 === void 0 ? void 0 : _workflowDetails$data8.length) === 1 ? /*#__PURE__*/React__default.createElement(digitUiReactComponents.CheckPoint, {
+    isCompleted: true,
+    label: t("CS_COMMON_" + (workflowDetails === null || workflowDetails === void 0 ? void 0 : (_workflowDetails$data9 = workflowDetails.data) === null || _workflowDetails$data9 === void 0 ? void 0 : (_workflowDetails$data10 = _workflowDetails$data9.timeline[0]) === null || _workflowDetails$data10 === void 0 ? void 0 : _workflowDetails$data10.status))
+  }) : /*#__PURE__*/React__default.createElement(digitUiReactComponents.ConnectingCheckPoints, null, (workflowDetails === null || workflowDetails === void 0 ? void 0 : (_workflowDetails$data11 = workflowDetails.data) === null || _workflowDetails$data11 === void 0 ? void 0 : _workflowDetails$data11.timeline) && (workflowDetails === null || workflowDetails === void 0 ? void 0 : (_workflowDetails$data12 = workflowDetails.data) === null || _workflowDetails$data12 === void 0 ? void 0 : _workflowDetails$data12.timeline.map((checkpoint, index, arr) => {
+    return /*#__PURE__*/React__default.createElement(React__default.Fragment, {
+      key: index
+    }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.CheckPoint, {
+      keyValue: index,
+      isCompleted: index === 0,
+      label: t("CS_COMMON_" + checkpoint.status),
+      customChild: getTimelineCaptions(checkpoint, index, arr)
+    }));
+  }))))), fullscreen ? /*#__PURE__*/React__default.createElement(digitUiReactComponents.PopUp, null, /*#__PURE__*/React__default.createElement("div", {
+    className: "popup-module"
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.HeaderBar, {
+    main: /*#__PURE__*/React__default.createElement(Heading, {
+      label: "Complaint Geolocation"
+    }),
+    end: /*#__PURE__*/React__default.createElement(CloseBtn, {
+      onClick: () => close(fullscreen)
+    })
+  }), /*#__PURE__*/React__default.createElement("div", {
+    className: "popup-module-main"
+  }, /*#__PURE__*/React__default.createElement("img", {
+    src: "https://via.placeholder.com/912x568"
+  })))) : null, imageZoom ? /*#__PURE__*/React__default.createElement(digitUiReactComponents.ImageViewer, {
+    imageSrc: imageZoom,
+    onClose: onCloseImageZoom
+  }) : null, popup ? /*#__PURE__*/React__default.createElement(ComplaintDetailsModal, {
+    workflowDetails: workflowDetails,
+    complaintDetails: complaintDetails,
+    close: close,
+    popup: popup,
+    selectedAction: selectedAction,
+    onAssign: onAssign,
+    tenantId: tenantId,
+    t: t
+  }) : null, toast && /*#__PURE__*/React__default.createElement(digitUiReactComponents.Toast, {
+    label: t(assignResponse ? "CS_ACTION_" + selectedAction + "_TEXT" : "CS_ACTION_ASSIGN_FAILED"),
+    onClose: closeToast
+  }), !(workflowDetails !== null && workflowDetails !== void 0 && workflowDetails.isLoading) && (workflowDetails === null || workflowDetails === void 0 ? void 0 : (_workflowDetails$data13 = workflowDetails.data) === null || _workflowDetails$data13 === void 0 ? void 0 : (_workflowDetails$data14 = _workflowDetails$data13.nextActions) === null || _workflowDetails$data14 === void 0 ? void 0 : _workflowDetails$data14.length) > 0 && /*#__PURE__*/React__default.createElement(digitUiReactComponents.ActionBar, null, displayMenu && workflowDetails !== null && workflowDetails !== void 0 && (_workflowDetails$data15 = workflowDetails.data) !== null && _workflowDetails$data15 !== void 0 && _workflowDetails$data15.nextActions ? /*#__PURE__*/React__default.createElement(digitUiReactComponents.Menu, {
+    options: workflowDetails === null || workflowDetails === void 0 ? void 0 : (_workflowDetails$data16 = workflowDetails.data) === null || _workflowDetails$data16 === void 0 ? void 0 : _workflowDetails$data16.nextActions.map(action => action.action),
+    t: t,
+    onSelect: onActionSelect
+  }) : null, /*#__PURE__*/React__default.createElement(digitUiReactComponents.SubmitBar, {
+    label: t("WF_TAKE_ACTION"),
+    onSubmit: () => setDisplayMenu(!displayMenu)
+  })));
+};
+
+const FormComposer = props => {
+  const {
+    register,
+    handleSubmit,
+    errors
+  } = reactHookForm.useForm();
+  const {
+    t
+  } = reactI18next.useTranslation();
+  function onSubmit(data) {
+    props.onSubmit(data);
+  }
+  const fieldSelector = (type, populators) => {
+    switch (type) {
+      case "text":
+        return /*#__PURE__*/React__default.createElement("div", {
+          className: "field-container"
+        }, populators.componentInFront ? populators.componentInFront : null, /*#__PURE__*/React__default.createElement(digitUiReactComponents.TextInput, _extends({
+          className: "field desktop-w-full"
+        }, populators, {
+          inputRef: register(populators.validation)
+        })));
+      case "textarea":
+        return /*#__PURE__*/React__default.createElement(digitUiReactComponents.TextArea, _extends({
+          className: "field desktop-w-full",
+          name: populators.name || ""
+        }, populators, {
+          inputRef: register(populators.validation)
+        }));
+      default:
+        return populators.dependency !== false ? populators : null;
+    }
+  };
+  const formFields = React.useMemo(() => {
+    var _props$config;
+    return (_props$config = props.config) === null || _props$config === void 0 ? void 0 : _props$config.map((section, index, array) => {
+      return /*#__PURE__*/React__default.createElement(React__default.Fragment, {
+        key: index
+      }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.CardSectionHeader, null, section.head), section.body.map((field, index) => {
+        var _field$populators;
+        return /*#__PURE__*/React__default.createElement(React__default.Fragment, {
+          key: index
+        }, errors[field.populators.name] && ((_field$populators = field.populators) !== null && _field$populators !== void 0 && _field$populators.validate ? errors[field.populators.validate] : true) && /*#__PURE__*/React__default.createElement(digitUiReactComponents.CardLabelError, null, field.populators.error), /*#__PURE__*/React__default.createElement(digitUiReactComponents.LabelFieldPair, null, /*#__PURE__*/React__default.createElement(digitUiReactComponents.CardLabel, null, field.label, field.isMandatory ? " * " : null), /*#__PURE__*/React__default.createElement("div", {
+          className: "field"
+        }, fieldSelector(field.type, field.populators))));
+      }), array.length - 1 === index ? null : /*#__PURE__*/React__default.createElement(digitUiReactComponents.BreakLine, null));
+    });
+  }, [props.config, errors]);
+  const isDisabled = props.isDisabled || false;
+  return /*#__PURE__*/React__default.createElement("form", {
+    onSubmit: handleSubmit(onSubmit)
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.Card, null, /*#__PURE__*/React__default.createElement(digitUiReactComponents.CardSubHeader, null, props.heading), formFields, props.children, /*#__PURE__*/React__default.createElement(digitUiReactComponents.ActionBar, null, /*#__PURE__*/React__default.createElement(digitUiReactComponents.SubmitBar, {
+    disabled: isDisabled,
+    label: t(props.label),
+    submit: "submit"
+  }))));
+};
+
+const CreateComplaint$1 = _ref => {
+  var _getCities$;
+  const selectedType = function (value) {
+    try {
+      const _temp2 = function () {
+        if (value.key !== complaintType.key) {
+          const _temp = function () {
+            if (value.key === "Others") {
+              setSubType({
+                name: ""
+              });
+              setComplaintType(value);
+              setSubTypeMenu([{
+                key: "Others",
+                name: t("SERVICEDEFS.OTHERS")
+              }]);
+            } else {
+              setSubType({
+                name: ""
+              });
+              setComplaintType(value);
+              return Promise.resolve(serviceDefinitions.getSubMenu(tenantId, value, t)).then(function (_serviceDefinitions$g) {
+                setSubTypeMenu(_serviceDefinitions$g);
+              });
+            }
+          }();
+          if (_temp && _temp.then) return _temp.then(function () {});
+        }
+      }();
+      return Promise.resolve(_temp2 && _temp2.then ? _temp2.then(function () {}) : void 0);
+    } catch (e) {
+      return Promise.reject(e);
+    }
+  };
+  let {
+    parentUrl
+  } = _ref;
+  const cities = Digit.Hooks.pgr.useTenants();
+  const {
+    t
+  } = reactI18next.useTranslation();
+  const getCities = () => (cities === null || cities === void 0 ? void 0 : cities.filter(e => e.code === Digit.ULBService.getCurrentTenantId())) || [];
+  const [complaintType, setComplaintType] = React.useState({});
+  const [subTypeMenu, setSubTypeMenu] = React.useState([]);
+  const [subType, setSubType] = React.useState({});
+  const [pincode, setPincode] = React.useState("");
+  const [selectedCity, setSelectedCity] = React.useState(getCities()[0] ? getCities()[0] : null);
+  const {
+    data: fetchedLocalities
+  } = Digit.Hooks.useBoundaryLocalities((_getCities$ = getCities()[0]) === null || _getCities$ === void 0 ? void 0 : _getCities$.code, "admin", {
+    enabled: !!getCities()[0]
+  }, t);
+  const [localities, setLocalities] = React.useState(fetchedLocalities);
+  const [selectedLocality, setSelectedLocality] = React.useState(null);
+  const [canSubmit, setSubmitValve] = React.useState(false);
+  const [submitted, setSubmitted] = React.useState(false);
+  const [pincodeNotValid, setPincodeNotValid] = React.useState(false);
+  const [params, setParams] = React.useState({});
+  const tenantId = window.Digit.SessionStorage.get("Employee.tenantId");
+  const menu = Digit.Hooks.pgr.useComplaintTypes({
+    stateCode: tenantId
+  });
+  const dispatch = reactRedux.useDispatch();
+  const match = reactRouterDom.useRouteMatch();
+  const history = reactRouterDom.useHistory();
+  const serviceDefinitions = Digit.GetServiceDefinitions;
+  const client = reactQuery.useQueryClient();
+  React.useEffect(() => {
+    if (complaintType !== null && complaintType !== void 0 && complaintType.key && subType !== null && subType !== void 0 && subType.key && selectedCity !== null && selectedCity !== void 0 && selectedCity.code && selectedLocality !== null && selectedLocality !== void 0 && selectedLocality.code) {
+      setSubmitValve(true);
+    } else {
+      setSubmitValve(false);
+    }
+  }, [complaintType, subType, selectedCity, selectedLocality]);
+  React.useEffect(() => {
+    setLocalities(fetchedLocalities);
+  }, [fetchedLocalities]);
+  React.useEffect(() => {
+    var _getCities$2;
+    const city = cities.find(obj => {
+      var _obj$pincode;
+      return (_obj$pincode = obj.pincode) === null || _obj$pincode === void 0 ? void 0 : _obj$pincode.find(item => item == pincode);
+    });
+    if ((city === null || city === void 0 ? void 0 : city.code) === ((_getCities$2 = getCities()[0]) === null || _getCities$2 === void 0 ? void 0 : _getCities$2.code)) {
+      setPincodeNotValid(false);
+      setSelectedCity(city);
+      setSelectedLocality(null);
+      const __localityList = fetchedLocalities;
+      const __filteredLocalities = __localityList.filter(city => city["pincode"] == pincode);
+      setLocalities(__filteredLocalities);
+    } else if (pincode === "" || pincode === null) {
+      setPincodeNotValid(false);
+      setLocalities(fetchedLocalities);
+    } else {
+      setPincodeNotValid(true);
+    }
+  }, [pincode]);
+  function selectedSubType(value) {
+    setSubType(value);
+  }
+  const selectCity = function (city) {
+    return Promise.resolve();
+  };
+  function selectLocality(locality) {
+    setSelectedLocality(locality);
+  }
+  const wrapperSubmit = data => {
+    if (!canSubmit) return;
+    setSubmitted(true);
+    !submitted && onSubmit(data);
+  };
+  const onSubmit = function (data) {
+    try {
+      if (!canSubmit) return Promise.resolve();
+      const cityCode = selectedCity.code;
+      const city = selectedCity.city.name;
+      const district = selectedCity.city.name;
+      const region = selectedCity.city.name;
+      const localityCode = selectedLocality.code;
+      const localityName = selectedLocality.name;
+      const landmark = data.landmark;
+      const {
+        key
+      } = subType;
+      const complaintType = key;
+      const mobileNumber = data.mobileNumber;
+      const name = data.name;
+      const formData = {
+        ...data,
+        cityCode,
+        city,
+        district,
+        region,
+        localityCode,
+        localityName,
+        landmark,
+        complaintType,
+        mobileNumber,
+        name
+      };
+      return Promise.resolve(dispatch(createComplaint(formData))).then(function () {
+        return Promise.resolve(client.refetchQueries(["fetchInboxData"])).then(function () {
+          history.push(parentUrl + "/response");
+        });
+      });
+    } catch (e) {
+      return Promise.reject(e);
+    }
+  };
+  const handlePincode = event => {
+    const {
+      value
+    } = event.target;
+    setPincode(value);
+    if (!value) {
+      setPincodeNotValid(false);
+    }
+  };
+  const isPincodeValid = () => !pincodeNotValid;
+  const config = [{
+    head: t("ES_CREATECOMPLAINT_PROVIDE_COMPLAINANT_DETAILS"),
+    body: [{
+      label: t("ES_CREATECOMPLAINT_MOBILE_NUMBER"),
+      isMandatory: true,
+      type: "text",
+      populators: {
+        name: "mobileNumber",
+        validation: {
+          required: true,
+          pattern: /^[6-9]\d{9}$/
+        },
+        componentInFront: /*#__PURE__*/React__default.createElement("div", {
+          className: "employee-card-input employee-card-input--front"
+        }, "+91"),
+        error: t("CORE_COMMON_MOBILE_ERROR")
+      }
+    }, {
+      label: t("ES_CREATECOMPLAINT_COMPLAINT_NAME"),
+      isMandatory: true,
+      type: "text",
+      populators: {
+        name: "name",
+        validation: {
+          required: true,
+          pattern: /^[A-Za-z]/
+        },
+        error: t("CS_ADDCOMPLAINT_NAME_ERROR")
+      }
+    }]
+  }, {
+    head: t("CS_COMPLAINT_DETAILS_COMPLAINT_DETAILS"),
+    body: [{
+      label: t("CS_COMPLAINT_DETAILS_COMPLAINT_TYPE"),
+      isMandatory: true,
+      type: "dropdown",
+      populators: /*#__PURE__*/React__default.createElement(digitUiReactComponents.Dropdown, {
+        option: menu,
+        optionKey: "name",
+        id: "complaintType",
+        selected: complaintType,
+        select: selectedType
+      })
+    }, {
+      label: t("CS_COMPLAINT_DETAILS_COMPLAINT_SUBTYPE"),
+      isMandatory: true,
+      type: "dropdown",
+      menu: {
+        ...subTypeMenu
+      },
+      populators: /*#__PURE__*/React__default.createElement(digitUiReactComponents.Dropdown, {
+        option: subTypeMenu,
+        optionKey: "name",
+        id: "complaintSubType",
+        selected: subType,
+        select: selectedSubType
+      })
+    }]
+  }, {
+    head: t("CS_ADDCOMPLAINT_LOCATION"),
+    body: [{
+      label: t("CORE_COMMON_PINCODE"),
+      type: "text",
+      populators: {
+        name: "pincode",
+        validation: {
+          pattern: /^[1-9][0-9]{5}$/,
+          validate: isPincodeValid
+        },
+        error: t("CORE_COMMON_PINCODE_INVALID"),
+        onChange: handlePincode
+      }
+    }, {
+      label: t("CS_COMPLAINT_DETAILS_CITY"),
+      isMandatory: true,
+      type: "dropdown",
+      populators: /*#__PURE__*/React__default.createElement(digitUiReactComponents.Dropdown, {
+        isMandatory: true,
+        selected: selectedCity,
+        freeze: true,
+        option: getCities(),
+        id: "city",
+        select: selectCity,
+        optionKey: "i18nKey",
+        t: t
+      })
+    }, {
+      label: t("CS_CREATECOMPLAINT_MOHALLA"),
+      type: "dropdown",
+      isMandatory: true,
+      dependency: selectedCity && localities ? true : false,
+      populators: /*#__PURE__*/React__default.createElement(digitUiReactComponents.Dropdown, {
+        isMandatory: true,
+        selected: selectedLocality,
+        optionKey: "i18nkey",
+        id: "locality",
+        option: localities,
+        select: selectLocality,
+        t: t
+      })
+    }, {
+      label: t("CS_COMPLAINT_DETAILS_LANDMARK"),
+      type: "textarea",
+      populators: {
+        name: "landmark"
+      }
+    }]
+  }, {
+    head: t("CS_COMPLAINT_DETAILS_ADDITIONAL_DETAILS"),
+    body: [{
+      label: t("CS_COMPLAINT_DETAILS_ADDITIONAL_DETAILS"),
+      type: "textarea",
+      populators: {
+        name: "description"
+      }
+    }]
+  }];
+  return /*#__PURE__*/React__default.createElement(FormComposer, {
+    heading: t("ES_CREATECOMPLAINT_NEW_COMPLAINT"),
+    config: config,
+    onSubmit: wrapperSubmit,
+    isDisabled: !canSubmit && !submitted,
+    label: t("CS_ADDCOMPLAINT_ADDITIONAL_DETAILS_SUBMIT_COMPLAINT")
+  });
+};
+
+const ComplaintsLink = _ref => {
+  const {
+    t
+  } = reactI18next.useTranslation();
+  const allLinks = [{
+    text: "ES_PGR_NEW_COMPLAINT",
+    link: "/digit-ui/employee/pgr/complaint/create",
+    accessTo: ["CSR"]
+  }];
+  const [links, setLinks] = React.useState([]);
+  React.useEffect(() => {
+    let linksToShow = [];
+    allLinks.forEach(link => {
+      if (link.accessTo) {
+        if (Digit.UserService.hasAccess(link.accessTo)) {
+          linksToShow.push(link);
+        }
+      } else {
+        linksToShow.push(link);
+      }
+    });
+    setLinks(linksToShow);
+  }, []);
+  const GetLogo = () => /*#__PURE__*/React__default.createElement("div", {
+    className: "header"
+  }, /*#__PURE__*/React__default.createElement("span", {
+    className: "logo"
+  }, /*#__PURE__*/React__default.createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    height: "24",
+    viewBox: "0 0 24 24",
+    width: "24"
+  }, /*#__PURE__*/React__default.createElement("path", {
+    d: "M0 0h24v24H0z",
+    fill: "none"
+  }), /*#__PURE__*/React__default.createElement("path", {
+    d: "M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-7 9h-2V5h2v6zm0 4h-2v-2h2v2z",
+    fill: "white"
+  }))), " ", /*#__PURE__*/React__default.createElement("span", {
+    className: "text"
+  }, t("ES_PGR_HEADER_COMPLAINT")));
+  return /*#__PURE__*/React__default.createElement(digitUiReactComponents.Card, {
+    className: "employeeCard filter inboxLinks"
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "complaint-links-container"
+  }, GetLogo(), /*#__PURE__*/React__default.createElement("div", {
+    className: "body"
+  }, links.map((_ref2, index) => {
+    let {
+      link,
+      text
+    } = _ref2;
+    return /*#__PURE__*/React__default.createElement("span", {
+      className: "link",
+      key: index
+    }, /*#__PURE__*/React__default.createElement(reactRouterDom.Link, {
+      to: link
+    }, t(text)));
+  }))));
+};
+
+const ComplaintTable = _ref => {
+  let {
+    t,
+    columns,
+    data,
+    getCellProps,
+    onNextPage,
+    onPrevPage,
+    currentPage,
+    totalRecords,
+    pageSizeLimit,
+    onPageSizeChange
+  } = _ref;
+  return /*#__PURE__*/React__default.createElement(digitUiReactComponents.Table, {
+    t: t,
+    data: data,
+    columns: columns,
+    getCellProps: getCellProps,
+    onNextPage: onNextPage,
+    onPrevPage: onPrevPage,
+    currentPage: currentPage,
+    totalRecords: totalRecords,
+    onPageSizeChange: onPageSizeChange,
+    pageSizeLimit: pageSizeLimit
+  });
+};
+
+const Status = _ref => {
+  var _pgrfilters$applicati;
+  let {
+    complaints,
+    onAssignmentChange,
+    pgrfilters
+  } = _ref;
+  const {
+    t
+  } = reactI18next.useTranslation();
+  const complaintsWithCount = Digit.Hooks.pgr.useComplaintStatusCount(complaints);
+  let hasFilters = pgrfilters === null || pgrfilters === void 0 ? void 0 : (_pgrfilters$applicati = pgrfilters.applicationStatus) === null || _pgrfilters$applicati === void 0 ? void 0 : _pgrfilters$applicati.length;
+  return /*#__PURE__*/React__default.createElement("div", {
+    className: "status-container"
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "filter-label"
+  }, t("ES_PGR_FILTER_STATUS")), complaintsWithCount.length === 0 && /*#__PURE__*/React__default.createElement(digitUiReactComponents.Loader, null), complaintsWithCount.map((option, index) => {
+    return /*#__PURE__*/React__default.createElement(digitUiReactComponents.CheckBox, {
+      key: index,
+      onChange: e => onAssignmentChange(e, option),
+      checked: hasFilters ? pgrfilters.applicationStatus.filter(e => e.code === option.code).length !== 0 ? true : false : false,
+      label: option.name + " (" + (option.count || 0) + ")"
+    });
+  }));
+};
+
+let pgrQuery = {};
+let wfQuery = {};
+const Filter = props => {
+  var _searchParams$filters, _searchParams$filters2, _searchParams$filters3, _searchParams$filters4, _searchParams$filters5, _searchParams$filters6, _searchParams$filters7;
+  let {
+    uuid
+  } = Digit.UserService.getUser().info;
+  const {
+    searchParams
+  } = props;
+  const {
+    t
+  } = reactI18next.useTranslation();
+  const isAssignedToMe = searchParams !== null && searchParams !== void 0 && (_searchParams$filters = searchParams.filters) !== null && _searchParams$filters !== void 0 && (_searchParams$filters2 = _searchParams$filters.wfFilters) !== null && _searchParams$filters2 !== void 0 && _searchParams$filters2.assignee && searchParams !== null && searchParams !== void 0 && (_searchParams$filters3 = searchParams.filters) !== null && _searchParams$filters3 !== void 0 && (_searchParams$filters4 = _searchParams$filters3.wfFilters) !== null && _searchParams$filters4 !== void 0 && (_searchParams$filters5 = _searchParams$filters4.assignee[0]) !== null && _searchParams$filters5 !== void 0 && _searchParams$filters5.code ? true : false;
+  const assignedToOptions = React.useMemo(() => [{
+    code: "ASSIGNED_TO_ME",
+    name: t("ASSIGNED_TO_ME")
+  }, {
+    code: "ASSIGNED_TO_ALL",
+    name: t("ASSIGNED_TO_ALL")
+  }], [t]);
+  const [selectAssigned, setSelectedAssigned] = React.useState(isAssignedToMe ? assignedToOptions[0] : assignedToOptions[1]);
+  React.useEffect(() => setSelectedAssigned(isAssignedToMe ? assignedToOptions[0] : assignedToOptions[1]), [t]);
+  const [selectedComplaintType, setSelectedComplaintType] = React.useState(null);
+  const [selectedLocality, setSelectedLocality] = React.useState(null);
+  const [pgrfilters, setPgrFilters] = React.useState((searchParams === null || searchParams === void 0 ? void 0 : (_searchParams$filters6 = searchParams.filters) === null || _searchParams$filters6 === void 0 ? void 0 : _searchParams$filters6.pgrfilters) || {
+    serviceCode: [],
+    locality: [],
+    applicationStatus: []
+  });
+  const [wfFilters, setWfFilters] = React.useState((searchParams === null || searchParams === void 0 ? void 0 : (_searchParams$filters7 = searchParams.filters) === null || _searchParams$filters7 === void 0 ? void 0 : _searchParams$filters7.wfFilters) || {
+    assignee: [{
+      code: uuid
+    }]
+  });
+  const tenantId = Digit.ULBService.getCurrentTenantId();
+  const {
+    data: localities
+  } = Digit.Hooks.useBoundaryLocalities(tenantId, "admin", {}, t);
+  let serviceDefs = Digit.Hooks.pgr.useServiceDefs(tenantId, "PGR");
+  const onRadioChange = value => {
+    setSelectedAssigned(value);
+    uuid = value.code === "ASSIGNED_TO_ME" ? uuid : "";
+    setWfFilters({
+      ...wfFilters,
+      assignee: [{
+        code: uuid
+      }]
+    });
+  };
+  React.useEffect(() => {
+    var _wfFilters$assignee;
+    let count = 0;
+    for (const property in pgrfilters) {
+      if (Array.isArray(pgrfilters[property])) {
+        count += pgrfilters[property].length;
+        let params = pgrfilters[property].map(prop => prop.code).join();
+        if (params) {
+          pgrQuery[property] = params;
+        } else {
+          var _pgrQuery;
+          (_pgrQuery = pgrQuery) === null || _pgrQuery === void 0 ? true : delete _pgrQuery[property];
+        }
+      }
+    }
+    for (const property in wfFilters) {
+      if (Array.isArray(wfFilters[property])) {
+        let params = wfFilters[property].map(prop => prop.code).join();
+        if (params) {
+          wfQuery[property] = params;
+        } else {
+          wfQuery = {};
+        }
+      }
+    }
+    count += (wfFilters === null || wfFilters === void 0 ? void 0 : (_wfFilters$assignee = wfFilters.assignee) === null || _wfFilters$assignee === void 0 ? void 0 : _wfFilters$assignee.length) || 0;
+    if (props.type !== "mobile") {
+      handleFilterSubmit();
+    }
+    Digit.inboxFilterCount = count;
+  }, [pgrfilters, wfFilters]);
+  const ifExists = (list, key) => {
+    return list.filter(object => object.code === key.code).length;
+  };
+  function applyFiltersAndClose() {
+    handleFilterSubmit();
+    props.onClose();
+  }
+  function complaintType(_type) {
+    const type = {
+      i18nKey: t("SERVICEDEFS." + _type.serviceCode.toUpperCase()),
+      code: _type.serviceCode
+    };
+    if (!ifExists(pgrfilters.serviceCode, type)) {
+      setPgrFilters({
+        ...pgrfilters,
+        serviceCode: [...pgrfilters.serviceCode, type]
+      });
+    }
+  }
+  function onSelectLocality(value, type) {
+    if (!ifExists(pgrfilters.locality, value)) {
+      setPgrFilters({
+        ...pgrfilters,
+        locality: [...pgrfilters.locality, value]
+      });
+    }
+  }
+  React.useEffect(() => {
+    if (pgrfilters.serviceCode.length > 1) {
+      setSelectedComplaintType({
+        i18nKey: pgrfilters.serviceCode.length + " selected"
+      });
+    } else {
+      setSelectedComplaintType(pgrfilters.serviceCode[0]);
+    }
+  }, [pgrfilters.serviceCode]);
+  React.useEffect(() => {
+    if (pgrfilters.locality.length > 1) {
+      setSelectedLocality({
+        name: pgrfilters.locality.length + " selected"
+      });
+    } else {
+      setSelectedLocality(pgrfilters.locality[0]);
+    }
+  }, [pgrfilters.locality]);
+  const onRemove = (index, key) => {
+    let afterRemove = pgrfilters[key].filter((value, i) => {
+      return i !== index;
+    });
+    setPgrFilters({
+      ...pgrfilters,
+      [key]: afterRemove
+    });
+  };
+  const handleAssignmentChange = (e, type) => {
+    if (e.target.checked) {
+      setPgrFilters({
+        ...pgrfilters,
+        applicationStatus: [...pgrfilters.applicationStatus, {
+          code: type.code
+        }]
+      });
+    } else {
+      const filteredStatus = pgrfilters.applicationStatus.filter(value => {
+        return value.code !== type.code;
+      });
+      setPgrFilters({
+        ...pgrfilters,
+        applicationStatus: filteredStatus
+      });
+    }
+  };
+  function clearAll() {
+    let pgrReset = {
+      serviceCode: [],
+      locality: [],
+      applicationStatus: []
+    };
+    let wfRest = {
+      assigned: [{
+        code: []
+      }]
+    };
+    setPgrFilters(pgrReset);
+    setWfFilters(wfRest);
+    pgrQuery = {};
+    wfQuery = {};
+    setSelectedAssigned("");
+    setSelectedComplaintType(null);
+    setSelectedLocality(null);
+  }
+  const handleFilterSubmit = () => {
+    props.onFilterChange({
+      pgrQuery: pgrQuery,
+      wfQuery: wfQuery,
+      wfFilters,
+      pgrfilters
+    });
+  };
+  const GetSelectOptions = function (lable, options, selected, select, optionKey, onRemove, key) {
+    if (selected === void 0) {
+      selected = null;
+    }
+    selected = selected || {
+      [optionKey]: " ",
+      code: ""
+    };
+    return /*#__PURE__*/React__default.createElement("div", null, /*#__PURE__*/React__default.createElement("div", {
+      className: "filter-label"
+    }, lable), /*#__PURE__*/React__default.createElement(digitUiReactComponents.Dropdown, {
+      option: options,
+      selected: selected,
+      select: value => select(value, key),
+      optionKey: optionKey
+    }), /*#__PURE__*/React__default.createElement("div", {
+      className: "tag-container"
+    }, pgrfilters[key].length > 0 && pgrfilters[key].map((value, index) => {
+      return /*#__PURE__*/React__default.createElement(digitUiReactComponents.RemoveableTag, {
+        key: index,
+        text: value[optionKey].slice(0, 22) + " ...",
+        onClick: () => onRemove(index, key)
+      });
+    })));
+  };
+  return /*#__PURE__*/React__default.createElement(React__default.Fragment, null, /*#__PURE__*/React__default.createElement("div", {
+    className: "filter"
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "filter-card"
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "heading"
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "filter-label"
+  }, t("ES_COMMON_FILTER_BY"), ":"), /*#__PURE__*/React__default.createElement("div", {
+    className: "clearAll",
+    onClick: clearAll
+  }, t("ES_COMMON_CLEAR_ALL")), props.type === "desktop" && /*#__PURE__*/React__default.createElement("span", {
+    className: "clear-search",
+    onClick: clearAll
+  }, t("ES_COMMON_CLEAR_ALL")), props.type === "mobile" && /*#__PURE__*/React__default.createElement("span", {
+    onClick: props.onClose
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.CloseSvg, null))), /*#__PURE__*/React__default.createElement("div", null, /*#__PURE__*/React__default.createElement(digitUiReactComponents.RadioButtons, {
+    onSelect: onRadioChange,
+    selectedOption: selectAssigned,
+    optionsKey: "name",
+    options: assignedToOptions
+  }), /*#__PURE__*/React__default.createElement("div", null, GetSelectOptions(t("CS_COMPLAINT_DETAILS_COMPLAINT_SUBTYPE"), serviceDefs, selectedComplaintType, complaintType, "i18nKey", onRemove, "serviceCode")), /*#__PURE__*/React__default.createElement("div", null, GetSelectOptions(t("CS_PGR_LOCALITY"), localities, selectedLocality, onSelectLocality, "i18nkey", onRemove, "locality")), /*#__PURE__*/React__default.createElement(Status, {
+    complaints: props.complaints,
+    onAssignmentChange: handleAssignmentChange,
+    pgrfilters: pgrfilters
+  })))), /*#__PURE__*/React__default.createElement(digitUiReactComponents.ActionBar, null, props.type === "mobile" && /*#__PURE__*/React__default.createElement(digitUiReactComponents.ApplyFilterBar, {
+    labelLink: t("ES_COMMON_CLEAR_ALL"),
+    buttonLink: t("ES_COMMON_FILTER"),
+    onClear: clearAll,
+    onSubmit: applyFiltersAndClose
+  })));
+};
+
+const SearchComplaint = _ref => {
+  var _searchParams$search, _searchParams$search2;
+  let {
+    onSearch,
+    type,
+    onClose,
+    searchParams
+  } = _ref;
+  const [complaintNo, setComplaintNo] = React.useState((searchParams === null || searchParams === void 0 ? void 0 : (_searchParams$search = searchParams.search) === null || _searchParams$search === void 0 ? void 0 : _searchParams$search.serviceRequestId) || "");
+  const [mobileNo, setMobileNo] = React.useState((searchParams === null || searchParams === void 0 ? void 0 : (_searchParams$search2 = searchParams.search) === null || _searchParams$search2 === void 0 ? void 0 : _searchParams$search2.mobileNumber) || "");
+  const {
+    register,
+    errors,
+    handleSubmit,
+    reset
+  } = reactHookForm.useForm();
+  const {
+    t
+  } = reactI18next.useTranslation();
+  const onSubmitInput = data => {
+    if (!Object.keys(errors).filter(i => errors[i]).length) {
+      if (data.serviceRequestId !== "") {
+        onSearch({
+          serviceRequestId: data.serviceRequestId
+        });
+      } else if (data.mobileNumber !== "") {
+        onSearch({
+          mobileNumber: data.mobileNumber
+        });
+      } else {
+        onSearch({});
+      }
+      if (type === "mobile") {
+        onClose();
+      }
+    }
+  };
+  function clearSearch() {
+    reset();
+    onSearch({});
+    setComplaintNo("");
+    setMobileNo("");
+  }
+  const clearAll = () => {
+    return /*#__PURE__*/React__default.createElement(digitUiReactComponents.LinkLabel, {
+      className: "clear-search-label",
+      onClick: clearSearch
+    }, t("ES_COMMON_CLEAR_SEARCH"));
+  };
+  function setComplaint(e) {
+    setComplaintNo(e.target.value);
+  }
+  function setMobile(e) {
+    setMobileNo(e.target.value);
+  }
+  return /*#__PURE__*/React__default.createElement("form", {
+    onSubmit: handleSubmit(onSubmitInput),
+    style: {
+      marginLeft: "24px"
+    }
+  }, /*#__PURE__*/React__default.createElement(React__default.Fragment, null, /*#__PURE__*/React__default.createElement("div", {
+    className: "search-container",
+    style: {
+      width: "auto"
+    }
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "search-complaint-container"
+  }, type === "mobile" && /*#__PURE__*/React__default.createElement("div", {
+    className: "complaint-header"
+  }, /*#__PURE__*/React__default.createElement("h2", null, " ", t("CS_COMMON_SEARCH_BY"), ":"), /*#__PURE__*/React__default.createElement("span", {
+    onClick: onClose
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.CloseSvg, null))), /*#__PURE__*/React__default.createElement("div", {
+    className: "complaint-input-container",
+    style: {
+      display: "grid"
+    }
+  }, /*#__PURE__*/React__default.createElement("span", {
+    className: "complaint-input"
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.Label, null, t("CS_COMMON_COMPLAINT_NO"), "."), /*#__PURE__*/React__default.createElement(digitUiReactComponents.TextInput, {
+    name: "serviceRequestId",
+    value: complaintNo,
+    onChange: setComplaint,
+    inputRef: register({
+      pattern: /(?!^$)([^\s])/
+    }),
+    style: {
+      marginBottom: "8px"
+    }
+  })), /*#__PURE__*/React__default.createElement("span", {
+    className: "mobile-input"
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.Label, null, t("CS_COMMON_MOBILE_NO"), "."), /*#__PURE__*/React__default.createElement(digitUiReactComponents.TextInput, {
+    name: "mobileNumber",
+    value: mobileNo,
+    onChange: setMobile,
+    inputRef: register({
+      pattern: /^[6-9]\d{9}$/
+    })
+  })), type === "desktop" && /*#__PURE__*/React__default.createElement(digitUiReactComponents.SubmitBar, {
+    style: {
+      marginTop: 32,
+      marginLeft: "16px",
+      width: "calc( 100% - 16px )"
+    },
+    label: t("ES_COMMON_SEARCH"),
+    submit: true,
+    disabled: Object.keys(errors).filter(i => errors[i]).length
+  })), type === "desktop" && /*#__PURE__*/React__default.createElement("span", {
+    className: "clear-search"
+  }, clearAll()))), type === "mobile" && /*#__PURE__*/React__default.createElement(digitUiReactComponents.ActionBar, null, /*#__PURE__*/React__default.createElement(digitUiReactComponents.SubmitBar, {
+    label: "Search",
+    submit: true
+  }))));
+};
+
+const DesktopInbox = _ref => {
+  let {
+    data,
+    onFilterChange,
+    onSearch,
+    isLoading,
+    searchParams,
+    onNextPage,
+    onPrevPage,
+    currentPage,
+    pageSizeLimit,
+    onPageSizeChange,
+    totalRecords
+  } = _ref;
+  const {
+    t
+  } = reactI18next.useTranslation();
+  const GetCell = value => /*#__PURE__*/React__default.createElement("span", {
+    className: "cell-text"
+  }, value);
+  const GetSlaCell = value => {
+    return value < 0 ? /*#__PURE__*/React__default.createElement("span", {
+      className: "sla-cell-error"
+    }, value || "") : /*#__PURE__*/React__default.createElement("span", {
+      className: "sla-cell-success"
+    }, value || "");
+  };
+  const columns = React__default.useMemo(() => [{
+    Header: t("CS_COMMON_COMPLAINT_NO"),
+    Cell: _ref2 => {
+      let {
+        row
+      } = _ref2;
+      return /*#__PURE__*/React__default.createElement("div", null, /*#__PURE__*/React__default.createElement("span", {
+        className: "link"
+      }, /*#__PURE__*/React__default.createElement(reactRouterDom.Link, {
+        to: "/digit-ui/employee/pgr/complaint/details/" + row.original["serviceRequestId"]
+      }, row.original["serviceRequestId"])), /*#__PURE__*/React__default.createElement("br", null), /*#__PURE__*/React__default.createElement("span", {
+        className: "complain-no-cell-text"
+      }, t("SERVICEDEFS." + row.original["complaintSubType"].toUpperCase())));
+    }
+  }, {
+    Header: t("WF_INBOX_HEADER_LOCALITY"),
+    Cell: _ref3 => {
+      let {
+        row
+      } = _ref3;
+      return GetCell(t(Digit.Utils.locale.getLocalityCode(row.original["locality"], row.original["tenantId"])));
+    }
+  }, {
+    Header: t("CS_COMPLAINT_DETAILS_CURRENT_STATUS"),
+    Cell: _ref4 => {
+      let {
+        row
+      } = _ref4;
+      return GetCell(t("CS_COMMON_" + row.original["status"]));
+    }
+  }, {
+    Header: t("WF_INBOX_HEADER_CURRENT_OWNER"),
+    Cell: _ref5 => {
+      let {
+        row
+      } = _ref5;
+      return GetCell(row.original["taskOwner"]);
+    }
+  }, {
+    Header: t("WF_INBOX_HEADER_SLA_DAYS_REMAINING"),
+    Cell: _ref6 => {
+      let {
+        row
+      } = _ref6;
+      return GetSlaCell(row.original["sla"]);
+    }
+  }], [t]);
+  let result;
+  if (isLoading) {
+    result = /*#__PURE__*/React__default.createElement(digitUiReactComponents.Loader, null);
+  } else if (data && data.length === 0) {
+    result = /*#__PURE__*/React__default.createElement(digitUiReactComponents.Card, {
+      style: {
+        marginTop: 20
+      }
+    }, t(LOCALE.NO_COMPLAINTS_EMPLOYEE).split("\\n").map((text, index) => /*#__PURE__*/React__default.createElement("p", {
+      key: index,
+      style: {
+        textAlign: "center"
+      }
+    }, text)));
+  } else if (data.length > 0) {
+    result = /*#__PURE__*/React__default.createElement(ComplaintTable, {
+      t: t,
+      data: data,
+      columns: columns,
+      getCellProps: cellInfo => {
+        return {
+          style: {
+            minWidth: cellInfo.column.Header === t("CS_COMMON_COMPLAINT_NO") ? "240px" : "",
+            padding: "20px 18px",
+            fontSize: "16px"
+          }
+        };
+      },
+      onNextPage: onNextPage,
+      onPrevPage: onPrevPage,
+      totalRecords: totalRecords,
+      onPageSizeChagne: onPageSizeChange,
+      currentPage: currentPage,
+      pageSizeLimit: pageSizeLimit
+    });
+  } else {
+    result = /*#__PURE__*/React__default.createElement(digitUiReactComponents.Card, {
+      style: {
+        marginTop: 20
+      }
+    }, t(LOCALE.ERROR_LOADING_RESULTS).split("\\n").map((text, index) => /*#__PURE__*/React__default.createElement("p", {
+      key: index,
+      style: {
+        textAlign: "center"
+      }
+    }, text)));
+  }
+  return /*#__PURE__*/React__default.createElement("div", {
+    className: "inbox-container"
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "filters-container"
+  }, /*#__PURE__*/React__default.createElement(ComplaintsLink, null), /*#__PURE__*/React__default.createElement("div", null, /*#__PURE__*/React__default.createElement(Filter, {
+    complaints: data,
+    onFilterChange: onFilterChange,
+    type: "desktop",
+    searchParams: searchParams
+  }))), /*#__PURE__*/React__default.createElement("div", {
+    style: {
+      flex: 1
+    }
+  }, /*#__PURE__*/React__default.createElement(SearchComplaint, {
+    onSearch: onSearch,
+    type: "desktop"
+  }), /*#__PURE__*/React__default.createElement("div", {
+    style: {
+      marginTop: "24px",
+      marginTop: "24px",
+      marginLeft: "24px",
+      flex: 1
+    }
+  }, result)));
+};
+
+const ComplaintCard = _ref => {
+  let {
+    data,
+    onFilterChange,
+    onSearch,
+    serviceRequestIdKey,
+    searchParams
+  } = _ref;
+  const {
+    t
+  } = reactI18next.useTranslation();
+  const [popup, setPopup] = React.useState(false);
+  const [selectedComponent, setSelectedComponent] = React.useState(null);
+  const [filterCount, setFilterCount] = React.useState(Digit.inboxFilterCount || 1);
+  const handlePopupAction = type => {
+    if (type === "SEARCH") {
+      setSelectedComponent( /*#__PURE__*/React__default.createElement(SearchComplaint, {
+        type: "mobile",
+        onClose: handlePopupClose,
+        onSearch: onSearch,
+        searchParams: searchParams
+      }));
+    } else if (type === "FILTER") {
+      setSelectedComponent( /*#__PURE__*/React__default.createElement(Filter, {
+        complaints: data,
+        onFilterChange: onFilterChange,
+        onClose: handlePopupClose,
+        type: "mobile",
+        searchParams: searchParams
+      }));
+    }
+    setPopup(true);
+  };
+  const handlePopupClose = () => {
+    setPopup(false);
+    setSelectedComponent(null);
+  };
+  let result;
+  if (data && (data === null || data === void 0 ? void 0 : data.length) === 0) {
+    result = /*#__PURE__*/React__default.createElement(digitUiReactComponents.Card, {
+      style: {
+        marginTop: 20
+      }
+    }, t(LOCALE.NO_COMPLAINTS_EMPLOYEE).split("\\n").map((text, index) => /*#__PURE__*/React__default.createElement("p", {
+      key: index,
+      style: {
+        textAlign: "center"
+      }
+    }, text)));
+  } else if (data && (data === null || data === void 0 ? void 0 : data.length) > 0) {
+    result = /*#__PURE__*/React__default.createElement(digitUiReactComponents.DetailsCard, {
+      data: data,
+      serviceRequestIdKey: serviceRequestIdKey,
+      linkPrefix: "/digit-ui/employee/pgr/complaint/details/"
+    });
+  } else {
+    result = /*#__PURE__*/React__default.createElement(digitUiReactComponents.Card, {
+      style: {
+        marginTop: 20
+      }
+    }, t(LOCALE.ERROR_LOADING_RESULTS).split("\\n").map((text, index) => /*#__PURE__*/React__default.createElement("p", {
+      key: index,
+      style: {
+        textAlign: "center"
+      }
+    }, text)));
+  }
+  return /*#__PURE__*/React__default.createElement(React__default.Fragment, null, /*#__PURE__*/React__default.createElement("div", {
+    className: "searchBox"
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.SearchAction, {
+    text: "SEARCH",
+    handleActionClick: () => handlePopupAction("SEARCH")
+  }), /*#__PURE__*/React__default.createElement(digitUiReactComponents.FilterAction, {
+    filterCount: filterCount,
+    text: "FILTER",
+    handleActionClick: () => handlePopupAction("FILTER")
+  })), result, popup && /*#__PURE__*/React__default.createElement(digitUiReactComponents.PopUp, null, /*#__PURE__*/React__default.createElement("div", {
+    className: "popup-module"
+  }, selectedComponent)));
+};
+
+function createCommonjsModule(fn, module) {
+	return module = { exports: {} }, fn(module, module.exports), module.exports;
+}
+
+var b = "function" === typeof Symbol && Symbol.for,
+  c = b ? Symbol.for("react.element") : 60103,
+  d = b ? Symbol.for("react.portal") : 60106,
+  e = b ? Symbol.for("react.fragment") : 60107,
+  f = b ? Symbol.for("react.strict_mode") : 60108,
+  g = b ? Symbol.for("react.profiler") : 60114,
+  h = b ? Symbol.for("react.provider") : 60109,
+  k = b ? Symbol.for("react.context") : 60110,
+  l = b ? Symbol.for("react.async_mode") : 60111,
+  m = b ? Symbol.for("react.concurrent_mode") : 60111,
+  n = b ? Symbol.for("react.forward_ref") : 60112,
+  p = b ? Symbol.for("react.suspense") : 60113,
+  q = b ? Symbol.for("react.suspense_list") : 60120,
+  r = b ? Symbol.for("react.memo") : 60115,
+  t$1 = b ? Symbol.for("react.lazy") : 60116,
+  v = b ? Symbol.for("react.block") : 60121,
+  w = b ? Symbol.for("react.fundamental") : 60117,
+  x = b ? Symbol.for("react.responder") : 60118,
+  y = b ? Symbol.for("react.scope") : 60119;
+function z(a) {
+  if ("object" === typeof a && null !== a) {
+    var u = a.$$typeof;
+    switch (u) {
+      case c:
+        switch (a = a.type, a) {
+          case l:
+          case m:
+          case e:
+          case g:
+          case f:
+          case p:
+            return a;
+          default:
+            switch (a = a && a.$$typeof, a) {
+              case k:
+              case n:
+              case t$1:
+              case r:
+              case h:
+                return a;
+              default:
+                return u;
+            }
+        }
+      case d:
+        return u;
+    }
+  }
+}
+function A(a) {
+  return z(a) === m;
+}
+var AsyncMode = l;
+var ConcurrentMode = m;
+var ContextConsumer = k;
+var ContextProvider = h;
+var Element = c;
+var ForwardRef = n;
+var Fragment = e;
+var Lazy = t$1;
+var Memo = r;
+var Portal = d;
+var Profiler = g;
+var StrictMode = f;
+var Suspense = p;
+var isAsyncMode = function (a) {
+  return A(a) || z(a) === l;
+};
+var isConcurrentMode = A;
+var isContextConsumer = function (a) {
+  return z(a) === k;
+};
+var isContextProvider = function (a) {
+  return z(a) === h;
+};
+var isElement = function (a) {
+  return "object" === typeof a && null !== a && a.$$typeof === c;
+};
+var isForwardRef = function (a) {
+  return z(a) === n;
+};
+var isFragment = function (a) {
+  return z(a) === e;
+};
+var isLazy = function (a) {
+  return z(a) === t$1;
+};
+var isMemo = function (a) {
+  return z(a) === r;
+};
+var isPortal = function (a) {
+  return z(a) === d;
+};
+var isProfiler = function (a) {
+  return z(a) === g;
+};
+var isStrictMode = function (a) {
+  return z(a) === f;
+};
+var isSuspense = function (a) {
+  return z(a) === p;
+};
+var isValidElementType = function (a) {
+  return "string" === typeof a || "function" === typeof a || a === e || a === m || a === g || a === f || a === p || a === q || "object" === typeof a && null !== a && (a.$$typeof === t$1 || a.$$typeof === r || a.$$typeof === h || a.$$typeof === k || a.$$typeof === n || a.$$typeof === w || a.$$typeof === x || a.$$typeof === y || a.$$typeof === v);
+};
+var typeOf = z;
+var reactIs_production_min = {
+  AsyncMode: AsyncMode,
+  ConcurrentMode: ConcurrentMode,
+  ContextConsumer: ContextConsumer,
+  ContextProvider: ContextProvider,
+  Element: Element,
+  ForwardRef: ForwardRef,
+  Fragment: Fragment,
+  Lazy: Lazy,
+  Memo: Memo,
+  Portal: Portal,
+  Profiler: Profiler,
+  StrictMode: StrictMode,
+  Suspense: Suspense,
+  isAsyncMode: isAsyncMode,
+  isConcurrentMode: isConcurrentMode,
+  isContextConsumer: isContextConsumer,
+  isContextProvider: isContextProvider,
+  isElement: isElement,
+  isForwardRef: isForwardRef,
+  isFragment: isFragment,
+  isLazy: isLazy,
+  isMemo: isMemo,
+  isPortal: isPortal,
+  isProfiler: isProfiler,
+  isStrictMode: isStrictMode,
+  isSuspense: isSuspense,
+  isValidElementType: isValidElementType,
+  typeOf: typeOf
+};
+
+var reactIs_development = createCommonjsModule(function (module, exports) {
+
+  if (process.env.NODE_ENV !== "production") {
+    (function () {
+      var hasSymbol = typeof Symbol === 'function' && Symbol.for;
+      var REACT_ELEMENT_TYPE = hasSymbol ? Symbol.for('react.element') : 0xeac7;
+      var REACT_PORTAL_TYPE = hasSymbol ? Symbol.for('react.portal') : 0xeaca;
+      var REACT_FRAGMENT_TYPE = hasSymbol ? Symbol.for('react.fragment') : 0xeacb;
+      var REACT_STRICT_MODE_TYPE = hasSymbol ? Symbol.for('react.strict_mode') : 0xeacc;
+      var REACT_PROFILER_TYPE = hasSymbol ? Symbol.for('react.profiler') : 0xead2;
+      var REACT_PROVIDER_TYPE = hasSymbol ? Symbol.for('react.provider') : 0xeacd;
+      var REACT_CONTEXT_TYPE = hasSymbol ? Symbol.for('react.context') : 0xeace;
+      var REACT_ASYNC_MODE_TYPE = hasSymbol ? Symbol.for('react.async_mode') : 0xeacf;
+      var REACT_CONCURRENT_MODE_TYPE = hasSymbol ? Symbol.for('react.concurrent_mode') : 0xeacf;
+      var REACT_FORWARD_REF_TYPE = hasSymbol ? Symbol.for('react.forward_ref') : 0xead0;
+      var REACT_SUSPENSE_TYPE = hasSymbol ? Symbol.for('react.suspense') : 0xead1;
+      var REACT_SUSPENSE_LIST_TYPE = hasSymbol ? Symbol.for('react.suspense_list') : 0xead8;
+      var REACT_MEMO_TYPE = hasSymbol ? Symbol.for('react.memo') : 0xead3;
+      var REACT_LAZY_TYPE = hasSymbol ? Symbol.for('react.lazy') : 0xead4;
+      var REACT_BLOCK_TYPE = hasSymbol ? Symbol.for('react.block') : 0xead9;
+      var REACT_FUNDAMENTAL_TYPE = hasSymbol ? Symbol.for('react.fundamental') : 0xead5;
+      var REACT_RESPONDER_TYPE = hasSymbol ? Symbol.for('react.responder') : 0xead6;
+      var REACT_SCOPE_TYPE = hasSymbol ? Symbol.for('react.scope') : 0xead7;
+      function isValidElementType(type) {
+        return typeof type === 'string' || typeof type === 'function' || type === REACT_FRAGMENT_TYPE || type === REACT_CONCURRENT_MODE_TYPE || type === REACT_PROFILER_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || typeof type === 'object' && type !== null && (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_FUNDAMENTAL_TYPE || type.$$typeof === REACT_RESPONDER_TYPE || type.$$typeof === REACT_SCOPE_TYPE || type.$$typeof === REACT_BLOCK_TYPE);
+      }
+      function typeOf(object) {
+        if (typeof object === 'object' && object !== null) {
+          var $$typeof = object.$$typeof;
+          switch ($$typeof) {
+            case REACT_ELEMENT_TYPE:
+              var type = object.type;
+              switch (type) {
+                case REACT_ASYNC_MODE_TYPE:
+                case REACT_CONCURRENT_MODE_TYPE:
+                case REACT_FRAGMENT_TYPE:
+                case REACT_PROFILER_TYPE:
+                case REACT_STRICT_MODE_TYPE:
+                case REACT_SUSPENSE_TYPE:
+                  return type;
+                default:
+                  var $$typeofType = type && type.$$typeof;
+                  switch ($$typeofType) {
+                    case REACT_CONTEXT_TYPE:
+                    case REACT_FORWARD_REF_TYPE:
+                    case REACT_LAZY_TYPE:
+                    case REACT_MEMO_TYPE:
+                    case REACT_PROVIDER_TYPE:
+                      return $$typeofType;
+                    default:
+                      return $$typeof;
+                  }
+              }
+            case REACT_PORTAL_TYPE:
+              return $$typeof;
+          }
+        }
+        return undefined;
+      }
+      var AsyncMode = REACT_ASYNC_MODE_TYPE;
+      var ConcurrentMode = REACT_CONCURRENT_MODE_TYPE;
+      var ContextConsumer = REACT_CONTEXT_TYPE;
+      var ContextProvider = REACT_PROVIDER_TYPE;
+      var Element = REACT_ELEMENT_TYPE;
+      var ForwardRef = REACT_FORWARD_REF_TYPE;
+      var Fragment = REACT_FRAGMENT_TYPE;
+      var Lazy = REACT_LAZY_TYPE;
+      var Memo = REACT_MEMO_TYPE;
+      var Portal = REACT_PORTAL_TYPE;
+      var Profiler = REACT_PROFILER_TYPE;
+      var StrictMode = REACT_STRICT_MODE_TYPE;
+      var Suspense = REACT_SUSPENSE_TYPE;
+      var hasWarnedAboutDeprecatedIsAsyncMode = false;
+      function isAsyncMode(object) {
+        {
+          if (!hasWarnedAboutDeprecatedIsAsyncMode) {
+            hasWarnedAboutDeprecatedIsAsyncMode = true;
+            console['warn']('The ReactIs.isAsyncMode() alias has been deprecated, ' + 'and will be removed in React 17+. Update your code to use ' + 'ReactIs.isConcurrentMode() instead. It has the exact same API.');
+          }
+        }
+        return isConcurrentMode(object) || typeOf(object) === REACT_ASYNC_MODE_TYPE;
+      }
+      function isConcurrentMode(object) {
+        return typeOf(object) === REACT_CONCURRENT_MODE_TYPE;
+      }
+      function isContextConsumer(object) {
+        return typeOf(object) === REACT_CONTEXT_TYPE;
+      }
+      function isContextProvider(object) {
+        return typeOf(object) === REACT_PROVIDER_TYPE;
+      }
+      function isElement(object) {
+        return typeof object === 'object' && object !== null && object.$$typeof === REACT_ELEMENT_TYPE;
+      }
+      function isForwardRef(object) {
+        return typeOf(object) === REACT_FORWARD_REF_TYPE;
+      }
+      function isFragment(object) {
+        return typeOf(object) === REACT_FRAGMENT_TYPE;
+      }
+      function isLazy(object) {
+        return typeOf(object) === REACT_LAZY_TYPE;
+      }
+      function isMemo(object) {
+        return typeOf(object) === REACT_MEMO_TYPE;
+      }
+      function isPortal(object) {
+        return typeOf(object) === REACT_PORTAL_TYPE;
+      }
+      function isProfiler(object) {
+        return typeOf(object) === REACT_PROFILER_TYPE;
+      }
+      function isStrictMode(object) {
+        return typeOf(object) === REACT_STRICT_MODE_TYPE;
+      }
+      function isSuspense(object) {
+        return typeOf(object) === REACT_SUSPENSE_TYPE;
+      }
+      exports.AsyncMode = AsyncMode;
+      exports.ConcurrentMode = ConcurrentMode;
+      exports.ContextConsumer = ContextConsumer;
+      exports.ContextProvider = ContextProvider;
+      exports.Element = Element;
+      exports.ForwardRef = ForwardRef;
+      exports.Fragment = Fragment;
+      exports.Lazy = Lazy;
+      exports.Memo = Memo;
+      exports.Portal = Portal;
+      exports.Profiler = Profiler;
+      exports.StrictMode = StrictMode;
+      exports.Suspense = Suspense;
+      exports.isAsyncMode = isAsyncMode;
+      exports.isConcurrentMode = isConcurrentMode;
+      exports.isContextConsumer = isContextConsumer;
+      exports.isContextProvider = isContextProvider;
+      exports.isElement = isElement;
+      exports.isForwardRef = isForwardRef;
+      exports.isFragment = isFragment;
+      exports.isLazy = isLazy;
+      exports.isMemo = isMemo;
+      exports.isPortal = isPortal;
+      exports.isProfiler = isProfiler;
+      exports.isStrictMode = isStrictMode;
+      exports.isSuspense = isSuspense;
+      exports.isValidElementType = isValidElementType;
+      exports.typeOf = typeOf;
+    })();
+  }
+});
+
+var reactIs = createCommonjsModule(function (module) {
+
+  if (process.env.NODE_ENV === 'production') {
+    module.exports = reactIs_production_min;
+  } else {
+    module.exports = reactIs_development;
+  }
+});
+
+var getOwnPropertySymbols = Object.getOwnPropertySymbols;
+var hasOwnProperty = Object.prototype.hasOwnProperty;
+var propIsEnumerable = Object.prototype.propertyIsEnumerable;
+function toObject(val) {
+  if (val === null || val === undefined) {
+    throw new TypeError('Object.assign cannot be called with null or undefined');
+  }
+  return Object(val);
+}
+function shouldUseNative() {
+  try {
+    if (!Object.assign) {
+      return false;
+    }
+    var test1 = new String('abc');
+    test1[5] = 'de';
+    if (Object.getOwnPropertyNames(test1)[0] === '5') {
+      return false;
+    }
+    var test2 = {};
+    for (var i = 0; i < 10; i++) {
+      test2['_' + String.fromCharCode(i)] = i;
+    }
+    var order2 = Object.getOwnPropertyNames(test2).map(function (n) {
+      return test2[n];
+    });
+    if (order2.join('') !== '0123456789') {
+      return false;
+    }
+    var test3 = {};
+    'abcdefghijklmnopqrst'.split('').forEach(function (letter) {
+      test3[letter] = letter;
+    });
+    if (Object.keys(Object.assign({}, test3)).join('') !== 'abcdefghijklmnopqrst') {
+      return false;
+    }
+    return true;
+  } catch (err) {
+    return false;
+  }
+}
+var objectAssign = shouldUseNative() ? Object.assign : function (target, source) {
+  var from;
+  var to = toObject(target);
+  var symbols;
+  for (var s = 1; s < arguments.length; s++) {
+    from = Object(arguments[s]);
+    for (var key in from) {
+      if (hasOwnProperty.call(from, key)) {
+        to[key] = from[key];
+      }
+    }
+    if (getOwnPropertySymbols) {
+      symbols = getOwnPropertySymbols(from);
+      for (var i = 0; i < symbols.length; i++) {
+        if (propIsEnumerable.call(from, symbols[i])) {
+          to[symbols[i]] = from[symbols[i]];
+        }
+      }
+    }
+  }
+  return to;
+};
+
+var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
+var ReactPropTypesSecret_1 = ReactPropTypesSecret;
+
+var has = Function.call.bind(Object.prototype.hasOwnProperty);
+
+var printWarning = function () {};
+if (process.env.NODE_ENV !== 'production') {
+  var ReactPropTypesSecret$1 = ReactPropTypesSecret_1;
+  var loggedTypeFailures = {};
+  var has$1 = has;
+  printWarning = function (text) {
+    var message = 'Warning: ' + text;
+    if (typeof console !== 'undefined') {
+      console.error(message);
+    }
+    try {
+      throw new Error(message);
+    } catch (x) {}
+  };
+}
+function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
+  if (process.env.NODE_ENV !== 'production') {
+    for (var typeSpecName in typeSpecs) {
+      if (has$1(typeSpecs, typeSpecName)) {
+        var error;
+        try {
+          if (typeof typeSpecs[typeSpecName] !== 'function') {
+            var err = Error((componentName || 'React class') + ': ' + location + ' type `' + typeSpecName + '` is invalid; ' + 'it must be a function, usually from the `prop-types` package, but received `' + typeof typeSpecs[typeSpecName] + '`.' + 'This often happens because of typos such as `PropTypes.function` instead of `PropTypes.func`.');
+            err.name = 'Invariant Violation';
+            throw err;
+          }
+          error = typeSpecs[typeSpecName](values, typeSpecName, componentName, location, null, ReactPropTypesSecret$1);
+        } catch (ex) {
+          error = ex;
+        }
+        if (error && !(error instanceof Error)) {
+          printWarning((componentName || 'React class') + ': type specification of ' + location + ' `' + typeSpecName + '` is invalid; the type checker ' + 'function must return `null` or an `Error` but returned a ' + typeof error + '. ' + 'You may have forgotten to pass an argument to the type checker ' + 'creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and ' + 'shape all require an argument).');
+        }
+        if (error instanceof Error && !(error.message in loggedTypeFailures)) {
+          loggedTypeFailures[error.message] = true;
+          var stack = getStack ? getStack() : '';
+          printWarning('Failed ' + location + ' type: ' + error.message + (stack != null ? stack : ''));
+        }
+      }
+    }
+  }
+}
+checkPropTypes.resetWarningCache = function () {
+  if (process.env.NODE_ENV !== 'production') {
+    loggedTypeFailures = {};
+  }
+};
+var checkPropTypes_1 = checkPropTypes;
+
+var printWarning$1 = function () {};
+if (process.env.NODE_ENV !== 'production') {
+  printWarning$1 = function (text) {
+    var message = 'Warning: ' + text;
+    if (typeof console !== 'undefined') {
+      console.error(message);
+    }
+    try {
+      throw new Error(message);
+    } catch (x) {}
+  };
+}
+function emptyFunctionThatReturnsNull() {
+  return null;
+}
+var factoryWithTypeCheckers = function (isValidElement, throwOnDirectAccess) {
+  var ITERATOR_SYMBOL = typeof Symbol === 'function' && Symbol.iterator;
+  var FAUX_ITERATOR_SYMBOL = '@@iterator';
+  function getIteratorFn(maybeIterable) {
+    var iteratorFn = maybeIterable && (ITERATOR_SYMBOL && maybeIterable[ITERATOR_SYMBOL] || maybeIterable[FAUX_ITERATOR_SYMBOL]);
+    if (typeof iteratorFn === 'function') {
+      return iteratorFn;
+    }
+  }
+  var ANONYMOUS = '<<anonymous>>';
+  var ReactPropTypes = {
+    array: createPrimitiveTypeChecker('array'),
+    bigint: createPrimitiveTypeChecker('bigint'),
+    bool: createPrimitiveTypeChecker('boolean'),
+    func: createPrimitiveTypeChecker('function'),
+    number: createPrimitiveTypeChecker('number'),
+    object: createPrimitiveTypeChecker('object'),
+    string: createPrimitiveTypeChecker('string'),
+    symbol: createPrimitiveTypeChecker('symbol'),
+    any: createAnyTypeChecker(),
+    arrayOf: createArrayOfTypeChecker,
+    element: createElementTypeChecker(),
+    elementType: createElementTypeTypeChecker(),
+    instanceOf: createInstanceTypeChecker,
+    node: createNodeChecker(),
+    objectOf: createObjectOfTypeChecker,
+    oneOf: createEnumTypeChecker,
+    oneOfType: createUnionTypeChecker,
+    shape: createShapeTypeChecker,
+    exact: createStrictShapeTypeChecker
+  };
+  function is(x, y) {
+    if (x === y) {
+      return x !== 0 || 1 / x === 1 / y;
+    } else {
+      return x !== x && y !== y;
+    }
+  }
+  function PropTypeError(message, data) {
+    this.message = message;
+    this.data = data && typeof data === 'object' ? data : {};
+    this.stack = '';
+  }
+  PropTypeError.prototype = Error.prototype;
+  function createChainableTypeChecker(validate) {
+    if (process.env.NODE_ENV !== 'production') {
+      var manualPropTypeCallCache = {};
+      var manualPropTypeWarningCount = 0;
+    }
+    function checkType(isRequired, props, propName, componentName, location, propFullName, secret) {
+      componentName = componentName || ANONYMOUS;
+      propFullName = propFullName || propName;
+      if (secret !== ReactPropTypesSecret_1) {
+        if (throwOnDirectAccess) {
+          var err = new Error('Calling PropTypes validators directly is not supported by the `prop-types` package. ' + 'Use `PropTypes.checkPropTypes()` to call them. ' + 'Read more at http://fb.me/use-check-prop-types');
+          err.name = 'Invariant Violation';
+          throw err;
+        } else if (process.env.NODE_ENV !== 'production' && typeof console !== 'undefined') {
+          var cacheKey = componentName + ':' + propName;
+          if (!manualPropTypeCallCache[cacheKey] && manualPropTypeWarningCount < 3) {
+            printWarning$1('You are manually calling a React.PropTypes validation ' + 'function for the `' + propFullName + '` prop on `' + componentName + '`. This is deprecated ' + 'and will throw in the standalone `prop-types` package. ' + 'You may be seeing this warning due to a third-party PropTypes ' + 'library. See https://fb.me/react-warning-dont-call-proptypes ' + 'for details.');
+            manualPropTypeCallCache[cacheKey] = true;
+            manualPropTypeWarningCount++;
+          }
+        }
+      }
+      if (props[propName] == null) {
+        if (isRequired) {
+          if (props[propName] === null) {
+            return new PropTypeError('The ' + location + ' `' + propFullName + '` is marked as required ' + ('in `' + componentName + '`, but its value is `null`.'));
+          }
+          return new PropTypeError('The ' + location + ' `' + propFullName + '` is marked as required in ' + ('`' + componentName + '`, but its value is `undefined`.'));
+        }
+        return null;
+      } else {
+        return validate(props, propName, componentName, location, propFullName);
+      }
+    }
+    var chainedCheckType = checkType.bind(null, false);
+    chainedCheckType.isRequired = checkType.bind(null, true);
+    return chainedCheckType;
+  }
+  function createPrimitiveTypeChecker(expectedType) {
+    function validate(props, propName, componentName, location, propFullName, secret) {
+      var propValue = props[propName];
+      var propType = getPropType(propValue);
+      if (propType !== expectedType) {
+        var preciseType = getPreciseType(propValue);
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + preciseType + '` supplied to `' + componentName + '`, expected ') + ('`' + expectedType + '`.'), {
+          expectedType: expectedType
+        });
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+  function createAnyTypeChecker() {
+    return createChainableTypeChecker(emptyFunctionThatReturnsNull);
+  }
+  function createArrayOfTypeChecker(typeChecker) {
+    function validate(props, propName, componentName, location, propFullName) {
+      if (typeof typeChecker !== 'function') {
+        return new PropTypeError('Property `' + propFullName + '` of component `' + componentName + '` has invalid PropType notation inside arrayOf.');
+      }
+      var propValue = props[propName];
+      if (!Array.isArray(propValue)) {
+        var propType = getPropType(propValue);
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected an array.'));
+      }
+      for (var i = 0; i < propValue.length; i++) {
+        var error = typeChecker(propValue, i, componentName, location, propFullName + '[' + i + ']', ReactPropTypesSecret_1);
+        if (error instanceof Error) {
+          return error;
+        }
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+  function createElementTypeChecker() {
+    function validate(props, propName, componentName, location, propFullName) {
+      var propValue = props[propName];
+      if (!isValidElement(propValue)) {
+        var propType = getPropType(propValue);
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected a single ReactElement.'));
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+  function createElementTypeTypeChecker() {
+    function validate(props, propName, componentName, location, propFullName) {
+      var propValue = props[propName];
+      if (!reactIs.isValidElementType(propValue)) {
+        var propType = getPropType(propValue);
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected a single ReactElement type.'));
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+  function createInstanceTypeChecker(expectedClass) {
+    function validate(props, propName, componentName, location, propFullName) {
+      if (!(props[propName] instanceof expectedClass)) {
+        var expectedClassName = expectedClass.name || ANONYMOUS;
+        var actualClassName = getClassName(props[propName]);
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + actualClassName + '` supplied to `' + componentName + '`, expected ') + ('instance of `' + expectedClassName + '`.'));
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+  function createEnumTypeChecker(expectedValues) {
+    if (!Array.isArray(expectedValues)) {
+      if (process.env.NODE_ENV !== 'production') {
+        if (arguments.length > 1) {
+          printWarning$1('Invalid arguments supplied to oneOf, expected an array, got ' + arguments.length + ' arguments. ' + 'A common mistake is to write oneOf(x, y, z) instead of oneOf([x, y, z]).');
+        } else {
+          printWarning$1('Invalid argument supplied to oneOf, expected an array.');
+        }
+      }
+      return emptyFunctionThatReturnsNull;
+    }
+    function validate(props, propName, componentName, location, propFullName) {
+      var propValue = props[propName];
+      for (var i = 0; i < expectedValues.length; i++) {
+        if (is(propValue, expectedValues[i])) {
+          return null;
+        }
+      }
+      var valuesString = JSON.stringify(expectedValues, function replacer(key, value) {
+        var type = getPreciseType(value);
+        if (type === 'symbol') {
+          return String(value);
+        }
+        return value;
+      });
+      return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of value `' + String(propValue) + '` ' + ('supplied to `' + componentName + '`, expected one of ' + valuesString + '.'));
+    }
+    return createChainableTypeChecker(validate);
+  }
+  function createObjectOfTypeChecker(typeChecker) {
+    function validate(props, propName, componentName, location, propFullName) {
+      if (typeof typeChecker !== 'function') {
+        return new PropTypeError('Property `' + propFullName + '` of component `' + componentName + '` has invalid PropType notation inside objectOf.');
+      }
+      var propValue = props[propName];
+      var propType = getPropType(propValue);
+      if (propType !== 'object') {
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected an object.'));
+      }
+      for (var key in propValue) {
+        if (has(propValue, key)) {
+          var error = typeChecker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret_1);
+          if (error instanceof Error) {
+            return error;
+          }
+        }
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+  function createUnionTypeChecker(arrayOfTypeCheckers) {
+    if (!Array.isArray(arrayOfTypeCheckers)) {
+      process.env.NODE_ENV !== 'production' ? printWarning$1('Invalid argument supplied to oneOfType, expected an instance of array.') : void 0;
+      return emptyFunctionThatReturnsNull;
+    }
+    for (var i = 0; i < arrayOfTypeCheckers.length; i++) {
+      var checker = arrayOfTypeCheckers[i];
+      if (typeof checker !== 'function') {
+        printWarning$1('Invalid argument supplied to oneOfType. Expected an array of check functions, but ' + 'received ' + getPostfixForTypeWarning(checker) + ' at index ' + i + '.');
+        return emptyFunctionThatReturnsNull;
+      }
+    }
+    function validate(props, propName, componentName, location, propFullName) {
+      var expectedTypes = [];
+      for (var i = 0; i < arrayOfTypeCheckers.length; i++) {
+        var checker = arrayOfTypeCheckers[i];
+        var checkerResult = checker(props, propName, componentName, location, propFullName, ReactPropTypesSecret_1);
+        if (checkerResult == null) {
+          return null;
+        }
+        if (checkerResult.data && has(checkerResult.data, 'expectedType')) {
+          expectedTypes.push(checkerResult.data.expectedType);
+        }
+      }
+      var expectedTypesMessage = expectedTypes.length > 0 ? ', expected one of type [' + expectedTypes.join(', ') + ']' : '';
+      return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` supplied to ' + ('`' + componentName + '`' + expectedTypesMessage + '.'));
+    }
+    return createChainableTypeChecker(validate);
+  }
+  function createNodeChecker() {
+    function validate(props, propName, componentName, location, propFullName) {
+      if (!isNode(props[propName])) {
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` supplied to ' + ('`' + componentName + '`, expected a ReactNode.'));
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+  function invalidValidatorError(componentName, location, propFullName, key, type) {
+    return new PropTypeError((componentName || 'React class') + ': ' + location + ' type `' + propFullName + '.' + key + '` is invalid; ' + 'it must be a function, usually from the `prop-types` package, but received `' + type + '`.');
+  }
+  function createShapeTypeChecker(shapeTypes) {
+    function validate(props, propName, componentName, location, propFullName) {
+      var propValue = props[propName];
+      var propType = getPropType(propValue);
+      if (propType !== 'object') {
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type `' + propType + '` ' + ('supplied to `' + componentName + '`, expected `object`.'));
+      }
+      for (var key in shapeTypes) {
+        var checker = shapeTypes[key];
+        if (typeof checker !== 'function') {
+          return invalidValidatorError(componentName, location, propFullName, key, getPreciseType(checker));
+        }
+        var error = checker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret_1);
+        if (error) {
+          return error;
+        }
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+  function createStrictShapeTypeChecker(shapeTypes) {
+    function validate(props, propName, componentName, location, propFullName) {
+      var propValue = props[propName];
+      var propType = getPropType(propValue);
+      if (propType !== 'object') {
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type `' + propType + '` ' + ('supplied to `' + componentName + '`, expected `object`.'));
+      }
+      var allKeys = objectAssign({}, props[propName], shapeTypes);
+      for (var key in allKeys) {
+        var checker = shapeTypes[key];
+        if (has(shapeTypes, key) && typeof checker !== 'function') {
+          return invalidValidatorError(componentName, location, propFullName, key, getPreciseType(checker));
+        }
+        if (!checker) {
+          return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` key `' + key + '` supplied to `' + componentName + '`.' + '\nBad object: ' + JSON.stringify(props[propName], null, '  ') + '\nValid keys: ' + JSON.stringify(Object.keys(shapeTypes), null, '  '));
+        }
+        var error = checker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret_1);
+        if (error) {
+          return error;
+        }
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+  function isNode(propValue) {
+    switch (typeof propValue) {
+      case 'number':
+      case 'string':
+      case 'undefined':
+        return true;
+      case 'boolean':
+        return !propValue;
+      case 'object':
+        if (Array.isArray(propValue)) {
+          return propValue.every(isNode);
+        }
+        if (propValue === null || isValidElement(propValue)) {
+          return true;
+        }
+        var iteratorFn = getIteratorFn(propValue);
+        if (iteratorFn) {
+          var iterator = iteratorFn.call(propValue);
+          var step;
+          if (iteratorFn !== propValue.entries) {
+            while (!(step = iterator.next()).done) {
+              if (!isNode(step.value)) {
+                return false;
+              }
+            }
+          } else {
+            while (!(step = iterator.next()).done) {
+              var entry = step.value;
+              if (entry) {
+                if (!isNode(entry[1])) {
+                  return false;
+                }
+              }
+            }
+          }
+        } else {
+          return false;
+        }
+        return true;
+      default:
+        return false;
+    }
+  }
+  function isSymbol(propType, propValue) {
+    if (propType === 'symbol') {
+      return true;
+    }
+    if (!propValue) {
+      return false;
+    }
+    if (propValue['@@toStringTag'] === 'Symbol') {
+      return true;
+    }
+    if (typeof Symbol === 'function' && propValue instanceof Symbol) {
+      return true;
+    }
+    return false;
+  }
+  function getPropType(propValue) {
+    var propType = typeof propValue;
+    if (Array.isArray(propValue)) {
+      return 'array';
+    }
+    if (propValue instanceof RegExp) {
+      return 'object';
+    }
+    if (isSymbol(propType, propValue)) {
+      return 'symbol';
+    }
+    return propType;
+  }
+  function getPreciseType(propValue) {
+    if (typeof propValue === 'undefined' || propValue === null) {
+      return '' + propValue;
+    }
+    var propType = getPropType(propValue);
+    if (propType === 'object') {
+      if (propValue instanceof Date) {
+        return 'date';
+      } else if (propValue instanceof RegExp) {
+        return 'regexp';
+      }
+    }
+    return propType;
+  }
+  function getPostfixForTypeWarning(value) {
+    var type = getPreciseType(value);
+    switch (type) {
+      case 'array':
+      case 'object':
+        return 'an ' + type;
+      case 'boolean':
+      case 'date':
+      case 'regexp':
+        return 'a ' + type;
+      default:
+        return type;
+    }
+  }
+  function getClassName(propValue) {
+    if (!propValue.constructor || !propValue.constructor.name) {
+      return ANONYMOUS;
+    }
+    return propValue.constructor.name;
+  }
+  ReactPropTypes.checkPropTypes = checkPropTypes_1;
+  ReactPropTypes.resetWarningCache = checkPropTypes_1.resetWarningCache;
+  ReactPropTypes.PropTypes = ReactPropTypes;
+  return ReactPropTypes;
+};
+
+function emptyFunction() {}
+function emptyFunctionWithReset() {}
+emptyFunctionWithReset.resetWarningCache = emptyFunction;
+var factoryWithThrowingShims = function () {
+  function shim(props, propName, componentName, location, propFullName, secret) {
+    if (secret === ReactPropTypesSecret_1) {
+      return;
+    }
+    var err = new Error('Calling PropTypes validators directly is not supported by the `prop-types` package. ' + 'Use PropTypes.checkPropTypes() to call them. ' + 'Read more at http://fb.me/use-check-prop-types');
+    err.name = 'Invariant Violation';
+    throw err;
+  }
+  shim.isRequired = shim;
+  function getShim() {
+    return shim;
+  }
+  var ReactPropTypes = {
+    array: shim,
+    bigint: shim,
+    bool: shim,
+    func: shim,
+    number: shim,
+    object: shim,
+    string: shim,
+    symbol: shim,
+    any: shim,
+    arrayOf: getShim,
+    element: shim,
+    elementType: shim,
+    instanceOf: getShim,
+    node: shim,
+    objectOf: getShim,
+    oneOf: getShim,
+    oneOfType: getShim,
+    shape: getShim,
+    exact: getShim,
+    checkPropTypes: emptyFunctionWithReset,
+    resetWarningCache: emptyFunction
+  };
+  ReactPropTypes.PropTypes = ReactPropTypes;
+  return ReactPropTypes;
+};
+
+var propTypes = createCommonjsModule(function (module) {
+  if (process.env.NODE_ENV !== 'production') {
+    var ReactIs = reactIs;
+    var throwOnDirectAccess = true;
+    module.exports = factoryWithTypeCheckers(ReactIs.isElement, throwOnDirectAccess);
+  } else {
+    module.exports = factoryWithThrowingShims();
+  }
+});
+
+const GetSlaCell = value => {
+  return value < 0 ? /*#__PURE__*/React__default.createElement("span", {
+    className: "sla-cell-error"
+  }, value) : /*#__PURE__*/React__default.createElement("span", {
+    className: "sla-cell-success"
+  }, value);
+};
+const MobileInbox = _ref => {
+  let {
+    data,
+    onFilterChange,
+    onSearch,
+    isLoading,
+    searchParams
+  } = _ref;
+  const {
+    t
+  } = reactI18next.useTranslation();
+  const localizedData = data === null || data === void 0 ? void 0 : data.map(_ref2 => {
+    let {
+      locality,
+      tenantId,
+      serviceRequestId,
+      complaintSubType,
+      sla,
+      status,
+      taskOwner
+    } = _ref2;
+    return {
+      [t("CS_COMMON_COMPLAINT_NO")]: serviceRequestId,
+      [t("CS_ADDCOMPLAINT_COMPLAINT_SUB_TYPE")]: t("SERVICEDEFS." + complaintSubType.toUpperCase()),
+      [t("WF_INBOX_HEADER_LOCALITY")]: t(Digit.Utils.locale.getLocalityCode(locality, tenantId)),
+      [t("CS_COMPLAINT_DETAILS_CURRENT_STATUS")]: t("CS_COMMON_" + status),
+      [t("WF_INBOX_HEADER_CURRENT_OWNER")]: taskOwner,
+      [t("WF_INBOX_HEADER_SLA_DAYS_REMAINING")]: GetSlaCell(sla)
+    };
+  });
+  let result;
+  if (isLoading) {
+    result = /*#__PURE__*/React__default.createElement(digitUiReactComponents.Loader, null);
+  } else {
+    result = /*#__PURE__*/React__default.createElement(ComplaintCard, {
+      data: localizedData,
+      onFilterChange: onFilterChange,
+      serviceRequestIdKey: t("CS_COMMON_COMPLAINT_NO"),
+      onSearch: onSearch,
+      searchParams: searchParams
+    });
+  }
+  return /*#__PURE__*/React__default.createElement("div", {
+    style: {
+      padding: 0
+    }
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "inbox-container"
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "filters-container"
+  }, /*#__PURE__*/React__default.createElement(ComplaintsLink, {
+    isMobile: true
+  }), result)));
+};
+MobileInbox.propTypes = {
+  data: propTypes.any,
+  onFilterChange: propTypes.func,
+  onSearch: propTypes.func,
+  isLoading: propTypes.bool,
+  searchParams: propTypes.any
+};
+MobileInbox.defaultProps = {
+  onFilterChange: () => {},
+  searchParams: {}
+};
+
+const Inbox = () => {
+  const {
+    t
+  } = reactI18next.useTranslation();
+  const tenantId = Digit.ULBService.getCurrentTenantId();
+  const {
+    uuid
+  } = Digit.UserService.getUser().info;
+  const [pageOffset, setPageOffset] = React.useState(0);
+  const [pageSize, setPageSize] = React.useState(10);
+  const [totalRecords, setTotalRecords] = React.useState(0);
+  const [searchParams, setSearchParams] = React.useState({
+    filters: {
+      wfFilters: {
+        assignee: [{
+          code: uuid
+        }]
+      }
+    },
+    search: "",
+    sort: {}
+  });
+  React.useEffect(() => {
+    try {
+      const applicationStatus = searchParams === null || searchParams === void 0 ? void 0 : (_searchParams$filters = searchParams.filters) === null || _searchParams$filters === void 0 ? void 0 : (_searchParams$filters2 = _searchParams$filters.pgrfilters) === null || _searchParams$filters2 === void 0 ? void 0 : (_searchParams$filters3 = _searchParams$filters2.applicationStatus) === null || _searchParams$filters3 === void 0 ? void 0 : _searchParams$filters3.map(e => e.code).join(",");
+      return Promise.resolve(Digit.PGRService.count(tenantId, (applicationStatus === null || applicationStatus === void 0 ? void 0 : applicationStatus.length) > 0 ? {
+        applicationStatus
+      } : {})).then(function (response) {
+        if (response !== null && response !== void 0 && response.count) {
+          setTotalRecords(response.count);
+        }
+      });
+    } catch (e) {
+      Promise.reject(e);
+    }
+  }, [searchParams]);
+  const fetchNextPage = () => {
+    setPageOffset(prevState => prevState + 10);
+  };
+  const fetchPrevPage = () => {
+    setPageOffset(prevState => prevState - 10);
+  };
+  const handlePageSizeChange = e => {
+    setPageSize(Number(e.target.value));
+  };
+  const handleFilterChange = filterParam => {
+    setSearchParams({
+      ...searchParams,
+      filters: filterParam
+    });
+  };
+  const onSearch = function (params) {
+    if (params === void 0) {
+      params = "";
+    }
+    setSearchParams({
+      ...searchParams,
+      search: params
+    });
+  };
+  let {
+    data: complaints,
+    isLoading
+  } = Digit.Hooks.pgr.useInboxData({
+    ...searchParams,
+    offset: pageOffset,
+    limit: pageSize
+  });
+  let isMobile = Digit.Utils.browser.isMobile();
+  if ((complaints === null || complaints === void 0 ? void 0 : complaints.length) !== null) {
+    if (isMobile) {
+      return /*#__PURE__*/React__default.createElement(MobileInbox, {
+        data: complaints,
+        isLoading: isLoading,
+        onFilterChange: handleFilterChange,
+        onSearch: onSearch,
+        searchParams: searchParams
+      });
+    } else {
+      return /*#__PURE__*/React__default.createElement("div", null, /*#__PURE__*/React__default.createElement(digitUiReactComponents.Header, null, t("ES_COMMON_INBOX")), /*#__PURE__*/React__default.createElement(DesktopInbox, {
+        data: complaints,
+        isLoading: isLoading,
+        onFilterChange: handleFilterChange,
+        onSearch: onSearch,
+        searchParams: searchParams,
+        onNextPage: fetchNextPage,
+        onPrevPage: fetchPrevPage,
+        onPageSizeChange: handlePageSizeChange,
+        currentPage: Math.floor(pageOffset / pageSize),
+        totalRecords: totalRecords,
+        pageSizeLimit: pageSize
+      }));
+    }
+  } else {
+    return /*#__PURE__*/React__default.createElement(digitUiReactComponents.Loader, null);
+  }
+};
+
+const GetActionMessage$2 = _ref => {
+  let {
+    action
+  } = _ref;
+  const {
+    t
+  } = reactI18next.useTranslation();
+  if (action === "REOPEN") {
+    return t("CS_COMMON_COMPLAINT_REOPENED");
+  } else {
+    return t("CS_COMMON_COMPLAINT_SUBMITTED");
+  }
+};
+const BannerPicker$2 = _ref2 => {
+  let {
+    response
+  } = _ref2;
+  const {
+    complaints
+  } = response;
+  if (complaints && complaints.response && complaints.response.responseInfo) {
+    return /*#__PURE__*/React__default.createElement(digitUiReactComponents.Banner, {
+      message: GetActionMessage$2(complaints.response.ServiceWrappers[0].workflow),
+      complaintNumber: complaints.response.ServiceWrappers[0].service.serviceRequestId,
+      successful: true
+    });
+  } else {
+    return /*#__PURE__*/React__default.createElement(digitUiReactComponents.Banner, {
+      message: t("CS_COMMON_COMPLAINT_NOT_SUBMITTED"),
+      successful: false
+    });
+  }
+};
+const Response$2 = props => {
+  const {
+    t
+  } = reactI18next.useTranslation();
+  const {
+    match
+  } = reactRouterDom.useRouteMatch();
+  const appState = reactRedux.useSelector(state => state)["pgr"];
+  return /*#__PURE__*/React__default.createElement(digitUiReactComponents.Card, null, appState.complaints.response && /*#__PURE__*/React__default.createElement(BannerPicker$2, {
+    response: appState
+  }), /*#__PURE__*/React__default.createElement(digitUiReactComponents.CardText, null, t("ES_COMMON_TRACK_COMPLAINT_TEXT")), /*#__PURE__*/React__default.createElement(reactRouterDom.Link, {
+    to: "/digit-ui/employee"
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.SubmitBar, {
+    label: t("CORE_COMMON_GO_TO_HOME")
+  })));
+};
+
+const PGRReducers = getRootReducer;
+const PGRModule = _ref => {
+  let {
+    stateCode,
+    userType,
+    tenants
+  } = _ref;
+  const moduleCode = "PGR";
+  const language = Digit.StoreData.getCurrentLanguage();
+  const {
+    isLoading,
+    data: store
+  } = Digit.Services.useStore({
+    stateCode,
+    moduleCode,
+    language
+  });
+  if (isLoading) {
+    return /*#__PURE__*/React__default.createElement(digitUiReactComponents.Loader, null);
+  }
+  Digit.SessionStorage.set("PGR_TENANTS", tenants);
+  if (userType === "citizen") {
+    return /*#__PURE__*/React__default.createElement(App, null);
+  } else {
+    return /*#__PURE__*/React__default.createElement(App$1, null);
+  }
+};
+const PGRLinks = _ref2 => {
+  let {
+    matchPath
+  } = _ref2;
+  const {
+    t
+  } = reactI18next.useTranslation();
+  const [params, setParams, clearParams] = Digit.Hooks.useSessionStorage(PGR_CITIZEN_CREATE_COMPLAINT, {});
+  React.useEffect(() => {
+    clearParams();
+  }, []);
+  const links = [{
+    link: matchPath + "/create-complaint/complaint-type",
+    i18nKey: t("CS_COMMON_FILE_A_COMPLAINT")
+  }, {
+    link: matchPath + "/complaints",
+    i18nKey: t(LOCALE.MY_COMPLAINTS)
+  }];
+  return /*#__PURE__*/React__default.createElement(digitUiReactComponents.CitizenHomeCard, {
+    header: t("CS_COMMON_HOME_COMPLAINTS"),
+    links: links,
+    Icon: digitUiReactComponents.ComplaintIcon
+  });
+};
+const componentsToRegister = {
+  PGRModule,
+  PGRLinks,
+  PGRCard,
+  PGRComplaintDetails: ComplaintDetails,
+  PGRCreateComplaintEmp: CreateComplaint$1,
+  PGRInbox: Inbox,
+  PGRResponseEmp: Response$2,
+  PGRCreateComplaintCitizen: CreateComplaint,
+  PGRComplaintsList: ComplaintsList,
+  PGRComplaintDetailsPage: ComplaintDetailsPage,
+  PGRSelectRating: SelectRating,
+  PGRResponseCitzen: Response
+};
+const initPGRComponents = () => {
+  Object.entries(componentsToRegister).forEach(_ref3 => {
+    let [key, value] = _ref3;
+    Digit.ComponentRegistryService.setComponent(key, value);
+  });
+};
+
+exports.PGRReducers = PGRReducers;
+exports.initPGRComponents = initPGRComponents;
+//# sourceMappingURL=index.js.map

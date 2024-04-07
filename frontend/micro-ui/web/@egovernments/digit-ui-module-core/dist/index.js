@@ -1,1 +1,15015 @@
-function e(e){return e&&"object"==typeof e&&"default"in e?e.default:e}var t=require("react"),n=e(t),r=require("react-query"),i=require("react-redux"),o=require("react-router-dom"),l=require("react-i18next"),a=require("@egovernments/digit-ui-react-components"),u=e(require("react-tooltip")),s=require("redux"),c=e(require("redux-thunk"));const d=(e,t,n)=>{const r=null==e?void 0:e[""+t];r&&r.map(e=>{e.link=e.navigationURL,e.i18nKey=n(e.name)});const i={links:null==r?void 0:r.reverse(),header:Digit.Utils.locale.getTransformedLocale("ACTION_TEST_"+t),iconName:"CITIZEN_"+t+"_ICON"};return"FSM"===t&&[{role:"FSM_DSO",from:"/digit-ui/citizen/fsm/dso-dashboard",dashoardLink:"CS_LINK_DSO_DASHBOARD",loginLink:"CS_LINK_LOGIN_DSO"}].map(e=>{var t,r;let{role:o,from:l,loginLink:a,dashoardLink:u}=e;Digit.UserService.hasAccess(o)?null==i||null===(t=i.links)||void 0===t||t.push({link:l,i18nKey:n(u)}):null==i||null===(r=i.links)||void 0===r||r.push({link:"/digit-ui/citizen/login",state:{role:"FSM_DSO",from:l},i18nKey:n(a)})}),i},f=e=>{let{modules:t,getCitizenMenu:r,fetchedCitizen:i,isLoading:o}=e;const u=[t.filter(e=>{let{code:t}=e;return"Payment"===t})[0],...t.filter(e=>{let{code:t}=e;return"Payment"!==t})],{t:s}=l.useTranslation();return o?n.createElement(a.Loader,null):n.createElement(n.Fragment,null,n.createElement("div",{className:"citizen-all-services-wrapper"},n.createElement(a.BackButton,null),n.createElement("div",{className:"citizenAllServiceGrid",style:{display:"flex",flexDirection:"column",justifyContent:"center"}},u.filter(e=>e).map((e,t)=>{var o,l;let u,{code:c}=e;var f,m,p,v;return i&&(u=i?d(r,c,s):void 0),(null===(o=u)||void 0===o||null===(l=o.links)||void 0===l?void 0:l.length)>0?n.createElement(a.CitizenHomeCard,{header:s(null===(f=u)||void 0===f?void 0:f.header),links:null===(m=u)||void 0===m||null===(p=m.links)||void 0===p||null===(v=p.filter(e=>null==e?void 0:e.link))||void 0===v?void 0:v.sort((e,t)=>(null==e?void 0:e.orderNumber)-(null==t?void 0:t.orderNumber)),Icon:()=>(e=>{switch(e){case"PT":return n.createElement(a.PTIcon,{className:"fill-path-primary-main"});case"WS":return n.createElement(a.WSICon,{className:"fill-path-primary-main"});case"FSM":return n.createElement(a.FSMIcon,{className:"fill-path-primary-main"});case"MCollect":return n.createElement(a.MCollectIcon,{className:"fill-path-primary-main"});case"PGR":return n.createElement(a.PGRIcon,{className:"fill-path-primary-main"});case"TL":return n.createElement(a.TLIcon,{className:"fill-path-primary-main"});case"OBPS":return n.createElement(a.OBPSIcon,{className:"fill-path-primary-main"});case"Bills":return n.createElement(a.BillsIcon,{className:"fill-path-primary-main"});default:return n.createElement(a.PTIcon,{className:"fill-path-primary-main"})}})(c),Info:"OBPS"===c?()=>n.createElement(a.CitizenInfoLabel,{style:{margin:"0px",padding:"10px"},info:s("CS_FILE_APPLICATION_INFO_LABEL"),text:s("BPA_CITIZEN_HOME_STAKEHOLDER_INCLUDES_INFO_LABEL")}):null,isInfo:"OBPS"===c}):n.createElement(n.Fragment,null)}))))},m=e=>{let{modules:t}=e;return window.Digit.SessionStorage.get("PT_CREATE_EMP_TRADE_NEW_FORM")&&window.Digit.SessionStorage.set("PT_CREATE_EMP_TRADE_NEW_FORM",{}),n.createElement("div",{className:"employee-app-container"},n.createElement("div",{className:"ground-container moduleCardWrapper gridModuleWrapper"},t.map((e,t)=>{let{code:r}=e;const i=Digit.ComponentRegistryService.getComponent(r+"Card")||(()=>n.createElement(n.Fragment,null));return n.createElement(i,{key:t})})))},p=e=>{let{userType:t,modules:r,getCitizenMenu:i,fetchedCitizen:o,isLoading:l}=e;return"citizen"===t?n.createElement(f,{modules:r,getCitizenMenu:i,fetchedCitizen:o,isLoading:l}):n.createElement(m,{modules:r})},v=function(){function e(){}return e.prototype.then=function(t,n){const r=new e,i=this.s;if(i){const e=1&i?t:n;if(e){try{g(r,1,e(this.v))}catch(e){g(r,2,e)}return r}return this}return this.o=function(e){try{const i=e.v;1&e.s?g(r,1,t?t(i):i):n?g(r,1,n(i)):g(r,2,i)}catch(e){g(r,2,e)}},r},e}();function g(e,t,n){if(!e.s){if(n instanceof v){if(!n.s)return void(n.o=g.bind(null,e,t));1&t&&(t=n.s),n=n.v}if(n&&n.then)return void n.then(g.bind(null,e,t),g.bind(null,e,2));e.s=t,e.v=n;const r=e.o;r&&r(e)}}function h(e){return e instanceof v&&1&e.s}const E="undefined"!=typeof Symbol?Symbol.iterator||(Symbol.iterator=Symbol("Symbol.iterator")):"@@iterator";function y(e,t,n){if("function"==typeof e[E]){var r,i,o,l=e[E]();if(function e(a){try{for(;!((r=l.next()).done||n&&n());)if((a=t(r.value))&&a.then){if(!h(a))return void a.then(e,o||(o=g.bind(null,i=new v,2)));a=a.v}i?g(i,1,a):i=a}catch(e){g(i||(i=new v),2,e)}}(),l.return){var a=function(e){try{r.done||l.return()}catch(e){}return e};if(i&&i.then)return i.then(a,function(e){throw a(e)});a()}return i}if(!("length"in e))throw new TypeError("Object is not iterable");for(var u=[],s=0;s<e.length;s++)u.push(e[s]);return function(e,t,n){var r,i,o=-1;return function l(a){try{for(;++o<e.length&&(!n||!n());)if((a=t(o))&&a.then){if(!h(a))return void a.then(l,i||(i=g.bind(null,r=new v,2)));a=a.v}r?g(r,1,a):r=a}catch(e){g(r||(r=new v),2,e)}}(),r}(u,function(e){return t(u[e])},n)}function _(e,t){try{var n=e()}catch(e){return t(e)}return n&&n.then?n.then(void 0,t):n}"undefined"!=typeof Symbol&&(Symbol.asyncIterator||(Symbol.asyncIterator=Symbol("Symbol.asyncIterator")));const b=[{texts:{header:"CS_LOGIN_PROVIDE_MOBILE_NUMBER",cardText:"CS_LOGIN_TEXT",nextText:"CS_COMMONS_NEXT",submitBarLabel:"CS_COMMONS_NEXT"},inputs:[{label:"CORE_COMMON_HOLDING_ID",type:"text",name:"holdingId",error:"ERR_HRMS_INVALID_HOLDING_ID",validation:{required:!0,minLength:15,maxLength:15}},{label:"CORE_COMMON_MOBILE_NUMBER",type:"text",name:"mobileNumber",error:"ERR_HRMS_INVALID_MOB_NO",componentInFront:"+91",validation:{required:!0,minLength:10,maxLength:10}}]},{texts:{header:"CS_LOGIN_OTP",cardText:"CS_LOGIN_OTP_TEXT",nextText:"CS_COMMONS_NEXT",submitBarLabel:"CS_COMMONS_NEXT"}},{texts:{header:"CS_LOGIN_PROVIDE_NAME",cardText:"CS_LOGIN_NAME_TEXT",nextText:"CS_COMMONS_NEXT",submitBarLabel:"CS_COMMONS_NEXT"},inputs:[{label:"CORE_COMMON_NAME",type:"text",name:"name",error:"CORE_COMMON_NAME_VALIDMSG",validation:{required:!0,minLength:1,pattern:/^[^{0-9}^\$\"<>?\\\\~!@#$%^()+={}\[\]*,/_:;“”‘’]{1,50}$/i}}]}],C=e=>{let{t:r,onSelect:i,mobileNumber:o,holdingId:l,onMobileChange:u,config:s,canSubmit:c,CitizenHomePageTenantId:d}=e;const[f,m]=t.useState(!1),[p,v]=t.useState(!1),[g,h]=t.useState(""),{isLoading:E,data:y}=Digit.Hooks.useCustomMDMS(Digit.ULBService.getStateId(),"common-masters",[{name:"CitizenConsentForm"}]);function _(e){m(e.target.checked)}return t.useEffect(()=>{var e,t,n,r,i;null!=y&&null!==(e=y["common-masters"])&&void 0!==e&&null!==(t=e.CitizenConsentForm)&&void 0!==t&&null!==(n=t[0])&&void 0!==n&&n.isCitizenConsentFormEnabled&&v(null==y||null===(r=y["common-masters"])||void 0===r||null===(i=r.CitizenConsentForm)||void 0===i?void 0:i[0])},[y]),E?n.createElement(a.Loader,null):n.createElement(a.FormStep,{isDisabled:null!=p&&p.isCitizenConsentFormEnabled?!(10===o.length&&c&&f):!(10===o.length&&c),onSelect:i,config:s,t:r,componentInFront:"+91",onChange:u,value:o,holdingId:l,CitizenHomePageTenantId:d},(null==p?void 0:p.isCitizenConsentFormEnabled)&&n.createElement("div",null,n.createElement(a.CheckBox,{className:"form-field",label:n.createElement("span",null,null==p||null===(b=p.checkBoxLabels)||void 0===b?void 0:b.map((e,t)=>{var i;return n.createElement("span",null,(null==e?void 0:e.linkPrefix)&&n.createElement("span",null,r((null==e?void 0:e.linkPrefix)+"_")),(null==e?void 0:e.link)&&n.createElement("span",{id:null==e?void 0:e.linkId,onClick:e=>{(e=>{h(e.target.id)})(e)},style:{color:"#a82227",cursor:"pointer"}},r((null==e?void 0:e.link)+"_")),(null==e?void 0:e.linkPostfix)&&n.createElement("span",null,r((null==e?void 0:e.linkPostfix)+"_")),t==(null==p||null===(i=p.checkBoxLabels)||void 0===i?void 0:i.length)-1&&r("LABEL"))})),value:f,checked:f,style:{marginTop:"5px",marginLeft:"55px"},styles:{marginBottom:"30px"},onChange:_}),n.createElement(a.CitizenConsentForm,{styles:{},t:r,isCheckBoxChecked:_,labels:null==p?void 0:p.checkBoxLabels,mdmsConfig:g,setMdmsConfig:h})));var b},S=e=>{let{config:r,otp:i,onOtpChange:o,onResend:l,onSelect:u,t:s,error:c,userType:d="citizen",canSubmit:f}=e;const[m,p]=t.useState(30);!function(e,n){const r=t.useRef();t.useEffect(()=>{r.current=e},[e]),t.useEffect(()=>{if(null!==n){const e=setInterval(function(){r.current()},n);return()=>clearInterval(e)}},[n])}(()=>{p(m-1)},m>0?1e3:null);const v=()=>{l(),p(2)};return"employee"===d?n.createElement(t.Fragment,null,n.createElement(a.OTPInput,{length:6,onChange:o,value:i}),m>0?n.createElement(a.CardText,null,s("CS_RESEND_ANOTHER_OTP")+" "+m+" "+s("CS_RESEND_SECONDS")):n.createElement("p",{className:"card-text-button",onClick:v},s("CS_RESEND_OTP")),!c&&n.createElement(a.CardLabelError,null,s("CS_INVALID_OTP"))):n.createElement(a.FormStep,{onSelect:u,config:r,t:s,isDisabled:!(6===(null==i?void 0:i.length)&&f)},n.createElement(a.OTPInput,{length:6,onChange:o,value:i}),m>0?n.createElement(a.CardText,null,s("CS_RESEND_ANOTHER_OTP")+" "+m+" "+s("CS_RESEND_SECONDS")):n.createElement("p",{className:"card-text-button",onClick:v},s("CS_RESEND_OTP")),!c&&n.createElement(a.CardLabelError,null,s("CS_INVALID_OTP")))},w=e=>{let{config:t,onSelect:r,t:i,isDisabled:o}=e;return n.createElement(a.FormStep,{config:t,onSelect:r,t:i,isDisabled:o})},O={type:"register"},N={type:"login"},I=(e,t)=>(null==e?void 0:e.from)||(null==t?void 0:t.from)||"/digit-ui/citizen",D=e=>{var r,i;let{stateCode:u,isUserRegistered:s=!0}=e;const{t:c}=l.useTranslation(),d=o.useLocation(),{path:f}=o.useRouteMatch(),m=o.useHistory(),[p,v]=t.useState(null),[g,h]=t.useState(null),[E,y]=t.useState(!0),[D,T]=t.useState(null),[x,A]=t.useState(s?{}:null==d||null===(r=d.state)||void 0===r?void 0:r.data),[L,R]=t.useState(null),M=Digit.Hooks.useQueryParams(),[P,k]=t.useState(!1),[U,B]=t.useState(!0),[j,F]=t.useState(!0);t.useEffect(()=>{let e;return g&&(L&&(clearTimeout(L),R(null)),e=setTimeout(()=>{h("")},5e3),R(e)),()=>{e&&clearTimeout(e)}},[g]),t.useEffect(()=>{var e;if(!p)return;Digit.SessionStorage.set("citizen.userRequestObject",p),Digit.UserService.setUser(p),((e,t,n)=>{var r,i;let o=null===(r=JSON.parse(sessionStorage.getItem("Digit.initData")))||void 0===r||null===(i=r.value)||void 0===i?void 0:i.selectedLanguage;localStorage.setItem("Citizen.tenant-id",n),localStorage.setItem("tenant-id",n),localStorage.setItem("citizen.userRequestObject",JSON.stringify(e)),localStorage.setItem("locale",o),localStorage.setItem("Citizen.locale",o),localStorage.setItem("token",t),localStorage.setItem("Citizen.token",t),localStorage.setItem("user-info",JSON.stringify(e)),localStorage.setItem("Citizen.user-info",JSON.stringify(e))})(null==p?void 0:p.info,null==p?void 0:p.access_token,u);const t=(null===(e=d.state)||void 0===e?void 0:e.from)||"/digit-ui/citizen";Digit.ULBService.getCitizenCurrentTenant(!0)?m.replace(t):m.replace("/digit-ui/citizen/select-location",{redirectBackTo:t})},[p]);const z=Digit.SessionStorage.get("CITIZEN.COMMON.HOME.CITY"),W=t.useMemo(()=>b.map(e=>{const t={};for(const n in e.texts)t[n]=c(e.texts[n]);return{...e,texts:t}},[b])),V=()=>Digit.UserService.getType(),H=function(e){return Promise.resolve(_(function(){return Promise.resolve(Digit.UserService.sendOtp(e,u)).then(function(e){return[e,null]})},function(e){return[null,e]}))};return n.createElement("div",{className:"citizen-form-wrapper"},n.createElement(o.Switch,null,n.createElement(a.AppContainer,null,n.createElement(a.BackButton,null),n.createElement(o.Route,{path:""+f,exact:!0},n.createElement(C,{onSelect:function(e){try{F(!1),A({...x,...e});const t={...e,tenantId:u,userType:V()};return Promise.resolve(s?Promise.resolve(H({otp:{...t,...N}})).then(function(e){var n;let[r,i]=e;var o,l;if(!i)return F(!0),void m.replace(f+"/otp",{from:I(d.state,M),role:null===(o=d.state)||void 0===o?void 0:o.role});F(!0),d.state&&"FSM_DSO"===d.state.role||m.push("/digit-ui/citizen/register/name",{from:I(d.state,M),data:t}),null!==(n=d.state)&&void 0!==n&&n.role&&(F(!0),h("FSM_DSO"===(null===(l=d.state)||void 0===l?void 0:l.role)?c("ES_ERROR_DSO_LOGIN"):"User not registered."))}):Promise.resolve(H({otp:{...t,...O}})).then(function(e){let[t,n]=e;if(!n)return F(!0),void m.replace(f+"/otp",{from:I(d.state,M)});F(!0)}))}catch(e){return Promise.reject(e)}},config:W[0],mobileNumber:x.mobileNumber||"",holdingId:x.holdingId||"",onMobileChange:e=>{const{value:t}=e.target;A("holdingId"===e.target.name?{...x,holdingId:t}:{...x,mobileNumber:t})},canSubmit:j,showRegisterLink:s&&!(null!==(i=d.state)&&void 0!==i&&i.role),CitizenHomePageTenantId:z,t:c})),n.createElement(o.Route,{path:f+"/otp"},n.createElement(S,{config:{...W[1],texts:{...W[1].texts,cardText:W[1].texts.cardText+" "+(x.mobileNumber||"")}},onOtpChange:e=>{A({...x,otp:e})},onResend:function(){try{const{mobileNumber:e}=x,t={mobileNumber:e,tenantId:u,userType:V()},n=function(){if(!s)return Promise.resolve(H({otp:{...t,...O}})).then(function(){});{const e=function(){if(s)return Promise.resolve(H({otp:{...t,...N}})).then(function(){})}();if(e&&e.then)return e.then(function(){})}}();return Promise.resolve(n&&n.then?n.then(function(){}):void 0)}catch(e){return Promise.reject(e)}},onSelect:function(){try{return Promise.resolve(_(function(){y(!0),B(!1);const{mobileNumber:e,otp:t,name:n}=x;return function(){if(s){const n={username:e,password:t,tenantId:u,userType:V()};return Promise.resolve(Digit.UserService.authenticate(n)).then(function(e){var t,n,r;let{UserRequest:i,...o}=e;if(null!==(t=d.state)&&void 0!==t&&t.role){const e=i.roles.find(e=>e.code===d.state.role);if(!e||!e.code)return h(c("ES_ERROR_USER_NOT_PERMITTED")),void setTimeout(()=>m.replace("/digit-ui/citizen"),5e3)}null!==(n=window)&&void 0!==n&&null!==(r=n.globalConfigs)&&void 0!==r&&r.getConfig("ENABLE_SINGLEINSTANCE")&&(i.tenantId=Digit.ULBService.getStateId()),v({info:i,...o})})}{const r=function(){if(!s)return Promise.resolve(Digit.UserService.registerUser({name:n,username:e,otpReference:t,tenantId:u},u)).then(function(e){var t,n;let{UserRequest:r,...i}=e;null!==(t=window)&&void 0!==t&&null!==(n=t.globalConfigs)&&void 0!==n&&n.getConfig("ENABLE_SINGLEINSTANCE")&&(r.tenantId=Digit.ULBService.getStateId()),v({info:r,...i})})}();if(r&&r.then)return r.then(function(){})}}()},function(){B(!0),y(!1)}))}catch(e){return Promise.reject(e)}},otp:x.otp,error:E,canSubmit:U,t:c})),n.createElement(o.Route,{path:f+"/name"},n.createElement(w,{config:W[2],onSelect:function(e){try{const t={...x,tenantId:u,userType:V(),...e};return A({...x,...e}),k(!0),Promise.resolve(H({otp:{...t,...O}})).then(function(e){let[t,n]=e;t?(k(!1),m.replace(f+"/otp",{from:I(d.state,M)})):k(!1)})}catch(e){return Promise.reject(e)}},t:c,isDisabled:P})),g&&n.createElement(a.Toast,{error:!0,label:g,onClose:()=>h(null)}))))},T=[{texts:{header:"CORE_COMMON_LOGIN",submitButtonLabel:"CORE_COMMON_CONTINUE",secondaryButtonLabel:"CORE_COMMON_FORGOT_PASSWORD"},inputs:[{label:"CORE_LOGIN_USERNAME",type:"text",name:"username",error:"ERR_HRMS_INVALID_USER_ID"},{label:"CORE_LOGIN_PASSWORD",type:"password",name:"password",error:"ERR_HRMS_WRONG_PASSWORD"},{label:"CORE_COMMON_CITY",type:"custom",name:"city",error:"ERR_HRMS_INVALID_CITY"}]}];function x(){return(x=Object.assign?Object.assign.bind():function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var r in n)Object.prototype.hasOwnProperty.call(n,r)&&(e[r]=n[r])}return e}).apply(this,arguments)}var A="undefined"!=typeof globalThis?globalThis:"undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof self?self:{};function L(e,t){return e(t={exports:{}},t.exports),t.exports}var R="function"==typeof Symbol&&Symbol.for,M=R?Symbol.for("react.element"):60103,P=R?Symbol.for("react.portal"):60106,k=R?Symbol.for("react.fragment"):60107,U=R?Symbol.for("react.strict_mode"):60108,B=R?Symbol.for("react.profiler"):60114,j=R?Symbol.for("react.provider"):60109,F=R?Symbol.for("react.context"):60110,z=R?Symbol.for("react.async_mode"):60111,W=R?Symbol.for("react.concurrent_mode"):60111,V=R?Symbol.for("react.forward_ref"):60112,H=R?Symbol.for("react.suspense"):60113,G=R?Symbol.for("react.suspense_list"):60120,q=R?Symbol.for("react.memo"):60115,Z=R?Symbol.for("react.lazy"):60116,X=R?Symbol.for("react.block"):60121,Y=R?Symbol.for("react.fundamental"):60117,K=R?Symbol.for("react.responder"):60118,J=R?Symbol.for("react.scope"):60119;function $(e){if("object"==typeof e&&null!==e){var t=e.$$typeof;switch(t){case M:switch(e=e.type){case z:case W:case k:case B:case U:case H:return e;default:switch(e=e&&e.$$typeof){case F:case V:case Z:case q:case j:return e;default:return t}}case P:return t}}}function Q(e){return $(e)===W}var ee={AsyncMode:z,ConcurrentMode:W,ContextConsumer:F,ContextProvider:j,Element:M,ForwardRef:V,Fragment:k,Lazy:Z,Memo:q,Portal:P,Profiler:B,StrictMode:U,Suspense:H,isAsyncMode:function(e){return Q(e)||$(e)===z},isConcurrentMode:Q,isContextConsumer:function(e){return $(e)===F},isContextProvider:function(e){return $(e)===j},isElement:function(e){return"object"==typeof e&&null!==e&&e.$$typeof===M},isForwardRef:function(e){return $(e)===V},isFragment:function(e){return $(e)===k},isLazy:function(e){return $(e)===Z},isMemo:function(e){return $(e)===q},isPortal:function(e){return $(e)===P},isProfiler:function(e){return $(e)===B},isStrictMode:function(e){return $(e)===U},isSuspense:function(e){return $(e)===H},isValidElementType:function(e){return"string"==typeof e||"function"==typeof e||e===k||e===W||e===B||e===U||e===H||e===G||"object"==typeof e&&null!==e&&(e.$$typeof===Z||e.$$typeof===q||e.$$typeof===j||e.$$typeof===F||e.$$typeof===V||e.$$typeof===Y||e.$$typeof===K||e.$$typeof===J||e.$$typeof===X)},typeOf:$},te=L(function(e,t){"production"!==process.env.NODE_ENV&&function(){var e="function"==typeof Symbol&&Symbol.for,n=e?Symbol.for("react.element"):60103,r=e?Symbol.for("react.portal"):60106,i=e?Symbol.for("react.fragment"):60107,o=e?Symbol.for("react.strict_mode"):60108,l=e?Symbol.for("react.profiler"):60114,a=e?Symbol.for("react.provider"):60109,u=e?Symbol.for("react.context"):60110,s=e?Symbol.for("react.async_mode"):60111,c=e?Symbol.for("react.concurrent_mode"):60111,d=e?Symbol.for("react.forward_ref"):60112,f=e?Symbol.for("react.suspense"):60113,m=e?Symbol.for("react.suspense_list"):60120,p=e?Symbol.for("react.memo"):60115,v=e?Symbol.for("react.lazy"):60116,g=e?Symbol.for("react.block"):60121,h=e?Symbol.for("react.fundamental"):60117,E=e?Symbol.for("react.responder"):60118,y=e?Symbol.for("react.scope"):60119;function _(e){if("object"==typeof e&&null!==e){var t=e.$$typeof;switch(t){case n:var m=e.type;switch(m){case s:case c:case i:case l:case o:case f:return m;default:var g=m&&m.$$typeof;switch(g){case u:case d:case v:case p:case a:return g;default:return t}}case r:return t}}}var b=c,C=u,S=a,w=n,O=d,N=i,I=v,D=p,T=r,x=l,A=o,L=f,R=!1;function M(e){return _(e)===c}t.AsyncMode=s,t.ConcurrentMode=b,t.ContextConsumer=C,t.ContextProvider=S,t.Element=w,t.ForwardRef=O,t.Fragment=N,t.Lazy=I,t.Memo=D,t.Portal=T,t.Profiler=x,t.StrictMode=A,t.Suspense=L,t.isAsyncMode=function(e){return R||(R=!0,console.warn("The ReactIs.isAsyncMode() alias has been deprecated, and will be removed in React 17+. Update your code to use ReactIs.isConcurrentMode() instead. It has the exact same API.")),M(e)||_(e)===s},t.isConcurrentMode=M,t.isContextConsumer=function(e){return _(e)===u},t.isContextProvider=function(e){return _(e)===a},t.isElement=function(e){return"object"==typeof e&&null!==e&&e.$$typeof===n},t.isForwardRef=function(e){return _(e)===d},t.isFragment=function(e){return _(e)===i},t.isLazy=function(e){return _(e)===v},t.isMemo=function(e){return _(e)===p},t.isPortal=function(e){return _(e)===r},t.isProfiler=function(e){return _(e)===l},t.isStrictMode=function(e){return _(e)===o},t.isSuspense=function(e){return _(e)===f},t.isValidElementType=function(e){return"string"==typeof e||"function"==typeof e||e===i||e===c||e===l||e===o||e===f||e===m||"object"==typeof e&&null!==e&&(e.$$typeof===v||e.$$typeof===p||e.$$typeof===a||e.$$typeof===u||e.$$typeof===d||e.$$typeof===h||e.$$typeof===E||e.$$typeof===y||e.$$typeof===g)},t.typeOf=_}()}),ne=L(function(e){e.exports="production"===process.env.NODE_ENV?ee:te}),re=Object.getOwnPropertySymbols,ie=Object.prototype.hasOwnProperty,oe=Object.prototype.propertyIsEnumerable;function le(e){if(null==e)throw new TypeError("Object.assign cannot be called with null or undefined");return Object(e)}var ae=function(){try{if(!Object.assign)return!1;var e=new String("abc");if(e[5]="de","5"===Object.getOwnPropertyNames(e)[0])return!1;for(var t={},n=0;n<10;n++)t["_"+String.fromCharCode(n)]=n;if("0123456789"!==Object.getOwnPropertyNames(t).map(function(e){return t[e]}).join(""))return!1;var r={};return"abcdefghijklmnopqrst".split("").forEach(function(e){r[e]=e}),"abcdefghijklmnopqrst"===Object.keys(Object.assign({},r)).join("")}catch(e){return!1}}()?Object.assign:function(e,t){for(var n,r,i=le(e),o=1;o<arguments.length;o++){for(var l in n=Object(arguments[o]))ie.call(n,l)&&(i[l]=n[l]);if(re){r=re(n);for(var a=0;a<r.length;a++)oe.call(n,r[a])&&(i[r[a]]=n[r[a]])}}return i},ue="SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED",se=Function.call.bind(Object.prototype.hasOwnProperty),ce=function(){};if("production"!==process.env.NODE_ENV){var de=ue,fe={},me=se;ce=function(e){var t="Warning: "+e;"undefined"!=typeof console&&console.error(t);try{throw new Error(t)}catch(e){}}}function pe(e,t,n,r,i){if("production"!==process.env.NODE_ENV)for(var o in e)if(me(e,o)){var l;try{if("function"!=typeof e[o]){var a=Error((r||"React class")+": "+n+" type `"+o+"` is invalid; it must be a function, usually from the `prop-types` package, but received `"+typeof e[o]+"`.This often happens because of typos such as `PropTypes.function` instead of `PropTypes.func`.");throw a.name="Invariant Violation",a}l=e[o](t,o,r,n,null,de)}catch(e){l=e}if(!l||l instanceof Error||ce((r||"React class")+": type specification of "+n+" `"+o+"` is invalid; the type checker function must return `null` or an `Error` but returned a "+typeof l+". You may have forgotten to pass an argument to the type checker creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and shape all require an argument)."),l instanceof Error&&!(l.message in fe)){fe[l.message]=!0;var u=i?i():"";ce("Failed "+n+" type: "+l.message+(null!=u?u:""))}}}pe.resetWarningCache=function(){"production"!==process.env.NODE_ENV&&(fe={})};var ve=pe,ge=function(){};function he(){return null}function Ee(){}function ye(){}"production"!==process.env.NODE_ENV&&(ge=function(e){var t="Warning: "+e;"undefined"!=typeof console&&console.error(t);try{throw new Error(t)}catch(e){}}),ye.resetWarningCache=Ee;var _e=L(function(e){e.exports="production"!==process.env.NODE_ENV?function(e,t){var n="function"==typeof Symbol&&Symbol.iterator,r={array:a("array"),bigint:a("bigint"),bool:a("boolean"),func:a("function"),number:a("number"),object:a("object"),string:a("string"),symbol:a("symbol"),any:l(he),arrayOf:function(e){return l(function(t,n,r,i,l){if("function"!=typeof e)return new o("Property `"+l+"` of component `"+r+"` has invalid PropType notation inside arrayOf.");var a=t[n];if(!Array.isArray(a))return new o("Invalid "+i+" `"+l+"` of type `"+c(a)+"` supplied to `"+r+"`, expected an array.");for(var u=0;u<a.length;u++){var s=e(a,u,r,i,l+"["+u+"]",ue);if(s instanceof Error)return s}return null})},element:l(function(t,n,r,i,l){var a=t[n];return e(a)?null:new o("Invalid "+i+" `"+l+"` of type `"+c(a)+"` supplied to `"+r+"`, expected a single ReactElement.")}),elementType:l(function(e,t,n,r,i){var l=e[t];return ne.isValidElementType(l)?null:new o("Invalid "+r+" `"+i+"` of type `"+c(l)+"` supplied to `"+n+"`, expected a single ReactElement type.")}),instanceOf:function(e){return l(function(t,n,r,i,l){var a;return t[n]instanceof e?null:new o("Invalid "+i+" `"+l+"` of type `"+((a=t[n]).constructor&&a.constructor.name?a.constructor.name:"<<anonymous>>")+"` supplied to `"+r+"`, expected instance of `"+(e.name||"<<anonymous>>")+"`.")})},node:l(function(e,t,n,r,i){return s(e[t])?null:new o("Invalid "+r+" `"+i+"` supplied to `"+n+"`, expected a ReactNode.")}),objectOf:function(e){return l(function(t,n,r,i,l){if("function"!=typeof e)return new o("Property `"+l+"` of component `"+r+"` has invalid PropType notation inside objectOf.");var a=t[n],u=c(a);if("object"!==u)return new o("Invalid "+i+" `"+l+"` of type `"+u+"` supplied to `"+r+"`, expected an object.");for(var s in a)if(se(a,s)){var d=e(a,s,r,i,l+"."+s,ue);if(d instanceof Error)return d}return null})},oneOf:function(e){if(!Array.isArray(e))return"production"!==process.env.NODE_ENV&&ge(arguments.length>1?"Invalid arguments supplied to oneOf, expected an array, got "+arguments.length+" arguments. A common mistake is to write oneOf(x, y, z) instead of oneOf([x, y, z]).":"Invalid argument supplied to oneOf, expected an array."),he;function t(t,n,r,l,a){for(var u=t[n],s=0;s<e.length;s++)if(i(u,e[s]))return null;var c=JSON.stringify(e,function(e,t){return"symbol"===d(t)?String(t):t});return new o("Invalid "+l+" `"+a+"` of value `"+String(u)+"` supplied to `"+r+"`, expected one of "+c+".")}return l(t)},oneOfType:function(e){if(!Array.isArray(e))return"production"!==process.env.NODE_ENV&&ge("Invalid argument supplied to oneOfType, expected an instance of array."),he;for(var t=0;t<e.length;t++){var n=e[t];if("function"!=typeof n)return ge("Invalid argument supplied to oneOfType. Expected an array of check functions, but received "+f(n)+" at index "+t+"."),he}return l(function(t,n,r,i,l){for(var a=[],u=0;u<e.length;u++){var s=(0,e[u])(t,n,r,i,l,ue);if(null==s)return null;s.data&&se(s.data,"expectedType")&&a.push(s.data.expectedType)}return new o("Invalid "+i+" `"+l+"` supplied to `"+r+"`"+(a.length>0?", expected one of type ["+a.join(", ")+"]":"")+".")})},shape:function(e){return l(function(t,n,r,i,l){var a=t[n],s=c(a);if("object"!==s)return new o("Invalid "+i+" `"+l+"` of type `"+s+"` supplied to `"+r+"`, expected `object`.");for(var f in e){var m=e[f];if("function"!=typeof m)return u(r,i,l,f,d(m));var p=m(a,f,r,i,l+"."+f,ue);if(p)return p}return null})},exact:function(e){return l(function(t,n,r,i,l){var a=t[n],s=c(a);if("object"!==s)return new o("Invalid "+i+" `"+l+"` of type `"+s+"` supplied to `"+r+"`, expected `object`.");var f=ae({},t[n],e);for(var m in f){var p=e[m];if(se(e,m)&&"function"!=typeof p)return u(r,i,l,m,d(p));if(!p)return new o("Invalid "+i+" `"+l+"` key `"+m+"` supplied to `"+r+"`.\nBad object: "+JSON.stringify(t[n],null,"  ")+"\nValid keys: "+JSON.stringify(Object.keys(e),null,"  "));var v=p(a,m,r,i,l+"."+m,ue);if(v)return v}return null})}};function i(e,t){return e===t?0!==e||1/e==1/t:e!=e&&t!=t}function o(e,t){this.message=e,this.data=t&&"object"==typeof t?t:{},this.stack=""}function l(e){function t(t,n,r,i,l,a,u){if(i=i||"<<anonymous>>",a=a||r,u!==ue){var s=new Error("Calling PropTypes validators directly is not supported by the `prop-types` package. Use `PropTypes.checkPropTypes()` to call them. Read more at http://fb.me/use-check-prop-types");throw s.name="Invariant Violation",s}return null==n[r]?t?new o(null===n[r]?"The "+l+" `"+a+"` is marked as required in `"+i+"`, but its value is `null`.":"The "+l+" `"+a+"` is marked as required in `"+i+"`, but its value is `undefined`."):null:e(n,r,i,l,a)}process;var n=t.bind(null,!1);return n.isRequired=t.bind(null,!0),n}function a(e){return l(function(t,n,r,i,l,a){var u=t[n];return c(u)!==e?new o("Invalid "+i+" `"+l+"` of type `"+d(u)+"` supplied to `"+r+"`, expected `"+e+"`.",{expectedType:e}):null})}function u(e,t,n,r,i){return new o((e||"React class")+": "+t+" type `"+n+"."+r+"` is invalid; it must be a function, usually from the `prop-types` package, but received `"+i+"`.")}function s(t){switch(typeof t){case"number":case"string":case"undefined":return!0;case"boolean":return!t;case"object":if(Array.isArray(t))return t.every(s);if(null===t||e(t))return!0;var r=function(e){var t=e&&(n&&e[n]||e["@@iterator"]);if("function"==typeof t)return t}(t);if(!r)return!1;var i,o=r.call(t);if(r!==t.entries){for(;!(i=o.next()).done;)if(!s(i.value))return!1}else for(;!(i=o.next()).done;){var l=i.value;if(l&&!s(l[1]))return!1}return!0;default:return!1}}function c(e){var t=typeof e;return Array.isArray(e)?"array":e instanceof RegExp?"object":function(e,t){return"symbol"===e||!!t&&("Symbol"===t["@@toStringTag"]||"function"==typeof Symbol&&t instanceof Symbol)}(t,e)?"symbol":t}function d(e){if(null==e)return""+e;var t=c(e);if("object"===t){if(e instanceof Date)return"date";if(e instanceof RegExp)return"regexp"}return t}function f(e){var t=d(e);switch(t){case"array":case"object":return"an "+t;case"boolean":case"date":case"regexp":return"a "+t;default:return t}}return o.prototype=Error.prototype,r.checkPropTypes=ve,r.resetWarningCache=ve.resetWarningCache,r.PropTypes=r,r}(ne.isElement):function(){function e(e,t,n,r,i,o){if(o!==ue){var l=new Error("Calling PropTypes validators directly is not supported by the `prop-types` package. Use PropTypes.checkPropTypes() to call them. Read more at http://fb.me/use-check-prop-types");throw l.name="Invariant Violation",l}}function t(){return e}e.isRequired=e;var n={array:e,bigint:e,bool:e,func:e,number:e,object:e,string:e,symbol:e,any:e,arrayOf:t,element:e,elementType:e,instanceOf:t,node:e,objectOf:t,oneOf:t,oneOfType:t,shape:t,exact:t,checkPropTypes:ye,resetWarningCache:Ee};return n.PropTypes=n,n}()});const be=e=>{let{children:t}=e;return n.createElement("div",{className:"banner banner-container",style:{zIndex:"2"}},t)},Ce=()=>{const{isLoading:e}=Digit.Hooks.useStore.getInitData();return l.useTranslation(),e?n.createElement(a.Loader,null):n.createElement("div",{className:"bannerHeader"})},Se=e=>{let{config:r,t:i,isDisabled:l}=e;const{data:u,isLoading:s}=Digit.Hooks.useTenants(),{isLoading:c}=Digit.Hooks.useStore.getInitData(),[d,f]=t.useState(null),[m,p]=t.useState(null),[v,g]=t.useState(!1),h=o.useHistory();t.useEffect(()=>{var e,t,n,r,i,o,l,a,u,s,c,f,m,p,v,g,E;if(!d)return;Digit.SessionStorage.set("citizen.userRequestObject",d);const y=null==d||null===(e=d.info)||void 0===e||null===(t=e.roles)||void 0===t?void 0:t.filter(e=>e.tenantId===Digit.SessionStorage.get("Employee.tenantId"));(null==d||null===(n=d.info)||void 0===n||null===(r=n.roles)||void 0===r?void 0:r.length)>0&&(d.info.roles=y),Digit.UserService.setUser(d),((e,t)=>{var n;let r=(null===(n=JSON.parse(sessionStorage.getItem("Digit.locale")))||void 0===n?void 0:n.value)||"en_IN";localStorage.setItem("Employee.tenant-id",null==e?void 0:e.tenantId),localStorage.setItem("tenant-id",null==e?void 0:e.tenantId),localStorage.setItem("citizen.userRequestObject",JSON.stringify(e)),localStorage.setItem("locale",r),localStorage.setItem("Employee.locale",r),localStorage.setItem("token",t),localStorage.setItem("Employee.token",t),localStorage.setItem("user-info",JSON.stringify(e)),localStorage.setItem("Employee.user-info",JSON.stringify(e))})(null==d?void 0:d.info,null==d?void 0:d.access_token);let _="/digit-ui/employee";var b,C,S,w;null!==(i=window)&&void 0!==i&&null!==(o=i.location)&&void 0!==o&&null!==(l=o.href)&&void 0!==l&&l.includes("from=")&&(_=decodeURIComponent(null===(b=window)||void 0===b||null===(C=b.location)||void 0===C||null===(S=C.href)||void 0===S||null===(w=S.split("from="))||void 0===w?void 0:w[1])||"/digit-ui/employee"),null!=d&&null!==(a=d.info)&&void 0!==a&&a.roles&&(null==d||null===(u=d.info)||void 0===u||null===(s=u.roles)||void 0===s?void 0:s.length)>0&&null!=d&&null!==(c=d.info)&&void 0!==c&&null!==(f=c.roles)&&void 0!==f&&f.every(e=>"NATADMIN"===e.code)&&(_="/digit-ui/employee/dss/landing/NURT_DASHBOARD"),null!=d&&null!==(m=d.info)&&void 0!==m&&m.roles&&(null==d||null===(p=d.info)||void 0===p||null===(v=p.roles)||void 0===v?void 0:v.length)>0&&null!=d&&null!==(g=d.info)&&void 0!==g&&null!==(E=g.roles)&&void 0!==E&&E.every(e=>"STADMIN"===e.code)&&(_="/digit-ui/employee/dss/landing/home"),h.replace(_)},[d]);const E=()=>{p(null)},[y,b,C]=r.inputs,S=[{body:[{label:i(y.label),type:y.type,populators:{name:y.name},isMandatory:!0},{label:i(b.label),type:b.type,populators:{name:b.name},isMandatory:!0},{label:i(C.label),type:C.type,populators:{name:C.name,customProps:{},component:(e,t)=>n.createElement(a.Dropdown,x({option:u,className:"login-city-dd",optionKey:"i18nKey",select:t=>{e.onChange(t)},t:i},t))},isMandatory:!0}]}];return s||c?n.createElement(a.Loader,null):n.createElement(be,null,n.createElement("div",{className:"employeeBackbuttonAlign"},n.createElement(a.BackButton,{variant:"white",style:{borderBottom:"none"}})),n.createElement(a.FormComposer,{onSubmit:function(e){try{function t(){g(!1)}if(!e.city)return alert("Please Select City!"),Promise.resolve();g(!0);const n={...e,userType:"EMPLOYEE"};n.tenantId=e.city.code,delete n.city;const r=_(function(){return Promise.resolve(Digit.UserService.authenticate(n)).then(function(e){let{UserRequest:t,...n}=e;Digit.SessionStorage.set("Employee.tenantId",null==t?void 0:t.tenantId),f({info:t,...n})})},function(e){var t,n;p((null==e||null===(t=e.response)||void 0===t||null===(n=t.data)||void 0===n?void 0:n.error_description)||"Invalid login credentials!"),setTimeout(E,5e3)});return Promise.resolve(r&&r.then?r.then(t):t())}catch(e){return Promise.reject(e)}},isDisabled:l||v,noBoxShadow:!0,inline:!0,submitInForm:!0,config:S,label:r.texts.submitButtonLabel,secondaryActionLabel:r.texts.secondaryButtonLabel,onSecondayActionClick:()=>{sessionStorage.getItem("User")&&sessionStorage.removeItem("User"),h.push("/digit-ui/employee/user/forgot-password")},heading:r.texts.header,headingStyle:{textAlign:"center"},cardStyle:{margin:"auto",minWidth:"408px"},className:"loginFormStyleEmployee",buttonStyle:{maxWidth:"100%",width:"100%",backgroundColor:"#5a1166"}}),m&&n.createElement(a.Toast,{error:!0,label:i(m),onClose:E}),n.createElement("div",{style:{width:"100%",position:"fixed",bottom:0,backgroundColor:"white",textAlign:"center"}},n.createElement("div",{style:{display:"flex",justifyContent:"center",color:"black"}},n.createElement("span",{style:{cursor:"pointer",fontSize:(window.Digit.Utils.browser.isMobile(),"12px"),fontWeight:"400"},onClick:()=>{window.open("https://www.digit.org/","_blank").focus()}},"Powered by DIGIT"),n.createElement("span",{style:{margin:"0 10px",fontSize:(window.Digit.Utils.browser.isMobile(),"12px")}},"|"),n.createElement("a",{style:{cursor:"pointer",fontSize:(window.Digit.Utils.browser.isMobile(),"12px"),fontWeight:"400"},href:"#",target:"_blank"},"UPYOG License"),n.createElement("span",{className:"upyog-copyright-footer",style:{margin:"0 10px",fontSize:"12px"}},"|"),n.createElement("span",{className:"upyog-copyright-footer",style:{cursor:"pointer",fontSize:(window.Digit.Utils.browser.isMobile(),"12px"),fontWeight:"400"},onClick:()=>{window.open("https://niua.in/","_blank").focus()}},"Copyright © 2022 National Institute of Urban Affairs")),n.createElement("div",{className:"upyog-copyright-footer-web"},n.createElement("span",{className:"",style:{cursor:"pointer",fontSize:window.Digit.Utils.browser.isMobile()?"14px":"16px",fontWeight:"400"},onClick:()=>{window.open("https://niua.in/","_blank").focus()}},"Copyright © 2022 National Institute of Urban Affairs"))))};Se.propTypes={loginParams:_e.any},Se.defaultProps={loginParams:null};const we=()=>{const{t:e}=l.useTranslation(),{path:r}=o.useRouteMatch(),i=t.useMemo(()=>T.map(t=>{const n={};for(const r in t.texts)n[r]=e(t.texts[r]);return{...t,texts:n}},[T]));return n.createElement(o.Switch,null,n.createElement(o.Route,{path:""+r,exact:!0},n.createElement(Se,{config:i[0],t:e})))},Oe=[{texts:{header:"CORE_COMMON_RESET_PASSWORD_LABEL",submitButtonLabel:"CORE_COMMON_CHANGE_PASSWORD"},inputs:[{label:"CORE_LOGIN_USERNAME",type:"text",name:"userName",error:"ERR_HRMS_INVALID_USERNAME"},{label:"CORE_LOGIN_NEW_PASSWORD",type:"password",name:"newPassword",error:"CORE_COMMON_REQUIRED_ERRMSG"},{label:"CORE_LOGIN_CONFIRM_NEW_PASSWORD",type:"password",name:"confirmPassword",error:"CORE_COMMON_REQUIRED_ERRMSG"}]}],Ne=e=>{let{config:r,t:i}=e;const[l,u]=t.useState(null),{mobile_number:s,tenantId:c}=Digit.Hooks.useQueryParams(),d=o.useHistory(),[f,m]=t.useState(""),[p,v]=t.useState(!0),[g,h]=t.useState(null),E=()=>Digit.UserService.getType();t.useEffect(()=>{var e;if(!l)return void Digit.UserService.setType("employee");Digit.UserService.setUser(l);const t=(null===(e=location.state)||void 0===e?void 0:e.from)||"/digit-ui/employee";d.replace(t)},[l]);const y=()=>{h(null)},[b,C,w]=r.inputs,O=[{body:[{label:i(b.label),type:b.type,populators:{name:b.name},isMandatory:!0},{label:i(C.label),type:C.type,populators:{name:C.name},isMandatory:!0},{label:i(w.label),type:w.type,populators:{name:w.name},isMandatory:!0}]}];return n.createElement(be,null,n.createElement("div",{className:"employeeBackbuttonAlign"},n.createElement(a.BackButton,{variant:"white",style:{borderBottom:"none"}})),n.createElement(a.FormComposer,{onSubmit:function(e){try{return Promise.resolve(_(function(){if(e.newPassword!==e.confirmPassword)return h(i("ERR_PASSWORD_DO_NOT_MATCH"));const t={...e,otpReference:f,tenantId:c,type:E().toUpperCase()};return Promise.resolve(Digit.UserService.changePassword(t,c)).then(function(e){d.replace("/digit-ui/employee/user/login")})},function(e){var t,n,r,o,l;h((null==e||null===(t=e.response)||void 0===t||null===(n=t.data)||void 0===n||null===(r=n.error)||void 0===r||null===(o=r.fields)||void 0===o||null===(l=o[0])||void 0===l?void 0:l.message)||i("ES_SOMETHING_WRONG")),setTimeout(y,5e3)}))}catch(e){return Promise.reject(e)}},noBoxShadow:!0,inline:!0,submitInForm:!0,config:O,label:r.texts.submitButtonLabel,cardStyle:{maxWidth:"408px",margin:"auto"},className:"employeeChangePassword"},n.createElement(Ce,null),n.createElement(a.CardSubHeader,{style:{textAlign:"center"}}," ",r.texts.header," "),n.createElement(a.CardText,null,i("CS_LOGIN_OTP_TEXT")+" ",n.createElement("b",null," ",""+i("+ 91 - ")," ",s)),n.createElement(S,{t:i,userType:"employee",otp:f,onOtpChange:m,error:p,onResend:function(){try{function e(){setTimeout(y,5e3)}const t={otp:{mobileNumber:s,userType:E().toUpperCase(),type:"passwordreset",tenantId:c}},n=_(function(){return Promise.resolve(Digit.UserService.sendOtp(t,c)).then(function(){h(i("ES_OTP_RESEND"))})},function(e){var t,n;h((null==e||null===(t=e.response)||void 0===t||null===(n=t.data)||void 0===n?void 0:n.error_description)||i("ES_INVALID_LOGIN_CREDENTIALS"))});return Promise.resolve(n&&n.then?n.then(e):e())}catch(e){return Promise.reject(e)}}})),g&&n.createElement(a.Toast,{error:!0,label:i(g),onClose:y}),n.createElement("div",{style:{width:"100%",position:"fixed",bottom:0,backgroundColor:"white",textAlign:"center"}},n.createElement("div",{style:{display:"flex",justifyContent:"center",color:"black"}},n.createElement("span",{style:{cursor:"pointer",fontSize:(window.Digit.Utils.browser.isMobile(),"12px"),fontWeight:"400"},onClick:()=>{window.open("https://www.digit.org/","_blank").focus()}},"Powered by DIGIT"),n.createElement("span",{style:{margin:"0 10px",fontSize:(window.Digit.Utils.browser.isMobile(),"12px")}},"|"),n.createElement("a",{style:{cursor:"pointer",fontSize:(window.Digit.Utils.browser.isMobile(),"12px"),fontWeight:"400"},href:"#",target:"_blank"},"UPYOG License"),n.createElement("span",{className:"upyog-copyright-footer",style:{margin:"0 10px",fontSize:"12px"}},"|"),n.createElement("span",{className:"upyog-copyright-footer",style:{cursor:"pointer",fontSize:(window.Digit.Utils.browser.isMobile(),"12px"),fontWeight:"400"},onClick:()=>{window.open("https://niua.in/","_blank").focus()}},"Copyright © 2022 National Institute of Urban Affairs")),n.createElement("div",{className:"upyog-copyright-footer-web"},n.createElement("span",{className:"",style:{cursor:"pointer",fontSize:window.Digit.Utils.browser.isMobile()?"14px":"16px",fontWeight:"400"},onClick:()=>{window.open("https://niua.in/","_blank").focus()}},"Copyright © 2022 National Institute of Urban Affairs"))))};Ne.propTypes={loginParams:_e.any},Ne.defaultProps={loginParams:null};const Ie=()=>{const{t:e}=l.useTranslation(),{path:r}=o.useRouteMatch(),i=t.useMemo(()=>Oe.map(t=>{const n={};for(const r in t.texts)n[r]=e(t.texts[r]);return{...t,texts:n}},[Oe]));return n.createElement(o.Switch,null,n.createElement(o.Route,{path:""+r,exact:!0},n.createElement(Ne,{config:i[0],t:e})))},De=[{texts:{header:"CORE_COMMON_FORGOT_PASSWORD_LABEL",description:"ES_FORGOT_PASSWORD_DESC",submitButtonLabel:"CORE_COMMON_CONTINUE"},inputs:[{label:"CORE_COMMON_MOBILE_NUMBER",type:"text",name:"mobileNumber",error:"ERR_HRMS_INVALID_MOBILE_NUMBER"},{label:"CORE_COMMON_CITY",type:"custom",name:"city",error:"ERR_HRMS_INVALID_CITY"}]}],Te=e=>{let{config:r,t:i}=e;const{data:l,isLoading:u}=Digit.Hooks.useTenants(),[s,c]=t.useState(null),d=o.useHistory(),[f,m]=t.useState(null);t.useEffect(()=>{var e;if(!s)return void Digit.UserService.setType("employee");Digit.UserService.setUser(s);const t=(null===(e=location.state)||void 0===e?void 0:e.from)||"/digit-ui/employee";d.replace(t)},[s]);const p=()=>{m(null)},[v,g]=r.inputs,h=[{body:[{label:i(v.label),type:v.type,populators:{name:v.name,componentInFront:"+91"},isMandatory:!0},{label:i(g.label),type:g.type,populators:{name:g.name,customProps:{},component:(e,t)=>n.createElement(a.Dropdown,x({option:l,optionKey:"name",id:g.name,className:"login-city-dd",select:t=>{e.onChange(t)}},t))},isMandatory:!0}]}];return u?n.createElement(a.Loader,null):n.createElement(be,null,n.createElement("div",{className:"employeeBackbuttonAlign"},n.createElement(a.BackButton,{variant:"white",style:{borderBottom:"none"}})),n.createElement(a.FormComposer,{onSubmit:function(e){try{if(!e.city)return alert("Please Select City!"),Promise.resolve();const t={otp:{mobileNumber:e.mobileNumber,userType:Digit.UserService.getType().toUpperCase(),type:"passwordreset",tenantId:e.city.code}},n=_(function(){return Promise.resolve(Digit.UserService.sendOtp(t,e.city.code)).then(function(){d.push("/digit-ui/employee/user/change-password?mobile_number="+e.mobileNumber+"&tenantId="+e.city.code)})},function(e){var t,n,r,i,o;m((null==e||null===(t=e.response)||void 0===t||null===(n=t.data)||void 0===n||null===(r=n.error)||void 0===r||null===(i=r.fields)||void 0===i||null===(o=i[0])||void 0===o?void 0:o.message)||"Invalid login credentials!"),setTimeout(p,5e3)});return Promise.resolve(n&&n.then?n.then(function(){}):void 0)}catch(e){return Promise.reject(e)}},noBoxShadow:!0,inline:!0,submitInForm:!0,config:h,label:r.texts.submitButtonLabel,secondaryActionLabel:r.texts.secondaryButtonLabel,onSecondayActionClick:()=>{d.replace("/digit-ui/employee/login")},heading:r.texts.header,description:r.texts.description,headingStyle:{textAlign:"center"},cardStyle:{maxWidth:"408px",margin:"auto"},className:"employeeForgotPassword"},n.createElement(Ce,null)),f&&n.createElement(a.Toast,{error:!0,label:i(f),onClose:p}),n.createElement("div",{style:{width:"100%",position:"fixed",bottom:0,backgroundColor:"white",textAlign:"center"}},n.createElement("div",{style:{display:"flex",justifyContent:"center",color:"black"}},n.createElement("span",{style:{cursor:"pointer",fontSize:(window.Digit.Utils.browser.isMobile(),"12px"),fontWeight:"400"},onClick:()=>{window.open("https://www.digit.org/","_blank").focus()}},"Powered by DIGIT"),n.createElement("span",{style:{margin:"0 10px",fontSize:(window.Digit.Utils.browser.isMobile(),"12px")}},"|"),n.createElement("a",{style:{cursor:"pointer",fontSize:(window.Digit.Utils.browser.isMobile(),"12px"),fontWeight:"400"},href:"#",target:"_blank"},"UPYOG License"),n.createElement("span",{className:"upyog-copyright-footer",style:{margin:"0 10px",fontSize:"12px"}},"|"),n.createElement("span",{className:"upyog-copyright-footer",style:{cursor:"pointer",fontSize:(window.Digit.Utils.browser.isMobile(),"12px"),fontWeight:"400"},onClick:()=>{window.open("https://niua.in/","_blank").focus()}},"Copyright © 2022 National Institute of Urban Affairs")),n.createElement("div",{className:"upyog-copyright-footer-web"},n.createElement("span",{className:"",style:{cursor:"pointer",fontSize:window.Digit.Utils.browser.isMobile()?"14px":"16px",fontWeight:"400"},onClick:()=>{window.open("https://niua.in/","_blank").focus()}},"Copyright © 2022 National Institute of Urban Affairs"))))};Te.propTypes={loginParams:_e.any},Te.defaultProps={loginParams:null};const xe=()=>{const{t:e}=l.useTranslation(),{path:r}=o.useRouteMatch(),i=t.useMemo(()=>De.map(t=>{const n={};for(const r in t.texts)n[r]=e(t.texts[r]);return{...t,texts:n}},[De]));return n.createElement(o.Switch,null,n.createElement(o.Route,{path:""+r,exact:!0},n.createElement(Te,{config:i[0],t:e})))},Ae=()=>{const{data:e,isLoading:r}=Digit.Hooks.useStore.getInitData(),{t:i}=l.useTranslation(),u=o.useHistory(),{languages:s,stateInfo:c}=e||{},d=Digit.StoreData.getCurrentLanguage(),[f,m]=t.useState(d);return r?null:n.createElement(be,null,n.createElement(a.Card,{className:"bannerCard removeBottomMargin"},n.createElement("div",{className:"language-selector",style:{justifyContent:"space-around",marginBottom:"24px",padding:"0 5%"}},s.map((e,t)=>n.createElement("div",{className:"language-button-container",key:t},n.createElement(a.CustomButton,{selected:e.value===f,text:e.label,onClick:()=>(e=>{m(e.value),Digit.LocalizationService.changeLanguage(e.value,c.code)})(e)})))),n.createElement(a.SubmitBar,{style:{width:"100%"},label:i("CORE_COMMON_CONTINUE"),onSubmit:e=>{u.push("/digit-ui/employee/user/login")}})),n.createElement("div",{style:{width:"100%",position:"fixed",bottom:0,backgroundColor:"white",textAlign:"center"}},n.createElement("div",{style:{display:"flex",justifyContent:"center",color:"black"}},n.createElement("span",{style:{cursor:"pointer",fontSize:(window.Digit.Utils.browser.isMobile(),"12px"),fontWeight:"400"},onClick:()=>{window.open("https://www.digit.org/","_blank").focus()}},"Powered by DIGIT"),n.createElement("span",{style:{margin:"0 10px",fontSize:(window.Digit.Utils.browser.isMobile(),"12px")}},"|"),n.createElement("a",{style:{cursor:"pointer",fontSize:(window.Digit.Utils.browser.isMobile(),"12px"),fontWeight:"400"},href:"#",target:"_blank"},"UPYOG License"),n.createElement("span",{className:"upyog-copyright-footer",style:{margin:"0 10px",fontSize:"12px"}},"|"),n.createElement("span",{className:"upyog-copyright-footer",style:{cursor:"pointer",fontSize:(window.Digit.Utils.browser.isMobile(),"12px"),fontWeight:"400"},onClick:()=>{window.open("https://niua.in/","_blank").focus()}},"Copyright © 2022 National Institute of Urban Affairs")),n.createElement("div",{className:"upyog-copyright-footer-web"},n.createElement("span",{className:"",style:{cursor:"pointer",fontSize:window.Digit.Utils.browser.isMobile()?"14px":"16px",fontWeight:"400"},onClick:()=>{window.open("https://niua.in/","_blank").focus()}},"Copyright © 2022 National Institute of Urban Affairs"))))},Le=(e,t)=>t.filter(t=>{var n;return null==e||null===(n=e.map)||void 0===n?void 0:n.call(e,e=>e.code).includes(t.code)}),Re=e=>{let{stateCode:t,userType:r,modules:i,appTenants:l}=e;Digit;const{path:a}=o.useRouteMatch(),u=o.useLocation(),s=Digit.UserService.getUser();if(!s||null==s||!s.access_token||null==s||!s.info)return n.createElement(o.Redirect,{to:{pathname:"/digit-ui/employee/user/login",state:{from:u.pathname+u.search}}});const c=i.map((e,i)=>{let{code:s,tenants:c}=e;const d=Digit.ComponentRegistryService.getComponent(s+"Module");return n.createElement(o.Route,{key:i,path:a+"/"+s.toLowerCase()},d?n.createElement(d,{stateCode:t,moduleCode:s,userType:r,tenants:Le(c,l)}):n.createElement(o.Redirect,{to:{pathname:"/digit-ui/employee/user/error?type=notfound",state:{from:u.pathname+u.search}}}))});return n.createElement("div",{className:"ground-container"},n.createElement(o.Switch,null,c,n.createElement(o.Route,{path:a+"/login"},n.createElement(o.Redirect,{to:{pathname:"/digit-ui/employee/user/login",state:{from:u.pathname+u.search}}})),n.createElement(o.Route,{path:a+"/forgot-password"},n.createElement(xe,null)),n.createElement(o.Route,{path:a+"/change-password"},n.createElement(Ie,null)),n.createElement(o.Route,null,n.createElement(p,{userType:r,modules:i}))))},Me={error:{imgUrl:"https://s3.ap-south-1.amazonaws.com/egov-qa-assets/error-image.png",infoMessage:"CORE_SOMETHING_WENT_WRONG",buttonInfo:"ACTION_TEST_HOME"},maintenance:{imgUrl:"https://s3.ap-south-1.amazonaws.com/egov-qa-assets/maintainence-image.png",infoMessage:"CORE_UNDER_MAINTENANCE",buttonInfo:"ACTION_TEST_HOME"},notfound:{imgUrl:"https://s3.ap-south-1.amazonaws.com/egov-qa-assets/PageNotFound.png",infoMessage:"CORE_NOT_FOUND",buttonInfo:"ACTION_TEST_HOME"}},Pe=e=>{const{type:t="error"}=Digit.Hooks.useQueryParams(),r=Me[t],{t:i}=l.useTranslation();return n.createElement("div",{className:"error-boundary"},n.createElement("div",{className:"error-container"},n.createElement("img",{src:r.imgUrl,alt:"error"}),n.createElement("h1",null,i(r.infoMessage)),n.createElement("button",{onClick:()=>{e.goToHome()}},i(r.buttonInfo))))},ke=()=>{const e="employee"===Digit.UserService.getType()?"/digit-ui/employee/user/error":"/digit-ui/citizen/error";return window.location.href.includes("employee/user/error")||window.location.href.includes("citizen/error")||"development"===process.env.NODE_ENV||(window.location.href=e),n.createElement("span",null)};class Ue extends n.Component{constructor(e){super(e),this.state={error:null,errorStack:null,hasError:!1}}static getDerivedStateFromError(e){return{error:null==e?void 0:e.message,hasError:!0,errorStack:null==e?void 0:e.stack}}componentDidCatch(e,t){this.setState({error:null==e?void 0:e.message,hasError:!0,errorStack:null==e?void 0:e.stack})}render(){return this.state.hasError?n.createElement("div",{className:"error-boundary"},n.createElement(ke,null),n.createElement(Pe,{initData:this.props.initData})):this.props.children}}const Be=function(e,t,n){if(void 0===e&&(e=""),void 0===t&&(t=""),void 0===n&&(n=""),""==t)return e;for(;null!==(r=e)&&void 0!==r&&r.includes(t);){var r,i;e=null===(i=e)||void 0===i?void 0:i.replace(t,n)}return e},je=e=>{var r;const[i,l]=t.useState(null),[u,s]=t.useState([]),[c,d]=t.useState([]),f=o.useHistory();let m=[];return t.useEffect(()=>{var t,n;const r=Digit.SessionStorage.get("citizen.userRequestObject");let i=[],o=[];null==r||null===(t=r.info)||void 0===t||null===(n=t.roles)||void 0===n||n.forEach(e=>i.push(e.tenantId));let l=i.filter((e,t,n)=>n.indexOf(e)===t);null==l||l.forEach(t=>{var n;o.push({label:null==e?void 0:e.t("TENANT_TENANTS_"+(null===(n=Be(t,".","_"))||void 0===n?void 0:n.toUpperCase())),value:t})}),m=null==o?void 0:o.filter(e=>e.value==Digit.SessionStorage.get("Employee.tenantId")),s(o)},[i]),n.createElement("div",{style:null!=e&&e.mobileView?{color:"#767676"}:{}},n.createElement(a.Dropdown,{option:u,selected:u.find(e=>e.value===(null==i?void 0:i.value)),optionKey:"label",select:e=>{var t,n,r;const i=Digit.SessionStorage.get("citizen.userRequestObject"),o=null===(t=Digit.SessionStorage.get("citizen.userRequestObject"))||void 0===t||null===(n=t.info)||void 0===n||null===(r=n.roles)||void 0===r?void 0:r.filter(t=>t.tenantId===e.value);if((null==o?void 0:o.length)>0&&(i.info.roles=o,i.info.tenantId=null==e?void 0:e.value),Digit.SessionStorage.set("Employee.tenantId",null==e?void 0:e.value),Digit.UserService.setUser(i),l(e),window.location.href.includes("/digit-ui/employee/")){var a;const e=(null===(a=location.state)||void 0===a?void 0:a.from)||"/digit-ui/employee";f.replace(e)}window.location.reload()},freeze:!0,customSelector:n.createElement("label",{className:"cp"},null==e?void 0:e.t("TENANT_TENANTS_"+(null===(r=Be(Digit.SessionStorage.get("Employee.tenantId"),".","_"))||void 0===r?void 0:r.toUpperCase())))}))},Fe=e=>{const r=e.dropdown||!1,{data:i,isLoading:o}=Digit.Hooks.useStore.getInitData(),{languages:l,stateInfo:u}=i||{},s=Digit.StoreData.getCurrentLanguage(),[c,d]=t.useState(s),f=e=>{d(e.value),Digit.LocalizationService.changeLanguage(e.value,u.code)};return o?null:r?n.createElement("div",null,n.createElement(a.Dropdown,{option:l,selected:l.find(e=>e.value===s),optionKey:"label",select:f,freeze:!0,customSelector:n.createElement("label",{className:"cp"},l.find(e=>e.value===c).label)})):n.createElement(n.Fragment,null,n.createElement("div",{style:{marginBottom:"5px"}},"Language"),n.createElement("div",{className:"language-selector"},l.map((e,t)=>n.createElement("div",{className:"language-button-container",key:t},n.createElement(a.CustomButton,{selected:e.value===c,text:e.label,onClick:()=>f(e)})))))},ze=e=>{var t,r;return n.createElement("span",{className:"user-img-txt",onClick:e.toggleMenu,title:e.name},null==e||null===(t=e.name)||void 0===t||null===(r=t[0])||void 0===r?void 0:r.toUpperCase())},We=e=>{var t,r,i,l,u,s,c;let{t:d,stateInfo:f,toggleSidebar:m,handleLogout:p,userDetails:v,CITIZEN:g,cityDetails:h,mobileView:E,userOptions:y,handleUserDropdownSelection:_,logoUrl:b,showLanguageChange:C=!0,setSideBarScrollTop:S}=e;const[w,O]=n.useState(null);n.useEffect(function(){try{var e;const t=Digit.ULBService.getCurrentTenantId(),n=null==v||null===(e=v.info)||void 0===e?void 0:e.uuid,r=function(){if(n)return Promise.resolve(Digit.UserService.userSearch(t,{uuid:[n]},{})).then(function(e){if(e&&e.user&&e.user.length){var t;const n=e.user[0],r=null==n||null===(t=n.photo)||void 0===t?void 0:t.split(",");O(null==r?void 0:r.at(0))}})}();return Promise.resolve(r&&r.then?r.then(function(){}):void 0)}catch(e){return Promise.reject(e)}},[null!==w,null==v||null===(t=v.info)||void 0===t?void 0:t.uuid]);const N=Digit.ULBService.getCitizenCurrentTenant(!0);let I=o.useHistory();const{pathname:D}=o.useLocation(),{data:{unreadCount:T}={},isSuccess:x}=Digit.Hooks.useNotificationCount({tenantId:N,config:{enabled:"EMPLOYEE"!==(null===(A=Digit.UserService)||void 0===A||null===(L=A.getUser())||void 0===L||null===(R=L.info)||void 0===R?void 0:R.type)&&"CITIZEN"===(null===(M=Digit.UserService)||void 0===M||null===(P=M.getUser())||void 0===P||null===(k=P.info)||void 0===k?void 0:k.type)&&!!N}});var A,L,R,M,P,k;if(g)return n.createElement("div",null,n.createElement(a.TopBar,{img:null==f?void 0:f.logoUrlWhite,isMobile:!0,toggleSidebar:()=>{Digit.clikOusideFired?Digit.clikOusideFired=!1:(m(!0),S(!0))},logoUrl:null==f?void 0:f.logoUrlWhite,onLogout:p,userDetails:v,notificationCount:T<99?T:99,notificationCountLoaded:x,cityOfCitizenShownBesideLogo:d(N),onNotificationIconClick:function(){I.push("/digit-ui/citizen/engagement/notifications")},hideNotificationIconOnSomeUrlsWhenNotLoggedIn:(e=>{var t,n;return(null===(t=Digit.UserService)||void 0===t||null===(n=t.getUser())||void 0===n||!n.access_token)&&["/digit-ui/citizen/select-language","/digit-ui/citizen/select-location"].includes(e)})(D),changeLanguage:E?null:n.createElement(Fe,{dropdown:!0})}));const U=!(null==v||!v.access_token);return n.createElement("div",{className:"topbar"},E?n.createElement(a.Hamburger,{handleClick:m,color:"#9E9E9E"}):null,n.createElement("img",{className:"city",src:"https://in-egov-assets.s3.ap-south-1.amazonaws.com/images/Upyog-logo.png"}),n.createElement("span",{style:{display:"flex",alignItems:"center",justifyContent:"space-between",width:"100%"}},U&&(null!=h&&null!==(r=h.city)&&void 0!==r&&r.ulbGrade?n.createElement("p",{className:"ulb",style:E?{fontSize:"14px",display:"inline-block"}:{}},d(null==h?void 0:h.i18nKey).toUpperCase()," ",d("ULBGRADE_"+(null==h||null===(i=h.city)||void 0===i?void 0:i.ulbGrade.toUpperCase().replace(" ","_").replace(".","_"))).toUpperCase()):n.createElement("img",{className:"state",src:b})),!U&&n.createElement("p",{className:"ulb",style:E?{fontSize:"14px",display:"inline-block"}:{}},d("MYCITY_"+(null==f||null===(l=f.code)||void 0===l?void 0:l.toUpperCase())+"_LABEL")," ",d("MYCITY_STATECODE_LABEL")),!E&&n.createElement("div",{className:E?"right":"flex-right right w-80 column-gap-15",style:U?{}:{width:"80%"}},n.createElement("div",{className:"left"},!window.location.href.includes("employee/user/login")&&!window.location.href.includes("employee/user/language-selection")&&n.createElement(je,{dropdown:!0,t:d})),n.createElement("div",{className:"left"},C&&n.createElement(Fe,{dropdown:!0})),(null==v?void 0:v.access_token)&&n.createElement("div",{className:"left"},n.createElement(a.Dropdown,{option:y,optionKey:"name",select:_,showArrow:!0,freeze:!0,style:E?{right:0}:{},optionCardStyles:{overflow:"revert"},customSelector:null==w?n.createElement(ze,{name:(null==v||null===(u=v.info)||void 0===u?void 0:u.name)||(null==v||null===(s=v.info)||void 0===s||null===(c=s.userInfo)||void 0===c?void 0:c.name)||"Employee"}):n.createElement("img",{src:"https://in-egov-assets.s3.ap-south-1.amazonaws.com/images/Upyog-logo.png",style:{height:"48px",width:"48px",borderRadius:"50%"}})})),n.createElement("img",{className:"state",src:"https://in-egov-assets.s3.ap-south-1.amazonaws.com/images/Upyog-logo.png"}))))},Ve=(e,t,r,i,o,l)=>{var a,u;let s=(null==o||null===(a=o.tenants.filter(e=>e.code===l)[0])||void 0===a?void 0:a.contactNumber)||(null==o||null===(u=o.tenants[0])||void 0===u?void 0:u.contactNumber);return[{type:"link",element:"HOME",text:e("COMMON_BOTTOM_NAVIGATION_HOME"),link:i?"/digit-ui/employee":"/digit-ui/citizen",icon:"HomeIcon",populators:{onClick:t}},{type:"component",element:"LANGUAGE",action:n.createElement(Fe,null),icon:"LanguageIcon"},{id:"login-btn",element:"LOGIN",text:e("CORE_COMMON_LOGIN"),icon:"LoginIcon",populators:{onClick:r}},{id:"help-line",text:n.createElement(n.Fragment,null,e("CS_COMMON_HELPLINE"),n.createElement("div",{className:"telephone",style:{marginTop:"-10%"}},n.createElement("div",{className:"link"},n.createElement("a",{href:"tel:"+s},s)))),element:"Helpline",icon:"Phone"}]},He=e=>n.createElement("h1",{className:"heading-m"},e.label),Ge=()=>n.createElement("svg",{xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 24 24",fill:"#FFFFFF"},n.createElement("path",{d:"M0 0h24v24H0V0z",fill:"none"}),n.createElement("path",{d:"M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"})),qe=e=>n.createElement("div",{onClick:null==e?void 0:e.onClick,style:null!=e&&e.isMobileView?{padding:5}:null},null!=e&&e.isMobileView?n.createElement(a.CloseSvg,null):n.createElement("div",{className:"icon-bg-secondary",style:{backgroundColor:"#505A5F"}}," ",n.createElement(Ge,null)," ")),Ze=e=>{let{onSelect:t,onCancel:r,onDismiss:i}=e;const{t:o}=l.useTranslation(),[u,s]=n.useState(window.innerWidth<=780),c=()=>{window.innerWidth<=780?u||s(!0):u&&s(!1)};return n.useEffect(()=>(window.addEventListener("resize",()=>{c()}),()=>{window.addEventListener("resize",()=>{c()})})),u?n.createElement(a.Modal,{popupStyles:{height:"174px",maxHeight:"174px",width:"324px",position:"absolute",top:"50%",left:"50%",transform:"translate(-50%, -50%)"},popupModuleActionBarStyles:{display:"flex",flex:1,justifyContent:"flex-start",width:"100%",position:"absolute",left:0,bottom:0,padding:"18px"},style:{flex:1},popupModuleMianStyles:{padding:"18px"},headerBarMain:n.createElement(He,{label:o("CORE_LOGOUT_WEB_HEADER")}),headerBarEnd:n.createElement(qe,{onClick:i,isMobileView:u}),actionCancelLabel:o("TL_COMMON_NO"),actionCancelOnSubmit:r,actionSaveLabel:o("TL_COMMON_YES"),actionSaveOnSubmit:t,formId:"modal-action"},n.createElement("div",null,n.createElement(a.CardText,{style:{margin:0}},o("CORE_LOGOUT_MOBILE_CONFIRMATION_MESSAGE")+" "))):n.createElement(a.Modal,{popupModuleMianStyles:{paddingTop:"30px"},headerBarMain:n.createElement(He,{label:o("CORE_LOGOUT_WEB_HEADER")}),headerBarEnd:n.createElement(qe,{onClick:i,isMobileView:!1}),actionCancelLabel:o("CORE_LOGOUT_CANCEL"),actionCancelOnSubmit:r,actionSaveLabel:o("CORE_LOGOUT_WEB_YES"),actionSaveOnSubmit:t,formId:"modal-action"},n.createElement("div",null,n.createElement(a.CardText,{style:{marginBottom:"54px",marginLeft:"8px",marginRight:"8px"}},o("CORE_LOGOUT_WEB_CONFIRMATION_MESSAGE")+" ",n.createElement("strong",null,o("CORE_LOGOUT_MESSAGE"),"?"))))},Xe=e=>{let{info:t,t:r}=e;return n.createElement("div",{className:"profile-section"},n.createElement("div",{className:"imageloader imageloader-loaded"},n.createElement("img",{className:"img-responsive img-circle img-Profile",src:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAO4AAADUCAMAAACs0e/bAAAAM1BMVEXK0eL////Dy97GzuD4+fvL0uPg5O7T2efb4OvR1+Xr7vTk5/Df4+37/P3v8fbO1eTt8PUsnq5FAAAGqElEQVR4nO2d25ajIBBFCajgvf//a0eMyZgEjcI5xgt7Hmatme507UaxuJXidiDqjmSgeVIMlB1ZR1WZAf2gbdu0QwixSYzjOJPmHurfEGEfY9XzjNGG9whQCeVAuv5xQEySLtR9hPuIcwj0EeroN5m3D1IbsbgHK0esiQ9MKsqXVr8Hm/a/Pulk6wihpCIXBw3dh7bTvRBt9+dC5NfS1VH3xETdM3MxXRN1T0zUPTNR98xcS1dlV9NNfx3DhkTdM6PKqHteVBF1z0vU5f0sKdpc2zWLKutXrjJjdLvpesRmukqYonauPhXpdsLb6CppmpnltsYIuY2yavi6Mi2/rzAWm1zUfF0limVLqkZyA+mDYevKBS37aGC+L1lX5e7uyU1Cv565uiua9k5LFqbqqrnu2I3m+jJ11ZoLeRtfmdB0Uw/ZDsP0VTxdn7a1VERfmq7XlXyn5D2QWLoq8bZlPoBJumphJjVBw/Ll6CoTZGsTDs4NrGqKbqBth8ZHJUi6cn168QmleSm6GmB7Kxm+6obXlf7PoDHosCwM3QpiS2legi6ocSl3L0G3BdneDDgwQdENfeY+SfDJBkF37ZB+GvwzA6/rMaafAn8143VhPZWdjMWG1oHXhdnemgPoAvLlB/iZyRTfVeF06wPoQhJmlm4bdcOAZRlRN5gcPc5SoPEQR1fDdbOo6wn+uYvXxY0QCLom6gYROKH+Aj5nvphuFXWDiLpRdxl/19LFT95k6CHCrnW7pCDqBn1i1PUFvii2c11oZOJ6usWeH0RRNzC4Zs+6FTi2nevCVwCjbugnXklX5fkfTldL8PEilUB1kfNyN1u9MME2sATr4lbuB7AjfLAuvsRm1A0g6gYRdcPAjvBlje2Z8brI8OC68AcRdlCkwLohx2mcZMjw9q+LzarQurjtnwPYAydX08WecECO/u6Ad0GBdYG7jO5gB4Ap+PwKcA9ZT43dn4/W9TyiPAn4OAJaF7h3uwe8StSCddFdM3jqFa2LvnnB5zzhuuBBAjY4gi50cg694gnXhTYvfMdrjtcFZhrwE9r41gUem8IXWMC3LrBzxh+a0gRd1N1LOK7M0IUUGuggvEmHoStA2/MJh7MpupiDU4TzjhxdzLAoO4ouZvqVURbFMHQlZD6SUeWHoguZsSLUGegrehA+FZFowPdUWTi6iMoZlIpGGUUXkDbjj/9ZOLqAQS/+GIKl5BQOCn/ycqpzkXSDm5dU7ZWkG7wUyGlcmm7g5Ux56AqirgoaJ7BeokPTDbp9CbVunjFxPrl7+HqnkrSq1Da7JX20f3dV8yJi6voO81mX8vV0mx3qUsZCPRfTlVRdz2EvdufYGDvNQvvwqHtmXd+a1ITinwNcXc+lT6JuzdT1XDyBn/x7wtX1HCQQdW9MXc8xArGrirowfLeUEbMqqq6f7TF1lfRdOuGNiGi6SpT+WxY06xUfNN2wBfyE9I4tlm7w5hvOPDNJN3yNiLMipji6gE3chKhouoCtN5x3QlF0EZt8OW/8ougitqJQlk1aii7iFC9l0MvRReyao7xNjKML2Z/PuHlzhi5mFxljiZeiC9rPTEisNEMX9KYAwo5Xhi7qaA3hamboYm7dG+NVrXhdaYDv5zFaQZsYrCtbbAGnjkQDX2+J1FXCwOsqWOpKoIQNTFdqYBWydxqNqUoG0pVpCS+H8kaJaGKErlIaXj7CRRE+gRWuKwW9YZ80oVOUgbpdT0zpnSZJTIiwCtJVelvXntr4P5j6BWfPb5Wcx84C4cq3hb11lco2u2Mdwp6XdJ/Ne3wb8DWdfiRenZaXrhLwOj4e+GQeHroy3YOspS7TlU28Wle2m2QUS0mqdcbrdNW+ZHsSsyK7tBfm0q/dWcv+Z3mytVx3t7KWulqUe6ilunu8jF8pFwgv1FXp3mUt35OtRbr7eM4u4Gs6vUBXgeuHc5kfE/cbvWZtkROLm1DMtLCy80tzsu2PRj0hTI8fvrQuvsjlJkyutszq+m423wHaLTyniy/XuiGZ84LuT+m5ZfNfRxyGs7LXZOvia7VujatUwVTrIt+Q/Csc7Tuhe+BOakT10b4TuoiiJjvgU9emTO42PwEfBa+cuodKkuf42DXr1D3JpXz73Hnn0j10evHKe+nufgfUm+7B84sX9FfdEzXux2DBpWuKokkCqN/5pa/8pmvnL+RGKCddCGmatiPyPB/+ekO/M/q/7uvbt22kTt3zEnXPzCV13T3Gel4/6NduDu66xRvlPNkM1RjjxUdv+4WhGx6TftD19Q/dfzpwcHO+rE3fAAAAAElFTkSuQmCC"})),n.createElement("div",{id:"profile-name",className:"label-container name-Profile"},n.createElement("div",{className:"label-text"}," ",null==t?void 0:t.name," ")),n.createElement("div",{id:"profile-location",className:"label-container loc-Profile"},n.createElement("div",{className:"label-text"}," ",null==t?void 0:t.mobileNumber," ")),(null==t?void 0:t.emailId)&&n.createElement("div",{id:"profile-emailid",className:"label-container loc-Profile"},n.createElement("div",{className:"label-text"}," ",t.emailId," ")),n.createElement("div",{className:"profile-divider"}),window.location.href.includes("/employee")&&!window.location.href.includes("/employee/user/login")&&!window.location.href.includes("employee/user/language-selection")&&n.createElement(je,{t:r,mobileView:!0}))},Ye={CommonPTIcon:n.createElement(a.PTIcon,{className:"icon"}),OBPSIcon:n.createElement(a.OBPSIcon,{className:"icon"}),propertyIcon:n.createElement(a.PropertyHouse,{className:"icon"}),TLIcon:n.createElement(a.CaseIcon,{className:"icon"}),PGRIcon:n.createElement(a.PGRIcon,{className:"icon"}),FSMIcon:n.createElement(a.FSMIcon,{className:"icon"}),WSIcon:n.createElement(a.WSICon,{className:"icon"}),MCollectIcon:n.createElement(a.MCollectIcon,{className:"icon"}),BillsIcon:n.createElement(a.CollectionIcon,{className:"icon"}),BirthIcon:n.createElement(a.BirthIcon,{className:"icon"}),DeathIcon:n.createElement(a.DeathIcon,{className:"icon"}),FirenocIcon:n.createElement(a.FirenocIcon,{className:"icon"}),HomeIcon:n.createElement(a.HomeIcon,{className:"icon"}),EditPencilIcon:n.createElement(a.EditPencilIcon,{className:"icon"}),LogoutIcon:n.createElement(a.LogoutIcon,{className:"icon"}),Phone:n.createElement(a.Phone,{className:"icon"}),LoginIcon:n.createElement(a.LoginIcon,{className:"icon"})},Ke=e=>{var r,i,u,s,c;let{linkData:d,islinkDataLoading:f}=e;const{t:m}=l.useTranslation(),p=o.useHistory(),v=o.useLocation(),{pathname:g}=v,{data:h,isFetched:E}=Digit.Hooks.useStore.getInitData(),{stateInfo:y}=h||{},_=Digit.UserService.getUser();let b=window.Digit.Utils.browser.isMobile();const[C,S]=t.useState(!1),[w,O]=t.useState(!1),[N,I]=t.useState(!1),D=()=>{I(!1)};if(f||!E)return n.createElement(a.Loader,null);const T=()=>{p.push("/digit-ui/citizen/user/profile")},A=Digit.ULBService.getCitizenCurrentTenant(),L=(null==h||null===(r=h.tenants.filter(e=>e.code===A)[0])||void 0===r?void 0:r.contactNumber)||(null==h||null===(i=h.tenants[0])||void 0===i?void 0:i.contactNumber);let R=[...Ve(m,T,()=>{p.push("/digit-ui/citizen/login")},C,h,A)];R=R.filter(e=>"LANGUAGE"!==e.element);const M=e=>{var t,r;let{item:i}=e;const l=(null==i?void 0:i.icon)||(null===(t=i.icon)||void 0===t||null===(r=t.type)||void 0===r?void 0:r.name),a=l?Ye[l]:Ye.BillsIcon;let u;u="component"===i.type?i.action:i.text;const s=()=>n.createElement("span",x({className:"menu-item"},i.populators),a,n.createElement("div",{className:"menu-label"},u));return"external-link"===i.type?n.createElement("a",{href:i.link},n.createElement(s,null)):"link"===i.type?n.createElement(o.Link,{to:null==i?void 0:i.link},n.createElement(s,null)):n.createElement(s,null)};let P;return E&&_&&_.access_token&&(P=n.createElement(Xe,{info:null==_?void 0:_.info,stateName:null==y?void 0:y.name,t:m}),R=R.filter(e=>"login-btn"!==(null==e?void 0:e.id)&&"help-line"!==(null==e?void 0:e.id)),R=[...R,{text:m("EDIT_PROFILE"),element:"PROFILE",icon:"EditPencilIcon",populators:{onClick:T}},{text:m("CORE_COMMON_LOGOUT"),element:"LOGOUT",icon:"LogoutIcon",populators:{onClick:()=>{O(!1),I(!0)}}},{text:n.createElement(n.Fragment,null,m("CS_COMMON_HELPLINE"),n.createElement("div",{className:"telephone",style:{marginTop:"-10%"}},n.createElement("div",{className:"link"},n.createElement("a",{href:"tel:"+L},L)))),element:"Helpline",icon:"Phone"}]),null===(u=Object.keys(d))||void 0===u||null===(s=u.sort((e,t)=>t.localeCompare(e)))||void 0===s||s.map(e=>{var t,n,r,i,o;"digit-ui-links"===(null===(t=d[e][0])||void 0===t?void 0:t.sidebar)&&R.splice(1,0,{type:null!==(n=d[e][0])&&void 0!==n&&null!==(r=n.sidebarURL)&&void 0!==r&&r.includes("digit-ui")?"link":"external-link",text:m("ACTION_TEST_"+Digit.Utils.locale.getTransformedLocale(e)),links:d[e],icon:null===(i=d[e][0])||void 0===i?void 0:i.leftIcon,link:null===(o=d[e][0])||void 0===o?void 0:o.sidebarURL})}),n.createElement(n.Fragment,null,n.createElement("div",null,n.createElement("div",{style:{height:"100%",width:"100%",top:"0px",backgroundColor:"rgba(0, 0, 0, 0.54)",pointerzevents:"auto"}}),n.createElement("div",{style:{display:"flex",flexDirection:"column",height:b?"calc(100vh - 56px)":"auto",zIndex:"99"}},P,n.createElement("div",{className:"drawer-desktop",style:{backgroundColor:"white"}},null===(c=R)||void 0===c?void 0:c.map((e,t)=>n.createElement("div",{className:"sidebar-list "+(g===(null==e?void 0:e.link)||g===(null==e?void 0:e.sidebarURL)?"active":""),key:t},n.createElement(M,{item:e}))))),n.createElement("div",null,N&&n.createElement(Ze,{onSelect:()=>{Digit.UserService.logout(),I(!1)},onCancel:D,onDismiss:D}))))},Je=e=>{let{info:t,t:r}=e;const[i,o]=n.useState(null);return n.useEffect(function(){try{const e=Digit.ULBService.getCurrentTenantId(),n=null==t?void 0:t.uuid,r=function(){if(n)return Promise.resolve(Digit.UserService.userSearch(e,{uuid:[n]},{})).then(function(e){if(e&&e.user&&e.user.length){var t;const n=e.user[0],r=null==n||null===(t=n.photo)||void 0===t?void 0:t.split(",");o(null==r?void 0:r.at(0))}})}();return Promise.resolve(r&&r.then?r.then(function(){}):void 0)}catch(e){return Promise.reject(e)}},[null!==i]),n.createElement("div",{className:"profile-section"},n.createElement("div",{className:"imageloader imageloader-loaded"},n.createElement("img",{className:"img-responsive img-circle img-Profile",src:i||"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAO4AAADUCAMAAACs0e/bAAAAM1BMVEXK0eL////Dy97GzuD4+fvL0uPg5O7T2efb4OvR1+Xr7vTk5/Df4+37/P3v8fbO1eTt8PUsnq5FAAAGqElEQVR4nO2d25ajIBBFCajgvf//a0eMyZgEjcI5xgt7Hmatme507UaxuJXidiDqjmSgeVIMlB1ZR1WZAf2gbdu0QwixSYzjOJPmHurfEGEfY9XzjNGG9whQCeVAuv5xQEySLtR9hPuIcwj0EeroN5m3D1IbsbgHK0esiQ9MKsqXVr8Hm/a/Pulk6wihpCIXBw3dh7bTvRBt9+dC5NfS1VH3xETdM3MxXRN1T0zUPTNR98xcS1dlV9NNfx3DhkTdM6PKqHteVBF1z0vU5f0sKdpc2zWLKutXrjJjdLvpesRmukqYonauPhXpdsLb6CppmpnltsYIuY2yavi6Mi2/rzAWm1zUfF0limVLqkZyA+mDYevKBS37aGC+L1lX5e7uyU1Cv565uiua9k5LFqbqqrnu2I3m+jJ11ZoLeRtfmdB0Uw/ZDsP0VTxdn7a1VERfmq7XlXyn5D2QWLoq8bZlPoBJumphJjVBw/Ll6CoTZGsTDs4NrGqKbqBth8ZHJUi6cn168QmleSm6GmB7Kxm+6obXlf7PoDHosCwM3QpiS2legi6ocSl3L0G3BdneDDgwQdENfeY+SfDJBkF37ZB+GvwzA6/rMaafAn8143VhPZWdjMWG1oHXhdnemgPoAvLlB/iZyRTfVeF06wPoQhJmlm4bdcOAZRlRN5gcPc5SoPEQR1fDdbOo6wn+uYvXxY0QCLom6gYROKH+Aj5nvphuFXWDiLpRdxl/19LFT95k6CHCrnW7pCDqBn1i1PUFvii2c11oZOJ6usWeH0RRNzC4Zs+6FTi2nevCVwCjbugnXklX5fkfTldL8PEilUB1kfNyN1u9MME2sATr4lbuB7AjfLAuvsRm1A0g6gYRdcPAjvBlje2Z8brI8OC68AcRdlCkwLohx2mcZMjw9q+LzarQurjtnwPYAydX08WecECO/u6Ad0GBdYG7jO5gB4Ap+PwKcA9ZT43dn4/W9TyiPAn4OAJaF7h3uwe8StSCddFdM3jqFa2LvnnB5zzhuuBBAjY4gi50cg694gnXhTYvfMdrjtcFZhrwE9r41gUem8IXWMC3LrBzxh+a0gRd1N1LOK7M0IUUGuggvEmHoStA2/MJh7MpupiDU4TzjhxdzLAoO4ouZvqVURbFMHQlZD6SUeWHoguZsSLUGegrehA+FZFowPdUWTi6iMoZlIpGGUUXkDbjj/9ZOLqAQS/+GIKl5BQOCn/ycqpzkXSDm5dU7ZWkG7wUyGlcmm7g5Ux56AqirgoaJ7BeokPTDbp9CbVunjFxPrl7+HqnkrSq1Da7JX20f3dV8yJi6voO81mX8vV0mx3qUsZCPRfTlVRdz2EvdufYGDvNQvvwqHtmXd+a1ITinwNcXc+lT6JuzdT1XDyBn/x7wtX1HCQQdW9MXc8xArGrirowfLeUEbMqqq6f7TF1lfRdOuGNiGi6SpT+WxY06xUfNN2wBfyE9I4tlm7w5hvOPDNJN3yNiLMipji6gE3chKhouoCtN5x3QlF0EZt8OW/8ougitqJQlk1aii7iFC9l0MvRReyao7xNjKML2Z/PuHlzhi5mFxljiZeiC9rPTEisNEMX9KYAwo5Xhi7qaA3hamboYm7dG+NVrXhdaYDv5zFaQZsYrCtbbAGnjkQDX2+J1FXCwOsqWOpKoIQNTFdqYBWydxqNqUoG0pVpCS+H8kaJaGKErlIaXj7CRRE+gRWuKwW9YZ80oVOUgbpdT0zpnSZJTIiwCtJVelvXntr4P5j6BWfPb5Wcx84C4cq3hb11lco2u2Mdwp6XdJ/Ne3wb8DWdfiRenZaXrhLwOj4e+GQeHroy3YOspS7TlU28Wle2m2QUS0mqdcbrdNW+ZHsSsyK7tBfm0q/dWcv+Z3mytVx3t7KWulqUe6ilunu8jF8pFwgv1FXp3mUt35OtRbr7eM4u4Gs6vUBXgeuHc5kfE/cbvWZtkROLm1DMtLCy80tzsu2PRj0hTI8fvrQuvsjlJkyutszq+m423wHaLTyniy/XuiGZ84LuT+m5ZfNfRxyGs7LXZOvia7VujatUwVTrIt+Q/Csc7Tuhe+BOakT10b4TuoiiJjvgU9emTO42PwEfBa+cuodKkuf42DXr1D3JpXz73Hnn0j10evHKe+nufgfUm+7B84sX9FfdEzXux2DBpWuKokkCqN/5pa/8pmvnL+RGKCddCGmatiPyPB/+ekO/M/q/7uvbt22kTt3zEnXPzCV13T3Gel4/6NduDu66xRvlPNkM1RjjxUdv+4WhGx6TftD19Q/dfzpwcHO+rE3fAAAAAElFTkSuQmCC",style:{objectFit:"cover",objectPosition:"center"}})),n.createElement("div",{id:"profile-name",className:"label-container name-Profile"},n.createElement("div",{className:"label-text"}," ",null==t?void 0:t.name," ")),n.createElement("div",{id:"profile-location",className:"label-container loc-Profile"},n.createElement("div",{className:"label-text"}," ",null==t?void 0:t.mobileNumber," ")),(null==t?void 0:t.emailId)&&n.createElement("div",{id:"profile-emailid",className:"label-container loc-Profile"},n.createElement("div",{className:"label-text"}," ",t.emailId," ")),n.createElement("div",{className:"profile-divider"}),window.location.href.includes("/employee")&&!window.location.href.includes("/employee/user/login")&&!window.location.href.includes("employee/user/language-selection")&&n.createElement(je,{t:r,mobileView:!0}))},$e=()=>n.createElement("div",{className:"digit-footer",style:{marginBottom:0}}),Qe=e=>{var r,i;let{isOpen:u,isMobile:s=!1,toggleSidebar:c,onLogout:d,isEmployee:f=!1,linkData:m,islinkDataLoading:p,isSideBarScroll:v}=e;const{data:g,isFetched:h}=Digit.Hooks.useStore.getInitData(),{stateInfo:E}=g||{},y=Digit.UserService.getUser(),[_,b]=t.useState(""),{t:C}=l.useTranslation(),S=o.useHistory(),w=()=>{Digit.clikOusideFired=!0,c(!1)},{isLoading:O,data:N}=Digit.Hooks.useAccessControl(),I=Digit.ULBService.getCitizenCurrentTenant();if(p||O||!h)return n.createElement(a.Loader,null);const D=(null==g||null===(r=g.tenants.filter(e=>e.code===I)[0])||void 0===r?void 0:r.contactNumber)||(null==g||null===(i=g.tenants[0])||void 0===i?void 0:i.contactNumber);let T,x=[...Ve(C,w,()=>{S.push("/digit-ui/citizen/login"),w()},f,g,I)];h&&y&&y.access_token&&(T=n.createElement(Je,{info:null==y?void 0:y.info,stateName:null==E?void 0:E.name,t:C}),x=x.filter(e=>"login-btn"!==(null==e?void 0:e.id)&&"help-line"!==(null==e?void 0:e.id)),x=[...x,{text:C("EDIT_PROFILE"),element:"PROFILE",icon:"EditPencilIcon",populators:{onClick:()=>{S.push(f?"/digit-ui/employee/user/profile":"/digit-ui/citizen/user/profile"),w()}}},{text:C("CORE_COMMON_LOGOUT"),element:"LOGOUT",icon:"LogoutIcon",populators:{onClick:d}},{text:n.createElement(n.Fragment,null,C("CS_COMMON_HELPLINE"),n.createElement("div",{className:"telephone",style:{marginTop:"-10%"}},n.createElement("div",{className:"link"},n.createElement("a",{href:"tel:"+D},D)))),element:"Helpline",icon:"Phone"}]);let A={};if(f){var L;null==N||N.actions.filter(e=>"url"===e.url&&"Home"!==e.displayName).forEach(e=>{var t;if(""==_&&""!==e.path){let t=e.path.split(".")[0];"TradeLicense"===t&&(t="Trade License"),A[t]?A[t].push(e):A[t]=[e]}else if(""!==e.path&&null!=e&&null!==(t=e.displayName)&&void 0!==t&&t.toLowerCase().includes(_.toLowerCase())){let t=e.path.split(".")[0];"TradeLicense"===t&&(t="Trade License"),A[t]?A[t].push(e):A[t]=[e]}});const e=Object.keys(A);for(let t=0;t<e.length;t++){var R,M,P,k,U;const n=null===(R=A[e[t]][0])||void 0===R||null===(M=R.displayName)||void 0===M||null===(P=M.toUpperCase())||void 0===P?void 0:P.replace(/[ -]/g,"_"),r=null===(k=e[t])||void 0===k||null===(U=k.toUpperCase())||void 0===U?void 0:U.replace(/[ -]/g,"_");var B,j,F,z,W,V,H;-1===A[e[t]][0].path.indexOf(".")?x.splice(1,0,{type:"link",text:C("ACTION_TEST_"+n),link:null===(B=A[e[t]][0])||void 0===B?void 0:B.navigationURL,icon:null===(j=A[e[t]][0])||void 0===j||null===(F=j.leftIcon)||void 0===F||null===(z=(W=F).split)||void 0===z?void 0:z.call(W,":")[1],populators:{onClick:()=>{var n;S.push(null===(n=A[e[t]][0])||void 0===n?void 0:n.navigationURL),w()}}}):x.splice(1,0,{type:"dynamic",moduleName:C("ACTION_TEST_"+r),links:null===(V=A[e[t]])||void 0===V?void 0:V.map(e=>{var t,n;return{...e,displayName:C("ACTION_TEST_"+(null==e||null===(t=e.displayName)||void 0===t||null===(n=t.toUpperCase())||void 0===n?void 0:n.replace(/[ -]/g,"_")))}}),icon:null===(H=A[e[t]][1])||void 0===H?void 0:H.leftIcon})}const t=x.findIndex(e=>"HOME"===e.element),n=x.splice(t,1),r=x.findIndex(e=>"LANGUAGE"===e.element),i=x.splice(r,(null===(L=x)||void 0===L?void 0:L.length)-r);x.sort((e,t)=>("dynamic"===(null==e?void 0:e.type)?null==e?void 0:e.moduleName:null==e?void 0:e.text).localeCompare("dynamic"===(null==t?void 0:t.type)?null==t?void 0:t.moduleName:null==t?void 0:t.text)),(null==n?void 0:n[0])&&x.splice(0,0,n[0]),x=(null==i?void 0:i.length)>0?x.concat(i):x}else{var G,q;if(m&&m.FSM){let e=[];m.FSM.map(t=>{t.id&&t.link&&e.push(t)}),m.FSM=e}null===(G=Object.keys(m))||void 0===G||null===(q=G.sort((e,t)=>t.localeCompare(e)))||void 0===q||q.map(e=>{var t,n,r,i,o;"digit-ui-links"===(null===(t=m[e][0])||void 0===t?void 0:t.sidebar)&&x.splice(1,0,{type:null!==(n=m[e][0])&&void 0!==n&&null!==(r=n.sidebarURL)&&void 0!==r&&r.includes("digit-ui")?"link":"external-link",text:C("ACTION_TEST_"+Digit.Utils.locale.getTransformedLocale(e)),links:m[e],icon:null===(i=m[e][0])||void 0===i?void 0:i.leftIcon,link:null===(o=m[e][0])||void 0===o?void 0:o.sidebarURL})})}return S.location.pathname.includes("/openlink")&&(T=n.createElement("span",null),x=x.filter(e=>"LANGUAGE"===e.element)),s?n.createElement(a.NavBar,{open:u,toggleSidebar:c,profileItem:T,onClose:w,isSideBarScroll:v,menuItems:x,Footer:n.createElement($e,null),isEmployee:f,search:_,setSearch:b}):n.createElement(Ke,{logout:d})},et=e=>{var r,i,s,c,d,f,m;let{item:p}=e;const[v,g]=t.useState(!1),h=o.useLocation(),{pathname:E}=h,{t:y}=l.useTranslation(),_={home:n.createElement(a.HomeIcon,null),announcement:n.createElement(a.ComplaintIcon,null),business:n.createElement(a.BPAHomeIcon,null),store:n.createElement(a.PropertyHouse,null),assignment:n.createElement(a.CaseIcon,null),receipt:n.createElement(a.ReceiptIcon,null),"business-center":n.createElement(a.PersonIcon,null),description:n.createElement(a.DocumentIconSolid,null),"water-tap":n.createElement(a.DropIcon,null),"collections-bookmark":n.createElement(a.CollectionsBookmarIcons,null),"insert-chart":n.createElement(a.FinanceChartIcon,null),edcr:n.createElement(a.CollectionIcon,null),collections:n.createElement(a.CollectionIcon,null)},b=_[(null==p||null===(r=p.icon)||void 0===r||null===(i=r.leftIcon)||void 0===i||null===(s=i.split)||void 0===s||null===(c=s.call(i,":"))||void 0===c?void 0:c[1])||(null==p||null===(d=p.leftIcon)||void 0===d||null===(f=d.split)||void 0===f?void 0:f.call(d,":")[1])]||_.collections,C=null==p||null===(m=p.moduleName)||void 0===m?void 0:m.replace(/[ -]/g,"_"),S=y("ACTION_TEST_"+C),w=y((null==S?void 0:S.length)>20?S.substring(0,20)+"...":S);if("single"===p.type){var O;const e=window.location.origin;return n.createElement("div",{className:"submenu-container"},n.createElement("div",{className:"sidebar-link  "+(E===(null==p?void 0:p.navigationURL)?"active":"")},n.createElement("div",{className:"actions"},b,-1===(null===(O=p.navigationURL)||void 0===O?void 0:O.indexOf("/digit-ui"))?n.createElement("a",{"data-tip":"React-tooltip","data-for":"jk-side-"+C,className:"custom-link",href:e+"/employee/"+p.navigationURL},n.createElement("span",null," ",w," "),(null==w?void 0:w.includes("..."))&&n.createElement(u,{textColor:"white",backgroundColor:"grey",place:"right",type:"info",effect:"solid",id:"jk-side-"+C},y("ACTION_TEST_"+C))):n.createElement(o.Link,{className:"custom-link",to:p.navigationURL},n.createElement("div",{"data-tip":"React-tooltip","data-for":"jk-side-"+C},n.createElement("span",null," ",w," "),(null==w?void 0:w.includes("..."))&&n.createElement(u,{textColor:"white",backgroundColor:"grey",place:"right",type:"info",effect:"solid",id:"jk-side-"+C},y("ACTION_TEST_"+C)))))))}return n.createElement(n.Fragment,null,n.createElement("div",{className:"submenu-container"},n.createElement("div",{onClick:p.links&&(()=>g(!v)),className:"sidebar-link"},n.createElement("div",{className:"actions"},b,n.createElement("div",{"data-tip":"React-tooltip","data-for":"jk-side-"+C},n.createElement("span",null," ",w," "),(null==w?void 0:w.includes("..."))&&n.createElement(u,{textColor:"white",backgroundColor:"grey",place:"right",type:"info",effect:"solid",id:"jk-side-"+C},y("ACTION_TEST_"+C)))),n.createElement("div",null," ",p.links&&v?n.createElement(a.ArrowVectorDown,null):p.links?n.createElement(a.ArrowForward,null):null," "))),v&&p.links.sort((e,t)=>e.orderNumber-t.orderNumber).filter(e=>"url"===e.url||""!==e.url).map((e,t)=>{var r,i;const l=null==e||null===(r=e.displayName)||void 0===r||null===(i=r.toUpperCase())||void 0===i?void 0:i.replace(/[ -]/g,"_"),a=y("ACTION_TEST_"+l),s=y((null==a?void 0:a.length)>20?a.substring(0,20)+"...":a);if(-1===e.navigationURL.indexOf("/digit-ui")){const r=window.location.origin;return n.createElement("a",{key:t,className:"dropdown-link "+(E===e.link?"active":""),href:r+"/employee/"+e.navigationURL},n.createElement("div",{className:"actions","data-tip":"React-tooltip","data-for":"jk-side-"+t},n.createElement("span",null," ",s," "),(null==s?void 0:s.includes("..."))&&n.createElement(u,{textColor:"white",backgroundColor:"grey",place:"right",type:"info",effect:"solid",id:"jk-side-"+t},y("ACTION_TEST_"+l))))}return n.createElement(o.Link,{to:(null==e?void 0:e.link)||e.navigationURL,key:t,className:"dropdown-link "+(E===(null==e?void 0:e.link)||E===(null==e?void 0:e.navigationURL)?"active":"")},n.createElement("div",{className:"actions","data-tip":"React-tooltip","data-for":"jk-side-"+t},n.createElement("span",null," ",s," "),(null==s?void 0:s.includes("..."))&&n.createElement(u,{textColor:"white",backgroundColor:"grey",place:"right",type:"info",effect:"solid",id:"jk-side-"+t},y("ACTION_TEST_"+l))))}))};var tt=L(function(e,t){(function(){var n="Expected a function",r="__lodash_placeholder__",i=[["ary",128],["bind",1],["bindKey",2],["curry",8],["curryRight",16],["flip",512],["partial",32],["partialRight",64],["rearg",256]],o="[object Arguments]",l="[object Array]",a="[object Boolean]",u="[object Date]",s="[object Error]",c="[object Function]",d="[object GeneratorFunction]",f="[object Map]",m="[object Number]",p="[object Object]",v="[object RegExp]",g="[object Set]",h="[object String]",E="[object Symbol]",y="[object WeakMap]",_="[object ArrayBuffer]",b="[object DataView]",C="[object Float32Array]",S="[object Float64Array]",w="[object Int8Array]",O="[object Int16Array]",N="[object Int32Array]",I="[object Uint8Array]",D="[object Uint16Array]",T="[object Uint32Array]",x=/\b__p \+= '';/g,L=/\b(__p \+=) '' \+/g,R=/(__e\(.*?\)|\b__t\)) \+\n'';/g,M=/&(?:amp|lt|gt|quot|#39);/g,P=/[&<>"']/g,k=RegExp(M.source),U=RegExp(P.source),B=/<%-([\s\S]+?)%>/g,j=/<%([\s\S]+?)%>/g,F=/<%=([\s\S]+?)%>/g,z=/\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/,W=/^\w*$/,V=/[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|$))/g,H=/[\\^$.*+?()[\]{}|]/g,G=RegExp(H.source),q=/^\s+/,Z=/\s/,X=/\{(?:\n\/\* \[wrapped with .+\] \*\/)?\n?/,Y=/\{\n\/\* \[wrapped with (.+)\] \*/,K=/,? & /,J=/[^\x00-\x2f\x3a-\x40\x5b-\x60\x7b-\x7f]+/g,$=/[()=,{}\[\]\/\s]/,Q=/\\(\\)?/g,ee=/\$\{([^\\}]*(?:\\.[^\\}]*)*)\}/g,te=/\w*$/,ne=/^[-+]0x[0-9a-f]+$/i,re=/^0b[01]+$/i,ie=/^\[object .+?Constructor\]$/,oe=/^0o[0-7]+$/i,le=/^(?:0|[1-9]\d*)$/,ae=/[\xc0-\xd6\xd8-\xf6\xf8-\xff\u0100-\u017f]/g,ue=/($^)/,se=/['\n\r\u2028\u2029\\]/g,ce="\\u0300-\\u036f\\ufe20-\\ufe2f\\u20d0-\\u20ff",de="\\xac\\xb1\\xd7\\xf7\\x00-\\x2f\\x3a-\\x40\\x5b-\\x60\\x7b-\\xbf\\u2000-\\u206f \\t\\x0b\\f\\xa0\\ufeff\\n\\r\\u2028\\u2029\\u1680\\u180e\\u2000\\u2001\\u2002\\u2003\\u2004\\u2005\\u2006\\u2007\\u2008\\u2009\\u200a\\u202f\\u205f\\u3000",fe="["+de+"]",me="["+ce+"]",pe="\\d+",ve="[a-z\\xdf-\\xf6\\xf8-\\xff]",ge="[^\\ud800-\\udfff"+de+pe+"\\u2700-\\u27bfa-z\\xdf-\\xf6\\xf8-\\xffA-Z\\xc0-\\xd6\\xd8-\\xde]",he="\\ud83c[\\udffb-\\udfff]",Ee="[^\\ud800-\\udfff]",ye="(?:\\ud83c[\\udde6-\\uddff]){2}",_e="[\\ud800-\\udbff][\\udc00-\\udfff]",be="[A-Z\\xc0-\\xd6\\xd8-\\xde]",Ce="(?:"+ve+"|"+ge+")",Se="(?:"+be+"|"+ge+")",we="(?:"+me+"|"+he+")?",Oe="[\\ufe0e\\ufe0f]?"+we+"(?:\\u200d(?:"+[Ee,ye,_e].join("|")+")[\\ufe0e\\ufe0f]?"+we+")*",Ne="(?:"+["[\\u2700-\\u27bf]",ye,_e].join("|")+")"+Oe,Ie="(?:"+[Ee+me+"?",me,ye,_e,"[\\ud800-\\udfff]"].join("|")+")",De=RegExp("['’]","g"),Te=RegExp(me,"g"),xe=RegExp(he+"(?="+he+")|"+Ie+Oe,"g"),Ae=RegExp([be+"?"+ve+"+(?:['’](?:d|ll|m|re|s|t|ve))?(?="+[fe,be,"$"].join("|")+")",Se+"+(?:['’](?:D|LL|M|RE|S|T|VE))?(?="+[fe,be+Ce,"$"].join("|")+")",be+"?"+Ce+"+(?:['’](?:d|ll|m|re|s|t|ve))?",be+"+(?:['’](?:D|LL|M|RE|S|T|VE))?","\\d*(?:1ST|2ND|3RD|(?![123])\\dTH)(?=\\b|[a-z_])","\\d*(?:1st|2nd|3rd|(?![123])\\dth)(?=\\b|[A-Z_])",pe,Ne].join("|"),"g"),Le=RegExp("[\\u200d\\ud800-\\udfff"+ce+"\\ufe0e\\ufe0f]"),Re=/[a-z][A-Z]|[A-Z]{2}[a-z]|[0-9][a-zA-Z]|[a-zA-Z][0-9]|[^a-zA-Z0-9 ]/,Me=["Array","Buffer","DataView","Date","Error","Float32Array","Float64Array","Function","Int8Array","Int16Array","Int32Array","Map","Math","Object","Promise","RegExp","Set","String","Symbol","TypeError","Uint8Array","Uint8ClampedArray","Uint16Array","Uint32Array","WeakMap","_","clearTimeout","isFinite","parseInt","setTimeout"],Pe=-1,ke={};ke[C]=ke[S]=ke[w]=ke[O]=ke[N]=ke[I]=ke["[object Uint8ClampedArray]"]=ke[D]=ke[T]=!0,ke[o]=ke[l]=ke[_]=ke[a]=ke[b]=ke[u]=ke[s]=ke[c]=ke[f]=ke[m]=ke[p]=ke[v]=ke[g]=ke[h]=ke[y]=!1;var Ue={};Ue[o]=Ue[l]=Ue[_]=Ue[b]=Ue[a]=Ue[u]=Ue[C]=Ue[S]=Ue[w]=Ue[O]=Ue[N]=Ue[f]=Ue[m]=Ue[p]=Ue[v]=Ue[g]=Ue[h]=Ue[E]=Ue[I]=Ue["[object Uint8ClampedArray]"]=Ue[D]=Ue[T]=!0,Ue[s]=Ue[c]=Ue[y]=!1;var Be={"\\":"\\","'":"'","\n":"n","\r":"r","\u2028":"u2028","\u2029":"u2029"},je=parseFloat,Fe=parseInt,ze="object"==typeof A&&A&&A.Object===Object&&A,We="object"==typeof self&&self&&self.Object===Object&&self,Ve=ze||We||Function("return this")(),He=t&&!t.nodeType&&t,Ge=He&&e&&!e.nodeType&&e,qe=Ge&&Ge.exports===He,Ze=qe&&ze.process,Xe=function(){try{return Ge&&Ge.require&&Ge.require("util").types||Ze&&Ze.binding&&Ze.binding("util")}catch(e){}}(),Ye=Xe&&Xe.isArrayBuffer,Ke=Xe&&Xe.isDate,Je=Xe&&Xe.isMap,$e=Xe&&Xe.isRegExp,Qe=Xe&&Xe.isSet,et=Xe&&Xe.isTypedArray;function tt(e,t,n){switch(n.length){case 0:return e.call(t);case 1:return e.call(t,n[0]);case 2:return e.call(t,n[0],n[1]);case 3:return e.call(t,n[0],n[1],n[2])}return e.apply(t,n)}function nt(e,t,n,r){for(var i=-1,o=null==e?0:e.length;++i<o;){var l=e[i];t(r,l,n(l),e)}return r}function rt(e,t){for(var n=-1,r=null==e?0:e.length;++n<r&&!1!==t(e[n],n,e););return e}function it(e,t){for(var n=null==e?0:e.length;n--&&!1!==t(e[n],n,e););return e}function ot(e,t){for(var n=-1,r=null==e?0:e.length;++n<r;)if(!t(e[n],n,e))return!1;return!0}function lt(e,t){for(var n=-1,r=null==e?0:e.length,i=0,o=[];++n<r;){var l=e[n];t(l,n,e)&&(o[i++]=l)}return o}function at(e,t){return!(null==e||!e.length)&&ht(e,t,0)>-1}function ut(e,t,n){for(var r=-1,i=null==e?0:e.length;++r<i;)if(n(t,e[r]))return!0;return!1}function st(e,t){for(var n=-1,r=null==e?0:e.length,i=Array(r);++n<r;)i[n]=t(e[n],n,e);return i}function ct(e,t){for(var n=-1,r=t.length,i=e.length;++n<r;)e[i+n]=t[n];return e}function dt(e,t,n,r){var i=-1,o=null==e?0:e.length;for(r&&o&&(n=e[++i]);++i<o;)n=t(n,e[i],i,e);return n}function ft(e,t,n,r){var i=null==e?0:e.length;for(r&&i&&(n=e[--i]);i--;)n=t(n,e[i],i,e);return n}function mt(e,t){for(var n=-1,r=null==e?0:e.length;++n<r;)if(t(e[n],n,e))return!0;return!1}var pt=bt("length");function vt(e,t,n){var r;return n(e,function(e,n,i){if(t(e,n,i))return r=n,!1}),r}function gt(e,t,n,r){for(var i=e.length,o=n+(r?1:-1);r?o--:++o<i;)if(t(e[o],o,e))return o;return-1}function ht(e,t,n){return t==t?function(e,t,n){for(var r=n-1,i=e.length;++r<i;)if(e[r]===t)return r;return-1}(e,t,n):gt(e,yt,n)}function Et(e,t,n,r){for(var i=n-1,o=e.length;++i<o;)if(r(e[i],t))return i;return-1}function yt(e){return e!=e}function _t(e,t){var n=null==e?0:e.length;return n?wt(e,t)/n:NaN}function bt(e){return function(t){return null==t?void 0:t[e]}}function Ct(e){return function(t){return null==e?void 0:e[t]}}function St(e,t,n,r,i){return i(e,function(e,i,o){n=r?(r=!1,e):t(n,e,i,o)}),n}function wt(e,t){for(var n,r=-1,i=e.length;++r<i;){var o=t(e[r]);void 0!==o&&(n=void 0===n?o:n+o)}return n}function Ot(e,t){for(var n=-1,r=Array(e);++n<e;)r[n]=t(n);return r}function Nt(e){return e?e.slice(0,Ht(e)+1).replace(q,""):e}function It(e){return function(t){return e(t)}}function Dt(e,t){return st(t,function(t){return e[t]})}function Tt(e,t){return e.has(t)}function xt(e,t){for(var n=-1,r=e.length;++n<r&&ht(t,e[n],0)>-1;);return n}function At(e,t){for(var n=e.length;n--&&ht(t,e[n],0)>-1;);return n}function Lt(e,t){for(var n=e.length,r=0;n--;)e[n]===t&&++r;return r}var Rt=Ct({"À":"A","Á":"A","Â":"A","Ã":"A","Ä":"A","Å":"A","à":"a","á":"a","â":"a","ã":"a","ä":"a","å":"a","Ç":"C","ç":"c","Ð":"D","ð":"d","È":"E","É":"E","Ê":"E","Ë":"E","è":"e","é":"e","ê":"e","ë":"e","Ì":"I","Í":"I","Î":"I","Ï":"I","ì":"i","í":"i","î":"i","ï":"i","Ñ":"N","ñ":"n","Ò":"O","Ó":"O","Ô":"O","Õ":"O","Ö":"O","Ø":"O","ò":"o","ó":"o","ô":"o","õ":"o","ö":"o","ø":"o","Ù":"U","Ú":"U","Û":"U","Ü":"U","ù":"u","ú":"u","û":"u","ü":"u","Ý":"Y","ý":"y","ÿ":"y","Æ":"Ae","æ":"ae","Þ":"Th","þ":"th","ß":"ss","Ā":"A","Ă":"A","Ą":"A","ā":"a","ă":"a","ą":"a","Ć":"C","Ĉ":"C","Ċ":"C","Č":"C","ć":"c","ĉ":"c","ċ":"c","č":"c","Ď":"D","Đ":"D","ď":"d","đ":"d","Ē":"E","Ĕ":"E","Ė":"E","Ę":"E","Ě":"E","ē":"e","ĕ":"e","ė":"e","ę":"e","ě":"e","Ĝ":"G","Ğ":"G","Ġ":"G","Ģ":"G","ĝ":"g","ğ":"g","ġ":"g","ģ":"g","Ĥ":"H","Ħ":"H","ĥ":"h","ħ":"h","Ĩ":"I","Ī":"I","Ĭ":"I","Į":"I","İ":"I","ĩ":"i","ī":"i","ĭ":"i","į":"i","ı":"i","Ĵ":"J","ĵ":"j","Ķ":"K","ķ":"k","ĸ":"k","Ĺ":"L","Ļ":"L","Ľ":"L","Ŀ":"L","Ł":"L","ĺ":"l","ļ":"l","ľ":"l","ŀ":"l","ł":"l","Ń":"N","Ņ":"N","Ň":"N","Ŋ":"N","ń":"n","ņ":"n","ň":"n","ŋ":"n","Ō":"O","Ŏ":"O","Ő":"O","ō":"o","ŏ":"o","ő":"o","Ŕ":"R","Ŗ":"R","Ř":"R","ŕ":"r","ŗ":"r","ř":"r","Ś":"S","Ŝ":"S","Ş":"S","Š":"S","ś":"s","ŝ":"s","ş":"s","š":"s","Ţ":"T","Ť":"T","Ŧ":"T","ţ":"t","ť":"t","ŧ":"t","Ũ":"U","Ū":"U","Ŭ":"U","Ů":"U","Ű":"U","Ų":"U","ũ":"u","ū":"u","ŭ":"u","ů":"u","ű":"u","ų":"u","Ŵ":"W","ŵ":"w","Ŷ":"Y","ŷ":"y","Ÿ":"Y","Ź":"Z","Ż":"Z","Ž":"Z","ź":"z","ż":"z","ž":"z","Ĳ":"IJ","ĳ":"ij","Œ":"Oe","œ":"oe","ŉ":"'n","ſ":"s"}),Mt=Ct({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"});function Pt(e){return"\\"+Be[e]}function kt(e){return Le.test(e)}function Ut(e){var t=-1,n=Array(e.size);return e.forEach(function(e,r){n[++t]=[r,e]}),n}function Bt(e,t){return function(n){return e(t(n))}}function jt(e,t){for(var n=-1,i=e.length,o=0,l=[];++n<i;){var a=e[n];a!==t&&a!==r||(e[n]=r,l[o++]=n)}return l}function Ft(e){var t=-1,n=Array(e.size);return e.forEach(function(e){n[++t]=e}),n}function zt(e){var t=-1,n=Array(e.size);return e.forEach(function(e){n[++t]=[e,e]}),n}function Wt(e){return kt(e)?function(e){for(var t=xe.lastIndex=0;xe.test(e);)++t;return t}(e):pt(e)}function Vt(e){return kt(e)?function(e){return e.match(xe)||[]}(e):function(e){return e.split("")}(e)}function Ht(e){for(var t=e.length;t--&&Z.test(e.charAt(t)););return t}var Gt=Ct({"&amp;":"&","&lt;":"<","&gt;":">","&quot;":'"',"&#39;":"'"}),qt=function e(t){var A,Z=(t=null==t?Ve:qt.defaults(Ve.Object(),t,qt.pick(Ve,Me))).Array,ce=t.Date,de=t.Error,fe=t.Function,me=t.Math,pe=t.Object,ve=t.RegExp,ge=t.String,he=t.TypeError,Ee=Z.prototype,ye=pe.prototype,_e=t["__core-js_shared__"],be=fe.prototype.toString,Ce=ye.hasOwnProperty,Se=0,we=(A=/[^.]+$/.exec(_e&&_e.keys&&_e.keys.IE_PROTO||""))?"Symbol(src)_1."+A:"",Oe=ye.toString,Ne=be.call(pe),Ie=Ve._,xe=ve("^"+be.call(Ce).replace(H,"\\$&").replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g,"$1.*?")+"$"),Le=qe?t.Buffer:void 0,Be=t.Symbol,ze=t.Uint8Array,We=Le?Le.allocUnsafe:void 0,He=Bt(pe.getPrototypeOf,pe),Ge=pe.create,Ze=ye.propertyIsEnumerable,Xe=Ee.splice,pt=Be?Be.isConcatSpreadable:void 0,Ct=Be?Be.iterator:void 0,Zt=Be?Be.toStringTag:void 0,Xt=function(){try{var e=$i(pe,"defineProperty");return e({},"",{}),e}catch(e){}}(),Yt=t.clearTimeout!==Ve.clearTimeout&&t.clearTimeout,Kt=ce&&ce.now!==Ve.Date.now&&ce.now,Jt=t.setTimeout!==Ve.setTimeout&&t.setTimeout,$t=me.ceil,Qt=me.floor,en=pe.getOwnPropertySymbols,tn=Le?Le.isBuffer:void 0,nn=t.isFinite,rn=Ee.join,on=Bt(pe.keys,pe),ln=me.max,an=me.min,un=ce.now,sn=t.parseInt,cn=me.random,dn=Ee.reverse,fn=$i(t,"DataView"),mn=$i(t,"Map"),pn=$i(t,"Promise"),vn=$i(t,"Set"),gn=$i(t,"WeakMap"),hn=$i(pe,"create"),En=gn&&new gn,yn={},_n=Do(fn),bn=Do(mn),Cn=Do(pn),Sn=Do(vn),wn=Do(gn),On=Be?Be.prototype:void 0,Nn=On?On.valueOf:void 0,In=On?On.toString:void 0;function Dn(e){if(Gl(e)&&!Ml(e)&&!(e instanceof Ln)){if(e instanceof An)return e;if(Ce.call(e,"__wrapped__"))return To(e)}return new An(e)}var Tn=function(){function e(){}return function(t){if(!Hl(t))return{};if(Ge)return Ge(t);e.prototype=t;var n=new e;return e.prototype=void 0,n}}();function xn(){}function An(e,t){this.__wrapped__=e,this.__actions__=[],this.__chain__=!!t,this.__index__=0,this.__values__=void 0}function Ln(e){this.__wrapped__=e,this.__actions__=[],this.__dir__=1,this.__filtered__=!1,this.__iteratees__=[],this.__takeCount__=4294967295,this.__views__=[]}function Rn(e){var t=-1,n=null==e?0:e.length;for(this.clear();++t<n;){var r=e[t];this.set(r[0],r[1])}}function Mn(e){var t=-1,n=null==e?0:e.length;for(this.clear();++t<n;){var r=e[t];this.set(r[0],r[1])}}function Pn(e){var t=-1,n=null==e?0:e.length;for(this.clear();++t<n;){var r=e[t];this.set(r[0],r[1])}}function kn(e){var t=-1,n=null==e?0:e.length;for(this.__data__=new Pn;++t<n;)this.add(e[t])}function Un(e){var t=this.__data__=new Mn(e);this.size=t.size}function Bn(e,t){var n=Ml(e),r=!n&&Rl(e),i=!n&&!r&&Bl(e),o=!n&&!r&&!i&&Ql(e),l=n||r||i||o,a=l?Ot(e.length,ge):[],u=a.length;for(var s in e)!t&&!Ce.call(e,s)||l&&("length"==s||i&&("offset"==s||"parent"==s)||o&&("buffer"==s||"byteLength"==s||"byteOffset"==s)||oo(s,u))||a.push(s);return a}function jn(e){var t=e.length;return t?e[Pr(0,t-1)]:void 0}function Fn(e,t){return So(gi(e),Yn(t,0,e.length))}function zn(e){return So(gi(e))}function Wn(e,t,n){(void 0!==n&&!xl(e[t],n)||void 0===n&&!(t in e))&&Zn(e,t,n)}function Vn(e,t,n){var r=e[t];Ce.call(e,t)&&xl(r,n)&&(void 0!==n||t in e)||Zn(e,t,n)}function Hn(e,t){for(var n=e.length;n--;)if(xl(e[n][0],t))return n;return-1}function Gn(e,t,n,r){return er(e,function(e,i,o){t(r,e,n(e),o)}),r}function qn(e,t){return e&&hi(t,ba(t),e)}function Zn(e,t,n){"__proto__"==t&&Xt?Xt(e,t,{configurable:!0,enumerable:!0,value:n,writable:!0}):e[t]=n}function Xn(e,t){for(var n=-1,r=t.length,i=Z(r),o=null==e;++n<r;)i[n]=o?void 0:ga(e,t[n]);return i}function Yn(e,t,n){return e==e&&(void 0!==n&&(e=e<=n?e:n),void 0!==t&&(e=e>=t?e:t)),e}function Kn(e,t,n,r,i,l){var s,y=1&t,x=2&t,A=4&t;if(n&&(s=i?n(e,r,i,l):n(e)),void 0!==s)return s;if(!Hl(e))return e;var L=Ml(e);if(L){if(s=function(e){var t=e.length,n=new e.constructor(t);return t&&"string"==typeof e[0]&&Ce.call(e,"index")&&(n.index=e.index,n.input=e.input),n}(e),!y)return gi(e,s)}else{var R=to(e),M=R==c||R==d;if(Bl(e))return ci(e,y);if(R==p||R==o||M&&!i){if(s=x||M?{}:ro(e),!y)return x?function(e,t){return hi(e,eo(e),t)}(e,function(e,t){return e&&hi(t,Ca(t),e)}(s,e)):function(e,t){return hi(e,Qi(e),t)}(e,qn(s,e))}else{if(!Ue[R])return i?e:{};s=function(e,t,n){var r=e.constructor;switch(t){case _:return di(e);case a:case u:return new r(+e);case b:return function(e,t){var n=t?di(e.buffer):e.buffer;return new e.constructor(n,e.byteOffset,e.byteLength)}(e,n);case C:case S:case w:case O:case N:case I:case"[object Uint8ClampedArray]":case D:case T:return fi(e,n);case f:return new r;case m:case h:return new r(e);case v:return function(e){var t=new e.constructor(e.source,te.exec(e));return t.lastIndex=e.lastIndex,t}(e);case g:return new r;case E:return Nn?pe(Nn.call(e)):{}}}(e,R,y)}}l||(l=new Un);var P=l.get(e);if(P)return P;l.set(e,s),Kl(e)?e.forEach(function(r){s.add(Kn(r,t,n,r,e,l))}):ql(e)&&e.forEach(function(r,i){s.set(i,Kn(r,t,n,i,e,l))});var k=L?void 0:(A?x?Gi:Hi:x?Ca:ba)(e);return rt(k||e,function(r,i){k&&(r=e[i=r]),Vn(s,i,Kn(r,t,n,i,e,l))}),s}function Jn(e,t,n){var r=n.length;if(null==e)return!r;for(e=pe(e);r--;){var i=n[r],o=e[i];if(void 0===o&&!(i in e)||!(0,t[i])(o))return!1}return!0}function $n(e,t,r){if("function"!=typeof e)throw new he(n);return yo(function(){e.apply(void 0,r)},t)}function Qn(e,t,n,r){var i=-1,o=at,l=!0,a=e.length,u=[],s=t.length;if(!a)return u;n&&(t=st(t,It(n))),r?(o=ut,l=!1):t.length>=200&&(o=Tt,l=!1,t=new kn(t));e:for(;++i<a;){var c=e[i],d=null==n?c:n(c);if(c=r||0!==c?c:0,l&&d==d){for(var f=s;f--;)if(t[f]===d)continue e;u.push(c)}else o(t,d,r)||u.push(c)}return u}Dn.templateSettings={escape:B,evaluate:j,interpolate:F,variable:"",imports:{_:Dn}},(Dn.prototype=xn.prototype).constructor=Dn,(An.prototype=Tn(xn.prototype)).constructor=An,(Ln.prototype=Tn(xn.prototype)).constructor=Ln,Rn.prototype.clear=function(){this.__data__=hn?hn(null):{},this.size=0},Rn.prototype.delete=function(e){var t=this.has(e)&&delete this.__data__[e];return this.size-=t?1:0,t},Rn.prototype.get=function(e){var t=this.__data__;if(hn){var n=t[e];return"__lodash_hash_undefined__"===n?void 0:n}return Ce.call(t,e)?t[e]:void 0},Rn.prototype.has=function(e){var t=this.__data__;return hn?void 0!==t[e]:Ce.call(t,e)},Rn.prototype.set=function(e,t){var n=this.__data__;return this.size+=this.has(e)?0:1,n[e]=hn&&void 0===t?"__lodash_hash_undefined__":t,this},Mn.prototype.clear=function(){this.__data__=[],this.size=0},Mn.prototype.delete=function(e){var t=this.__data__,n=Hn(t,e);return!(n<0||(n==t.length-1?t.pop():Xe.call(t,n,1),--this.size,0))},Mn.prototype.get=function(e){var t=this.__data__,n=Hn(t,e);return n<0?void 0:t[n][1]},Mn.prototype.has=function(e){return Hn(this.__data__,e)>-1},Mn.prototype.set=function(e,t){var n=this.__data__,r=Hn(n,e);return r<0?(++this.size,n.push([e,t])):n[r][1]=t,this},Pn.prototype.clear=function(){this.size=0,this.__data__={hash:new Rn,map:new(mn||Mn),string:new Rn}},Pn.prototype.delete=function(e){var t=Ki(this,e).delete(e);return this.size-=t?1:0,t},Pn.prototype.get=function(e){return Ki(this,e).get(e)},Pn.prototype.has=function(e){return Ki(this,e).has(e)},Pn.prototype.set=function(e,t){var n=Ki(this,e),r=n.size;return n.set(e,t),this.size+=n.size==r?0:1,this},kn.prototype.add=kn.prototype.push=function(e){return this.__data__.set(e,"__lodash_hash_undefined__"),this},kn.prototype.has=function(e){return this.__data__.has(e)},Un.prototype.clear=function(){this.__data__=new Mn,this.size=0},Un.prototype.delete=function(e){var t=this.__data__,n=t.delete(e);return this.size=t.size,n},Un.prototype.get=function(e){return this.__data__.get(e)},Un.prototype.has=function(e){return this.__data__.has(e)},Un.prototype.set=function(e,t){var n=this.__data__;if(n instanceof Mn){var r=n.__data__;if(!mn||r.length<199)return r.push([e,t]),this.size=++n.size,this;n=this.__data__=new Pn(r)}return n.set(e,t),this.size=n.size,this};var er=_i(ur),tr=_i(sr,!0);function nr(e,t){var n=!0;return er(e,function(e,r,i){return n=!!t(e,r,i)}),n}function rr(e,t,n){for(var r=-1,i=e.length;++r<i;){var o=e[r],l=t(o);if(null!=l&&(void 0===a?l==l&&!$l(l):n(l,a)))var a=l,u=o}return u}function ir(e,t){var n=[];return er(e,function(e,r,i){t(e,r,i)&&n.push(e)}),n}function or(e,t,n,r,i){var o=-1,l=e.length;for(n||(n=io),i||(i=[]);++o<l;){var a=e[o];t>0&&n(a)?t>1?or(a,t-1,n,r,i):ct(i,a):r||(i[i.length]=a)}return i}var lr=bi(),ar=bi(!0);function ur(e,t){return e&&lr(e,t,ba)}function sr(e,t){return e&&ar(e,t,ba)}function cr(e,t){return lt(t,function(t){return zl(e[t])})}function dr(e,t){for(var n=0,r=(t=li(t,e)).length;null!=e&&n<r;)e=e[Io(t[n++])];return n&&n==r?e:void 0}function fr(e,t,n){var r=t(e);return Ml(e)?r:ct(r,n(e))}function mr(e){return null==e?void 0===e?"[object Undefined]":"[object Null]":Zt&&Zt in pe(e)?function(e){var t=Ce.call(e,Zt),n=e[Zt];try{e[Zt]=void 0;var r=!0}catch(e){}var i=Oe.call(e);return r&&(t?e[Zt]=n:delete e[Zt]),i}(e):function(e){return Oe.call(e)}(e)}function pr(e,t){return e>t}function vr(e,t){return null!=e&&Ce.call(e,t)}function gr(e,t){return null!=e&&t in pe(e)}function hr(e,t,n){for(var r=n?ut:at,i=e[0].length,o=e.length,l=o,a=Z(o),u=Infinity,s=[];l--;){var c=e[l];l&&t&&(c=st(c,It(t))),u=an(c.length,u),a[l]=!n&&(t||i>=120&&c.length>=120)?new kn(l&&c):void 0}c=e[0];var d=-1,f=a[0];e:for(;++d<i&&s.length<u;){var m=c[d],p=t?t(m):m;if(m=n||0!==m?m:0,!(f?Tt(f,p):r(s,p,n))){for(l=o;--l;){var v=a[l];if(!(v?Tt(v,p):r(e[l],p,n)))continue e}f&&f.push(p),s.push(m)}}return s}function Er(e,t,n){var r=null==(e=vo(e,t=li(t,e)))?e:e[Io(Fo(t))];return null==r?void 0:tt(r,e,n)}function yr(e){return Gl(e)&&mr(e)==o}function _r(e,t,n,r,i){return e===t||(null==e||null==t||!Gl(e)&&!Gl(t)?e!=e&&t!=t:function(e,t,n,r,i,c){var d=Ml(e),y=Ml(t),C=d?l:to(e),S=y?l:to(t),w=(C=C==o?p:C)==p,O=(S=S==o?p:S)==p,N=C==S;if(N&&Bl(e)){if(!Bl(t))return!1;d=!0,w=!1}if(N&&!w)return c||(c=new Un),d||Ql(e)?Wi(e,t,n,r,i,c):function(e,t,n,r,i,o,l){switch(n){case b:if(e.byteLength!=t.byteLength||e.byteOffset!=t.byteOffset)return!1;e=e.buffer,t=t.buffer;case _:return!(e.byteLength!=t.byteLength||!o(new ze(e),new ze(t)));case a:case u:case m:return xl(+e,+t);case s:return e.name==t.name&&e.message==t.message;case v:case h:return e==t+"";case f:var c=Ut;case g:if(c||(c=Ft),e.size!=t.size&&!(1&r))return!1;var d=l.get(e);if(d)return d==t;r|=2,l.set(e,t);var p=Wi(c(e),c(t),r,i,o,l);return l.delete(e),p;case E:if(Nn)return Nn.call(e)==Nn.call(t)}return!1}(e,t,C,n,r,i,c);if(!(1&n)){var I=w&&Ce.call(e,"__wrapped__"),D=O&&Ce.call(t,"__wrapped__");if(I||D){var T=I?e.value():e,x=D?t.value():t;return c||(c=new Un),i(T,x,n,r,c)}}return!!N&&(c||(c=new Un),function(e,t,n,r,i,o){var l=1&n,a=Hi(e),u=a.length;if(u!=Hi(t).length&&!l)return!1;for(var s=u;s--;){var c=a[s];if(!(l?c in t:Ce.call(t,c)))return!1}var d=o.get(e),f=o.get(t);if(d&&f)return d==t&&f==e;var m=!0;o.set(e,t),o.set(t,e);for(var p=l;++s<u;){var v=e[c=a[s]],g=t[c];if(r)var h=l?r(g,v,c,t,e,o):r(v,g,c,e,t,o);if(!(void 0===h?v===g||i(v,g,n,r,o):h)){m=!1;break}p||(p="constructor"==c)}if(m&&!p){var E=e.constructor,y=t.constructor;E==y||!("constructor"in e)||!("constructor"in t)||"function"==typeof E&&E instanceof E&&"function"==typeof y&&y instanceof y||(m=!1)}return o.delete(e),o.delete(t),m}(e,t,n,r,i,c))}(e,t,n,r,_r,i))}function br(e,t,n,r){var i=n.length,o=i,l=!r;if(null==e)return!o;for(e=pe(e);i--;){var a=n[i];if(l&&a[2]?a[1]!==e[a[0]]:!(a[0]in e))return!1}for(;++i<o;){var u=(a=n[i])[0],s=e[u],c=a[1];if(l&&a[2]){if(void 0===s&&!(u in e))return!1}else{var d=new Un;if(r)var f=r(s,c,u,e,t,d);if(!(void 0===f?_r(c,s,3,r,d):f))return!1}}return!0}function Cr(e){return!(!Hl(e)||(t=e,we&&we in t))&&(zl(e)?xe:ie).test(Do(e));var t}function Sr(e){return"function"==typeof e?e:null==e?Za:"object"==typeof e?Ml(e)?Dr(e[0],e[1]):Ir(e):nu(e)}function wr(e){if(!co(e))return on(e);var t=[];for(var n in pe(e))Ce.call(e,n)&&"constructor"!=n&&t.push(n);return t}function Or(e,t){return e<t}function Nr(e,t){var n=-1,r=kl(e)?Z(e.length):[];return er(e,function(e,i,o){r[++n]=t(e,i,o)}),r}function Ir(e){var t=Ji(e);return 1==t.length&&t[0][2]?mo(t[0][0],t[0][1]):function(n){return n===e||br(n,e,t)}}function Dr(e,t){return ao(e)&&fo(t)?mo(Io(e),t):function(n){var r=ga(n,e);return void 0===r&&r===t?ha(n,e):_r(t,r,3)}}function Tr(e,t,n,r,i){e!==t&&lr(t,function(o,l){if(i||(i=new Un),Hl(o))!function(e,t,n,r,i,o,l){var a=ho(e,n),u=ho(t,n),s=l.get(u);if(s)Wn(e,n,s);else{var c=o?o(a,u,n+"",e,t,l):void 0,d=void 0===c;if(d){var f=Ml(u),m=!f&&Bl(u),p=!f&&!m&&Ql(u);c=u,f||m||p?Ml(a)?c=a:Ul(a)?c=gi(a):m?(d=!1,c=ci(u,!0)):p?(d=!1,c=fi(u,!0)):c=[]:Xl(u)||Rl(u)?(c=a,Rl(a)?c=aa(a):Hl(a)&&!zl(a)||(c=ro(u))):d=!1}d&&(l.set(u,c),i(c,u,r,o,l),l.delete(u)),Wn(e,n,c)}}(e,t,l,n,Tr,r,i);else{var a=r?r(ho(e,l),o,l+"",e,t,i):void 0;void 0===a&&(a=o),Wn(e,l,a)}},Ca)}function xr(e,t){var n=e.length;if(n)return oo(t+=t<0?n:0,n)?e[t]:void 0}function Ar(e,t,n){t=t.length?st(t,function(e){return Ml(e)?function(t){return dr(t,1===e.length?e[0]:e)}:e}):[Za];var r=-1;return t=st(t,It(Yi())),function(e,t){var r=e.length;for(e.sort(function(e,t){return function(e,t,n){for(var r=-1,i=e.criteria,o=t.criteria,l=i.length,a=n.length;++r<l;){var u=mi(i[r],o[r]);if(u)return r>=a?u:u*("desc"==n[r]?-1:1)}return e.index-t.index}(e,t,n)});r--;)e[r]=e[r].value;return e}(Nr(e,function(e,n,i){return{criteria:st(t,function(t){return t(e)}),index:++r,value:e}}))}function Lr(e,t,n){for(var r=-1,i=t.length,o={};++r<i;){var l=t[r],a=dr(e,l);n(a,l)&&Fr(o,li(l,e),a)}return o}function Rr(e,t,n,r){var i=r?Et:ht,o=-1,l=t.length,a=e;for(e===t&&(t=gi(t)),n&&(a=st(e,It(n)));++o<l;)for(var u=0,s=t[o],c=n?n(s):s;(u=i(a,c,u,r))>-1;)a!==e&&Xe.call(a,u,1),Xe.call(e,u,1);return e}function Mr(e,t){for(var n=e?t.length:0,r=n-1;n--;){var i=t[n];if(n==r||i!==o){var o=i;oo(i)?Xe.call(e,i,1):$r(e,i)}}return e}function Pr(e,t){return e+Qt(cn()*(t-e+1))}function kr(e,t){var n="";if(!e||t<1||t>9007199254740991)return n;do{t%2&&(n+=e),(t=Qt(t/2))&&(e+=e)}while(t);return n}function Ur(e,t){return _o(po(e,t,Za),e+"")}function Br(e){return jn(xa(e))}function jr(e,t){var n=xa(e);return So(n,Yn(t,0,n.length))}function Fr(e,t,n,r){if(!Hl(e))return e;for(var i=-1,o=(t=li(t,e)).length,l=o-1,a=e;null!=a&&++i<o;){var u=Io(t[i]),s=n;if("__proto__"===u||"constructor"===u||"prototype"===u)return e;if(i!=l){var c=a[u];void 0===(s=r?r(c,u,a):void 0)&&(s=Hl(c)?c:oo(t[i+1])?[]:{})}Vn(a,u,s),a=a[u]}return e}var zr=En?function(e,t){return En.set(e,t),e}:Za,Wr=Xt?function(e,t){return Xt(e,"toString",{configurable:!0,enumerable:!1,value:Ha(t),writable:!0})}:Za;function Vr(e){return So(xa(e))}function Hr(e,t,n){var r=-1,i=e.length;t<0&&(t=-t>i?0:i+t),(n=n>i?i:n)<0&&(n+=i),i=t>n?0:n-t>>>0,t>>>=0;for(var o=Z(i);++r<i;)o[r]=e[r+t];return o}function Gr(e,t){var n;return er(e,function(e,r,i){return!(n=t(e,r,i))}),!!n}function qr(e,t,n){var r=0,i=null==e?r:e.length;if("number"==typeof t&&t==t&&i<=2147483647){for(;r<i;){var o=r+i>>>1,l=e[o];null!==l&&!$l(l)&&(n?l<=t:l<t)?r=o+1:i=o}return i}return Zr(e,t,Za,n)}function Zr(e,t,n,r){var i=0,o=null==e?0:e.length;if(0===o)return 0;for(var l=(t=n(t))!=t,a=null===t,u=$l(t),s=void 0===t;i<o;){var c=Qt((i+o)/2),d=n(e[c]),f=void 0!==d,m=null===d,p=d==d,v=$l(d);if(l)var g=r||p;else g=s?p&&(r||f):a?p&&f&&(r||!m):u?p&&f&&!m&&(r||!v):!m&&!v&&(r?d<=t:d<t);g?i=c+1:o=c}return an(o,4294967294)}function Xr(e,t){for(var n=-1,r=e.length,i=0,o=[];++n<r;){var l=e[n],a=t?t(l):l;if(!n||!xl(a,u)){var u=a;o[i++]=0===l?0:l}}return o}function Yr(e){return"number"==typeof e?e:$l(e)?NaN:+e}function Kr(e){if("string"==typeof e)return e;if(Ml(e))return st(e,Kr)+"";if($l(e))return In?In.call(e):"";var t=e+"";return"0"==t&&1/e==-1/0?"-0":t}function Jr(e,t,n){var r=-1,i=at,o=e.length,l=!0,a=[],u=a;if(n)l=!1,i=ut;else if(o>=200){var s=t?null:ki(e);if(s)return Ft(s);l=!1,i=Tt,u=new kn}else u=t?[]:a;e:for(;++r<o;){var c=e[r],d=t?t(c):c;if(c=n||0!==c?c:0,l&&d==d){for(var f=u.length;f--;)if(u[f]===d)continue e;t&&u.push(d),a.push(c)}else i(u,d,n)||(u!==a&&u.push(d),a.push(c))}return a}function $r(e,t){return null==(e=vo(e,t=li(t,e)))||delete e[Io(Fo(t))]}function Qr(e,t,n,r){return Fr(e,t,n(dr(e,t)),r)}function ei(e,t,n,r){for(var i=e.length,o=r?i:-1;(r?o--:++o<i)&&t(e[o],o,e););return n?Hr(e,r?0:o,r?o+1:i):Hr(e,r?o+1:0,r?i:o)}function ti(e,t){var n=e;return n instanceof Ln&&(n=n.value()),dt(t,function(e,t){return t.func.apply(t.thisArg,ct([e],t.args))},n)}function ni(e,t,n){var r=e.length;if(r<2)return r?Jr(e[0]):[];for(var i=-1,o=Z(r);++i<r;)for(var l=e[i],a=-1;++a<r;)a!=i&&(o[i]=Qn(o[i]||l,e[a],t,n));return Jr(or(o,1),t,n)}function ri(e,t,n){for(var r=-1,i=e.length,o=t.length,l={};++r<i;)n(l,e[r],r<o?t[r]:void 0);return l}function ii(e){return Ul(e)?e:[]}function oi(e){return"function"==typeof e?e:Za}function li(e,t){return Ml(e)?e:ao(e,t)?[e]:No(ua(e))}var ai=Ur;function ui(e,t,n){var r=e.length;return n=void 0===n?r:n,!t&&n>=r?e:Hr(e,t,n)}var si=Yt||function(e){return Ve.clearTimeout(e)};function ci(e,t){if(t)return e.slice();var n=e.length,r=We?We(n):new e.constructor(n);return e.copy(r),r}function di(e){var t=new e.constructor(e.byteLength);return new ze(t).set(new ze(e)),t}function fi(e,t){var n=t?di(e.buffer):e.buffer;return new e.constructor(n,e.byteOffset,e.length)}function mi(e,t){if(e!==t){var n=void 0!==e,r=null===e,i=e==e,o=$l(e),l=void 0!==t,a=null===t,u=t==t,s=$l(t);if(!a&&!s&&!o&&e>t||o&&l&&u&&!a&&!s||r&&l&&u||!n&&u||!i)return 1;if(!r&&!o&&!s&&e<t||s&&n&&i&&!r&&!o||a&&n&&i||!l&&i||!u)return-1}return 0}function pi(e,t,n,r){for(var i=-1,o=e.length,l=n.length,a=-1,u=t.length,s=ln(o-l,0),c=Z(u+s),d=!r;++a<u;)c[a]=t[a];for(;++i<l;)(d||i<o)&&(c[n[i]]=e[i]);for(;s--;)c[a++]=e[i++];return c}function vi(e,t,n,r){for(var i=-1,o=e.length,l=-1,a=n.length,u=-1,s=t.length,c=ln(o-a,0),d=Z(c+s),f=!r;++i<c;)d[i]=e[i];for(var m=i;++u<s;)d[m+u]=t[u];for(;++l<a;)(f||i<o)&&(d[m+n[l]]=e[i++]);return d}function gi(e,t){var n=-1,r=e.length;for(t||(t=Z(r));++n<r;)t[n]=e[n];return t}function hi(e,t,n,r){var i=!n;n||(n={});for(var o=-1,l=t.length;++o<l;){var a=t[o],u=r?r(n[a],e[a],a,n,e):void 0;void 0===u&&(u=e[a]),i?Zn(n,a,u):Vn(n,a,u)}return n}function Ei(e,t){return function(n,r){var i=Ml(n)?nt:Gn,o=t?t():{};return i(n,e,Yi(r,2),o)}}function yi(e){return Ur(function(t,n){var r=-1,i=n.length,o=i>1?n[i-1]:void 0,l=i>2?n[2]:void 0;for(o=e.length>3&&"function"==typeof o?(i--,o):void 0,l&&lo(n[0],n[1],l)&&(o=i<3?void 0:o,i=1),t=pe(t);++r<i;){var a=n[r];a&&e(t,a,r,o)}return t})}function _i(e,t){return function(n,r){if(null==n)return n;if(!kl(n))return e(n,r);for(var i=n.length,o=t?i:-1,l=pe(n);(t?o--:++o<i)&&!1!==r(l[o],o,l););return n}}function bi(e){return function(t,n,r){for(var i=-1,o=pe(t),l=r(t),a=l.length;a--;){var u=l[e?a:++i];if(!1===n(o[u],u,o))break}return t}}function Ci(e){return function(t){var n=kt(t=ua(t))?Vt(t):void 0,r=n?n[0]:t.charAt(0),i=n?ui(n,1).join(""):t.slice(1);return r[e]()+i}}function Si(e){return function(t){return dt(za(Ra(t).replace(De,"")),e,"")}}function wi(e){return function(){var t=arguments;switch(t.length){case 0:return new e;case 1:return new e(t[0]);case 2:return new e(t[0],t[1]);case 3:return new e(t[0],t[1],t[2]);case 4:return new e(t[0],t[1],t[2],t[3]);case 5:return new e(t[0],t[1],t[2],t[3],t[4]);case 6:return new e(t[0],t[1],t[2],t[3],t[4],t[5]);case 7:return new e(t[0],t[1],t[2],t[3],t[4],t[5],t[6])}var n=Tn(e.prototype),r=e.apply(n,t);return Hl(r)?r:n}}function Oi(e){return function(t,n,r){var i=pe(t);if(!kl(t)){var o=Yi(n,3);t=ba(t),n=function(e){return o(i[e],e,i)}}var l=e(t,n,r);return l>-1?i[o?t[l]:l]:void 0}}function Ni(e){return Vi(function(t){var r=t.length,i=r,o=An.prototype.thru;for(e&&t.reverse();i--;){var l=t[i];if("function"!=typeof l)throw new he(n);if(o&&!a&&"wrapper"==Zi(l))var a=new An([],!0)}for(i=a?i:r;++i<r;){var u=Zi(l=t[i]),s="wrapper"==u?qi(l):void 0;a=s&&uo(s[0])&&424==s[1]&&!s[4].length&&1==s[9]?a[Zi(s[0])].apply(a,s[3]):1==l.length&&uo(l)?a[u]():a.thru(l)}return function(){var e=arguments,n=e[0];if(a&&1==e.length&&Ml(n))return a.plant(n).value();for(var i=0,o=r?t[i].apply(this,e):n;++i<r;)o=t[i].call(this,o);return o}})}function Ii(e,t,n,r,i,o,l,a,u,s){var c=128&t,d=1&t,f=2&t,m=24&t,p=512&t,v=f?void 0:wi(e);return function g(){for(var h=arguments.length,E=Z(h),y=h;y--;)E[y]=arguments[y];if(m)var _=Xi(g),b=Lt(E,_);if(r&&(E=pi(E,r,i,m)),o&&(E=vi(E,o,l,m)),h-=b,m&&h<s){var C=jt(E,_);return Mi(e,t,Ii,g.placeholder,n,E,C,a,u,s-h)}var S=d?n:this,w=f?S[e]:e;return h=E.length,a?E=go(E,a):p&&h>1&&E.reverse(),c&&u<h&&(E.length=u),this&&this!==Ve&&this instanceof g&&(w=v||wi(w)),w.apply(S,E)}}function Di(e,t){return function(n,r){return function(e,t,n,r){return ur(e,function(e,i,o){t(r,n(e),i,o)}),r}(n,e,t(r),{})}}function Ti(e,t){return function(n,r){var i;if(void 0===n&&void 0===r)return t;if(void 0!==n&&(i=n),void 0!==r){if(void 0===i)return r;"string"==typeof n||"string"==typeof r?(n=Kr(n),r=Kr(r)):(n=Yr(n),r=Yr(r)),i=e(n,r)}return i}}function xi(e){return Vi(function(t){return t=st(t,It(Yi())),Ur(function(n){var r=this;return e(t,function(e){return tt(e,r,n)})})})}function Ai(e,t){var n=(t=void 0===t?" ":Kr(t)).length;if(n<2)return n?kr(t,e):t;var r=kr(t,$t(e/Wt(t)));return kt(t)?ui(Vt(r),0,e).join(""):r.slice(0,e)}function Li(e){return function(t,n,r){return r&&"number"!=typeof r&&lo(t,n,r)&&(n=r=void 0),t=ra(t),void 0===n?(n=t,t=0):n=ra(n),function(e,t,n,r){for(var i=-1,o=ln($t((t-e)/(n||1)),0),l=Z(o);o--;)l[r?o:++i]=e,e+=n;return l}(t,n,r=void 0===r?t<n?1:-1:ra(r),e)}}function Ri(e){return function(t,n){return"string"==typeof t&&"string"==typeof n||(t=la(t),n=la(n)),e(t,n)}}function Mi(e,t,n,r,i,o,l,a,u,s){var c=8&t;t|=c?32:64,4&(t&=~(c?64:32))||(t&=-4);var d=[e,t,i,c?o:void 0,c?l:void 0,c?void 0:o,c?void 0:l,a,u,s],f=n.apply(void 0,d);return uo(e)&&Eo(f,d),f.placeholder=r,bo(f,e,t)}function Pi(e){var t=me[e];return function(e,n){if(e=la(e),(n=null==n?0:an(ia(n),292))&&nn(e)){var r=(ua(e)+"e").split("e");return+((r=(ua(t(r[0]+"e"+(+r[1]+n)))+"e").split("e"))[0]+"e"+(+r[1]-n))}return t(e)}}var ki=vn&&1/Ft(new vn([,-0]))[1]==1/0?function(e){return new vn(e)}:$a;function Ui(e){return function(t){var n=to(t);return n==f?Ut(t):n==g?zt(t):function(e,t){return st(t,function(t){return[t,e[t]]})}(t,e(t))}}function Bi(e,t,i,o,l,a,u,s){var c=2&t;if(!c&&"function"!=typeof e)throw new he(n);var d=o?o.length:0;if(d||(t&=-97,o=l=void 0),u=void 0===u?u:ln(ia(u),0),s=void 0===s?s:ia(s),d-=l?l.length:0,64&t){var f=o,m=l;o=l=void 0}var p=c?void 0:qi(e),v=[e,t,i,o,l,f,m,a,u,s];if(p&&function(e,t){var n=e[1],i=t[1],o=n|i;if(!(o<131||128==i&&8==n||128==i&&256==n&&e[7].length<=t[8]||384==i&&t[7].length<=t[8]&&8==n))return e;1&i&&(e[2]=t[2],o|=1&n?0:4);var l=t[3];if(l){var a=e[3];e[3]=a?pi(a,l,t[4]):l,e[4]=a?jt(e[3],r):t[4]}(l=t[5])&&(e[5]=(a=e[5])?vi(a,l,t[6]):l,e[6]=a?jt(e[5],r):t[6]),(l=t[7])&&(e[7]=l),128&i&&(e[8]=null==e[8]?t[8]:an(e[8],t[8])),null==e[9]&&(e[9]=t[9]),e[0]=t[0],e[1]=o}(v,p),e=v[0],t=v[1],i=v[2],o=v[3],l=v[4],!(s=v[9]=void 0===v[9]?c?0:e.length:ln(v[9]-d,0))&&24&t&&(t&=-25),t&&1!=t)g=8==t||16==t?function(e,t,n){var r=wi(e);return function i(){for(var o=arguments.length,l=Z(o),a=o,u=Xi(i);a--;)l[a]=arguments[a];var s=o<3&&l[0]!==u&&l[o-1]!==u?[]:jt(l,u);if((o-=s.length)<n)return Mi(e,t,Ii,i.placeholder,void 0,l,s,void 0,void 0,n-o);var c=this&&this!==Ve&&this instanceof i?r:e;return tt(c,this,l)}}(e,t,s):32!=t&&33!=t||l.length?Ii.apply(void 0,v):function(e,t,n,r){var i=1&t,o=wi(e);return function t(){for(var l=-1,a=arguments.length,u=-1,s=r.length,c=Z(s+a),d=this&&this!==Ve&&this instanceof t?o:e;++u<s;)c[u]=r[u];for(;a--;)c[u++]=arguments[++l];return tt(d,i?n:this,c)}}(e,t,i,o);else var g=function(e,t,n){var r=1&t,i=wi(e);return function t(){var o=this&&this!==Ve&&this instanceof t?i:e;return o.apply(r?n:this,arguments)}}(e,t,i);return bo((p?zr:Eo)(g,v),e,t)}function ji(e,t,n,r){return void 0===e||xl(e,ye[n])&&!Ce.call(r,n)?t:e}function Fi(e,t,n,r,i,o){return Hl(e)&&Hl(t)&&(o.set(t,e),Tr(e,t,void 0,Fi,o),o.delete(t)),e}function zi(e){return Xl(e)?void 0:e}function Wi(e,t,n,r,i,o){var l=1&n,a=e.length,u=t.length;if(a!=u&&!(l&&u>a))return!1;var s=o.get(e),c=o.get(t);if(s&&c)return s==t&&c==e;var d=-1,f=!0,m=2&n?new kn:void 0;for(o.set(e,t),o.set(t,e);++d<a;){var p=e[d],v=t[d];if(r)var g=l?r(v,p,d,t,e,o):r(p,v,d,e,t,o);if(void 0!==g){if(g)continue;f=!1;break}if(m){if(!mt(t,function(e,t){if(!Tt(m,t)&&(p===e||i(p,e,n,r,o)))return m.push(t)})){f=!1;break}}else if(p!==v&&!i(p,v,n,r,o)){f=!1;break}}return o.delete(e),o.delete(t),f}function Vi(e){return _o(po(e,void 0,Po),e+"")}function Hi(e){return fr(e,ba,Qi)}function Gi(e){return fr(e,Ca,eo)}var qi=En?function(e){return En.get(e)}:$a;function Zi(e){for(var t=e.name+"",n=yn[t],r=Ce.call(yn,t)?n.length:0;r--;){var i=n[r],o=i.func;if(null==o||o==e)return i.name}return t}function Xi(e){return(Ce.call(Dn,"placeholder")?Dn:e).placeholder}function Yi(){var e=Dn.iteratee||Xa;return e=e===Xa?Sr:e,arguments.length?e(arguments[0],arguments[1]):e}function Ki(e,t){var n,r,i=e.__data__;return("string"==(r=typeof(n=t))||"number"==r||"symbol"==r||"boolean"==r?"__proto__"!==n:null===n)?i["string"==typeof t?"string":"hash"]:i.map}function Ji(e){for(var t=ba(e),n=t.length;n--;){var r=t[n],i=e[r];t[n]=[r,i,fo(i)]}return t}function $i(e,t){var n=function(e,t){return null==e?void 0:e[t]}(e,t);return Cr(n)?n:void 0}var Qi=en?function(e){return null==e?[]:(e=pe(e),lt(en(e),function(t){return Ze.call(e,t)}))}:ou,eo=en?function(e){for(var t=[];e;)ct(t,Qi(e)),e=He(e);return t}:ou,to=mr;function no(e,t,n){for(var r=-1,i=(t=li(t,e)).length,o=!1;++r<i;){var l=Io(t[r]);if(!(o=null!=e&&n(e,l)))break;e=e[l]}return o||++r!=i?o:!!(i=null==e?0:e.length)&&Vl(i)&&oo(l,i)&&(Ml(e)||Rl(e))}function ro(e){return"function"!=typeof e.constructor||co(e)?{}:Tn(He(e))}function io(e){return Ml(e)||Rl(e)||!!(pt&&e&&e[pt])}function oo(e,t){var n=typeof e;return!!(t=null==t?9007199254740991:t)&&("number"==n||"symbol"!=n&&le.test(e))&&e>-1&&e%1==0&&e<t}function lo(e,t,n){if(!Hl(n))return!1;var r=typeof t;return!!("number"==r?kl(n)&&oo(t,n.length):"string"==r&&t in n)&&xl(n[t],e)}function ao(e,t){if(Ml(e))return!1;var n=typeof e;return!("number"!=n&&"symbol"!=n&&"boolean"!=n&&null!=e&&!$l(e))||W.test(e)||!z.test(e)||null!=t&&e in pe(t)}function uo(e){var t=Zi(e),n=Dn[t];if("function"!=typeof n||!(t in Ln.prototype))return!1;if(e===n)return!0;var r=qi(n);return!!r&&e===r[0]}(fn&&to(new fn(new ArrayBuffer(1)))!=b||mn&&to(new mn)!=f||pn&&"[object Promise]"!=to(pn.resolve())||vn&&to(new vn)!=g||gn&&to(new gn)!=y)&&(to=function(e){var t=mr(e),n=t==p?e.constructor:void 0,r=n?Do(n):"";if(r)switch(r){case _n:return b;case bn:return f;case Cn:return"[object Promise]";case Sn:return g;case wn:return y}return t});var so=_e?zl:lu;function co(e){var t=e&&e.constructor;return e===("function"==typeof t&&t.prototype||ye)}function fo(e){return e==e&&!Hl(e)}function mo(e,t){return function(n){return null!=n&&n[e]===t&&(void 0!==t||e in pe(n))}}function po(e,t,n){return t=ln(void 0===t?e.length-1:t,0),function(){for(var r=arguments,i=-1,o=ln(r.length-t,0),l=Z(o);++i<o;)l[i]=r[t+i];i=-1;for(var a=Z(t+1);++i<t;)a[i]=r[i];return a[t]=n(l),tt(e,this,a)}}function vo(e,t){return t.length<2?e:dr(e,Hr(t,0,-1))}function go(e,t){for(var n=e.length,r=an(t.length,n),i=gi(e);r--;){var o=t[r];e[r]=oo(o,n)?i[o]:void 0}return e}function ho(e,t){if(("constructor"!==t||"function"!=typeof e[t])&&"__proto__"!=t)return e[t]}var Eo=Co(zr),yo=Jt||function(e,t){return Ve.setTimeout(e,t)},_o=Co(Wr);function bo(e,t,n){var r=t+"";return _o(e,function(e,t){var n=t.length;if(!n)return e;var r=n-1;return t[r]=(n>1?"& ":"")+t[r],t=t.join(n>2?", ":" "),e.replace(X,"{\n/* [wrapped with "+t+"] */\n")}(r,function(e,t){return rt(i,function(n){var r="_."+n[0];t&n[1]&&!at(e,r)&&e.push(r)}),e.sort()}(function(e){var t=e.match(Y);return t?t[1].split(K):[]}(r),n)))}function Co(e){var t=0,n=0;return function(){var r=un(),i=16-(r-n);if(n=r,i>0){if(++t>=800)return arguments[0]}else t=0;return e.apply(void 0,arguments)}}function So(e,t){var n=-1,r=e.length,i=r-1;for(t=void 0===t?r:t;++n<t;){var o=Pr(n,i),l=e[o];e[o]=e[n],e[n]=l}return e.length=t,e}var wo,Oo,No=(wo=wl(function(e){var t=[];return 46===e.charCodeAt(0)&&t.push(""),e.replace(V,function(e,n,r,i){t.push(r?i.replace(Q,"$1"):n||e)}),t},function(e){return 500===Oo.size&&Oo.clear(),e}),Oo=wo.cache,wo);function Io(e){if("string"==typeof e||$l(e))return e;var t=e+"";return"0"==t&&1/e==-1/0?"-0":t}function Do(e){if(null!=e){try{return be.call(e)}catch(e){}try{return e+""}catch(e){}}return""}function To(e){if(e instanceof Ln)return e.clone();var t=new An(e.__wrapped__,e.__chain__);return t.__actions__=gi(e.__actions__),t.__index__=e.__index__,t.__values__=e.__values__,t}var xo=Ur(function(e,t){return Ul(e)?Qn(e,or(t,1,Ul,!0)):[]}),Ao=Ur(function(e,t){var n=Fo(t);return Ul(n)&&(n=void 0),Ul(e)?Qn(e,or(t,1,Ul,!0),Yi(n,2)):[]}),Lo=Ur(function(e,t){var n=Fo(t);return Ul(n)&&(n=void 0),Ul(e)?Qn(e,or(t,1,Ul,!0),void 0,n):[]});function Ro(e,t,n){var r=null==e?0:e.length;if(!r)return-1;var i=null==n?0:ia(n);return i<0&&(i=ln(r+i,0)),gt(e,Yi(t,3),i)}function Mo(e,t,n){var r=null==e?0:e.length;if(!r)return-1;var i=r-1;return void 0!==n&&(i=ia(n),i=n<0?ln(r+i,0):an(i,r-1)),gt(e,Yi(t,3),i,!0)}function Po(e){return null!=e&&e.length?or(e,1):[]}function ko(e){return e&&e.length?e[0]:void 0}var Uo=Ur(function(e){var t=st(e,ii);return t.length&&t[0]===e[0]?hr(t):[]}),Bo=Ur(function(e){var t=Fo(e),n=st(e,ii);return t===Fo(n)?t=void 0:n.pop(),n.length&&n[0]===e[0]?hr(n,Yi(t,2)):[]}),jo=Ur(function(e){var t=Fo(e),n=st(e,ii);return(t="function"==typeof t?t:void 0)&&n.pop(),n.length&&n[0]===e[0]?hr(n,void 0,t):[]});function Fo(e){var t=null==e?0:e.length;return t?e[t-1]:void 0}var zo=Ur(Wo);function Wo(e,t){return e&&e.length&&t&&t.length?Rr(e,t):e}var Vo=Vi(function(e,t){var n=null==e?0:e.length,r=Xn(e,t);return Mr(e,st(t,function(e){return oo(e,n)?+e:e}).sort(mi)),r});function Ho(e){return null==e?e:dn.call(e)}var Go=Ur(function(e){return Jr(or(e,1,Ul,!0))}),qo=Ur(function(e){var t=Fo(e);return Ul(t)&&(t=void 0),Jr(or(e,1,Ul,!0),Yi(t,2))}),Zo=Ur(function(e){var t=Fo(e);return t="function"==typeof t?t:void 0,Jr(or(e,1,Ul,!0),void 0,t)});function Xo(e){if(!e||!e.length)return[];var t=0;return e=lt(e,function(e){if(Ul(e))return t=ln(e.length,t),!0}),Ot(t,function(t){return st(e,bt(t))})}function Yo(e,t){if(!e||!e.length)return[];var n=Xo(e);return null==t?n:st(n,function(e){return tt(t,void 0,e)})}var Ko=Ur(function(e,t){return Ul(e)?Qn(e,t):[]}),Jo=Ur(function(e){return ni(lt(e,Ul))}),$o=Ur(function(e){var t=Fo(e);return Ul(t)&&(t=void 0),ni(lt(e,Ul),Yi(t,2))}),Qo=Ur(function(e){var t=Fo(e);return t="function"==typeof t?t:void 0,ni(lt(e,Ul),void 0,t)}),el=Ur(Xo),tl=Ur(function(e){var t=e.length,n=t>1?e[t-1]:void 0;return n="function"==typeof n?(e.pop(),n):void 0,Yo(e,n)});function nl(e){var t=Dn(e);return t.__chain__=!0,t}function rl(e,t){return t(e)}var il=Vi(function(e){var t=e.length,n=t?e[0]:0,r=this.__wrapped__,i=function(t){return Xn(t,e)};return!(t>1||this.__actions__.length)&&r instanceof Ln&&oo(n)?((r=r.slice(n,+n+(t?1:0))).__actions__.push({func:rl,args:[i],thisArg:void 0}),new An(r,this.__chain__).thru(function(e){return t&&!e.length&&e.push(void 0),e})):this.thru(i)}),ol=Ei(function(e,t,n){Ce.call(e,n)?++e[n]:Zn(e,n,1)}),ll=Oi(Ro),al=Oi(Mo);function ul(e,t){return(Ml(e)?rt:er)(e,Yi(t,3))}function sl(e,t){return(Ml(e)?it:tr)(e,Yi(t,3))}var cl=Ei(function(e,t,n){Ce.call(e,n)?e[n].push(t):Zn(e,n,[t])}),dl=Ur(function(e,t,n){var r=-1,i="function"==typeof t,o=kl(e)?Z(e.length):[];return er(e,function(e){o[++r]=i?tt(t,e,n):Er(e,t,n)}),o}),fl=Ei(function(e,t,n){Zn(e,n,t)});function ml(e,t){return(Ml(e)?st:Nr)(e,Yi(t,3))}var pl=Ei(function(e,t,n){e[n?0:1].push(t)},function(){return[[],[]]}),vl=Ur(function(e,t){if(null==e)return[];var n=t.length;return n>1&&lo(e,t[0],t[1])?t=[]:n>2&&lo(t[0],t[1],t[2])&&(t=[t[0]]),Ar(e,or(t,1),[])}),gl=Kt||function(){return Ve.Date.now()};function hl(e,t,n){return t=n?void 0:t,Bi(e,128,void 0,void 0,void 0,void 0,t=e&&null==t?e.length:t)}function El(e,t){var r;if("function"!=typeof t)throw new he(n);return e=ia(e),function(){return--e>0&&(r=t.apply(this,arguments)),e<=1&&(t=void 0),r}}var yl=Ur(function(e,t,n){var r=1;if(n.length){var i=jt(n,Xi(yl));r|=32}return Bi(e,r,t,n,i)}),_l=Ur(function(e,t,n){var r=3;if(n.length){var i=jt(n,Xi(_l));r|=32}return Bi(t,r,e,n,i)});function bl(e,t,r){var i,o,l,a,u,s,c=0,d=!1,f=!1,m=!0;if("function"!=typeof e)throw new he(n);function p(t){var n=i,r=o;return i=o=void 0,c=t,a=e.apply(r,n)}function v(e){return c=e,u=yo(h,t),d?p(e):a}function g(e){var n=e-s;return void 0===s||n>=t||n<0||f&&e-c>=l}function h(){var e=gl();if(g(e))return E(e);u=yo(h,function(e){var n=t-(e-s);return f?an(n,l-(e-c)):n}(e))}function E(e){return u=void 0,m&&i?p(e):(i=o=void 0,a)}function y(){var e=gl(),n=g(e);if(i=arguments,o=this,s=e,n){if(void 0===u)return v(s);if(f)return si(u),u=yo(h,t),p(s)}return void 0===u&&(u=yo(h,t)),a}return t=la(t)||0,Hl(r)&&(d=!!r.leading,l=(f="maxWait"in r)?ln(la(r.maxWait)||0,t):l,m="trailing"in r?!!r.trailing:m),y.cancel=function(){void 0!==u&&si(u),c=0,i=s=o=u=void 0},y.flush=function(){return void 0===u?a:E(gl())},y}var Cl=Ur(function(e,t){return $n(e,1,t)}),Sl=Ur(function(e,t,n){return $n(e,la(t)||0,n)});function wl(e,t){if("function"!=typeof e||null!=t&&"function"!=typeof t)throw new he(n);var r=function(){var n=arguments,i=t?t.apply(this,n):n[0],o=r.cache;if(o.has(i))return o.get(i);var l=e.apply(this,n);return r.cache=o.set(i,l)||o,l};return r.cache=new(wl.Cache||Pn),r}function Ol(e){if("function"!=typeof e)throw new he(n);return function(){var t=arguments;switch(t.length){case 0:return!e.call(this);case 1:return!e.call(this,t[0]);case 2:return!e.call(this,t[0],t[1]);case 3:return!e.call(this,t[0],t[1],t[2])}return!e.apply(this,t)}}wl.Cache=Pn;var Nl=ai(function(e,t){var n=(t=1==t.length&&Ml(t[0])?st(t[0],It(Yi())):st(or(t,1),It(Yi()))).length;return Ur(function(r){for(var i=-1,o=an(r.length,n);++i<o;)r[i]=t[i].call(this,r[i]);return tt(e,this,r)})}),Il=Ur(function(e,t){return Bi(e,32,void 0,t,jt(t,Xi(Il)))}),Dl=Ur(function(e,t){return Bi(e,64,void 0,t,jt(t,Xi(Dl)))}),Tl=Vi(function(e,t){return Bi(e,256,void 0,void 0,void 0,t)});function xl(e,t){return e===t||e!=e&&t!=t}var Al=Ri(pr),Ll=Ri(function(e,t){return e>=t}),Rl=yr(function(){return arguments}())?yr:function(e){return Gl(e)&&Ce.call(e,"callee")&&!Ze.call(e,"callee")},Ml=Z.isArray,Pl=Ye?It(Ye):function(e){return Gl(e)&&mr(e)==_};function kl(e){return null!=e&&Vl(e.length)&&!zl(e)}function Ul(e){return Gl(e)&&kl(e)}var Bl=tn||lu,jl=Ke?It(Ke):function(e){return Gl(e)&&mr(e)==u};function Fl(e){if(!Gl(e))return!1;var t=mr(e);return t==s||"[object DOMException]"==t||"string"==typeof e.message&&"string"==typeof e.name&&!Xl(e)}function zl(e){if(!Hl(e))return!1;var t=mr(e);return t==c||t==d||"[object AsyncFunction]"==t||"[object Proxy]"==t}function Wl(e){return"number"==typeof e&&e==ia(e)}function Vl(e){return"number"==typeof e&&e>-1&&e%1==0&&e<=9007199254740991}function Hl(e){var t=typeof e;return null!=e&&("object"==t||"function"==t)}function Gl(e){return null!=e&&"object"==typeof e}var ql=Je?It(Je):function(e){return Gl(e)&&to(e)==f};function Zl(e){return"number"==typeof e||Gl(e)&&mr(e)==m}function Xl(e){if(!Gl(e)||mr(e)!=p)return!1;var t=He(e);if(null===t)return!0;var n=Ce.call(t,"constructor")&&t.constructor;return"function"==typeof n&&n instanceof n&&be.call(n)==Ne}var Yl=$e?It($e):function(e){return Gl(e)&&mr(e)==v},Kl=Qe?It(Qe):function(e){return Gl(e)&&to(e)==g};function Jl(e){return"string"==typeof e||!Ml(e)&&Gl(e)&&mr(e)==h}function $l(e){return"symbol"==typeof e||Gl(e)&&mr(e)==E}var Ql=et?It(et):function(e){return Gl(e)&&Vl(e.length)&&!!ke[mr(e)]},ea=Ri(Or),ta=Ri(function(e,t){return e<=t});function na(e){if(!e)return[];if(kl(e))return Jl(e)?Vt(e):gi(e);if(Ct&&e[Ct])return function(e){for(var t,n=[];!(t=e.next()).done;)n.push(t.value);return n}(e[Ct]());var t=to(e);return(t==f?Ut:t==g?Ft:xa)(e)}function ra(e){return e?(e=la(e))===1/0||e===-1/0?17976931348623157e292*(e<0?-1:1):e==e?e:0:0===e?e:0}function ia(e){var t=ra(e),n=t%1;return t==t?n?t-n:t:0}function oa(e){return e?Yn(ia(e),0,4294967295):0}function la(e){if("number"==typeof e)return e;if($l(e))return NaN;if(Hl(e)){var t="function"==typeof e.valueOf?e.valueOf():e;e=Hl(t)?t+"":t}if("string"!=typeof e)return 0===e?e:+e;e=Nt(e);var n=re.test(e);return n||oe.test(e)?Fe(e.slice(2),n?2:8):ne.test(e)?NaN:+e}function aa(e){return hi(e,Ca(e))}function ua(e){return null==e?"":Kr(e)}var sa=yi(function(e,t){if(co(t)||kl(t))hi(t,ba(t),e);else for(var n in t)Ce.call(t,n)&&Vn(e,n,t[n])}),ca=yi(function(e,t){hi(t,Ca(t),e)}),da=yi(function(e,t,n,r){hi(t,Ca(t),e,r)}),fa=yi(function(e,t,n,r){hi(t,ba(t),e,r)}),ma=Vi(Xn),pa=Ur(function(e,t){e=pe(e);var n=-1,r=t.length,i=r>2?t[2]:void 0;for(i&&lo(t[0],t[1],i)&&(r=1);++n<r;)for(var o=t[n],l=Ca(o),a=-1,u=l.length;++a<u;){var s=l[a],c=e[s];(void 0===c||xl(c,ye[s])&&!Ce.call(e,s))&&(e[s]=o[s])}return e}),va=Ur(function(e){return e.push(void 0,Fi),tt(wa,void 0,e)});function ga(e,t,n){var r=null==e?void 0:dr(e,t);return void 0===r?n:r}function ha(e,t){return null!=e&&no(e,t,gr)}var Ea=Di(function(e,t,n){null!=t&&"function"!=typeof t.toString&&(t=Oe.call(t)),e[t]=n},Ha(Za)),ya=Di(function(e,t,n){null!=t&&"function"!=typeof t.toString&&(t=Oe.call(t)),Ce.call(e,t)?e[t].push(n):e[t]=[n]},Yi),_a=Ur(Er);function ba(e){return kl(e)?Bn(e):wr(e)}function Ca(e){return kl(e)?Bn(e,!0):function(e){if(!Hl(e))return function(e){var t=[];if(null!=e)for(var n in pe(e))t.push(n);return t}(e);var t=co(e),n=[];for(var r in e)("constructor"!=r||!t&&Ce.call(e,r))&&n.push(r);return n}(e)}var Sa=yi(function(e,t,n){Tr(e,t,n)}),wa=yi(function(e,t,n,r){Tr(e,t,n,r)}),Oa=Vi(function(e,t){var n={};if(null==e)return n;var r=!1;t=st(t,function(t){return t=li(t,e),r||(r=t.length>1),t}),hi(e,Gi(e),n),r&&(n=Kn(n,7,zi));for(var i=t.length;i--;)$r(n,t[i]);return n}),Na=Vi(function(e,t){return null==e?{}:function(e,t){return Lr(e,t,function(t,n){return ha(e,n)})}(e,t)});function Ia(e,t){if(null==e)return{};var n=st(Gi(e),function(e){return[e]});return t=Yi(t),Lr(e,n,function(e,n){return t(e,n[0])})}var Da=Ui(ba),Ta=Ui(Ca);function xa(e){return null==e?[]:Dt(e,ba(e))}var Aa=Si(function(e,t,n){return t=t.toLowerCase(),e+(n?La(t):t)});function La(e){return Fa(ua(e).toLowerCase())}function Ra(e){return(e=ua(e))&&e.replace(ae,Rt).replace(Te,"")}var Ma=Si(function(e,t,n){return e+(n?"-":"")+t.toLowerCase()}),Pa=Si(function(e,t,n){return e+(n?" ":"")+t.toLowerCase()}),ka=Ci("toLowerCase"),Ua=Si(function(e,t,n){return e+(n?"_":"")+t.toLowerCase()}),Ba=Si(function(e,t,n){return e+(n?" ":"")+Fa(t)}),ja=Si(function(e,t,n){return e+(n?" ":"")+t.toUpperCase()}),Fa=Ci("toUpperCase");function za(e,t,n){return e=ua(e),void 0===(t=n?void 0:t)?function(e){return Re.test(e)}(e)?function(e){return e.match(Ae)||[]}(e):function(e){return e.match(J)||[]}(e):e.match(t)||[]}var Wa=Ur(function(e,t){try{return tt(e,void 0,t)}catch(e){return Fl(e)?e:new de(e)}}),Va=Vi(function(e,t){return rt(t,function(t){t=Io(t),Zn(e,t,yl(e[t],e))}),e});function Ha(e){return function(){return e}}var Ga=Ni(),qa=Ni(!0);function Za(e){return e}function Xa(e){return Sr("function"==typeof e?e:Kn(e,1))}var Ya=Ur(function(e,t){return function(n){return Er(n,e,t)}}),Ka=Ur(function(e,t){return function(n){return Er(e,n,t)}});function Ja(e,t,n){var r=ba(t),i=cr(t,r);null!=n||Hl(t)&&(i.length||!r.length)||(n=t,t=e,e=this,i=cr(t,ba(t)));var o=!(Hl(n)&&"chain"in n&&!n.chain),l=zl(e);return rt(i,function(n){var r=t[n];e[n]=r,l&&(e.prototype[n]=function(){var t=this.__chain__;if(o||t){var n=e(this.__wrapped__),i=n.__actions__=gi(this.__actions__);return i.push({func:r,args:arguments,thisArg:e}),n.__chain__=t,n}return r.apply(e,ct([this.value()],arguments))})}),e}function $a(){}var Qa=xi(st),eu=xi(ot),tu=xi(mt);function nu(e){return ao(e)?bt(Io(e)):function(e){return function(t){return dr(t,e)}}(e)}var ru=Li(),iu=Li(!0);function ou(){return[]}function lu(){return!1}var au,uu=Ti(function(e,t){return e+t},0),su=Pi("ceil"),cu=Ti(function(e,t){return e/t},1),du=Pi("floor"),fu=Ti(function(e,t){return e*t},1),mu=Pi("round"),pu=Ti(function(e,t){return e-t},0);return Dn.after=function(e,t){if("function"!=typeof t)throw new he(n);return e=ia(e),function(){if(--e<1)return t.apply(this,arguments)}},Dn.ary=hl,Dn.assign=sa,Dn.assignIn=ca,Dn.assignInWith=da,Dn.assignWith=fa,Dn.at=ma,Dn.before=El,Dn.bind=yl,Dn.bindAll=Va,Dn.bindKey=_l,Dn.castArray=function(){if(!arguments.length)return[];var e=arguments[0];return Ml(e)?e:[e]},Dn.chain=nl,Dn.chunk=function(e,t,n){t=(n?lo(e,t,n):void 0===t)?1:ln(ia(t),0);var r=null==e?0:e.length;if(!r||t<1)return[];for(var i=0,o=0,l=Z($t(r/t));i<r;)l[o++]=Hr(e,i,i+=t);return l},Dn.compact=function(e){for(var t=-1,n=null==e?0:e.length,r=0,i=[];++t<n;){var o=e[t];o&&(i[r++]=o)}return i},Dn.concat=function(){var e=arguments.length;if(!e)return[];for(var t=Z(e-1),n=arguments[0],r=e;r--;)t[r-1]=arguments[r];return ct(Ml(n)?gi(n):[n],or(t,1))},Dn.cond=function(e){var t=null==e?0:e.length,r=Yi();return e=t?st(e,function(e){if("function"!=typeof e[1])throw new he(n);return[r(e[0]),e[1]]}):[],Ur(function(n){for(var r=-1;++r<t;){var i=e[r];if(tt(i[0],this,n))return tt(i[1],this,n)}})},Dn.conforms=function(e){return function(e){var t=ba(e);return function(n){return Jn(n,e,t)}}(Kn(e,1))},Dn.constant=Ha,Dn.countBy=ol,Dn.create=function(e,t){var n=Tn(e);return null==t?n:qn(n,t)},Dn.curry=function e(t,n,r){var i=Bi(t,8,void 0,void 0,void 0,void 0,void 0,n=r?void 0:n);return i.placeholder=e.placeholder,i},Dn.curryRight=function e(t,n,r){var i=Bi(t,16,void 0,void 0,void 0,void 0,void 0,n=r?void 0:n);return i.placeholder=e.placeholder,i},Dn.debounce=bl,Dn.defaults=pa,Dn.defaultsDeep=va,Dn.defer=Cl,Dn.delay=Sl,Dn.difference=xo,Dn.differenceBy=Ao,Dn.differenceWith=Lo,Dn.drop=function(e,t,n){var r=null==e?0:e.length;return r?Hr(e,(t=n||void 0===t?1:ia(t))<0?0:t,r):[]},Dn.dropRight=function(e,t,n){var r=null==e?0:e.length;return r?Hr(e,0,(t=r-(t=n||void 0===t?1:ia(t)))<0?0:t):[]},Dn.dropRightWhile=function(e,t){return e&&e.length?ei(e,Yi(t,3),!0,!0):[]},Dn.dropWhile=function(e,t){return e&&e.length?ei(e,Yi(t,3),!0):[]},Dn.fill=function(e,t,n,r){var i=null==e?0:e.length;return i?(n&&"number"!=typeof n&&lo(e,t,n)&&(n=0,r=i),function(e,t,n,r){var i=e.length;for((n=ia(n))<0&&(n=-n>i?0:i+n),(r=void 0===r||r>i?i:ia(r))<0&&(r+=i),r=n>r?0:oa(r);n<r;)e[n++]=t;return e}(e,t,n,r)):[]},Dn.filter=function(e,t){return(Ml(e)?lt:ir)(e,Yi(t,3))},Dn.flatMap=function(e,t){return or(ml(e,t),1)},Dn.flatMapDeep=function(e,t){return or(ml(e,t),1/0)},Dn.flatMapDepth=function(e,t,n){return n=void 0===n?1:ia(n),or(ml(e,t),n)},Dn.flatten=Po,Dn.flattenDeep=function(e){return null!=e&&e.length?or(e,1/0):[]},Dn.flattenDepth=function(e,t){return null!=e&&e.length?or(e,t=void 0===t?1:ia(t)):[]},Dn.flip=function(e){return Bi(e,512)},Dn.flow=Ga,Dn.flowRight=qa,Dn.fromPairs=function(e){for(var t=-1,n=null==e?0:e.length,r={};++t<n;){var i=e[t];r[i[0]]=i[1]}return r},Dn.functions=function(e){return null==e?[]:cr(e,ba(e))},Dn.functionsIn=function(e){return null==e?[]:cr(e,Ca(e))},Dn.groupBy=cl,Dn.initial=function(e){return null!=e&&e.length?Hr(e,0,-1):[]},Dn.intersection=Uo,Dn.intersectionBy=Bo,Dn.intersectionWith=jo,Dn.invert=Ea,Dn.invertBy=ya,Dn.invokeMap=dl,Dn.iteratee=Xa,Dn.keyBy=fl,Dn.keys=ba,Dn.keysIn=Ca,Dn.map=ml,Dn.mapKeys=function(e,t){var n={};return t=Yi(t,3),ur(e,function(e,r,i){Zn(n,t(e,r,i),e)}),n},Dn.mapValues=function(e,t){var n={};return t=Yi(t,3),ur(e,function(e,r,i){Zn(n,r,t(e,r,i))}),n},Dn.matches=function(e){return Ir(Kn(e,1))},Dn.matchesProperty=function(e,t){return Dr(e,Kn(t,1))},Dn.memoize=wl,Dn.merge=Sa,Dn.mergeWith=wa,Dn.method=Ya,Dn.methodOf=Ka,Dn.mixin=Ja,Dn.negate=Ol,Dn.nthArg=function(e){return e=ia(e),Ur(function(t){return xr(t,e)})},Dn.omit=Oa,Dn.omitBy=function(e,t){return Ia(e,Ol(Yi(t)))},Dn.once=function(e){return El(2,e)},Dn.orderBy=function(e,t,n,r){return null==e?[]:(Ml(t)||(t=null==t?[]:[t]),Ml(n=r?void 0:n)||(n=null==n?[]:[n]),Ar(e,t,n))},Dn.over=Qa,Dn.overArgs=Nl,Dn.overEvery=eu,Dn.overSome=tu,Dn.partial=Il,Dn.partialRight=Dl,Dn.partition=pl,Dn.pick=Na,Dn.pickBy=Ia,Dn.property=nu,Dn.propertyOf=function(e){return function(t){return null==e?void 0:dr(e,t)}},Dn.pull=zo,Dn.pullAll=Wo,Dn.pullAllBy=function(e,t,n){return e&&e.length&&t&&t.length?Rr(e,t,Yi(n,2)):e},Dn.pullAllWith=function(e,t,n){return e&&e.length&&t&&t.length?Rr(e,t,void 0,n):e},Dn.pullAt=Vo,Dn.range=ru,Dn.rangeRight=iu,Dn.rearg=Tl,Dn.reject=function(e,t){return(Ml(e)?lt:ir)(e,Ol(Yi(t,3)))},Dn.remove=function(e,t){var n=[];if(!e||!e.length)return n;var r=-1,i=[],o=e.length;for(t=Yi(t,3);++r<o;){var l=e[r];t(l,r,e)&&(n.push(l),i.push(r))}return Mr(e,i),n},Dn.rest=function(e,t){if("function"!=typeof e)throw new he(n);return Ur(e,t=void 0===t?t:ia(t))},Dn.reverse=Ho,Dn.sampleSize=function(e,t,n){return t=(n?lo(e,t,n):void 0===t)?1:ia(t),(Ml(e)?Fn:jr)(e,t)},Dn.set=function(e,t,n){return null==e?e:Fr(e,t,n)},Dn.setWith=function(e,t,n,r){return r="function"==typeof r?r:void 0,null==e?e:Fr(e,t,n,r)},Dn.shuffle=function(e){return(Ml(e)?zn:Vr)(e)},Dn.slice=function(e,t,n){var r=null==e?0:e.length;return r?(n&&"number"!=typeof n&&lo(e,t,n)?(t=0,n=r):(t=null==t?0:ia(t),n=void 0===n?r:ia(n)),Hr(e,t,n)):[]},Dn.sortBy=vl,Dn.sortedUniq=function(e){return e&&e.length?Xr(e):[]},Dn.sortedUniqBy=function(e,t){return e&&e.length?Xr(e,Yi(t,2)):[]},Dn.split=function(e,t,n){return n&&"number"!=typeof n&&lo(e,t,n)&&(t=n=void 0),(n=void 0===n?4294967295:n>>>0)?(e=ua(e))&&("string"==typeof t||null!=t&&!Yl(t))&&!(t=Kr(t))&&kt(e)?ui(Vt(e),0,n):e.split(t,n):[]},Dn.spread=function(e,t){if("function"!=typeof e)throw new he(n);return t=null==t?0:ln(ia(t),0),Ur(function(n){var r=n[t],i=ui(n,0,t);return r&&ct(i,r),tt(e,this,i)})},Dn.tail=function(e){var t=null==e?0:e.length;return t?Hr(e,1,t):[]},Dn.take=function(e,t,n){return e&&e.length?Hr(e,0,(t=n||void 0===t?1:ia(t))<0?0:t):[]},Dn.takeRight=function(e,t,n){var r=null==e?0:e.length;return r?Hr(e,(t=r-(t=n||void 0===t?1:ia(t)))<0?0:t,r):[]},Dn.takeRightWhile=function(e,t){return e&&e.length?ei(e,Yi(t,3),!1,!0):[]},Dn.takeWhile=function(e,t){return e&&e.length?ei(e,Yi(t,3)):[]},Dn.tap=function(e,t){return t(e),e},Dn.throttle=function(e,t,r){var i=!0,o=!0;if("function"!=typeof e)throw new he(n);return Hl(r)&&(i="leading"in r?!!r.leading:i,o="trailing"in r?!!r.trailing:o),bl(e,t,{leading:i,maxWait:t,trailing:o})},Dn.thru=rl,Dn.toArray=na,Dn.toPairs=Da,Dn.toPairsIn=Ta,Dn.toPath=function(e){return Ml(e)?st(e,Io):$l(e)?[e]:gi(No(ua(e)))},Dn.toPlainObject=aa,Dn.transform=function(e,t,n){var r=Ml(e),i=r||Bl(e)||Ql(e);if(t=Yi(t,4),null==n){var o=e&&e.constructor;n=i?r?new o:[]:Hl(e)&&zl(o)?Tn(He(e)):{}}return(i?rt:ur)(e,function(e,r,i){return t(n,e,r,i)}),n},Dn.unary=function(e){return hl(e,1)},Dn.union=Go,Dn.unionBy=qo,Dn.unionWith=Zo,Dn.uniq=function(e){return e&&e.length?Jr(e):[]},Dn.uniqBy=function(e,t){return e&&e.length?Jr(e,Yi(t,2)):[]},Dn.uniqWith=function(e,t){return t="function"==typeof t?t:void 0,e&&e.length?Jr(e,void 0,t):[]},Dn.unset=function(e,t){return null==e||$r(e,t)},Dn.unzip=Xo,Dn.unzipWith=Yo,Dn.update=function(e,t,n){return null==e?e:Qr(e,t,oi(n))},Dn.updateWith=function(e,t,n,r){return r="function"==typeof r?r:void 0,null==e?e:Qr(e,t,oi(n),r)},Dn.values=xa,Dn.valuesIn=function(e){return null==e?[]:Dt(e,Ca(e))},Dn.without=Ko,Dn.words=za,Dn.wrap=function(e,t){return Il(oi(t),e)},Dn.xor=Jo,Dn.xorBy=$o,Dn.xorWith=Qo,Dn.zip=el,Dn.zipObject=function(e,t){return ri(e||[],t||[],Vn)},Dn.zipObjectDeep=function(e,t){return ri(e||[],t||[],Fr)},Dn.zipWith=tl,Dn.entries=Da,Dn.entriesIn=Ta,Dn.extend=ca,Dn.extendWith=da,Ja(Dn,Dn),Dn.add=uu,Dn.attempt=Wa,Dn.camelCase=Aa,Dn.capitalize=La,Dn.ceil=su,Dn.clamp=function(e,t,n){return void 0===n&&(n=t,t=void 0),void 0!==n&&(n=(n=la(n))==n?n:0),void 0!==t&&(t=(t=la(t))==t?t:0),Yn(la(e),t,n)},Dn.clone=function(e){return Kn(e,4)},Dn.cloneDeep=function(e){return Kn(e,5)},Dn.cloneDeepWith=function(e,t){return Kn(e,5,t="function"==typeof t?t:void 0)},Dn.cloneWith=function(e,t){return Kn(e,4,t="function"==typeof t?t:void 0)},Dn.conformsTo=function(e,t){return null==t||Jn(e,t,ba(t))},Dn.deburr=Ra,Dn.defaultTo=function(e,t){return null==e||e!=e?t:e},Dn.divide=cu,Dn.endsWith=function(e,t,n){e=ua(e),t=Kr(t);var r=e.length,i=n=void 0===n?r:Yn(ia(n),0,r);return(n-=t.length)>=0&&e.slice(n,i)==t},Dn.eq=xl,Dn.escape=function(e){return(e=ua(e))&&U.test(e)?e.replace(P,Mt):e},Dn.escapeRegExp=function(e){return(e=ua(e))&&G.test(e)?e.replace(H,"\\$&"):e},Dn.every=function(e,t,n){var r=Ml(e)?ot:nr;return n&&lo(e,t,n)&&(t=void 0),r(e,Yi(t,3))},Dn.find=ll,Dn.findIndex=Ro,Dn.findKey=function(e,t){return vt(e,Yi(t,3),ur)},Dn.findLast=al,Dn.findLastIndex=Mo,Dn.findLastKey=function(e,t){return vt(e,Yi(t,3),sr)},Dn.floor=du,Dn.forEach=ul,Dn.forEachRight=sl,Dn.forIn=function(e,t){return null==e?e:lr(e,Yi(t,3),Ca)},Dn.forInRight=function(e,t){return null==e?e:ar(e,Yi(t,3),Ca)},Dn.forOwn=function(e,t){return e&&ur(e,Yi(t,3))},Dn.forOwnRight=function(e,t){return e&&sr(e,Yi(t,3))},Dn.get=ga,Dn.gt=Al,Dn.gte=Ll,Dn.has=function(e,t){return null!=e&&no(e,t,vr)},Dn.hasIn=ha,Dn.head=ko,Dn.identity=Za,Dn.includes=function(e,t,n,r){e=kl(e)?e:xa(e),n=n&&!r?ia(n):0;var i=e.length;return n<0&&(n=ln(i+n,0)),Jl(e)?n<=i&&e.indexOf(t,n)>-1:!!i&&ht(e,t,n)>-1},Dn.indexOf=function(e,t,n){var r=null==e?0:e.length;if(!r)return-1;var i=null==n?0:ia(n);return i<0&&(i=ln(r+i,0)),ht(e,t,i)},Dn.inRange=function(e,t,n){return t=ra(t),void 0===n?(n=t,t=0):n=ra(n),function(e,t,n){return e>=an(t,n)&&e<ln(t,n)}(e=la(e),t,n)},Dn.invoke=_a,Dn.isArguments=Rl,Dn.isArray=Ml,Dn.isArrayBuffer=Pl,Dn.isArrayLike=kl,Dn.isArrayLikeObject=Ul,Dn.isBoolean=function(e){return!0===e||!1===e||Gl(e)&&mr(e)==a},Dn.isBuffer=Bl,Dn.isDate=jl,Dn.isElement=function(e){return Gl(e)&&1===e.nodeType&&!Xl(e)},Dn.isEmpty=function(e){if(null==e)return!0;if(kl(e)&&(Ml(e)||"string"==typeof e||"function"==typeof e.splice||Bl(e)||Ql(e)||Rl(e)))return!e.length;var t=to(e);if(t==f||t==g)return!e.size;if(co(e))return!wr(e).length;for(var n in e)if(Ce.call(e,n))return!1;return!0},Dn.isEqual=function(e,t){return _r(e,t)},Dn.isEqualWith=function(e,t,n){var r=(n="function"==typeof n?n:void 0)?n(e,t):void 0;return void 0===r?_r(e,t,void 0,n):!!r},Dn.isError=Fl,Dn.isFinite=function(e){return"number"==typeof e&&nn(e)},Dn.isFunction=zl,Dn.isInteger=Wl,Dn.isLength=Vl,Dn.isMap=ql,Dn.isMatch=function(e,t){return e===t||br(e,t,Ji(t))},Dn.isMatchWith=function(e,t,n){return n="function"==typeof n?n:void 0,br(e,t,Ji(t),n)},Dn.isNaN=function(e){return Zl(e)&&e!=+e},Dn.isNative=function(e){if(so(e))throw new de("Unsupported core-js use. Try https://npms.io/search?q=ponyfill.");return Cr(e)},Dn.isNil=function(e){return null==e},Dn.isNull=function(e){return null===e},Dn.isNumber=Zl,Dn.isObject=Hl,Dn.isObjectLike=Gl,Dn.isPlainObject=Xl,Dn.isRegExp=Yl,Dn.isSafeInteger=function(e){return Wl(e)&&e>=-9007199254740991&&e<=9007199254740991},Dn.isSet=Kl,Dn.isString=Jl,Dn.isSymbol=$l,Dn.isTypedArray=Ql,Dn.isUndefined=function(e){return void 0===e},Dn.isWeakMap=function(e){return Gl(e)&&to(e)==y},Dn.isWeakSet=function(e){return Gl(e)&&"[object WeakSet]"==mr(e)},Dn.join=function(e,t){return null==e?"":rn.call(e,t)},Dn.kebabCase=Ma,Dn.last=Fo,Dn.lastIndexOf=function(e,t,n){var r=null==e?0:e.length;if(!r)return-1;var i=r;return void 0!==n&&(i=(i=ia(n))<0?ln(r+i,0):an(i,r-1)),t==t?function(e,t,n){for(var r=n+1;r--;)if(e[r]===t)return r;return r}(e,t,i):gt(e,yt,i,!0)},Dn.lowerCase=Pa,Dn.lowerFirst=ka,Dn.lt=ea,Dn.lte=ta,Dn.max=function(e){return e&&e.length?rr(e,Za,pr):void 0},Dn.maxBy=function(e,t){return e&&e.length?rr(e,Yi(t,2),pr):void 0},Dn.mean=function(e){return _t(e,Za)},Dn.meanBy=function(e,t){return _t(e,Yi(t,2))},Dn.min=function(e){return e&&e.length?rr(e,Za,Or):void 0},Dn.minBy=function(e,t){return e&&e.length?rr(e,Yi(t,2),Or):void 0},Dn.stubArray=ou,Dn.stubFalse=lu,Dn.stubObject=function(){return{}},Dn.stubString=function(){return""},Dn.stubTrue=function(){return!0},Dn.multiply=fu,Dn.nth=function(e,t){return e&&e.length?xr(e,ia(t)):void 0},Dn.noConflict=function(){return Ve._===this&&(Ve._=Ie),this},Dn.noop=$a,Dn.now=gl,Dn.pad=function(e,t,n){e=ua(e);var r=(t=ia(t))?Wt(e):0;if(!t||r>=t)return e;var i=(t-r)/2;return Ai(Qt(i),n)+e+Ai($t(i),n)},Dn.padEnd=function(e,t,n){e=ua(e);var r=(t=ia(t))?Wt(e):0;return t&&r<t?e+Ai(t-r,n):e},Dn.padStart=function(e,t,n){e=ua(e);var r=(t=ia(t))?Wt(e):0;return t&&r<t?Ai(t-r,n)+e:e},Dn.parseInt=function(e,t,n){return n||null==t?t=0:t&&(t=+t),sn(ua(e).replace(q,""),t||0)},Dn.random=function(e,t,n){if(n&&"boolean"!=typeof n&&lo(e,t,n)&&(t=n=void 0),void 0===n&&("boolean"==typeof t?(n=t,t=void 0):"boolean"==typeof e&&(n=e,e=void 0)),void 0===e&&void 0===t?(e=0,t=1):(e=ra(e),void 0===t?(t=e,e=0):t=ra(t)),e>t){var r=e;e=t,t=r}if(n||e%1||t%1){var i=cn();return an(e+i*(t-e+je("1e-"+((i+"").length-1))),t)}return Pr(e,t)},Dn.reduce=function(e,t,n){var r=Ml(e)?dt:St,i=arguments.length<3;return r(e,Yi(t,4),n,i,er)},Dn.reduceRight=function(e,t,n){var r=Ml(e)?ft:St,i=arguments.length<3;return r(e,Yi(t,4),n,i,tr)},Dn.repeat=function(e,t,n){return t=(n?lo(e,t,n):void 0===t)?1:ia(t),kr(ua(e),t)},Dn.replace=function(){var e=arguments,t=ua(e[0]);return e.length<3?t:t.replace(e[1],e[2])},Dn.result=function(e,t,n){var r=-1,i=(t=li(t,e)).length;for(i||(i=1,e=void 0);++r<i;){var o=null==e?void 0:e[Io(t[r])];void 0===o&&(r=i,o=n),e=zl(o)?o.call(e):o}return e},Dn.round=mu,Dn.runInContext=e,Dn.sample=function(e){return(Ml(e)?jn:Br)(e)},Dn.size=function(e){if(null==e)return 0;if(kl(e))return Jl(e)?Wt(e):e.length;var t=to(e);return t==f||t==g?e.size:wr(e).length},Dn.snakeCase=Ua,Dn.some=function(e,t,n){var r=Ml(e)?mt:Gr;return n&&lo(e,t,n)&&(t=void 0),r(e,Yi(t,3))},Dn.sortedIndex=function(e,t){return qr(e,t)},Dn.sortedIndexBy=function(e,t,n){return Zr(e,t,Yi(n,2))},Dn.sortedIndexOf=function(e,t){var n=null==e?0:e.length;if(n){var r=qr(e,t);if(r<n&&xl(e[r],t))return r}return-1},Dn.sortedLastIndex=function(e,t){return qr(e,t,!0)},Dn.sortedLastIndexBy=function(e,t,n){return Zr(e,t,Yi(n,2),!0)},Dn.sortedLastIndexOf=function(e,t){if(null!=e&&e.length){var n=qr(e,t,!0)-1;if(xl(e[n],t))return n}return-1},Dn.startCase=Ba,Dn.startsWith=function(e,t,n){return e=ua(e),n=null==n?0:Yn(ia(n),0,e.length),t=Kr(t),e.slice(n,n+t.length)==t},Dn.subtract=pu,Dn.sum=function(e){return e&&e.length?wt(e,Za):0},Dn.sumBy=function(e,t){return e&&e.length?wt(e,Yi(t,2)):0},Dn.template=function(e,t,n){var r=Dn.templateSettings;n&&lo(e,t,n)&&(t=void 0),e=ua(e),t=da({},t,r,ji);var i,o,l=da({},t.imports,r.imports,ji),a=ba(l),u=Dt(l,a),s=0,c=t.interpolate||ue,d="__p += '",f=ve((t.escape||ue).source+"|"+c.source+"|"+(c===F?ee:ue).source+"|"+(t.evaluate||ue).source+"|$","g"),m="//# sourceURL="+(Ce.call(t,"sourceURL")?(t.sourceURL+"").replace(/\s/g," "):"lodash.templateSources["+ ++Pe+"]")+"\n";e.replace(f,function(t,n,r,l,a,u){return r||(r=l),d+=e.slice(s,u).replace(se,Pt),n&&(i=!0,d+="' +\n__e("+n+") +\n'"),a&&(o=!0,d+="';\n"+a+";\n__p += '"),r&&(d+="' +\n((__t = ("+r+")) == null ? '' : __t) +\n'"),s=u+t.length,t}),d+="';\n";var p=Ce.call(t,"variable")&&t.variable;if(p){if($.test(p))throw new de("Invalid `variable` option passed into `_.template`")}else d="with (obj) {\n"+d+"\n}\n";d=(o?d.replace(x,""):d).replace(L,"$1").replace(R,"$1;"),d="function("+(p||"obj")+") {\n"+(p?"":"obj || (obj = {});\n")+"var __t, __p = ''"+(i?", __e = _.escape":"")+(o?", __j = Array.prototype.join;\nfunction print() { __p += __j.call(arguments, '') }\n":";\n")+d+"return __p\n}";var v=Wa(function(){return fe(a,m+"return "+d).apply(void 0,u)});if(v.source=d,Fl(v))throw v;return v},Dn.times=function(e,t){if((e=ia(e))<1||e>9007199254740991)return[];var n=4294967295,r=an(e,4294967295);e-=4294967295;for(var i=Ot(r,t=Yi(t));++n<e;)t(n);return i},Dn.toFinite=ra,Dn.toInteger=ia,Dn.toLength=oa,Dn.toLower=function(e){return ua(e).toLowerCase()},Dn.toNumber=la,Dn.toSafeInteger=function(e){return e?Yn(ia(e),-9007199254740991,9007199254740991):0===e?e:0},Dn.toString=ua,Dn.toUpper=function(e){return ua(e).toUpperCase()},Dn.trim=function(e,t,n){if((e=ua(e))&&(n||void 0===t))return Nt(e);if(!e||!(t=Kr(t)))return e;var r=Vt(e),i=Vt(t);return ui(r,xt(r,i),At(r,i)+1).join("")},Dn.trimEnd=function(e,t,n){if((e=ua(e))&&(n||void 0===t))return e.slice(0,Ht(e)+1);if(!e||!(t=Kr(t)))return e;var r=Vt(e);return ui(r,0,At(r,Vt(t))+1).join("")},Dn.trimStart=function(e,t,n){if((e=ua(e))&&(n||void 0===t))return e.replace(q,"");if(!e||!(t=Kr(t)))return e;var r=Vt(e);return ui(r,xt(r,Vt(t))).join("")},Dn.truncate=function(e,t){var n=30,r="...";if(Hl(t)){var i="separator"in t?t.separator:i;n="length"in t?ia(t.length):n,r="omission"in t?Kr(t.omission):r}var o=(e=ua(e)).length;if(kt(e)){var l=Vt(e);o=l.length}if(n>=o)return e;var a=n-Wt(r);if(a<1)return r;var u=l?ui(l,0,a).join(""):e.slice(0,a);if(void 0===i)return u+r;if(l&&(a+=u.length-a),Yl(i)){if(e.slice(a).search(i)){var s,c=u;for(i.global||(i=ve(i.source,ua(te.exec(i))+"g")),i.lastIndex=0;s=i.exec(c);)var d=s.index;u=u.slice(0,void 0===d?a:d)}}else if(e.indexOf(Kr(i),a)!=a){var f=u.lastIndexOf(i);f>-1&&(u=u.slice(0,f))}return u+r},Dn.unescape=function(e){return(e=ua(e))&&k.test(e)?e.replace(M,Gt):e},Dn.uniqueId=function(e){var t=++Se;return ua(e)+t},Dn.upperCase=ja,Dn.upperFirst=Fa,Dn.each=ul,Dn.eachRight=sl,Dn.first=ko,Ja(Dn,(au={},ur(Dn,function(e,t){Ce.call(Dn.prototype,t)||(au[t]=e)}),au),{chain:!1}),Dn.VERSION="4.17.21",rt(["bind","bindKey","curry","curryRight","partial","partialRight"],function(e){Dn[e].placeholder=Dn}),rt(["drop","take"],function(e,t){Ln.prototype[e]=function(n){n=void 0===n?1:ln(ia(n),0);var r=this.__filtered__&&!t?new Ln(this):this.clone();return r.__filtered__?r.__takeCount__=an(n,r.__takeCount__):r.__views__.push({size:an(n,4294967295),type:e+(r.__dir__<0?"Right":"")}),r},Ln.prototype[e+"Right"]=function(t){return this.reverse()[e](t).reverse()}}),rt(["filter","map","takeWhile"],function(e,t){var n=t+1,r=1==n||3==n;Ln.prototype[e]=function(e){var t=this.clone();return t.__iteratees__.push({iteratee:Yi(e,3),type:n}),t.__filtered__=t.__filtered__||r,t}}),rt(["head","last"],function(e,t){var n="take"+(t?"Right":"");Ln.prototype[e]=function(){return this[n](1).value()[0]}}),rt(["initial","tail"],function(e,t){var n="drop"+(t?"":"Right");Ln.prototype[e]=function(){return this.__filtered__?new Ln(this):this[n](1)}}),Ln.prototype.compact=function(){return this.filter(Za)},Ln.prototype.find=function(e){return this.filter(e).head()},Ln.prototype.findLast=function(e){return this.reverse().find(e)},Ln.prototype.invokeMap=Ur(function(e,t){return"function"==typeof e?new Ln(this):this.map(function(n){return Er(n,e,t)})}),Ln.prototype.reject=function(e){return this.filter(Ol(Yi(e)))},Ln.prototype.slice=function(e,t){e=ia(e);var n=this;return n.__filtered__&&(e>0||t<0)?new Ln(n):(e<0?n=n.takeRight(-e):e&&(n=n.drop(e)),void 0!==t&&(n=(t=ia(t))<0?n.dropRight(-t):n.take(t-e)),n)},Ln.prototype.takeRightWhile=function(e){return this.reverse().takeWhile(e).reverse()},Ln.prototype.toArray=function(){return this.take(4294967295)},ur(Ln.prototype,function(e,t){var n=/^(?:filter|find|map|reject)|While$/.test(t),r=/^(?:head|last)$/.test(t),i=Dn[r?"take"+("last"==t?"Right":""):t],o=r||/^find/.test(t);i&&(Dn.prototype[t]=function(){var t=this.__wrapped__,l=r?[1]:arguments,a=t instanceof Ln,u=l[0],s=a||Ml(t),c=function(e){var t=i.apply(Dn,ct([e],l));return r&&d?t[0]:t};s&&n&&"function"==typeof u&&1!=u.length&&(a=s=!1);var d=this.__chain__,f=!!this.__actions__.length,m=o&&!d,p=a&&!f;if(!o&&s){t=p?t:new Ln(this);var v=e.apply(t,l);return v.__actions__.push({func:rl,args:[c],thisArg:void 0}),new An(v,d)}return m&&p?e.apply(this,l):(v=this.thru(c),m?r?v.value()[0]:v.value():v)})}),rt(["pop","push","shift","sort","splice","unshift"],function(e){var t=Ee[e],n=/^(?:push|sort|unshift)$/.test(e)?"tap":"thru",r=/^(?:pop|shift)$/.test(e);Dn.prototype[e]=function(){var e=arguments;if(r&&!this.__chain__){var i=this.value();return t.apply(Ml(i)?i:[],e)}return this[n](function(n){return t.apply(Ml(n)?n:[],e)})}}),ur(Ln.prototype,function(e,t){var n=Dn[t];if(n){var r=n.name+"";Ce.call(yn,r)||(yn[r]=[]),yn[r].push({name:t,func:n})}}),yn[Ii(void 0,2).name]=[{name:"wrapper",func:void 0}],Ln.prototype.clone=function(){var e=new Ln(this.__wrapped__);return e.__actions__=gi(this.__actions__),e.__dir__=this.__dir__,e.__filtered__=this.__filtered__,e.__iteratees__=gi(this.__iteratees__),e.__takeCount__=this.__takeCount__,e.__views__=gi(this.__views__),e},Ln.prototype.reverse=function(){if(this.__filtered__){var e=new Ln(this);e.__dir__=-1,e.__filtered__=!0}else(e=this.clone()).__dir__*=-1;return e},Ln.prototype.value=function(){var e=this.__wrapped__.value(),t=this.__dir__,n=Ml(e),r=t<0,i=n?e.length:0,o=function(e,t,n){for(var r=-1,i=n.length;++r<i;){var o=n[r],l=o.size;switch(o.type){case"drop":e+=l;break;case"dropRight":t-=l;break;case"take":t=an(t,e+l);break;case"takeRight":e=ln(e,t-l)}}return{start:e,end:t}}(0,i,this.__views__),l=o.start,a=o.end,u=a-l,s=r?a:l-1,c=this.__iteratees__,d=c.length,f=0,m=an(u,this.__takeCount__);if(!n||!r&&i==u&&m==u)return ti(e,this.__actions__);var p=[];e:for(;u--&&f<m;){for(var v=-1,g=e[s+=t];++v<d;){var h=c[v],E=h.type,y=(0,h.iteratee)(g);if(2==E)g=y;else if(!y){if(1==E)continue e;break e}}p[f++]=g}return p},Dn.prototype.at=il,Dn.prototype.chain=function(){return nl(this)},Dn.prototype.commit=function(){return new An(this.value(),this.__chain__)},Dn.prototype.next=function(){void 0===this.__values__&&(this.__values__=na(this.value()));var e=this.__index__>=this.__values__.length;return{done:e,value:e?void 0:this.__values__[this.__index__++]}},Dn.prototype.plant=function(e){for(var t,n=this;n instanceof xn;){var r=To(n);r.__index__=0,r.__values__=void 0,t?i.__wrapped__=r:t=r;var i=r;n=n.__wrapped__}return i.__wrapped__=e,t},Dn.prototype.reverse=function(){var e=this.__wrapped__;if(e instanceof Ln){var t=e;return this.__actions__.length&&(t=new Ln(this)),(t=t.reverse()).__actions__.push({func:rl,args:[Ho],thisArg:void 0}),new An(t,this.__chain__)}return this.thru(Ho)},Dn.prototype.toJSON=Dn.prototype.valueOf=Dn.prototype.value=function(){return ti(this.__wrapped__,this.__actions__)},Dn.prototype.first=Dn.prototype.head,Ct&&(Dn.prototype[Ct]=function(){return this}),Dn}();Ge?((Ge.exports=qt)._=qt,He._=qt):Ve._=qt}).call(A)});const nt=()=>{var e,r;const i=t.useRef(null),{isLoading:o,data:u}=Digit.Hooks.useAccessControl(),[s,c]=t.useState(""),{t:d}=l.useTranslation();t.useEffect(()=>{if(o)return n.createElement(a.Loader,null);i.current.style.cursor="pointer",f()},[o]);const f=()=>{i.current.style.width="55px",i.current.style.overflow="hidden",i.current.querySelectorAll(".dropdown-link").forEach(e=>{e.style.display="none"}),i.current.querySelectorAll(".actions").forEach(e=>{e.style.padding="0"})},m={};let p={};null==u||null===(e=u.actions)||void 0===e||null===(r=e.filter(e=>"url"===e.url))||void 0===r||r.forEach(e=>{tt.set(p,e.path,{...e})}),null==u||u.actions.filter(e=>"url"===e.url).forEach(e=>{var t,n,r;let i=e.path.split(".")[0];(""==s&&""!==e.path||""!==e.path&&null!==(t=d("ACTION_TEST_"+(null===(n=i)||void 0===n||null===(r=n.toUpperCase())||void 0===r?void 0:r.replace(/[ -]/g,"_"))))&&void 0!==t&&t.toLowerCase().includes(s.toLowerCase()))&&(i=e.path.split(".")[0],"TradeLicense"===i&&(i="Trade License"),m[i]?m[i].push(e):m[i]=[e])});let v=[];return o?n.createElement(a.Loader,null):v?n.createElement("div",{className:"sidebar",ref:i,onMouseOver:()=>{i.current.style.width="260px",i.current.style.overflow="auto",i.current.querySelectorAll(".dropdown-link").forEach(e=>{e.style.display="flex"})},onMouseLeave:f},n.createElement("div",{className:"submenu-container"},n.createElement("div",{className:"sidebar-link"},n.createElement("div",{className:"actions search-icon-wrapper"},n.createElement(a.SearchIcon,{className:"search-icon"}),n.createElement("input",{className:"employee-search-input",type:"text",placeholder:d("ACTION_TEST_SEARCH"),name:"search",value:s,onChange:e=>c(e.target.value)})))),(()=>{var e;const t=Object.keys(m);t.sort((e,t)=>e.orderNumber-t.orderNumber);for(let e=0;e<t.length;e++)if(-1===m[t[e]][0].path.indexOf("."))if("Home"===m[t[e]][0].displayName){const n="/digit-ui/employee";v.unshift({moduleName:t[e].toUpperCase(),icon:m[t[e]][0],navigationURL:n,type:"single"})}else{var r;v.push({moduleName:null===(r=m[t[e]][0])||void 0===r?void 0:r.displayName.toUpperCase(),type:"single",icon:m[t[e]][0],navigationURL:m[t[e]][0].navigationURL})}else v.push({moduleName:t[e].toUpperCase(),links:m[t[e]],icon:m[t[e]][0],orderNumber:m[t[e]][0].orderNumber});if(v.find(e=>"HOME"===e.moduleName)){var i,o;v.findIndex(e=>"HOME"===e.moduleName);const e=null===(i=v)||void 0===i?void 0:i.filter(e=>"HOME"===(null==e?void 0:e.moduleName));let t=null===(o=v)||void 0===o?void 0:o.filter(e=>"HOME"!==(null==e?void 0:e.moduleName));v=t.sort((e,t)=>e.moduleName.localeCompare(t.moduleName)),(null==e?void 0:e[0])&&v.unshift(e[0])}else v.sort((e,t)=>e.moduleName.localeCompare(t.moduleName));return null===(e=v)||void 0===e?void 0:e.map((e,t)=>n.createElement(et,{item:e,key:t+1}))})()):""},rt=e=>{let{CITIZEN:t,isSidebarOpen:r,toggleSidebar:i,handleLogout:o,mobileView:l,userDetails:a,modules:u,linkData:s,islinkDataLoading:c,isSideBarScroll:d,setSideBarScrollTop:f}=e;return t?n.createElement(Qe,{isOpen:r,isSideBarScroll:d,setSideBarScrollTop:f,isMobile:!0,toggleSidebar:i,onLogout:o,linkData:s,islinkDataLoading:c}):!l&&null!=a&&a.access_token?n.createElement(nt,{mobileView:l,userDetails:a,modules:u}):n.createElement(Qe,{isOpen:r,isMobile:!0,toggleSidebar:i,onLogout:o,isEmployee:!0})},it=e=>{let{t:r,stateInfo:i,userDetails:l,CITIZEN:u,cityDetails:s,mobileView:c,handleUserDropdownSelection:d,logoUrl:f,showSidebar:m=!0,showLanguageChange:p,linkData:v,islinkDataLoading:g}=e;const[h,E]=t.useState(!1),[y,_]=t.useState(!1),b=o.useHistory(),[C,S]=t.useState(!1),w=()=>{E(!1),S(!0)},O=()=>{S(!1)},N=[{name:r("EDIT_PROFILE"),icon:n.createElement(a.EditPencilIcon,{className:"icon"}),func:()=>{b.push("/digit-ui/employee/user/profile")}},{name:r("CORE_COMMON_LOGOUT"),icon:n.createElement(a.LogoutIcon,{className:"icon"}),func:w}];return n.createElement(n.Fragment,null,n.createElement(We,{t:r,stateInfo:i,toggleSidebar:E,setSideBarScrollTop:_,isSidebarOpen:h,isSideBarScroll:y,handleLogout:w,userDetails:l,CITIZEN:u,cityDetails:s,mobileView:c,userOptions:N,handleUserDropdownSelection:d,logoUrl:f,showLanguageChange:p}),C&&n.createElement(Ze,{onSelect:()=>{Digit.UserService.logout(),S(!1)},onCancel:O,onDismiss:O}),m&&n.createElement(rt,{t:r,CITIZEN:u,isSidebarOpen:h,toggleSidebar:E,isSideBarScroll:y,setSideBarScrollTop:_,handleLogout:w,mobileView:c,userDetails:l,linkData:v,islinkDataLoading:g}))};function ot(e){let{setProfilePic:r,closeDrawer:i,userType:o,removeProfilePic:u,showToast:s}=e;const[c,d]=t.useState(null),[f,m]=t.useState(""),[p,v]=t.useState(null),{t:g}=l.useTranslation();return t.useEffect(()=>{!function(){try{v(null);const e=function(){if(f){const e=function(){if(f.size>=1e6)s("error",g("CORE_COMMON_PROFILE_MAXIMUM_UPLOAD_SIZE_EXCEEDED")),v(g("CORE_COMMON_PROFILE_MAXIMUM_UPLOAD_SIZE_EXCEEDED"));else{const e=_(function(){return Promise.resolve(Digit.UploadServices.Filestorage(o+"-profile",f,Digit.ULBService.getStateId())).then(function(e){var t,n;if((null==e||null===(t=e.data)||void 0===t||null===(n=t.files)||void 0===n?void 0:n.length)>0){var i,o;const t=null==e||null===(i=e.data)||void 0===i||null===(o=i.files[0])||void 0===o?void 0:o.fileStoreId;d(t),r(t)}else s("error",g("CORE_COMMON_PROFILE_FILE_UPLOAD_ERROR")),v(g("CORE_COMMON_PROFILE_FILE_UPLOAD_ERROR"))})},function(){s("error",g("CORE_COMMON_PROFILE_INVALID_FILE_INPUT"))});if(e&&e.then)return e.then(function(){})}}();if(e&&e.then)return e.then(function(){})}}();e&&e.then&&e.then(function(){})}catch(e){Promise.reject(e)}}()},[f]),n.createElement(n.Fragment,null,n.createElement("div",{style:{position:"fixed",top:"0",left:"0",right:"0",bottom:"0",width:"100%",height:"100vh",backgroundColor:"rgba(0,0,0,.5)"},onClick:()=>i()}),n.createElement("div",{style:{width:"100%",justifyContent:"space-between",display:"flex",backgroundColor:"white",alignItems:"center",position:"fixed",left:"0",right:"0",height:"20%",bottom:"citizen"===o?"2.5rem":"0",zIndex:"2"}},n.createElement("div",{style:{display:"flex",flex:"1",flexDirection:"column",width:"100%",justifyContent:"center",alignItems:"center",gap:"8px 0"}},n.createElement("label",{for:"file",style:{cursor:"pointer"}}," ",n.createElement(a.GalleryIcon,null)),n.createElement("label",{style:{cursor:"pointer"}}," Gallery"),n.createElement("input",{type:"file",id:"file",accept:"image/*, .png, .jpeg, .jpg",onChange:e=>m(e.target.files[0]),style:{display:"none"}})),n.createElement("div",{style:{display:"flex",flex:"1",width:"100%",justifyContent:"center",alignItems:"center",flexDirection:"column",gap:"8px 0"}},n.createElement("button",{onClick:()=>{u(),i()}},n.createElement(a.RemoveIcon,null)),n.createElement("label",{style:{cursor:"pointer"}},"Remove"))))}const lt=e=>{var r,i,u,s,c,d,f;let{stateCode:m,userType:p,cityDetails:v}=e;o.useHistory();const{t:g}=l.useTranslation(),h=window.location.href,E=Digit.ULBService.getStateId(),y=Digit.ULBService.getCurrentTenantId(),b=(null===(r=Digit.UserService.getUser())||void 0===r?void 0:r.info)||{},[C,S]=t.useState(null),[w,O]=t.useState(null!=b&&b.name?b.name:""),[N,I]=t.useState(null!=b&&b.emailId?b.emailId:""),[D,T]=t.useState(null==C?void 0:C.gender),[A,L]=t.useState(null!=b&&b.permanentCity?b.permanentCity:v.name),[R,M]=t.useState(null!=b&&b.mobileNumber?b.mobileNumber:""),[P,k]=t.useState(null),[U,B]=t.useState(""),[j,F]=t.useState(!1),[z,W]=t.useState(!1),[V,H]=t.useState(""),[G,q]=t.useState(""),[Z,X]=t.useState(""),[Y,K]=t.useState(null),[J,$]=t.useState(!1),[Q,ee]=n.useState(window.innerWidth),[te,ne]=n.useState({}),re=window.Digit.Utils.browser.isMobile();n.useEffect(()=>(window.addEventListener("resize",()=>ee(window.innerWidth)),()=>{window.removeEventListener("resize",()=>ee(window.innerWidth))})),t.useEffect(()=>{var e;$(!0),function(){try{const e=null==b?void 0:b.uuid,t=function(){if(e)return Promise.resolve(Digit.UserService.userSearch(y,{uuid:[e]},{})).then(function(e){e&&e.user&&e.user.length&&S(e.user[0])})}();Promise.resolve(t&&t.then?t.then(function(){}):void 0)}catch(e){return Promise.reject(e)}}(),T({i18nKey:void 0,code:null==C?void 0:C.gender,value:null==C?void 0:C.gender});const t=null==C||null===(e=C.photo)||void 0===e?void 0:e.split(",");B(null==t?void 0:t.at(0)),$(!1)},[null!==C]);let ie={};const oe=e=>T(e),le=()=>F(!1),ae=e=>{O(e),!new RegExp(/^[a-zA-Z ]+$/i).test(e)||0===e.length||e.length>50?ne({...te,userName:{type:"pattern",message:g("CORE_COMMON_PROFILE_NAME_INVALID")}}):ne({...te,userName:null})},ue=function(e,t,n){void 0===n&&(n=5e3),K({key:e,action:t}),setTimeout(()=>{K(null)},n)},se=function(){try{let t=!1;function e(e){if(t)return e;$(!1)}$(!0);const n=_(function(){const e={...b,name:w,gender:null==D?void 0:D.value,emailId:N,photo:P};if(!new RegExp(/^([a-zA-Z ])*$/).test(w)||""===w||w.length>50||w.length<1)throw JSON.stringify({type:"error",message:g("CORE_COMMON_PROFILE_NAME_INVALID")});if("employee"===p&&!new RegExp(/^[6-9]{1}[0-9]{9}$/).test(R))throw JSON.stringify({type:"error",message:g("CORE_COMMON_PROFILE_MOBILE_NUMBER_INVALID")});if(N.length&&!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(N))throw JSON.stringify({type:"error",message:g("CORE_COMMON_PROFILE_EMAIL_INVALID")});if(V.length||G.length||Z.length){if(G!==Z)throw JSON.stringify({type:"error",message:g("CORE_COMMON_PROFILE_PASSWORD_MISMATCH")});if(!(V.length&&G.length&&Z.length))throw JSON.stringify({type:"error",message:g("CORE_COMMON_PROFILE_PASSWORD_INVALID")});if(!new RegExp(/^([a-zA-Z0-9@#$%]{8,15})$/i).test(G)&&!new RegExp(/^([a-zA-Z0-9@#$%]{8,15})$/i).test(Z))throw JSON.stringify({type:"error",message:g("CORE_COMMON_PROFILE_PASSWORD_INVALID")})}return e.locale=Digit.StoreData.getCurrentLanguage(),Promise.resolve(Digit.UserService.updateUser(e,m)).then(function(e){let{responseInfo:t}=e;if(t&&"200"===t.status){const e=Digit.UserService.getUser();e&&Digit.UserService.setUser({...e,info:{...e.info,name:w,mobileNumber:R,emailId:N,permanentCity:A}})}return function(){if(V.length&&G.length&&Z.length){const e={existingPassword:V,newPassword:G,tenantId:y,type:"EMPLOYEE",username:null==b?void 0:b.userName,confirmPassword:Z};return function(){if(G===Z)return _(function(){return Promise.resolve(Digit.UserService.changePassword(e,y)).then(function(e){const{responseInfo:t}=e;if(null==t||!t.status||"200"!==t.status)throw"";ue("success",g("CORE_COMMON_PROFILE_UPDATE_SUCCESS_WITH_PASSWORD"),5e3)})},function(e){var t,n;throw JSON.stringify({type:"error",message:null!==(t=e.Errors)&&void 0!==t&&null!==(n=t.at(0))&&void 0!==n&&n.description?e.Errors.at(0).description:g("CORE_COMMON_PROFILE_UPDATE_ERROR_WITH_PASSWORD")})});throw JSON.stringify({type:"error",message:g("CORE_COMMON_PROFILE_ERROR_PASSWORD_NOT_MATCH")})}()}null!=t&&t.status&&"200"===t.status&&ue("success",g("CORE_COMMON_PROFILE_UPDATE_SUCCESS"),5e3)}()})},function(e){const t=JSON.parse(e);ue(t.type,g(t.message),5e3)});return Promise.resolve(n&&n.then?n.then(e):e(n))}catch(e){return Promise.reject(e)}};let ce=[];const{data:de}=Digit.Hooks.pt.useGenderMDMS(E,"common-masters","GenderType");return de&&de.map(e=>{ce.push({i18nKey:"PT_COMMON_GENDER_"+e.code,code:""+e.code,value:""+e.code})}),J?n.createElement(a.Loader,null):n.createElement("div",{className:"user-profile"},n.createElement("section",{style:{margin:"citizen"===p?"8px":"24px",position:"relative"}},"citizen"===p?n.createElement(a.BackButton,null):n.createElement(a.BreadCrumb,{crumbs:[{path:"/digit-ui/employee",content:g("ES_COMMON_HOME"),show:!0},{path:"/digit-ui/employee/user/profile",content:g("ES_COMMON_PAGE_1"),show:h.includes("/user/profile")}]})),n.createElement("div",{style:{display:"flex",flex:1,flexDirection:Q<768||"citizen"===p?"column":"row",margin:"citizen"===p?"8px":"16px",gap:"citizen"===p?"":"0 24px",boxShadow:"citizen"===p?"1px 1px 4px 0px rgba(0,0,0,0.2)":"",background:"citizen"===p?"white":"",borderRadius:"citizen"===p?"4px":"",maxWidth:"citizen"===p?"960px":""}},n.createElement("section",{style:{position:"relative",display:"flex",flex:"citizen"===p?1:2.5,justifyContent:"center",alignItems:"center",maxWidth:"100%",height:"320px",borderRadius:"4px",boxShadow:"citizen"===p?"":"1px 1px 4px 0px rgba(0,0,0,0.2)",border:("citizen"===p?"8px":"24px")+" solid #fff",background:"#EEEEEE",padding:"citizen"===p?"8px":"16px"}},n.createElement("div",{style:{position:"relative",height:"citizen"===p?"114px":"150px",width:"citizen"===p?"114px":"150px",margin:"16px"}},n.createElement("img",{style:{margin:"auto",borderRadius:"300px",justifyContent:"center",height:"100%",width:"100%"},src:U&&""!==U?U:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAO4AAADUCAMAAACs0e/bAAAAM1BMVEXK0eL////Dy97GzuD4+fvL0uPg5O7T2efb4OvR1+Xr7vTk5/Df4+37/P3v8fbO1eTt8PUsnq5FAAAGqElEQVR4nO2d25ajIBBFCajgvf//a0eMyZgEjcI5xgt7Hmatme507UaxuJXidiDqjmSgeVIMlB1ZR1WZAf2gbdu0QwixSYzjOJPmHurfEGEfY9XzjNGG9whQCeVAuv5xQEySLtR9hPuIcwj0EeroN5m3D1IbsbgHK0esiQ9MKsqXVr8Hm/a/Pulk6wihpCIXBw3dh7bTvRBt9+dC5NfS1VH3xETdM3MxXRN1T0zUPTNR98xcS1dlV9NNfx3DhkTdM6PKqHteVBF1z0vU5f0sKdpc2zWLKutXrjJjdLvpesRmukqYonauPhXpdsLb6CppmpnltsYIuY2yavi6Mi2/rzAWm1zUfF0limVLqkZyA+mDYevKBS37aGC+L1lX5e7uyU1Cv565uiua9k5LFqbqqrnu2I3m+jJ11ZoLeRtfmdB0Uw/ZDsP0VTxdn7a1VERfmq7XlXyn5D2QWLoq8bZlPoBJumphJjVBw/Ll6CoTZGsTDs4NrGqKbqBth8ZHJUi6cn168QmleSm6GmB7Kxm+6obXlf7PoDHosCwM3QpiS2legi6ocSl3L0G3BdneDDgwQdENfeY+SfDJBkF37ZB+GvwzA6/rMaafAn8143VhPZWdjMWG1oHXhdnemgPoAvLlB/iZyRTfVeF06wPoQhJmlm4bdcOAZRlRN5gcPc5SoPEQR1fDdbOo6wn+uYvXxY0QCLom6gYROKH+Aj5nvphuFXWDiLpRdxl/19LFT95k6CHCrnW7pCDqBn1i1PUFvii2c11oZOJ6usWeH0RRNzC4Zs+6FTi2nevCVwCjbugnXklX5fkfTldL8PEilUB1kfNyN1u9MME2sATr4lbuB7AjfLAuvsRm1A0g6gYRdcPAjvBlje2Z8brI8OC68AcRdlCkwLohx2mcZMjw9q+LzarQurjtnwPYAydX08WecECO/u6Ad0GBdYG7jO5gB4Ap+PwKcA9ZT43dn4/W9TyiPAn4OAJaF7h3uwe8StSCddFdM3jqFa2LvnnB5zzhuuBBAjY4gi50cg694gnXhTYvfMdrjtcFZhrwE9r41gUem8IXWMC3LrBzxh+a0gRd1N1LOK7M0IUUGuggvEmHoStA2/MJh7MpupiDU4TzjhxdzLAoO4ouZvqVURbFMHQlZD6SUeWHoguZsSLUGegrehA+FZFowPdUWTi6iMoZlIpGGUUXkDbjj/9ZOLqAQS/+GIKl5BQOCn/ycqpzkXSDm5dU7ZWkG7wUyGlcmm7g5Ux56AqirgoaJ7BeokPTDbp9CbVunjFxPrl7+HqnkrSq1Da7JX20f3dV8yJi6voO81mX8vV0mx3qUsZCPRfTlVRdz2EvdufYGDvNQvvwqHtmXd+a1ITinwNcXc+lT6JuzdT1XDyBn/x7wtX1HCQQdW9MXc8xArGrirowfLeUEbMqqq6f7TF1lfRdOuGNiGi6SpT+WxY06xUfNN2wBfyE9I4tlm7w5hvOPDNJN3yNiLMipji6gE3chKhouoCtN5x3QlF0EZt8OW/8ougitqJQlk1aii7iFC9l0MvRReyao7xNjKML2Z/PuHlzhi5mFxljiZeiC9rPTEisNEMX9KYAwo5Xhi7qaA3hamboYm7dG+NVrXhdaYDv5zFaQZsYrCtbbAGnjkQDX2+J1FXCwOsqWOpKoIQNTFdqYBWydxqNqUoG0pVpCS+H8kaJaGKErlIaXj7CRRE+gRWuKwW9YZ80oVOUgbpdT0zpnSZJTIiwCtJVelvXntr4P5j6BWfPb5Wcx84C4cq3hb11lco2u2Mdwp6XdJ/Ne3wb8DWdfiRenZaXrhLwOj4e+GQeHroy3YOspS7TlU28Wle2m2QUS0mqdcbrdNW+ZHsSsyK7tBfm0q/dWcv+Z3mytVx3t7KWulqUe6ilunu8jF8pFwgv1FXp3mUt35OtRbr7eM4u4Gs6vUBXgeuHc5kfE/cbvWZtkROLm1DMtLCy80tzsu2PRj0hTI8fvrQuvsjlJkyutszq+m423wHaLTyniy/XuiGZ84LuT+m5ZfNfRxyGs7LXZOvia7VujatUwVTrIt+Q/Csc7Tuhe+BOakT10b4TuoiiJjvgU9emTO42PwEfBa+cuodKkuf42DXr1D3JpXz73Hnn0j10evHKe+nufgfUm+7B84sX9FfdEzXux2DBpWuKokkCqN/5pa/8pmvnL+RGKCddCGmatiPyPB/+ekO/M/q/7uvbt22kTt3zEnXPzCV13T3Gel4/6NduDu66xRvlPNkM1RjjxUdv+4WhGx6TftD19Q/dfzpwcHO+rE3fAAAAAElFTkSuQmCC"}),n.createElement("button",{style:{position:"absolute",left:"50%",bottom:"-24px",transform:"translateX(-50%)"},onClick:()=>F(!j)},n.createElement(a.CameraIcon,null)))),n.createElement("section",{style:{display:"flex",flexDirection:"column",flex:"citizen"===p?1:7.5,width:"100%",borderRadius:"4px",height:"fit-content",boxShadow:"citizen"===p?"":"1px 1px 4px 0px rgba(0,0,0,0.2)",background:"white",padding:"citizen"===p?"8px":"24px",paddingBottom:"20px"}},"citizen"===p?n.createElement(n.Fragment,null,n.createElement(a.LabelFieldPair,null,n.createElement(a.CardLabel,{style:{}},""+g("CORE_COMMON_PROFILE_NAME"),"*"),n.createElement("div",{style:{width:"100%",maxWidth:"960px"}},n.createElement(a.TextInput,x({t:g,style:{width:"100%"},type:"text",isMandatory:!1,name:"name",value:w,onChange:e=>ae(e.target.value)},ie={isRequired:!0,pattern:"^[a-zA-Z-.`' ]*$",type:"tel",title:g("CORE_COMMON_PROFILE_NAME_ERROR_MESSAGE")},{disable:!1})),(null==te?void 0:te.userName)&&n.createElement(a.CardLabelError,null," ",null==te||null===(i=te.userName)||void 0===i?void 0:i.message," "))),n.createElement(a.LabelFieldPair,null,n.createElement(a.CardLabel,{style:{}},""+g("CORE_COMMON_PROFILE_GENDER")),n.createElement(a.Dropdown,{style:{width:"100%"},className:"form-field",selected:1===(null==D?void 0:D.length)?D[0]:D,disable:1===(null==D?void 0:D.length)||!1,option:ce,select:oe,value:D,optionKey:"code",t:g,name:"gender"})),n.createElement("button",{onClick:se,style:{marginTop:"24px",backgroundColor:"#a82227",width:"100%",height:"40px",color:"white",maxWidth:re?"100%":"240px",borderBottom:"1px solid black"}},g("CORE_COMMON_SAVE"))):n.createElement(n.Fragment,null,n.createElement(a.LabelFieldPair,{style:{display:"flex"}},n.createElement(a.CardLabel,{className:"profile-label-margin",style:{width:"300px"}},""+g("CORE_COMMON_PROFILE_NAME"),"*"),n.createElement("div",{style:{width:"100%"}},n.createElement(a.TextInput,x({t:g,type:"text",isMandatory:!1,name:"name",value:w,onChange:e=>ae(e.target.value),placeholder:"Enter Your Name"},ie={isRequired:!0,pattern:"^[a-zA-Z-.`' ]*$",type:"text",title:g("CORE_COMMON_PROFILE_NAME_ERROR_MESSAGE")},{disable:!1})),(null==te?void 0:te.userName)&&n.createElement(a.CardLabelError,{style:{margin:0,padding:0}}," ",null==te||null===(u=te.userName)||void 0===u?void 0:u.message," "))),n.createElement(a.LabelFieldPair,{style:{display:"flex"}},n.createElement(a.CardLabel,{className:"profile-label-margin",style:{width:"300px"}},""+g("CORE_COMMON_PROFILE_GENDER")),n.createElement(a.Dropdown,{style:{width:"100%"},selected:1===(null==D?void 0:D.length)?D[0]:D,disable:1===(null==D?void 0:D.length)||!1,option:ce,select:oe,value:D,optionKey:"code",t:g,name:"gender"})),n.createElement(a.LabelFieldPair,{style:{display:"flex"}},n.createElement(a.CardLabel,{className:"profile-label-margin",style:{width:"300px"}},""+g("CORE_COMMON_PROFILE_CITY")),n.createElement("div",{style:{width:"100%"}},n.createElement(a.TextInput,x({t:g,type:"text",isMandatory:!1,name:"city",value:g(A),onChange:e=>L(e.target.value),placeholder:"Enter Your City Name"},ie={isRequired:!0,type:"text",title:g("CORE_COMMON_PROFILE_CITY_ERROR_MESSAGE")},{disable:!0})),n.createElement(a.CardLabelError,null))),n.createElement(a.LabelFieldPair,{style:{display:"flex"}},n.createElement(a.CardLabel,{className:"profile-label-margin",style:{width:"300px"}},g("CORE_COMMON_PROFILE_MOBILE_NUMBER")+"*"),n.createElement("div",{style:{width:"100%"}},n.createElement(a.MobileNumber,{value:R,style:{width:"100%"},name:"mobileNumber",placeholder:"Enter a valid Mobile No.",onChange:e=>(e=>{M(e),"employee"!==p||new RegExp(/^[6-9]{1}[0-9]{9}$/).test(e)?ne({...te,mobileNumber:null}):ne({...te,mobileNumber:{type:"pattern",message:g("CORE_COMMON_PROFILE_MOBILE_NUMBER_INVALID")}})})(e),disable:!0,required:!0,pattern:"[6-9]{1}[0-9]{9}",type:"tel",title:g("CORE_COMMON_PROFILE_MOBILE_NUMBER_INVALID")}),(null==te?void 0:te.mobileNumber)&&n.createElement(a.CardLabelError,{style:{margin:0,padding:0}}," ",null==te||null===(s=te.mobileNumber)||void 0===s?void 0:s.message," "))),n.createElement(a.LabelFieldPair,null,n.createElement("div",null,n.createElement("a",{style:{color:"#a82227",cursor:"default",marginBottom:"5",cursor:"pointer",position:"relative"},onClick:()=>W(!z)},g("CORE_COMMON_CHANGE_PASSWORD")),z?n.createElement("div",{style:{marginTop:"10px"}},n.createElement(a.LabelFieldPair,{style:{display:"flex"}},n.createElement(a.CardLabel,{className:"profile-label-margin",style:{width:"300px"}},""+g("CORE_COMMON_PROFILE_CURRENT_PASSWORD")),n.createElement("div",{style:{width:"100%"}},n.createElement(a.TextInput,{t:g,type:"password",isMandatory:!1,name:"name",pattern:"^([a-zA-Z0-9@#$%])+$",onChange:e=>{return H(t=e.target.value),void(new RegExp(/^([a-zA-Z0-9@#$%]{8,15})$/i).test(t)?ne({...te,currentPassword:null}):ne({...te,currentPassword:{type:"pattern",message:g("CORE_COMMON_PROFILE_PASSWORD_INVALID")}}));var t},disable:!1}),(null==te?void 0:te.currentPassword)&&n.createElement(a.CardLabelError,null,null==te||null===(c=te.currentPassword)||void 0===c?void 0:c.message))),n.createElement(a.LabelFieldPair,{style:{display:"flex"}},n.createElement(a.CardLabel,{className:"profile-label-margin",style:{width:"300px"}},""+g("CORE_COMMON_PROFILE_NEW_PASSWORD")),n.createElement("div",{style:{width:"100%"}},n.createElement(a.TextInput,{t:g,type:"password",isMandatory:!1,name:"name",pattern:"^([a-zA-Z0-9@#$%])+$",onChange:e=>{return q(t=e.target.value),void(new RegExp(/^([a-zA-Z0-9@#$%]{8,15})$/i).test(t)?ne({...te,newPassword:null}):ne({...te,newPassword:{type:"pattern",message:g("CORE_COMMON_PROFILE_PASSWORD_INVALID")}}));var t},disable:!1}),(null==te?void 0:te.newPassword)&&n.createElement(a.CardLabelError,null,null==te||null===(d=te.newPassword)||void 0===d?void 0:d.message))),n.createElement(a.LabelFieldPair,{style:{display:"flex"}},n.createElement(a.CardLabel,{className:"profile-label-margin",style:{width:"300px"}},""+g("CORE_COMMON_PROFILE_CONFIRM_PASSWORD")),n.createElement("div",{style:{width:"100%"}},n.createElement(a.TextInput,{t:g,type:"password",isMandatory:!1,name:"name",pattern:"^([a-zA-Z0-9@#$%])+$",onChange:e=>{return X(t=e.target.value),void(new RegExp(/^([a-zA-Z0-9@#$%]{8,15})$/i).test(t)?ne({...te,confirmPassword:null}):ne({...te,confirmPassword:{type:"pattern",message:g("CORE_COMMON_PROFILE_PASSWORD_INVALID")}}));var t},disable:!1}),(null==te?void 0:te.confirmPassword)&&n.createElement(a.CardLabelError,null,null==te||null===(f=te.confirmPassword)||void 0===f?void 0:f.message)))):""))))),"employee"===p?n.createElement("div",{style:{height:"88px",backgroundColor:"#FFFFFF",display:"flex",justifyContent:"flex-end",marginTop:"64px",alignItems:"center"}},n.createElement("button",{onClick:se,style:{marginTop:"24px",backgroundColor:"#a82227",width:Q<768?"100%":"248px",height:"40px",float:"right",margin:Q<768?"0 16px":"",marginRight:Q<768?"16px":"31px",color:"white",borderBottom:"1px solid black",cursor:"pointer",zIndex:"999"}},g("CORE_COMMON_SAVE"))):"",Y&&n.createElement(a.Toast,{error:"error"===Y.key,label:g("success"===Y.key?"CORE_COMMON_PROFILE_UPDATE_SUCCESS":Y.action),onClose:()=>K(null),style:{maxWidth:"670px"}}),1==j?n.createElement(ot,{setProfilePic:function(e){try{function t(e){B(null==e?void 0:e.thumbs[0]),le()}return k(e),Promise.resolve(e?Promise.resolve(function(e,t){try{return Promise.resolve(Digit.UploadServices.Filefetch(e,t)).then(function(e){return e.data.fileStoreIds&&0!==e.data.fileStoreIds.length?{thumbs:e.data.fileStoreIds.map(e=>e.url.split(",")[3]),images:e.data.fileStoreIds.map(e=>Digit.Utils.getFileUrl(e.url))}:null})}catch(e){return Promise.reject(e)}}([e],E)).then(t):t(null))}catch(e){return Promise.reject(e)}},closeDrawer:le,userType:p,removeProfilePic:()=>{k(null),B(null)},showToast:ue}):"")},at=["user/profile","user/error"],ut=e=>{var r;let{stateInfo:i,userDetails:u,CITIZEN:s,cityDetails:c,mobileView:d,handleUserDropdownSelection:f,logoUrl:m,DSO:p,stateCode:v,modules:g,appTenants:h,sourceUrl:E,initData:y}=e;const _=o.useHistory(),{t:b}=l.useTranslation(),{path:C}=o.useRouteMatch(),S=o.useLocation(),w=null==S||null===(r=S.pathname)||void 0===r?void 0:r.includes("language-selection"),O=at.some(e=>{var t;return null==S||null===(t=S.pathname)||void 0===t?void 0:t.includes(e)});return t.useEffect(()=>{console.log("isMobile",window.Digit.Utils.browser.isMobile(),window.innerWidth),Digit.UserService.setType("employee")},[]),E="https://s3.ap-south-1.amazonaws.com/egov-qa-assets",n.createElement("div",{className:"employee"},n.createElement(o.Switch,null,n.createElement(o.Route,{path:C+"/user"},O&&n.createElement(it,{t:b,stateInfo:i,userDetails:u,CITIZEN:s,cityDetails:c,mobileView:d,handleUserDropdownSelection:f,logoUrl:m,showSidebar:!!O,showLanguageChange:!w}),n.createElement("div",{className:O?"grounded-container":"loginContainer",style:O?{padding:0,paddingTop:"80px",marginLeft:d?"":"64px"}:{"--banner-url":"url("+(null==i?void 0:i.bannerUrl)+")",padding:"0px"}},n.createElement("div",{className:"loginnn"},n.createElement("div",{className:"login-logo-wrapper"},n.createElement("div",{className:"logoNiua"})),n.createElement("picture",null,n.createElement("source",{id:"backgroung-login",media:"(min-width: 950px)",srcset:"https://nugp-assets.s3.ap-south-1.amazonaws.com/nugp+asset/Banner+UPYOG+(1920x1080).jpg",style:{position:"absolute",height:"100%",width:"100%"}}),n.createElement("source",{media:"(min-width: 250px)",srcset:"https://nugp-assets.s3.ap-south-1.amazonaws.com/nugp+asset/Banner+UPYOG+%28500x900%29.jpg"}),n.createElement("img",{src:"https://nugp-assets.s3.ap-south-1.amazonaws.com/nugp+asset/Banner+UPYOG+(1920x1080).jpg",alt:"imagealttext",style:{position:"absolute",height:"100%",width:"100%",zIndex:"1",display:window.location.href.includes("user/profile")?"none":""}})),n.createElement(o.Switch,null,n.createElement(o.Route,{path:C+"/user/login"},n.createElement(we,null)),n.createElement(o.Route,{path:C+"/user/forgot-password"},n.createElement(xe,null)),n.createElement(o.Route,{path:C+"/user/change-password"},n.createElement(Ie,null)),n.createElement(a.PrivateRoute,{path:C+"/user/profile"},n.createElement(lt,{stateCode:v,userType:"employee",cityDetails:c})),n.createElement(o.Route,{path:C+"/user/error"},n.createElement(Pe,{initData:y,goToHome:()=>{_.push("/digit-ui/employee")}})),n.createElement(o.Route,{path:C+"/user/language-selection"},n.createElement(Ae,null)),n.createElement(o.Route,null,n.createElement(o.Redirect,{to:C+"/user/language-selection"})))))),n.createElement(o.Route,null,n.createElement(it,{t:b,stateInfo:i,userDetails:u,CITIZEN:s,cityDetails:c,mobileView:d,handleUserDropdownSelection:f,logoUrl:m,modules:g}),n.createElement("div",{className:"main "+(p?"m-auto":"")},n.createElement("div",{className:"employee-app-wrapper"},n.createElement(Ue,{initData:y},n.createElement(Re,{stateCode:v,userType:"employee",modules:g,appTenants:h}))),n.createElement("div",{style:{width:"100%",position:"fixed",bottom:0,backgroundColor:"white",textAlign:"center"}},n.createElement("div",{style:{display:"flex",justifyContent:"center",color:"black"}},n.createElement("span",{style:{cursor:"pointer",fontSize:window.Digit.Utils.browser.isMobile()?"12px":"14px",fontWeight:"400"},onClick:()=>{window.open("https://www.digit.org/","_blank").focus()}},"Powered by DIGIT"),n.createElement("span",{style:{margin:"0 10px",fontSize:window.Digit.Utils.browser.isMobile()?"12px":"14px"}},"|"),n.createElement("a",{style:{cursor:"pointer",fontSize:window.Digit.Utils.browser.isMobile()?"12px":"14px",fontWeight:"400"},href:"#",target:"_blank"},"UPYOG License"),n.createElement("span",{className:"upyog-copyright-footer",style:{margin:"0 10px",fontSize:window.Digit.Utils.browser.isMobile()?"12px":"14px"}},"|"),n.createElement("span",{className:"upyog-copyright-footer",style:{cursor:"pointer",fontSize:window.Digit.Utils.browser.isMobile()?"12px":"14px",fontWeight:"400"},onClick:()=>{window.open("https://niua.in/","_blank").focus()}},"Copyright © 2022 National Institute of Urban Affairs")),n.createElement("div",{className:"upyog-copyright-footer-web"},n.createElement("span",{className:"",style:{cursor:"pointer",fontSize:window.Digit.Utils.browser.isMobile()?"12px":"14px",fontWeight:"400"},onClick:()=>{window.open("https://niua.in/","_blank").focus()}},"Copyright © 2022 National Institute of Urban Affairs"))))),n.createElement(o.Route,null,n.createElement(o.Redirect,{to:C+"/user/language-selection"}))))},st=()=>{var e,t,r,i,u,s,c,d,f,m,p,v,g,h,E,y,_,b,C;const{t:S}=l.useTranslation(),w=o.useHistory(),O=Digit.ULBService.getCitizenCurrentTenant(!0),{data:{uiHomePage:N}={},isLoading:I}=Digit.Hooks.useStore.getInitData();let D=window.Digit.Utils.browser.isMobile();window.Digit.SessionStorage.get("TL_CREATE_TRADE")&&window.Digit.SessionStorage.set("TL_CREATE_TRADE",{});const T=()=>{var e,t,n,r,i;return"EMPLOYEE"!==(null===(e=Digit.UserService)||void 0===e||null===(t=e.getUser())||void 0===t||null===(n=t.info)||void 0===n?void 0:n.type)&&!(null===(r=Digit.UserService)||void 0===r||null===(i=r.getUser())||void 0===i||!i.access_token)},{data:A,isLoading:L}=Digit.Hooks.useEvents({tenantId:O,variant:"whats-new",config:{enabled:T()}});O||(null===Digit.SessionStorage.get("locale")?w.push("/digit-ui/citizen/select-language"):w.push("/digit-ui/citizen/select-location"));const R=null==N?void 0:N.citizenServicesCard,M=null==N?void 0:N.informationAndUpdatesCard,P=null==N?void 0:N.whatsNewSection,k={header:S(null==R?void 0:R.headerLabel),sideOption:{name:S(null==R||null===(e=R.sideOption)||void 0===e?void 0:e.name),onClick:()=>{var e;return w.push(null==R||null===(e=R.sideOption)||void 0===e?void 0:e.navigationUrl)}},options:[{name:S(null==R||null===(t=R.props)||void 0===t||null===(r=t[0])||void 0===r?void 0:r.label),Icon:n.createElement(a.ComplaintIcon,null),onClick:()=>{var e,t;return w.push(null==R||null===(e=R.props)||void 0===e||null===(t=e[0])||void 0===t?void 0:t.navigationUrl)}},{name:S(null==R||null===(i=R.props)||void 0===i||null===(u=i[1])||void 0===u?void 0:u.label),Icon:n.createElement(a.PTIcon,{className:"fill-path-primary-main"}),onClick:()=>{var e,t;return w.push(null==R||null===(e=R.props)||void 0===e||null===(t=e[1])||void 0===t?void 0:t.navigationUrl)}},{name:S(null==R||null===(s=R.props)||void 0===s||null===(c=s[2])||void 0===c?void 0:c.label),Icon:n.createElement(a.CaseIcon,{className:"fill-path-primary-main"}),onClick:()=>{var e,t;return w.push(null==R||null===(e=R.props)||void 0===e||null===(t=e[2])||void 0===t?void 0:t.navigationUrl)}},{name:S(null==R||null===(d=R.props)||void 0===d||null===(f=d[3])||void 0===f?void 0:f.label),Icon:n.createElement(a.WSICon,null),onClick:()=>{var e,t;return w.push(null==R||null===(e=R.props)||void 0===e||null===(t=e[3])||void 0===t?void 0:t.navigationUrl)}}],styles:{display:"flex",flexWrap:"wrap",justifyContent:"flex-start",width:"100%"}},U={header:S(null==M?void 0:M.headerLabel),sideOption:{name:S(null==M||null===(m=M.sideOption)||void 0===m?void 0:m.name),onClick:()=>{var e;return w.push(null==M||null===(e=M.sideOption)||void 0===e?void 0:e.navigationUrl)}},options:[{name:S(null==M||null===(p=M.props)||void 0===p||null===(v=p[0])||void 0===v?void 0:v.label),Icon:n.createElement(a.HomeIcon,null),onClick:()=>{var e,t;return w.push(null==M||null===(e=M.props)||void 0===e||null===(t=e[0])||void 0===t?void 0:t.navigationUrl)}},{name:S(null==M||null===(g=M.props)||void 0===g||null===(h=g[1])||void 0===h?void 0:h.label),Icon:n.createElement(a.Calender,null),onClick:()=>{var e,t;return w.push(null==M||null===(e=M.props)||void 0===e||null===(t=e[1])||void 0===t?void 0:t.navigationUrl)}},{name:S(null==M||null===(E=M.props)||void 0===E||null===(y=E[2])||void 0===y?void 0:y.label),Icon:n.createElement(a.DocumentIcon,null),onClick:()=>{var e,t;return w.push(null==M||null===(e=M.props)||void 0===e||null===(t=e[2])||void 0===t?void 0:t.navigationUrl)}},{name:S(null==M||null===(_=M.props)||void 0===_||null===(b=_[3])||void 0===b?void 0:b.label),Icon:n.createElement(a.DocumentIcon,null),onClick:()=>{var e,t;return w.push(null==M||null===(e=M.props)||void 0===e||null===(t=e[3])||void 0===t?void 0:t.navigationUrl)}}],styles:{display:"flex",flexWrap:"wrap",justifyContent:"flex-start",width:"100%"}};return I?n.createElement(a.Loader,null):n.createElement("div",{className:"HomePageContainer",style:{width:"100%"}},n.createElement("div",{className:"HomePageWrapper"},n.createElement("div",{className:"BannerWithSearch"},n.createElement("img",D?{src:"https://nugp-assets.s3.ap-south-1.amazonaws.com/nugp+asset/Banner+UPYOG+%281920x500%29B+%282%29.jpg"}:{src:"https://velocity-upyog-assets.s3.ap-south-1.amazonaws.com/upyog-banner.png"}),n.createElement("div",{className:"ServicesSection"},n.createElement(a.CardBasedOptions,x({style:{marginTop:"-30px"}},k)),n.createElement(a.CardBasedOptions,x({style:{marginTop:"-30px"}},U)))),T()?L?n.createElement(a.Loader,null):n.createElement("div",{className:"WhatsNewSection"},n.createElement("div",{className:"headSection"},n.createElement("h2",null,S(null==P?void 0:P.headerLabel)),n.createElement("p",{onClick:()=>{var e;return w.push(null==P||null===(e=P.sideOption)||void 0===e?void 0:e.navigationUrl)}},S(null==P||null===(C=P.sideOption)||void 0===C?void 0:C.name))),n.createElement(a.WhatsNewCard,null==A?void 0:A[0])):null))},ct=()=>{const{t:e}=l.useTranslation(),r=o.useHistory(),{data:{languages:i,stateInfo:u}={},isLoading:s}=Digit.Hooks.useStore.getInitData(),c=Digit.StoreData.getCurrentLanguage(),d=t.useMemo(()=>({header:e("CS_COMMON_CHOOSE_LANGUAGE"),submitBarLabel:e("CORE_COMMON_CONTINUE")}),[e]),f=t.useMemo(()=>({options:i,optionsKey:"label",additionalWrapperClass:"reverse-radio-selection-wrapper",onSelect:e=>Digit.LocalizationService.changeLanguage(e.value,u.code),selectedOption:null==i?void 0:i.filter(e=>e.value===c)[0]}),[c,i]);return s?n.createElement(a.Loader,null):n.createElement("div",{className:"selection-card-wrapper"},n.createElement(a.PageBasedInput,{texts:d,onSubmit:function(){r.push("/digit-ui/citizen/select-location")}},n.createElement(a.CardHeader,null,e("CS_COMMON_CHOOSE_LANGUAGE")),n.createElement(a.RadioButtons,f)))},dt=()=>{const{t:e}=l.useTranslation(),r=o.useHistory(),i=o.useLocation(),{data:u,isLoading:s}=Digit.Hooks.useTenants(),[c,d]=t.useState(()=>({code:Digit.ULBService.getCitizenCurrentTenant(!0)})),[f,m]=t.useState(!1),p=t.useMemo(()=>({header:e("CS_COMMON_CHOOSE_LOCATION"),submitBarLabel:e("CORE_COMMON_CONTINUE")}),[e]);function v(e){d(e),m(!1)}const g=t.useMemo(()=>({options:u,optionsKey:"i18nKey",additionalWrapperClass:"reverse-radio-selection-wrapper",onSelect:v,selectedOption:c}),[u,e,c]);return s?n.createElement("loader",null):n.createElement("div",{className:"selection-card-wrapper"},n.createElement(a.BackButton,null),n.createElement(a.PageBasedInput,{texts:p,onSubmit:function(){if(c){var e;Digit.SessionStorage.set("CITIZEN.COMMON.HOME.CITY",c);const t=null===(e=i.state)||void 0===e?void 0:e.redirectBackTo;t?r.replace(t):r.push("/digit-ui/citizen")}else m(!0)},className:"location-selection-container"},n.createElement(a.CardHeader,null,e("CS_COMMON_CHOOSE_LOCATION")),n.createElement(a.SearchOnRadioButtons,x({},g,{placeholder:e("COMMON_TABLE_SEARCH")})),f?n.createElement(a.CardLabelError,null,e("CS_COMMON_LOCATION_SELECTION_ERROR")):null))},ft=e=>{const{question:r,answer:i,subAnswer:o,lastIndex:u}=e,[s,c]=t.useState(!1),{t:d}=l.useTranslation();return window.Digit.Utils.browser.isMobile(),n.createElement("div",{className:"faqs border-none",onClick:()=>c(!s)},n.createElement("div",{className:"faq-question",style:{justifyContent:d(r).length>30&&s?"revert":"space-between",display:Digit.Utils.browser.isMobile()&&d(r).length>30&&s?"block":"flex"}},n.createElement("span",null,d(r)),n.createElement("span",{className:s?"faqicon rotate":"faqicon",style:{float:"right"}},n.createElement(a.ArrowForward,null))),n.createElement("div",{className:"faq-answer",style:s?{display:"block"}:{display:"none"}},n.createElement("span",null,d(i)+d(o))),u?null:n.createElement("div",{className:"cs-box-border"}))},mt=e=>{var r,i,o;let{module:u}=e;const s=Digit.UserService.getUser(),{t:c}=((null==s||null===(r=s.info)||void 0===r?void 0:r.tenantId)||Digit.ULBService.getCurrentTenantId(),l.useTranslation()),{isLoading:d,data:f}=Digit.Hooks.useGetFAQsJSON(Digit.ULBService.getStateId()),m=null==f||null===(i=f.MdmsRes["common-masters"])||void 0===i||null===(o=i.faqs[0])||void 0===o?void 0:o[""+u].faqs;return d?n.createElement(a.Loader,null):n.createElement(t.Fragment,null,n.createElement("div",{className:"faq-page"},n.createElement(a.BackButton,{style:{marginLeft:"unset"}}),n.createElement("div",{style:{marginBottom:"15px"}},n.createElement(a.Header,{styles:{marginLeft:"0px",paddingTop:"10px",fontSize:"32px"}},c("FAQ_S"))),n.createElement("div",{className:"faq-list"},m.map((e,t)=>n.createElement(ft,{key:"faq_"+t,question:e.question,answer:e.answer,subAnswer:e.subAnswer?e.subAnswer:"",lastIndex:t===(null==m?void 0:m.length)-1})))))},pt=e=>{var r,i,o;let{module:u}=e;const s=window.Digit.Utils.browser.isMobile(),c=Digit.UserService.getUser(),{t:d}=((null==c||null===(r=c.info)||void 0===r?void 0:r.tenantId)||Digit.ULBService.getCurrentTenantId(),l.useTranslation()),f=Digit.SessionStorage.get("initData").stateInfo,m=Digit.StoreData.getCurrentLanguage(),[p,v]=t.useState(m),[g,h]=t.useState(!1),[E,y]=t.useState(""),_=()=>n.createElement("svg",{width:"24",height:"24",viewBox:"0 0 24 24",fill:"none",xmlns:"http://www.w3.org/2000/svg"},n.createElement("path",{d:"M12 24C5.38053 24 0 18.6143 0 12C0 5.38054 5.38053 1.90735e-06 12 1.90735e-06C18.6143 1.90735e-06 24 5.38054 24 12C24 18.6143 18.6143 24 12 24ZM16.3488 10.7852L11.3855 7.25251C11.1263 7.0701 10.8238 6.97889 10.5214 6.97889C10.291 6.97889 10.0557 7.03172 9.83976 7.14202C9.34054 7.40118 9.02857 7.91006 9.02857 8.46694L9.02877 15.5323C9.02877 16.0892 9.34076 16.5979 9.83996 16.8572C10.3344 17.1116 10.9296 17.0732 11.3857 16.7467L16.349 13.214C16.7426 12.9356 16.9778 12.4795 16.9778 11.9996C16.9776 11.5197 16.7426 11.0636 16.3489 10.7852L16.3488 10.7852Z",fill:"white"}));function b(e){let{onClick:t}=e;return n.createElement("svg",{width:"14",height:"14",viewBox:"0 0 14 14",fill:"none",xmlns:"http://www.w3.org/2000/svg",onClick:t},n.createElement("path",{d:"M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z",fill:"white"}))}const{isLoading:C,data:S}=Digit.Hooks.useGetHowItWorksJSON(Digit.ULBService.getStateId()),w=null==S||null===(i=S.MdmsRes["common-masters"])||void 0===i||null===(o=i.howItWorks[0])||void 0===o?void 0:o[""+u];return C?n.createElement(a.Loader,null):n.createElement(t.Fragment,null,n.createElement("div",{className:"how-it-works-page"},n.createElement("div",{style:{marginLeft:"-10px"}},n.createElement(a.BackButton,null)),n.createElement("div",{className:"how-it-works-page-header"},n.createElement("div",{style:{marginLeft:s?"-15px":""}},n.createElement(a.Header,null,d("HOW_IT_WORKS")))),n.createElement("div",{className:"language-selector",style:{marginBottom:"10px"}},[{label:"ENGLISH",value:"en_IN"},{label:"हिंदी",value:"hi_IN"}].map((e,t)=>n.createElement("div",{className:"language-button-container",key:t},n.createElement(a.CustomButton,{selected:e.value===p,text:e.label,onClick:()=>(e=>{v(e.value),Digit.LocalizationService.changeLanguage(e.value,f.code)})(e)})))),w.videosJson.map((e,t)=>n.createElement("div",null,n.createElement("div",{className:"WhatsNewCard",style:{float:"left",position:"relative",width:"100%",marginBottom:10}},n.createElement("div",{className:"video-icon",onClick:()=>{return t=e,y("hi_IN"===p?t.hi_IN:t.en_IN),void h(!0);var t}},n.createElement("div",{className:"vid-svg"},n.createElement(_,null))),n.createElement("div",{className:"how-it-works-header-description"},n.createElement("h2",null,d(e.headerLabel)),n.createElement("p",null,d(e.description)))))),n.createElement("div",{className:"WhatsNewCard",style:{position:"relative",width:"100%",marginBottom:10,display:"inline-block"}},n.createElement("div",{className:"how-it-works-pdf-section"},n.createElement("div",{className:"pdf-icon-header-desc"},n.createElement("div",{className:"pdf-icon"},n.createElement(a.PDFSvg,null)),n.createElement("div",{className:"pdf-header-desc"},n.createElement("h2",null,d(w.pdfHeader)),n.createElement("p",null,d(w.pdfDesc)))),n.createElement("div",{className:"download-icon"},n.createElement(a.DownloadImgIcon,null)))),g&&n.createElement("div",{className:"how-it-works-video-play"},n.createElement("div",{className:"close-button",style:{position:"absolute",right:"15px",top:"10%",zIndex:"1"}},n.createElement(b,{onClick:()=>{h(!1)}})),n.createElement("video",{width:500,height:500,controls:!0,autoPlay:!0,muted:!0,style:{position:"fixed",top:"0",left:"0",minWidth:"100%",minHeight:"100%",backgroundColor:"rgba(0,0,0,0.5)"}},n.createElement("source",{src:E,type:"video/mp4"})))))},vt=e=>{var t,r,i,o,u,s,c,d,f,m,p,v,g,h,E,y;let{moduleCode:_}=e;const{t:b}=l.useTranslation(),C=Digit.ULBService.getCitizenCurrentTenant(),{isLoading:S,data:w}=Digit.Hooks.useStaticData(Digit.ULBService.getStateId()),{isLoading:O,error:N,data:I}=Digit.Hooks.useDynamicData({moduleCode:_,tenantId:C,filters:{},t:b}),D=window.Digit.Utils.browser.isMobile();window.location.href.includes("tl")&&window.Digit.SessionStorage.get("TL_CREATE_TRADE")&&window.Digit.SessionStorage.set("TL_CREATE_TRADE",{});const T=e=>{let{module:t,styles:r}=e;switch(t){case"TL":return n.createElement(a.CaseIcon,{className:"fill-path-primary-main",styles:r});case"PT":return n.createElement(a.PTIcon,{className:"fill-path-primary-main",styles:r});case"MCOLLECT":return n.createElement(a.MCollectIcon,{className:"fill-path-primary-main",styles:r});case"PGR":return n.createElement(a.PTIcon,{className:"fill-path-primary-main",styles:r});case"WS":return n.createElement(a.WSICon,{className:"fill-path-primary-main",styles:r});case"OBPS":return n.createElement(a.BPAHomeIcon,{className:"fill-path-primary-main",styles:r});default:return n.createElement(a.CaseIcon,{className:"fill-path-primary-main",styles:r})}},x=null==w||null===(t=w.MdmsRes["common-masters"])||void 0===t||null===(r=t.StaticData[0])||void 0===r?void 0:r[""+_],A=e=>{let{module:t}=e;switch(t){case"PT":case"WS":return n.createElement("span",{className:"timerIcon"},n.createElement(a.TimerIcon,null));default:return null}},L=e=>{let{module:t}=e;switch(t){case"PT":return n.createElement("span",{className:"rupeeSymbol"},n.createElement(a.RupeeSymbol,null));case"WS":return n.createElement("span",{className:"timerIcon"},n.createElement(a.TimerIcon,null));default:return null}},R=e=>{switch(e){case"TL":return{staticCommonContent:b("TL_VALIDITY")};case"MCOLLECT":return{staticCommonContent:b("CHALLAN_VALIDITY")};case"PGR":return{staticCommonContent:b("CATEGORIES_OF_COMPLAINT_TYPES_CAN_BE_SUBMITTED_ON_GRIEVANCE_PORTAL")};case"OBPS":return{staticCommonContent:b("BUILDING_PLAN_PERMIT_VALIDITY"),validity:(null==x?void 0:x.validity)+" "+b("1"===(null==x?void 0:x.validity)?"COMMON_DAY":"COMMON_DAYS")};default:return{staticCommonContent:""}}},M=e=>{switch(e){case"PT":return{staticDataOne:(null==x?void 0:x.staticDataOne)+" "+b("COMMON_DAYS"),staticDataOneHeader:b("APPLICATION_PROCESSING_TIME"),staticDataTwo:null==x?void 0:x.staticDataTwo,staticDataTwoHeader:b("APPLICATION_PROCESSING_FEE")};case"WS":return{staticDataOne:"",staticDataOneHeader:b("PAY_WATER_CHARGES_BY")+" "+(null==x?void 0:x.staticDataOne)+" "+b("COMMON_DAYS")+" "+b("OF_BILL_GEN_TO_AVOID_LATE_FEE"),staticDataTwo:(null==x?void 0:x.staticDataTwo)+" "+b("COMMON_DAYS"),staticDataTwoHeader:b("APPLICATION_PROCESSING_TIME")};default:return{}}};return S||O?n.createElement(a.Loader,null):x?n.createElement(n.Fragment,null,x&&null!=x&&x.payViaWhatsApp?n.createElement(a.Card,{style:{margin:"16px",padding:"16px",maxWidth:"unset"}},n.createElement("div",{className:"pay-whatsapp-card",onClick:()=>{window.open(null==x?void 0:x.payViaWhatsApp)}},n.createElement("div",{className:"pay-whatsapp-text"},b("PAY_VIA_WHATSAPP")),n.createElement("div",{className:"whatsAppIconG"},n.createElement(a.WhatsappIconGreen,null)))):null,x&&null!=x&&x.helpline?n.createElement(a.Card,{style:{margin:"16px",padding:"16px",maxWidth:"unset"}},n.createElement("div",{className:"static-home-Card"},n.createElement("div",{className:"static-home-Card-header"},b("CALL_CENTER_HELPLINE")),n.createElement("div",{className:"helplineIcon"},n.createElement(a.HelpLineIcon,null))),n.createElement("div",{className:"call-center-card-text"},null!=x&&null!==(i=x.helpline)&&void 0!==i&&i.contactOne?n.createElement("div",{className:"call-center-card-content"},n.createElement("a",{href:"tel:"+(null==x||null===(o=x.helpline)||void 0===o?void 0:o.contactOne)},null==x||null===(u=x.helpline)||void 0===u?void 0:u.contactOne)):null,null!=x&&null!==(s=x.helpline)&&void 0!==s&&s.contactTwo?n.createElement("div",{className:"call-center-card-content"},n.createElement("a",{href:"tel:"+(null==x||null===(c=x.helpline)||void 0===c?void 0:c.contactTwo)},null==x||null===(d=x.helpline)||void 0===d?void 0:d.contactTwo)):null)):null,x&&null!=x&&x.serviceCenter?n.createElement(a.Card,{style:{margin:"16px",padding:"16px",maxWidth:"unset"}},n.createElement("div",{className:"static-home-Card"},n.createElement("div",{className:"static-home-Card-header"},b("CITIZEN_SERVICE_CENTER")),n.createElement("div",{className:"serviceCentrIcon"},n.createElement(a.ServiceCenterIcon,null))),n.createElement("div",{className:"service-center-details-card"},n.createElement("div",{className:"service-center-details-text"},null==x?void 0:x.serviceCenter)),null!=x&&x.viewMapLocation?n.createElement("div",{className:"link"},n.createElement("a",{href:null==x?void 0:x.viewMapLocation},b("VIEW_ON_MAP"))):null):n.createElement("div",null),n.createElement(a.Card,{style:{margin:"16px",padding:"16px",maxWidth:"unset"}},N||null==I||null===(null==I?void 0:I.dynamicDataOne)?n.createElement("div",null):n.createElement("div",{className:"dynamicDataCard",style:D?{maxHeight:"fit-content"}:{}},n.createElement("div",{className:"dynamicData"},n.createElement("span",{style:{paddingTop:"2px"}},n.createElement(T,{module:_,styles:{width:"18px",height:"24px"}})),n.createElement("span",{className:"dynamicData-content"},null==I?void 0:I.dynamicDataOne))),N||null==I||null===(null==I?void 0:I.dynamicDataTwo)?n.createElement("div",null):n.createElement("div",{className:"dynamicDataCard",style:D?{maxHeight:"fit-content"}:{}},n.createElement("div",{className:"dynamicData"},n.createElement("span",{style:{paddingTop:"2px"}},n.createElement(T,{module:_,styles:{width:"18px",height:"24px"}})),n.createElement("span",{className:"dynamicData-content"},null==I?void 0:I.dynamicDataTwo))),x&&null!=x&&x.staticDataOne?n.createElement("div",{className:"staticDataCard"},n.createElement("div",{className:"staticData"},n.createElement(A,{module:_}),n.createElement("span",{className:"static-data-content"},n.createElement("span",{className:"static-data-content-first",style:{marginTop:""===(null===(f=M(_))||void 0===f?void 0:f.staticDataOne)?"8px":"unset"}},null===(m=M(_))||void 0===m?void 0:m.staticDataOneHeader),n.createElement("span",{className:"static-data-content-second"},""+(null===(p=M(_))||void 0===p?void 0:p.staticDataOne))))):n.createElement("div",null),x&&null!=x&&x.staticDataTwo?n.createElement("div",{className:"staticDataCard"},n.createElement("div",{className:"staticData"},n.createElement(L,{module:_}),n.createElement("span",{className:"static-data-content"},n.createElement("span",{className:"static-data-content-first"},null===(v=M(_))||void 0===v?void 0:v.staticDataTwoHeader),n.createElement("span",{className:"static-data-content-second"},null===(g=M(_))||void 0===g?void 0:g.staticDataTwo)))):n.createElement("div",null),x&&null!=x&&x.validity?n.createElement("div",{className:"staticDataCard"},n.createElement("div",{className:"staticData"},n.createElement("span",{className:"validityIcon"},n.createElement(a.ValidityTimeIcon,null)),n.createElement("span",{className:"static-data-content"},n.createElement("span",{className:"static-data-content-first"},null===(h=R(_))||void 0===h?void 0:h.staticCommonContent),n.createElement("span",{className:"static-data-content-second"},null===(E=R(_))||void 0===E?void 0:E.validity)))):n.createElement("div",null),N||null==I||null==I||!I.staticData||null===(null==I?void 0:I.staticData)?n.createElement("div",null):n.createElement("div",{className:"staticDataCard"},n.createElement("div",{className:"staticData"},"PGR"===_?n.createElement("span",{style:{paddingTop:"15px"}},n.createElement(a.TimerIcon,{module:_,styles:{width:"18px",height:"24px",marginLeft:"13px"}})):n.createElement("span",{className:"validityIcon"},n.createElement(a.ValidityTimeIcon,null)),n.createElement("span",{className:"static-data-content"},n.createElement("span",{className:"static-data-content-first"},null===(y=R(_))||void 0===y?void 0:y.staticCommonContent),n.createElement("span",{className:"static-data-content-second"},null==I?void 0:I.staticData)))))):n.createElement(n.Fragment,null)},gt=e=>{const{t:t}=l.useTranslation();return t(null!=e&&e.isSuccess?"CS_PROPERTY_FEEDBACK_SUCCESS":"CS_PROPERTY_FEEDBACK_FAILED")},ht=e=>n.createElement(a.Banner,{message:gt(e),applicationNumber:"",style:e.isMobile?{width:"unset"}:{width:"740px"},successful:null==e?void 0:e.isSuccess}),Et=e=>{var t,r,i,u,s,c,d,f,m;const{t:p}=l.useTranslation(),v=(Digit.ULBService.getCurrentTenantId(),o.useLocation()),g=(Digit.Hooks.useStore.getInitData(),window.Digit.Utils.browser.isMobile());return n.createElement("form",null,n.createElement(a.Card,{style:g?{padding:"unset"}:{}},n.createElement(ht,{t:p,data:v.state,isSuccess:!(null===(t=v.state)||void 0===t||null===(r=t.result)||void 0===r||null===(i=r.Service)||void 0===i||!i[0]),isMobile:g,isLoading:!1}),(null===(u=v.state)||void 0===u||null===(s=u.result)||void 0===s||null===(c=s.Service)||void 0===c?void 0:c[0])&&n.createElement(a.CardText,{style:{padding:"0px 10px 0px 10px"}},p("CS_CF_FEEDBACK_RESPONSE")),!(null!==(d=v.state)&&void 0!==d&&null!==(f=d.result)&&void 0!==f&&null!==(m=f.Service)&&void 0!==m&&m[0])&&n.createElement(a.CardText,null,p("CS_FILE_PROPERTY_FAILED_RESPONSE")),n.createElement("div",{style:{padding:"0px 10px 20px 10px"}},n.createElement(o.Link,{to:"/digit-ui/citizen"},n.createElement(a.SubmitBar,{label:p("CS_COMMON_GO_BACK_TO_HOME")})))))};var yt=e=>e instanceof HTMLElement;const _t={onBlur:"onBlur",onChange:"onChange",onSubmit:"onSubmit",onTouched:"onTouched",all:"all"};var bt=e=>null==e;const Ct=e=>"object"==typeof e;var St=e=>!bt(e)&&!Array.isArray(e)&&Ct(e)&&!(e instanceof Date),wt=e=>/^\w*$/.test(e),Ot=e=>e.filter(Boolean),Nt=e=>Ot(e.replace(/["|']/g,"").replace(/\[/g,".").replace(/\]/g,"").split("."));function It(e,t,n){let r=-1;const i=wt(t)?[t]:Nt(t),o=i.length,l=o-1;for(;++r<o;){const t=i[r];let o=n;if(r!==l){const n=e[t];o=St(n)||Array.isArray(n)?n:isNaN(+i[r+1])?{}:[]}e[t]=o,e=e[t]}return e}var Dt=function(e,t){void 0===t&&(t={});for(const n in e)wt(n)?t[n]=e[n]:It(t,n,e[n]);return t},Tt=e=>void 0===e,xt=function(e,t,n){void 0===e&&(e={});const r=Ot(t.split(/[,[\].]+?/)).reduce((e,t)=>bt(e)?e:e[t],e);return Tt(r)||r===e?Tt(e[t])?n:e[t]:r},At=(e,t)=>{yt(e)&&e.removeEventListener&&(e.removeEventListener("input",t),e.removeEventListener("change",t),e.removeEventListener("blur",t))};const Lt={isValid:!1,value:null};var Rt=e=>Array.isArray(e)?e.reduce((e,t)=>t&&t.ref.checked?{isValid:!0,value:t.ref.value}:e,Lt):Lt,Mt=e=>"radio"===e.type,Pt=e=>"file"===e.type,kt=e=>"checkbox"===e.type,Ut=e=>"select-multiple"===e.type;const Bt={value:!1,isValid:!1},jt={value:!0,isValid:!0};var Ft=e=>{if(Array.isArray(e)){if(e.length>1){const t=e.filter(e=>e&&e.ref.checked).map(e=>{let{ref:{value:t}}=e;return t});return{value:t,isValid:!!t.length}}const{checked:t,value:n,attributes:r}=e[0].ref;return t?r&&!Tt(r.value)?Tt(n)||""===n?jt:{value:n,isValid:!0}:jt:Bt}return Bt};function zt(e,t,n,r,i){const o=e.current[t];if(o){const{ref:{value:e,disabled:t},ref:n,valueAsNumber:a,valueAsDate:u,setValueAs:s}=o;if(t&&r)return;return Pt(n)?n.files:Mt(n)?Rt(o.options).value:Ut(n)?(l=n.options,[...l].filter(e=>{let{selected:t}=e;return t}).map(e=>{let{value:t}=e;return t})):kt(n)?Ft(o.options).value:i?e:a?""===e?NaN:+e:u?n.valueAsDate:s?s(e):e}var l;if(n)return xt(n.current,t)}function Wt(e){return!e||e instanceof HTMLElement&&e.nodeType!==Node.DOCUMENT_NODE&&Wt(e.parentNode)}var Vt=e=>St(e)&&!Object.keys(e).length,Ht=e=>"boolean"==typeof e;function Gt(e,t){const n=wt(t)?[t]:Nt(t),r=1==n.length?e:function(e,t){const n=t.slice(0,-1).length;let r=0;for(;r<n;)e=Tt(e)?r++:e[t[r++]];return e}(e,n);let i;r&&delete r[n[n.length-1]];for(let t=0;t<n.slice(0,-1).length;t++){let r,o=-1;const l=n.slice(0,-(t+1)),a=l.length-1;for(t>0&&(i=e);++o<l.length;){const t=l[o];r=r?r[t]:e[t],a===o&&(St(r)&&Vt(r)||Array.isArray(r)&&!r.filter(e=>St(e)&&!Vt(e)||Ht(e)).length)&&(i?delete i[t]:delete e[t]),i=r}}return e}const qt=(e,t)=>e&&e.ref===t;var Zt=e=>bt(e)||!Ct(e);function Xt(e,t){if(Zt(e)||Zt(t))return t;for(const n in t){const r=e[n],i=t[n];try{e[n]=St(r)&&St(i)||Array.isArray(r)&&Array.isArray(i)?Xt(r,i):i}catch(e){}}return e}function Yt(e,n,r){if(Zt(e)||Zt(n)||e instanceof Date||n instanceof Date)return e===n;if(!t.isValidElement(e)){const t=Object.keys(e),i=Object.keys(n);if(t.length!==i.length)return!1;for(const i of t){const t=e[i];if(!r||"ref"!==i){const e=n[i];if((St(t)||Array.isArray(t))&&(St(e)||Array.isArray(e))?!Yt(t,e,r):t!==e)return!1}}}return!0}function Kt(e,t,n,r,i){let o=-1;for(;++o<e.length;){for(const r in e[o])Array.isArray(e[o][r])?(!n[o]&&(n[o]={}),n[o][r]=[],Kt(e[o][r],xt(t[o]||{},r,[]),n[o][r],n[o],r)):Yt(xt(t[o]||{},r),e[o][r])?It(n[o]||{},r):n[o]=Object.assign(Object.assign({},n[o]),{[r]:!0});r&&!n.length&&delete r[i]}return n}var Jt=e=>"string"==typeof e,$t=(e,t,n,r,i)=>{const o={};for(const t in e.current)(Tt(i)||(Jt(i)?t.startsWith(i):Array.isArray(i)&&i.find(e=>t.startsWith(e))))&&(o[t]=zt(e,t,void 0,r));return n?Dt(o):Xt(t,Dt(o))},Qt=e=>e instanceof RegExp,en=e=>St(e)&&!Qt(e)?e:{value:e,message:""},tn=e=>"function"==typeof e,nn=e=>Jt(e)||t.isValidElement(e);function rn(e,t,n){if(void 0===n&&(n="validate"),nn(e)||Ht(e)&&!e)return{type:n,message:nn(e)?e:"",ref:t}}var on=(e,t,n,r,i)=>t?Object.assign(Object.assign({},n[e]),{types:Object.assign(Object.assign({},n[e]&&n[e].types?n[e].types:{}),{[r]:i||!0})}):{},ln=function(e,t,n,r){let{ref:i,ref:{value:o},options:l,required:a,maxLength:u,minLength:s,min:c,max:d,pattern:f,validate:m}=n;try{let n=!1;const p=i.name,v={},g=Mt(i),h=kt(i),E=g||h,_=""===o,b=on.bind(null,p,t,v),C=function(e,t,n,r,o){void 0===r&&(r="maxLength"),void 0===o&&(o="minLength");const l=e?t:n;v[p]=Object.assign({type:e?r:o,message:l,ref:i},b(e?r:o,l))};if(a&&(!g&&!h&&(_||bt(o))||Ht(o)&&!o||h&&!Ft(l).isValid||g&&!Rt(l).isValid)){const{value:n,message:r}=nn(a)?{value:!!a,message:a}:en(a);if(n&&(v[p]=Object.assign({type:"required",message:r,ref:E?((e.current[p].options||[])[0]||{}).ref:i},b("required",r)),!t))return Promise.resolve(v)}if(!(bt(c)&&bt(d)||""===o)){let e,n;const r=en(d),l=en(c);if(isNaN(o)){const t=i.valueAsDate||new Date(o);Jt(r.value)&&(e=t>new Date(r.value)),Jt(l.value)&&(n=t<new Date(l.value))}else{const t=i.valueAsNumber||parseFloat(o);bt(r.value)||(e=t>r.value),bt(l.value)||(n=t<l.value)}if((e||n)&&(C(!!e,r.message,l.message,"max","min"),!t))return Promise.resolve(v)}if(Jt(o)&&!_&&(u||s)){const e=en(u),n=en(s),r=!bt(e.value)&&o.length>e.value,i=!bt(n.value)&&o.length<n.value;if((r||i)&&(C(r,e.message,n.message),!t))return Promise.resolve(v)}if(Jt(o)&&f&&!_){const{value:e,message:n}=en(f);if(Qt(e)&&!e.test(o)&&(v[p]=Object.assign({type:"pattern",message:n,ref:i},b("pattern",n)),!t))return Promise.resolve(v)}const S=function(){if(m){const o=zt(e,p,r,!1,!0),a=E&&l?l[0].ref:i;return tn(m)?Promise.resolve(m(o)).then(function(e){const r=rn(e,a);if(r&&(v[p]=Object.assign(Object.assign({},r),b("validate",r.message)),!t))return n=!0,v}):function(){if(St(m)){let r=!1;function e(){if(!Vt(i)&&(v[p]=Object.assign({ref:a},i),!t))return n=!0,v}let i={};const l=y(Object.entries(m),function(e){let[n,l]=e;if(Vt(i)||t)return Promise.resolve(l(o)).then(function(e){const r=rn(e,a,n);r&&(i=Object.assign(Object.assign({},r),b(n,r.message)),t&&(v[p]=i))});r=!0},function(){return r});return l&&l.then?l.then(e):e()}}()}}();return Promise.resolve(S&&S.then?S.then(function(e){return n?e:v}):n?S:v)}catch(e){return Promise.reject(e)}};const an=function(e,t,n){void 0===n&&(n=[]);for(const r in t){const i=e+(St(t)?"."+r:"["+r+"]");Zt(t[r])?n.push(i):an(i,t[r],n)}return n};var un=(e,t,n,r,i)=>{let o=void 0;return n.add(t),Vt(e)||(o=xt(e,t),(St(o)||Array.isArray(o))&&an(t,o).forEach(e=>n.add(e))),Tt(o)?i?r:xt(r,t):o},sn=e=>{let{isOnBlur:t,isOnChange:n,isOnTouch:r,isTouched:i,isReValidateOnBlur:o,isReValidateOnChange:l,isBlurEvent:a,isSubmitted:u,isOnAll:s}=e;return!s&&(!u&&r?!(i||a):(u?o:t)?!a:!(u?l:n)||a)},cn=e=>e.substring(0,e.indexOf("[")),dn=(e,t)=>[...e].some(e=>((e,t)=>RegExp(("^"+t+"([|.)\\d+").replace(/\[/g,"\\[").replace(/\]/g,"\\]")).test(e))(t,e)),fn="undefined"!=typeof window&&"undefined"!=typeof document;function mn(e){var t;let n;if(Zt(e)||fn&&(e instanceof File||yt(e)))return e;if(!["Set","Map","Object","Date","Array"].includes(null===(t=e.constructor)||void 0===t?void 0:t.name))return e;if(e instanceof Date)return n=new Date(e.getTime()),n;if(e instanceof Set){n=new Set;for(const t of e)n.add(t);return n}if(e instanceof Map){n=new Map;for(const t of e.keys())n.set(t,mn(e.get(t)));return n}n=Array.isArray(e)?[]:{};for(const t in e)n[t]=mn(e[t]);return n}var pn=e=>({isOnSubmit:!e||e===_t.onSubmit,isOnBlur:e===_t.onBlur,isOnChange:e===_t.onChange,isOnAll:e===_t.all,isOnTouch:e===_t.onTouched}),vn=e=>Mt(e)||kt(e);const gn="undefined"==typeof window,hn=fn?"Proxy"in window:"undefined"!=typeof Proxy,En=t.createContext(null);En.displayName="RHFContext";const yn=e=>{const{as:n,render:r}=e,i=function(e,t){var n={};for(var r in e)Object.prototype.hasOwnProperty.call(e,r)&&t.indexOf(r)<0&&(n[r]=e[r]);if(null!=e&&"function"==typeof Object.getOwnPropertySymbols){var i=0;for(r=Object.getOwnPropertySymbols(e);i<r.length;i++)t.indexOf(r[i])<0&&Object.prototype.propertyIsEnumerable.call(e,r[i])&&(n[r[i]]=e[r[i]])}return n}(e,["rules","as","render","defaultValue","control","onFocus"]),{field:o,meta:l}=function(e){let{name:n,rules:r,defaultValue:i,control:o,onFocus:l}=e;const a=t.useContext(En);if("production"!==process.env.NODE_ENV&&!o&&!a)throw new Error("📋 Controller is missing `control` prop. https://react-hook-form.com/api#Controller");const{defaultValuesRef:u,setValue:s,register:c,unregister:d,trigger:f,mode:m,reValidateMode:{isReValidateOnBlur:p,isReValidateOnChange:v},formState:g,formStateRef:{current:{isSubmitted:h,touched:E,errors:y}},updateFormState:_,readFormStateRef:b,fieldsRef:C,fieldArrayNamesRef:S,shallowFieldsStateRef:w}=o||a.control,O=!dn(S.current,n),N=()=>!Tt(xt(w.current,n))&&O?xt(w.current,n):Tt(i)?xt(u.current,n):i,[I,D]=t.useState(N()),T=t.useRef(I),x=t.useRef({focus:()=>null}),A=t.useRef(l||(()=>{tn(x.current.focus)&&x.current.focus(),"production"!==process.env.NODE_ENV&&(tn(x.current.focus)||console.warn("📋 'ref' from Controller render prop must be attached to a React component or a DOM Element whose ref provides a 'focus()' method"))})),L=t.useCallback(e=>!sn(Object.assign({isBlurEvent:e,isReValidateOnBlur:p,isReValidateOnChange:v,isSubmitted:h,isTouched:!!xt(E,n)},m)),[p,v,h,E,n,m]),R=t.useCallback(e=>{let[t]=e;const n=(e=>Zt(e)||!St(e.target)||St(e.target)&&!e.type?e:Tt(e.target.value)?e.target.checked:e.target.value)(t);return D(n),T.current=n,n},[]),M=t.useCallback(e=>{if("production"!==process.env.NODE_ENV&&!n)return console.warn("📋 Field is missing `name` prop. https://react-hook-form.com/api#Controller");C.current[n]?C.current[n]=Object.assign({ref:C.current[n].ref},r):(c(Object.defineProperties({name:n,focus:A.current},{value:{set(e){D(e),T.current=e},get:()=>T.current}}),r),e=Tt(xt(u.current,n))),e&&O&&D(N())},[r,n,c]);t.useEffect(()=>()=>d(n),[n]),t.useEffect(()=>{"production"!==process.env.NODE_ENV&&(Tt(I)&&console.warn("📋 "+n+" is missing in the 'defaultValue' prop of either its Controller (https://react-hook-form.com/api#Controller) or useForm (https://react-hook-form.com/api#useForm)"),!O&&Tt(i)&&console.warn("📋 Controller is missing `defaultValue` prop when using `useFieldArray`. https://react-hook-form.com/api#Controller")),M()},[M]),t.useEffect(()=>{!C.current[n]&&M(!0)});const P=t.useCallback(()=>{b.current.touched&&!xt(E,n)&&(It(E,n,!0),_({touched:E})),L(!0)&&f(n)},[n,_,L,f,b]);return{field:{onChange:t.useCallback(function(){for(var e=arguments.length,t=new Array(e),r=0;r<e;r++)t[r]=arguments[r];return s(n,R(t),{shouldValidate:L(),shouldDirty:!0})},[s,n,L]),onBlur:P,name:n,value:I,ref:x},meta:Object.defineProperties({invalid:!!xt(y,n)},{isDirty:{get:()=>!!xt(g.dirtyFields,n)},isTouched:{get:()=>!!xt(g.touched,n)}})}}(e),a=Object.assign(Object.assign({},i),o);return n?t.isValidElement(n)?t.cloneElement(n,a):t.createElement(n,a):r?r(o,l):null},_n=e=>{var r,i,u,s;let{popup:c=!1,onClose:d,setShowToast:f,data:m}=e;const{t:p}=l.useTranslation(),v=o.useHistory(),g=Digit.UserService.getUser();let{redirectedFrom:h,propertyId:E,acknowldgementNumber:y,creationReason:_,tenantId:b,locality:C}=Digit.Hooks.useQueryParams();const S=window.Digit.Utils.browser.isMobile();b=b||Digit.ULBService.getCurrentTenantId();const w=Digit.ULBService.getStateId(),{data:O,isLoading:N}=Digit.Hooks.pt.useRatingAndFeedbackMDMS.RatingAndFeedBack(w),[I,D]=t.useState(""),[T,x]=t.useState(0);if(N)return n.createElement(a.Loader,null);const A=e=>{var t,n;let r=null==O||null===(t=O.enabledScreensList)||void 0===t||null===(n=t.filter(e=>{var t,n,r;return"PT"===(null==e?void 0:e.module)&&((null==h?void 0:h.includes(null==e?void 0:e.screenfrom))||(null==e||null===(t=e.bussinessService)||void 0===t?void 0:t.includes(null==m||null===(n=m.Properties)||void 0===n||null===(r=n[0])||void 0===r?void 0:r.creationReason)))}))||void 0===n?void 0:n[0];return"Header"===e?null==r?void 0:r.cardHeader:"Text"===e?null==r?void 0:r.cardText:void 0};return n.createElement(n.Fragment,null,n.createElement("form",null,n.createElement(a.Card,null,n.createElement("div",{style:c?{display:"flex",justifyContent:"space-between"}:{}},n.createElement(a.CardHeader,null,p(A("Header"))||p("PT_RATE_HELP_TEXT")),c&&n.createElement("span",{style:{marginTop:"8px"},onClick:()=>d(!1)},n.createElement(a.CloseSvg,null))),n.createElement(a.CardText,null,p(A("Text"),{acknowldgementNumber:y||(null==m||null===(r=m.Properties)||void 0===r||null===(i=r[0])||void 0===i?void 0:i.acknowldgementNumber),propertyId:E||(null==m||null===(u=m.Properties)||void 0===u||null===(s=u[0])||void 0===s?void 0:s.propertyId)})||p("PT_RATE_TEXT")),n.createElement(a.Rating,{styles:{justifyContent:"center"},currentRating:T,maxRating:5,onFeedback:(e,t,n)=>{x(n)}}),0!==T&&n.createElement("div",null,n.createElement(a.CardLabel,null,p((null==O||null===(L=O.headerByRating)||void 0===L||null===(R=L.filter(e=>T>=(null==e?void 0:e.minvalue)&&T<=(null==e?void 0:e.maxvalue)))||void 0===R||null===(M=R[0])||void 0===M?void 0:M.code)||p("CS_WHAT_WENT_WRONG"))),n.createElement(a.TextArea,{name:"",minLength:"64",onChange:e=>{D(e.target.value)}}),I&&(null==I?void 0:I.length)<64&&n.createElement(a.CardLabelError,{style:{marginTop:"-20px",marginBottom:"25px"}},p("CS_MIN_LENGTH_64"))),n.createElement(a.SubmitBar,{label:p("PT_SUBMIT"),onSubmit:()=>{var e,t,n,r;let i={},o={tenantId:(null==m||null===(e=m.Properties)||void 0===e||null===(t=e[0])||void 0===t?void 0:t.tenantId)||b,code:["PT_"+(null!=h&&h.includes("payment")?"PAYMENT":_||(null==m||null===(n=m.Properties)||void 0===n||null===(r=n[0])||void 0===r?void 0:r.creationReason))],module:["PT"]};Digit.PTService.cfdefinitionsearch({filters:{ServiceDefinitionCriteria:o}}).then((e,t)=>{var n,r,o,l,a,u,s,p,h,_,S,w,O,N;(null==e||null===(n=e.ServiceDefinition)||void 0===n?void 0:n.length)>0&&(i={tenantId:(null==m||null===(r=m.Properties)||void 0===r||null===(o=r[0])||void 0===o?void 0:o.tenantId)||b,serviceDefId:null==e||null===(l=e.ServiceDefinition)||void 0===l||null===(a=l[0])||void 0===a?void 0:a.id,isActive:!0,attributes:[{attributeCode:"consumerCode",value:E||(null==m||null===(u=m.Properties)||void 0===u||null===(s=u[0])||void 0===s?void 0:s.propertyId),additionalDetails:{}},{attributeCode:"rating",value:T,additionalDetails:{}},{attributeCode:"comments",value:I,additionalDetails:{}},{attributeCode:"channel",value:"Online",additionalDetails:{}}],additionalDetails:{locality:C||(null==m||null===(p=m.Properties)||void 0===p||null===(h=p[0])||void 0===h||null===(_=h.address)||void 0===_||null===(S=_.locality)||void 0===S?void 0:S.code)||""},accountId:null==g||null===(w=g.info)||void 0===w?void 0:w.uuid},i={...i,referenceId:y||(null==m||null===(O=m.Properties)||void 0===O||null===(N=O[0])||void 0===N?void 0:N.acknowldgementNumber)},Digit.PTService.cfcreate({Service:{...i}},b).then((e,t)=>{var n;(null==e||null===(n=e.Service)||void 0===n?void 0:n.length)>0&&(c?(d(!1),f({key:!1,label:"PT_FEEDBACK_SUBMITTED_SUCCESSFULLY"})):v.push({pathname:"/digit-ui/citizen/feedback-acknowledgement",state:{rating:T,comment:I,result:e}}))}).catch(e=>{var t,n,r;f({key:"error",label:""+(null==e||null===(t=e.response)||void 0===t||null===(n=t.data)||void 0===n||null===(r=n.Errors[0])||void 0===r?void 0:r.message)})}))})},disabled:!!(I&&(null==I?void 0:I.length)<64)||!T}),!c&&n.createElement("div",{className:"link",style:S?{marginTop:"8px",width:"100%",textAlign:"center"}:{marginTop:"8px"}},n.createElement(o.Link,{to:"/digit-ui/citizen"},p("CS_GO_BACK_HOME"))))));var L,R,M},bn=e=>{let{control:r,t:i}=e;const o=window.Digit.Utils.browser.isMobile();return n.createElement(t.Fragment,null,n.createElement(a.SearchField,{className:"pt-form-field"},n.createElement("label",null,i("AUDIT_FROM_DATE_LABEL")),n.createElement(yn,{render:e=>n.createElement(a.DatePicker,{date:e.value,onChange:e.onChange}),name:"fromDate",control:r})),n.createElement(a.SearchField,{className:"pt-form-field"},n.createElement("label",null,i("AUDIT_TO_DATE_LABEL")),n.createElement(yn,{render:e=>n.createElement(a.DatePicker,{date:e.value,onChange:e.onChange}),name:"toDate",control:r})),n.createElement(a.SearchField,{className:"pt-search-action-submit"},n.createElement(a.SubmitBar,{style:{marginTop:o?"510px":"25px",marginLeft:o?"0":"-30px",maxWidth:o?"100%":"240px"},label:i("ES_COMMON_APPLY"),submit:!0})))},Cn=e=>{var r;let{Controller:i,register:o,control:l,t:u,reset:s,previousPage:c,handleSubmit:d,tenantId:f,data:m,onSubmit:p,isLoading:v}=e;const[g,h]=t.useState([]),E=e=>n.createElement("div",{onClick:e.onClick},n.createElement(a.DownloadBtnCommon,null));t.useEffect(()=>{(null==m?void 0:m.length)>0&&h([null==m?void 0:m.map(e=>{var t,n;let r={};return r[u("AUDIT_DATE_LABEL")]=y(null==e?void 0:e.timestamp)||"-",r[u("AUDIT_TIME_LABEL")]=_(null==e?void 0:e.timestamp)||"-",r[u("AUDIT_DATAVIEWED_LABEL")]=(null==e||null===(t=e.dataView)||void 0===t?void 0:t.join(", "))||"-",r[u("AUDIT_DATAVIEWED_BY_LABEL")]=(null==e?void 0:e.dataViewedBy)||"-",r[u("AUDIT_ROLE_LABEL")]=(null==e||null===(n=e.roles)||void 0===n?void 0:n.map(e=>e.name).join(", "))||"-",{...r}})])},[m]);const y=e=>{if(null==e||null==e||""==e)return"NA";const t=new Date(e);let n=t.getMonth()+1,r=t.getDate();return n=(n>9?"":"0")+n,r=(r>9?"":"0")+r,r+"/"+n+"/"+t.getFullYear()},_=e=>{if(null==e||null==e||""==e)return"NA";const t=new Date(e);let n=t.getHours(),r=t.getMinutes(),i=n>12?"PM":"AM";return n=n>12?n-12:n,n=(n>9?"":"0")+n,r=(r>9?"":"0")+r,n+":"+r+" "+i},[b,C]=t.useReducer(function(e,t){switch(t.type){case"set":return t.payload;case"remove":return!1}},!1),S=()=>{C({type:"remove"})},w=()=>n.createElement("div",{className:"InboxMobilePopupCloseButtonWrapper",onClick:S},n.createElement(a.CloseSvg,null)),O={Controller:i,register:o,control:l,t:u,reset:s,previousPage:c},N=t.useCallback(e=>{let{currentlyActiveMobileModal:t,searchFormFieldsComponentProps:r,tenantId:i,...o}=e;return(e=>{let{currentlyActiveMobileModal:t,searchFormFieldsComponentProps:r,tenantId:i,...o}=e;const{closeMobilePopupModal:l}=o;switch(t){case"SearchFormComponent":return n.createElement(a.SearchForm,o,n.createElement(w,null),n.createElement("div",{className:"MobilePopupHeadingWrapper"},n.createElement("h2",null,u("PRIVACY_AUDIT_REPORT"),":")),n.createElement(bn,x({},r,{closeMobilePopupModal:l,tenantId:i,t:u})));default:return n.createElement("span",null)}})({currentlyActiveMobileModal:t,searchFormFieldsComponentProps:r,tenantId:i,...o})},[b]);null==m||null===(r=m.roles)||void 0===r||r.forEach(e=>{});const I=t.useMemo(()=>null!=m&&m.display||""===m?[]:null==m?void 0:m.map(e=>{var t,n,r;return{[u("AUDIT_DATE_LABEL")]:y(e.timestamp)||"-",[u("AUDIT_TIME_LABEL")]:_(e.timestamp)||"-",[u("AUDIT_DATAVIEWED_LABEL")]:(null===(t=e.dataView)||void 0===t?void 0:t.join(", "))||"-",[u("AUDIT_DATAVIEWED_BY_LABEL")]:e.dataViewedBy||"-",[u("AUDIT_ROLE_LABEL")]:(null===(n=e.roles)||void 0===n||null===(r=n.slice(0,3))||void 0===r?void 0:r.map(e=>e.name).join(", "))||"-"}}),[m]);return n.createElement(n.Fragment,null,n.createElement(a.BackButton,null),n.createElement("div",{className:"sideContent",style:{marginLeft:"65%",marginTop:"-12%"}},n.createElement(E,{className:"mrlg cursorPointer",onClick:()=>(e=>{if(void 0!==(null==e?void 0:e[0]))return Digit.Download.Excel(null==e?void 0:e[0],"AuditReport")})(g)})),n.createElement(a.Header,null,u("PRIVACY_AUDIT_REPORT"),":"),n.createElement("div",{className:"searchBox"},n.createElement(a.SearchAction,{text:u("ES_COMMON_SEARCH"),handleActionClick:()=>C({type:"set",payload:"SearchFormComponent"}),tenantId:f,t:u})),b?n.createElement(a.PopUp,null,n.createElement(N,{onSubmit:e=>{C({type:"remove"}),p(e)},handleSubmit:d,id:"search-form",className:"rm-mb form-field-flex-one inboxPopupMobileWrapper",searchFormFieldsComponentProps:O,currentlyActiveMobileModal:b,closeMobilePopupModal:S,tenantId:f})):null,v&&n.createElement(a.Loader,null),n.createElement(a.DetailsCard,{data:I}))},Sn=e=>{let{showLoader:r,isLoading:i,tenantId:o,t:l,onSubmit:u,data:s,count:c}=e;const d=Digit.SessionStorage.get("AUDIT_APPLICATION_DETAIL")||{offset:0,limit:10,sortOrder:"ASC"},{register:f,control:m,handleSubmit:p,setValue:v,getValues:g,reset:h}=function(e){let{mode:n=_t.onSubmit,reValidateMode:r=_t.onChange,resolver:i,context:o,defaultValues:l={},shouldFocusError:a=!0,shouldUnregister:u=!0,criteriaMode:s}=void 0===e?{}:e;const c=t.useRef({}),d=t.useRef({}),f=t.useRef({}),m=t.useRef(new Set),p=t.useRef({}),v=t.useRef({}),g=t.useRef({}),h=t.useRef({}),E=t.useRef(l),_=t.useRef(!1),b=t.useRef(!1),C=t.useRef(),S=t.useRef({}),w=t.useRef({}),O=t.useRef(o),N=t.useRef(i),I=t.useRef(new Set),D=t.useRef(pn(n)),{isOnSubmit:T,isOnTouch:x}=D.current,A=s===_t.all,[L,R]=t.useState({isDirty:!1,isValidating:!1,dirtyFields:{},isSubmitted:!1,submitCount:0,touched:{},isSubmitting:!1,isSubmitSuccessful:!1,isValid:!T,errors:{}}),M=t.useRef({isDirty:!hn,dirtyFields:!hn,touched:!hn||x,isValidating:!hn,isSubmitting:!hn,isValid:!hn}),P=t.useRef(L),k=t.useRef(),{isOnBlur:U,isOnChange:B}=t.useRef(pn(r)).current;O.current=o,N.current=i,P.current=L,S.current=u?{}:Vt(S.current)?mn(l):S.current;const j=t.useCallback(function(e){void 0===e&&(e={}),_.current||(P.current=Object.assign(Object.assign({},P.current),e),R(P.current))},[]),F=()=>M.current.isValidating&&j({isValidating:!0}),z=t.useCallback(function(e,t,n,r,i){void 0===n&&(n=!1),void 0===r&&(r={});let o=n||(e=>{let{errors:t,name:n,error:r,validFields:i,fieldsWithValidation:o}=e;const l=Tt(r),a=xt(t,n);return l&&!!a||!l&&!Yt(a,r,!0)||l&&xt(o,n)&&!xt(i,n)})({errors:P.current.errors,error:t,name:e,validFields:h.current,fieldsWithValidation:g.current});const l=xt(P.current.errors,e);t?(Gt(h.current,e),o=o||!l||!Yt(l,t,!0),It(P.current.errors,e,t)):((xt(g.current,e)||N.current)&&(It(h.current,e,!0),o=o||l),Gt(P.current.errors,e)),(o&&!bt(n)||!Vt(r)||M.current.isValidating)&&j(Object.assign(Object.assign(Object.assign({},r),N.current?{isValid:!!i}:{}),{isValidating:!1}))},[]),W=t.useCallback((e,t)=>{const{ref:n,options:r}=c.current[e],i=fn&&yt(n)&&bt(t)?"":t;Mt(n)?(r||[]).forEach(e=>{let{ref:t}=e;return t.checked=t.value===i}):Pt(n)&&!Jt(i)?n.files=i:Ut(n)?[...n.options].forEach(e=>e.selected=i.includes(e.value)):kt(n)&&r?r.length>1?r.forEach(e=>{let{ref:t}=e;return t.checked=Array.isArray(i)?!!i.find(e=>e===t.value):i===t.value}):r[0].ref.checked=!!i:n.value=i},[]),V=t.useCallback((e,t)=>{if(M.current.isDirty){const n=Q();return e&&t&&It(n,e,t),!Yt(n,E.current)}return!1},[]),H=t.useCallback(function(e,t){if(void 0===t&&(t=!0),M.current.isDirty||M.current.dirtyFields){const n=!Yt(xt(E.current,e),zt(c,e,S)),r=xt(P.current.dirtyFields,e),i=P.current.isDirty;n?It(P.current.dirtyFields,e,!0):Gt(P.current.dirtyFields,e);const o={isDirty:V(),dirtyFields:P.current.dirtyFields},l=M.current.isDirty&&i!==o.isDirty||M.current.dirtyFields&&r!==xt(P.current.dirtyFields,e);return l&&t&&j(o),l?o:{}}return{}},[]),G=t.useCallback(function(e,t){try{return"production"===process.env.NODE_ENV||c.current[e]?Promise.resolve(ln(c,A,c.current[e],S)).then(function(n){const r=n[e];return z(e,r,t),Tt(r)}):(console.warn("📋 Field is missing with `name` attribute: ",e),Promise.resolve(!1))}catch(e){return Promise.reject(e)}},[z,A]),q=t.useCallback(function(e){try{return Promise.resolve(N.current(Q(),O.current,A)).then(function(t){let{errors:n}=t;const r=P.current.isValid;if(Array.isArray(e)){const t=e.map(e=>{const t=xt(n,e);return t?It(P.current.errors,e,t):Gt(P.current.errors,e),!t}).every(Boolean);return j({isValid:Vt(n),isValidating:!1}),t}{const t=xt(n,e);return z(e,t,r!==Vt(n),{},Vt(n)),!t}})}catch(e){return Promise.reject(e)}},[z,A]),Z=t.useCallback(function(e){try{let n=!1;function t(e){return n?e:Promise.resolve(G(r))}const r=e||Object.keys(c.current);if(F(),N.current)return Promise.resolve(q(r));const i=function(){if(Array.isArray(r))return!e&&(P.current.errors={}),Promise.resolve(Promise.all(r.map(function(e){try{return Promise.resolve(G(e,null))}catch(e){return Promise.reject(e)}}))).then(function(e){j({isValidating:!1});const t=e.every(Boolean);return n=!0,t})}();return Promise.resolve(i&&i.then?i.then(t):t(i))}catch(e){return Promise.reject(e)}},[q,G]),X=t.useCallback((e,t,n)=>{let{shouldDirty:r,shouldValidate:i}=n;const o={};It(o,e,t);for(const n of an(e,t))c.current[n]&&(W(n,xt(o,n)),r&&H(n),i&&Z(n))},[Z,W,H]),Y=t.useCallback((e,t,n)=>{if(!u&&!Zt(t)&&It(S.current,e,Array.isArray(t)?[...t]:Object.assign({},t)),c.current[e])W(e,t),n.shouldDirty&&H(e),n.shouldValidate&&Z(e);else if(!Zt(t)&&(X(e,t,n),I.current.has(e))){const r=cn(e)||e;It(d.current,e,t),w.current[r]({[r]:xt(d.current,r)}),(M.current.isDirty||M.current.dirtyFields)&&n.shouldDirty&&(It(P.current.dirtyFields,e,((e,t,n)=>Xt(Kt(e,t,n.slice(0,e.length)),Kt(t,e,n.slice(0,e.length))))(t,xt(E.current,e,[]),xt(P.current.dirtyFields,e,[]))),j({isDirty:!Yt(Object.assign(Object.assign({},Q()),{[e]:t}),E.current)}))}!u&&It(S.current,e,t)},[H,W,X]),K=e=>b.current||m.current.has(e)||m.current.has((e.match(/\w+/)||[])[0]),J=e=>{let t=!0;if(!Vt(p.current))for(const n in p.current)e&&p.current[n].size&&!p.current[n].has(e)&&!p.current[n].has(cn(e))||(v.current[n](),t=!1);return t};function $(e){if(!u){let t=mn(e);for(const e of I.current)wt(e)&&!t[e]&&(t=Object.assign(Object.assign({},t),{[e]:[]}));return t}return e}function Q(e){if(Jt(e))return zt(c,e,S);if(Array.isArray(e)){const t={};for(const n of e)It(t,n,zt(c,n,S));return t}return $($t(c,mn(S.current),u))}C.current=C.current?C.current:function(e){let{type:t,target:n}=e;try{let e=n.name;const r=c.current[e];let i,o;return Promise.resolve(function(){if(r){function l(){!a&&J(e),z(e,i,f,d,o)}const a="blur"===t,s=sn(Object.assign({isBlurEvent:a,isReValidateOnChange:B,isReValidateOnBlur:U,isTouched:!!xt(P.current.touched,e),isSubmitted:P.current.isSubmitted},D.current));let d=H(e,!1),f=!Vt(d)||!a&&K(e);if(a&&!xt(P.current.touched,e)&&M.current.touched&&(It(P.current.touched,e,!0),d=Object.assign(Object.assign({},d),{touched:P.current.touched})),!u&&kt(n)&&It(S.current,e,zt(c,e)),s)return!a&&J(e),(!Vt(d)||f&&Vt(d))&&j(d);F();const m=N.current?Promise.resolve(N.current(Q(),O.current,A)).then(function(t){let{errors:r}=t;const l=P.current.isValid;if(i=xt(r,e),kt(n)&&!i&&N.current){const t=cn(e),n=xt(r,t,{});n.type&&n.message&&(i=n),t&&(n||xt(P.current.errors,t))&&(e=t)}o=Vt(r),l!==o&&(f=!0)}):Promise.resolve(ln(c,A,r,S)).then(function(t){i=t[e]});return m&&m.then?m.then(l):l()}}())}catch(e){return Promise.reject(e)}};const ee=t.useCallback(function(e){void 0===e&&(e={});try{const t=Vt(c.current)?E.current:{};return Promise.resolve(N.current(Object.assign(Object.assign(Object.assign({},t),Q()),e),O.current,A)).then(function(e){let{errors:t}=e;const n=Vt(t);P.current.isValid!==n&&j({isValid:n})})}catch(e){return Promise.reject(e)}},[A]),te=t.useCallback((e,t)=>{!function(e,t,n,r,i,o){const{ref:l,ref:{name:a}}=n,u=e.current[a];if(!i){const t=zt(e,a,r);!Tt(t)&&It(r.current,a,t)}l.type&&u?Mt(l)||kt(l)?Array.isArray(u.options)&&u.options.length?(Ot(u.options).forEach(function(e,n){void 0===e&&(e={}),(Wt(e.ref)&&qt(e,e.ref)||o)&&(At(e.ref,t),Gt(u.options,"["+n+"]"))}),u.options&&!Ot(u.options).length&&delete e.current[a]):delete e.current[a]:(Wt(l)&&qt(u,l)||o)&&(At(l,t),delete e.current[a]):delete e.current[a]}(c,C.current,e,S,u,t),u&&(Gt(h.current,e.ref.name),Gt(g.current,e.ref.name))},[u]),ne=t.useCallback(e=>{if(b.current)j();else{for(const t of m.current)if(t.startsWith(e)){j();break}J(e)}},[]),re=t.useCallback((e,t)=>{e&&(te(e,t),u&&!Ot(e.options||[]).length&&(Gt(P.current.errors,e.ref.name),It(P.current.dirtyFields,e.ref.name,!0),j({isDirty:V()}),M.current.isValid&&N.current&&ee(),ne(e.ref.name)))},[ee,te]),ie=t.useCallback((e,t,n)=>{const r=n?p.current[n]:m.current;let i=$t(c,mn(S.current),u,!1,e);if(Jt(e)){const n=cn(e)||e;return I.current.has(n)&&(i=Object.assign(Object.assign({},f.current),i)),un(i,e,r,Tt(xt(E.current,e))?t:xt(E.current,e),!0)}const o=Tt(t)?E.current:t;return Array.isArray(e)?e.reduce((e,t)=>Object.assign(Object.assign({},e),{[t]:un(i,t,r,o)}),{}):(b.current=Tt(n),Dt(!Vt(i)&&i||o))},[]);function oe(e,t){if(void 0===t&&(t={}),"production"!==process.env.NODE_ENV){if(!e.name)return console.warn("📋 Field is missing `name` attribute",e,"https://react-hook-form.com/api#useForm");if(I.current.has(e.name.split(/\[\d+\]$/)[0])&&!RegExp(("^"+e.name.split(/\[\d+\]$/)[0]+"[\\d+].\\w+").replace(/\[/g,"\\[").replace(/\]/g,"\\]")).test(e.name))return console.warn('📋 `name` prop should be in object shape: name="test[index].name"',e,"https://react-hook-form.com/api#useFieldArray")}const{name:n,type:r,value:i}=e,o=Object.assign({ref:e},t),l=c.current,a=vn(e),s=dn(I.current,n),d=t=>fn&&(!yt(e)||t===e);let f,m=l[n],p=!0;if(m&&(a?Array.isArray(m.options)&&Ot(m.options).find(e=>i===e.ref.value&&d(e.ref)):d(m.ref)))return void(l[n]=Object.assign(Object.assign({},m),t));m=r?a?Object.assign({options:[...Ot(m&&m.options||[]),{ref:e}],ref:{type:r,name:n}},t):Object.assign({},o):o,l[n]=m;const v=Tt(xt(S.current,n));Vt(E.current)&&v||(f=xt(v?E.current:S.current,n),p=Tt(f),p||s||W(n,f)),Vt(t)||(It(g.current,n,!0),!T&&M.current.isValid&&ln(c,A,m,S).then(e=>{const t=P.current.isValid;Vt(e)?It(h.current,n,!0):Gt(h.current,n),t!==Vt(e)&&j()})),!u||s&&p||!s&&Gt(P.current.dirtyFields,n),r&&function(e,t,n){let{ref:r}=e;yt(r)&&n&&(r.addEventListener(t?"change":"input",n),r.addEventListener("blur",n))}(a&&m.options?m.options[m.options.length-1]:m,a||"select-one"===e.type,C.current)}const le=t.useCallback((e,t)=>function(n){try{n&&n.preventDefault&&(n.preventDefault(),n.persist());let r={},i=$($t(c,mn(S.current),u,!0));return M.current.isSubmitting&&j({isSubmitting:!0}),Promise.resolve(function(o,l){try{var u=function(){function o(){const o=function(){if(Vt(r)&&Object.keys(P.current.errors).every(e=>e in c.current))return j({errors:{},isSubmitting:!0}),Promise.resolve(e(i,n)).then(function(){});{function o(e){a&&((e,t)=>{for(const n in e)if(xt(t,n)){const t=e[n];if(t){if(t.ref.focus&&Tt(t.ref.focus()))break;if(t.options){t.options[0].ref.focus();break}}}})(c.current,P.current.errors)}return P.current.errors=Object.assign(Object.assign({},P.current.errors),r),t?Promise.resolve(t(P.current.errors,n)).then(o):o()}}();if(o&&o.then)return o.then(function(){})}const l=N.current?Promise.resolve(N.current(i,O.current,A)).then(function(e){let{errors:t,values:n}=e;P.current.errors=r=t,i=n}):y(Object.values(c.current),function(e){const t=function(){if(e){const{name:t}=e.ref;return Promise.resolve(ln(c,A,e,S)).then(function(e){e[t]?(It(r,t,e[t]),Gt(h.current,t)):xt(g.current,t)&&(Gt(P.current.errors,t),It(h.current,t,!0))})}}();if(t&&t.then)return t.then(function(){})});return l&&l.then?l.then(o):o()}()}catch(e){return l(!0,e)}return u&&u.then?u.then(l.bind(null,!1),l.bind(null,!0)):l(!1,u)}(0,function(e,t){if(P.current.isSubmitting=!1,j({isSubmitted:!0,isSubmitting:!1,isSubmitSuccessful:Vt(P.current.errors),submitCount:P.current.submitCount+1}),e)throw t;return t}))}catch(n){return Promise.reject(n)}},[a,A]);t.useEffect(()=>{i&&M.current.isValid&&ee(),k.current=k.current||!fn?k.current:function(e,t){const n=new MutationObserver(()=>{for(const n of Object.values(e.current))if(n&&n.options)for(const e of n.options)e&&e.ref&&Wt(e.ref)&&t(n);else n&&Wt(n.ref)&&t(n)});return n.observe(window.document,{childList:!0,subtree:!0}),n}(c,re)},[re,E.current]),t.useEffect(()=>()=>{k.current&&k.current.disconnect(),_.current=!0,"production"===process.env.NODE_ENV&&Object.values(c.current).forEach(e=>re(e,!0))},[]),!i&&M.current.isValid&&(L.isValid=Yt(h.current,g.current)&&Vt(P.current.errors));const ae={trigger:Z,setValue:t.useCallback(function(e,t,n){Y(e,t,n||{}),K(e)&&j(),J(e)},[Y,Z]),getValues:t.useCallback(Q,[]),register:t.useCallback(function(e,t){if(!gn)if(Jt(e))oe({name:e},t);else{if(!St(e)||!("name"in e))return t=>t&&oe(t,e);oe(e,t)}},[E.current]),unregister:t.useCallback(function(e){for(const t of Array.isArray(e)?e:[e])re(c.current[t],!0)},[]),formState:hn?new Proxy(L,{get:(e,t)=>{if("production"!==process.env.NODE_ENV&&"isValid"===t&&T&&console.warn("📋 `formState.isValid` is applicable with `onTouched`, `onChange` or `onBlur` mode. https://react-hook-form.com/api#formState"),t in e)return M.current[t]=!0,e[t]}}):L},ue=t.useMemo(()=>Object.assign({isFormDirty:V,updateWatchedValue:ne,shouldUnregister:u,updateFormState:j,removeFieldEventListener:te,watchInternal:ie,mode:D.current,reValidateMode:{isReValidateOnBlur:U,isReValidateOnChange:B},validateResolver:i?ee:void 0,fieldsRef:c,resetFieldArrayFunctionRef:w,useWatchFieldsRef:p,useWatchRenderFunctionsRef:v,fieldArrayDefaultValuesRef:d,validFieldsRef:h,fieldsWithValidationRef:g,fieldArrayNamesRef:I,readFormStateRef:M,formStateRef:P,defaultValuesRef:E,shallowFieldsStateRef:S,fieldArrayValuesRef:f},ae),[E.current,ne,u,te,ie]);return Object.assign({watch:function(e,t){return ie(e,t)},control:ue,handleSubmit:le,reset:t.useCallback(function(e,t){if(void 0===t&&(t={}),fn)for(const e of Object.values(c.current))if(e){const{ref:t,options:n}=e,r=vn(t)&&Array.isArray(n)?n[0].ref:t;if(yt(r))try{r.closest("form").reset();break}catch(e){}}c.current={},E.current=Object.assign({},e||E.current),e&&J(""),Object.values(w.current).forEach(e=>tn(e)&&e()),S.current=u?{}:mn(e||E.current),(e=>{let{errors:t,isDirty:n,isSubmitted:r,touched:i,isValid:o,submitCount:l,dirtyFields:a}=e;o||(h.current={},g.current={}),d.current={},m.current=new Set,b.current=!1,j({submitCount:l?P.current.submitCount:0,isDirty:!!n&&P.current.isDirty,isSubmitted:!!r&&P.current.isSubmitted,isValid:!!o&&P.current.isValid,dirtyFields:a?P.current.dirtyFields:{},touched:i?P.current.touched:{},errors:t?P.current.errors:{},isSubmitting:!1,isSubmitSuccessful:!1})})(t)},[]),clearErrors:t.useCallback(function(e){e&&(Array.isArray(e)?e:[e]).forEach(e=>c.current[e]&&wt(e)?delete P.current.errors[e]:Gt(P.current.errors,e)),j({errors:e?P.current.errors:{}})},[]),setError:t.useCallback(function(e,t){const n=(c.current[e]||{}).ref;It(P.current.errors,e,Object.assign(Object.assign({},t),{ref:n})),j({isValid:!1}),t.shouldFocus&&n&&n.focus&&n.focus()},[]),errors:L.errors},ae)}({defaultValues:d}),E=e=>{if(null==e||null==e||""==e)return"NA";const t=new Date(e);let n=t.getMonth()+1,r=t.getDate();return n=(n>9?"":"0")+n,r=(r>9?"":"0")+r,r+"/"+n+"/"+t.getFullYear()},_=e=>{if(null==e||null==e||""==e)return"NA";const t=new Date(e);let n=t.getHours(),r=t.getMinutes(),i=n>12?"PM":"AM";return n=n>12?n-12:n,n=(n>9?"":"0")+n,r=(r>9?"":"0")+r,n+":"+r+" "+i},[b,C]=t.useState([]),S=e=>n.createElement("div",{onClick:e.onClick},n.createElement(a.DownloadBtnCommon,null));t.useEffect(()=>{f("offset",0),f("limit",10)},[f]),t.useEffect(()=>{(null==s?void 0:s.length)>0&&C([null==s?void 0:s.map(e=>{var t,n;let r={};return r[l("AUDIT_DATE_LABEL")]=E(null==e?void 0:e.timestamp)||"-",r[l("AUDIT_TIME_LABEL")]=_(null==e?void 0:e.timestamp)||"-",r[l("AUDIT_DATAVIEWED_LABEL")]=(null==e||null===(t=e.dataView)||void 0===t?void 0:t.join(", "))||"-",r[l("AUDIT_DATAVIEWED_BY_LABEL")]=null==e?void 0:e.dataViewedBy,r[l("AUDIT_ROLE_LABEL")]=(null==e||null===(n=e.roles)||void 0===n?void 0:n.map(e=>e.name).join(", "))||"-",{...r}})])},[s]);const w=t.useCallback(e=>{0!==e.length&&(v("sortBy",e.id),v("sortOrder",e.desc?"DESC":"ASC"))},[]);function O(){v("offset",g("offset")-g("limit")),p(u)()}const N=window.Digit.Utils.browser.isMobile();if(N)return n.createElement(Cn,{Controller:yn,isLoading:i,showLoader:r,register:f,control:m,t:l,reset:h,previousPage:O,handleSubmit:p,tenantId:o,data:s,onSubmit:u});const I=e=>n.createElement("span",{className:"cell-text"},e),D=t.useMemo(()=>[{Header:l("AUDIT_DATE_LABEL"),disableSortBy:!0,accessor:e=>{const t="NA"===e.timestamp?l("WS_NA"):E(e.timestamp);return I(""+(t||"-"))}},{Header:l("AUDIT_TIME_LABEL"),disableSortBy:!0,accessor:e=>{const t="NA"===e.timestamp?l("WS_NA"):_(e.timestamp);return I(""+(t||"-"))}},{Header:l(N?"AUDIT_DATAVIEWED_LABEL":"AUDIT_DATAVIEWED_PRIVACY"),disableSortBy:!0,accessor:e=>{var t;return I(""+((null==e||null===(t=e.dataView)||void 0===t?void 0:t.join(", "))||"-"))}},{Header:l(N?"AUDIT_DATAVIEWED_BY_LABEL":"AUDIT_DATAVIEWED_BY_PRIVACY"),disableSortBy:!0,accessor:e=>I(""+((null==e?void 0:e.dataViewedBy)||"-"))},{Header:l("AUDIT_ROLE_LABEL"),disableSortBy:!0,accessor:e=>{var t,n,r;return I(""+((null==e||null===(t=e.roles)||void 0===t||null===(n=t.slice(0,3))||void 0===n||null===(r=n.map(e=>e.name))||void 0===r?void 0:r.join(", "))||"-"))}}],[]);return n.createElement(n.Fragment,null,n.createElement("div",{style:{marginRight:"-70px"}}," ",n.createElement(a.BackButton,null)," "),n.createElement("div",{style:{marginTop:"30px",marginLeft:"30px"}},"  ",n.createElement(a.Header,null,l("PRIVACY_AUDIT_REPORT"))," "),n.createElement(a.SearchForm,{className:"audit-card",onSubmit:u,handleSubmit:p},n.createElement(bn,{register:f,control:m,reset:h,tenantId:o,t:l,previousPage:O})),n.createElement("div",{style:{marginTop:"240px",marginLeft:"-55%",width:"80%"}},null!=s&&s.display?n.createElement("div",{style:{marginTop:"20x",maxWidth:"680%",marginLeft:"60px",backgroundColor:"white",height:"60px"}},l(s.display).split("\\n").map((e,t)=>n.createElement("p",{key:t,style:{textAlign:"center",paddingTop:"12px"}},e))):""!==s?n.createElement("div",{style:{backgroundColor:"white",marginRight:"200px",marginLeft:"2.5%",width:"100%"}},n.createElement("div",{className:"sideContent",style:{float:"right",padding:"10px 30px"}},n.createElement(S,{className:"mrlg cursorPointer",onClick:()=>(e=>{if(void 0!==(null==e?void 0:e[0]))return Digit.Download.Excel(null==e?void 0:e[0],"AuditReport")})(b)})),n.createElement(a.Table,{t:l,data:s.sort((e,t)=>e.timestamp-t.timestamp),totalRecords:c,columns:D,getCellProps:e=>({style:{minWidth:e.column.Header===l("ES_INBOX_APPLICATION_NO")?"240px":"",padding:"20px 18px",fontSize:"16px"}}),onPageSizeChange:function(e){v("limit",Number(e.target.value)),p(u)()},currentPage:g("offset")/g("limit"),onNextPage:function(){v("offset",g("offset")+g("limit")),p(u)()},onPrevPage:O,pageSizeLimit:g("limit"),onSort:w,disableSort:!1,sortParams:[{id:g("sortBy"),desc:"DESC"===g("sortOrder")}]})):n.createElement(a.Loader,null)))},wn=e=>{var r,i,a,u,s,c,d,f,m,p;const{t:v}=l.useTranslation(),g=Digit.ULBService.getCitizenCurrentTenant(),[h,E]=t.useState({}),y=window.Digit.Utils.browser.isMobile(),_=function(e,t){void 0===t&&(t="dayend");try{const n=e.match(/(\d{4})-(\d{1,2})-(\d{1,2})/),r=new Date(Date.UTC(n[1],n[2]-1,n[3]));return r.setMinutes(r.getMinutes()+r.getTimezoneOffset()),"dayend"===t&&(r.setHours(r.getHours()+24),r.setSeconds(r.getSeconds()-1)),"daystart"===t&&(r.setHours(r.getHours()),r.setSeconds(r.getSeconds()+1)),r.getTime()}catch(t){return e}};t.useEffect(()=>{const e=Digit.SessionStorage.get("AUDIT_APPLICATION_DETAIL")||{};if(e){const t={...e};E(Object.keys(t).filter(e=>t[e]).reduce((e,n)=>({...e,[n]:"object"==typeof t[n]?t[n].code:t[n]}),{}))}},[]);const b={enabled:!!(h&&Object.keys(h).length>0)};let C,S,w=window.location.href.split("/").pop();isNaN(parseInt(w))?C=10:(S=w,C=parseInt(w)+10);const O=y?{...h,offset:isNaN(parseInt(w))?0:parseInt(S)}:{...h},{isLoading:N,data:I}=Digit.Hooks.useAudit({tenantId:g,filters:{...O},config:b});return n.createElement(n.Fragment,null,n.createElement(Sn,{t:v,tenantId:g,onSubmit:function(e){Digit.SessionStorage.set("AUDIT_APPLICATION_DETAIL",{offset:0,limit:10});let t={...e,fromDate:_(null==e?void 0:e.fromDate,(null==e?void 0:e.fromDate)==(null==e?void 0:e.toDate)?"daystart":""),toDate:_(null==e?void 0:e.toDate,(null==e?void 0:e.fromDate)==(null==e?void 0:e.toDate)?"dayend":"")};E(Object.keys(t).filter(e=>t[e]).reduce((e,n)=>({...e,[n]:t[n]}),{}))},data:N?"":(null==I||null===(r=I.ElasticSearchData)||void 0===r||null===(i=r.filter(e=>!e.total))||void 0===i?void 0:i.length)>0?null==I||null===(a=I.ElasticSearchData)||void 0===a?void 0:a.filter(e=>!e.total):{display:"ES_COMMON_NO_DATA"},count:null==I||null===(u=I.ElasticSearchData)||void 0===u||null===(s=u.filter(e=>e.total))||void 0===s||null===(c=s[0])||void 0===c?void 0:c.total,isLoading:N}),y&&(null==I||null===(d=I.ElasticSearchData)||void 0===d||null===(f=d.filter(e=>!e.total))||void 0===f?void 0:f.length)&&0!==(null==I||null===(m=I.ElasticSearchData)||void 0===m||null===(p=m.filter(e=>!e.total))||void 0===p?void 0:p.length)&&n.createElement("div",null,n.createElement("p",{style:{marginLeft:"16px",marginBottom:"40px"}},n.createElement("span",{className:"link"},n.createElement(o.Link,{to:"/digit-ui/citizen/Audit/"+C},v("PT_LOAD_MORE_MSG"))))))},On=["digit-ui/citizen/register/name","/digit-ui/citizen/select-language","/digit-ui/citizen/select-location","/digit-ui/citizen/login","/digit-ui/citizen/register/otp"],Nn=(e,t)=>t.filter(t=>e.map(e=>e.code).includes(t.code)),In=e=>{let{stateInfo:t,userDetails:r,CITIZEN:i,cityDetails:u,mobileView:s,handleUserDropdownSelection:c,logoUrl:f,stateCode:m,modules:v,appTenants:g,sourceUrl:h,pathname:E,initData:y}=e;const{isLoading:_,data:b,isFetched:C}=Digit.Hooks.useCustomMDMS(Digit.ULBService.getStateId(),"ACCESSCONTROL-ACTIONS-TEST",[{name:"actions-test",filter:"[?(@.url == 'digit-ui-card')]"}],{select:e=>{var t,n;return null==e||null===(t=e["ACCESSCONTROL-ACTIONS-TEST"])||void 0===t||null===(n=t["actions-test"])||void 0===n?void 0:n.filter(e=>!0===e.enabled).reduce((e,t)=>{var n;return e[t.parentModule]=(null===(n=e[t.parentModule])||void 0===n?void 0:n.length)>0?[t,...e[t.parentModule]]:[t],e},{})}}),S=Digit.Hooks.fsm.useRouteSubscription(E),{t:w}=l.useTranslation(),{path:O}=o.useRouteMatch();h="https://s3.ap-south-1.amazonaws.com/egov-qa-assets";const N=o.useHistory(),I=On.some(e=>window.location.href.includes(e)),T=v.map((e,t)=>{let{code:r,tenants:i}=e;const l=Digit.ComponentRegistryService.getComponent(r+"Module");return l?n.createElement(o.Route,{key:t,path:O+"/"+r.toLowerCase()},n.createElement(l,{stateCode:m,moduleCode:r,userType:"citizen",tenants:Nn(i,g)})):null}),x=v.map((e,t)=>{let{code:r}=e,i=(Digit.ComponentRegistryService.getComponent(r+"Links"),C?d(b,r,w):void 0);return(null==i?void 0:i.links)&&(null==i||i.links.sort((e,t)=>e.orderNumber-t.orderNumber)),n.createElement(n.Fragment,null,n.createElement(o.Route,{key:t,path:O+"/"+r.toLowerCase()+"-home"},n.createElement("div",{className:"moduleLinkHomePage"},n.createElement("img",{src:"https://nugp-assets.s3.ap-south-1.amazonaws.com/nugp+asset/Banner+UPYOG+%281920x500%29B+%282%29.jpg",alt:"noimagefound"}),n.createElement(a.BackButton,{className:"moduleLinkHomePageBackButton"}),n.createElement("h1",null,w("MODULE_"+r.toUpperCase())),n.createElement("div",{className:"moduleLinkHomePageModuleLinks"},i&&n.createElement(a.CitizenHomeCard,{header:w(null==i?void 0:i.header),links:null==i?void 0:i.links,Icon:()=>n.createElement("span",null),Info:"OBPS"===r?()=>n.createElement(a.CitizenInfoLabel,{style:{margin:"0px",padding:"10px"},info:w("CS_FILE_APPLICATION_INFO_LABEL"),text:w("BPA_CITIZEN_HOME_STAKEHOLDER_INCLUDES_INFO_LABEL")}):null,isInfo:"OBPS"===r})),n.createElement(vt,{moduleCode:null==r?void 0:r.toUpperCase()}))),n.createElement(o.Route,{key:"faq"+t,path:O+"/"+r.toLowerCase()+"-faq"},n.createElement(mt,{module:null==r?void 0:r.toUpperCase()})),n.createElement(o.Route,{key:"hiw"+t,path:O+"/"+r.toLowerCase()+"-how-it-works"},n.createElement(pt,{module:null==r?void 0:r.toUpperCase()})))});return n.createElement("div",{className:S},n.createElement(it,{t:w,stateInfo:t,userDetails:r,CITIZEN:i,cityDetails:u,mobileView:s,handleUserDropdownSelection:c,logoUrl:f,showSidebar:!0,linkData:b,islinkDataLoading:_}),n.createElement("div",{className:"main center-container citizen-home-container mb-25"},I?null:n.createElement("div",{className:"SideBarStatic"},n.createElement(Ke,{linkData:b,islinkDataLoading:_})),n.createElement(o.Switch,null,n.createElement(o.Route,{exact:!0,path:O},n.createElement(st,null)),n.createElement(a.PrivateRoute,{path:O+"/feedback",component:_n}),n.createElement(a.PrivateRoute,{path:O+"/feedback-acknowledgement",component:Et}),n.createElement(o.Route,{exact:!0,path:O+"/select-language"},n.createElement(ct,null)),n.createElement(o.Route,{exact:!0,path:O+"/select-location"},n.createElement(dt,null)),n.createElement(o.Route,{path:O+"/error"},n.createElement(Pe,{initData:y,goToHome:()=>{N.push("/digit-ui/citizen")}})),n.createElement(o.Route,{path:O+"/all-services"},n.createElement(p,{userType:"citizen",modules:v,getCitizenMenu:b,fetchedCitizen:C,isLoading:_})),n.createElement(o.Route,{path:O+"/login"},n.createElement(D,{stateCode:m})),n.createElement(o.Route,{path:O+"/register"},n.createElement(D,{stateCode:m,isUserRegistered:!1})),n.createElement(a.PrivateRoute,{path:O+"/user/profile"},n.createElement(lt,{stateCode:m,userType:"citizen",cityDetails:u})),n.createElement(o.Route,{path:O+"/Audit"},n.createElement(wn,null)),n.createElement(Ue,{initData:y},T,x))),n.createElement("div",{style:{width:"100%",position:"fixed",bottom:0,backgroundColor:"white",textAlign:"center"}},n.createElement("div",{style:{display:"flex",justifyContent:"center",color:"black"}},n.createElement("span",{style:{cursor:"pointer",fontSize:window.Digit.Utils.browser.isMobile()?"12px":"14px",fontWeight:"400"},onClick:()=>{window.open("https://www.digit.org/","_blank").focus()}},"Powered by DIGIT"),n.createElement("span",{style:{margin:"0 10px",fontSize:window.Digit.Utils.browser.isMobile()?"12px":"14px"}},"|"),n.createElement("a",{style:{cursor:"pointer",fontSize:window.Digit.Utils.browser.isMobile()?"12px":"14px",fontWeight:"400"},href:"#",target:"_blank"},"UPYOG License"),n.createElement("span",{className:"upyog-copyright-footer",style:{margin:"0 10px",fontSize:window.Digit.Utils.browser.isMobile()?"12px":"14px"}},"|"),n.createElement("span",{className:"upyog-copyright-footer",style:{cursor:"pointer",fontSize:window.Digit.Utils.browser.isMobile()?"12px":"14px",fontWeight:"400"},onClick:()=>{window.open("https://niua.in/","_blank").focus()}},"Copyright © 2022 National Institute of Urban Affairs")),n.createElement("div",{className:"upyog-copyright-footer-web"},n.createElement("span",{className:"",style:{cursor:"pointer",fontSize:window.Digit.Utils.browser.isMobile()?"12px":"14px",fontWeight:"400"},onClick:()=>{window.open("https://niua.in/","_blank").focus()}},"Copyright © 2022 National Institute of Urban Affairs"))))},Dn=e=>{var r;let{stateCode:i,modules:l,appTenants:a,logoUrl:u,initData:s}=e;const c=o.useHistory(),{pathname:d}=o.useLocation(),f=window.innerWidth,m=Digit.ULBService.getCurrentUlb(),p=Digit.UserService.getUser(),{data:v}=Digit.Hooks.useStore.getInitData(),{stateInfo:g}=v||{},h=Digit.UserService.hasAccess(["FSM_DSO"]);let E="CITIZEN"===(null==p||null===(r=p.info)||void 0===r?void 0:r.type)||!window.location.pathname.split("/").includes("employee");window.location.pathname.split("/").includes("employee")&&(E=!1),t.useEffect(()=>{null!=d&&d.includes("application-details")||(null!=d&&d.includes("inbox")||Digit.SessionStorage.del("fsm/inbox/searchParams"),null!=d&&d.includes("search")&&Digit.SessionStorage.del("fsm/search/searchParams")),null!=d&&d.includes("dss")||Digit.SessionStorage.del("DSS_FILTERS"),"/digit-ui/employee"===(null==d?void 0:d.toString())&&(Digit.SessionStorage.del("SEARCH_APPLICATION_DETAIL"),Digit.SessionStorage.del("WS_EDIT_APPLICATION_DETAILS")),"/digit-ui/citizen"!==(null==d?void 0:d.toString())&&"/digit-ui/employee"!==(null==d?void 0:d.toString())||Digit.SessionStorage.del("WS_DISCONNECTION")},[d]),c.listen(()=>{var e;null===(e=window)||void 0===e||e.scrollTo({top:0,left:0,behavior:"smooth"})});const y={stateInfo:g,userDetails:p,CITIZEN:E,cityDetails:m,mobileView:f<=640,handleUserDropdownSelection:e=>{e.func()},logoUrl:u,DSO:h,stateCode:i,modules:l,appTenants:a,sourceUrl:window.location.origin+"/citizen",pathname:d,initData:s};return n.createElement(o.Switch,null,n.createElement(o.Route,{path:"/digit-ui/employee"},n.createElement(ut,y)),n.createElement(o.Route,{path:"/digit-ui/citizen"},n.createElement(In,y)),n.createElement(o.Route,null,n.createElement(o.Redirect,{to:"/digit-ui/citizen"})))},Tn=[c],xn=("object"==typeof window&&window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__?window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({}):s.compose)(s.applyMiddleware(...Tn)),An=function(e,t){return void 0===t&&(t={}),s.createStore(((e,t)=>{return s.combineReducers({common:(n=e,function(e,t){switch(void 0===e&&(e=n),t.type){case"LANGUAGE_SELECT":return{...e,selectedLanguage:t.payload};default:return e}}),...t});var n})(e,t),xn)},Ln=e=>{var t;let{stateCode:r,enabledModules:u,moduleReducers:s}=e;const{isLoading:c,data:d}=Digit.Hooks.useInitStore(r,u);return c?n.createElement(a.Loader,{page:!0}):(l.getI18n(),n.createElement(i.Provider,{store:An(d,s(d))},n.createElement(o.BrowserRouter,null,n.createElement(a.Body,null,n.createElement(Dn,{initData:d,stateCode:r,modules:null==d?void 0:d.modules,appTenants:d.tenants,logoUrl:null==d||null===(t=d.stateInfo)||void 0===t?void 0:t.logoUrl})))))},Rn={SelectOtp:S,AcknowledgementCF:Et,CitizenFeedback:_n};exports.DigitUI=e=>{let{stateCode:i,registry:o,enabledModules:l,moduleReducers:a}=e;const[u,s]=t.useState(Digit.Utils.getPrivacyObject()||{}),c=(Digit.UserService.getType(),new r.QueryClient({defaultOptions:{queries:{staleTime:9e5,cacheTime:3e6,retryDelay:e=>Infinity,retry:!1}}})),d=Digit.Contexts.ComponentProvider,f=Digit.Contexts.PrivacyProvider;return Digit.UserService.hasAccess(["FSM_DSO"]),n.createElement("div",null,n.createElement(Ue,null,n.createElement(r.QueryClientProvider,{client:c},n.createElement(d.Provider,{value:o},n.createElement(f.Provider,{value:{privacy:null==u?void 0:u[window.location.pathname],resetPrivacy:e=>{Digit.Utils.setPrivacyObject({}),s({})},getPrivacy:()=>{const e=Digit.Utils.getPrivacyObject();return s(e),e},updatePrivacyDescoped:e=>{const t=Digit.Utils.getAllPrivacyObject(),n={...t,[window.location.pathname]:e};Digit.Utils.setPrivacyObject({...n}),s((null==t?void 0:t[window.location.pathname])||{})},updatePrivacy:(e,t)=>{s(Digit.Utils.updatePrivacy(e,t)||{})}}},n.createElement(Ln,{stateCode:i,enabledModules:l,moduleReducers:a}))))))},exports.initCoreComponents=()=>{Object.entries(Rn).forEach(e=>{let[t,n]=e;Digit.ComponentRegistryService.setComponent(t,n)})};
+function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
+
+var React = require('react');
+var React__default = _interopDefault(React);
+var reactQuery = require('react-query');
+var reactRedux = require('react-redux');
+var reactRouterDom = require('react-router-dom');
+var reactI18next = require('react-i18next');
+var digitUiReactComponents = require('@egovernments/digit-ui-react-components');
+var ReactTooltip = _interopDefault(require('react-tooltip'));
+var redux = require('redux');
+var thunk = _interopDefault(require('redux-thunk'));
+
+const processLinkData = (newData, code, t) => {
+  const obj = newData === null || newData === void 0 ? void 0 : newData["" + code];
+  if (obj) {
+    obj.map(link => {
+      link.link = link["navigationURL"], link.i18nKey = t(link["name"]);
+    });
+  }
+  const newObj = {
+    links: obj === null || obj === void 0 ? void 0 : obj.reverse(),
+    header: Digit.Utils.locale.getTransformedLocale("ACTION_TEST_" + code),
+    iconName: "CITIZEN_" + code + "_ICON"
+  };
+  if (code === "FSM") {
+    const roleBasedLoginRoutes = [{
+      role: "FSM_DSO",
+      from: "/digit-ui/citizen/fsm/dso-dashboard",
+      dashoardLink: "CS_LINK_DSO_DASHBOARD",
+      loginLink: "CS_LINK_LOGIN_DSO"
+    }];
+    roleBasedLoginRoutes.map(_ref => {
+      var _newObj$links, _newObj$links2;
+      let {
+        role,
+        from,
+        loginLink,
+        dashoardLink
+      } = _ref;
+      if (Digit.UserService.hasAccess(role)) newObj === null || newObj === void 0 ? void 0 : (_newObj$links = newObj.links) === null || _newObj$links === void 0 ? void 0 : _newObj$links.push({
+        link: from,
+        i18nKey: t(dashoardLink)
+      });else newObj === null || newObj === void 0 ? void 0 : (_newObj$links2 = newObj.links) === null || _newObj$links2 === void 0 ? void 0 : _newObj$links2.push({
+        link: "/digit-ui/citizen/login",
+        state: {
+          role: "FSM_DSO",
+          from
+        },
+        i18nKey: t(loginLink)
+      });
+    });
+  }
+  return newObj;
+};
+const iconSelector = code => {
+  switch (code) {
+    case "PT":
+      return /*#__PURE__*/React__default.createElement(digitUiReactComponents.PTIcon, {
+        className: "fill-path-primary-main"
+      });
+    case "WS":
+      return /*#__PURE__*/React__default.createElement(digitUiReactComponents.WSICon, {
+        className: "fill-path-primary-main"
+      });
+    case "FSM":
+      return /*#__PURE__*/React__default.createElement(digitUiReactComponents.FSMIcon, {
+        className: "fill-path-primary-main"
+      });
+    case "MCollect":
+      return /*#__PURE__*/React__default.createElement(digitUiReactComponents.MCollectIcon, {
+        className: "fill-path-primary-main"
+      });
+    case "PGR":
+      return /*#__PURE__*/React__default.createElement(digitUiReactComponents.PGRIcon, {
+        className: "fill-path-primary-main"
+      });
+    case "TL":
+      return /*#__PURE__*/React__default.createElement(digitUiReactComponents.TLIcon, {
+        className: "fill-path-primary-main"
+      });
+    case "OBPS":
+      return /*#__PURE__*/React__default.createElement(digitUiReactComponents.OBPSIcon, {
+        className: "fill-path-primary-main"
+      });
+    case "Bills":
+      return /*#__PURE__*/React__default.createElement(digitUiReactComponents.BillsIcon, {
+        className: "fill-path-primary-main"
+      });
+    default:
+      return /*#__PURE__*/React__default.createElement(digitUiReactComponents.PTIcon, {
+        className: "fill-path-primary-main"
+      });
+  }
+};
+const CitizenHome = _ref2 => {
+  let {
+    modules,
+    getCitizenMenu,
+    fetchedCitizen,
+    isLoading
+  } = _ref2;
+  const paymentModule = modules.filter(_ref3 => {
+    let {
+      code
+    } = _ref3;
+    return code === "Payment";
+  })[0];
+  const moduleArr = modules.filter(_ref4 => {
+    let {
+      code
+    } = _ref4;
+    return code !== "Payment";
+  });
+  const moduleArray = [paymentModule, ...moduleArr];
+  const {
+    t
+  } = reactI18next.useTranslation();
+  if (isLoading) {
+    return /*#__PURE__*/React__default.createElement(digitUiReactComponents.Loader, null);
+  }
+  return /*#__PURE__*/React__default.createElement(React__default.Fragment, null, /*#__PURE__*/React__default.createElement("div", {
+    className: "citizen-all-services-wrapper"
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.BackButton, null), /*#__PURE__*/React__default.createElement("div", {
+    className: "citizenAllServiceGrid",
+    style: {
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center"
+    }
+  }, moduleArray.filter(mod => mod).map((_ref5, index) => {
+    var _mdmsDataObj, _mdmsDataObj$links;
+    let {
+      code
+    } = _ref5;
+    let mdmsDataObj;
+    if (fetchedCitizen) mdmsDataObj = fetchedCitizen ? processLinkData(getCitizenMenu, code, t) : undefined;
+    if (((_mdmsDataObj = mdmsDataObj) === null || _mdmsDataObj === void 0 ? void 0 : (_mdmsDataObj$links = _mdmsDataObj.links) === null || _mdmsDataObj$links === void 0 ? void 0 : _mdmsDataObj$links.length) > 0) {
+      var _mdmsDataObj2, _mdmsDataObj3, _mdmsDataObj3$links, _mdmsDataObj3$links$f;
+      return /*#__PURE__*/React__default.createElement(digitUiReactComponents.CitizenHomeCard, {
+        header: t((_mdmsDataObj2 = mdmsDataObj) === null || _mdmsDataObj2 === void 0 ? void 0 : _mdmsDataObj2.header),
+        links: (_mdmsDataObj3 = mdmsDataObj) === null || _mdmsDataObj3 === void 0 ? void 0 : (_mdmsDataObj3$links = _mdmsDataObj3.links) === null || _mdmsDataObj3$links === void 0 ? void 0 : (_mdmsDataObj3$links$f = _mdmsDataObj3$links.filter(ele => ele === null || ele === void 0 ? void 0 : ele.link)) === null || _mdmsDataObj3$links$f === void 0 ? void 0 : _mdmsDataObj3$links$f.sort((x, y) => (x === null || x === void 0 ? void 0 : x.orderNumber) - (y === null || y === void 0 ? void 0 : y.orderNumber)),
+        Icon: () => iconSelector(code),
+        Info: code === "OBPS" ? () => /*#__PURE__*/React__default.createElement(digitUiReactComponents.CitizenInfoLabel, {
+          style: {
+            margin: "0px",
+            padding: "10px"
+          },
+          info: t("CS_FILE_APPLICATION_INFO_LABEL"),
+          text: t("BPA_CITIZEN_HOME_STAKEHOLDER_INCLUDES_INFO_LABEL")
+        }) : null,
+        isInfo: code === "OBPS" ? true : false
+      });
+    } else return /*#__PURE__*/React__default.createElement(React__default.Fragment, null);
+  }))));
+};
+const EmployeeHome = _ref6 => {
+  let {
+    modules
+  } = _ref6;
+  if (window.Digit.SessionStorage.get("PT_CREATE_EMP_TRADE_NEW_FORM")) window.Digit.SessionStorage.set("PT_CREATE_EMP_TRADE_NEW_FORM", {});
+  return /*#__PURE__*/React__default.createElement("div", {
+    className: "employee-app-container"
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "ground-container moduleCardWrapper gridModuleWrapper"
+  }, modules.map((_ref7, index) => {
+    let {
+      code
+    } = _ref7;
+    const Card = Digit.ComponentRegistryService.getComponent(code + "Card") || (() => /*#__PURE__*/React__default.createElement(React__default.Fragment, null));
+    return /*#__PURE__*/React__default.createElement(Card, {
+      key: index
+    });
+  })));
+};
+const AppHome = _ref8 => {
+  let {
+    userType,
+    modules,
+    getCitizenMenu,
+    fetchedCitizen,
+    isLoading
+  } = _ref8;
+  if (userType === "citizen") {
+    return /*#__PURE__*/React__default.createElement(CitizenHome, {
+      modules: modules,
+      getCitizenMenu: getCitizenMenu,
+      fetchedCitizen: fetchedCitizen,
+      isLoading: isLoading
+    });
+  }
+  return /*#__PURE__*/React__default.createElement(EmployeeHome, {
+    modules: modules
+  });
+};
+
+const _Pact = /*#__PURE__*/function () {
+  function _Pact() {}
+  _Pact.prototype.then = function (onFulfilled, onRejected) {
+    const result = new _Pact();
+    const state = this.s;
+    if (state) {
+      const callback = state & 1 ? onFulfilled : onRejected;
+      if (callback) {
+        try {
+          _settle(result, 1, callback(this.v));
+        } catch (e) {
+          _settle(result, 2, e);
+        }
+        return result;
+      } else {
+        return this;
+      }
+    }
+    this.o = function (_this) {
+      try {
+        const value = _this.v;
+        if (_this.s & 1) {
+          _settle(result, 1, onFulfilled ? onFulfilled(value) : value);
+        } else if (onRejected) {
+          _settle(result, 1, onRejected(value));
+        } else {
+          _settle(result, 2, value);
+        }
+      } catch (e) {
+        _settle(result, 2, e);
+      }
+    };
+    return result;
+  };
+  return _Pact;
+}();
+function _settle(pact, state, value) {
+  if (!pact.s) {
+    if (value instanceof _Pact) {
+      if (value.s) {
+        if (state & 1) {
+          state = value.s;
+        }
+        value = value.v;
+      } else {
+        value.o = _settle.bind(null, pact, state);
+        return;
+      }
+    }
+    if (value && value.then) {
+      value.then(_settle.bind(null, pact, state), _settle.bind(null, pact, 2));
+      return;
+    }
+    pact.s = state;
+    pact.v = value;
+    const observer = pact.o;
+    if (observer) {
+      observer(pact);
+    }
+  }
+}
+function _isSettledPact(thenable) {
+  return thenable instanceof _Pact && thenable.s & 1;
+}
+function _forTo(array, body, check) {
+  var i = -1,
+    pact,
+    reject;
+  function _cycle(result) {
+    try {
+      while (++i < array.length && (!check || !check())) {
+        result = body(i);
+        if (result && result.then) {
+          if (_isSettledPact(result)) {
+            result = result.v;
+          } else {
+            result.then(_cycle, reject || (reject = _settle.bind(null, pact = new _Pact(), 2)));
+            return;
+          }
+        }
+      }
+      if (pact) {
+        _settle(pact, 1, result);
+      } else {
+        pact = result;
+      }
+    } catch (e) {
+      _settle(pact || (pact = new _Pact()), 2, e);
+    }
+  }
+  _cycle();
+  return pact;
+}
+const _iteratorSymbol = /*#__PURE__*/typeof Symbol !== "undefined" ? Symbol.iterator || (Symbol.iterator = Symbol("Symbol.iterator")) : "@@iterator";
+function _forOf(target, body, check) {
+  if (typeof target[_iteratorSymbol] === "function") {
+    var iterator = target[_iteratorSymbol](),
+      step,
+      pact,
+      reject;
+    function _cycle(result) {
+      try {
+        while (!(step = iterator.next()).done && (!check || !check())) {
+          result = body(step.value);
+          if (result && result.then) {
+            if (_isSettledPact(result)) {
+              result = result.v;
+            } else {
+              result.then(_cycle, reject || (reject = _settle.bind(null, pact = new _Pact(), 2)));
+              return;
+            }
+          }
+        }
+        if (pact) {
+          _settle(pact, 1, result);
+        } else {
+          pact = result;
+        }
+      } catch (e) {
+        _settle(pact || (pact = new _Pact()), 2, e);
+      }
+    }
+    _cycle();
+    if (iterator.return) {
+      var _fixup = function (value) {
+        try {
+          if (!step.done) {
+            iterator.return();
+          }
+        } catch (e) {}
+        return value;
+      };
+      if (pact && pact.then) {
+        return pact.then(_fixup, function (e) {
+          throw _fixup(e);
+        });
+      }
+      _fixup();
+    }
+    return pact;
+  }
+  if (!("length" in target)) {
+    throw new TypeError("Object is not iterable");
+  }
+  var values = [];
+  for (var i = 0; i < target.length; i++) {
+    values.push(target[i]);
+  }
+  return _forTo(values, function (i) {
+    return body(values[i]);
+  }, check);
+}
+const _asyncIteratorSymbol = /*#__PURE__*/typeof Symbol !== "undefined" ? Symbol.asyncIterator || (Symbol.asyncIterator = Symbol("Symbol.asyncIterator")) : "@@asyncIterator";
+function _catch(body, recover) {
+  try {
+    var result = body();
+  } catch (e) {
+    return recover(e);
+  }
+  if (result && result.then) {
+    return result.then(void 0, recover);
+  }
+  return result;
+}
+function _finallyRethrows(body, finalizer) {
+  try {
+    var result = body();
+  } catch (e) {
+    return finalizer(true, e);
+  }
+  if (result && result.then) {
+    return result.then(finalizer.bind(null, false), finalizer.bind(null, true));
+  }
+  return finalizer(false, result);
+}
+
+const loginSteps = [{
+  texts: {
+    header: "CS_LOGIN_PROVIDE_MOBILE_NUMBER",
+    cardText: "CS_LOGIN_TEXT",
+    nextText: "CS_COMMONS_NEXT",
+    submitBarLabel: "CS_COMMONS_NEXT"
+  },
+  inputs: [{
+    label: "CORE_COMMON_MOBILE_NUMBER",
+    type: "text",
+    name: "mobileNumber",
+    error: "ERR_HRMS_INVALID_MOB_NO",
+    componentInFront: "+91",
+    validation: {
+      required: true,
+      minLength: 10,
+      maxLength: 10
+    }
+  }]
+}, {
+  texts: {
+    header: "CS_LOGIN_OTP",
+    cardText: "CS_LOGIN_OTP_TEXT",
+    nextText: "CS_COMMONS_NEXT",
+    submitBarLabel: "CS_COMMONS_NEXT"
+  }
+}, {
+  texts: {
+    header: "CS_LOGIN_PROVIDE_NAME",
+    cardText: "CS_LOGIN_NAME_TEXT",
+    nextText: "CS_COMMONS_NEXT",
+    submitBarLabel: "CS_COMMONS_NEXT"
+  },
+  inputs: [{
+    label: "CORE_COMMON_NAME",
+    type: "text",
+    name: "name",
+    error: "CORE_COMMON_NAME_VALIDMSG",
+    validation: {
+      required: true,
+      minLength: 1,
+      pattern: /^[^{0-9}^\$\"<>?\\\\~!@#$%^()+={}\[\]*,/_:;“”‘’]{1,50}$/i
+    }
+  }]
+}];
+
+const SelectMobileNumber = _ref => {
+  let {
+    t,
+    onSelect,
+    showRegisterLink,
+    mobileNumber,
+    holdingId,
+    onMobileChange,
+    config,
+    canSubmit,
+    CitizenHomePageTenantId
+  } = _ref;
+  const [isCheckBox, setIsCheckBox] = React.useState(false);
+  const [isCCFEnabled, setisCCFEnabled] = React.useState(false);
+  const [mdmsConfig, setMdmsConfig] = React.useState("");
+  const {
+    isLoading,
+    data
+  } = Digit.Hooks.useCustomMDMS(Digit.ULBService.getStateId(), "common-masters", [{
+    name: "CitizenConsentForm"
+  }]);
+  function setTermsAndPolicyDetails(e) {
+    setIsCheckBox(e.target.checked);
+  }
+  const checkDisbaled = () => {
+    if (isCCFEnabled !== null && isCCFEnabled !== void 0 && isCCFEnabled.isCitizenConsentFormEnabled) {
+      return !(mobileNumber.length === 10 && canSubmit && isCheckBox);
+    } else {
+      return !(mobileNumber.length === 10 && canSubmit);
+    }
+  };
+  React.useEffect(() => {
+    var _data$commonMasters, _data$commonMasters$C, _data$commonMasters$C2;
+    if (data !== null && data !== void 0 && (_data$commonMasters = data["common-masters"]) !== null && _data$commonMasters !== void 0 && (_data$commonMasters$C = _data$commonMasters.CitizenConsentForm) !== null && _data$commonMasters$C !== void 0 && (_data$commonMasters$C2 = _data$commonMasters$C[0]) !== null && _data$commonMasters$C2 !== void 0 && _data$commonMasters$C2.isCitizenConsentFormEnabled) {
+      var _data$commonMasters2, _data$commonMasters2$;
+      setisCCFEnabled(data === null || data === void 0 ? void 0 : (_data$commonMasters2 = data["common-masters"]) === null || _data$commonMasters2 === void 0 ? void 0 : (_data$commonMasters2$ = _data$commonMasters2.CitizenConsentForm) === null || _data$commonMasters2$ === void 0 ? void 0 : _data$commonMasters2$[0]);
+    }
+  }, [data]);
+  const onLinkClick = e => {
+    setMdmsConfig(e.target.id);
+  };
+  const checkLabels = () => {
+    var _isCCFEnabled$checkBo;
+    return /*#__PURE__*/React__default.createElement("span", null, isCCFEnabled === null || isCCFEnabled === void 0 ? void 0 : (_isCCFEnabled$checkBo = isCCFEnabled.checkBoxLabels) === null || _isCCFEnabled$checkBo === void 0 ? void 0 : _isCCFEnabled$checkBo.map((data, index) => {
+      var _isCCFEnabled$checkBo2;
+      return /*#__PURE__*/React__default.createElement("span", null, (data === null || data === void 0 ? void 0 : data.linkPrefix) && /*#__PURE__*/React__default.createElement("span", null, t((data === null || data === void 0 ? void 0 : data.linkPrefix) + "_")), (data === null || data === void 0 ? void 0 : data.link) && /*#__PURE__*/React__default.createElement("span", {
+        id: data === null || data === void 0 ? void 0 : data.linkId,
+        onClick: e => {
+          onLinkClick(e);
+        },
+        style: {
+          color: "#a82227",
+          cursor: "pointer"
+        }
+      }, t((data === null || data === void 0 ? void 0 : data.link) + "_")), (data === null || data === void 0 ? void 0 : data.linkPostfix) && /*#__PURE__*/React__default.createElement("span", null, t((data === null || data === void 0 ? void 0 : data.linkPostfix) + "_")), index == (isCCFEnabled === null || isCCFEnabled === void 0 ? void 0 : (_isCCFEnabled$checkBo2 = isCCFEnabled.checkBoxLabels) === null || _isCCFEnabled$checkBo2 === void 0 ? void 0 : _isCCFEnabled$checkBo2.length) - 1 && t("LABEL"));
+    }));
+  };
+  if (isLoading) return /*#__PURE__*/React__default.createElement(digitUiReactComponents.Loader, null);
+  return /*#__PURE__*/React__default.createElement(digitUiReactComponents.FormStep, {
+    isDisabled: checkDisbaled(),
+    onSelect: onSelect,
+    config: config,
+    t: t,
+    componentInFront: "+91",
+    onChange: onMobileChange,
+    value: mobileNumber,
+    holdingId: holdingId,
+    CitizenHomePageTenantId: CitizenHomePageTenantId
+  }, (isCCFEnabled === null || isCCFEnabled === void 0 ? void 0 : isCCFEnabled.isCitizenConsentFormEnabled) && /*#__PURE__*/React__default.createElement("div", null, /*#__PURE__*/React__default.createElement(digitUiReactComponents.CheckBox, {
+    className: "form-field",
+    label: checkLabels(),
+    value: isCheckBox,
+    checked: isCheckBox,
+    style: {
+      marginTop: "5px",
+      marginLeft: "55px"
+    },
+    styles: {
+      marginBottom: "30px"
+    },
+    onChange: setTermsAndPolicyDetails
+  }), /*#__PURE__*/React__default.createElement(digitUiReactComponents.CitizenConsentForm, {
+    styles: {},
+    t: t,
+    isCheckBoxChecked: setTermsAndPolicyDetails,
+    labels: isCCFEnabled === null || isCCFEnabled === void 0 ? void 0 : isCCFEnabled.checkBoxLabels,
+    mdmsConfig: mdmsConfig,
+    setMdmsConfig: setMdmsConfig
+  })));
+};
+
+function useInterval(callback, delay) {
+  const savedCallback = React.useRef();
+  React.useEffect(() => {
+    savedCallback.current = callback;
+  }, [callback]);
+  React.useEffect(() => {
+    function tick() {
+      savedCallback.current();
+    }
+    if (delay !== null) {
+      const timer = setInterval(tick, delay);
+      return () => clearInterval(timer);
+    }
+  }, [delay]);
+}
+
+const SelectOtp = _ref => {
+  let {
+    config,
+    otp,
+    onOtpChange,
+    onResend,
+    onSelect,
+    t,
+    error,
+    userType = "citizen",
+    canSubmit
+  } = _ref;
+  const [timeLeft, setTimeLeft] = React.useState(30);
+  useInterval(() => {
+    setTimeLeft(timeLeft - 1);
+  }, timeLeft > 0 ? 1000 : null);
+  const handleResendOtp = () => {
+    onResend();
+    setTimeLeft(2);
+  };
+  if (userType === "employee") {
+    return /*#__PURE__*/React__default.createElement(React.Fragment, null, /*#__PURE__*/React__default.createElement(digitUiReactComponents.OTPInput, {
+      length: 6,
+      onChange: onOtpChange,
+      value: otp
+    }), timeLeft > 0 ? /*#__PURE__*/React__default.createElement(digitUiReactComponents.CardText, null, t("CS_RESEND_ANOTHER_OTP") + " " + timeLeft + " " + t("CS_RESEND_SECONDS")) : /*#__PURE__*/React__default.createElement("p", {
+      className: "card-text-button",
+      onClick: handleResendOtp
+    }, t("CS_RESEND_OTP")), !error && /*#__PURE__*/React__default.createElement(digitUiReactComponents.CardLabelError, null, t("CS_INVALID_OTP")));
+  }
+  return /*#__PURE__*/React__default.createElement(digitUiReactComponents.FormStep, {
+    onSelect: onSelect,
+    config: config,
+    t: t,
+    isDisabled: !((otp === null || otp === void 0 ? void 0 : otp.length) === 6 && canSubmit)
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.OTPInput, {
+    length: 6,
+    onChange: onOtpChange,
+    value: otp
+  }), timeLeft > 0 ? /*#__PURE__*/React__default.createElement(digitUiReactComponents.CardText, null, t("CS_RESEND_ANOTHER_OTP") + " " + timeLeft + " " + t("CS_RESEND_SECONDS")) : /*#__PURE__*/React__default.createElement("p", {
+    className: "card-text-button",
+    onClick: handleResendOtp
+  }, t("CS_RESEND_OTP")), !error && /*#__PURE__*/React__default.createElement(digitUiReactComponents.CardLabelError, null, t("CS_INVALID_OTP")));
+};
+
+const SelectName = _ref => {
+  let {
+    config,
+    onSelect,
+    t,
+    isDisabled
+  } = _ref;
+  return /*#__PURE__*/React__default.createElement(digitUiReactComponents.FormStep, {
+    config: config,
+    onSelect: onSelect,
+    t: t,
+    isDisabled: isDisabled
+  });
+};
+
+const TYPE_REGISTER = {
+  type: "register"
+};
+const TYPE_LOGIN = {
+  type: "login"
+};
+const DEFAULT_REDIRECT_URL = "/digit-ui/citizen";
+const setCitizenDetail = (userObject, token, tenantId) => {
+  var _JSON$parse, _JSON$parse$value;
+  let locale = (_JSON$parse = JSON.parse(sessionStorage.getItem("Digit.initData"))) === null || _JSON$parse === void 0 ? void 0 : (_JSON$parse$value = _JSON$parse.value) === null || _JSON$parse$value === void 0 ? void 0 : _JSON$parse$value.selectedLanguage;
+  localStorage.setItem("Citizen.tenant-id", tenantId);
+  localStorage.setItem("tenant-id", tenantId);
+  localStorage.setItem("citizen.userRequestObject", JSON.stringify(userObject));
+  localStorage.setItem("locale", locale);
+  localStorage.setItem("Citizen.locale", locale);
+  localStorage.setItem("token", token);
+  localStorage.setItem("Citizen.token", token);
+  localStorage.setItem("user-info", JSON.stringify(userObject));
+  localStorage.setItem("Citizen.user-info", JSON.stringify(userObject));
+};
+const getFromLocation = (state, searchParams) => {
+  return (state === null || state === void 0 ? void 0 : state.from) || (searchParams === null || searchParams === void 0 ? void 0 : searchParams.from) || DEFAULT_REDIRECT_URL;
+};
+const Login = _ref => {
+  var _location$state, _location$state7;
+  let {
+    stateCode,
+    isUserRegistered = true
+  } = _ref;
+  const {
+    t
+  } = reactI18next.useTranslation();
+  const location = reactRouterDom.useLocation();
+  const {
+    path,
+    url
+  } = reactRouterDom.useRouteMatch();
+  const history = reactRouterDom.useHistory();
+  const [user, setUser] = React.useState(null);
+  const [error, setError] = React.useState(null);
+  const [isOtpValid, setIsOtpValid] = React.useState(true);
+  const [tokens, setTokens] = React.useState(null);
+  const [params, setParmas] = React.useState(isUserRegistered ? {} : location === null || location === void 0 ? void 0 : (_location$state = location.state) === null || _location$state === void 0 ? void 0 : _location$state.data);
+  const [errorTO, setErrorTO] = React.useState(null);
+  const searchParams = Digit.Hooks.useQueryParams();
+  const [canSubmitName, setCanSubmitName] = React.useState(false);
+  const [canSubmitOtp, setCanSubmitOtp] = React.useState(true);
+  const [canSubmitNo, setCanSubmitNo] = React.useState(true);
+  React.useEffect(() => {
+    let errorTimeout;
+    if (error) {
+      if (errorTO) {
+        clearTimeout(errorTO);
+        setErrorTO(null);
+      }
+      errorTimeout = setTimeout(() => {
+        setError("");
+      }, 5000);
+      setErrorTO(errorTimeout);
+    }
+    return () => {
+      errorTimeout && clearTimeout(errorTimeout);
+    };
+  }, [error]);
+  React.useEffect(() => {
+    var _location$state2;
+    if (!user) {
+      return;
+    }
+    Digit.SessionStorage.set("citizen.userRequestObject", user);
+    Digit.UserService.setUser(user);
+    setCitizenDetail(user === null || user === void 0 ? void 0 : user.info, user === null || user === void 0 ? void 0 : user.access_token, stateCode);
+    const redirectPath = ((_location$state2 = location.state) === null || _location$state2 === void 0 ? void 0 : _location$state2.from) || DEFAULT_REDIRECT_URL;
+    if (!Digit.ULBService.getCitizenCurrentTenant(true)) {
+      history.replace("/digit-ui/citizen/select-location", {
+        redirectBackTo: redirectPath
+      });
+    } else {
+      history.replace(redirectPath);
+    }
+  }, [user]);
+  const CitizenHomePageTenantId = Digit.SessionStorage.get("CITIZEN.COMMON.HOME.CITY");
+  const stepItems = React.useMemo(() => loginSteps.map(step => {
+    const texts = {};
+    for (const key in step.texts) {
+      texts[key] = t(step.texts[key]);
+    }
+    return {
+      ...step,
+      texts
+    };
+  }, [loginSteps]));
+  const getUserType = () => Digit.UserService.getType();
+  const handleOtpChange = otp => {
+    setParmas({
+      ...params,
+      otp
+    });
+  };
+  const handleMobileChange = event => {
+    const {
+      value
+    } = event.target;
+    if (event.target.name === 'holdingId') {
+      setParmas({
+        ...params,
+        holdingId: value
+      });
+    } else {
+      setParmas({
+        ...params,
+        mobileNumber: value
+      });
+    }
+  };
+  const selectMobileNumber = function (mobileNumber) {
+    try {
+      setCanSubmitNo(false);
+      setParmas({
+        ...params,
+        ...mobileNumber
+      });
+      const data = {
+        ...mobileNumber,
+        tenantId: stateCode,
+        userType: getUserType()
+      };
+      return Promise.resolve(function () {
+        if (isUserRegistered) {
+          return Promise.resolve(sendOtp({
+            otp: {
+              ...data,
+              ...TYPE_LOGIN
+            }
+          })).then(function (_ref2) {
+            var _location$state4;
+            let [res, err] = _ref2;
+            if (!err) {
+              var _location$state3;
+              setCanSubmitNo(true);
+              history.replace(path + "/otp", {
+                from: getFromLocation(location.state, searchParams),
+                role: (_location$state3 = location.state) === null || _location$state3 === void 0 ? void 0 : _location$state3.role
+              });
+              return;
+            } else {
+              setCanSubmitNo(true);
+              if (!(location.state && location.state.role === "FSM_DSO")) {
+                history.push("/digit-ui/citizen/register/name", {
+                  from: getFromLocation(location.state, searchParams),
+                  data: data
+                });
+              }
+            }
+            if ((_location$state4 = location.state) !== null && _location$state4 !== void 0 && _location$state4.role) {
+              var _location$state5;
+              setCanSubmitNo(true);
+              setError(((_location$state5 = location.state) === null || _location$state5 === void 0 ? void 0 : _location$state5.role) === "FSM_DSO" ? t("ES_ERROR_DSO_LOGIN") : "User not registered.");
+            }
+          });
+        } else {
+          return Promise.resolve(sendOtp({
+            otp: {
+              ...data,
+              ...TYPE_REGISTER
+            }
+          })).then(function (_ref3) {
+            let [res, err] = _ref3;
+            if (!err) {
+              setCanSubmitNo(true);
+              history.replace(path + "/otp", {
+                from: getFromLocation(location.state, searchParams)
+              });
+              return;
+            }
+            setCanSubmitNo(true);
+          });
+        }
+      }());
+    } catch (e) {
+      return Promise.reject(e);
+    }
+  };
+  const selectName = function (name) {
+    try {
+      const data = {
+        ...params,
+        tenantId: stateCode,
+        userType: getUserType(),
+        ...name
+      };
+      setParmas({
+        ...params,
+        ...name
+      });
+      setCanSubmitName(true);
+      return Promise.resolve(sendOtp({
+        otp: {
+          ...data,
+          ...TYPE_REGISTER
+        }
+      })).then(function (_ref4) {
+        let [res, err] = _ref4;
+        if (res) {
+          setCanSubmitName(false);
+          history.replace(path + "/otp", {
+            from: getFromLocation(location.state, searchParams)
+          });
+        } else {
+          setCanSubmitName(false);
+        }
+      });
+    } catch (e) {
+      return Promise.reject(e);
+    }
+  };
+  const selectOtp = function () {
+    try {
+      return Promise.resolve(_catch(function () {
+        setIsOtpValid(true);
+        setCanSubmitOtp(false);
+        const {
+          mobileNumber,
+          otp,
+          name
+        } = params;
+        return function () {
+          if (isUserRegistered) {
+            const requestData = {
+              username: mobileNumber,
+              password: otp,
+              tenantId: stateCode,
+              userType: getUserType()
+            };
+            return Promise.resolve(Digit.UserService.authenticate(requestData)).then(function (_ref5) {
+              var _location$state6, _window, _window$globalConfigs;
+              let {
+                ResponseInfo,
+                UserRequest: info,
+                ...tokens
+              } = _ref5;
+              if ((_location$state6 = location.state) !== null && _location$state6 !== void 0 && _location$state6.role) {
+                const roleInfo = info.roles.find(userRole => userRole.code === location.state.role);
+                if (!roleInfo || !roleInfo.code) {
+                  setError(t("ES_ERROR_USER_NOT_PERMITTED"));
+                  setTimeout(() => history.replace(DEFAULT_REDIRECT_URL), 5000);
+                  return;
+                }
+              }
+              if ((_window = window) !== null && _window !== void 0 && (_window$globalConfigs = _window.globalConfigs) !== null && _window$globalConfigs !== void 0 && _window$globalConfigs.getConfig("ENABLE_SINGLEINSTANCE")) {
+                info.tenantId = Digit.ULBService.getStateId();
+              }
+              setUser({
+                info,
+                ...tokens
+              });
+            });
+          } else {
+            const _temp = function () {
+              if (!isUserRegistered) {
+                const requestData = {
+                  name,
+                  username: mobileNumber,
+                  otpReference: otp,
+                  tenantId: stateCode
+                };
+                return Promise.resolve(Digit.UserService.registerUser(requestData, stateCode)).then(function (_ref6) {
+                  var _window2, _window2$globalConfig;
+                  let {
+                    ResponseInfo,
+                    UserRequest: info,
+                    ...tokens
+                  } = _ref6;
+                  if ((_window2 = window) !== null && _window2 !== void 0 && (_window2$globalConfig = _window2.globalConfigs) !== null && _window2$globalConfig !== void 0 && _window2$globalConfig.getConfig("ENABLE_SINGLEINSTANCE")) {
+                    info.tenantId = Digit.ULBService.getStateId();
+                  }
+                  setUser({
+                    info,
+                    ...tokens
+                  });
+                });
+              }
+            }();
+            if (_temp && _temp.then) return _temp.then(function () {});
+          }
+        }();
+      }, function () {
+        setCanSubmitOtp(true);
+        setIsOtpValid(false);
+      }));
+    } catch (e) {
+      return Promise.reject(e);
+    }
+  };
+  const resendOtp = function () {
+    try {
+      const {
+        mobileNumber
+      } = params;
+      const data = {
+        mobileNumber,
+        tenantId: stateCode,
+        userType: getUserType()
+      };
+      const _temp3 = function () {
+        if (!isUserRegistered) {
+          return Promise.resolve(sendOtp({
+            otp: {
+              ...data,
+              ...TYPE_REGISTER
+            }
+          })).then(function () {});
+        } else {
+          const _temp2 = function () {
+            if (isUserRegistered) {
+              return Promise.resolve(sendOtp({
+                otp: {
+                  ...data,
+                  ...TYPE_LOGIN
+                }
+              })).then(function () {});
+            }
+          }();
+          if (_temp2 && _temp2.then) return _temp2.then(function () {});
+        }
+      }();
+      return Promise.resolve(_temp3 && _temp3.then ? _temp3.then(function () {}) : void 0);
+    } catch (e) {
+      return Promise.reject(e);
+    }
+  };
+  const sendOtp = function (data) {
+    return Promise.resolve(_catch(function () {
+      return Promise.resolve(Digit.UserService.sendOtp(data, stateCode)).then(function (res) {
+        return [res, null];
+      });
+    }, function (err) {
+      return [null, err];
+    }));
+  };
+  return /*#__PURE__*/React__default.createElement("div", {
+    className: "citizen-form-wrapper"
+  }, /*#__PURE__*/React__default.createElement(reactRouterDom.Switch, null, /*#__PURE__*/React__default.createElement(digitUiReactComponents.AppContainer, null, /*#__PURE__*/React__default.createElement(digitUiReactComponents.BackButton, null), /*#__PURE__*/React__default.createElement(reactRouterDom.Route, {
+    path: "" + path,
+    exact: true
+  }, /*#__PURE__*/React__default.createElement(SelectMobileNumber, {
+    onSelect: selectMobileNumber,
+    config: stepItems[0],
+    mobileNumber: params.mobileNumber || "",
+    holdingId: params.holdingId || "",
+    onMobileChange: handleMobileChange,
+    canSubmit: canSubmitNo,
+    showRegisterLink: isUserRegistered && !((_location$state7 = location.state) !== null && _location$state7 !== void 0 && _location$state7.role),
+    CitizenHomePageTenantId: CitizenHomePageTenantId,
+    t: t
+  })), /*#__PURE__*/React__default.createElement(reactRouterDom.Route, {
+    path: path + "/otp"
+  }, /*#__PURE__*/React__default.createElement(SelectOtp, {
+    config: {
+      ...stepItems[1],
+      texts: {
+        ...stepItems[1].texts,
+        cardText: stepItems[1].texts.cardText + " " + (params.mobileNumber || "")
+      }
+    },
+    onOtpChange: handleOtpChange,
+    onResend: resendOtp,
+    onSelect: selectOtp,
+    otp: params.otp,
+    error: isOtpValid,
+    canSubmit: canSubmitOtp,
+    t: t
+  })), /*#__PURE__*/React__default.createElement(reactRouterDom.Route, {
+    path: path + "/name"
+  }, /*#__PURE__*/React__default.createElement(SelectName, {
+    config: stepItems[2],
+    onSelect: selectName,
+    t: t,
+    isDisabled: canSubmitName
+  })), error && /*#__PURE__*/React__default.createElement(digitUiReactComponents.Toast, {
+    error: true,
+    label: error,
+    onClose: () => setError(null)
+  }))));
+};
+
+const loginConfig = [{
+  texts: {
+    header: "CORE_COMMON_LOGIN",
+    submitButtonLabel: "CORE_COMMON_CONTINUE",
+    secondaryButtonLabel: "CORE_COMMON_FORGOT_PASSWORD"
+  },
+  inputs: [{
+    label: "CORE_LOGIN_USERNAME",
+    type: "text",
+    name: "username",
+    error: "ERR_HRMS_INVALID_USER_ID"
+  }, {
+    label: "CORE_LOGIN_PASSWORD",
+    type: "password",
+    name: "password",
+    error: "ERR_HRMS_WRONG_PASSWORD"
+  }, {
+    label: "CORE_COMMON_CITY",
+    type: "custom",
+    name: "city",
+    error: "ERR_HRMS_INVALID_CITY"
+  }]
+}];
+
+function _extends() {
+  _extends = Object.assign ? Object.assign.bind() : function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+    return target;
+  };
+  return _extends.apply(this, arguments);
+}
+
+var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
+
+function createCommonjsModule(fn, module) {
+	return module = { exports: {} }, fn(module, module.exports), module.exports;
+}
+
+var b = "function" === typeof Symbol && Symbol.for,
+  c = b ? Symbol.for("react.element") : 60103,
+  d = b ? Symbol.for("react.portal") : 60106,
+  e = b ? Symbol.for("react.fragment") : 60107,
+  f = b ? Symbol.for("react.strict_mode") : 60108,
+  g = b ? Symbol.for("react.profiler") : 60114,
+  h = b ? Symbol.for("react.provider") : 60109,
+  k = b ? Symbol.for("react.context") : 60110,
+  l = b ? Symbol.for("react.async_mode") : 60111,
+  m = b ? Symbol.for("react.concurrent_mode") : 60111,
+  n = b ? Symbol.for("react.forward_ref") : 60112,
+  p = b ? Symbol.for("react.suspense") : 60113,
+  q = b ? Symbol.for("react.suspense_list") : 60120,
+  r = b ? Symbol.for("react.memo") : 60115,
+  t = b ? Symbol.for("react.lazy") : 60116,
+  v = b ? Symbol.for("react.block") : 60121,
+  w = b ? Symbol.for("react.fundamental") : 60117,
+  x = b ? Symbol.for("react.responder") : 60118,
+  y = b ? Symbol.for("react.scope") : 60119;
+function z(a) {
+  if ("object" === typeof a && null !== a) {
+    var u = a.$$typeof;
+    switch (u) {
+      case c:
+        switch (a = a.type, a) {
+          case l:
+          case m:
+          case e:
+          case g:
+          case f:
+          case p:
+            return a;
+          default:
+            switch (a = a && a.$$typeof, a) {
+              case k:
+              case n:
+              case t:
+              case r:
+              case h:
+                return a;
+              default:
+                return u;
+            }
+        }
+      case d:
+        return u;
+    }
+  }
+}
+function A(a) {
+  return z(a) === m;
+}
+var AsyncMode = l;
+var ConcurrentMode = m;
+var ContextConsumer = k;
+var ContextProvider = h;
+var Element = c;
+var ForwardRef = n;
+var Fragment = e;
+var Lazy = t;
+var Memo = r;
+var Portal = d;
+var Profiler = g;
+var StrictMode = f;
+var Suspense = p;
+var isAsyncMode = function (a) {
+  return A(a) || z(a) === l;
+};
+var isConcurrentMode = A;
+var isContextConsumer = function (a) {
+  return z(a) === k;
+};
+var isContextProvider = function (a) {
+  return z(a) === h;
+};
+var isElement = function (a) {
+  return "object" === typeof a && null !== a && a.$$typeof === c;
+};
+var isForwardRef = function (a) {
+  return z(a) === n;
+};
+var isFragment = function (a) {
+  return z(a) === e;
+};
+var isLazy = function (a) {
+  return z(a) === t;
+};
+var isMemo = function (a) {
+  return z(a) === r;
+};
+var isPortal = function (a) {
+  return z(a) === d;
+};
+var isProfiler = function (a) {
+  return z(a) === g;
+};
+var isStrictMode = function (a) {
+  return z(a) === f;
+};
+var isSuspense = function (a) {
+  return z(a) === p;
+};
+var isValidElementType = function (a) {
+  return "string" === typeof a || "function" === typeof a || a === e || a === m || a === g || a === f || a === p || a === q || "object" === typeof a && null !== a && (a.$$typeof === t || a.$$typeof === r || a.$$typeof === h || a.$$typeof === k || a.$$typeof === n || a.$$typeof === w || a.$$typeof === x || a.$$typeof === y || a.$$typeof === v);
+};
+var typeOf = z;
+var reactIs_production_min = {
+  AsyncMode: AsyncMode,
+  ConcurrentMode: ConcurrentMode,
+  ContextConsumer: ContextConsumer,
+  ContextProvider: ContextProvider,
+  Element: Element,
+  ForwardRef: ForwardRef,
+  Fragment: Fragment,
+  Lazy: Lazy,
+  Memo: Memo,
+  Portal: Portal,
+  Profiler: Profiler,
+  StrictMode: StrictMode,
+  Suspense: Suspense,
+  isAsyncMode: isAsyncMode,
+  isConcurrentMode: isConcurrentMode,
+  isContextConsumer: isContextConsumer,
+  isContextProvider: isContextProvider,
+  isElement: isElement,
+  isForwardRef: isForwardRef,
+  isFragment: isFragment,
+  isLazy: isLazy,
+  isMemo: isMemo,
+  isPortal: isPortal,
+  isProfiler: isProfiler,
+  isStrictMode: isStrictMode,
+  isSuspense: isSuspense,
+  isValidElementType: isValidElementType,
+  typeOf: typeOf
+};
+
+var reactIs_development = createCommonjsModule(function (module, exports) {
+
+  if (process.env.NODE_ENV !== "production") {
+    (function () {
+      var hasSymbol = typeof Symbol === 'function' && Symbol.for;
+      var REACT_ELEMENT_TYPE = hasSymbol ? Symbol.for('react.element') : 0xeac7;
+      var REACT_PORTAL_TYPE = hasSymbol ? Symbol.for('react.portal') : 0xeaca;
+      var REACT_FRAGMENT_TYPE = hasSymbol ? Symbol.for('react.fragment') : 0xeacb;
+      var REACT_STRICT_MODE_TYPE = hasSymbol ? Symbol.for('react.strict_mode') : 0xeacc;
+      var REACT_PROFILER_TYPE = hasSymbol ? Symbol.for('react.profiler') : 0xead2;
+      var REACT_PROVIDER_TYPE = hasSymbol ? Symbol.for('react.provider') : 0xeacd;
+      var REACT_CONTEXT_TYPE = hasSymbol ? Symbol.for('react.context') : 0xeace;
+      var REACT_ASYNC_MODE_TYPE = hasSymbol ? Symbol.for('react.async_mode') : 0xeacf;
+      var REACT_CONCURRENT_MODE_TYPE = hasSymbol ? Symbol.for('react.concurrent_mode') : 0xeacf;
+      var REACT_FORWARD_REF_TYPE = hasSymbol ? Symbol.for('react.forward_ref') : 0xead0;
+      var REACT_SUSPENSE_TYPE = hasSymbol ? Symbol.for('react.suspense') : 0xead1;
+      var REACT_SUSPENSE_LIST_TYPE = hasSymbol ? Symbol.for('react.suspense_list') : 0xead8;
+      var REACT_MEMO_TYPE = hasSymbol ? Symbol.for('react.memo') : 0xead3;
+      var REACT_LAZY_TYPE = hasSymbol ? Symbol.for('react.lazy') : 0xead4;
+      var REACT_BLOCK_TYPE = hasSymbol ? Symbol.for('react.block') : 0xead9;
+      var REACT_FUNDAMENTAL_TYPE = hasSymbol ? Symbol.for('react.fundamental') : 0xead5;
+      var REACT_RESPONDER_TYPE = hasSymbol ? Symbol.for('react.responder') : 0xead6;
+      var REACT_SCOPE_TYPE = hasSymbol ? Symbol.for('react.scope') : 0xead7;
+      function isValidElementType(type) {
+        return typeof type === 'string' || typeof type === 'function' || type === REACT_FRAGMENT_TYPE || type === REACT_CONCURRENT_MODE_TYPE || type === REACT_PROFILER_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || typeof type === 'object' && type !== null && (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_FUNDAMENTAL_TYPE || type.$$typeof === REACT_RESPONDER_TYPE || type.$$typeof === REACT_SCOPE_TYPE || type.$$typeof === REACT_BLOCK_TYPE);
+      }
+      function typeOf(object) {
+        if (typeof object === 'object' && object !== null) {
+          var $$typeof = object.$$typeof;
+          switch ($$typeof) {
+            case REACT_ELEMENT_TYPE:
+              var type = object.type;
+              switch (type) {
+                case REACT_ASYNC_MODE_TYPE:
+                case REACT_CONCURRENT_MODE_TYPE:
+                case REACT_FRAGMENT_TYPE:
+                case REACT_PROFILER_TYPE:
+                case REACT_STRICT_MODE_TYPE:
+                case REACT_SUSPENSE_TYPE:
+                  return type;
+                default:
+                  var $$typeofType = type && type.$$typeof;
+                  switch ($$typeofType) {
+                    case REACT_CONTEXT_TYPE:
+                    case REACT_FORWARD_REF_TYPE:
+                    case REACT_LAZY_TYPE:
+                    case REACT_MEMO_TYPE:
+                    case REACT_PROVIDER_TYPE:
+                      return $$typeofType;
+                    default:
+                      return $$typeof;
+                  }
+              }
+            case REACT_PORTAL_TYPE:
+              return $$typeof;
+          }
+        }
+        return undefined;
+      }
+      var AsyncMode = REACT_ASYNC_MODE_TYPE;
+      var ConcurrentMode = REACT_CONCURRENT_MODE_TYPE;
+      var ContextConsumer = REACT_CONTEXT_TYPE;
+      var ContextProvider = REACT_PROVIDER_TYPE;
+      var Element = REACT_ELEMENT_TYPE;
+      var ForwardRef = REACT_FORWARD_REF_TYPE;
+      var Fragment = REACT_FRAGMENT_TYPE;
+      var Lazy = REACT_LAZY_TYPE;
+      var Memo = REACT_MEMO_TYPE;
+      var Portal = REACT_PORTAL_TYPE;
+      var Profiler = REACT_PROFILER_TYPE;
+      var StrictMode = REACT_STRICT_MODE_TYPE;
+      var Suspense = REACT_SUSPENSE_TYPE;
+      var hasWarnedAboutDeprecatedIsAsyncMode = false;
+      function isAsyncMode(object) {
+        {
+          if (!hasWarnedAboutDeprecatedIsAsyncMode) {
+            hasWarnedAboutDeprecatedIsAsyncMode = true;
+            console['warn']('The ReactIs.isAsyncMode() alias has been deprecated, ' + 'and will be removed in React 17+. Update your code to use ' + 'ReactIs.isConcurrentMode() instead. It has the exact same API.');
+          }
+        }
+        return isConcurrentMode(object) || typeOf(object) === REACT_ASYNC_MODE_TYPE;
+      }
+      function isConcurrentMode(object) {
+        return typeOf(object) === REACT_CONCURRENT_MODE_TYPE;
+      }
+      function isContextConsumer(object) {
+        return typeOf(object) === REACT_CONTEXT_TYPE;
+      }
+      function isContextProvider(object) {
+        return typeOf(object) === REACT_PROVIDER_TYPE;
+      }
+      function isElement(object) {
+        return typeof object === 'object' && object !== null && object.$$typeof === REACT_ELEMENT_TYPE;
+      }
+      function isForwardRef(object) {
+        return typeOf(object) === REACT_FORWARD_REF_TYPE;
+      }
+      function isFragment(object) {
+        return typeOf(object) === REACT_FRAGMENT_TYPE;
+      }
+      function isLazy(object) {
+        return typeOf(object) === REACT_LAZY_TYPE;
+      }
+      function isMemo(object) {
+        return typeOf(object) === REACT_MEMO_TYPE;
+      }
+      function isPortal(object) {
+        return typeOf(object) === REACT_PORTAL_TYPE;
+      }
+      function isProfiler(object) {
+        return typeOf(object) === REACT_PROFILER_TYPE;
+      }
+      function isStrictMode(object) {
+        return typeOf(object) === REACT_STRICT_MODE_TYPE;
+      }
+      function isSuspense(object) {
+        return typeOf(object) === REACT_SUSPENSE_TYPE;
+      }
+      exports.AsyncMode = AsyncMode;
+      exports.ConcurrentMode = ConcurrentMode;
+      exports.ContextConsumer = ContextConsumer;
+      exports.ContextProvider = ContextProvider;
+      exports.Element = Element;
+      exports.ForwardRef = ForwardRef;
+      exports.Fragment = Fragment;
+      exports.Lazy = Lazy;
+      exports.Memo = Memo;
+      exports.Portal = Portal;
+      exports.Profiler = Profiler;
+      exports.StrictMode = StrictMode;
+      exports.Suspense = Suspense;
+      exports.isAsyncMode = isAsyncMode;
+      exports.isConcurrentMode = isConcurrentMode;
+      exports.isContextConsumer = isContextConsumer;
+      exports.isContextProvider = isContextProvider;
+      exports.isElement = isElement;
+      exports.isForwardRef = isForwardRef;
+      exports.isFragment = isFragment;
+      exports.isLazy = isLazy;
+      exports.isMemo = isMemo;
+      exports.isPortal = isPortal;
+      exports.isProfiler = isProfiler;
+      exports.isStrictMode = isStrictMode;
+      exports.isSuspense = isSuspense;
+      exports.isValidElementType = isValidElementType;
+      exports.typeOf = typeOf;
+    })();
+  }
+});
+
+var reactIs = createCommonjsModule(function (module) {
+
+  if (process.env.NODE_ENV === 'production') {
+    module.exports = reactIs_production_min;
+  } else {
+    module.exports = reactIs_development;
+  }
+});
+
+var getOwnPropertySymbols = Object.getOwnPropertySymbols;
+var hasOwnProperty = Object.prototype.hasOwnProperty;
+var propIsEnumerable = Object.prototype.propertyIsEnumerable;
+function toObject(val) {
+  if (val === null || val === undefined) {
+    throw new TypeError('Object.assign cannot be called with null or undefined');
+  }
+  return Object(val);
+}
+function shouldUseNative() {
+  try {
+    if (!Object.assign) {
+      return false;
+    }
+    var test1 = new String('abc');
+    test1[5] = 'de';
+    if (Object.getOwnPropertyNames(test1)[0] === '5') {
+      return false;
+    }
+    var test2 = {};
+    for (var i = 0; i < 10; i++) {
+      test2['_' + String.fromCharCode(i)] = i;
+    }
+    var order2 = Object.getOwnPropertyNames(test2).map(function (n) {
+      return test2[n];
+    });
+    if (order2.join('') !== '0123456789') {
+      return false;
+    }
+    var test3 = {};
+    'abcdefghijklmnopqrst'.split('').forEach(function (letter) {
+      test3[letter] = letter;
+    });
+    if (Object.keys(Object.assign({}, test3)).join('') !== 'abcdefghijklmnopqrst') {
+      return false;
+    }
+    return true;
+  } catch (err) {
+    return false;
+  }
+}
+var objectAssign = shouldUseNative() ? Object.assign : function (target, source) {
+  var from;
+  var to = toObject(target);
+  var symbols;
+  for (var s = 1; s < arguments.length; s++) {
+    from = Object(arguments[s]);
+    for (var key in from) {
+      if (hasOwnProperty.call(from, key)) {
+        to[key] = from[key];
+      }
+    }
+    if (getOwnPropertySymbols) {
+      symbols = getOwnPropertySymbols(from);
+      for (var i = 0; i < symbols.length; i++) {
+        if (propIsEnumerable.call(from, symbols[i])) {
+          to[symbols[i]] = from[symbols[i]];
+        }
+      }
+    }
+  }
+  return to;
+};
+
+var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
+var ReactPropTypesSecret_1 = ReactPropTypesSecret;
+
+var has = Function.call.bind(Object.prototype.hasOwnProperty);
+
+var printWarning = function () {};
+if (process.env.NODE_ENV !== 'production') {
+  var ReactPropTypesSecret$1 = ReactPropTypesSecret_1;
+  var loggedTypeFailures = {};
+  var has$1 = has;
+  printWarning = function (text) {
+    var message = 'Warning: ' + text;
+    if (typeof console !== 'undefined') {
+      console.error(message);
+    }
+    try {
+      throw new Error(message);
+    } catch (x) {}
+  };
+}
+function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
+  if (process.env.NODE_ENV !== 'production') {
+    for (var typeSpecName in typeSpecs) {
+      if (has$1(typeSpecs, typeSpecName)) {
+        var error;
+        try {
+          if (typeof typeSpecs[typeSpecName] !== 'function') {
+            var err = Error((componentName || 'React class') + ': ' + location + ' type `' + typeSpecName + '` is invalid; ' + 'it must be a function, usually from the `prop-types` package, but received `' + typeof typeSpecs[typeSpecName] + '`.' + 'This often happens because of typos such as `PropTypes.function` instead of `PropTypes.func`.');
+            err.name = 'Invariant Violation';
+            throw err;
+          }
+          error = typeSpecs[typeSpecName](values, typeSpecName, componentName, location, null, ReactPropTypesSecret$1);
+        } catch (ex) {
+          error = ex;
+        }
+        if (error && !(error instanceof Error)) {
+          printWarning((componentName || 'React class') + ': type specification of ' + location + ' `' + typeSpecName + '` is invalid; the type checker ' + 'function must return `null` or an `Error` but returned a ' + typeof error + '. ' + 'You may have forgotten to pass an argument to the type checker ' + 'creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and ' + 'shape all require an argument).');
+        }
+        if (error instanceof Error && !(error.message in loggedTypeFailures)) {
+          loggedTypeFailures[error.message] = true;
+          var stack = getStack ? getStack() : '';
+          printWarning('Failed ' + location + ' type: ' + error.message + (stack != null ? stack : ''));
+        }
+      }
+    }
+  }
+}
+checkPropTypes.resetWarningCache = function () {
+  if (process.env.NODE_ENV !== 'production') {
+    loggedTypeFailures = {};
+  }
+};
+var checkPropTypes_1 = checkPropTypes;
+
+var printWarning$1 = function () {};
+if (process.env.NODE_ENV !== 'production') {
+  printWarning$1 = function (text) {
+    var message = 'Warning: ' + text;
+    if (typeof console !== 'undefined') {
+      console.error(message);
+    }
+    try {
+      throw new Error(message);
+    } catch (x) {}
+  };
+}
+function emptyFunctionThatReturnsNull() {
+  return null;
+}
+var factoryWithTypeCheckers = function (isValidElement, throwOnDirectAccess) {
+  var ITERATOR_SYMBOL = typeof Symbol === 'function' && Symbol.iterator;
+  var FAUX_ITERATOR_SYMBOL = '@@iterator';
+  function getIteratorFn(maybeIterable) {
+    var iteratorFn = maybeIterable && (ITERATOR_SYMBOL && maybeIterable[ITERATOR_SYMBOL] || maybeIterable[FAUX_ITERATOR_SYMBOL]);
+    if (typeof iteratorFn === 'function') {
+      return iteratorFn;
+    }
+  }
+  var ANONYMOUS = '<<anonymous>>';
+  var ReactPropTypes = {
+    array: createPrimitiveTypeChecker('array'),
+    bigint: createPrimitiveTypeChecker('bigint'),
+    bool: createPrimitiveTypeChecker('boolean'),
+    func: createPrimitiveTypeChecker('function'),
+    number: createPrimitiveTypeChecker('number'),
+    object: createPrimitiveTypeChecker('object'),
+    string: createPrimitiveTypeChecker('string'),
+    symbol: createPrimitiveTypeChecker('symbol'),
+    any: createAnyTypeChecker(),
+    arrayOf: createArrayOfTypeChecker,
+    element: createElementTypeChecker(),
+    elementType: createElementTypeTypeChecker(),
+    instanceOf: createInstanceTypeChecker,
+    node: createNodeChecker(),
+    objectOf: createObjectOfTypeChecker,
+    oneOf: createEnumTypeChecker,
+    oneOfType: createUnionTypeChecker,
+    shape: createShapeTypeChecker,
+    exact: createStrictShapeTypeChecker
+  };
+  function is(x, y) {
+    if (x === y) {
+      return x !== 0 || 1 / x === 1 / y;
+    } else {
+      return x !== x && y !== y;
+    }
+  }
+  function PropTypeError(message, data) {
+    this.message = message;
+    this.data = data && typeof data === 'object' ? data : {};
+    this.stack = '';
+  }
+  PropTypeError.prototype = Error.prototype;
+  function createChainableTypeChecker(validate) {
+    if (process.env.NODE_ENV !== 'production') {
+      var manualPropTypeCallCache = {};
+      var manualPropTypeWarningCount = 0;
+    }
+    function checkType(isRequired, props, propName, componentName, location, propFullName, secret) {
+      componentName = componentName || ANONYMOUS;
+      propFullName = propFullName || propName;
+      if (secret !== ReactPropTypesSecret_1) {
+        if (throwOnDirectAccess) {
+          var err = new Error('Calling PropTypes validators directly is not supported by the `prop-types` package. ' + 'Use `PropTypes.checkPropTypes()` to call them. ' + 'Read more at http://fb.me/use-check-prop-types');
+          err.name = 'Invariant Violation';
+          throw err;
+        } else if (process.env.NODE_ENV !== 'production' && typeof console !== 'undefined') {
+          var cacheKey = componentName + ':' + propName;
+          if (!manualPropTypeCallCache[cacheKey] && manualPropTypeWarningCount < 3) {
+            printWarning$1('You are manually calling a React.PropTypes validation ' + 'function for the `' + propFullName + '` prop on `' + componentName + '`. This is deprecated ' + 'and will throw in the standalone `prop-types` package. ' + 'You may be seeing this warning due to a third-party PropTypes ' + 'library. See https://fb.me/react-warning-dont-call-proptypes ' + 'for details.');
+            manualPropTypeCallCache[cacheKey] = true;
+            manualPropTypeWarningCount++;
+          }
+        }
+      }
+      if (props[propName] == null) {
+        if (isRequired) {
+          if (props[propName] === null) {
+            return new PropTypeError('The ' + location + ' `' + propFullName + '` is marked as required ' + ('in `' + componentName + '`, but its value is `null`.'));
+          }
+          return new PropTypeError('The ' + location + ' `' + propFullName + '` is marked as required in ' + ('`' + componentName + '`, but its value is `undefined`.'));
+        }
+        return null;
+      } else {
+        return validate(props, propName, componentName, location, propFullName);
+      }
+    }
+    var chainedCheckType = checkType.bind(null, false);
+    chainedCheckType.isRequired = checkType.bind(null, true);
+    return chainedCheckType;
+  }
+  function createPrimitiveTypeChecker(expectedType) {
+    function validate(props, propName, componentName, location, propFullName, secret) {
+      var propValue = props[propName];
+      var propType = getPropType(propValue);
+      if (propType !== expectedType) {
+        var preciseType = getPreciseType(propValue);
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + preciseType + '` supplied to `' + componentName + '`, expected ') + ('`' + expectedType + '`.'), {
+          expectedType: expectedType
+        });
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+  function createAnyTypeChecker() {
+    return createChainableTypeChecker(emptyFunctionThatReturnsNull);
+  }
+  function createArrayOfTypeChecker(typeChecker) {
+    function validate(props, propName, componentName, location, propFullName) {
+      if (typeof typeChecker !== 'function') {
+        return new PropTypeError('Property `' + propFullName + '` of component `' + componentName + '` has invalid PropType notation inside arrayOf.');
+      }
+      var propValue = props[propName];
+      if (!Array.isArray(propValue)) {
+        var propType = getPropType(propValue);
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected an array.'));
+      }
+      for (var i = 0; i < propValue.length; i++) {
+        var error = typeChecker(propValue, i, componentName, location, propFullName + '[' + i + ']', ReactPropTypesSecret_1);
+        if (error instanceof Error) {
+          return error;
+        }
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+  function createElementTypeChecker() {
+    function validate(props, propName, componentName, location, propFullName) {
+      var propValue = props[propName];
+      if (!isValidElement(propValue)) {
+        var propType = getPropType(propValue);
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected a single ReactElement.'));
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+  function createElementTypeTypeChecker() {
+    function validate(props, propName, componentName, location, propFullName) {
+      var propValue = props[propName];
+      if (!reactIs.isValidElementType(propValue)) {
+        var propType = getPropType(propValue);
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected a single ReactElement type.'));
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+  function createInstanceTypeChecker(expectedClass) {
+    function validate(props, propName, componentName, location, propFullName) {
+      if (!(props[propName] instanceof expectedClass)) {
+        var expectedClassName = expectedClass.name || ANONYMOUS;
+        var actualClassName = getClassName(props[propName]);
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + actualClassName + '` supplied to `' + componentName + '`, expected ') + ('instance of `' + expectedClassName + '`.'));
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+  function createEnumTypeChecker(expectedValues) {
+    if (!Array.isArray(expectedValues)) {
+      if (process.env.NODE_ENV !== 'production') {
+        if (arguments.length > 1) {
+          printWarning$1('Invalid arguments supplied to oneOf, expected an array, got ' + arguments.length + ' arguments. ' + 'A common mistake is to write oneOf(x, y, z) instead of oneOf([x, y, z]).');
+        } else {
+          printWarning$1('Invalid argument supplied to oneOf, expected an array.');
+        }
+      }
+      return emptyFunctionThatReturnsNull;
+    }
+    function validate(props, propName, componentName, location, propFullName) {
+      var propValue = props[propName];
+      for (var i = 0; i < expectedValues.length; i++) {
+        if (is(propValue, expectedValues[i])) {
+          return null;
+        }
+      }
+      var valuesString = JSON.stringify(expectedValues, function replacer(key, value) {
+        var type = getPreciseType(value);
+        if (type === 'symbol') {
+          return String(value);
+        }
+        return value;
+      });
+      return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of value `' + String(propValue) + '` ' + ('supplied to `' + componentName + '`, expected one of ' + valuesString + '.'));
+    }
+    return createChainableTypeChecker(validate);
+  }
+  function createObjectOfTypeChecker(typeChecker) {
+    function validate(props, propName, componentName, location, propFullName) {
+      if (typeof typeChecker !== 'function') {
+        return new PropTypeError('Property `' + propFullName + '` of component `' + componentName + '` has invalid PropType notation inside objectOf.');
+      }
+      var propValue = props[propName];
+      var propType = getPropType(propValue);
+      if (propType !== 'object') {
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected an object.'));
+      }
+      for (var key in propValue) {
+        if (has(propValue, key)) {
+          var error = typeChecker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret_1);
+          if (error instanceof Error) {
+            return error;
+          }
+        }
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+  function createUnionTypeChecker(arrayOfTypeCheckers) {
+    if (!Array.isArray(arrayOfTypeCheckers)) {
+      process.env.NODE_ENV !== 'production' ? printWarning$1('Invalid argument supplied to oneOfType, expected an instance of array.') : void 0;
+      return emptyFunctionThatReturnsNull;
+    }
+    for (var i = 0; i < arrayOfTypeCheckers.length; i++) {
+      var checker = arrayOfTypeCheckers[i];
+      if (typeof checker !== 'function') {
+        printWarning$1('Invalid argument supplied to oneOfType. Expected an array of check functions, but ' + 'received ' + getPostfixForTypeWarning(checker) + ' at index ' + i + '.');
+        return emptyFunctionThatReturnsNull;
+      }
+    }
+    function validate(props, propName, componentName, location, propFullName) {
+      var expectedTypes = [];
+      for (var i = 0; i < arrayOfTypeCheckers.length; i++) {
+        var checker = arrayOfTypeCheckers[i];
+        var checkerResult = checker(props, propName, componentName, location, propFullName, ReactPropTypesSecret_1);
+        if (checkerResult == null) {
+          return null;
+        }
+        if (checkerResult.data && has(checkerResult.data, 'expectedType')) {
+          expectedTypes.push(checkerResult.data.expectedType);
+        }
+      }
+      var expectedTypesMessage = expectedTypes.length > 0 ? ', expected one of type [' + expectedTypes.join(', ') + ']' : '';
+      return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` supplied to ' + ('`' + componentName + '`' + expectedTypesMessage + '.'));
+    }
+    return createChainableTypeChecker(validate);
+  }
+  function createNodeChecker() {
+    function validate(props, propName, componentName, location, propFullName) {
+      if (!isNode(props[propName])) {
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` supplied to ' + ('`' + componentName + '`, expected a ReactNode.'));
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+  function invalidValidatorError(componentName, location, propFullName, key, type) {
+    return new PropTypeError((componentName || 'React class') + ': ' + location + ' type `' + propFullName + '.' + key + '` is invalid; ' + 'it must be a function, usually from the `prop-types` package, but received `' + type + '`.');
+  }
+  function createShapeTypeChecker(shapeTypes) {
+    function validate(props, propName, componentName, location, propFullName) {
+      var propValue = props[propName];
+      var propType = getPropType(propValue);
+      if (propType !== 'object') {
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type `' + propType + '` ' + ('supplied to `' + componentName + '`, expected `object`.'));
+      }
+      for (var key in shapeTypes) {
+        var checker = shapeTypes[key];
+        if (typeof checker !== 'function') {
+          return invalidValidatorError(componentName, location, propFullName, key, getPreciseType(checker));
+        }
+        var error = checker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret_1);
+        if (error) {
+          return error;
+        }
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+  function createStrictShapeTypeChecker(shapeTypes) {
+    function validate(props, propName, componentName, location, propFullName) {
+      var propValue = props[propName];
+      var propType = getPropType(propValue);
+      if (propType !== 'object') {
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type `' + propType + '` ' + ('supplied to `' + componentName + '`, expected `object`.'));
+      }
+      var allKeys = objectAssign({}, props[propName], shapeTypes);
+      for (var key in allKeys) {
+        var checker = shapeTypes[key];
+        if (has(shapeTypes, key) && typeof checker !== 'function') {
+          return invalidValidatorError(componentName, location, propFullName, key, getPreciseType(checker));
+        }
+        if (!checker) {
+          return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` key `' + key + '` supplied to `' + componentName + '`.' + '\nBad object: ' + JSON.stringify(props[propName], null, '  ') + '\nValid keys: ' + JSON.stringify(Object.keys(shapeTypes), null, '  '));
+        }
+        var error = checker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret_1);
+        if (error) {
+          return error;
+        }
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+  function isNode(propValue) {
+    switch (typeof propValue) {
+      case 'number':
+      case 'string':
+      case 'undefined':
+        return true;
+      case 'boolean':
+        return !propValue;
+      case 'object':
+        if (Array.isArray(propValue)) {
+          return propValue.every(isNode);
+        }
+        if (propValue === null || isValidElement(propValue)) {
+          return true;
+        }
+        var iteratorFn = getIteratorFn(propValue);
+        if (iteratorFn) {
+          var iterator = iteratorFn.call(propValue);
+          var step;
+          if (iteratorFn !== propValue.entries) {
+            while (!(step = iterator.next()).done) {
+              if (!isNode(step.value)) {
+                return false;
+              }
+            }
+          } else {
+            while (!(step = iterator.next()).done) {
+              var entry = step.value;
+              if (entry) {
+                if (!isNode(entry[1])) {
+                  return false;
+                }
+              }
+            }
+          }
+        } else {
+          return false;
+        }
+        return true;
+      default:
+        return false;
+    }
+  }
+  function isSymbol(propType, propValue) {
+    if (propType === 'symbol') {
+      return true;
+    }
+    if (!propValue) {
+      return false;
+    }
+    if (propValue['@@toStringTag'] === 'Symbol') {
+      return true;
+    }
+    if (typeof Symbol === 'function' && propValue instanceof Symbol) {
+      return true;
+    }
+    return false;
+  }
+  function getPropType(propValue) {
+    var propType = typeof propValue;
+    if (Array.isArray(propValue)) {
+      return 'array';
+    }
+    if (propValue instanceof RegExp) {
+      return 'object';
+    }
+    if (isSymbol(propType, propValue)) {
+      return 'symbol';
+    }
+    return propType;
+  }
+  function getPreciseType(propValue) {
+    if (typeof propValue === 'undefined' || propValue === null) {
+      return '' + propValue;
+    }
+    var propType = getPropType(propValue);
+    if (propType === 'object') {
+      if (propValue instanceof Date) {
+        return 'date';
+      } else if (propValue instanceof RegExp) {
+        return 'regexp';
+      }
+    }
+    return propType;
+  }
+  function getPostfixForTypeWarning(value) {
+    var type = getPreciseType(value);
+    switch (type) {
+      case 'array':
+      case 'object':
+        return 'an ' + type;
+      case 'boolean':
+      case 'date':
+      case 'regexp':
+        return 'a ' + type;
+      default:
+        return type;
+    }
+  }
+  function getClassName(propValue) {
+    if (!propValue.constructor || !propValue.constructor.name) {
+      return ANONYMOUS;
+    }
+    return propValue.constructor.name;
+  }
+  ReactPropTypes.checkPropTypes = checkPropTypes_1;
+  ReactPropTypes.resetWarningCache = checkPropTypes_1.resetWarningCache;
+  ReactPropTypes.PropTypes = ReactPropTypes;
+  return ReactPropTypes;
+};
+
+function emptyFunction() {}
+function emptyFunctionWithReset() {}
+emptyFunctionWithReset.resetWarningCache = emptyFunction;
+var factoryWithThrowingShims = function () {
+  function shim(props, propName, componentName, location, propFullName, secret) {
+    if (secret === ReactPropTypesSecret_1) {
+      return;
+    }
+    var err = new Error('Calling PropTypes validators directly is not supported by the `prop-types` package. ' + 'Use PropTypes.checkPropTypes() to call them. ' + 'Read more at http://fb.me/use-check-prop-types');
+    err.name = 'Invariant Violation';
+    throw err;
+  }
+  shim.isRequired = shim;
+  function getShim() {
+    return shim;
+  }
+  var ReactPropTypes = {
+    array: shim,
+    bigint: shim,
+    bool: shim,
+    func: shim,
+    number: shim,
+    object: shim,
+    string: shim,
+    symbol: shim,
+    any: shim,
+    arrayOf: getShim,
+    element: shim,
+    elementType: shim,
+    instanceOf: getShim,
+    node: shim,
+    objectOf: getShim,
+    oneOf: getShim,
+    oneOfType: getShim,
+    shape: getShim,
+    exact: getShim,
+    checkPropTypes: emptyFunctionWithReset,
+    resetWarningCache: emptyFunction
+  };
+  ReactPropTypes.PropTypes = ReactPropTypes;
+  return ReactPropTypes;
+};
+
+var propTypes = createCommonjsModule(function (module) {
+  if (process.env.NODE_ENV !== 'production') {
+    var ReactIs = reactIs;
+    var throwOnDirectAccess = true;
+    module.exports = factoryWithTypeCheckers(ReactIs.isElement, throwOnDirectAccess);
+  } else {
+    module.exports = factoryWithThrowingShims();
+  }
+});
+
+const Background = _ref => {
+  let {
+    children
+  } = _ref;
+  return /*#__PURE__*/React__default.createElement("div", {
+    className: "banner banner-container",
+    style: {
+      "zIndex": "2"
+    }
+  }, children);
+};
+
+const Header = () => {
+  const {
+    data: storeData,
+    isLoading
+  } = Digit.Hooks.useStore.getInitData();
+  const {
+    t
+  } = reactI18next.useTranslation();
+  if (isLoading) return /*#__PURE__*/React__default.createElement(digitUiReactComponents.Loader, null);
+  return /*#__PURE__*/React__default.createElement("div", {
+    className: "bannerHeader"
+  });
+};
+
+const setEmployeeDetail = (userObject, token) => {
+  var _JSON$parse;
+  let locale = ((_JSON$parse = JSON.parse(sessionStorage.getItem("Digit.locale"))) === null || _JSON$parse === void 0 ? void 0 : _JSON$parse.value) || "en_IN";
+  localStorage.setItem("Employee.tenant-id", userObject === null || userObject === void 0 ? void 0 : userObject.tenantId);
+  localStorage.setItem("tenant-id", userObject === null || userObject === void 0 ? void 0 : userObject.tenantId);
+  localStorage.setItem("citizen.userRequestObject", JSON.stringify(userObject));
+  localStorage.setItem("locale", locale);
+  localStorage.setItem("Employee.locale", locale);
+  localStorage.setItem("token", token);
+  localStorage.setItem("Employee.token", token);
+  localStorage.setItem("user-info", JSON.stringify(userObject));
+  localStorage.setItem("Employee.user-info", JSON.stringify(userObject));
+};
+const Login$1 = _ref => {
+  let {
+    config: propsConfig,
+    t,
+    isDisabled
+  } = _ref;
+  const {
+    data: cities,
+    isLoading
+  } = Digit.Hooks.useTenants();
+  const {
+    data: storeData,
+    isLoading: isStoreLoading
+  } = Digit.Hooks.useStore.getInitData();
+  const [user, setUser] = React.useState(null);
+  const [showToast, setShowToast] = React.useState(null);
+  const [disable, setDisable] = React.useState(false);
+  const history = reactRouterDom.useHistory();
+  React.useEffect(() => {
+    var _user$info, _user$info$roles, _user$info2, _user$info2$roles, _window, _window$location, _window$location$href, _user$info3, _user$info4, _user$info4$roles, _user$info5, _user$info5$roles, _user$info6, _user$info7, _user$info7$roles, _user$info8, _user$info8$roles;
+    if (!user) {
+      return;
+    }
+    Digit.SessionStorage.set("citizen.userRequestObject", user);
+    const filteredRoles = user === null || user === void 0 ? void 0 : (_user$info = user.info) === null || _user$info === void 0 ? void 0 : (_user$info$roles = _user$info.roles) === null || _user$info$roles === void 0 ? void 0 : _user$info$roles.filter(role => role.tenantId === Digit.SessionStorage.get("Employee.tenantId"));
+    if ((user === null || user === void 0 ? void 0 : (_user$info2 = user.info) === null || _user$info2 === void 0 ? void 0 : (_user$info2$roles = _user$info2.roles) === null || _user$info2$roles === void 0 ? void 0 : _user$info2$roles.length) > 0) user.info.roles = filteredRoles;
+    Digit.UserService.setUser(user);
+    setEmployeeDetail(user === null || user === void 0 ? void 0 : user.info, user === null || user === void 0 ? void 0 : user.access_token);
+    let redirectPath = "/digit-ui/employee";
+    if ((_window = window) !== null && _window !== void 0 && (_window$location = _window.location) !== null && _window$location !== void 0 && (_window$location$href = _window$location.href) !== null && _window$location$href !== void 0 && _window$location$href.includes("from=")) {
+      var _window2, _window2$location, _window2$location$hre, _window2$location$hre2;
+      redirectPath = decodeURIComponent((_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$location = _window2.location) === null || _window2$location === void 0 ? void 0 : (_window2$location$hre = _window2$location.href) === null || _window2$location$hre === void 0 ? void 0 : (_window2$location$hre2 = _window2$location$hre.split("from=")) === null || _window2$location$hre2 === void 0 ? void 0 : _window2$location$hre2[1]) || "/digit-ui/employee";
+    }
+    if (user !== null && user !== void 0 && (_user$info3 = user.info) !== null && _user$info3 !== void 0 && _user$info3.roles && (user === null || user === void 0 ? void 0 : (_user$info4 = user.info) === null || _user$info4 === void 0 ? void 0 : (_user$info4$roles = _user$info4.roles) === null || _user$info4$roles === void 0 ? void 0 : _user$info4$roles.length) > 0 && user !== null && user !== void 0 && (_user$info5 = user.info) !== null && _user$info5 !== void 0 && (_user$info5$roles = _user$info5.roles) !== null && _user$info5$roles !== void 0 && _user$info5$roles.every(e => e.code === "NATADMIN")) {
+      redirectPath = "/digit-ui/employee/dss/landing/NURT_DASHBOARD";
+    }
+    if (user !== null && user !== void 0 && (_user$info6 = user.info) !== null && _user$info6 !== void 0 && _user$info6.roles && (user === null || user === void 0 ? void 0 : (_user$info7 = user.info) === null || _user$info7 === void 0 ? void 0 : (_user$info7$roles = _user$info7.roles) === null || _user$info7$roles === void 0 ? void 0 : _user$info7$roles.length) > 0 && user !== null && user !== void 0 && (_user$info8 = user.info) !== null && _user$info8 !== void 0 && (_user$info8$roles = _user$info8.roles) !== null && _user$info8$roles !== void 0 && _user$info8$roles.every(e => e.code === "STADMIN")) {
+      redirectPath = "/digit-ui/employee/dss/landing/home";
+    }
+    history.replace(redirectPath);
+  }, [user]);
+  const onLogin = function (data) {
+    try {
+      function _temp2() {
+        setDisable(false);
+      }
+      if (!data.city) {
+        alert("Please Select City!");
+        return Promise.resolve();
+      }
+      setDisable(true);
+      const requestData = {
+        ...data,
+        userType: "EMPLOYEE"
+      };
+      requestData.tenantId = data.city.code;
+      delete requestData.city;
+      const _temp = _catch(function () {
+        return Promise.resolve(Digit.UserService.authenticate(requestData)).then(function (_ref2) {
+          let {
+            UserRequest: info,
+            ...tokens
+          } = _ref2;
+          Digit.SessionStorage.set("Employee.tenantId", info === null || info === void 0 ? void 0 : info.tenantId);
+          setUser({
+            info,
+            ...tokens
+          });
+        });
+      }, function (err) {
+        var _err$response, _err$response$data;
+        setShowToast((err === null || err === void 0 ? void 0 : (_err$response = err.response) === null || _err$response === void 0 ? void 0 : (_err$response$data = _err$response.data) === null || _err$response$data === void 0 ? void 0 : _err$response$data.error_description) || "Invalid login credentials!");
+        setTimeout(closeToast, 5000);
+      });
+      return Promise.resolve(_temp && _temp.then ? _temp.then(_temp2) : _temp2(_temp));
+    } catch (e) {
+      return Promise.reject(e);
+    }
+  };
+  const closeToast = () => {
+    setShowToast(null);
+  };
+  const onForgotPassword = () => {
+    sessionStorage.getItem("User") && sessionStorage.removeItem("User");
+    history.push("/digit-ui/employee/user/forgot-password");
+  };
+  const [userId, password, city] = propsConfig.inputs;
+  const config = [{
+    body: [{
+      label: t(userId.label),
+      type: userId.type,
+      populators: {
+        name: userId.name
+      },
+      isMandatory: true
+    }, {
+      label: t(password.label),
+      type: password.type,
+      populators: {
+        name: password.name
+      },
+      isMandatory: true
+    }, {
+      label: t(city.label),
+      type: city.type,
+      populators: {
+        name: city.name,
+        customProps: {},
+        component: (props, customProps) => /*#__PURE__*/React__default.createElement(digitUiReactComponents.Dropdown, _extends({
+          option: cities,
+          className: "login-city-dd",
+          optionKey: "i18nKey",
+          select: d => {
+            props.onChange(d);
+          },
+          t: t
+        }, customProps))
+      },
+      isMandatory: true
+    }]
+  }];
+  return isLoading || isStoreLoading ? /*#__PURE__*/React__default.createElement(digitUiReactComponents.Loader, null) : /*#__PURE__*/React__default.createElement(Background, null, /*#__PURE__*/React__default.createElement("div", {
+    className: "employeeBackbuttonAlign"
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.BackButton, {
+    variant: "white",
+    style: {
+      borderBottom: "none"
+    }
+  })), /*#__PURE__*/React__default.createElement(digitUiReactComponents.FormComposer, {
+    onSubmit: onLogin,
+    isDisabled: isDisabled || disable,
+    noBoxShadow: true,
+    inline: true,
+    submitInForm: true,
+    config: config,
+    label: propsConfig.texts.submitButtonLabel,
+    secondaryActionLabel: propsConfig.texts.secondaryButtonLabel,
+    onSecondayActionClick: onForgotPassword,
+    heading: propsConfig.texts.header,
+    headingStyle: {
+      textAlign: "center"
+    },
+    cardStyle: {
+      margin: "auto",
+      minWidth: "408px"
+    },
+    className: "loginFormStyleEmployee",
+    buttonStyle: {
+      maxWidth: "100%",
+      width: "100%",
+      backgroundColor: "#5a1166"
+    }
+  }), showToast && /*#__PURE__*/React__default.createElement(digitUiReactComponents.Toast, {
+    error: true,
+    label: t(showToast),
+    onClose: closeToast
+  }), /*#__PURE__*/React__default.createElement("div", {
+    style: {
+      width: '100%',
+      position: 'fixed',
+      bottom: 0,
+      backgroundColor: "white",
+      textAlign: "center"
+    }
+  }, /*#__PURE__*/React__default.createElement("div", {
+    style: {
+      display: 'flex',
+      justifyContent: 'center',
+      color: "black"
+    }
+  }, /*#__PURE__*/React__default.createElement("span", {
+    style: {
+      cursor: "pointer",
+      fontSize: window.Digit.Utils.browser.isMobile() ? "12px" : "12px",
+      fontWeight: "400"
+    },
+    onClick: () => {
+      window.open('https://www.digit.org/', '_blank').focus();
+    }
+  }, "Powered by DIGIT"), /*#__PURE__*/React__default.createElement("span", {
+    style: {
+      margin: "0 10px",
+      fontSize: window.Digit.Utils.browser.isMobile() ? "12px" : "12px"
+    }
+  }, "|"), /*#__PURE__*/React__default.createElement("a", {
+    style: {
+      cursor: "pointer",
+      fontSize: window.Digit.Utils.browser.isMobile() ? "12px" : "12px",
+      fontWeight: "400"
+    },
+    href: "#",
+    target: "_blank"
+  }, "UPYOG License"), /*#__PURE__*/React__default.createElement("span", {
+    className: "upyog-copyright-footer",
+    style: {
+      margin: "0 10px",
+      fontSize: "12px"
+    }
+  }, "|"), /*#__PURE__*/React__default.createElement("span", {
+    className: "upyog-copyright-footer",
+    style: {
+      cursor: "pointer",
+      fontSize: window.Digit.Utils.browser.isMobile() ? "12px" : "12px",
+      fontWeight: "400"
+    },
+    onClick: () => {
+      window.open('https://niua.in/', '_blank').focus();
+    }
+  }, "Copyright \xA9 2022 National Institute of Urban Affairs")), /*#__PURE__*/React__default.createElement("div", {
+    className: "upyog-copyright-footer-web"
+  }, /*#__PURE__*/React__default.createElement("span", {
+    className: "",
+    style: {
+      cursor: "pointer",
+      fontSize: window.Digit.Utils.browser.isMobile() ? "14px" : "16px",
+      fontWeight: "400"
+    },
+    onClick: () => {
+      window.open('https://niua.in/', '_blank').focus();
+    }
+  }, "Copyright \xA9 2022 National Institute of Urban Affairs"))));
+};
+Login$1.propTypes = {
+  loginParams: propTypes.any
+};
+Login$1.defaultProps = {
+  loginParams: null
+};
+
+const EmployeeLogin = () => {
+  const {
+    t
+  } = reactI18next.useTranslation();
+  const {
+    path
+  } = reactRouterDom.useRouteMatch();
+  const loginParams = React.useMemo(() => loginConfig.map(step => {
+    const texts = {};
+    for (const key in step.texts) {
+      texts[key] = t(step.texts[key]);
+    }
+    return {
+      ...step,
+      texts
+    };
+  }, [loginConfig]));
+  return /*#__PURE__*/React__default.createElement(reactRouterDom.Switch, null, /*#__PURE__*/React__default.createElement(reactRouterDom.Route, {
+    path: "" + path,
+    exact: true
+  }, /*#__PURE__*/React__default.createElement(Login$1, {
+    config: loginParams[0],
+    t: t
+  })));
+};
+
+const config = [{
+  texts: {
+    header: "CORE_COMMON_RESET_PASSWORD_LABEL",
+    submitButtonLabel: "CORE_COMMON_CHANGE_PASSWORD"
+  },
+  inputs: [{
+    label: "CORE_LOGIN_USERNAME",
+    type: "text",
+    name: "userName",
+    error: "ERR_HRMS_INVALID_USERNAME"
+  }, {
+    label: "CORE_LOGIN_NEW_PASSWORD",
+    type: "password",
+    name: "newPassword",
+    error: "CORE_COMMON_REQUIRED_ERRMSG"
+  }, {
+    label: "CORE_LOGIN_CONFIRM_NEW_PASSWORD",
+    type: "password",
+    name: "confirmPassword",
+    error: "CORE_COMMON_REQUIRED_ERRMSG"
+  }]
+}];
+
+const ChangePasswordComponent = _ref => {
+  let {
+    config: propsConfig,
+    t
+  } = _ref;
+  const [user, setUser] = React.useState(null);
+  const {
+    mobile_number: mobileNumber,
+    tenantId
+  } = Digit.Hooks.useQueryParams();
+  const history = reactRouterDom.useHistory();
+  const [otp, setOtp] = React.useState("");
+  const [isOtpValid, setIsOtpValid] = React.useState(true);
+  const [showToast, setShowToast] = React.useState(null);
+  const getUserType = () => Digit.UserService.getType();
+  React.useEffect(() => {
+    var _location$state;
+    if (!user) {
+      Digit.UserService.setType("employee");
+      return;
+    }
+    Digit.UserService.setUser(user);
+    const redirectPath = ((_location$state = location.state) === null || _location$state === void 0 ? void 0 : _location$state.from) || "/digit-ui/employee";
+    history.replace(redirectPath);
+  }, [user]);
+  const closeToast = () => {
+    setShowToast(null);
+  };
+  const onResendOTP = function () {
+    try {
+      function _temp2() {
+        setTimeout(closeToast, 5000);
+      }
+      const requestData = {
+        otp: {
+          mobileNumber,
+          userType: getUserType().toUpperCase(),
+          type: "passwordreset",
+          tenantId
+        }
+      };
+      const _temp = _catch(function () {
+        return Promise.resolve(Digit.UserService.sendOtp(requestData, tenantId)).then(function () {
+          setShowToast(t("ES_OTP_RESEND"));
+        });
+      }, function (err) {
+        var _err$response, _err$response$data;
+        setShowToast((err === null || err === void 0 ? void 0 : (_err$response = err.response) === null || _err$response === void 0 ? void 0 : (_err$response$data = _err$response.data) === null || _err$response$data === void 0 ? void 0 : _err$response$data.error_description) || t("ES_INVALID_LOGIN_CREDENTIALS"));
+      });
+      return Promise.resolve(_temp && _temp.then ? _temp.then(_temp2) : _temp2(_temp));
+    } catch (e) {
+      return Promise.reject(e);
+    }
+  };
+  const onChangePassword = function (data) {
+    try {
+      return Promise.resolve(_catch(function () {
+        if (data.newPassword !== data.confirmPassword) {
+          return setShowToast(t("ERR_PASSWORD_DO_NOT_MATCH"));
+        }
+        const requestData = {
+          ...data,
+          otpReference: otp,
+          tenantId,
+          type: getUserType().toUpperCase()
+        };
+        return Promise.resolve(Digit.UserService.changePassword(requestData, tenantId)).then(function (response) {
+          navigateToLogin();
+        });
+      }, function (err) {
+        var _err$response2, _err$response2$data, _err$response2$data$e, _err$response2$data$e2, _err$response2$data$e3;
+        setShowToast((err === null || err === void 0 ? void 0 : (_err$response2 = err.response) === null || _err$response2 === void 0 ? void 0 : (_err$response2$data = _err$response2.data) === null || _err$response2$data === void 0 ? void 0 : (_err$response2$data$e = _err$response2$data.error) === null || _err$response2$data$e === void 0 ? void 0 : (_err$response2$data$e2 = _err$response2$data$e.fields) === null || _err$response2$data$e2 === void 0 ? void 0 : (_err$response2$data$e3 = _err$response2$data$e2[0]) === null || _err$response2$data$e3 === void 0 ? void 0 : _err$response2$data$e3.message) || t("ES_SOMETHING_WRONG"));
+        setTimeout(closeToast, 5000);
+      }));
+    } catch (e) {
+      return Promise.reject(e);
+    }
+  };
+  const navigateToLogin = () => {
+    history.replace("/digit-ui/employee/user/login");
+  };
+  const [username, password, confirmPassword] = propsConfig.inputs;
+  const config = [{
+    body: [{
+      label: t(username.label),
+      type: username.type,
+      populators: {
+        name: username.name
+      },
+      isMandatory: true
+    }, {
+      label: t(password.label),
+      type: password.type,
+      populators: {
+        name: password.name
+      },
+      isMandatory: true
+    }, {
+      label: t(confirmPassword.label),
+      type: confirmPassword.type,
+      populators: {
+        name: confirmPassword.name
+      },
+      isMandatory: true
+    }]
+  }];
+  return /*#__PURE__*/React__default.createElement(Background, null, /*#__PURE__*/React__default.createElement("div", {
+    className: "employeeBackbuttonAlign"
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.BackButton, {
+    variant: "white",
+    style: {
+      borderBottom: "none"
+    }
+  })), /*#__PURE__*/React__default.createElement(digitUiReactComponents.FormComposer, {
+    onSubmit: onChangePassword,
+    noBoxShadow: true,
+    inline: true,
+    submitInForm: true,
+    config: config,
+    label: propsConfig.texts.submitButtonLabel,
+    cardStyle: {
+      maxWidth: "408px",
+      margin: "auto"
+    },
+    className: "employeeChangePassword"
+  }, /*#__PURE__*/React__default.createElement(Header, null), /*#__PURE__*/React__default.createElement(digitUiReactComponents.CardSubHeader, {
+    style: {
+      textAlign: "center"
+    }
+  }, " ", propsConfig.texts.header, " "), /*#__PURE__*/React__default.createElement(digitUiReactComponents.CardText, null, t("CS_LOGIN_OTP_TEXT") + " ", /*#__PURE__*/React__default.createElement("b", null, " ", "" + t("+ 91 - "), " ", mobileNumber)), /*#__PURE__*/React__default.createElement(SelectOtp, {
+    t: t,
+    userType: "employee",
+    otp: otp,
+    onOtpChange: setOtp,
+    error: isOtpValid,
+    onResend: onResendOTP
+  })), showToast && /*#__PURE__*/React__default.createElement(digitUiReactComponents.Toast, {
+    error: true,
+    label: t(showToast),
+    onClose: closeToast
+  }), /*#__PURE__*/React__default.createElement("div", {
+    style: {
+      width: '100%',
+      position: 'fixed',
+      bottom: 0,
+      backgroundColor: "white",
+      textAlign: "center"
+    }
+  }, /*#__PURE__*/React__default.createElement("div", {
+    style: {
+      display: 'flex',
+      justifyContent: 'center',
+      color: "black"
+    }
+  }, /*#__PURE__*/React__default.createElement("span", {
+    style: {
+      cursor: "pointer",
+      fontSize: window.Digit.Utils.browser.isMobile() ? "12px" : "12px",
+      fontWeight: "400"
+    },
+    onClick: () => {
+      window.open('https://www.digit.org/', '_blank').focus();
+    }
+  }, "Powered by DIGIT"), /*#__PURE__*/React__default.createElement("span", {
+    style: {
+      margin: "0 10px",
+      fontSize: window.Digit.Utils.browser.isMobile() ? "12px" : "12px"
+    }
+  }, "|"), /*#__PURE__*/React__default.createElement("a", {
+    style: {
+      cursor: "pointer",
+      fontSize: window.Digit.Utils.browser.isMobile() ? "12px" : "12px",
+      fontWeight: "400"
+    },
+    href: "#",
+    target: "_blank"
+  }, "UPYOG License"), /*#__PURE__*/React__default.createElement("span", {
+    className: "upyog-copyright-footer",
+    style: {
+      margin: "0 10px",
+      fontSize: "12px"
+    }
+  }, "|"), /*#__PURE__*/React__default.createElement("span", {
+    className: "upyog-copyright-footer",
+    style: {
+      cursor: "pointer",
+      fontSize: window.Digit.Utils.browser.isMobile() ? "12px" : "12px",
+      fontWeight: "400"
+    },
+    onClick: () => {
+      window.open('https://niua.in/', '_blank').focus();
+    }
+  }, "Copyright \xA9 2022 National Institute of Urban Affairs")), /*#__PURE__*/React__default.createElement("div", {
+    className: "upyog-copyright-footer-web"
+  }, /*#__PURE__*/React__default.createElement("span", {
+    className: "",
+    style: {
+      cursor: "pointer",
+      fontSize: window.Digit.Utils.browser.isMobile() ? "14px" : "16px",
+      fontWeight: "400"
+    },
+    onClick: () => {
+      window.open('https://niua.in/', '_blank').focus();
+    }
+  }, "Copyright \xA9 2022 National Institute of Urban Affairs"))));
+};
+ChangePasswordComponent.propTypes = {
+  loginParams: propTypes.any
+};
+ChangePasswordComponent.defaultProps = {
+  loginParams: null
+};
+
+const EmployeeChangePassword = () => {
+  const {
+    t
+  } = reactI18next.useTranslation();
+  const {
+    path
+  } = reactRouterDom.useRouteMatch();
+  const params = React.useMemo(() => config.map(step => {
+    const texts = {};
+    for (const key in step.texts) {
+      texts[key] = t(step.texts[key]);
+    }
+    return {
+      ...step,
+      texts
+    };
+  }, [config]));
+  return /*#__PURE__*/React__default.createElement(reactRouterDom.Switch, null, /*#__PURE__*/React__default.createElement(reactRouterDom.Route, {
+    path: "" + path,
+    exact: true
+  }, /*#__PURE__*/React__default.createElement(ChangePasswordComponent, {
+    config: params[0],
+    t: t
+  })));
+};
+
+const loginConfig$1 = [{
+  texts: {
+    header: "CORE_COMMON_FORGOT_PASSWORD_LABEL",
+    description: "ES_FORGOT_PASSWORD_DESC",
+    submitButtonLabel: "CORE_COMMON_CONTINUE"
+  },
+  inputs: [{
+    label: "CORE_COMMON_MOBILE_NUMBER",
+    type: "text",
+    name: "mobileNumber",
+    error: "ERR_HRMS_INVALID_MOBILE_NUMBER"
+  }, {
+    label: "CORE_COMMON_CITY",
+    type: "custom",
+    name: "city",
+    error: "ERR_HRMS_INVALID_CITY"
+  }]
+}];
+
+const ForgotPassword = _ref => {
+  let {
+    config: propsConfig,
+    t
+  } = _ref;
+  const {
+    data: cities,
+    isLoading
+  } = Digit.Hooks.useTenants();
+  const [user, setUser] = React.useState(null);
+  const history = reactRouterDom.useHistory();
+  const [showToast, setShowToast] = React.useState(null);
+  const getUserType = () => Digit.UserService.getType();
+  React.useEffect(() => {
+    var _location$state;
+    if (!user) {
+      Digit.UserService.setType("employee");
+      return;
+    }
+    Digit.UserService.setUser(user);
+    const redirectPath = ((_location$state = location.state) === null || _location$state === void 0 ? void 0 : _location$state.from) || "/digit-ui/employee";
+    history.replace(redirectPath);
+  }, [user]);
+  const closeToast = () => {
+    setShowToast(null);
+  };
+  const onForgotPassword = function (data) {
+    try {
+      if (!data.city) {
+        alert("Please Select City!");
+        return Promise.resolve();
+      }
+      const requestData = {
+        otp: {
+          mobileNumber: data.mobileNumber,
+          userType: getUserType().toUpperCase(),
+          type: "passwordreset",
+          tenantId: data.city.code
+        }
+      };
+      const _temp = _catch(function () {
+        return Promise.resolve(Digit.UserService.sendOtp(requestData, data.city.code)).then(function () {
+          history.push("/digit-ui/employee/user/change-password?mobile_number=" + data.mobileNumber + "&tenantId=" + data.city.code);
+        });
+      }, function (err) {
+        var _err$response, _err$response$data, _err$response$data$er, _err$response$data$er2, _err$response$data$er3;
+        setShowToast((err === null || err === void 0 ? void 0 : (_err$response = err.response) === null || _err$response === void 0 ? void 0 : (_err$response$data = _err$response.data) === null || _err$response$data === void 0 ? void 0 : (_err$response$data$er = _err$response$data.error) === null || _err$response$data$er === void 0 ? void 0 : (_err$response$data$er2 = _err$response$data$er.fields) === null || _err$response$data$er2 === void 0 ? void 0 : (_err$response$data$er3 = _err$response$data$er2[0]) === null || _err$response$data$er3 === void 0 ? void 0 : _err$response$data$er3.message) || "Invalid login credentials!");
+        setTimeout(closeToast, 5000);
+      });
+      return Promise.resolve(_temp && _temp.then ? _temp.then(function () {}) : void 0);
+    } catch (e) {
+      return Promise.reject(e);
+    }
+  };
+  const navigateToLogin = () => {
+    history.replace("/digit-ui/employee/login");
+  };
+  const [userId, city] = propsConfig.inputs;
+  const config = [{
+    body: [{
+      label: t(userId.label),
+      type: userId.type,
+      populators: {
+        name: userId.name,
+        componentInFront: "+91"
+      },
+      isMandatory: true
+    }, {
+      label: t(city.label),
+      type: city.type,
+      populators: {
+        name: city.name,
+        customProps: {},
+        component: (props, customProps) => /*#__PURE__*/React__default.createElement(digitUiReactComponents.Dropdown, _extends({
+          option: cities,
+          optionKey: "name",
+          id: city.name,
+          className: "login-city-dd",
+          select: d => {
+            props.onChange(d);
+          }
+        }, customProps))
+      },
+      isMandatory: true
+    }]
+  }];
+  if (isLoading) {
+    return /*#__PURE__*/React__default.createElement(digitUiReactComponents.Loader, null);
+  }
+  return /*#__PURE__*/React__default.createElement(Background, null, /*#__PURE__*/React__default.createElement("div", {
+    className: "employeeBackbuttonAlign"
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.BackButton, {
+    variant: "white",
+    style: {
+      borderBottom: "none"
+    }
+  })), /*#__PURE__*/React__default.createElement(digitUiReactComponents.FormComposer, {
+    onSubmit: onForgotPassword,
+    noBoxShadow: true,
+    inline: true,
+    submitInForm: true,
+    config: config,
+    label: propsConfig.texts.submitButtonLabel,
+    secondaryActionLabel: propsConfig.texts.secondaryButtonLabel,
+    onSecondayActionClick: navigateToLogin,
+    heading: propsConfig.texts.header,
+    description: propsConfig.texts.description,
+    headingStyle: {
+      textAlign: "center"
+    },
+    cardStyle: {
+      maxWidth: "408px",
+      margin: "auto"
+    },
+    className: "employeeForgotPassword"
+  }, /*#__PURE__*/React__default.createElement(Header, null)), showToast && /*#__PURE__*/React__default.createElement(digitUiReactComponents.Toast, {
+    error: true,
+    label: t(showToast),
+    onClose: closeToast
+  }), /*#__PURE__*/React__default.createElement("div", {
+    style: {
+      width: '100%',
+      position: 'fixed',
+      bottom: 0,
+      backgroundColor: "white",
+      textAlign: "center"
+    }
+  }, /*#__PURE__*/React__default.createElement("div", {
+    style: {
+      display: 'flex',
+      justifyContent: 'center',
+      color: "black"
+    }
+  }, /*#__PURE__*/React__default.createElement("span", {
+    style: {
+      cursor: "pointer",
+      fontSize: window.Digit.Utils.browser.isMobile() ? "12px" : "12px",
+      fontWeight: "400"
+    },
+    onClick: () => {
+      window.open('https://www.digit.org/', '_blank').focus();
+    }
+  }, "Powered by DIGIT"), /*#__PURE__*/React__default.createElement("span", {
+    style: {
+      margin: "0 10px",
+      fontSize: window.Digit.Utils.browser.isMobile() ? "12px" : "12px"
+    }
+  }, "|"), /*#__PURE__*/React__default.createElement("a", {
+    style: {
+      cursor: "pointer",
+      fontSize: window.Digit.Utils.browser.isMobile() ? "12px" : "12px",
+      fontWeight: "400"
+    },
+    href: "#",
+    target: "_blank"
+  }, "UPYOG License"), /*#__PURE__*/React__default.createElement("span", {
+    className: "upyog-copyright-footer",
+    style: {
+      margin: "0 10px",
+      fontSize: "12px"
+    }
+  }, "|"), /*#__PURE__*/React__default.createElement("span", {
+    className: "upyog-copyright-footer",
+    style: {
+      cursor: "pointer",
+      fontSize: window.Digit.Utils.browser.isMobile() ? "12px" : "12px",
+      fontWeight: "400"
+    },
+    onClick: () => {
+      window.open('https://niua.in/', '_blank').focus();
+    }
+  }, "Copyright \xA9 2022 National Institute of Urban Affairs")), /*#__PURE__*/React__default.createElement("div", {
+    className: "upyog-copyright-footer-web"
+  }, /*#__PURE__*/React__default.createElement("span", {
+    className: "",
+    style: {
+      cursor: "pointer",
+      fontSize: window.Digit.Utils.browser.isMobile() ? "14px" : "16px",
+      fontWeight: "400"
+    },
+    onClick: () => {
+      window.open('https://niua.in/', '_blank').focus();
+    }
+  }, "Copyright \xA9 2022 National Institute of Urban Affairs"))));
+};
+ForgotPassword.propTypes = {
+  loginParams: propTypes.any
+};
+ForgotPassword.defaultProps = {
+  loginParams: null
+};
+
+const EmployeeForgotPassword = () => {
+  const {
+    t
+  } = reactI18next.useTranslation();
+  const {
+    path
+  } = reactRouterDom.useRouteMatch();
+  const params = React.useMemo(() => loginConfig$1.map(step => {
+    const texts = {};
+    for (const key in step.texts) {
+      texts[key] = t(step.texts[key]);
+    }
+    return {
+      ...step,
+      texts
+    };
+  }, [loginConfig$1]));
+  return /*#__PURE__*/React__default.createElement(reactRouterDom.Switch, null, /*#__PURE__*/React__default.createElement(reactRouterDom.Route, {
+    path: "" + path,
+    exact: true
+  }, /*#__PURE__*/React__default.createElement(ForgotPassword, {
+    config: params[0],
+    t: t
+  })));
+};
+
+const LanguageSelection = () => {
+  const {
+    data: storeData,
+    isLoading
+  } = Digit.Hooks.useStore.getInitData();
+  const {
+    t
+  } = reactI18next.useTranslation();
+  const history = reactRouterDom.useHistory();
+  const {
+    languages,
+    stateInfo
+  } = storeData || {};
+  const selectedLanguage = Digit.StoreData.getCurrentLanguage();
+  const [selected, setselected] = React.useState(selectedLanguage);
+  const handleChangeLanguage = language => {
+    setselected(language.value);
+    Digit.LocalizationService.changeLanguage(language.value, stateInfo.code);
+  };
+  const handleSubmit = event => {
+    history.push("/digit-ui/employee/user/login");
+  };
+  if (isLoading) return null;
+  return /*#__PURE__*/React__default.createElement(Background, null, /*#__PURE__*/React__default.createElement(digitUiReactComponents.Card, {
+    className: "bannerCard removeBottomMargin"
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "language-selector",
+    style: {
+      justifyContent: "space-around",
+      marginBottom: "24px",
+      padding: "0 5%"
+    }
+  }, languages.map((language, index) => /*#__PURE__*/React__default.createElement("div", {
+    className: "language-button-container",
+    key: index
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.CustomButton, {
+    selected: language.value === selected,
+    text: language.label,
+    onClick: () => handleChangeLanguage(language)
+  })))), /*#__PURE__*/React__default.createElement(digitUiReactComponents.SubmitBar, {
+    style: {
+      width: "100%"
+    },
+    label: t("CORE_COMMON_CONTINUE"),
+    onSubmit: handleSubmit
+  })), /*#__PURE__*/React__default.createElement("div", {
+    style: {
+      width: '100%',
+      position: 'fixed',
+      bottom: 0,
+      backgroundColor: "white",
+      textAlign: "center"
+    }
+  }, /*#__PURE__*/React__default.createElement("div", {
+    style: {
+      display: 'flex',
+      justifyContent: 'center',
+      color: "black"
+    }
+  }, /*#__PURE__*/React__default.createElement("span", {
+    style: {
+      cursor: "pointer",
+      fontSize: window.Digit.Utils.browser.isMobile() ? "12px" : "12px",
+      fontWeight: "400"
+    },
+    onClick: () => {
+      window.open('https://www.digit.org/', '_blank').focus();
+    }
+  }, "Powered by DIGIT"), /*#__PURE__*/React__default.createElement("span", {
+    style: {
+      margin: "0 10px",
+      fontSize: window.Digit.Utils.browser.isMobile() ? "12px" : "12px"
+    }
+  }, "|"), /*#__PURE__*/React__default.createElement("a", {
+    style: {
+      cursor: "pointer",
+      fontSize: window.Digit.Utils.browser.isMobile() ? "12px" : "12px",
+      fontWeight: "400"
+    },
+    href: "#",
+    target: "_blank"
+  }, "UPYOG License"), /*#__PURE__*/React__default.createElement("span", {
+    className: "upyog-copyright-footer",
+    style: {
+      margin: "0 10px",
+      fontSize: "12px"
+    }
+  }, "|"), /*#__PURE__*/React__default.createElement("span", {
+    className: "upyog-copyright-footer",
+    style: {
+      cursor: "pointer",
+      fontSize: window.Digit.Utils.browser.isMobile() ? "12px" : "12px",
+      fontWeight: "400"
+    },
+    onClick: () => {
+      window.open('https://niua.in/', '_blank').focus();
+    }
+  }, "Copyright \xA9 2022 National Institute of Urban Affairs")), /*#__PURE__*/React__default.createElement("div", {
+    className: "upyog-copyright-footer-web"
+  }, /*#__PURE__*/React__default.createElement("span", {
+    className: "",
+    style: {
+      cursor: "pointer",
+      fontSize: window.Digit.Utils.browser.isMobile() ? "14px" : "16px",
+      fontWeight: "400"
+    },
+    onClick: () => {
+      window.open('https://niua.in/', '_blank').focus();
+    }
+  }, "Copyright \xA9 2022 National Institute of Urban Affairs"))));
+};
+
+const getTenants = (codes, tenants) => {
+  return tenants.filter(tenant => {
+    var _codes$map;
+    return codes === null || codes === void 0 ? void 0 : (_codes$map = codes.map) === null || _codes$map === void 0 ? void 0 : _codes$map.call(codes, item => item.code).includes(tenant.code);
+  });
+};
+const AppModules = _ref => {
+  let {
+    stateCode,
+    userType,
+    modules,
+    appTenants
+  } = _ref;
+  const ComponentProvider = Digit.Contexts.ComponentProvider;
+  const {
+    path
+  } = reactRouterDom.useRouteMatch();
+  const location = reactRouterDom.useLocation();
+  const user = Digit.UserService.getUser();
+  if (!user || !(user !== null && user !== void 0 && user.access_token) || !(user !== null && user !== void 0 && user.info)) {
+    return /*#__PURE__*/React__default.createElement(reactRouterDom.Redirect, {
+      to: {
+        pathname: "/digit-ui/employee/user/login",
+        state: {
+          from: location.pathname + location.search
+        }
+      }
+    });
+  }
+  const appRoutes = modules.map((_ref2, index) => {
+    let {
+      code,
+      tenants
+    } = _ref2;
+    const Module = Digit.ComponentRegistryService.getComponent(code + "Module");
+    return Module ? /*#__PURE__*/React__default.createElement(reactRouterDom.Route, {
+      key: index,
+      path: path + "/" + code.toLowerCase()
+    }, /*#__PURE__*/React__default.createElement(Module, {
+      stateCode: stateCode,
+      moduleCode: code,
+      userType: userType,
+      tenants: getTenants(tenants, appTenants)
+    })) : /*#__PURE__*/React__default.createElement(reactRouterDom.Route, {
+      key: index,
+      path: path + "/" + code.toLowerCase()
+    }, /*#__PURE__*/React__default.createElement(reactRouterDom.Redirect, {
+      to: {
+        pathname: "/digit-ui/employee/user/error?type=notfound",
+        state: {
+          from: location.pathname + location.search
+        }
+      }
+    }));
+  });
+  return /*#__PURE__*/React__default.createElement("div", {
+    className: "ground-container"
+  }, /*#__PURE__*/React__default.createElement(reactRouterDom.Switch, null, appRoutes, /*#__PURE__*/React__default.createElement(reactRouterDom.Route, {
+    path: path + "/login"
+  }, /*#__PURE__*/React__default.createElement(reactRouterDom.Redirect, {
+    to: {
+      pathname: "/digit-ui/employee/user/login",
+      state: {
+        from: location.pathname + location.search
+      }
+    }
+  })), /*#__PURE__*/React__default.createElement(reactRouterDom.Route, {
+    path: path + "/forgot-password"
+  }, /*#__PURE__*/React__default.createElement(EmployeeForgotPassword, null)), /*#__PURE__*/React__default.createElement(reactRouterDom.Route, {
+    path: path + "/change-password"
+  }, /*#__PURE__*/React__default.createElement(EmployeeChangePassword, null)), /*#__PURE__*/React__default.createElement(reactRouterDom.Route, null, /*#__PURE__*/React__default.createElement(AppHome, {
+    userType: userType,
+    modules: modules
+  }))));
+};
+
+const ErrorConfig = {
+  error: {
+    imgUrl: "https://s3.ap-south-1.amazonaws.com/egov-qa-assets/error-image.png",
+    infoMessage: "CORE_SOMETHING_WENT_WRONG",
+    buttonInfo: "ACTION_TEST_HOME"
+  },
+  maintenance: {
+    imgUrl: "https://s3.ap-south-1.amazonaws.com/egov-qa-assets/maintainence-image.png",
+    infoMessage: "CORE_UNDER_MAINTENANCE",
+    buttonInfo: "ACTION_TEST_HOME"
+  },
+  notfound: {
+    imgUrl: "https://s3.ap-south-1.amazonaws.com/egov-qa-assets/PageNotFound.png",
+    infoMessage: "CORE_NOT_FOUND",
+    buttonInfo: "ACTION_TEST_HOME"
+  }
+};
+const ErrorComponent = props => {
+  const {
+    type = "error"
+  } = Digit.Hooks.useQueryParams();
+  const config = ErrorConfig[type];
+  const {
+    t
+  } = reactI18next.useTranslation();
+  return /*#__PURE__*/React__default.createElement("div", {
+    className: "error-boundary"
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "error-container"
+  }, /*#__PURE__*/React__default.createElement("img", {
+    src: config.imgUrl,
+    alt: "error"
+  }), /*#__PURE__*/React__default.createElement("h1", null, t(config.infoMessage)), /*#__PURE__*/React__default.createElement("button", {
+    onClick: () => {
+      props.goToHome();
+    }
+  }, t(config.buttonInfo))));
+};
+
+const Redircter = () => {
+  const path = Digit.UserService.getType() === "employee" ? "/digit-ui/employee/user/error" : "/digit-ui/citizen/error";
+  if (window.location.href.includes("employee/user/error") || window.location.href.includes("citizen/error") || process.env.NODE_ENV === "development") ; else {
+    window.location.href = path;
+  }
+  return /*#__PURE__*/React__default.createElement("span", null);
+};
+class ErrorBoundary extends React__default.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      error: null,
+      errorStack: null,
+      hasError: false
+    };
+  }
+  static getDerivedStateFromError(error) {
+    return {
+      error: error === null || error === void 0 ? void 0 : error.message,
+      hasError: true,
+      errorStack: error === null || error === void 0 ? void 0 : error.stack
+    };
+  }
+  componentDidCatch(error, errorInfo) {
+    this.setState({
+      error: error === null || error === void 0 ? void 0 : error.message,
+      hasError: true,
+      errorStack: error === null || error === void 0 ? void 0 : error.stack
+    });
+  }
+  render() {
+    if (this.state.hasError) {
+      return /*#__PURE__*/React__default.createElement("div", {
+        className: "error-boundary"
+      }, /*#__PURE__*/React__default.createElement(Redircter, null), /*#__PURE__*/React__default.createElement(ErrorComponent, {
+        initData: this.props.initData
+      }));
+    }
+    return this.props.children;
+  }
+}
+
+const stringReplaceAll = function (str, searcher, replaceWith) {
+  if (str === void 0) {
+    str = "";
+  }
+  if (searcher === void 0) {
+    searcher = "";
+  }
+  if (replaceWith === void 0) {
+    replaceWith = "";
+  }
+  if (searcher == "") return str;
+  while ((_str = str) !== null && _str !== void 0 && _str.includes(searcher)) {
+    var _str, _str2;
+    str = (_str2 = str) === null || _str2 === void 0 ? void 0 : _str2.replace(searcher, replaceWith);
+  }
+  return str;
+};
+const ChangeCity = prop => {
+  var _stringReplaceAll2;
+  const [dropDownData, setDropDownData] = React.useState(null);
+  const [selectCityData, setSelectCityData] = React.useState([]);
+  const [selectedCity, setSelectedCity] = React.useState([]);
+  const history = reactRouterDom.useHistory();
+  let selectedCities = [];
+  const handleChangeCity = city => {
+    var _Digit$SessionStorage, _Digit$SessionStorage2, _Digit$SessionStorage3;
+    const loggedInData = Digit.SessionStorage.get("citizen.userRequestObject");
+    const filteredRoles = (_Digit$SessionStorage = Digit.SessionStorage.get("citizen.userRequestObject")) === null || _Digit$SessionStorage === void 0 ? void 0 : (_Digit$SessionStorage2 = _Digit$SessionStorage.info) === null || _Digit$SessionStorage2 === void 0 ? void 0 : (_Digit$SessionStorage3 = _Digit$SessionStorage2.roles) === null || _Digit$SessionStorage3 === void 0 ? void 0 : _Digit$SessionStorage3.filter(role => role.tenantId === city.value);
+    if ((filteredRoles === null || filteredRoles === void 0 ? void 0 : filteredRoles.length) > 0) {
+      loggedInData.info.roles = filteredRoles;
+      loggedInData.info.tenantId = city === null || city === void 0 ? void 0 : city.value;
+    }
+    Digit.SessionStorage.set("Employee.tenantId", city === null || city === void 0 ? void 0 : city.value);
+    Digit.UserService.setUser(loggedInData);
+    setDropDownData(city);
+    if (window.location.href.includes("/digit-ui/employee/")) {
+      var _location$state;
+      const redirectPath = ((_location$state = location.state) === null || _location$state === void 0 ? void 0 : _location$state.from) || "/digit-ui/employee";
+      history.replace(redirectPath);
+    }
+    window.location.reload();
+  };
+  React.useEffect(() => {
+    var _userloggedValues$inf, _userloggedValues$inf2;
+    const userloggedValues = Digit.SessionStorage.get("citizen.userRequestObject");
+    let teantsArray = [],
+      filteredArray = [];
+    userloggedValues === null || userloggedValues === void 0 ? void 0 : (_userloggedValues$inf = userloggedValues.info) === null || _userloggedValues$inf === void 0 ? void 0 : (_userloggedValues$inf2 = _userloggedValues$inf.roles) === null || _userloggedValues$inf2 === void 0 ? void 0 : _userloggedValues$inf2.forEach(role => teantsArray.push(role.tenantId));
+    let unique = teantsArray.filter((item, i, ar) => ar.indexOf(item) === i);
+    unique === null || unique === void 0 ? void 0 : unique.forEach(uniCode => {
+      var _stringReplaceAll;
+      filteredArray.push({
+        label: prop === null || prop === void 0 ? void 0 : prop.t("TENANT_TENANTS_" + ((_stringReplaceAll = stringReplaceAll(uniCode, ".", "_")) === null || _stringReplaceAll === void 0 ? void 0 : _stringReplaceAll.toUpperCase())),
+        value: uniCode
+      });
+    });
+    selectedCities = filteredArray === null || filteredArray === void 0 ? void 0 : filteredArray.filter(select => select.value == Digit.SessionStorage.get("Employee.tenantId"));
+    setSelectCityData(filteredArray);
+  }, [dropDownData]);
+  return /*#__PURE__*/React__default.createElement("div", {
+    style: prop !== null && prop !== void 0 && prop.mobileView ? {
+      color: "#767676"
+    } : {}
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.Dropdown, {
+    option: selectCityData,
+    selected: selectCityData.find(cityValue => cityValue.value === (dropDownData === null || dropDownData === void 0 ? void 0 : dropDownData.value)),
+    optionKey: "label",
+    select: handleChangeCity,
+    freeze: true,
+    customSelector: /*#__PURE__*/React__default.createElement("label", {
+      className: "cp"
+    }, prop === null || prop === void 0 ? void 0 : prop.t("TENANT_TENANTS_" + ((_stringReplaceAll2 = stringReplaceAll(Digit.SessionStorage.get("Employee.tenantId"), ".", "_")) === null || _stringReplaceAll2 === void 0 ? void 0 : _stringReplaceAll2.toUpperCase())))
+  }));
+};
+
+const ChangeLanguage = prop => {
+  const isDropdown = prop.dropdown || false;
+  const {
+    data: storeData,
+    isLoading
+  } = Digit.Hooks.useStore.getInitData();
+  const {
+    languages,
+    stateInfo
+  } = storeData || {};
+  const selectedLanguage = Digit.StoreData.getCurrentLanguage();
+  const [selected, setselected] = React.useState(selectedLanguage);
+  const handleChangeLanguage = language => {
+    setselected(language.value);
+    Digit.LocalizationService.changeLanguage(language.value, stateInfo.code);
+  };
+  if (isLoading) return null;
+  if (isDropdown) {
+    return /*#__PURE__*/React__default.createElement("div", null, /*#__PURE__*/React__default.createElement(digitUiReactComponents.Dropdown, {
+      option: languages,
+      selected: languages.find(language => language.value === selectedLanguage),
+      optionKey: "label",
+      select: handleChangeLanguage,
+      freeze: true,
+      customSelector: /*#__PURE__*/React__default.createElement("label", {
+        className: "cp"
+      }, languages.find(language => language.value === selected).label)
+    }));
+  } else {
+    return /*#__PURE__*/React__default.createElement(React__default.Fragment, null, /*#__PURE__*/React__default.createElement("div", {
+      style: {
+        marginBottom: "5px"
+      }
+    }, "Language"), /*#__PURE__*/React__default.createElement("div", {
+      className: "language-selector"
+    }, languages.map((language, index) => /*#__PURE__*/React__default.createElement("div", {
+      className: "language-button-container",
+      key: index
+    }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.CustomButton, {
+      selected: language.value === selected,
+      text: language.label,
+      onClick: () => handleChangeLanguage(language)
+    })))));
+  }
+};
+
+const TextToImg = props => {
+  var _props$name, _props$name$;
+  return /*#__PURE__*/React__default.createElement("span", {
+    className: "user-img-txt",
+    onClick: props.toggleMenu,
+    title: props.name
+  }, props === null || props === void 0 ? void 0 : (_props$name = props.name) === null || _props$name === void 0 ? void 0 : (_props$name$ = _props$name[0]) === null || _props$name$ === void 0 ? void 0 : _props$name$.toUpperCase());
+};
+const TopBar = _ref => {
+  var _userDetails$info2, _cityDetails$city, _cityDetails$city2, _stateInfo$code, _userDetails$info3, _userDetails$info4, _userDetails$info4$us;
+  let {
+    t,
+    stateInfo,
+    toggleSidebar,
+    isSidebarOpen,
+    handleLogout,
+    userDetails,
+    CITIZEN,
+    cityDetails,
+    mobileView,
+    userOptions,
+    handleUserDropdownSelection,
+    logoUrl,
+    showLanguageChange = true,
+    setSideBarScrollTop
+  } = _ref;
+  const [profilePic, setProfilePic] = React__default.useState(null);
+  React__default.useEffect(function () {
+    try {
+      var _userDetails$info;
+      const tenant = Digit.ULBService.getCurrentTenantId();
+      const uuid = userDetails === null || userDetails === void 0 ? void 0 : (_userDetails$info = userDetails.info) === null || _userDetails$info === void 0 ? void 0 : _userDetails$info.uuid;
+      const _temp = function () {
+        if (uuid) {
+          return Promise.resolve(Digit.UserService.userSearch(tenant, {
+            uuid: [uuid]
+          }, {})).then(function (usersResponse) {
+            if (usersResponse && usersResponse.user && usersResponse.user.length) {
+              var _userDetails$photo;
+              const userDetails = usersResponse.user[0];
+              const thumbs = userDetails === null || userDetails === void 0 ? void 0 : (_userDetails$photo = userDetails.photo) === null || _userDetails$photo === void 0 ? void 0 : _userDetails$photo.split(",");
+              setProfilePic(thumbs === null || thumbs === void 0 ? void 0 : thumbs.at(0));
+            }
+          });
+        }
+      }();
+      return Promise.resolve(_temp && _temp.then ? _temp.then(function () {}) : void 0);
+    } catch (e) {
+      return Promise.reject(e);
+    }
+  }, [profilePic !== null, userDetails === null || userDetails === void 0 ? void 0 : (_userDetails$info2 = userDetails.info) === null || _userDetails$info2 === void 0 ? void 0 : _userDetails$info2.uuid]);
+  const CitizenHomePageTenantId = Digit.ULBService.getCitizenCurrentTenant(true);
+  let history = reactRouterDom.useHistory();
+  const {
+    pathname
+  } = reactRouterDom.useLocation();
+  const conditionsToDisableNotificationCountTrigger = () => {
+    var _Digit$UserService, _Digit$UserService$ge, _Digit$UserService$ge2, _Digit$UserService2, _Digit$UserService2$g, _Digit$UserService2$g2;
+    if (((_Digit$UserService = Digit.UserService) === null || _Digit$UserService === void 0 ? void 0 : (_Digit$UserService$ge = _Digit$UserService.getUser()) === null || _Digit$UserService$ge === void 0 ? void 0 : (_Digit$UserService$ge2 = _Digit$UserService$ge.info) === null || _Digit$UserService$ge2 === void 0 ? void 0 : _Digit$UserService$ge2.type) === "EMPLOYEE") return false;
+    if (((_Digit$UserService2 = Digit.UserService) === null || _Digit$UserService2 === void 0 ? void 0 : (_Digit$UserService2$g = _Digit$UserService2.getUser()) === null || _Digit$UserService2$g === void 0 ? void 0 : (_Digit$UserService2$g2 = _Digit$UserService2$g.info) === null || _Digit$UserService2$g2 === void 0 ? void 0 : _Digit$UserService2$g2.type) === "CITIZEN") {
+      if (!CitizenHomePageTenantId) return false;else return true;
+    }
+    return false;
+  };
+  const {
+    data: {
+      unreadCount: unreadNotificationCount
+    } = {},
+    isSuccess: notificationCountLoaded
+  } = Digit.Hooks.useNotificationCount({
+    tenantId: CitizenHomePageTenantId,
+    config: {
+      enabled: conditionsToDisableNotificationCountTrigger()
+    }
+  });
+  const updateSidebar = () => {
+    if (!Digit.clikOusideFired) {
+      toggleSidebar(true);
+      setSideBarScrollTop(true);
+    } else {
+      Digit.clikOusideFired = false;
+    }
+  };
+  function onNotificationIconClick() {
+    history.push("/digit-ui/citizen/engagement/notifications");
+  }
+  const urlsToDisableNotificationIcon = pathname => {
+    var _Digit$UserService3, _Digit$UserService3$g;
+    return !!((_Digit$UserService3 = Digit.UserService) !== null && _Digit$UserService3 !== void 0 && (_Digit$UserService3$g = _Digit$UserService3.getUser()) !== null && _Digit$UserService3$g !== void 0 && _Digit$UserService3$g.access_token) ? false : ["/digit-ui/citizen/select-language", "/digit-ui/citizen/select-location"].includes(pathname);
+  };
+  if (CITIZEN) {
+    return /*#__PURE__*/React__default.createElement("div", null, /*#__PURE__*/React__default.createElement(digitUiReactComponents.TopBar, {
+      img: stateInfo === null || stateInfo === void 0 ? void 0 : stateInfo.logoUrlWhite,
+      isMobile: true,
+      toggleSidebar: updateSidebar,
+      logoUrl: stateInfo === null || stateInfo === void 0 ? void 0 : stateInfo.logoUrlWhite,
+      onLogout: handleLogout,
+      userDetails: userDetails,
+      notificationCount: unreadNotificationCount < 99 ? unreadNotificationCount : 99,
+      notificationCountLoaded: notificationCountLoaded,
+      cityOfCitizenShownBesideLogo: t(CitizenHomePageTenantId),
+      onNotificationIconClick: onNotificationIconClick,
+      hideNotificationIconOnSomeUrlsWhenNotLoggedIn: urlsToDisableNotificationIcon(pathname),
+      changeLanguage: !mobileView ? /*#__PURE__*/React__default.createElement(ChangeLanguage, {
+        dropdown: true
+      }) : null
+    }));
+  }
+  const loggedin = userDetails !== null && userDetails !== void 0 && userDetails.access_token ? true : false;
+  return /*#__PURE__*/React__default.createElement("div", {
+    className: "topbar"
+  }, mobileView ? /*#__PURE__*/React__default.createElement(digitUiReactComponents.Hamburger, {
+    handleClick: toggleSidebar,
+    color: "#9E9E9E"
+  }) : null, /*#__PURE__*/React__default.createElement("img", {
+    className: "city",
+    src: "https://in-egov-assets.s3.ap-south-1.amazonaws.com/images/Upyog-logo.png"
+  }), /*#__PURE__*/React__default.createElement("span", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      width: "100%"
+    }
+  }, loggedin && (cityDetails !== null && cityDetails !== void 0 && (_cityDetails$city = cityDetails.city) !== null && _cityDetails$city !== void 0 && _cityDetails$city.ulbGrade ? /*#__PURE__*/React__default.createElement("p", {
+    className: "ulb",
+    style: mobileView ? {
+      fontSize: "14px",
+      display: "inline-block"
+    } : {}
+  }, t(cityDetails === null || cityDetails === void 0 ? void 0 : cityDetails.i18nKey).toUpperCase(), " ", t("ULBGRADE_" + (cityDetails === null || cityDetails === void 0 ? void 0 : (_cityDetails$city2 = cityDetails.city) === null || _cityDetails$city2 === void 0 ? void 0 : _cityDetails$city2.ulbGrade.toUpperCase().replace(" ", "_").replace(".", "_"))).toUpperCase()) : /*#__PURE__*/React__default.createElement("img", {
+    className: "state",
+    src: logoUrl
+  })), !loggedin && /*#__PURE__*/React__default.createElement("p", {
+    className: "ulb",
+    style: mobileView ? {
+      fontSize: "14px",
+      display: "inline-block"
+    } : {}
+  }, t("MYCITY_" + (stateInfo === null || stateInfo === void 0 ? void 0 : (_stateInfo$code = stateInfo.code) === null || _stateInfo$code === void 0 ? void 0 : _stateInfo$code.toUpperCase()) + "_LABEL"), " ", t("MYCITY_STATECODE_LABEL")), !mobileView && /*#__PURE__*/React__default.createElement("div", {
+    className: mobileView ? "right" : "flex-right right w-80 column-gap-15",
+    style: !loggedin ? {
+      width: "80%"
+    } : {}
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "left"
+  }, !window.location.href.includes("employee/user/login") && !window.location.href.includes("employee/user/language-selection") && /*#__PURE__*/React__default.createElement(ChangeCity, {
+    dropdown: true,
+    t: t
+  })), /*#__PURE__*/React__default.createElement("div", {
+    className: "left"
+  }, showLanguageChange && /*#__PURE__*/React__default.createElement(ChangeLanguage, {
+    dropdown: true
+  })), (userDetails === null || userDetails === void 0 ? void 0 : userDetails.access_token) && /*#__PURE__*/React__default.createElement("div", {
+    className: "left"
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.Dropdown, {
+    option: userOptions,
+    optionKey: "name",
+    select: handleUserDropdownSelection,
+    showArrow: true,
+    freeze: true,
+    style: mobileView ? {
+      right: 0
+    } : {},
+    optionCardStyles: {
+      overflow: "revert"
+    },
+    customSelector: profilePic == null ? /*#__PURE__*/React__default.createElement(TextToImg, {
+      name: (userDetails === null || userDetails === void 0 ? void 0 : (_userDetails$info3 = userDetails.info) === null || _userDetails$info3 === void 0 ? void 0 : _userDetails$info3.name) || (userDetails === null || userDetails === void 0 ? void 0 : (_userDetails$info4 = userDetails.info) === null || _userDetails$info4 === void 0 ? void 0 : (_userDetails$info4$us = _userDetails$info4.userInfo) === null || _userDetails$info4$us === void 0 ? void 0 : _userDetails$info4$us.name) || "Employee"
+    }) : /*#__PURE__*/React__default.createElement("img", {
+      src: "https://in-egov-assets.s3.ap-south-1.amazonaws.com/images/Upyog-logo.png",
+      style: {
+        height: "48px",
+        width: "48px",
+        borderRadius: "50%"
+      }
+    })
+  })), /*#__PURE__*/React__default.createElement("img", {
+    className: "state",
+    src: "https://in-egov-assets.s3.ap-south-1.amazonaws.com/images/Upyog-logo.png"
+  }))));
+};
+
+const SideBarMenu = (t, closeSidebar, redirectToLoginPage, isEmployee, storeData, tenantId) => {
+  var _storeData$tenants$fi, _storeData$tenants$;
+  let filteredTenantData = (storeData === null || storeData === void 0 ? void 0 : (_storeData$tenants$fi = storeData.tenants.filter(e => e.code === tenantId)[0]) === null || _storeData$tenants$fi === void 0 ? void 0 : _storeData$tenants$fi.contactNumber) || (storeData === null || storeData === void 0 ? void 0 : (_storeData$tenants$ = storeData.tenants[0]) === null || _storeData$tenants$ === void 0 ? void 0 : _storeData$tenants$.contactNumber);
+  return [{
+    type: "link",
+    element: "HOME",
+    text: t("COMMON_BOTTOM_NAVIGATION_HOME"),
+    link: isEmployee ? "/digit-ui/employee" : "/digit-ui/citizen",
+    icon: "HomeIcon",
+    populators: {
+      onClick: closeSidebar
+    }
+  }, {
+    type: "component",
+    element: "LANGUAGE",
+    action: /*#__PURE__*/React__default.createElement(ChangeLanguage, null),
+    icon: "LanguageIcon"
+  }, {
+    id: "login-btn",
+    element: "LOGIN",
+    text: t("CORE_COMMON_LOGIN"),
+    icon: "LoginIcon",
+    populators: {
+      onClick: redirectToLoginPage
+    }
+  }, {
+    id: "help-line",
+    text: /*#__PURE__*/React__default.createElement(React__default.Fragment, null, t("CS_COMMON_HELPLINE"), /*#__PURE__*/React__default.createElement("div", {
+      className: "telephone",
+      style: {
+        marginTop: "-10%"
+      }
+    }, /*#__PURE__*/React__default.createElement("div", {
+      className: "link"
+    }, /*#__PURE__*/React__default.createElement("a", {
+      href: "tel:" + filteredTenantData
+    }, filteredTenantData)))),
+    element: "Helpline",
+    icon: "Phone"
+  }];
+};
+
+const Heading = props => {
+  return /*#__PURE__*/React__default.createElement("h1", {
+    className: "heading-m"
+  }, props.label);
+};
+const Close = () => /*#__PURE__*/React__default.createElement("svg", {
+  xmlns: "http://www.w3.org/2000/svg",
+  viewBox: "0 0 24 24",
+  fill: "#FFFFFF"
+}, /*#__PURE__*/React__default.createElement("path", {
+  d: "M0 0h24v24H0V0z",
+  fill: "none"
+}), /*#__PURE__*/React__default.createElement("path", {
+  d: "M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"
+}));
+const CloseBtn = props => {
+  return /*#__PURE__*/React__default.createElement("div", {
+    onClick: props === null || props === void 0 ? void 0 : props.onClick,
+    style: props !== null && props !== void 0 && props.isMobileView ? {
+      padding: 5
+    } : null
+  }, props !== null && props !== void 0 && props.isMobileView ? /*#__PURE__*/React__default.createElement(digitUiReactComponents.CloseSvg, null) : /*#__PURE__*/React__default.createElement("div", {
+    className: "icon-bg-secondary",
+    style: {
+      backgroundColor: '#505A5F'
+    }
+  }, " ", /*#__PURE__*/React__default.createElement(Close, null), " "));
+};
+const LogoutDialog = _ref => {
+  let {
+    onSelect,
+    onCancel,
+    onDismiss
+  } = _ref;
+  const {
+    t
+  } = reactI18next.useTranslation();
+  const mobileDeviceWidth = 780;
+  const [isMobileView, setIsMobileView] = React__default.useState(window.innerWidth <= mobileDeviceWidth);
+  const onResize = () => {
+    if (window.innerWidth <= mobileDeviceWidth) {
+      if (!isMobileView) {
+        setIsMobileView(true);
+      }
+    } else {
+      if (isMobileView) {
+        setIsMobileView(false);
+      }
+    }
+  };
+  React__default.useEffect(() => {
+    window.addEventListener("resize", () => {
+      onResize();
+    });
+    return () => {
+      window.addEventListener("resize", () => {
+        onResize();
+      });
+    };
+  });
+  return isMobileView ? /*#__PURE__*/React__default.createElement(digitUiReactComponents.Modal, {
+    popupStyles: {
+      height: "174px",
+      maxHeight: "174px",
+      width: "324px",
+      position: "absolute",
+      top: "50%",
+      left: "50%",
+      transform: 'translate(-50%, -50%)'
+    },
+    popupModuleActionBarStyles: {
+      display: "flex",
+      flex: 1,
+      justifyContent: "flex-start",
+      width: "100%",
+      position: "absolute",
+      left: 0,
+      bottom: 0,
+      padding: "18px"
+    },
+    style: {
+      flex: 1
+    },
+    popupModuleMianStyles: {
+      padding: "18px"
+    },
+    headerBarMain: /*#__PURE__*/React__default.createElement(Heading, {
+      label: t("CORE_LOGOUT_WEB_HEADER")
+    }),
+    headerBarEnd: /*#__PURE__*/React__default.createElement(CloseBtn, {
+      onClick: onDismiss,
+      isMobileView: isMobileView
+    }),
+    actionCancelLabel: t("TL_COMMON_NO"),
+    actionCancelOnSubmit: onCancel,
+    actionSaveLabel: t("TL_COMMON_YES"),
+    actionSaveOnSubmit: onSelect,
+    formId: "modal-action"
+  }, /*#__PURE__*/React__default.createElement("div", null, /*#__PURE__*/React__default.createElement(digitUiReactComponents.CardText, {
+    style: {
+      margin: 0
+    }
+  }, t("CORE_LOGOUT_MOBILE_CONFIRMATION_MESSAGE") + " "))) : /*#__PURE__*/React__default.createElement(digitUiReactComponents.Modal, {
+    popupModuleMianStyles: {
+      paddingTop: "30px"
+    },
+    headerBarMain: /*#__PURE__*/React__default.createElement(Heading, {
+      label: t("CORE_LOGOUT_WEB_HEADER")
+    }),
+    headerBarEnd: /*#__PURE__*/React__default.createElement(CloseBtn, {
+      onClick: onDismiss,
+      isMobileView: false
+    }),
+    actionCancelLabel: t("CORE_LOGOUT_CANCEL"),
+    actionCancelOnSubmit: onCancel,
+    actionSaveLabel: t("CORE_LOGOUT_WEB_YES"),
+    actionSaveOnSubmit: onSelect,
+    formId: "modal-action"
+  }, /*#__PURE__*/React__default.createElement("div", null, /*#__PURE__*/React__default.createElement(digitUiReactComponents.CardText, {
+    style: {
+      marginBottom: "54px",
+      marginLeft: "8px",
+      marginRight: "8px"
+    }
+  }, t("CORE_LOGOUT_WEB_CONFIRMATION_MESSAGE") + " ", /*#__PURE__*/React__default.createElement("strong", null, t("CORE_LOGOUT_MESSAGE"), "?"))));
+};
+
+const defaultImage = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAO4AAADUCAMAAACs0e/bAAAAM1BMVEXK0eL" + "/" + "/" + "/" + "/Dy97GzuD4+fvL0uPg5O7T2efb4OvR1+Xr7vTk5/Df4+37/P3v8fbO1eTt8PUsnq5FAAAGqElEQVR4nO2d25ajIBBFCajgvf/" + "/a0eMyZgEjcI5xgt7Hmatme507UaxuJXidiDqjmSgeVIMlB1ZR1WZAf2gbdu0QwixSYzjOJPmHurfEGEfY9XzjNGG9whQCeVAuv5xQEySLtR9hPuIcwj0EeroN5m3D1IbsbgHK0esiQ9MKs" + "qXVr8Hm/a/Pulk6wihpCIXBw3dh7bTvRBt9+dC5NfS1VH3xETdM3MxXRN1T0zUPTNR98xcS1dlV9NNfx3DhkTdM6PKqHteVBF1z0vU5f0sKdpc2zWLKutXrjJjdLvpesRmukqYonauPhXpds" + "Lb6CppmpnltsYIuY2yavi6Mi2/rzAWm1zUfF0limVLqkZyA+mDYevKBS37aGC+L1lX5e7uyU1Cv565uiua9k5LFqbqqrnu2I3m+jJ11ZoLeRtfmdB0Uw/ZDsP0VTxdn7a1VERfmq7Xl" + "Xyn5D2QWLoq8bZlPoBJumphJjVBw/Ll6CoTZGsTDs4NrGqKbqBth8ZHJUi6cn168QmleSm6GmB7Kxm+6obXlf7PoDHosCwM3QpiS2legi6ocSl3L0G3BdneDDgwQdENfeY+SfDJBkF37Z" + "B+GvwzA6/rMaafAn8143VhPZWdjMWG1oHXhdnemgPoAvLlB/iZyRTfVeF06wPoQhJmlm4bdcOAZRlRN5gcPc5SoPEQR1fDdbOo6wn+uYvXxY0QCLom6gYROKH+Aj5nvphuFXWDiLpRdxl" + "/19LFT95k6CHCrnW7pCDqBn1i1PUFvii2c11oZOJ6usWeH0RRNzC4Zs+6FTi2nevCVwCjbugnXklX5fkfTldL8PEilUB1kfNyN1u9MME2sATr4lbuB7AjfLAuvsRm1A0g6gYRdcPAjvBlje" + "2Z8brI8OC68AcRdlCkwLohx2mcZMjw9q+LzarQurjtnwPYAydX08WecECO/u6Ad0GBdYG7jO5gB4Ap+PwKcA9ZT43dn4/W9TyiPAn4OAJaF7h3uwe8StSCddFdM3jqFa2LvnnB5zzhuuBBAj" + "Y4gi50cg694gnXhTYvfMdrjtcFZhrwE9r41gUem8IXWMC3LrBzxh+a0gRd1N1LOK7M0IUUGuggvEmHoStA2/MJh7MpupiDU4TzjhxdzLAoO4ouZvqVURbFMHQlZD6SUeWHoguZsSLUGegreh" + "A+FZFowPdUWTi6iMoZlIpGGUUXkDbjj/9ZOLqAQS/+GIKl5BQOCn/ycqpzkXSDm5dU7ZWkG7wUyGlcmm7g5Ux56AqirgoaJ7BeokPTDbp9CbVunjFxPrl7+HqnkrSq1Da7JX20f3dV8yJi6v" + "oO81mX8vV0mx3qUsZCPRfTlVRdz2EvdufYGDvNQvvwqHtmXd+a1ITinwNcXc+lT6JuzdT1XDyBn/x7wtX1HCQQdW9MXc8xArGrirowfLeUEbMqqq6f7TF1lfRdOuGNiGi6SpT+WxY06xUfNN" + "2wBfyE9I4tlm7w5hvOPDNJN3yNiLMipji6gE3chKhouoCtN5x3QlF0EZt8OW/8ougitqJQlk1aii7iFC9l0MvRReyao7xNjKML2Z/PuHlzhi5mFxljiZeiC9rPTEisNEMX9KYAwo5Xhi7qaA" + "3hamboYm7dG+NVrXhdaYDv5zFaQZsYrCtbbAGnjkQDX2+J1FXCwOsqWOpKoIQNTFdqYBWydxqNqUoG0pVpCS+H8kaJaGKErlIaXj7CRRE+gRWuKwW9YZ80oVOUgbpdT0zpnSZJTIiwCtJVelv" + "Xntr4P5j6BWfPb5Wcx84C4cq3hb11lco2u2Mdwp6XdJ/Ne3wb8DWdfiRenZaXrhLwOj4e+GQeHroy3YOspS7TlU28Wle2m2QUS0mqdcbrdNW+ZHsSsyK7tBfm0q/dWcv+Z3mytVx3t7KWulq" + "Ue6ilunu8jF8pFwgv1FXp3mUt35OtRbr7eM4u4Gs6vUBXgeuHc5kfE/cbvWZtkROLm1DMtLCy80tzsu2PRj0hTI8fvrQuvsjlJkyutszq+m423wHaLTyniy/XuiGZ84LuT+m5ZfNfRxyGs7L" + "XZOvia7VujatUwVTrIt+Q/Csc7Tuhe+BOakT10b4TuoiiJjvgU9emTO42PwEfBa+cuodKkuf42DXr1D3JpXz73Hnn0j10evHKe+nufgfUm+7B84sX9FfdEzXux2DBpWuKokkCqN/5pa/8pmvn" + "L+RGKCddCGmatiPyPB/+ekO/M/q/7uvbt22kTt3zEnXPzCV13T3Gel4/6NduDu66xRvlPNkM1RjjxUdv+4WhGx6TftD19Q/dfzpwcHO+rE3fAAAAAElFTkSuQmCC";
+const Profile = _ref => {
+  let {
+    info,
+    stateName,
+    t
+  } = _ref;
+  return /*#__PURE__*/React__default.createElement("div", {
+    className: "profile-section"
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "imageloader imageloader-loaded"
+  }, /*#__PURE__*/React__default.createElement("img", {
+    className: "img-responsive img-circle img-Profile",
+    src: defaultImage
+  })), /*#__PURE__*/React__default.createElement("div", {
+    id: "profile-name",
+    className: "label-container name-Profile"
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "label-text"
+  }, " ", info === null || info === void 0 ? void 0 : info.name, " ")), /*#__PURE__*/React__default.createElement("div", {
+    id: "profile-location",
+    className: "label-container loc-Profile"
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "label-text"
+  }, " ", info === null || info === void 0 ? void 0 : info.mobileNumber, " ")), (info === null || info === void 0 ? void 0 : info.emailId) && /*#__PURE__*/React__default.createElement("div", {
+    id: "profile-emailid",
+    className: "label-container loc-Profile"
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "label-text"
+  }, " ", info.emailId, " ")), /*#__PURE__*/React__default.createElement("div", {
+    className: "profile-divider"
+  }), window.location.href.includes("/employee") && !window.location.href.includes("/employee/user/login") && !window.location.href.includes("employee/user/language-selection") && /*#__PURE__*/React__default.createElement(ChangeCity, {
+    t: t,
+    mobileView: true
+  }));
+};
+const IconsObject = {
+  CommonPTIcon: /*#__PURE__*/React__default.createElement(digitUiReactComponents.PTIcon, {
+    className: "icon"
+  }),
+  OBPSIcon: /*#__PURE__*/React__default.createElement(digitUiReactComponents.OBPSIcon, {
+    className: "icon"
+  }),
+  propertyIcon: /*#__PURE__*/React__default.createElement(digitUiReactComponents.PropertyHouse, {
+    className: "icon"
+  }),
+  TLIcon: /*#__PURE__*/React__default.createElement(digitUiReactComponents.CaseIcon, {
+    className: "icon"
+  }),
+  PGRIcon: /*#__PURE__*/React__default.createElement(digitUiReactComponents.PGRIcon, {
+    className: "icon"
+  }),
+  FSMIcon: /*#__PURE__*/React__default.createElement(digitUiReactComponents.FSMIcon, {
+    className: "icon"
+  }),
+  WSIcon: /*#__PURE__*/React__default.createElement(digitUiReactComponents.WSICon, {
+    className: "icon"
+  }),
+  MCollectIcon: /*#__PURE__*/React__default.createElement(digitUiReactComponents.MCollectIcon, {
+    className: "icon"
+  }),
+  BillsIcon: /*#__PURE__*/React__default.createElement(digitUiReactComponents.CollectionIcon, {
+    className: "icon"
+  }),
+  BirthIcon: /*#__PURE__*/React__default.createElement(digitUiReactComponents.BirthIcon, {
+    className: "icon"
+  }),
+  DeathIcon: /*#__PURE__*/React__default.createElement(digitUiReactComponents.DeathIcon, {
+    className: "icon"
+  }),
+  FirenocIcon: /*#__PURE__*/React__default.createElement(digitUiReactComponents.FirenocIcon, {
+    className: "icon"
+  }),
+  HomeIcon: /*#__PURE__*/React__default.createElement(digitUiReactComponents.HomeIcon, {
+    className: "icon"
+  }),
+  EditPencilIcon: /*#__PURE__*/React__default.createElement(digitUiReactComponents.EditPencilIcon, {
+    className: "icon"
+  }),
+  LogoutIcon: /*#__PURE__*/React__default.createElement(digitUiReactComponents.LogoutIcon, {
+    className: "icon"
+  }),
+  Phone: /*#__PURE__*/React__default.createElement(digitUiReactComponents.Phone, {
+    className: "icon"
+  }),
+  LoginIcon: /*#__PURE__*/React__default.createElement(digitUiReactComponents.LoginIcon, {
+    className: "icon"
+  })
+};
+const StaticCitizenSideBar = _ref2 => {
+  var _storeData$tenants$fi, _storeData$tenants$, _Object$keys, _Object$keys$sort, _menuItems;
+  let {
+    linkData,
+    islinkDataLoading
+  } = _ref2;
+  const {
+    t
+  } = reactI18next.useTranslation();
+  const history = reactRouterDom.useHistory();
+  const location = reactRouterDom.useLocation();
+  const {
+    pathname
+  } = location;
+  const {
+    data: storeData,
+    isFetched
+  } = Digit.Hooks.useStore.getInitData();
+  const {
+    stateInfo
+  } = storeData || {};
+  const user = Digit.UserService.getUser();
+  let isMobile = window.Digit.Utils.browser.isMobile();
+  const [isEmployee, setisEmployee] = React.useState(false);
+  const [isSidebarOpen, toggleSidebar] = React.useState(false);
+  const [showDialog, setShowDialog] = React.useState(false);
+  const handleLogout = () => {
+    toggleSidebar(false);
+    setShowDialog(true);
+  };
+  const handleOnSubmit = () => {
+    Digit.UserService.logout();
+    setShowDialog(false);
+  };
+  const handleOnCancel = () => {
+    setShowDialog(false);
+  };
+  if (islinkDataLoading || !isFetched) {
+    return /*#__PURE__*/React__default.createElement(digitUiReactComponents.Loader, null);
+  }
+  const redirectToLoginPage = () => {
+    history.push("/digit-ui/citizen/login");
+  };
+  const showProfilePage = () => {
+    history.push("/digit-ui/citizen/user/profile");
+  };
+  const tenantId = Digit.ULBService.getCitizenCurrentTenant();
+  const filteredTenantContact = (storeData === null || storeData === void 0 ? void 0 : (_storeData$tenants$fi = storeData.tenants.filter(e => e.code === tenantId)[0]) === null || _storeData$tenants$fi === void 0 ? void 0 : _storeData$tenants$fi.contactNumber) || (storeData === null || storeData === void 0 ? void 0 : (_storeData$tenants$ = storeData.tenants[0]) === null || _storeData$tenants$ === void 0 ? void 0 : _storeData$tenants$.contactNumber);
+  let menuItems = [...SideBarMenu(t, showProfilePage, redirectToLoginPage, isEmployee, storeData, tenantId)];
+  menuItems = menuItems.filter(item => item.element !== "LANGUAGE");
+  const MenuItem = _ref3 => {
+    var _item$icon, _item$icon$type;
+    let {
+      item
+    } = _ref3;
+    const leftIconArray = (item === null || item === void 0 ? void 0 : item.icon) || ((_item$icon = item.icon) === null || _item$icon === void 0 ? void 0 : (_item$icon$type = _item$icon.type) === null || _item$icon$type === void 0 ? void 0 : _item$icon$type.name);
+    const leftIcon = leftIconArray ? IconsObject[leftIconArray] : IconsObject.BillsIcon;
+    let itemComponent;
+    if (item.type === "component") {
+      itemComponent = item.action;
+    } else {
+      itemComponent = item.text;
+    }
+    const Item = () => /*#__PURE__*/React__default.createElement("span", _extends({
+      className: "menu-item"
+    }, item.populators), leftIcon, /*#__PURE__*/React__default.createElement("div", {
+      className: "menu-label"
+    }, itemComponent));
+    if (item.type === "external-link") {
+      return /*#__PURE__*/React__default.createElement("a", {
+        href: item.link
+      }, /*#__PURE__*/React__default.createElement(Item, null));
+    }
+    if (item.type === "link") {
+      return /*#__PURE__*/React__default.createElement(reactRouterDom.Link, {
+        to: item === null || item === void 0 ? void 0 : item.link
+      }, /*#__PURE__*/React__default.createElement(Item, null));
+    }
+    return /*#__PURE__*/React__default.createElement(Item, null);
+  };
+  let profileItem;
+  if (isFetched && user && user.access_token) {
+    profileItem = /*#__PURE__*/React__default.createElement(Profile, {
+      info: user === null || user === void 0 ? void 0 : user.info,
+      stateName: stateInfo === null || stateInfo === void 0 ? void 0 : stateInfo.name,
+      t: t
+    });
+    menuItems = menuItems.filter(item => (item === null || item === void 0 ? void 0 : item.id) !== "login-btn" && (item === null || item === void 0 ? void 0 : item.id) !== "help-line");
+    menuItems = [...menuItems, {
+      text: t("EDIT_PROFILE"),
+      element: "PROFILE",
+      icon: "EditPencilIcon",
+      populators: {
+        onClick: showProfilePage
+      }
+    }, {
+      text: t("CORE_COMMON_LOGOUT"),
+      element: "LOGOUT",
+      icon: "LogoutIcon",
+      populators: {
+        onClick: handleLogout
+      }
+    }, {
+      text: /*#__PURE__*/React__default.createElement(React__default.Fragment, null, t("CS_COMMON_HELPLINE"), /*#__PURE__*/React__default.createElement("div", {
+        className: "telephone",
+        style: {
+          marginTop: "-10%"
+        }
+      }, /*#__PURE__*/React__default.createElement("div", {
+        className: "link"
+      }, /*#__PURE__*/React__default.createElement("a", {
+        href: "tel:" + filteredTenantContact
+      }, filteredTenantContact)))),
+      element: "Helpline",
+      icon: "Phone"
+    }];
+  }
+  (_Object$keys = Object.keys(linkData)) === null || _Object$keys === void 0 ? void 0 : (_Object$keys$sort = _Object$keys.sort((x, y) => y.localeCompare(x))) === null || _Object$keys$sort === void 0 ? void 0 : _Object$keys$sort.map(key => {
+    var _linkData$key$;
+    if (((_linkData$key$ = linkData[key][0]) === null || _linkData$key$ === void 0 ? void 0 : _linkData$key$.sidebar) === "digit-ui-links") {
+      var _linkData$key$2, _linkData$key$2$sideb, _linkData$key$3, _linkData$key$4;
+      menuItems.splice(1, 0, {
+        type: (_linkData$key$2 = linkData[key][0]) !== null && _linkData$key$2 !== void 0 && (_linkData$key$2$sideb = _linkData$key$2.sidebarURL) !== null && _linkData$key$2$sideb !== void 0 && _linkData$key$2$sideb.includes("digit-ui") ? "link" : "external-link",
+        text: t("ACTION_TEST_" + Digit.Utils.locale.getTransformedLocale(key)),
+        links: linkData[key],
+        icon: (_linkData$key$3 = linkData[key][0]) === null || _linkData$key$3 === void 0 ? void 0 : _linkData$key$3.leftIcon,
+        link: (_linkData$key$4 = linkData[key][0]) === null || _linkData$key$4 === void 0 ? void 0 : _linkData$key$4.sidebarURL
+      });
+    }
+  });
+  return /*#__PURE__*/React__default.createElement(React__default.Fragment, null, /*#__PURE__*/React__default.createElement("div", null, /*#__PURE__*/React__default.createElement("div", {
+    style: {
+      height: "100%",
+      width: "100%",
+      top: "0px",
+      backgroundColor: "rgba(0, 0, 0, 0.54)",
+      pointerzevents: "auto"
+    }
+  }), /*#__PURE__*/React__default.createElement("div", {
+    style: {
+      display: "flex",
+      flexDirection: "column",
+      height: isMobile ? "calc(100vh - 56px)" : "auto",
+      zIndex: "99"
+    }
+  }, profileItem, /*#__PURE__*/React__default.createElement("div", {
+    className: "drawer-desktop",
+    style: {
+      "backgroundColor": "white"
+    }
+  }, (_menuItems = menuItems) === null || _menuItems === void 0 ? void 0 : _menuItems.map((item, index) => /*#__PURE__*/React__default.createElement("div", {
+    className: "sidebar-list " + (pathname === (item === null || item === void 0 ? void 0 : item.link) || pathname === (item === null || item === void 0 ? void 0 : item.sidebarURL) ? "active" : ""),
+    key: index
+  }, /*#__PURE__*/React__default.createElement(MenuItem, {
+    item: item
+  }))))), /*#__PURE__*/React__default.createElement("div", null, showDialog && /*#__PURE__*/React__default.createElement(LogoutDialog, {
+    onSelect: handleOnSubmit,
+    onCancel: handleOnCancel,
+    onDismiss: handleOnCancel
+  }))));
+};
+
+const defaultImage$1 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAO4AAADUCAMAAACs0e/bAAAAM1BMVEXK0eL" + "/" + "/" + "/" + "/Dy97GzuD4+fvL0uPg5O7T2efb4OvR1+Xr7vTk5/Df4+37/P3v8fbO1eTt8PUsnq5FAAAGqElEQVR4nO2d25ajIBBFCajgvf/" + "/a0eMyZgEjcI5xgt7Hmatme507UaxuJXidiDqjmSgeVIMlB1ZR1WZAf2gbdu0QwixSYzjOJPmHurfEGEfY9XzjNGG9whQCeVAuv5xQEySLtR9hPuIcwj0EeroN5m3D1IbsbgHK0esiQ9MKs" + "qXVr8Hm/a/Pulk6wihpCIXBw3dh7bTvRBt9+dC5NfS1VH3xETdM3MxXRN1T0zUPTNR98xcS1dlV9NNfx3DhkTdM6PKqHteVBF1z0vU5f0sKdpc2zWLKutXrjJjdLvpesRmukqYonauPhXpds" + "Lb6CppmpnltsYIuY2yavi6Mi2/rzAWm1zUfF0limVLqkZyA+mDYevKBS37aGC+L1lX5e7uyU1Cv565uiua9k5LFqbqqrnu2I3m+jJ11ZoLeRtfmdB0Uw/ZDsP0VTxdn7a1VERfmq7Xl" + "Xyn5D2QWLoq8bZlPoBJumphJjVBw/Ll6CoTZGsTDs4NrGqKbqBth8ZHJUi6cn168QmleSm6GmB7Kxm+6obXlf7PoDHosCwM3QpiS2legi6ocSl3L0G3BdneDDgwQdENfeY+SfDJBkF37Z" + "B+GvwzA6/rMaafAn8143VhPZWdjMWG1oHXhdnemgPoAvLlB/iZyRTfVeF06wPoQhJmlm4bdcOAZRlRN5gcPc5SoPEQR1fDdbOo6wn+uYvXxY0QCLom6gYROKH+Aj5nvphuFXWDiLpRdxl" + "/19LFT95k6CHCrnW7pCDqBn1i1PUFvii2c11oZOJ6usWeH0RRNzC4Zs+6FTi2nevCVwCjbugnXklX5fkfTldL8PEilUB1kfNyN1u9MME2sATr4lbuB7AjfLAuvsRm1A0g6gYRdcPAjvBlje" + "2Z8brI8OC68AcRdlCkwLohx2mcZMjw9q+LzarQurjtnwPYAydX08WecECO/u6Ad0GBdYG7jO5gB4Ap+PwKcA9ZT43dn4/W9TyiPAn4OAJaF7h3uwe8StSCddFdM3jqFa2LvnnB5zzhuuBBAj" + "Y4gi50cg694gnXhTYvfMdrjtcFZhrwE9r41gUem8IXWMC3LrBzxh+a0gRd1N1LOK7M0IUUGuggvEmHoStA2/MJh7MpupiDU4TzjhxdzLAoO4ouZvqVURbFMHQlZD6SUeWHoguZsSLUGegreh" + "A+FZFowPdUWTi6iMoZlIpGGUUXkDbjj/9ZOLqAQS/+GIKl5BQOCn/ycqpzkXSDm5dU7ZWkG7wUyGlcmm7g5Ux56AqirgoaJ7BeokPTDbp9CbVunjFxPrl7+HqnkrSq1Da7JX20f3dV8yJi6v" + "oO81mX8vV0mx3qUsZCPRfTlVRdz2EvdufYGDvNQvvwqHtmXd+a1ITinwNcXc+lT6JuzdT1XDyBn/x7wtX1HCQQdW9MXc8xArGrirowfLeUEbMqqq6f7TF1lfRdOuGNiGi6SpT+WxY06xUfNN" + "2wBfyE9I4tlm7w5hvOPDNJN3yNiLMipji6gE3chKhouoCtN5x3QlF0EZt8OW/8ougitqJQlk1aii7iFC9l0MvRReyao7xNjKML2Z/PuHlzhi5mFxljiZeiC9rPTEisNEMX9KYAwo5Xhi7qaA" + "3hamboYm7dG+NVrXhdaYDv5zFaQZsYrCtbbAGnjkQDX2+J1FXCwOsqWOpKoIQNTFdqYBWydxqNqUoG0pVpCS+H8kaJaGKErlIaXj7CRRE+gRWuKwW9YZ80oVOUgbpdT0zpnSZJTIiwCtJVelv" + "Xntr4P5j6BWfPb5Wcx84C4cq3hb11lco2u2Mdwp6XdJ/Ne3wb8DWdfiRenZaXrhLwOj4e+GQeHroy3YOspS7TlU28Wle2m2QUS0mqdcbrdNW+ZHsSsyK7tBfm0q/dWcv+Z3mytVx3t7KWulq" + "Ue6ilunu8jF8pFwgv1FXp3mUt35OtRbr7eM4u4Gs6vUBXgeuHc5kfE/cbvWZtkROLm1DMtLCy80tzsu2PRj0hTI8fvrQuvsjlJkyutszq+m423wHaLTyniy/XuiGZ84LuT+m5ZfNfRxyGs7L" + "XZOvia7VujatUwVTrIt+Q/Csc7Tuhe+BOakT10b4TuoiiJjvgU9emTO42PwEfBa+cuodKkuf42DXr1D3JpXz73Hnn0j10evHKe+nufgfUm+7B84sX9FfdEzXux2DBpWuKokkCqN/5pa/8pmvn" + "L+RGKCddCGmatiPyPB/+ekO/M/q/7uvbt22kTt3zEnXPzCV13T3Gel4/6NduDu66xRvlPNkM1RjjxUdv+4WhGx6TftD19Q/dfzpwcHO+rE3fAAAAAElFTkSuQmCC";
+const Profile$1 = _ref => {
+  let {
+    info,
+    stateName,
+    t
+  } = _ref;
+  const [profilePic, setProfilePic] = React__default.useState(null);
+  React__default.useEffect(function () {
+    try {
+      const tenant = Digit.ULBService.getCurrentTenantId();
+      const uuid = info === null || info === void 0 ? void 0 : info.uuid;
+      const _temp = function () {
+        if (uuid) {
+          return Promise.resolve(Digit.UserService.userSearch(tenant, {
+            uuid: [uuid]
+          }, {})).then(function (usersResponse) {
+            if (usersResponse && usersResponse.user && usersResponse.user.length) {
+              var _userDetails$photo;
+              const userDetails = usersResponse.user[0];
+              const thumbs = userDetails === null || userDetails === void 0 ? void 0 : (_userDetails$photo = userDetails.photo) === null || _userDetails$photo === void 0 ? void 0 : _userDetails$photo.split(",");
+              setProfilePic(thumbs === null || thumbs === void 0 ? void 0 : thumbs.at(0));
+            }
+          });
+        }
+      }();
+      return Promise.resolve(_temp && _temp.then ? _temp.then(function () {}) : void 0);
+    } catch (e) {
+      return Promise.reject(e);
+    }
+  }, [profilePic !== null]);
+  return /*#__PURE__*/React__default.createElement("div", {
+    className: "profile-section"
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "imageloader imageloader-loaded"
+  }, /*#__PURE__*/React__default.createElement("img", {
+    className: "img-responsive img-circle img-Profile",
+    src: profilePic ? profilePic : defaultImage$1,
+    style: {
+      objectFit: "cover",
+      objectPosition: "center"
+    }
+  })), /*#__PURE__*/React__default.createElement("div", {
+    id: "profile-name",
+    className: "label-container name-Profile"
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "label-text"
+  }, " ", info === null || info === void 0 ? void 0 : info.name, " ")), /*#__PURE__*/React__default.createElement("div", {
+    id: "profile-location",
+    className: "label-container loc-Profile"
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "label-text"
+  }, " ", info === null || info === void 0 ? void 0 : info.mobileNumber, " ")), (info === null || info === void 0 ? void 0 : info.emailId) && /*#__PURE__*/React__default.createElement("div", {
+    id: "profile-emailid",
+    className: "label-container loc-Profile"
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "label-text"
+  }, " ", info.emailId, " ")), /*#__PURE__*/React__default.createElement("div", {
+    className: "profile-divider"
+  }), window.location.href.includes("/employee") && !window.location.href.includes("/employee/user/login") && !window.location.href.includes("employee/user/language-selection") && /*#__PURE__*/React__default.createElement(ChangeCity, {
+    t: t,
+    mobileView: true
+  }));
+};
+const PoweredBy = () => /*#__PURE__*/React__default.createElement("div", {
+  className: "digit-footer",
+  style: {
+    marginBottom: 0
+  }
+});
+const CitizenSideBar = _ref2 => {
+  var _storeData$tenants$fi, _storeData$tenants$;
+  let {
+    isOpen,
+    isMobile = false,
+    toggleSidebar,
+    onLogout,
+    isEmployee = false,
+    linkData,
+    islinkDataLoading,
+    isSideBarScroll
+  } = _ref2;
+  const {
+    data: storeData,
+    isFetched
+  } = Digit.Hooks.useStore.getInitData();
+  const {
+    stateInfo
+  } = storeData || {};
+  const user = Digit.UserService.getUser();
+  const [search, setSearch] = React.useState("");
+  const {
+    t
+  } = reactI18next.useTranslation();
+  const history = reactRouterDom.useHistory();
+  const closeSidebar = () => {
+    Digit.clikOusideFired = true;
+    toggleSidebar(false);
+  };
+  const {
+    isLoading,
+    data
+  } = Digit.Hooks.useAccessControl();
+  const tenantId = Digit.ULBService.getCitizenCurrentTenant();
+  const showProfilePage = () => {
+    const redirectUrl = isEmployee ? "/digit-ui/employee/user/profile" : "/digit-ui/citizen/user/profile";
+    history.push(redirectUrl);
+    closeSidebar();
+  };
+  const redirectToLoginPage = () => {
+    history.push("/digit-ui/citizen/login");
+    closeSidebar();
+  };
+  if (islinkDataLoading || isLoading || !isFetched) {
+    return /*#__PURE__*/React__default.createElement(digitUiReactComponents.Loader, null);
+  }
+  const filteredTenantContact = (storeData === null || storeData === void 0 ? void 0 : (_storeData$tenants$fi = storeData.tenants.filter(e => e.code === tenantId)[0]) === null || _storeData$tenants$fi === void 0 ? void 0 : _storeData$tenants$fi.contactNumber) || (storeData === null || storeData === void 0 ? void 0 : (_storeData$tenants$ = storeData.tenants[0]) === null || _storeData$tenants$ === void 0 ? void 0 : _storeData$tenants$.contactNumber);
+  let menuItems = [...SideBarMenu(t, closeSidebar, redirectToLoginPage, isEmployee, storeData, tenantId)];
+  let profileItem;
+  if (isFetched && user && user.access_token) {
+    profileItem = /*#__PURE__*/React__default.createElement(Profile$1, {
+      info: user === null || user === void 0 ? void 0 : user.info,
+      stateName: stateInfo === null || stateInfo === void 0 ? void 0 : stateInfo.name,
+      t: t
+    });
+    menuItems = menuItems.filter(item => (item === null || item === void 0 ? void 0 : item.id) !== "login-btn" && (item === null || item === void 0 ? void 0 : item.id) !== "help-line");
+    menuItems = [...menuItems, {
+      text: t("EDIT_PROFILE"),
+      element: "PROFILE",
+      icon: "EditPencilIcon",
+      populators: {
+        onClick: showProfilePage
+      }
+    }, {
+      text: t("CORE_COMMON_LOGOUT"),
+      element: "LOGOUT",
+      icon: "LogoutIcon",
+      populators: {
+        onClick: onLogout
+      }
+    }, {
+      text: /*#__PURE__*/React__default.createElement(React__default.Fragment, null, t("CS_COMMON_HELPLINE"), /*#__PURE__*/React__default.createElement("div", {
+        className: "telephone",
+        style: {
+          marginTop: "-10%"
+        }
+      }, /*#__PURE__*/React__default.createElement("div", {
+        className: "link"
+      }, /*#__PURE__*/React__default.createElement("a", {
+        href: "tel:" + filteredTenantContact
+      }, filteredTenantContact)))),
+      element: "Helpline",
+      icon: "Phone"
+    }];
+  }
+  let configEmployeeSideBar = {};
+  if (!isEmployee) {
+    var _Object$keys, _Object$keys$sort;
+    if (linkData && linkData.FSM) {
+      let FSM = [];
+      linkData.FSM.map(ele => {
+        ele.id && ele.link && FSM.push(ele);
+      });
+      linkData.FSM = FSM;
+    }
+    (_Object$keys = Object.keys(linkData)) === null || _Object$keys === void 0 ? void 0 : (_Object$keys$sort = _Object$keys.sort((x, y) => y.localeCompare(x))) === null || _Object$keys$sort === void 0 ? void 0 : _Object$keys$sort.map(key => {
+      var _linkData$key$, _linkData$key$2, _linkData$key$2$sideb, _linkData$key$3, _linkData$key$4;
+      if (((_linkData$key$ = linkData[key][0]) === null || _linkData$key$ === void 0 ? void 0 : _linkData$key$.sidebar) === "digit-ui-links") menuItems.splice(1, 0, {
+        type: (_linkData$key$2 = linkData[key][0]) !== null && _linkData$key$2 !== void 0 && (_linkData$key$2$sideb = _linkData$key$2.sidebarURL) !== null && _linkData$key$2$sideb !== void 0 && _linkData$key$2$sideb.includes("digit-ui") ? "link" : "external-link",
+        text: t("ACTION_TEST_" + Digit.Utils.locale.getTransformedLocale(key)),
+        links: linkData[key],
+        icon: (_linkData$key$3 = linkData[key][0]) === null || _linkData$key$3 === void 0 ? void 0 : _linkData$key$3.leftIcon,
+        link: (_linkData$key$4 = linkData[key][0]) === null || _linkData$key$4 === void 0 ? void 0 : _linkData$key$4.sidebarURL
+      });
+    });
+  } else {
+    var _menuItems;
+    data === null || data === void 0 ? void 0 : data.actions.filter(e => e.url === "url" && e.displayName !== "Home").forEach(item => {
+      var _item$displayName;
+      if (search == "" && item.path !== "") {
+        let index = item.path.split(".")[0];
+        if (index === "TradeLicense") index = "Trade License";
+        if (!configEmployeeSideBar[index]) {
+          configEmployeeSideBar[index] = [item];
+        } else {
+          configEmployeeSideBar[index].push(item);
+        }
+      } else if (item.path !== "" && item !== null && item !== void 0 && (_item$displayName = item.displayName) !== null && _item$displayName !== void 0 && _item$displayName.toLowerCase().includes(search.toLowerCase())) {
+        let index = item.path.split(".")[0];
+        if (index === "TradeLicense") index = "Trade License";
+        if (!configEmployeeSideBar[index]) {
+          configEmployeeSideBar[index] = [item];
+        } else {
+          configEmployeeSideBar[index].push(item);
+        }
+      }
+    });
+    const keys = Object.keys(configEmployeeSideBar);
+    for (let i = 0; i < keys.length; i++) {
+      var _configEmployeeSideBa, _configEmployeeSideBa2, _configEmployeeSideBa3, _keys$i, _keys$i$toUpperCase;
+      const getSingleDisplayName = (_configEmployeeSideBa = configEmployeeSideBar[keys[i]][0]) === null || _configEmployeeSideBa === void 0 ? void 0 : (_configEmployeeSideBa2 = _configEmployeeSideBa.displayName) === null || _configEmployeeSideBa2 === void 0 ? void 0 : (_configEmployeeSideBa3 = _configEmployeeSideBa2.toUpperCase()) === null || _configEmployeeSideBa3 === void 0 ? void 0 : _configEmployeeSideBa3.replace(/[ -]/g, "_");
+      const getParentDisplayName = (_keys$i = keys[i]) === null || _keys$i === void 0 ? void 0 : (_keys$i$toUpperCase = _keys$i.toUpperCase()) === null || _keys$i$toUpperCase === void 0 ? void 0 : _keys$i$toUpperCase.replace(/[ -]/g, "_");
+      if (configEmployeeSideBar[keys[i]][0].path.indexOf(".") === -1) {
+        var _configEmployeeSideBa4, _configEmployeeSideBa5, _configEmployeeSideBa6, _configEmployeeSideBa7, _configEmployeeSideBa8;
+        menuItems.splice(1, 0, {
+          type: "link",
+          text: t("ACTION_TEST_" + getSingleDisplayName),
+          link: (_configEmployeeSideBa4 = configEmployeeSideBar[keys[i]][0]) === null || _configEmployeeSideBa4 === void 0 ? void 0 : _configEmployeeSideBa4.navigationURL,
+          icon: (_configEmployeeSideBa5 = configEmployeeSideBar[keys[i]][0]) === null || _configEmployeeSideBa5 === void 0 ? void 0 : (_configEmployeeSideBa6 = _configEmployeeSideBa5.leftIcon) === null || _configEmployeeSideBa6 === void 0 ? void 0 : (_configEmployeeSideBa7 = (_configEmployeeSideBa8 = _configEmployeeSideBa6).split) === null || _configEmployeeSideBa7 === void 0 ? void 0 : _configEmployeeSideBa7.call(_configEmployeeSideBa8, ":")[1],
+          populators: {
+            onClick: () => {
+              var _configEmployeeSideBa9;
+              history.push((_configEmployeeSideBa9 = configEmployeeSideBar[keys[i]][0]) === null || _configEmployeeSideBa9 === void 0 ? void 0 : _configEmployeeSideBa9.navigationURL);
+              closeSidebar();
+            }
+          }
+        });
+      } else {
+        var _configEmployeeSideBa10, _configEmployeeSideBa11;
+        menuItems.splice(1, 0, {
+          type: "dynamic",
+          moduleName: t("ACTION_TEST_" + getParentDisplayName),
+          links: (_configEmployeeSideBa10 = configEmployeeSideBar[keys[i]]) === null || _configEmployeeSideBa10 === void 0 ? void 0 : _configEmployeeSideBa10.map(ob => {
+            var _ob$displayName, _ob$displayName$toUpp;
+            return {
+              ...ob,
+              displayName: t("ACTION_TEST_" + (ob === null || ob === void 0 ? void 0 : (_ob$displayName = ob.displayName) === null || _ob$displayName === void 0 ? void 0 : (_ob$displayName$toUpp = _ob$displayName.toUpperCase()) === null || _ob$displayName$toUpp === void 0 ? void 0 : _ob$displayName$toUpp.replace(/[ -]/g, "_")))
+            };
+          }),
+          icon: (_configEmployeeSideBa11 = configEmployeeSideBar[keys[i]][1]) === null || _configEmployeeSideBa11 === void 0 ? void 0 : _configEmployeeSideBa11.leftIcon
+        });
+      }
+    }
+    const indx = menuItems.findIndex(a => a.element === "HOME");
+    const home = menuItems.splice(indx, 1);
+    const comp = menuItems.findIndex(a => a.element === "LANGUAGE");
+    const part = menuItems.splice(comp, ((_menuItems = menuItems) === null || _menuItems === void 0 ? void 0 : _menuItems.length) - comp);
+    menuItems.sort((a, b) => {
+      let c1 = (a === null || a === void 0 ? void 0 : a.type) === "dynamic" ? a === null || a === void 0 ? void 0 : a.moduleName : a === null || a === void 0 ? void 0 : a.text;
+      let c2 = (b === null || b === void 0 ? void 0 : b.type) === "dynamic" ? b === null || b === void 0 ? void 0 : b.moduleName : b === null || b === void 0 ? void 0 : b.text;
+      return c1.localeCompare(c2);
+    });
+    (home === null || home === void 0 ? void 0 : home[0]) && menuItems.splice(0, 0, home[0]);
+    menuItems = (part === null || part === void 0 ? void 0 : part.length) > 0 ? menuItems.concat(part) : menuItems;
+  }
+  if (history.location.pathname.includes("/openlink")) {
+    profileItem = /*#__PURE__*/React__default.createElement("span", null);
+    menuItems = menuItems.filter(ele => ele.element === "LANGUAGE");
+  }
+  return isMobile ? /*#__PURE__*/React__default.createElement(digitUiReactComponents.NavBar, {
+    open: isOpen,
+    toggleSidebar: toggleSidebar,
+    profileItem: profileItem,
+    onClose: closeSidebar,
+    isSideBarScroll: isSideBarScroll,
+    menuItems: menuItems,
+    Footer: /*#__PURE__*/React__default.createElement(PoweredBy, null),
+    isEmployee: isEmployee,
+    search: search,
+    setSearch: setSearch
+  }) : /*#__PURE__*/React__default.createElement(StaticCitizenSideBar, {
+    logout: onLogout
+  });
+};
+
+const SubMenu = _ref => {
+  var _item$icon, _item$icon$leftIcon, _item$icon$leftIcon$s, _item$icon$leftIcon$s2, _item$leftIcon, _item$leftIcon$split, _item$moduleName;
+  let {
+    item
+  } = _ref;
+  const [subnav, setSubnav] = React.useState(false);
+  const location = reactRouterDom.useLocation();
+  const {
+    pathname
+  } = location;
+  const {
+    t
+  } = reactI18next.useTranslation();
+  const showSubnav = () => setSubnav(!subnav);
+  const IconsObject = {
+    home: /*#__PURE__*/React__default.createElement(digitUiReactComponents.HomeIcon, null),
+    announcement: /*#__PURE__*/React__default.createElement(digitUiReactComponents.ComplaintIcon, null),
+    business: /*#__PURE__*/React__default.createElement(digitUiReactComponents.BPAHomeIcon, null),
+    store: /*#__PURE__*/React__default.createElement(digitUiReactComponents.PropertyHouse, null),
+    assignment: /*#__PURE__*/React__default.createElement(digitUiReactComponents.CaseIcon, null),
+    receipt: /*#__PURE__*/React__default.createElement(digitUiReactComponents.ReceiptIcon, null),
+    "business-center": /*#__PURE__*/React__default.createElement(digitUiReactComponents.PersonIcon, null),
+    description: /*#__PURE__*/React__default.createElement(digitUiReactComponents.DocumentIconSolid, null),
+    "water-tap": /*#__PURE__*/React__default.createElement(digitUiReactComponents.DropIcon, null),
+    "collections-bookmark": /*#__PURE__*/React__default.createElement(digitUiReactComponents.CollectionsBookmarIcons, null),
+    "insert-chart": /*#__PURE__*/React__default.createElement(digitUiReactComponents.FinanceChartIcon, null),
+    edcr: /*#__PURE__*/React__default.createElement(digitUiReactComponents.CollectionIcon, null),
+    collections: /*#__PURE__*/React__default.createElement(digitUiReactComponents.CollectionIcon, null)
+  };
+  const leftIconArray = (item === null || item === void 0 ? void 0 : (_item$icon = item.icon) === null || _item$icon === void 0 ? void 0 : (_item$icon$leftIcon = _item$icon.leftIcon) === null || _item$icon$leftIcon === void 0 ? void 0 : (_item$icon$leftIcon$s = _item$icon$leftIcon.split) === null || _item$icon$leftIcon$s === void 0 ? void 0 : (_item$icon$leftIcon$s2 = _item$icon$leftIcon$s.call(_item$icon$leftIcon, ":")) === null || _item$icon$leftIcon$s2 === void 0 ? void 0 : _item$icon$leftIcon$s2[1]) || (item === null || item === void 0 ? void 0 : (_item$leftIcon = item.leftIcon) === null || _item$leftIcon === void 0 ? void 0 : (_item$leftIcon$split = _item$leftIcon.split) === null || _item$leftIcon$split === void 0 ? void 0 : _item$leftIcon$split.call(_item$leftIcon, ":")[1]);
+  const leftIcon = IconsObject[leftIconArray] || IconsObject.collections;
+  const getModuleName = item === null || item === void 0 ? void 0 : (_item$moduleName = item.moduleName) === null || _item$moduleName === void 0 ? void 0 : _item$moduleName.replace(/[ -]/g, "_");
+  const appendTranslate = t("ACTION_TEST_" + getModuleName);
+  const trimModuleName = t((appendTranslate === null || appendTranslate === void 0 ? void 0 : appendTranslate.length) > 20 ? appendTranslate.substring(0, 20) + "..." : appendTranslate);
+  if (item.type === "single") {
+    var _item$navigationURL;
+    const getOrigin = window.location.origin;
+    return /*#__PURE__*/React__default.createElement("div", {
+      className: "submenu-container"
+    }, /*#__PURE__*/React__default.createElement("div", {
+      className: "sidebar-link  " + (pathname === (item === null || item === void 0 ? void 0 : item.navigationURL) ? "active" : "")
+    }, /*#__PURE__*/React__default.createElement("div", {
+      className: "actions"
+    }, leftIcon, ((_item$navigationURL = item.navigationURL) === null || _item$navigationURL === void 0 ? void 0 : _item$navigationURL.indexOf("/digit-ui")) === -1 ? /*#__PURE__*/React__default.createElement("a", {
+      "data-tip": "React-tooltip",
+      "data-for": "jk-side-" + getModuleName,
+      className: "custom-link",
+      href: getOrigin + "/employee/" + item.navigationURL
+    }, /*#__PURE__*/React__default.createElement("span", null, " ", trimModuleName, " "), (trimModuleName === null || trimModuleName === void 0 ? void 0 : trimModuleName.includes("...")) && /*#__PURE__*/React__default.createElement(ReactTooltip, {
+      textColor: "white",
+      backgroundColor: "grey",
+      place: "right",
+      type: "info",
+      effect: "solid",
+      id: "jk-side-" + getModuleName
+    }, t("ACTION_TEST_" + getModuleName))) :
+    /*#__PURE__*/
+    React__default.createElement(reactRouterDom.Link, {
+      className: "custom-link",
+      to: item.navigationURL
+    }, /*#__PURE__*/React__default.createElement("div", {
+      "data-tip": "React-tooltip",
+      "data-for": "jk-side-" + getModuleName
+    }, /*#__PURE__*/React__default.createElement("span", null, " ", trimModuleName, " "), (trimModuleName === null || trimModuleName === void 0 ? void 0 : trimModuleName.includes("...")) && /*#__PURE__*/React__default.createElement(ReactTooltip, {
+      textColor: "white",
+      backgroundColor: "grey",
+      place: "right",
+      type: "info",
+      effect: "solid",
+      id: "jk-side-" + getModuleName
+    }, t("ACTION_TEST_" + getModuleName)))))));
+  } else {
+    return /*#__PURE__*/React__default.createElement(React__default.Fragment, null, /*#__PURE__*/React__default.createElement("div", {
+      className: "submenu-container"
+    }, /*#__PURE__*/React__default.createElement("div", {
+      onClick: item.links && showSubnav,
+      className: "sidebar-link"
+    }, /*#__PURE__*/React__default.createElement("div", {
+      className: "actions"
+    }, leftIcon, /*#__PURE__*/React__default.createElement("div", {
+      "data-tip": "React-tooltip",
+      "data-for": "jk-side-" + getModuleName
+    }, /*#__PURE__*/React__default.createElement("span", null, " ", trimModuleName, " "), (trimModuleName === null || trimModuleName === void 0 ? void 0 : trimModuleName.includes("...")) && /*#__PURE__*/React__default.createElement(ReactTooltip, {
+      textColor: "white",
+      backgroundColor: "grey",
+      place: "right",
+      type: "info",
+      effect: "solid",
+      id: "jk-side-" + getModuleName
+    }, t("ACTION_TEST_" + getModuleName)))), /*#__PURE__*/React__default.createElement("div", null, " ", item.links && subnav ? /*#__PURE__*/React__default.createElement(digitUiReactComponents.ArrowVectorDown, null) : item.links ? /*#__PURE__*/React__default.createElement(digitUiReactComponents.ArrowForward, null) : null, " "))), subnav && item.links.sort((a, b) => a.orderNumber - b.orderNumber).filter(item => item.url === "url" || item.url !== "").map((item, index) => {
+      var _item$displayName, _item$displayName$toU;
+      const getChildName = item === null || item === void 0 ? void 0 : (_item$displayName = item.displayName) === null || _item$displayName === void 0 ? void 0 : (_item$displayName$toU = _item$displayName.toUpperCase()) === null || _item$displayName$toU === void 0 ? void 0 : _item$displayName$toU.replace(/[ -]/g, "_");
+      const appendTranslate = t("ACTION_TEST_" + getChildName);
+      const trimModuleName = t((appendTranslate === null || appendTranslate === void 0 ? void 0 : appendTranslate.length) > 20 ? appendTranslate.substring(0, 20) + "..." : appendTranslate);
+      if (item.navigationURL.indexOf("/digit-ui") === -1) {
+        const getOrigin = window.location.origin;
+        return /*#__PURE__*/React__default.createElement("a", {
+          key: index,
+          className: "dropdown-link " + (pathname === item.link ? "active" : ""),
+          href: getOrigin + "/employee/" + item.navigationURL
+        }, /*#__PURE__*/React__default.createElement("div", {
+          className: "actions",
+          "data-tip": "React-tooltip",
+          "data-for": "jk-side-" + index
+        }, /*#__PURE__*/React__default.createElement("span", null, " ", trimModuleName, " "), (trimModuleName === null || trimModuleName === void 0 ? void 0 : trimModuleName.includes("...")) && /*#__PURE__*/React__default.createElement(ReactTooltip, {
+          textColor: "white",
+          backgroundColor: "grey",
+          place: "right",
+          type: "info",
+          effect: "solid",
+          id: "jk-side-" + index
+        }, t("ACTION_TEST_" + getChildName))));
+      }
+      return /*#__PURE__*/React__default.createElement(reactRouterDom.Link, {
+        to: (item === null || item === void 0 ? void 0 : item.link) || item.navigationURL,
+        key: index,
+        className: "dropdown-link " + (pathname === (item === null || item === void 0 ? void 0 : item.link) || pathname === (item === null || item === void 0 ? void 0 : item.navigationURL) ? "active" : "")
+      }, /*#__PURE__*/React__default.createElement("div", {
+        className: "actions",
+        "data-tip": "React-tooltip",
+        "data-for": "jk-side-" + index
+      }, /*#__PURE__*/React__default.createElement("span", null, " ", trimModuleName, " "), (trimModuleName === null || trimModuleName === void 0 ? void 0 : trimModuleName.includes("...")) && /*#__PURE__*/React__default.createElement(ReactTooltip, {
+        textColor: "white",
+        backgroundColor: "grey",
+        place: "right",
+        type: "info",
+        effect: "solid",
+        id: "jk-side-" + index
+      }, t("ACTION_TEST_" + getChildName))));
+    }));
+  }
+};
+
+var lodash = createCommonjsModule(function (module, exports) {
+  (function () {
+    var undefined$1;
+    var VERSION = '4.17.21';
+    var LARGE_ARRAY_SIZE = 200;
+    var CORE_ERROR_TEXT = 'Unsupported core-js use. Try https://npms.io/search?q=ponyfill.',
+      FUNC_ERROR_TEXT = 'Expected a function',
+      INVALID_TEMPL_VAR_ERROR_TEXT = 'Invalid `variable` option passed into `_.template`';
+    var HASH_UNDEFINED = '__lodash_hash_undefined__';
+    var MAX_MEMOIZE_SIZE = 500;
+    var PLACEHOLDER = '__lodash_placeholder__';
+    var CLONE_DEEP_FLAG = 1,
+      CLONE_FLAT_FLAG = 2,
+      CLONE_SYMBOLS_FLAG = 4;
+    var COMPARE_PARTIAL_FLAG = 1,
+      COMPARE_UNORDERED_FLAG = 2;
+    var WRAP_BIND_FLAG = 1,
+      WRAP_BIND_KEY_FLAG = 2,
+      WRAP_CURRY_BOUND_FLAG = 4,
+      WRAP_CURRY_FLAG = 8,
+      WRAP_CURRY_RIGHT_FLAG = 16,
+      WRAP_PARTIAL_FLAG = 32,
+      WRAP_PARTIAL_RIGHT_FLAG = 64,
+      WRAP_ARY_FLAG = 128,
+      WRAP_REARG_FLAG = 256,
+      WRAP_FLIP_FLAG = 512;
+    var DEFAULT_TRUNC_LENGTH = 30,
+      DEFAULT_TRUNC_OMISSION = '...';
+    var HOT_COUNT = 800,
+      HOT_SPAN = 16;
+    var LAZY_FILTER_FLAG = 1,
+      LAZY_MAP_FLAG = 2,
+      LAZY_WHILE_FLAG = 3;
+    var INFINITY = 1 / 0,
+      MAX_SAFE_INTEGER = 9007199254740991,
+      MAX_INTEGER = 1.7976931348623157e+308,
+      NAN = 0 / 0;
+    var MAX_ARRAY_LENGTH = 4294967295,
+      MAX_ARRAY_INDEX = MAX_ARRAY_LENGTH - 1,
+      HALF_MAX_ARRAY_LENGTH = MAX_ARRAY_LENGTH >>> 1;
+    var wrapFlags = [['ary', WRAP_ARY_FLAG], ['bind', WRAP_BIND_FLAG], ['bindKey', WRAP_BIND_KEY_FLAG], ['curry', WRAP_CURRY_FLAG], ['curryRight', WRAP_CURRY_RIGHT_FLAG], ['flip', WRAP_FLIP_FLAG], ['partial', WRAP_PARTIAL_FLAG], ['partialRight', WRAP_PARTIAL_RIGHT_FLAG], ['rearg', WRAP_REARG_FLAG]];
+    var argsTag = '[object Arguments]',
+      arrayTag = '[object Array]',
+      asyncTag = '[object AsyncFunction]',
+      boolTag = '[object Boolean]',
+      dateTag = '[object Date]',
+      domExcTag = '[object DOMException]',
+      errorTag = '[object Error]',
+      funcTag = '[object Function]',
+      genTag = '[object GeneratorFunction]',
+      mapTag = '[object Map]',
+      numberTag = '[object Number]',
+      nullTag = '[object Null]',
+      objectTag = '[object Object]',
+      promiseTag = '[object Promise]',
+      proxyTag = '[object Proxy]',
+      regexpTag = '[object RegExp]',
+      setTag = '[object Set]',
+      stringTag = '[object String]',
+      symbolTag = '[object Symbol]',
+      undefinedTag = '[object Undefined]',
+      weakMapTag = '[object WeakMap]',
+      weakSetTag = '[object WeakSet]';
+    var arrayBufferTag = '[object ArrayBuffer]',
+      dataViewTag = '[object DataView]',
+      float32Tag = '[object Float32Array]',
+      float64Tag = '[object Float64Array]',
+      int8Tag = '[object Int8Array]',
+      int16Tag = '[object Int16Array]',
+      int32Tag = '[object Int32Array]',
+      uint8Tag = '[object Uint8Array]',
+      uint8ClampedTag = '[object Uint8ClampedArray]',
+      uint16Tag = '[object Uint16Array]',
+      uint32Tag = '[object Uint32Array]';
+    var reEmptyStringLeading = /\b__p \+= '';/g,
+      reEmptyStringMiddle = /\b(__p \+=) '' \+/g,
+      reEmptyStringTrailing = /(__e\(.*?\)|\b__t\)) \+\n'';/g;
+    var reEscapedHtml = /&(?:amp|lt|gt|quot|#39);/g,
+      reUnescapedHtml = /[&<>"']/g,
+      reHasEscapedHtml = RegExp(reEscapedHtml.source),
+      reHasUnescapedHtml = RegExp(reUnescapedHtml.source);
+    var reEscape = /<%-([\s\S]+?)%>/g,
+      reEvaluate = /<%([\s\S]+?)%>/g,
+      reInterpolate = /<%=([\s\S]+?)%>/g;
+    var reIsDeepProp = /\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/,
+      reIsPlainProp = /^\w*$/,
+      rePropName = /[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|$))/g;
+    var reRegExpChar = /[\\^$.*+?()[\]{}|]/g,
+      reHasRegExpChar = RegExp(reRegExpChar.source);
+    var reTrimStart = /^\s+/;
+    var reWhitespace = /\s/;
+    var reWrapComment = /\{(?:\n\/\* \[wrapped with .+\] \*\/)?\n?/,
+      reWrapDetails = /\{\n\/\* \[wrapped with (.+)\] \*/,
+      reSplitDetails = /,? & /;
+    var reAsciiWord = /[^\x00-\x2f\x3a-\x40\x5b-\x60\x7b-\x7f]+/g;
+    var reForbiddenIdentifierChars = /[()=,{}\[\]\/\s]/;
+    var reEscapeChar = /\\(\\)?/g;
+    var reEsTemplate = /\$\{([^\\}]*(?:\\.[^\\}]*)*)\}/g;
+    var reFlags = /\w*$/;
+    var reIsBadHex = /^[-+]0x[0-9a-f]+$/i;
+    var reIsBinary = /^0b[01]+$/i;
+    var reIsHostCtor = /^\[object .+?Constructor\]$/;
+    var reIsOctal = /^0o[0-7]+$/i;
+    var reIsUint = /^(?:0|[1-9]\d*)$/;
+    var reLatin = /[\xc0-\xd6\xd8-\xf6\xf8-\xff\u0100-\u017f]/g;
+    var reNoMatch = /($^)/;
+    var reUnescapedString = /['\n\r\u2028\u2029\\]/g;
+    var rsAstralRange = '\\ud800-\\udfff',
+      rsComboMarksRange = '\\u0300-\\u036f',
+      reComboHalfMarksRange = '\\ufe20-\\ufe2f',
+      rsComboSymbolsRange = '\\u20d0-\\u20ff',
+      rsComboRange = rsComboMarksRange + reComboHalfMarksRange + rsComboSymbolsRange,
+      rsDingbatRange = '\\u2700-\\u27bf',
+      rsLowerRange = 'a-z\\xdf-\\xf6\\xf8-\\xff',
+      rsMathOpRange = '\\xac\\xb1\\xd7\\xf7',
+      rsNonCharRange = '\\x00-\\x2f\\x3a-\\x40\\x5b-\\x60\\x7b-\\xbf',
+      rsPunctuationRange = '\\u2000-\\u206f',
+      rsSpaceRange = ' \\t\\x0b\\f\\xa0\\ufeff\\n\\r\\u2028\\u2029\\u1680\\u180e\\u2000\\u2001\\u2002\\u2003\\u2004\\u2005\\u2006\\u2007\\u2008\\u2009\\u200a\\u202f\\u205f\\u3000',
+      rsUpperRange = 'A-Z\\xc0-\\xd6\\xd8-\\xde',
+      rsVarRange = '\\ufe0e\\ufe0f',
+      rsBreakRange = rsMathOpRange + rsNonCharRange + rsPunctuationRange + rsSpaceRange;
+    var rsApos = "['\u2019]",
+      rsAstral = '[' + rsAstralRange + ']',
+      rsBreak = '[' + rsBreakRange + ']',
+      rsCombo = '[' + rsComboRange + ']',
+      rsDigits = '\\d+',
+      rsDingbat = '[' + rsDingbatRange + ']',
+      rsLower = '[' + rsLowerRange + ']',
+      rsMisc = '[^' + rsAstralRange + rsBreakRange + rsDigits + rsDingbatRange + rsLowerRange + rsUpperRange + ']',
+      rsFitz = '\\ud83c[\\udffb-\\udfff]',
+      rsModifier = '(?:' + rsCombo + '|' + rsFitz + ')',
+      rsNonAstral = '[^' + rsAstralRange + ']',
+      rsRegional = '(?:\\ud83c[\\udde6-\\uddff]){2}',
+      rsSurrPair = '[\\ud800-\\udbff][\\udc00-\\udfff]',
+      rsUpper = '[' + rsUpperRange + ']',
+      rsZWJ = '\\u200d';
+    var rsMiscLower = '(?:' + rsLower + '|' + rsMisc + ')',
+      rsMiscUpper = '(?:' + rsUpper + '|' + rsMisc + ')',
+      rsOptContrLower = '(?:' + rsApos + '(?:d|ll|m|re|s|t|ve))?',
+      rsOptContrUpper = '(?:' + rsApos + '(?:D|LL|M|RE|S|T|VE))?',
+      reOptMod = rsModifier + '?',
+      rsOptVar = '[' + rsVarRange + ']?',
+      rsOptJoin = '(?:' + rsZWJ + '(?:' + [rsNonAstral, rsRegional, rsSurrPair].join('|') + ')' + rsOptVar + reOptMod + ')*',
+      rsOrdLower = '\\d*(?:1st|2nd|3rd|(?![123])\\dth)(?=\\b|[A-Z_])',
+      rsOrdUpper = '\\d*(?:1ST|2ND|3RD|(?![123])\\dTH)(?=\\b|[a-z_])',
+      rsSeq = rsOptVar + reOptMod + rsOptJoin,
+      rsEmoji = '(?:' + [rsDingbat, rsRegional, rsSurrPair].join('|') + ')' + rsSeq,
+      rsSymbol = '(?:' + [rsNonAstral + rsCombo + '?', rsCombo, rsRegional, rsSurrPair, rsAstral].join('|') + ')';
+    var reApos = RegExp(rsApos, 'g');
+    var reComboMark = RegExp(rsCombo, 'g');
+    var reUnicode = RegExp(rsFitz + '(?=' + rsFitz + ')|' + rsSymbol + rsSeq, 'g');
+    var reUnicodeWord = RegExp([rsUpper + '?' + rsLower + '+' + rsOptContrLower + '(?=' + [rsBreak, rsUpper, '$'].join('|') + ')', rsMiscUpper + '+' + rsOptContrUpper + '(?=' + [rsBreak, rsUpper + rsMiscLower, '$'].join('|') + ')', rsUpper + '?' + rsMiscLower + '+' + rsOptContrLower, rsUpper + '+' + rsOptContrUpper, rsOrdUpper, rsOrdLower, rsDigits, rsEmoji].join('|'), 'g');
+    var reHasUnicode = RegExp('[' + rsZWJ + rsAstralRange + rsComboRange + rsVarRange + ']');
+    var reHasUnicodeWord = /[a-z][A-Z]|[A-Z]{2}[a-z]|[0-9][a-zA-Z]|[a-zA-Z][0-9]|[^a-zA-Z0-9 ]/;
+    var contextProps = ['Array', 'Buffer', 'DataView', 'Date', 'Error', 'Float32Array', 'Float64Array', 'Function', 'Int8Array', 'Int16Array', 'Int32Array', 'Map', 'Math', 'Object', 'Promise', 'RegExp', 'Set', 'String', 'Symbol', 'TypeError', 'Uint8Array', 'Uint8ClampedArray', 'Uint16Array', 'Uint32Array', 'WeakMap', '_', 'clearTimeout', 'isFinite', 'parseInt', 'setTimeout'];
+    var templateCounter = -1;
+    var typedArrayTags = {};
+    typedArrayTags[float32Tag] = typedArrayTags[float64Tag] = typedArrayTags[int8Tag] = typedArrayTags[int16Tag] = typedArrayTags[int32Tag] = typedArrayTags[uint8Tag] = typedArrayTags[uint8ClampedTag] = typedArrayTags[uint16Tag] = typedArrayTags[uint32Tag] = true;
+    typedArrayTags[argsTag] = typedArrayTags[arrayTag] = typedArrayTags[arrayBufferTag] = typedArrayTags[boolTag] = typedArrayTags[dataViewTag] = typedArrayTags[dateTag] = typedArrayTags[errorTag] = typedArrayTags[funcTag] = typedArrayTags[mapTag] = typedArrayTags[numberTag] = typedArrayTags[objectTag] = typedArrayTags[regexpTag] = typedArrayTags[setTag] = typedArrayTags[stringTag] = typedArrayTags[weakMapTag] = false;
+    var cloneableTags = {};
+    cloneableTags[argsTag] = cloneableTags[arrayTag] = cloneableTags[arrayBufferTag] = cloneableTags[dataViewTag] = cloneableTags[boolTag] = cloneableTags[dateTag] = cloneableTags[float32Tag] = cloneableTags[float64Tag] = cloneableTags[int8Tag] = cloneableTags[int16Tag] = cloneableTags[int32Tag] = cloneableTags[mapTag] = cloneableTags[numberTag] = cloneableTags[objectTag] = cloneableTags[regexpTag] = cloneableTags[setTag] = cloneableTags[stringTag] = cloneableTags[symbolTag] = cloneableTags[uint8Tag] = cloneableTags[uint8ClampedTag] = cloneableTags[uint16Tag] = cloneableTags[uint32Tag] = true;
+    cloneableTags[errorTag] = cloneableTags[funcTag] = cloneableTags[weakMapTag] = false;
+    var deburredLetters = {
+      '\xc0': 'A',
+      '\xc1': 'A',
+      '\xc2': 'A',
+      '\xc3': 'A',
+      '\xc4': 'A',
+      '\xc5': 'A',
+      '\xe0': 'a',
+      '\xe1': 'a',
+      '\xe2': 'a',
+      '\xe3': 'a',
+      '\xe4': 'a',
+      '\xe5': 'a',
+      '\xc7': 'C',
+      '\xe7': 'c',
+      '\xd0': 'D',
+      '\xf0': 'd',
+      '\xc8': 'E',
+      '\xc9': 'E',
+      '\xca': 'E',
+      '\xcb': 'E',
+      '\xe8': 'e',
+      '\xe9': 'e',
+      '\xea': 'e',
+      '\xeb': 'e',
+      '\xcc': 'I',
+      '\xcd': 'I',
+      '\xce': 'I',
+      '\xcf': 'I',
+      '\xec': 'i',
+      '\xed': 'i',
+      '\xee': 'i',
+      '\xef': 'i',
+      '\xd1': 'N',
+      '\xf1': 'n',
+      '\xd2': 'O',
+      '\xd3': 'O',
+      '\xd4': 'O',
+      '\xd5': 'O',
+      '\xd6': 'O',
+      '\xd8': 'O',
+      '\xf2': 'o',
+      '\xf3': 'o',
+      '\xf4': 'o',
+      '\xf5': 'o',
+      '\xf6': 'o',
+      '\xf8': 'o',
+      '\xd9': 'U',
+      '\xda': 'U',
+      '\xdb': 'U',
+      '\xdc': 'U',
+      '\xf9': 'u',
+      '\xfa': 'u',
+      '\xfb': 'u',
+      '\xfc': 'u',
+      '\xdd': 'Y',
+      '\xfd': 'y',
+      '\xff': 'y',
+      '\xc6': 'Ae',
+      '\xe6': 'ae',
+      '\xde': 'Th',
+      '\xfe': 'th',
+      '\xdf': 'ss',
+      '\u0100': 'A',
+      '\u0102': 'A',
+      '\u0104': 'A',
+      '\u0101': 'a',
+      '\u0103': 'a',
+      '\u0105': 'a',
+      '\u0106': 'C',
+      '\u0108': 'C',
+      '\u010a': 'C',
+      '\u010c': 'C',
+      '\u0107': 'c',
+      '\u0109': 'c',
+      '\u010b': 'c',
+      '\u010d': 'c',
+      '\u010e': 'D',
+      '\u0110': 'D',
+      '\u010f': 'd',
+      '\u0111': 'd',
+      '\u0112': 'E',
+      '\u0114': 'E',
+      '\u0116': 'E',
+      '\u0118': 'E',
+      '\u011a': 'E',
+      '\u0113': 'e',
+      '\u0115': 'e',
+      '\u0117': 'e',
+      '\u0119': 'e',
+      '\u011b': 'e',
+      '\u011c': 'G',
+      '\u011e': 'G',
+      '\u0120': 'G',
+      '\u0122': 'G',
+      '\u011d': 'g',
+      '\u011f': 'g',
+      '\u0121': 'g',
+      '\u0123': 'g',
+      '\u0124': 'H',
+      '\u0126': 'H',
+      '\u0125': 'h',
+      '\u0127': 'h',
+      '\u0128': 'I',
+      '\u012a': 'I',
+      '\u012c': 'I',
+      '\u012e': 'I',
+      '\u0130': 'I',
+      '\u0129': 'i',
+      '\u012b': 'i',
+      '\u012d': 'i',
+      '\u012f': 'i',
+      '\u0131': 'i',
+      '\u0134': 'J',
+      '\u0135': 'j',
+      '\u0136': 'K',
+      '\u0137': 'k',
+      '\u0138': 'k',
+      '\u0139': 'L',
+      '\u013b': 'L',
+      '\u013d': 'L',
+      '\u013f': 'L',
+      '\u0141': 'L',
+      '\u013a': 'l',
+      '\u013c': 'l',
+      '\u013e': 'l',
+      '\u0140': 'l',
+      '\u0142': 'l',
+      '\u0143': 'N',
+      '\u0145': 'N',
+      '\u0147': 'N',
+      '\u014a': 'N',
+      '\u0144': 'n',
+      '\u0146': 'n',
+      '\u0148': 'n',
+      '\u014b': 'n',
+      '\u014c': 'O',
+      '\u014e': 'O',
+      '\u0150': 'O',
+      '\u014d': 'o',
+      '\u014f': 'o',
+      '\u0151': 'o',
+      '\u0154': 'R',
+      '\u0156': 'R',
+      '\u0158': 'R',
+      '\u0155': 'r',
+      '\u0157': 'r',
+      '\u0159': 'r',
+      '\u015a': 'S',
+      '\u015c': 'S',
+      '\u015e': 'S',
+      '\u0160': 'S',
+      '\u015b': 's',
+      '\u015d': 's',
+      '\u015f': 's',
+      '\u0161': 's',
+      '\u0162': 'T',
+      '\u0164': 'T',
+      '\u0166': 'T',
+      '\u0163': 't',
+      '\u0165': 't',
+      '\u0167': 't',
+      '\u0168': 'U',
+      '\u016a': 'U',
+      '\u016c': 'U',
+      '\u016e': 'U',
+      '\u0170': 'U',
+      '\u0172': 'U',
+      '\u0169': 'u',
+      '\u016b': 'u',
+      '\u016d': 'u',
+      '\u016f': 'u',
+      '\u0171': 'u',
+      '\u0173': 'u',
+      '\u0174': 'W',
+      '\u0175': 'w',
+      '\u0176': 'Y',
+      '\u0177': 'y',
+      '\u0178': 'Y',
+      '\u0179': 'Z',
+      '\u017b': 'Z',
+      '\u017d': 'Z',
+      '\u017a': 'z',
+      '\u017c': 'z',
+      '\u017e': 'z',
+      '\u0132': 'IJ',
+      '\u0133': 'ij',
+      '\u0152': 'Oe',
+      '\u0153': 'oe',
+      '\u0149': "'n",
+      '\u017f': 's'
+    };
+    var htmlEscapes = {
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#39;'
+    };
+    var htmlUnescapes = {
+      '&amp;': '&',
+      '&lt;': '<',
+      '&gt;': '>',
+      '&quot;': '"',
+      '&#39;': "'"
+    };
+    var stringEscapes = {
+      '\\': '\\',
+      "'": "'",
+      '\n': 'n',
+      '\r': 'r',
+      '\u2028': 'u2028',
+      '\u2029': 'u2029'
+    };
+    var freeParseFloat = parseFloat,
+      freeParseInt = parseInt;
+    var freeGlobal = typeof commonjsGlobal == 'object' && commonjsGlobal && commonjsGlobal.Object === Object && commonjsGlobal;
+    var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
+    var root = freeGlobal || freeSelf || Function('return this')();
+    var freeExports =  exports && !exports.nodeType && exports;
+    var freeModule = freeExports && 'object' == 'object' && module && !module.nodeType && module;
+    var moduleExports = freeModule && freeModule.exports === freeExports;
+    var freeProcess = moduleExports && freeGlobal.process;
+    var nodeUtil = function () {
+      try {
+        var types = freeModule && freeModule.require && freeModule.require('util').types;
+        if (types) {
+          return types;
+        }
+        return freeProcess && freeProcess.binding && freeProcess.binding('util');
+      } catch (e) {}
+    }();
+    var nodeIsArrayBuffer = nodeUtil && nodeUtil.isArrayBuffer,
+      nodeIsDate = nodeUtil && nodeUtil.isDate,
+      nodeIsMap = nodeUtil && nodeUtil.isMap,
+      nodeIsRegExp = nodeUtil && nodeUtil.isRegExp,
+      nodeIsSet = nodeUtil && nodeUtil.isSet,
+      nodeIsTypedArray = nodeUtil && nodeUtil.isTypedArray;
+    function apply(func, thisArg, args) {
+      switch (args.length) {
+        case 0:
+          return func.call(thisArg);
+        case 1:
+          return func.call(thisArg, args[0]);
+        case 2:
+          return func.call(thisArg, args[0], args[1]);
+        case 3:
+          return func.call(thisArg, args[0], args[1], args[2]);
+      }
+      return func.apply(thisArg, args);
+    }
+    function arrayAggregator(array, setter, iteratee, accumulator) {
+      var index = -1,
+        length = array == null ? 0 : array.length;
+      while (++index < length) {
+        var value = array[index];
+        setter(accumulator, value, iteratee(value), array);
+      }
+      return accumulator;
+    }
+    function arrayEach(array, iteratee) {
+      var index = -1,
+        length = array == null ? 0 : array.length;
+      while (++index < length) {
+        if (iteratee(array[index], index, array) === false) {
+          break;
+        }
+      }
+      return array;
+    }
+    function arrayEachRight(array, iteratee) {
+      var length = array == null ? 0 : array.length;
+      while (length--) {
+        if (iteratee(array[length], length, array) === false) {
+          break;
+        }
+      }
+      return array;
+    }
+    function arrayEvery(array, predicate) {
+      var index = -1,
+        length = array == null ? 0 : array.length;
+      while (++index < length) {
+        if (!predicate(array[index], index, array)) {
+          return false;
+        }
+      }
+      return true;
+    }
+    function arrayFilter(array, predicate) {
+      var index = -1,
+        length = array == null ? 0 : array.length,
+        resIndex = 0,
+        result = [];
+      while (++index < length) {
+        var value = array[index];
+        if (predicate(value, index, array)) {
+          result[resIndex++] = value;
+        }
+      }
+      return result;
+    }
+    function arrayIncludes(array, value) {
+      var length = array == null ? 0 : array.length;
+      return !!length && baseIndexOf(array, value, 0) > -1;
+    }
+    function arrayIncludesWith(array, value, comparator) {
+      var index = -1,
+        length = array == null ? 0 : array.length;
+      while (++index < length) {
+        if (comparator(value, array[index])) {
+          return true;
+        }
+      }
+      return false;
+    }
+    function arrayMap(array, iteratee) {
+      var index = -1,
+        length = array == null ? 0 : array.length,
+        result = Array(length);
+      while (++index < length) {
+        result[index] = iteratee(array[index], index, array);
+      }
+      return result;
+    }
+    function arrayPush(array, values) {
+      var index = -1,
+        length = values.length,
+        offset = array.length;
+      while (++index < length) {
+        array[offset + index] = values[index];
+      }
+      return array;
+    }
+    function arrayReduce(array, iteratee, accumulator, initAccum) {
+      var index = -1,
+        length = array == null ? 0 : array.length;
+      if (initAccum && length) {
+        accumulator = array[++index];
+      }
+      while (++index < length) {
+        accumulator = iteratee(accumulator, array[index], index, array);
+      }
+      return accumulator;
+    }
+    function arrayReduceRight(array, iteratee, accumulator, initAccum) {
+      var length = array == null ? 0 : array.length;
+      if (initAccum && length) {
+        accumulator = array[--length];
+      }
+      while (length--) {
+        accumulator = iteratee(accumulator, array[length], length, array);
+      }
+      return accumulator;
+    }
+    function arraySome(array, predicate) {
+      var index = -1,
+        length = array == null ? 0 : array.length;
+      while (++index < length) {
+        if (predicate(array[index], index, array)) {
+          return true;
+        }
+      }
+      return false;
+    }
+    var asciiSize = baseProperty('length');
+    function asciiToArray(string) {
+      return string.split('');
+    }
+    function asciiWords(string) {
+      return string.match(reAsciiWord) || [];
+    }
+    function baseFindKey(collection, predicate, eachFunc) {
+      var result;
+      eachFunc(collection, function (value, key, collection) {
+        if (predicate(value, key, collection)) {
+          result = key;
+          return false;
+        }
+      });
+      return result;
+    }
+    function baseFindIndex(array, predicate, fromIndex, fromRight) {
+      var length = array.length,
+        index = fromIndex + (fromRight ? 1 : -1);
+      while (fromRight ? index-- : ++index < length) {
+        if (predicate(array[index], index, array)) {
+          return index;
+        }
+      }
+      return -1;
+    }
+    function baseIndexOf(array, value, fromIndex) {
+      return value === value ? strictIndexOf(array, value, fromIndex) : baseFindIndex(array, baseIsNaN, fromIndex);
+    }
+    function baseIndexOfWith(array, value, fromIndex, comparator) {
+      var index = fromIndex - 1,
+        length = array.length;
+      while (++index < length) {
+        if (comparator(array[index], value)) {
+          return index;
+        }
+      }
+      return -1;
+    }
+    function baseIsNaN(value) {
+      return value !== value;
+    }
+    function baseMean(array, iteratee) {
+      var length = array == null ? 0 : array.length;
+      return length ? baseSum(array, iteratee) / length : NAN;
+    }
+    function baseProperty(key) {
+      return function (object) {
+        return object == null ? undefined$1 : object[key];
+      };
+    }
+    function basePropertyOf(object) {
+      return function (key) {
+        return object == null ? undefined$1 : object[key];
+      };
+    }
+    function baseReduce(collection, iteratee, accumulator, initAccum, eachFunc) {
+      eachFunc(collection, function (value, index, collection) {
+        accumulator = initAccum ? (initAccum = false, value) : iteratee(accumulator, value, index, collection);
+      });
+      return accumulator;
+    }
+    function baseSortBy(array, comparer) {
+      var length = array.length;
+      array.sort(comparer);
+      while (length--) {
+        array[length] = array[length].value;
+      }
+      return array;
+    }
+    function baseSum(array, iteratee) {
+      var result,
+        index = -1,
+        length = array.length;
+      while (++index < length) {
+        var current = iteratee(array[index]);
+        if (current !== undefined$1) {
+          result = result === undefined$1 ? current : result + current;
+        }
+      }
+      return result;
+    }
+    function baseTimes(n, iteratee) {
+      var index = -1,
+        result = Array(n);
+      while (++index < n) {
+        result[index] = iteratee(index);
+      }
+      return result;
+    }
+    function baseToPairs(object, props) {
+      return arrayMap(props, function (key) {
+        return [key, object[key]];
+      });
+    }
+    function baseTrim(string) {
+      return string ? string.slice(0, trimmedEndIndex(string) + 1).replace(reTrimStart, '') : string;
+    }
+    function baseUnary(func) {
+      return function (value) {
+        return func(value);
+      };
+    }
+    function baseValues(object, props) {
+      return arrayMap(props, function (key) {
+        return object[key];
+      });
+    }
+    function cacheHas(cache, key) {
+      return cache.has(key);
+    }
+    function charsStartIndex(strSymbols, chrSymbols) {
+      var index = -1,
+        length = strSymbols.length;
+      while (++index < length && baseIndexOf(chrSymbols, strSymbols[index], 0) > -1) {}
+      return index;
+    }
+    function charsEndIndex(strSymbols, chrSymbols) {
+      var index = strSymbols.length;
+      while (index-- && baseIndexOf(chrSymbols, strSymbols[index], 0) > -1) {}
+      return index;
+    }
+    function countHolders(array, placeholder) {
+      var length = array.length,
+        result = 0;
+      while (length--) {
+        if (array[length] === placeholder) {
+          ++result;
+        }
+      }
+      return result;
+    }
+    var deburrLetter = basePropertyOf(deburredLetters);
+    var escapeHtmlChar = basePropertyOf(htmlEscapes);
+    function escapeStringChar(chr) {
+      return '\\' + stringEscapes[chr];
+    }
+    function getValue(object, key) {
+      return object == null ? undefined$1 : object[key];
+    }
+    function hasUnicode(string) {
+      return reHasUnicode.test(string);
+    }
+    function hasUnicodeWord(string) {
+      return reHasUnicodeWord.test(string);
+    }
+    function iteratorToArray(iterator) {
+      var data,
+        result = [];
+      while (!(data = iterator.next()).done) {
+        result.push(data.value);
+      }
+      return result;
+    }
+    function mapToArray(map) {
+      var index = -1,
+        result = Array(map.size);
+      map.forEach(function (value, key) {
+        result[++index] = [key, value];
+      });
+      return result;
+    }
+    function overArg(func, transform) {
+      return function (arg) {
+        return func(transform(arg));
+      };
+    }
+    function replaceHolders(array, placeholder) {
+      var index = -1,
+        length = array.length,
+        resIndex = 0,
+        result = [];
+      while (++index < length) {
+        var value = array[index];
+        if (value === placeholder || value === PLACEHOLDER) {
+          array[index] = PLACEHOLDER;
+          result[resIndex++] = index;
+        }
+      }
+      return result;
+    }
+    function setToArray(set) {
+      var index = -1,
+        result = Array(set.size);
+      set.forEach(function (value) {
+        result[++index] = value;
+      });
+      return result;
+    }
+    function setToPairs(set) {
+      var index = -1,
+        result = Array(set.size);
+      set.forEach(function (value) {
+        result[++index] = [value, value];
+      });
+      return result;
+    }
+    function strictIndexOf(array, value, fromIndex) {
+      var index = fromIndex - 1,
+        length = array.length;
+      while (++index < length) {
+        if (array[index] === value) {
+          return index;
+        }
+      }
+      return -1;
+    }
+    function strictLastIndexOf(array, value, fromIndex) {
+      var index = fromIndex + 1;
+      while (index--) {
+        if (array[index] === value) {
+          return index;
+        }
+      }
+      return index;
+    }
+    function stringSize(string) {
+      return hasUnicode(string) ? unicodeSize(string) : asciiSize(string);
+    }
+    function stringToArray(string) {
+      return hasUnicode(string) ? unicodeToArray(string) : asciiToArray(string);
+    }
+    function trimmedEndIndex(string) {
+      var index = string.length;
+      while (index-- && reWhitespace.test(string.charAt(index))) {}
+      return index;
+    }
+    var unescapeHtmlChar = basePropertyOf(htmlUnescapes);
+    function unicodeSize(string) {
+      var result = reUnicode.lastIndex = 0;
+      while (reUnicode.test(string)) {
+        ++result;
+      }
+      return result;
+    }
+    function unicodeToArray(string) {
+      return string.match(reUnicode) || [];
+    }
+    function unicodeWords(string) {
+      return string.match(reUnicodeWord) || [];
+    }
+    var runInContext = function runInContext(context) {
+      context = context == null ? root : _.defaults(root.Object(), context, _.pick(root, contextProps));
+      var Array = context.Array,
+        Date = context.Date,
+        Error = context.Error,
+        Function = context.Function,
+        Math = context.Math,
+        Object = context.Object,
+        RegExp = context.RegExp,
+        String = context.String,
+        TypeError = context.TypeError;
+      var arrayProto = Array.prototype,
+        funcProto = Function.prototype,
+        objectProto = Object.prototype;
+      var coreJsData = context['__core-js_shared__'];
+      var funcToString = funcProto.toString;
+      var hasOwnProperty = objectProto.hasOwnProperty;
+      var idCounter = 0;
+      var maskSrcKey = function () {
+        var uid = /[^.]+$/.exec(coreJsData && coreJsData.keys && coreJsData.keys.IE_PROTO || '');
+        return uid ? 'Symbol(src)_1.' + uid : '';
+      }();
+      var nativeObjectToString = objectProto.toString;
+      var objectCtorString = funcToString.call(Object);
+      var oldDash = root._;
+      var reIsNative = RegExp('^' + funcToString.call(hasOwnProperty).replace(reRegExpChar, '\\$&').replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, '$1.*?') + '$');
+      var Buffer = moduleExports ? context.Buffer : undefined$1,
+        Symbol = context.Symbol,
+        Uint8Array = context.Uint8Array,
+        allocUnsafe = Buffer ? Buffer.allocUnsafe : undefined$1,
+        getPrototype = overArg(Object.getPrototypeOf, Object),
+        objectCreate = Object.create,
+        propertyIsEnumerable = objectProto.propertyIsEnumerable,
+        splice = arrayProto.splice,
+        spreadableSymbol = Symbol ? Symbol.isConcatSpreadable : undefined$1,
+        symIterator = Symbol ? Symbol.iterator : undefined$1,
+        symToStringTag = Symbol ? Symbol.toStringTag : undefined$1;
+      var defineProperty = function () {
+        try {
+          var func = getNative(Object, 'defineProperty');
+          func({}, '', {});
+          return func;
+        } catch (e) {}
+      }();
+      var ctxClearTimeout = context.clearTimeout !== root.clearTimeout && context.clearTimeout,
+        ctxNow = Date && Date.now !== root.Date.now && Date.now,
+        ctxSetTimeout = context.setTimeout !== root.setTimeout && context.setTimeout;
+      var nativeCeil = Math.ceil,
+        nativeFloor = Math.floor,
+        nativeGetSymbols = Object.getOwnPropertySymbols,
+        nativeIsBuffer = Buffer ? Buffer.isBuffer : undefined$1,
+        nativeIsFinite = context.isFinite,
+        nativeJoin = arrayProto.join,
+        nativeKeys = overArg(Object.keys, Object),
+        nativeMax = Math.max,
+        nativeMin = Math.min,
+        nativeNow = Date.now,
+        nativeParseInt = context.parseInt,
+        nativeRandom = Math.random,
+        nativeReverse = arrayProto.reverse;
+      var DataView = getNative(context, 'DataView'),
+        Map = getNative(context, 'Map'),
+        Promise = getNative(context, 'Promise'),
+        Set = getNative(context, 'Set'),
+        WeakMap = getNative(context, 'WeakMap'),
+        nativeCreate = getNative(Object, 'create');
+      var metaMap = WeakMap && new WeakMap();
+      var realNames = {};
+      var dataViewCtorString = toSource(DataView),
+        mapCtorString = toSource(Map),
+        promiseCtorString = toSource(Promise),
+        setCtorString = toSource(Set),
+        weakMapCtorString = toSource(WeakMap);
+      var symbolProto = Symbol ? Symbol.prototype : undefined$1,
+        symbolValueOf = symbolProto ? symbolProto.valueOf : undefined$1,
+        symbolToString = symbolProto ? symbolProto.toString : undefined$1;
+      function lodash(value) {
+        if (isObjectLike(value) && !isArray(value) && !(value instanceof LazyWrapper)) {
+          if (value instanceof LodashWrapper) {
+            return value;
+          }
+          if (hasOwnProperty.call(value, '__wrapped__')) {
+            return wrapperClone(value);
+          }
+        }
+        return new LodashWrapper(value);
+      }
+      var baseCreate = function () {
+        function object() {}
+        return function (proto) {
+          if (!isObject(proto)) {
+            return {};
+          }
+          if (objectCreate) {
+            return objectCreate(proto);
+          }
+          object.prototype = proto;
+          var result = new object();
+          object.prototype = undefined$1;
+          return result;
+        };
+      }();
+      function baseLodash() {}
+      function LodashWrapper(value, chainAll) {
+        this.__wrapped__ = value;
+        this.__actions__ = [];
+        this.__chain__ = !!chainAll;
+        this.__index__ = 0;
+        this.__values__ = undefined$1;
+      }
+      lodash.templateSettings = {
+        'escape': reEscape,
+        'evaluate': reEvaluate,
+        'interpolate': reInterpolate,
+        'variable': '',
+        'imports': {
+          '_': lodash
+        }
+      };
+      lodash.prototype = baseLodash.prototype;
+      lodash.prototype.constructor = lodash;
+      LodashWrapper.prototype = baseCreate(baseLodash.prototype);
+      LodashWrapper.prototype.constructor = LodashWrapper;
+      function LazyWrapper(value) {
+        this.__wrapped__ = value;
+        this.__actions__ = [];
+        this.__dir__ = 1;
+        this.__filtered__ = false;
+        this.__iteratees__ = [];
+        this.__takeCount__ = MAX_ARRAY_LENGTH;
+        this.__views__ = [];
+      }
+      function lazyClone() {
+        var result = new LazyWrapper(this.__wrapped__);
+        result.__actions__ = copyArray(this.__actions__);
+        result.__dir__ = this.__dir__;
+        result.__filtered__ = this.__filtered__;
+        result.__iteratees__ = copyArray(this.__iteratees__);
+        result.__takeCount__ = this.__takeCount__;
+        result.__views__ = copyArray(this.__views__);
+        return result;
+      }
+      function lazyReverse() {
+        if (this.__filtered__) {
+          var result = new LazyWrapper(this);
+          result.__dir__ = -1;
+          result.__filtered__ = true;
+        } else {
+          result = this.clone();
+          result.__dir__ *= -1;
+        }
+        return result;
+      }
+      function lazyValue() {
+        var array = this.__wrapped__.value(),
+          dir = this.__dir__,
+          isArr = isArray(array),
+          isRight = dir < 0,
+          arrLength = isArr ? array.length : 0,
+          view = getView(0, arrLength, this.__views__),
+          start = view.start,
+          end = view.end,
+          length = end - start,
+          index = isRight ? end : start - 1,
+          iteratees = this.__iteratees__,
+          iterLength = iteratees.length,
+          resIndex = 0,
+          takeCount = nativeMin(length, this.__takeCount__);
+        if (!isArr || !isRight && arrLength == length && takeCount == length) {
+          return baseWrapperValue(array, this.__actions__);
+        }
+        var result = [];
+        outer: while (length-- && resIndex < takeCount) {
+          index += dir;
+          var iterIndex = -1,
+            value = array[index];
+          while (++iterIndex < iterLength) {
+            var data = iteratees[iterIndex],
+              iteratee = data.iteratee,
+              type = data.type,
+              computed = iteratee(value);
+            if (type == LAZY_MAP_FLAG) {
+              value = computed;
+            } else if (!computed) {
+              if (type == LAZY_FILTER_FLAG) {
+                continue outer;
+              } else {
+                break outer;
+              }
+            }
+          }
+          result[resIndex++] = value;
+        }
+        return result;
+      }
+      LazyWrapper.prototype = baseCreate(baseLodash.prototype);
+      LazyWrapper.prototype.constructor = LazyWrapper;
+      function Hash(entries) {
+        var index = -1,
+          length = entries == null ? 0 : entries.length;
+        this.clear();
+        while (++index < length) {
+          var entry = entries[index];
+          this.set(entry[0], entry[1]);
+        }
+      }
+      function hashClear() {
+        this.__data__ = nativeCreate ? nativeCreate(null) : {};
+        this.size = 0;
+      }
+      function hashDelete(key) {
+        var result = this.has(key) && delete this.__data__[key];
+        this.size -= result ? 1 : 0;
+        return result;
+      }
+      function hashGet(key) {
+        var data = this.__data__;
+        if (nativeCreate) {
+          var result = data[key];
+          return result === HASH_UNDEFINED ? undefined$1 : result;
+        }
+        return hasOwnProperty.call(data, key) ? data[key] : undefined$1;
+      }
+      function hashHas(key) {
+        var data = this.__data__;
+        return nativeCreate ? data[key] !== undefined$1 : hasOwnProperty.call(data, key);
+      }
+      function hashSet(key, value) {
+        var data = this.__data__;
+        this.size += this.has(key) ? 0 : 1;
+        data[key] = nativeCreate && value === undefined$1 ? HASH_UNDEFINED : value;
+        return this;
+      }
+      Hash.prototype.clear = hashClear;
+      Hash.prototype['delete'] = hashDelete;
+      Hash.prototype.get = hashGet;
+      Hash.prototype.has = hashHas;
+      Hash.prototype.set = hashSet;
+      function ListCache(entries) {
+        var index = -1,
+          length = entries == null ? 0 : entries.length;
+        this.clear();
+        while (++index < length) {
+          var entry = entries[index];
+          this.set(entry[0], entry[1]);
+        }
+      }
+      function listCacheClear() {
+        this.__data__ = [];
+        this.size = 0;
+      }
+      function listCacheDelete(key) {
+        var data = this.__data__,
+          index = assocIndexOf(data, key);
+        if (index < 0) {
+          return false;
+        }
+        var lastIndex = data.length - 1;
+        if (index == lastIndex) {
+          data.pop();
+        } else {
+          splice.call(data, index, 1);
+        }
+        --this.size;
+        return true;
+      }
+      function listCacheGet(key) {
+        var data = this.__data__,
+          index = assocIndexOf(data, key);
+        return index < 0 ? undefined$1 : data[index][1];
+      }
+      function listCacheHas(key) {
+        return assocIndexOf(this.__data__, key) > -1;
+      }
+      function listCacheSet(key, value) {
+        var data = this.__data__,
+          index = assocIndexOf(data, key);
+        if (index < 0) {
+          ++this.size;
+          data.push([key, value]);
+        } else {
+          data[index][1] = value;
+        }
+        return this;
+      }
+      ListCache.prototype.clear = listCacheClear;
+      ListCache.prototype['delete'] = listCacheDelete;
+      ListCache.prototype.get = listCacheGet;
+      ListCache.prototype.has = listCacheHas;
+      ListCache.prototype.set = listCacheSet;
+      function MapCache(entries) {
+        var index = -1,
+          length = entries == null ? 0 : entries.length;
+        this.clear();
+        while (++index < length) {
+          var entry = entries[index];
+          this.set(entry[0], entry[1]);
+        }
+      }
+      function mapCacheClear() {
+        this.size = 0;
+        this.__data__ = {
+          'hash': new Hash(),
+          'map': new (Map || ListCache)(),
+          'string': new Hash()
+        };
+      }
+      function mapCacheDelete(key) {
+        var result = getMapData(this, key)['delete'](key);
+        this.size -= result ? 1 : 0;
+        return result;
+      }
+      function mapCacheGet(key) {
+        return getMapData(this, key).get(key);
+      }
+      function mapCacheHas(key) {
+        return getMapData(this, key).has(key);
+      }
+      function mapCacheSet(key, value) {
+        var data = getMapData(this, key),
+          size = data.size;
+        data.set(key, value);
+        this.size += data.size == size ? 0 : 1;
+        return this;
+      }
+      MapCache.prototype.clear = mapCacheClear;
+      MapCache.prototype['delete'] = mapCacheDelete;
+      MapCache.prototype.get = mapCacheGet;
+      MapCache.prototype.has = mapCacheHas;
+      MapCache.prototype.set = mapCacheSet;
+      function SetCache(values) {
+        var index = -1,
+          length = values == null ? 0 : values.length;
+        this.__data__ = new MapCache();
+        while (++index < length) {
+          this.add(values[index]);
+        }
+      }
+      function setCacheAdd(value) {
+        this.__data__.set(value, HASH_UNDEFINED);
+        return this;
+      }
+      function setCacheHas(value) {
+        return this.__data__.has(value);
+      }
+      SetCache.prototype.add = SetCache.prototype.push = setCacheAdd;
+      SetCache.prototype.has = setCacheHas;
+      function Stack(entries) {
+        var data = this.__data__ = new ListCache(entries);
+        this.size = data.size;
+      }
+      function stackClear() {
+        this.__data__ = new ListCache();
+        this.size = 0;
+      }
+      function stackDelete(key) {
+        var data = this.__data__,
+          result = data['delete'](key);
+        this.size = data.size;
+        return result;
+      }
+      function stackGet(key) {
+        return this.__data__.get(key);
+      }
+      function stackHas(key) {
+        return this.__data__.has(key);
+      }
+      function stackSet(key, value) {
+        var data = this.__data__;
+        if (data instanceof ListCache) {
+          var pairs = data.__data__;
+          if (!Map || pairs.length < LARGE_ARRAY_SIZE - 1) {
+            pairs.push([key, value]);
+            this.size = ++data.size;
+            return this;
+          }
+          data = this.__data__ = new MapCache(pairs);
+        }
+        data.set(key, value);
+        this.size = data.size;
+        return this;
+      }
+      Stack.prototype.clear = stackClear;
+      Stack.prototype['delete'] = stackDelete;
+      Stack.prototype.get = stackGet;
+      Stack.prototype.has = stackHas;
+      Stack.prototype.set = stackSet;
+      function arrayLikeKeys(value, inherited) {
+        var isArr = isArray(value),
+          isArg = !isArr && isArguments(value),
+          isBuff = !isArr && !isArg && isBuffer(value),
+          isType = !isArr && !isArg && !isBuff && isTypedArray(value),
+          skipIndexes = isArr || isArg || isBuff || isType,
+          result = skipIndexes ? baseTimes(value.length, String) : [],
+          length = result.length;
+        for (var key in value) {
+          if ((inherited || hasOwnProperty.call(value, key)) && !(skipIndexes && (key == 'length' || isBuff && (key == 'offset' || key == 'parent') || isType && (key == 'buffer' || key == 'byteLength' || key == 'byteOffset') || isIndex(key, length)))) {
+            result.push(key);
+          }
+        }
+        return result;
+      }
+      function arraySample(array) {
+        var length = array.length;
+        return length ? array[baseRandom(0, length - 1)] : undefined$1;
+      }
+      function arraySampleSize(array, n) {
+        return shuffleSelf(copyArray(array), baseClamp(n, 0, array.length));
+      }
+      function arrayShuffle(array) {
+        return shuffleSelf(copyArray(array));
+      }
+      function assignMergeValue(object, key, value) {
+        if (value !== undefined$1 && !eq(object[key], value) || value === undefined$1 && !(key in object)) {
+          baseAssignValue(object, key, value);
+        }
+      }
+      function assignValue(object, key, value) {
+        var objValue = object[key];
+        if (!(hasOwnProperty.call(object, key) && eq(objValue, value)) || value === undefined$1 && !(key in object)) {
+          baseAssignValue(object, key, value);
+        }
+      }
+      function assocIndexOf(array, key) {
+        var length = array.length;
+        while (length--) {
+          if (eq(array[length][0], key)) {
+            return length;
+          }
+        }
+        return -1;
+      }
+      function baseAggregator(collection, setter, iteratee, accumulator) {
+        baseEach(collection, function (value, key, collection) {
+          setter(accumulator, value, iteratee(value), collection);
+        });
+        return accumulator;
+      }
+      function baseAssign(object, source) {
+        return object && copyObject(source, keys(source), object);
+      }
+      function baseAssignIn(object, source) {
+        return object && copyObject(source, keysIn(source), object);
+      }
+      function baseAssignValue(object, key, value) {
+        if (key == '__proto__' && defineProperty) {
+          defineProperty(object, key, {
+            'configurable': true,
+            'enumerable': true,
+            'value': value,
+            'writable': true
+          });
+        } else {
+          object[key] = value;
+        }
+      }
+      function baseAt(object, paths) {
+        var index = -1,
+          length = paths.length,
+          result = Array(length),
+          skip = object == null;
+        while (++index < length) {
+          result[index] = skip ? undefined$1 : get(object, paths[index]);
+        }
+        return result;
+      }
+      function baseClamp(number, lower, upper) {
+        if (number === number) {
+          if (upper !== undefined$1) {
+            number = number <= upper ? number : upper;
+          }
+          if (lower !== undefined$1) {
+            number = number >= lower ? number : lower;
+          }
+        }
+        return number;
+      }
+      function baseClone(value, bitmask, customizer, key, object, stack) {
+        var result,
+          isDeep = bitmask & CLONE_DEEP_FLAG,
+          isFlat = bitmask & CLONE_FLAT_FLAG,
+          isFull = bitmask & CLONE_SYMBOLS_FLAG;
+        if (customizer) {
+          result = object ? customizer(value, key, object, stack) : customizer(value);
+        }
+        if (result !== undefined$1) {
+          return result;
+        }
+        if (!isObject(value)) {
+          return value;
+        }
+        var isArr = isArray(value);
+        if (isArr) {
+          result = initCloneArray(value);
+          if (!isDeep) {
+            return copyArray(value, result);
+          }
+        } else {
+          var tag = getTag(value),
+            isFunc = tag == funcTag || tag == genTag;
+          if (isBuffer(value)) {
+            return cloneBuffer(value, isDeep);
+          }
+          if (tag == objectTag || tag == argsTag || isFunc && !object) {
+            result = isFlat || isFunc ? {} : initCloneObject(value);
+            if (!isDeep) {
+              return isFlat ? copySymbolsIn(value, baseAssignIn(result, value)) : copySymbols(value, baseAssign(result, value));
+            }
+          } else {
+            if (!cloneableTags[tag]) {
+              return object ? value : {};
+            }
+            result = initCloneByTag(value, tag, isDeep);
+          }
+        }
+        stack || (stack = new Stack());
+        var stacked = stack.get(value);
+        if (stacked) {
+          return stacked;
+        }
+        stack.set(value, result);
+        if (isSet(value)) {
+          value.forEach(function (subValue) {
+            result.add(baseClone(subValue, bitmask, customizer, subValue, value, stack));
+          });
+        } else if (isMap(value)) {
+          value.forEach(function (subValue, key) {
+            result.set(key, baseClone(subValue, bitmask, customizer, key, value, stack));
+          });
+        }
+        var keysFunc = isFull ? isFlat ? getAllKeysIn : getAllKeys : isFlat ? keysIn : keys;
+        var props = isArr ? undefined$1 : keysFunc(value);
+        arrayEach(props || value, function (subValue, key) {
+          if (props) {
+            key = subValue;
+            subValue = value[key];
+          }
+          assignValue(result, key, baseClone(subValue, bitmask, customizer, key, value, stack));
+        });
+        return result;
+      }
+      function baseConforms(source) {
+        var props = keys(source);
+        return function (object) {
+          return baseConformsTo(object, source, props);
+        };
+      }
+      function baseConformsTo(object, source, props) {
+        var length = props.length;
+        if (object == null) {
+          return !length;
+        }
+        object = Object(object);
+        while (length--) {
+          var key = props[length],
+            predicate = source[key],
+            value = object[key];
+          if (value === undefined$1 && !(key in object) || !predicate(value)) {
+            return false;
+          }
+        }
+        return true;
+      }
+      function baseDelay(func, wait, args) {
+        if (typeof func != 'function') {
+          throw new TypeError(FUNC_ERROR_TEXT);
+        }
+        return setTimeout(function () {
+          func.apply(undefined$1, args);
+        }, wait);
+      }
+      function baseDifference(array, values, iteratee, comparator) {
+        var index = -1,
+          includes = arrayIncludes,
+          isCommon = true,
+          length = array.length,
+          result = [],
+          valuesLength = values.length;
+        if (!length) {
+          return result;
+        }
+        if (iteratee) {
+          values = arrayMap(values, baseUnary(iteratee));
+        }
+        if (comparator) {
+          includes = arrayIncludesWith;
+          isCommon = false;
+        } else if (values.length >= LARGE_ARRAY_SIZE) {
+          includes = cacheHas;
+          isCommon = false;
+          values = new SetCache(values);
+        }
+        outer: while (++index < length) {
+          var value = array[index],
+            computed = iteratee == null ? value : iteratee(value);
+          value = comparator || value !== 0 ? value : 0;
+          if (isCommon && computed === computed) {
+            var valuesIndex = valuesLength;
+            while (valuesIndex--) {
+              if (values[valuesIndex] === computed) {
+                continue outer;
+              }
+            }
+            result.push(value);
+          } else if (!includes(values, computed, comparator)) {
+            result.push(value);
+          }
+        }
+        return result;
+      }
+      var baseEach = createBaseEach(baseForOwn);
+      var baseEachRight = createBaseEach(baseForOwnRight, true);
+      function baseEvery(collection, predicate) {
+        var result = true;
+        baseEach(collection, function (value, index, collection) {
+          result = !!predicate(value, index, collection);
+          return result;
+        });
+        return result;
+      }
+      function baseExtremum(array, iteratee, comparator) {
+        var index = -1,
+          length = array.length;
+        while (++index < length) {
+          var value = array[index],
+            current = iteratee(value);
+          if (current != null && (computed === undefined$1 ? current === current && !isSymbol(current) : comparator(current, computed))) {
+            var computed = current,
+              result = value;
+          }
+        }
+        return result;
+      }
+      function baseFill(array, value, start, end) {
+        var length = array.length;
+        start = toInteger(start);
+        if (start < 0) {
+          start = -start > length ? 0 : length + start;
+        }
+        end = end === undefined$1 || end > length ? length : toInteger(end);
+        if (end < 0) {
+          end += length;
+        }
+        end = start > end ? 0 : toLength(end);
+        while (start < end) {
+          array[start++] = value;
+        }
+        return array;
+      }
+      function baseFilter(collection, predicate) {
+        var result = [];
+        baseEach(collection, function (value, index, collection) {
+          if (predicate(value, index, collection)) {
+            result.push(value);
+          }
+        });
+        return result;
+      }
+      function baseFlatten(array, depth, predicate, isStrict, result) {
+        var index = -1,
+          length = array.length;
+        predicate || (predicate = isFlattenable);
+        result || (result = []);
+        while (++index < length) {
+          var value = array[index];
+          if (depth > 0 && predicate(value)) {
+            if (depth > 1) {
+              baseFlatten(value, depth - 1, predicate, isStrict, result);
+            } else {
+              arrayPush(result, value);
+            }
+          } else if (!isStrict) {
+            result[result.length] = value;
+          }
+        }
+        return result;
+      }
+      var baseFor = createBaseFor();
+      var baseForRight = createBaseFor(true);
+      function baseForOwn(object, iteratee) {
+        return object && baseFor(object, iteratee, keys);
+      }
+      function baseForOwnRight(object, iteratee) {
+        return object && baseForRight(object, iteratee, keys);
+      }
+      function baseFunctions(object, props) {
+        return arrayFilter(props, function (key) {
+          return isFunction(object[key]);
+        });
+      }
+      function baseGet(object, path) {
+        path = castPath(path, object);
+        var index = 0,
+          length = path.length;
+        while (object != null && index < length) {
+          object = object[toKey(path[index++])];
+        }
+        return index && index == length ? object : undefined$1;
+      }
+      function baseGetAllKeys(object, keysFunc, symbolsFunc) {
+        var result = keysFunc(object);
+        return isArray(object) ? result : arrayPush(result, symbolsFunc(object));
+      }
+      function baseGetTag(value) {
+        if (value == null) {
+          return value === undefined$1 ? undefinedTag : nullTag;
+        }
+        return symToStringTag && symToStringTag in Object(value) ? getRawTag(value) : objectToString(value);
+      }
+      function baseGt(value, other) {
+        return value > other;
+      }
+      function baseHas(object, key) {
+        return object != null && hasOwnProperty.call(object, key);
+      }
+      function baseHasIn(object, key) {
+        return object != null && key in Object(object);
+      }
+      function baseInRange(number, start, end) {
+        return number >= nativeMin(start, end) && number < nativeMax(start, end);
+      }
+      function baseIntersection(arrays, iteratee, comparator) {
+        var includes = comparator ? arrayIncludesWith : arrayIncludes,
+          length = arrays[0].length,
+          othLength = arrays.length,
+          othIndex = othLength,
+          caches = Array(othLength),
+          maxLength = Infinity,
+          result = [];
+        while (othIndex--) {
+          var array = arrays[othIndex];
+          if (othIndex && iteratee) {
+            array = arrayMap(array, baseUnary(iteratee));
+          }
+          maxLength = nativeMin(array.length, maxLength);
+          caches[othIndex] = !comparator && (iteratee || length >= 120 && array.length >= 120) ? new SetCache(othIndex && array) : undefined$1;
+        }
+        array = arrays[0];
+        var index = -1,
+          seen = caches[0];
+        outer: while (++index < length && result.length < maxLength) {
+          var value = array[index],
+            computed = iteratee ? iteratee(value) : value;
+          value = comparator || value !== 0 ? value : 0;
+          if (!(seen ? cacheHas(seen, computed) : includes(result, computed, comparator))) {
+            othIndex = othLength;
+            while (--othIndex) {
+              var cache = caches[othIndex];
+              if (!(cache ? cacheHas(cache, computed) : includes(arrays[othIndex], computed, comparator))) {
+                continue outer;
+              }
+            }
+            if (seen) {
+              seen.push(computed);
+            }
+            result.push(value);
+          }
+        }
+        return result;
+      }
+      function baseInverter(object, setter, iteratee, accumulator) {
+        baseForOwn(object, function (value, key, object) {
+          setter(accumulator, iteratee(value), key, object);
+        });
+        return accumulator;
+      }
+      function baseInvoke(object, path, args) {
+        path = castPath(path, object);
+        object = parent(object, path);
+        var func = object == null ? object : object[toKey(last(path))];
+        return func == null ? undefined$1 : apply(func, object, args);
+      }
+      function baseIsArguments(value) {
+        return isObjectLike(value) && baseGetTag(value) == argsTag;
+      }
+      function baseIsArrayBuffer(value) {
+        return isObjectLike(value) && baseGetTag(value) == arrayBufferTag;
+      }
+      function baseIsDate(value) {
+        return isObjectLike(value) && baseGetTag(value) == dateTag;
+      }
+      function baseIsEqual(value, other, bitmask, customizer, stack) {
+        if (value === other) {
+          return true;
+        }
+        if (value == null || other == null || !isObjectLike(value) && !isObjectLike(other)) {
+          return value !== value && other !== other;
+        }
+        return baseIsEqualDeep(value, other, bitmask, customizer, baseIsEqual, stack);
+      }
+      function baseIsEqualDeep(object, other, bitmask, customizer, equalFunc, stack) {
+        var objIsArr = isArray(object),
+          othIsArr = isArray(other),
+          objTag = objIsArr ? arrayTag : getTag(object),
+          othTag = othIsArr ? arrayTag : getTag(other);
+        objTag = objTag == argsTag ? objectTag : objTag;
+        othTag = othTag == argsTag ? objectTag : othTag;
+        var objIsObj = objTag == objectTag,
+          othIsObj = othTag == objectTag,
+          isSameTag = objTag == othTag;
+        if (isSameTag && isBuffer(object)) {
+          if (!isBuffer(other)) {
+            return false;
+          }
+          objIsArr = true;
+          objIsObj = false;
+        }
+        if (isSameTag && !objIsObj) {
+          stack || (stack = new Stack());
+          return objIsArr || isTypedArray(object) ? equalArrays(object, other, bitmask, customizer, equalFunc, stack) : equalByTag(object, other, objTag, bitmask, customizer, equalFunc, stack);
+        }
+        if (!(bitmask & COMPARE_PARTIAL_FLAG)) {
+          var objIsWrapped = objIsObj && hasOwnProperty.call(object, '__wrapped__'),
+            othIsWrapped = othIsObj && hasOwnProperty.call(other, '__wrapped__');
+          if (objIsWrapped || othIsWrapped) {
+            var objUnwrapped = objIsWrapped ? object.value() : object,
+              othUnwrapped = othIsWrapped ? other.value() : other;
+            stack || (stack = new Stack());
+            return equalFunc(objUnwrapped, othUnwrapped, bitmask, customizer, stack);
+          }
+        }
+        if (!isSameTag) {
+          return false;
+        }
+        stack || (stack = new Stack());
+        return equalObjects(object, other, bitmask, customizer, equalFunc, stack);
+      }
+      function baseIsMap(value) {
+        return isObjectLike(value) && getTag(value) == mapTag;
+      }
+      function baseIsMatch(object, source, matchData, customizer) {
+        var index = matchData.length,
+          length = index,
+          noCustomizer = !customizer;
+        if (object == null) {
+          return !length;
+        }
+        object = Object(object);
+        while (index--) {
+          var data = matchData[index];
+          if (noCustomizer && data[2] ? data[1] !== object[data[0]] : !(data[0] in object)) {
+            return false;
+          }
+        }
+        while (++index < length) {
+          data = matchData[index];
+          var key = data[0],
+            objValue = object[key],
+            srcValue = data[1];
+          if (noCustomizer && data[2]) {
+            if (objValue === undefined$1 && !(key in object)) {
+              return false;
+            }
+          } else {
+            var stack = new Stack();
+            if (customizer) {
+              var result = customizer(objValue, srcValue, key, object, source, stack);
+            }
+            if (!(result === undefined$1 ? baseIsEqual(srcValue, objValue, COMPARE_PARTIAL_FLAG | COMPARE_UNORDERED_FLAG, customizer, stack) : result)) {
+              return false;
+            }
+          }
+        }
+        return true;
+      }
+      function baseIsNative(value) {
+        if (!isObject(value) || isMasked(value)) {
+          return false;
+        }
+        var pattern = isFunction(value) ? reIsNative : reIsHostCtor;
+        return pattern.test(toSource(value));
+      }
+      function baseIsRegExp(value) {
+        return isObjectLike(value) && baseGetTag(value) == regexpTag;
+      }
+      function baseIsSet(value) {
+        return isObjectLike(value) && getTag(value) == setTag;
+      }
+      function baseIsTypedArray(value) {
+        return isObjectLike(value) && isLength(value.length) && !!typedArrayTags[baseGetTag(value)];
+      }
+      function baseIteratee(value) {
+        if (typeof value == 'function') {
+          return value;
+        }
+        if (value == null) {
+          return identity;
+        }
+        if (typeof value == 'object') {
+          return isArray(value) ? baseMatchesProperty(value[0], value[1]) : baseMatches(value);
+        }
+        return property(value);
+      }
+      function baseKeys(object) {
+        if (!isPrototype(object)) {
+          return nativeKeys(object);
+        }
+        var result = [];
+        for (var key in Object(object)) {
+          if (hasOwnProperty.call(object, key) && key != 'constructor') {
+            result.push(key);
+          }
+        }
+        return result;
+      }
+      function baseKeysIn(object) {
+        if (!isObject(object)) {
+          return nativeKeysIn(object);
+        }
+        var isProto = isPrototype(object),
+          result = [];
+        for (var key in object) {
+          if (!(key == 'constructor' && (isProto || !hasOwnProperty.call(object, key)))) {
+            result.push(key);
+          }
+        }
+        return result;
+      }
+      function baseLt(value, other) {
+        return value < other;
+      }
+      function baseMap(collection, iteratee) {
+        var index = -1,
+          result = isArrayLike(collection) ? Array(collection.length) : [];
+        baseEach(collection, function (value, key, collection) {
+          result[++index] = iteratee(value, key, collection);
+        });
+        return result;
+      }
+      function baseMatches(source) {
+        var matchData = getMatchData(source);
+        if (matchData.length == 1 && matchData[0][2]) {
+          return matchesStrictComparable(matchData[0][0], matchData[0][1]);
+        }
+        return function (object) {
+          return object === source || baseIsMatch(object, source, matchData);
+        };
+      }
+      function baseMatchesProperty(path, srcValue) {
+        if (isKey(path) && isStrictComparable(srcValue)) {
+          return matchesStrictComparable(toKey(path), srcValue);
+        }
+        return function (object) {
+          var objValue = get(object, path);
+          return objValue === undefined$1 && objValue === srcValue ? hasIn(object, path) : baseIsEqual(srcValue, objValue, COMPARE_PARTIAL_FLAG | COMPARE_UNORDERED_FLAG);
+        };
+      }
+      function baseMerge(object, source, srcIndex, customizer, stack) {
+        if (object === source) {
+          return;
+        }
+        baseFor(source, function (srcValue, key) {
+          stack || (stack = new Stack());
+          if (isObject(srcValue)) {
+            baseMergeDeep(object, source, key, srcIndex, baseMerge, customizer, stack);
+          } else {
+            var newValue = customizer ? customizer(safeGet(object, key), srcValue, key + '', object, source, stack) : undefined$1;
+            if (newValue === undefined$1) {
+              newValue = srcValue;
+            }
+            assignMergeValue(object, key, newValue);
+          }
+        }, keysIn);
+      }
+      function baseMergeDeep(object, source, key, srcIndex, mergeFunc, customizer, stack) {
+        var objValue = safeGet(object, key),
+          srcValue = safeGet(source, key),
+          stacked = stack.get(srcValue);
+        if (stacked) {
+          assignMergeValue(object, key, stacked);
+          return;
+        }
+        var newValue = customizer ? customizer(objValue, srcValue, key + '', object, source, stack) : undefined$1;
+        var isCommon = newValue === undefined$1;
+        if (isCommon) {
+          var isArr = isArray(srcValue),
+            isBuff = !isArr && isBuffer(srcValue),
+            isTyped = !isArr && !isBuff && isTypedArray(srcValue);
+          newValue = srcValue;
+          if (isArr || isBuff || isTyped) {
+            if (isArray(objValue)) {
+              newValue = objValue;
+            } else if (isArrayLikeObject(objValue)) {
+              newValue = copyArray(objValue);
+            } else if (isBuff) {
+              isCommon = false;
+              newValue = cloneBuffer(srcValue, true);
+            } else if (isTyped) {
+              isCommon = false;
+              newValue = cloneTypedArray(srcValue, true);
+            } else {
+              newValue = [];
+            }
+          } else if (isPlainObject(srcValue) || isArguments(srcValue)) {
+            newValue = objValue;
+            if (isArguments(objValue)) {
+              newValue = toPlainObject(objValue);
+            } else if (!isObject(objValue) || isFunction(objValue)) {
+              newValue = initCloneObject(srcValue);
+            }
+          } else {
+            isCommon = false;
+          }
+        }
+        if (isCommon) {
+          stack.set(srcValue, newValue);
+          mergeFunc(newValue, srcValue, srcIndex, customizer, stack);
+          stack['delete'](srcValue);
+        }
+        assignMergeValue(object, key, newValue);
+      }
+      function baseNth(array, n) {
+        var length = array.length;
+        if (!length) {
+          return;
+        }
+        n += n < 0 ? length : 0;
+        return isIndex(n, length) ? array[n] : undefined$1;
+      }
+      function baseOrderBy(collection, iteratees, orders) {
+        if (iteratees.length) {
+          iteratees = arrayMap(iteratees, function (iteratee) {
+            if (isArray(iteratee)) {
+              return function (value) {
+                return baseGet(value, iteratee.length === 1 ? iteratee[0] : iteratee);
+              };
+            }
+            return iteratee;
+          });
+        } else {
+          iteratees = [identity];
+        }
+        var index = -1;
+        iteratees = arrayMap(iteratees, baseUnary(getIteratee()));
+        var result = baseMap(collection, function (value, key, collection) {
+          var criteria = arrayMap(iteratees, function (iteratee) {
+            return iteratee(value);
+          });
+          return {
+            'criteria': criteria,
+            'index': ++index,
+            'value': value
+          };
+        });
+        return baseSortBy(result, function (object, other) {
+          return compareMultiple(object, other, orders);
+        });
+      }
+      function basePick(object, paths) {
+        return basePickBy(object, paths, function (value, path) {
+          return hasIn(object, path);
+        });
+      }
+      function basePickBy(object, paths, predicate) {
+        var index = -1,
+          length = paths.length,
+          result = {};
+        while (++index < length) {
+          var path = paths[index],
+            value = baseGet(object, path);
+          if (predicate(value, path)) {
+            baseSet(result, castPath(path, object), value);
+          }
+        }
+        return result;
+      }
+      function basePropertyDeep(path) {
+        return function (object) {
+          return baseGet(object, path);
+        };
+      }
+      function basePullAll(array, values, iteratee, comparator) {
+        var indexOf = comparator ? baseIndexOfWith : baseIndexOf,
+          index = -1,
+          length = values.length,
+          seen = array;
+        if (array === values) {
+          values = copyArray(values);
+        }
+        if (iteratee) {
+          seen = arrayMap(array, baseUnary(iteratee));
+        }
+        while (++index < length) {
+          var fromIndex = 0,
+            value = values[index],
+            computed = iteratee ? iteratee(value) : value;
+          while ((fromIndex = indexOf(seen, computed, fromIndex, comparator)) > -1) {
+            if (seen !== array) {
+              splice.call(seen, fromIndex, 1);
+            }
+            splice.call(array, fromIndex, 1);
+          }
+        }
+        return array;
+      }
+      function basePullAt(array, indexes) {
+        var length = array ? indexes.length : 0,
+          lastIndex = length - 1;
+        while (length--) {
+          var index = indexes[length];
+          if (length == lastIndex || index !== previous) {
+            var previous = index;
+            if (isIndex(index)) {
+              splice.call(array, index, 1);
+            } else {
+              baseUnset(array, index);
+            }
+          }
+        }
+        return array;
+      }
+      function baseRandom(lower, upper) {
+        return lower + nativeFloor(nativeRandom() * (upper - lower + 1));
+      }
+      function baseRange(start, end, step, fromRight) {
+        var index = -1,
+          length = nativeMax(nativeCeil((end - start) / (step || 1)), 0),
+          result = Array(length);
+        while (length--) {
+          result[fromRight ? length : ++index] = start;
+          start += step;
+        }
+        return result;
+      }
+      function baseRepeat(string, n) {
+        var result = '';
+        if (!string || n < 1 || n > MAX_SAFE_INTEGER) {
+          return result;
+        }
+        do {
+          if (n % 2) {
+            result += string;
+          }
+          n = nativeFloor(n / 2);
+          if (n) {
+            string += string;
+          }
+        } while (n);
+        return result;
+      }
+      function baseRest(func, start) {
+        return setToString(overRest(func, start, identity), func + '');
+      }
+      function baseSample(collection) {
+        return arraySample(values(collection));
+      }
+      function baseSampleSize(collection, n) {
+        var array = values(collection);
+        return shuffleSelf(array, baseClamp(n, 0, array.length));
+      }
+      function baseSet(object, path, value, customizer) {
+        if (!isObject(object)) {
+          return object;
+        }
+        path = castPath(path, object);
+        var index = -1,
+          length = path.length,
+          lastIndex = length - 1,
+          nested = object;
+        while (nested != null && ++index < length) {
+          var key = toKey(path[index]),
+            newValue = value;
+          if (key === '__proto__' || key === 'constructor' || key === 'prototype') {
+            return object;
+          }
+          if (index != lastIndex) {
+            var objValue = nested[key];
+            newValue = customizer ? customizer(objValue, key, nested) : undefined$1;
+            if (newValue === undefined$1) {
+              newValue = isObject(objValue) ? objValue : isIndex(path[index + 1]) ? [] : {};
+            }
+          }
+          assignValue(nested, key, newValue);
+          nested = nested[key];
+        }
+        return object;
+      }
+      var baseSetData = !metaMap ? identity : function (func, data) {
+        metaMap.set(func, data);
+        return func;
+      };
+      var baseSetToString = !defineProperty ? identity : function (func, string) {
+        return defineProperty(func, 'toString', {
+          'configurable': true,
+          'enumerable': false,
+          'value': constant(string),
+          'writable': true
+        });
+      };
+      function baseShuffle(collection) {
+        return shuffleSelf(values(collection));
+      }
+      function baseSlice(array, start, end) {
+        var index = -1,
+          length = array.length;
+        if (start < 0) {
+          start = -start > length ? 0 : length + start;
+        }
+        end = end > length ? length : end;
+        if (end < 0) {
+          end += length;
+        }
+        length = start > end ? 0 : end - start >>> 0;
+        start >>>= 0;
+        var result = Array(length);
+        while (++index < length) {
+          result[index] = array[index + start];
+        }
+        return result;
+      }
+      function baseSome(collection, predicate) {
+        var result;
+        baseEach(collection, function (value, index, collection) {
+          result = predicate(value, index, collection);
+          return !result;
+        });
+        return !!result;
+      }
+      function baseSortedIndex(array, value, retHighest) {
+        var low = 0,
+          high = array == null ? low : array.length;
+        if (typeof value == 'number' && value === value && high <= HALF_MAX_ARRAY_LENGTH) {
+          while (low < high) {
+            var mid = low + high >>> 1,
+              computed = array[mid];
+            if (computed !== null && !isSymbol(computed) && (retHighest ? computed <= value : computed < value)) {
+              low = mid + 1;
+            } else {
+              high = mid;
+            }
+          }
+          return high;
+        }
+        return baseSortedIndexBy(array, value, identity, retHighest);
+      }
+      function baseSortedIndexBy(array, value, iteratee, retHighest) {
+        var low = 0,
+          high = array == null ? 0 : array.length;
+        if (high === 0) {
+          return 0;
+        }
+        value = iteratee(value);
+        var valIsNaN = value !== value,
+          valIsNull = value === null,
+          valIsSymbol = isSymbol(value),
+          valIsUndefined = value === undefined$1;
+        while (low < high) {
+          var mid = nativeFloor((low + high) / 2),
+            computed = iteratee(array[mid]),
+            othIsDefined = computed !== undefined$1,
+            othIsNull = computed === null,
+            othIsReflexive = computed === computed,
+            othIsSymbol = isSymbol(computed);
+          if (valIsNaN) {
+            var setLow = retHighest || othIsReflexive;
+          } else if (valIsUndefined) {
+            setLow = othIsReflexive && (retHighest || othIsDefined);
+          } else if (valIsNull) {
+            setLow = othIsReflexive && othIsDefined && (retHighest || !othIsNull);
+          } else if (valIsSymbol) {
+            setLow = othIsReflexive && othIsDefined && !othIsNull && (retHighest || !othIsSymbol);
+          } else if (othIsNull || othIsSymbol) {
+            setLow = false;
+          } else {
+            setLow = retHighest ? computed <= value : computed < value;
+          }
+          if (setLow) {
+            low = mid + 1;
+          } else {
+            high = mid;
+          }
+        }
+        return nativeMin(high, MAX_ARRAY_INDEX);
+      }
+      function baseSortedUniq(array, iteratee) {
+        var index = -1,
+          length = array.length,
+          resIndex = 0,
+          result = [];
+        while (++index < length) {
+          var value = array[index],
+            computed = iteratee ? iteratee(value) : value;
+          if (!index || !eq(computed, seen)) {
+            var seen = computed;
+            result[resIndex++] = value === 0 ? 0 : value;
+          }
+        }
+        return result;
+      }
+      function baseToNumber(value) {
+        if (typeof value == 'number') {
+          return value;
+        }
+        if (isSymbol(value)) {
+          return NAN;
+        }
+        return +value;
+      }
+      function baseToString(value) {
+        if (typeof value == 'string') {
+          return value;
+        }
+        if (isArray(value)) {
+          return arrayMap(value, baseToString) + '';
+        }
+        if (isSymbol(value)) {
+          return symbolToString ? symbolToString.call(value) : '';
+        }
+        var result = value + '';
+        return result == '0' && 1 / value == -INFINITY ? '-0' : result;
+      }
+      function baseUniq(array, iteratee, comparator) {
+        var index = -1,
+          includes = arrayIncludes,
+          length = array.length,
+          isCommon = true,
+          result = [],
+          seen = result;
+        if (comparator) {
+          isCommon = false;
+          includes = arrayIncludesWith;
+        } else if (length >= LARGE_ARRAY_SIZE) {
+          var set = iteratee ? null : createSet(array);
+          if (set) {
+            return setToArray(set);
+          }
+          isCommon = false;
+          includes = cacheHas;
+          seen = new SetCache();
+        } else {
+          seen = iteratee ? [] : result;
+        }
+        outer: while (++index < length) {
+          var value = array[index],
+            computed = iteratee ? iteratee(value) : value;
+          value = comparator || value !== 0 ? value : 0;
+          if (isCommon && computed === computed) {
+            var seenIndex = seen.length;
+            while (seenIndex--) {
+              if (seen[seenIndex] === computed) {
+                continue outer;
+              }
+            }
+            if (iteratee) {
+              seen.push(computed);
+            }
+            result.push(value);
+          } else if (!includes(seen, computed, comparator)) {
+            if (seen !== result) {
+              seen.push(computed);
+            }
+            result.push(value);
+          }
+        }
+        return result;
+      }
+      function baseUnset(object, path) {
+        path = castPath(path, object);
+        object = parent(object, path);
+        return object == null || delete object[toKey(last(path))];
+      }
+      function baseUpdate(object, path, updater, customizer) {
+        return baseSet(object, path, updater(baseGet(object, path)), customizer);
+      }
+      function baseWhile(array, predicate, isDrop, fromRight) {
+        var length = array.length,
+          index = fromRight ? length : -1;
+        while ((fromRight ? index-- : ++index < length) && predicate(array[index], index, array)) {}
+        return isDrop ? baseSlice(array, fromRight ? 0 : index, fromRight ? index + 1 : length) : baseSlice(array, fromRight ? index + 1 : 0, fromRight ? length : index);
+      }
+      function baseWrapperValue(value, actions) {
+        var result = value;
+        if (result instanceof LazyWrapper) {
+          result = result.value();
+        }
+        return arrayReduce(actions, function (result, action) {
+          return action.func.apply(action.thisArg, arrayPush([result], action.args));
+        }, result);
+      }
+      function baseXor(arrays, iteratee, comparator) {
+        var length = arrays.length;
+        if (length < 2) {
+          return length ? baseUniq(arrays[0]) : [];
+        }
+        var index = -1,
+          result = Array(length);
+        while (++index < length) {
+          var array = arrays[index],
+            othIndex = -1;
+          while (++othIndex < length) {
+            if (othIndex != index) {
+              result[index] = baseDifference(result[index] || array, arrays[othIndex], iteratee, comparator);
+            }
+          }
+        }
+        return baseUniq(baseFlatten(result, 1), iteratee, comparator);
+      }
+      function baseZipObject(props, values, assignFunc) {
+        var index = -1,
+          length = props.length,
+          valsLength = values.length,
+          result = {};
+        while (++index < length) {
+          var value = index < valsLength ? values[index] : undefined$1;
+          assignFunc(result, props[index], value);
+        }
+        return result;
+      }
+      function castArrayLikeObject(value) {
+        return isArrayLikeObject(value) ? value : [];
+      }
+      function castFunction(value) {
+        return typeof value == 'function' ? value : identity;
+      }
+      function castPath(value, object) {
+        if (isArray(value)) {
+          return value;
+        }
+        return isKey(value, object) ? [value] : stringToPath(toString(value));
+      }
+      var castRest = baseRest;
+      function castSlice(array, start, end) {
+        var length = array.length;
+        end = end === undefined$1 ? length : end;
+        return !start && end >= length ? array : baseSlice(array, start, end);
+      }
+      var clearTimeout = ctxClearTimeout || function (id) {
+        return root.clearTimeout(id);
+      };
+      function cloneBuffer(buffer, isDeep) {
+        if (isDeep) {
+          return buffer.slice();
+        }
+        var length = buffer.length,
+          result = allocUnsafe ? allocUnsafe(length) : new buffer.constructor(length);
+        buffer.copy(result);
+        return result;
+      }
+      function cloneArrayBuffer(arrayBuffer) {
+        var result = new arrayBuffer.constructor(arrayBuffer.byteLength);
+        new Uint8Array(result).set(new Uint8Array(arrayBuffer));
+        return result;
+      }
+      function cloneDataView(dataView, isDeep) {
+        var buffer = isDeep ? cloneArrayBuffer(dataView.buffer) : dataView.buffer;
+        return new dataView.constructor(buffer, dataView.byteOffset, dataView.byteLength);
+      }
+      function cloneRegExp(regexp) {
+        var result = new regexp.constructor(regexp.source, reFlags.exec(regexp));
+        result.lastIndex = regexp.lastIndex;
+        return result;
+      }
+      function cloneSymbol(symbol) {
+        return symbolValueOf ? Object(symbolValueOf.call(symbol)) : {};
+      }
+      function cloneTypedArray(typedArray, isDeep) {
+        var buffer = isDeep ? cloneArrayBuffer(typedArray.buffer) : typedArray.buffer;
+        return new typedArray.constructor(buffer, typedArray.byteOffset, typedArray.length);
+      }
+      function compareAscending(value, other) {
+        if (value !== other) {
+          var valIsDefined = value !== undefined$1,
+            valIsNull = value === null,
+            valIsReflexive = value === value,
+            valIsSymbol = isSymbol(value);
+          var othIsDefined = other !== undefined$1,
+            othIsNull = other === null,
+            othIsReflexive = other === other,
+            othIsSymbol = isSymbol(other);
+          if (!othIsNull && !othIsSymbol && !valIsSymbol && value > other || valIsSymbol && othIsDefined && othIsReflexive && !othIsNull && !othIsSymbol || valIsNull && othIsDefined && othIsReflexive || !valIsDefined && othIsReflexive || !valIsReflexive) {
+            return 1;
+          }
+          if (!valIsNull && !valIsSymbol && !othIsSymbol && value < other || othIsSymbol && valIsDefined && valIsReflexive && !valIsNull && !valIsSymbol || othIsNull && valIsDefined && valIsReflexive || !othIsDefined && valIsReflexive || !othIsReflexive) {
+            return -1;
+          }
+        }
+        return 0;
+      }
+      function compareMultiple(object, other, orders) {
+        var index = -1,
+          objCriteria = object.criteria,
+          othCriteria = other.criteria,
+          length = objCriteria.length,
+          ordersLength = orders.length;
+        while (++index < length) {
+          var result = compareAscending(objCriteria[index], othCriteria[index]);
+          if (result) {
+            if (index >= ordersLength) {
+              return result;
+            }
+            var order = orders[index];
+            return result * (order == 'desc' ? -1 : 1);
+          }
+        }
+        return object.index - other.index;
+      }
+      function composeArgs(args, partials, holders, isCurried) {
+        var argsIndex = -1,
+          argsLength = args.length,
+          holdersLength = holders.length,
+          leftIndex = -1,
+          leftLength = partials.length,
+          rangeLength = nativeMax(argsLength - holdersLength, 0),
+          result = Array(leftLength + rangeLength),
+          isUncurried = !isCurried;
+        while (++leftIndex < leftLength) {
+          result[leftIndex] = partials[leftIndex];
+        }
+        while (++argsIndex < holdersLength) {
+          if (isUncurried || argsIndex < argsLength) {
+            result[holders[argsIndex]] = args[argsIndex];
+          }
+        }
+        while (rangeLength--) {
+          result[leftIndex++] = args[argsIndex++];
+        }
+        return result;
+      }
+      function composeArgsRight(args, partials, holders, isCurried) {
+        var argsIndex = -1,
+          argsLength = args.length,
+          holdersIndex = -1,
+          holdersLength = holders.length,
+          rightIndex = -1,
+          rightLength = partials.length,
+          rangeLength = nativeMax(argsLength - holdersLength, 0),
+          result = Array(rangeLength + rightLength),
+          isUncurried = !isCurried;
+        while (++argsIndex < rangeLength) {
+          result[argsIndex] = args[argsIndex];
+        }
+        var offset = argsIndex;
+        while (++rightIndex < rightLength) {
+          result[offset + rightIndex] = partials[rightIndex];
+        }
+        while (++holdersIndex < holdersLength) {
+          if (isUncurried || argsIndex < argsLength) {
+            result[offset + holders[holdersIndex]] = args[argsIndex++];
+          }
+        }
+        return result;
+      }
+      function copyArray(source, array) {
+        var index = -1,
+          length = source.length;
+        array || (array = Array(length));
+        while (++index < length) {
+          array[index] = source[index];
+        }
+        return array;
+      }
+      function copyObject(source, props, object, customizer) {
+        var isNew = !object;
+        object || (object = {});
+        var index = -1,
+          length = props.length;
+        while (++index < length) {
+          var key = props[index];
+          var newValue = customizer ? customizer(object[key], source[key], key, object, source) : undefined$1;
+          if (newValue === undefined$1) {
+            newValue = source[key];
+          }
+          if (isNew) {
+            baseAssignValue(object, key, newValue);
+          } else {
+            assignValue(object, key, newValue);
+          }
+        }
+        return object;
+      }
+      function copySymbols(source, object) {
+        return copyObject(source, getSymbols(source), object);
+      }
+      function copySymbolsIn(source, object) {
+        return copyObject(source, getSymbolsIn(source), object);
+      }
+      function createAggregator(setter, initializer) {
+        return function (collection, iteratee) {
+          var func = isArray(collection) ? arrayAggregator : baseAggregator,
+            accumulator = initializer ? initializer() : {};
+          return func(collection, setter, getIteratee(iteratee, 2), accumulator);
+        };
+      }
+      function createAssigner(assigner) {
+        return baseRest(function (object, sources) {
+          var index = -1,
+            length = sources.length,
+            customizer = length > 1 ? sources[length - 1] : undefined$1,
+            guard = length > 2 ? sources[2] : undefined$1;
+          customizer = assigner.length > 3 && typeof customizer == 'function' ? (length--, customizer) : undefined$1;
+          if (guard && isIterateeCall(sources[0], sources[1], guard)) {
+            customizer = length < 3 ? undefined$1 : customizer;
+            length = 1;
+          }
+          object = Object(object);
+          while (++index < length) {
+            var source = sources[index];
+            if (source) {
+              assigner(object, source, index, customizer);
+            }
+          }
+          return object;
+        });
+      }
+      function createBaseEach(eachFunc, fromRight) {
+        return function (collection, iteratee) {
+          if (collection == null) {
+            return collection;
+          }
+          if (!isArrayLike(collection)) {
+            return eachFunc(collection, iteratee);
+          }
+          var length = collection.length,
+            index = fromRight ? length : -1,
+            iterable = Object(collection);
+          while (fromRight ? index-- : ++index < length) {
+            if (iteratee(iterable[index], index, iterable) === false) {
+              break;
+            }
+          }
+          return collection;
+        };
+      }
+      function createBaseFor(fromRight) {
+        return function (object, iteratee, keysFunc) {
+          var index = -1,
+            iterable = Object(object),
+            props = keysFunc(object),
+            length = props.length;
+          while (length--) {
+            var key = props[fromRight ? length : ++index];
+            if (iteratee(iterable[key], key, iterable) === false) {
+              break;
+            }
+          }
+          return object;
+        };
+      }
+      function createBind(func, bitmask, thisArg) {
+        var isBind = bitmask & WRAP_BIND_FLAG,
+          Ctor = createCtor(func);
+        function wrapper() {
+          var fn = this && this !== root && this instanceof wrapper ? Ctor : func;
+          return fn.apply(isBind ? thisArg : this, arguments);
+        }
+        return wrapper;
+      }
+      function createCaseFirst(methodName) {
+        return function (string) {
+          string = toString(string);
+          var strSymbols = hasUnicode(string) ? stringToArray(string) : undefined$1;
+          var chr = strSymbols ? strSymbols[0] : string.charAt(0);
+          var trailing = strSymbols ? castSlice(strSymbols, 1).join('') : string.slice(1);
+          return chr[methodName]() + trailing;
+        };
+      }
+      function createCompounder(callback) {
+        return function (string) {
+          return arrayReduce(words(deburr(string).replace(reApos, '')), callback, '');
+        };
+      }
+      function createCtor(Ctor) {
+        return function () {
+          var args = arguments;
+          switch (args.length) {
+            case 0:
+              return new Ctor();
+            case 1:
+              return new Ctor(args[0]);
+            case 2:
+              return new Ctor(args[0], args[1]);
+            case 3:
+              return new Ctor(args[0], args[1], args[2]);
+            case 4:
+              return new Ctor(args[0], args[1], args[2], args[3]);
+            case 5:
+              return new Ctor(args[0], args[1], args[2], args[3], args[4]);
+            case 6:
+              return new Ctor(args[0], args[1], args[2], args[3], args[4], args[5]);
+            case 7:
+              return new Ctor(args[0], args[1], args[2], args[3], args[4], args[5], args[6]);
+          }
+          var thisBinding = baseCreate(Ctor.prototype),
+            result = Ctor.apply(thisBinding, args);
+          return isObject(result) ? result : thisBinding;
+        };
+      }
+      function createCurry(func, bitmask, arity) {
+        var Ctor = createCtor(func);
+        function wrapper() {
+          var length = arguments.length,
+            args = Array(length),
+            index = length,
+            placeholder = getHolder(wrapper);
+          while (index--) {
+            args[index] = arguments[index];
+          }
+          var holders = length < 3 && args[0] !== placeholder && args[length - 1] !== placeholder ? [] : replaceHolders(args, placeholder);
+          length -= holders.length;
+          if (length < arity) {
+            return createRecurry(func, bitmask, createHybrid, wrapper.placeholder, undefined$1, args, holders, undefined$1, undefined$1, arity - length);
+          }
+          var fn = this && this !== root && this instanceof wrapper ? Ctor : func;
+          return apply(fn, this, args);
+        }
+        return wrapper;
+      }
+      function createFind(findIndexFunc) {
+        return function (collection, predicate, fromIndex) {
+          var iterable = Object(collection);
+          if (!isArrayLike(collection)) {
+            var iteratee = getIteratee(predicate, 3);
+            collection = keys(collection);
+            predicate = function (key) {
+              return iteratee(iterable[key], key, iterable);
+            };
+          }
+          var index = findIndexFunc(collection, predicate, fromIndex);
+          return index > -1 ? iterable[iteratee ? collection[index] : index] : undefined$1;
+        };
+      }
+      function createFlow(fromRight) {
+        return flatRest(function (funcs) {
+          var length = funcs.length,
+            index = length,
+            prereq = LodashWrapper.prototype.thru;
+          if (fromRight) {
+            funcs.reverse();
+          }
+          while (index--) {
+            var func = funcs[index];
+            if (typeof func != 'function') {
+              throw new TypeError(FUNC_ERROR_TEXT);
+            }
+            if (prereq && !wrapper && getFuncName(func) == 'wrapper') {
+              var wrapper = new LodashWrapper([], true);
+            }
+          }
+          index = wrapper ? index : length;
+          while (++index < length) {
+            func = funcs[index];
+            var funcName = getFuncName(func),
+              data = funcName == 'wrapper' ? getData(func) : undefined$1;
+            if (data && isLaziable(data[0]) && data[1] == (WRAP_ARY_FLAG | WRAP_CURRY_FLAG | WRAP_PARTIAL_FLAG | WRAP_REARG_FLAG) && !data[4].length && data[9] == 1) {
+              wrapper = wrapper[getFuncName(data[0])].apply(wrapper, data[3]);
+            } else {
+              wrapper = func.length == 1 && isLaziable(func) ? wrapper[funcName]() : wrapper.thru(func);
+            }
+          }
+          return function () {
+            var args = arguments,
+              value = args[0];
+            if (wrapper && args.length == 1 && isArray(value)) {
+              return wrapper.plant(value).value();
+            }
+            var index = 0,
+              result = length ? funcs[index].apply(this, args) : value;
+            while (++index < length) {
+              result = funcs[index].call(this, result);
+            }
+            return result;
+          };
+        });
+      }
+      function createHybrid(func, bitmask, thisArg, partials, holders, partialsRight, holdersRight, argPos, ary, arity) {
+        var isAry = bitmask & WRAP_ARY_FLAG,
+          isBind = bitmask & WRAP_BIND_FLAG,
+          isBindKey = bitmask & WRAP_BIND_KEY_FLAG,
+          isCurried = bitmask & (WRAP_CURRY_FLAG | WRAP_CURRY_RIGHT_FLAG),
+          isFlip = bitmask & WRAP_FLIP_FLAG,
+          Ctor = isBindKey ? undefined$1 : createCtor(func);
+        function wrapper() {
+          var length = arguments.length,
+            args = Array(length),
+            index = length;
+          while (index--) {
+            args[index] = arguments[index];
+          }
+          if (isCurried) {
+            var placeholder = getHolder(wrapper),
+              holdersCount = countHolders(args, placeholder);
+          }
+          if (partials) {
+            args = composeArgs(args, partials, holders, isCurried);
+          }
+          if (partialsRight) {
+            args = composeArgsRight(args, partialsRight, holdersRight, isCurried);
+          }
+          length -= holdersCount;
+          if (isCurried && length < arity) {
+            var newHolders = replaceHolders(args, placeholder);
+            return createRecurry(func, bitmask, createHybrid, wrapper.placeholder, thisArg, args, newHolders, argPos, ary, arity - length);
+          }
+          var thisBinding = isBind ? thisArg : this,
+            fn = isBindKey ? thisBinding[func] : func;
+          length = args.length;
+          if (argPos) {
+            args = reorder(args, argPos);
+          } else if (isFlip && length > 1) {
+            args.reverse();
+          }
+          if (isAry && ary < length) {
+            args.length = ary;
+          }
+          if (this && this !== root && this instanceof wrapper) {
+            fn = Ctor || createCtor(fn);
+          }
+          return fn.apply(thisBinding, args);
+        }
+        return wrapper;
+      }
+      function createInverter(setter, toIteratee) {
+        return function (object, iteratee) {
+          return baseInverter(object, setter, toIteratee(iteratee), {});
+        };
+      }
+      function createMathOperation(operator, defaultValue) {
+        return function (value, other) {
+          var result;
+          if (value === undefined$1 && other === undefined$1) {
+            return defaultValue;
+          }
+          if (value !== undefined$1) {
+            result = value;
+          }
+          if (other !== undefined$1) {
+            if (result === undefined$1) {
+              return other;
+            }
+            if (typeof value == 'string' || typeof other == 'string') {
+              value = baseToString(value);
+              other = baseToString(other);
+            } else {
+              value = baseToNumber(value);
+              other = baseToNumber(other);
+            }
+            result = operator(value, other);
+          }
+          return result;
+        };
+      }
+      function createOver(arrayFunc) {
+        return flatRest(function (iteratees) {
+          iteratees = arrayMap(iteratees, baseUnary(getIteratee()));
+          return baseRest(function (args) {
+            var thisArg = this;
+            return arrayFunc(iteratees, function (iteratee) {
+              return apply(iteratee, thisArg, args);
+            });
+          });
+        });
+      }
+      function createPadding(length, chars) {
+        chars = chars === undefined$1 ? ' ' : baseToString(chars);
+        var charsLength = chars.length;
+        if (charsLength < 2) {
+          return charsLength ? baseRepeat(chars, length) : chars;
+        }
+        var result = baseRepeat(chars, nativeCeil(length / stringSize(chars)));
+        return hasUnicode(chars) ? castSlice(stringToArray(result), 0, length).join('') : result.slice(0, length);
+      }
+      function createPartial(func, bitmask, thisArg, partials) {
+        var isBind = bitmask & WRAP_BIND_FLAG,
+          Ctor = createCtor(func);
+        function wrapper() {
+          var argsIndex = -1,
+            argsLength = arguments.length,
+            leftIndex = -1,
+            leftLength = partials.length,
+            args = Array(leftLength + argsLength),
+            fn = this && this !== root && this instanceof wrapper ? Ctor : func;
+          while (++leftIndex < leftLength) {
+            args[leftIndex] = partials[leftIndex];
+          }
+          while (argsLength--) {
+            args[leftIndex++] = arguments[++argsIndex];
+          }
+          return apply(fn, isBind ? thisArg : this, args);
+        }
+        return wrapper;
+      }
+      function createRange(fromRight) {
+        return function (start, end, step) {
+          if (step && typeof step != 'number' && isIterateeCall(start, end, step)) {
+            end = step = undefined$1;
+          }
+          start = toFinite(start);
+          if (end === undefined$1) {
+            end = start;
+            start = 0;
+          } else {
+            end = toFinite(end);
+          }
+          step = step === undefined$1 ? start < end ? 1 : -1 : toFinite(step);
+          return baseRange(start, end, step, fromRight);
+        };
+      }
+      function createRelationalOperation(operator) {
+        return function (value, other) {
+          if (!(typeof value == 'string' && typeof other == 'string')) {
+            value = toNumber(value);
+            other = toNumber(other);
+          }
+          return operator(value, other);
+        };
+      }
+      function createRecurry(func, bitmask, wrapFunc, placeholder, thisArg, partials, holders, argPos, ary, arity) {
+        var isCurry = bitmask & WRAP_CURRY_FLAG,
+          newHolders = isCurry ? holders : undefined$1,
+          newHoldersRight = isCurry ? undefined$1 : holders,
+          newPartials = isCurry ? partials : undefined$1,
+          newPartialsRight = isCurry ? undefined$1 : partials;
+        bitmask |= isCurry ? WRAP_PARTIAL_FLAG : WRAP_PARTIAL_RIGHT_FLAG;
+        bitmask &= ~(isCurry ? WRAP_PARTIAL_RIGHT_FLAG : WRAP_PARTIAL_FLAG);
+        if (!(bitmask & WRAP_CURRY_BOUND_FLAG)) {
+          bitmask &= ~(WRAP_BIND_FLAG | WRAP_BIND_KEY_FLAG);
+        }
+        var newData = [func, bitmask, thisArg, newPartials, newHolders, newPartialsRight, newHoldersRight, argPos, ary, arity];
+        var result = wrapFunc.apply(undefined$1, newData);
+        if (isLaziable(func)) {
+          setData(result, newData);
+        }
+        result.placeholder = placeholder;
+        return setWrapToString(result, func, bitmask);
+      }
+      function createRound(methodName) {
+        var func = Math[methodName];
+        return function (number, precision) {
+          number = toNumber(number);
+          precision = precision == null ? 0 : nativeMin(toInteger(precision), 292);
+          if (precision && nativeIsFinite(number)) {
+            var pair = (toString(number) + 'e').split('e'),
+              value = func(pair[0] + 'e' + (+pair[1] + precision));
+            pair = (toString(value) + 'e').split('e');
+            return +(pair[0] + 'e' + (+pair[1] - precision));
+          }
+          return func(number);
+        };
+      }
+      var createSet = !(Set && 1 / setToArray(new Set([, -0]))[1] == INFINITY) ? noop : function (values) {
+        return new Set(values);
+      };
+      function createToPairs(keysFunc) {
+        return function (object) {
+          var tag = getTag(object);
+          if (tag == mapTag) {
+            return mapToArray(object);
+          }
+          if (tag == setTag) {
+            return setToPairs(object);
+          }
+          return baseToPairs(object, keysFunc(object));
+        };
+      }
+      function createWrap(func, bitmask, thisArg, partials, holders, argPos, ary, arity) {
+        var isBindKey = bitmask & WRAP_BIND_KEY_FLAG;
+        if (!isBindKey && typeof func != 'function') {
+          throw new TypeError(FUNC_ERROR_TEXT);
+        }
+        var length = partials ? partials.length : 0;
+        if (!length) {
+          bitmask &= ~(WRAP_PARTIAL_FLAG | WRAP_PARTIAL_RIGHT_FLAG);
+          partials = holders = undefined$1;
+        }
+        ary = ary === undefined$1 ? ary : nativeMax(toInteger(ary), 0);
+        arity = arity === undefined$1 ? arity : toInteger(arity);
+        length -= holders ? holders.length : 0;
+        if (bitmask & WRAP_PARTIAL_RIGHT_FLAG) {
+          var partialsRight = partials,
+            holdersRight = holders;
+          partials = holders = undefined$1;
+        }
+        var data = isBindKey ? undefined$1 : getData(func);
+        var newData = [func, bitmask, thisArg, partials, holders, partialsRight, holdersRight, argPos, ary, arity];
+        if (data) {
+          mergeData(newData, data);
+        }
+        func = newData[0];
+        bitmask = newData[1];
+        thisArg = newData[2];
+        partials = newData[3];
+        holders = newData[4];
+        arity = newData[9] = newData[9] === undefined$1 ? isBindKey ? 0 : func.length : nativeMax(newData[9] - length, 0);
+        if (!arity && bitmask & (WRAP_CURRY_FLAG | WRAP_CURRY_RIGHT_FLAG)) {
+          bitmask &= ~(WRAP_CURRY_FLAG | WRAP_CURRY_RIGHT_FLAG);
+        }
+        if (!bitmask || bitmask == WRAP_BIND_FLAG) {
+          var result = createBind(func, bitmask, thisArg);
+        } else if (bitmask == WRAP_CURRY_FLAG || bitmask == WRAP_CURRY_RIGHT_FLAG) {
+          result = createCurry(func, bitmask, arity);
+        } else if ((bitmask == WRAP_PARTIAL_FLAG || bitmask == (WRAP_BIND_FLAG | WRAP_PARTIAL_FLAG)) && !holders.length) {
+          result = createPartial(func, bitmask, thisArg, partials);
+        } else {
+          result = createHybrid.apply(undefined$1, newData);
+        }
+        var setter = data ? baseSetData : setData;
+        return setWrapToString(setter(result, newData), func, bitmask);
+      }
+      function customDefaultsAssignIn(objValue, srcValue, key, object) {
+        if (objValue === undefined$1 || eq(objValue, objectProto[key]) && !hasOwnProperty.call(object, key)) {
+          return srcValue;
+        }
+        return objValue;
+      }
+      function customDefaultsMerge(objValue, srcValue, key, object, source, stack) {
+        if (isObject(objValue) && isObject(srcValue)) {
+          stack.set(srcValue, objValue);
+          baseMerge(objValue, srcValue, undefined$1, customDefaultsMerge, stack);
+          stack['delete'](srcValue);
+        }
+        return objValue;
+      }
+      function customOmitClone(value) {
+        return isPlainObject(value) ? undefined$1 : value;
+      }
+      function equalArrays(array, other, bitmask, customizer, equalFunc, stack) {
+        var isPartial = bitmask & COMPARE_PARTIAL_FLAG,
+          arrLength = array.length,
+          othLength = other.length;
+        if (arrLength != othLength && !(isPartial && othLength > arrLength)) {
+          return false;
+        }
+        var arrStacked = stack.get(array);
+        var othStacked = stack.get(other);
+        if (arrStacked && othStacked) {
+          return arrStacked == other && othStacked == array;
+        }
+        var index = -1,
+          result = true,
+          seen = bitmask & COMPARE_UNORDERED_FLAG ? new SetCache() : undefined$1;
+        stack.set(array, other);
+        stack.set(other, array);
+        while (++index < arrLength) {
+          var arrValue = array[index],
+            othValue = other[index];
+          if (customizer) {
+            var compared = isPartial ? customizer(othValue, arrValue, index, other, array, stack) : customizer(arrValue, othValue, index, array, other, stack);
+          }
+          if (compared !== undefined$1) {
+            if (compared) {
+              continue;
+            }
+            result = false;
+            break;
+          }
+          if (seen) {
+            if (!arraySome(other, function (othValue, othIndex) {
+              if (!cacheHas(seen, othIndex) && (arrValue === othValue || equalFunc(arrValue, othValue, bitmask, customizer, stack))) {
+                return seen.push(othIndex);
+              }
+            })) {
+              result = false;
+              break;
+            }
+          } else if (!(arrValue === othValue || equalFunc(arrValue, othValue, bitmask, customizer, stack))) {
+            result = false;
+            break;
+          }
+        }
+        stack['delete'](array);
+        stack['delete'](other);
+        return result;
+      }
+      function equalByTag(object, other, tag, bitmask, customizer, equalFunc, stack) {
+        switch (tag) {
+          case dataViewTag:
+            if (object.byteLength != other.byteLength || object.byteOffset != other.byteOffset) {
+              return false;
+            }
+            object = object.buffer;
+            other = other.buffer;
+          case arrayBufferTag:
+            if (object.byteLength != other.byteLength || !equalFunc(new Uint8Array(object), new Uint8Array(other))) {
+              return false;
+            }
+            return true;
+          case boolTag:
+          case dateTag:
+          case numberTag:
+            return eq(+object, +other);
+          case errorTag:
+            return object.name == other.name && object.message == other.message;
+          case regexpTag:
+          case stringTag:
+            return object == other + '';
+          case mapTag:
+            var convert = mapToArray;
+          case setTag:
+            var isPartial = bitmask & COMPARE_PARTIAL_FLAG;
+            convert || (convert = setToArray);
+            if (object.size != other.size && !isPartial) {
+              return false;
+            }
+            var stacked = stack.get(object);
+            if (stacked) {
+              return stacked == other;
+            }
+            bitmask |= COMPARE_UNORDERED_FLAG;
+            stack.set(object, other);
+            var result = equalArrays(convert(object), convert(other), bitmask, customizer, equalFunc, stack);
+            stack['delete'](object);
+            return result;
+          case symbolTag:
+            if (symbolValueOf) {
+              return symbolValueOf.call(object) == symbolValueOf.call(other);
+            }
+        }
+        return false;
+      }
+      function equalObjects(object, other, bitmask, customizer, equalFunc, stack) {
+        var isPartial = bitmask & COMPARE_PARTIAL_FLAG,
+          objProps = getAllKeys(object),
+          objLength = objProps.length,
+          othProps = getAllKeys(other),
+          othLength = othProps.length;
+        if (objLength != othLength && !isPartial) {
+          return false;
+        }
+        var index = objLength;
+        while (index--) {
+          var key = objProps[index];
+          if (!(isPartial ? key in other : hasOwnProperty.call(other, key))) {
+            return false;
+          }
+        }
+        var objStacked = stack.get(object);
+        var othStacked = stack.get(other);
+        if (objStacked && othStacked) {
+          return objStacked == other && othStacked == object;
+        }
+        var result = true;
+        stack.set(object, other);
+        stack.set(other, object);
+        var skipCtor = isPartial;
+        while (++index < objLength) {
+          key = objProps[index];
+          var objValue = object[key],
+            othValue = other[key];
+          if (customizer) {
+            var compared = isPartial ? customizer(othValue, objValue, key, other, object, stack) : customizer(objValue, othValue, key, object, other, stack);
+          }
+          if (!(compared === undefined$1 ? objValue === othValue || equalFunc(objValue, othValue, bitmask, customizer, stack) : compared)) {
+            result = false;
+            break;
+          }
+          skipCtor || (skipCtor = key == 'constructor');
+        }
+        if (result && !skipCtor) {
+          var objCtor = object.constructor,
+            othCtor = other.constructor;
+          if (objCtor != othCtor && 'constructor' in object && 'constructor' in other && !(typeof objCtor == 'function' && objCtor instanceof objCtor && typeof othCtor == 'function' && othCtor instanceof othCtor)) {
+            result = false;
+          }
+        }
+        stack['delete'](object);
+        stack['delete'](other);
+        return result;
+      }
+      function flatRest(func) {
+        return setToString(overRest(func, undefined$1, flatten), func + '');
+      }
+      function getAllKeys(object) {
+        return baseGetAllKeys(object, keys, getSymbols);
+      }
+      function getAllKeysIn(object) {
+        return baseGetAllKeys(object, keysIn, getSymbolsIn);
+      }
+      var getData = !metaMap ? noop : function (func) {
+        return metaMap.get(func);
+      };
+      function getFuncName(func) {
+        var result = func.name + '',
+          array = realNames[result],
+          length = hasOwnProperty.call(realNames, result) ? array.length : 0;
+        while (length--) {
+          var data = array[length],
+            otherFunc = data.func;
+          if (otherFunc == null || otherFunc == func) {
+            return data.name;
+          }
+        }
+        return result;
+      }
+      function getHolder(func) {
+        var object = hasOwnProperty.call(lodash, 'placeholder') ? lodash : func;
+        return object.placeholder;
+      }
+      function getIteratee() {
+        var result = lodash.iteratee || iteratee;
+        result = result === iteratee ? baseIteratee : result;
+        return arguments.length ? result(arguments[0], arguments[1]) : result;
+      }
+      function getMapData(map, key) {
+        var data = map.__data__;
+        return isKeyable(key) ? data[typeof key == 'string' ? 'string' : 'hash'] : data.map;
+      }
+      function getMatchData(object) {
+        var result = keys(object),
+          length = result.length;
+        while (length--) {
+          var key = result[length],
+            value = object[key];
+          result[length] = [key, value, isStrictComparable(value)];
+        }
+        return result;
+      }
+      function getNative(object, key) {
+        var value = getValue(object, key);
+        return baseIsNative(value) ? value : undefined$1;
+      }
+      function getRawTag(value) {
+        var isOwn = hasOwnProperty.call(value, symToStringTag),
+          tag = value[symToStringTag];
+        try {
+          value[symToStringTag] = undefined$1;
+          var unmasked = true;
+        } catch (e) {}
+        var result = nativeObjectToString.call(value);
+        if (unmasked) {
+          if (isOwn) {
+            value[symToStringTag] = tag;
+          } else {
+            delete value[symToStringTag];
+          }
+        }
+        return result;
+      }
+      var getSymbols = !nativeGetSymbols ? stubArray : function (object) {
+        if (object == null) {
+          return [];
+        }
+        object = Object(object);
+        return arrayFilter(nativeGetSymbols(object), function (symbol) {
+          return propertyIsEnumerable.call(object, symbol);
+        });
+      };
+      var getSymbolsIn = !nativeGetSymbols ? stubArray : function (object) {
+        var result = [];
+        while (object) {
+          arrayPush(result, getSymbols(object));
+          object = getPrototype(object);
+        }
+        return result;
+      };
+      var getTag = baseGetTag;
+      if (DataView && getTag(new DataView(new ArrayBuffer(1))) != dataViewTag || Map && getTag(new Map()) != mapTag || Promise && getTag(Promise.resolve()) != promiseTag || Set && getTag(new Set()) != setTag || WeakMap && getTag(new WeakMap()) != weakMapTag) {
+        getTag = function (value) {
+          var result = baseGetTag(value),
+            Ctor = result == objectTag ? value.constructor : undefined$1,
+            ctorString = Ctor ? toSource(Ctor) : '';
+          if (ctorString) {
+            switch (ctorString) {
+              case dataViewCtorString:
+                return dataViewTag;
+              case mapCtorString:
+                return mapTag;
+              case promiseCtorString:
+                return promiseTag;
+              case setCtorString:
+                return setTag;
+              case weakMapCtorString:
+                return weakMapTag;
+            }
+          }
+          return result;
+        };
+      }
+      function getView(start, end, transforms) {
+        var index = -1,
+          length = transforms.length;
+        while (++index < length) {
+          var data = transforms[index],
+            size = data.size;
+          switch (data.type) {
+            case 'drop':
+              start += size;
+              break;
+            case 'dropRight':
+              end -= size;
+              break;
+            case 'take':
+              end = nativeMin(end, start + size);
+              break;
+            case 'takeRight':
+              start = nativeMax(start, end - size);
+              break;
+          }
+        }
+        return {
+          'start': start,
+          'end': end
+        };
+      }
+      function getWrapDetails(source) {
+        var match = source.match(reWrapDetails);
+        return match ? match[1].split(reSplitDetails) : [];
+      }
+      function hasPath(object, path, hasFunc) {
+        path = castPath(path, object);
+        var index = -1,
+          length = path.length,
+          result = false;
+        while (++index < length) {
+          var key = toKey(path[index]);
+          if (!(result = object != null && hasFunc(object, key))) {
+            break;
+          }
+          object = object[key];
+        }
+        if (result || ++index != length) {
+          return result;
+        }
+        length = object == null ? 0 : object.length;
+        return !!length && isLength(length) && isIndex(key, length) && (isArray(object) || isArguments(object));
+      }
+      function initCloneArray(array) {
+        var length = array.length,
+          result = new array.constructor(length);
+        if (length && typeof array[0] == 'string' && hasOwnProperty.call(array, 'index')) {
+          result.index = array.index;
+          result.input = array.input;
+        }
+        return result;
+      }
+      function initCloneObject(object) {
+        return typeof object.constructor == 'function' && !isPrototype(object) ? baseCreate(getPrototype(object)) : {};
+      }
+      function initCloneByTag(object, tag, isDeep) {
+        var Ctor = object.constructor;
+        switch (tag) {
+          case arrayBufferTag:
+            return cloneArrayBuffer(object);
+          case boolTag:
+          case dateTag:
+            return new Ctor(+object);
+          case dataViewTag:
+            return cloneDataView(object, isDeep);
+          case float32Tag:
+          case float64Tag:
+          case int8Tag:
+          case int16Tag:
+          case int32Tag:
+          case uint8Tag:
+          case uint8ClampedTag:
+          case uint16Tag:
+          case uint32Tag:
+            return cloneTypedArray(object, isDeep);
+          case mapTag:
+            return new Ctor();
+          case numberTag:
+          case stringTag:
+            return new Ctor(object);
+          case regexpTag:
+            return cloneRegExp(object);
+          case setTag:
+            return new Ctor();
+          case symbolTag:
+            return cloneSymbol(object);
+        }
+      }
+      function insertWrapDetails(source, details) {
+        var length = details.length;
+        if (!length) {
+          return source;
+        }
+        var lastIndex = length - 1;
+        details[lastIndex] = (length > 1 ? '& ' : '') + details[lastIndex];
+        details = details.join(length > 2 ? ', ' : ' ');
+        return source.replace(reWrapComment, '{\n/* [wrapped with ' + details + '] */\n');
+      }
+      function isFlattenable(value) {
+        return isArray(value) || isArguments(value) || !!(spreadableSymbol && value && value[spreadableSymbol]);
+      }
+      function isIndex(value, length) {
+        var type = typeof value;
+        length = length == null ? MAX_SAFE_INTEGER : length;
+        return !!length && (type == 'number' || type != 'symbol' && reIsUint.test(value)) && value > -1 && value % 1 == 0 && value < length;
+      }
+      function isIterateeCall(value, index, object) {
+        if (!isObject(object)) {
+          return false;
+        }
+        var type = typeof index;
+        if (type == 'number' ? isArrayLike(object) && isIndex(index, object.length) : type == 'string' && index in object) {
+          return eq(object[index], value);
+        }
+        return false;
+      }
+      function isKey(value, object) {
+        if (isArray(value)) {
+          return false;
+        }
+        var type = typeof value;
+        if (type == 'number' || type == 'symbol' || type == 'boolean' || value == null || isSymbol(value)) {
+          return true;
+        }
+        return reIsPlainProp.test(value) || !reIsDeepProp.test(value) || object != null && value in Object(object);
+      }
+      function isKeyable(value) {
+        var type = typeof value;
+        return type == 'string' || type == 'number' || type == 'symbol' || type == 'boolean' ? value !== '__proto__' : value === null;
+      }
+      function isLaziable(func) {
+        var funcName = getFuncName(func),
+          other = lodash[funcName];
+        if (typeof other != 'function' || !(funcName in LazyWrapper.prototype)) {
+          return false;
+        }
+        if (func === other) {
+          return true;
+        }
+        var data = getData(other);
+        return !!data && func === data[0];
+      }
+      function isMasked(func) {
+        return !!maskSrcKey && maskSrcKey in func;
+      }
+      var isMaskable = coreJsData ? isFunction : stubFalse;
+      function isPrototype(value) {
+        var Ctor = value && value.constructor,
+          proto = typeof Ctor == 'function' && Ctor.prototype || objectProto;
+        return value === proto;
+      }
+      function isStrictComparable(value) {
+        return value === value && !isObject(value);
+      }
+      function matchesStrictComparable(key, srcValue) {
+        return function (object) {
+          if (object == null) {
+            return false;
+          }
+          return object[key] === srcValue && (srcValue !== undefined$1 || key in Object(object));
+        };
+      }
+      function memoizeCapped(func) {
+        var result = memoize(func, function (key) {
+          if (cache.size === MAX_MEMOIZE_SIZE) {
+            cache.clear();
+          }
+          return key;
+        });
+        var cache = result.cache;
+        return result;
+      }
+      function mergeData(data, source) {
+        var bitmask = data[1],
+          srcBitmask = source[1],
+          newBitmask = bitmask | srcBitmask,
+          isCommon = newBitmask < (WRAP_BIND_FLAG | WRAP_BIND_KEY_FLAG | WRAP_ARY_FLAG);
+        var isCombo = srcBitmask == WRAP_ARY_FLAG && bitmask == WRAP_CURRY_FLAG || srcBitmask == WRAP_ARY_FLAG && bitmask == WRAP_REARG_FLAG && data[7].length <= source[8] || srcBitmask == (WRAP_ARY_FLAG | WRAP_REARG_FLAG) && source[7].length <= source[8] && bitmask == WRAP_CURRY_FLAG;
+        if (!(isCommon || isCombo)) {
+          return data;
+        }
+        if (srcBitmask & WRAP_BIND_FLAG) {
+          data[2] = source[2];
+          newBitmask |= bitmask & WRAP_BIND_FLAG ? 0 : WRAP_CURRY_BOUND_FLAG;
+        }
+        var value = source[3];
+        if (value) {
+          var partials = data[3];
+          data[3] = partials ? composeArgs(partials, value, source[4]) : value;
+          data[4] = partials ? replaceHolders(data[3], PLACEHOLDER) : source[4];
+        }
+        value = source[5];
+        if (value) {
+          partials = data[5];
+          data[5] = partials ? composeArgsRight(partials, value, source[6]) : value;
+          data[6] = partials ? replaceHolders(data[5], PLACEHOLDER) : source[6];
+        }
+        value = source[7];
+        if (value) {
+          data[7] = value;
+        }
+        if (srcBitmask & WRAP_ARY_FLAG) {
+          data[8] = data[8] == null ? source[8] : nativeMin(data[8], source[8]);
+        }
+        if (data[9] == null) {
+          data[9] = source[9];
+        }
+        data[0] = source[0];
+        data[1] = newBitmask;
+        return data;
+      }
+      function nativeKeysIn(object) {
+        var result = [];
+        if (object != null) {
+          for (var key in Object(object)) {
+            result.push(key);
+          }
+        }
+        return result;
+      }
+      function objectToString(value) {
+        return nativeObjectToString.call(value);
+      }
+      function overRest(func, start, transform) {
+        start = nativeMax(start === undefined$1 ? func.length - 1 : start, 0);
+        return function () {
+          var args = arguments,
+            index = -1,
+            length = nativeMax(args.length - start, 0),
+            array = Array(length);
+          while (++index < length) {
+            array[index] = args[start + index];
+          }
+          index = -1;
+          var otherArgs = Array(start + 1);
+          while (++index < start) {
+            otherArgs[index] = args[index];
+          }
+          otherArgs[start] = transform(array);
+          return apply(func, this, otherArgs);
+        };
+      }
+      function parent(object, path) {
+        return path.length < 2 ? object : baseGet(object, baseSlice(path, 0, -1));
+      }
+      function reorder(array, indexes) {
+        var arrLength = array.length,
+          length = nativeMin(indexes.length, arrLength),
+          oldArray = copyArray(array);
+        while (length--) {
+          var index = indexes[length];
+          array[length] = isIndex(index, arrLength) ? oldArray[index] : undefined$1;
+        }
+        return array;
+      }
+      function safeGet(object, key) {
+        if (key === 'constructor' && typeof object[key] === 'function') {
+          return;
+        }
+        if (key == '__proto__') {
+          return;
+        }
+        return object[key];
+      }
+      var setData = shortOut(baseSetData);
+      var setTimeout = ctxSetTimeout || function (func, wait) {
+        return root.setTimeout(func, wait);
+      };
+      var setToString = shortOut(baseSetToString);
+      function setWrapToString(wrapper, reference, bitmask) {
+        var source = reference + '';
+        return setToString(wrapper, insertWrapDetails(source, updateWrapDetails(getWrapDetails(source), bitmask)));
+      }
+      function shortOut(func) {
+        var count = 0,
+          lastCalled = 0;
+        return function () {
+          var stamp = nativeNow(),
+            remaining = HOT_SPAN - (stamp - lastCalled);
+          lastCalled = stamp;
+          if (remaining > 0) {
+            if (++count >= HOT_COUNT) {
+              return arguments[0];
+            }
+          } else {
+            count = 0;
+          }
+          return func.apply(undefined$1, arguments);
+        };
+      }
+      function shuffleSelf(array, size) {
+        var index = -1,
+          length = array.length,
+          lastIndex = length - 1;
+        size = size === undefined$1 ? length : size;
+        while (++index < size) {
+          var rand = baseRandom(index, lastIndex),
+            value = array[rand];
+          array[rand] = array[index];
+          array[index] = value;
+        }
+        array.length = size;
+        return array;
+      }
+      var stringToPath = memoizeCapped(function (string) {
+        var result = [];
+        if (string.charCodeAt(0) === 46) {
+          result.push('');
+        }
+        string.replace(rePropName, function (match, number, quote, subString) {
+          result.push(quote ? subString.replace(reEscapeChar, '$1') : number || match);
+        });
+        return result;
+      });
+      function toKey(value) {
+        if (typeof value == 'string' || isSymbol(value)) {
+          return value;
+        }
+        var result = value + '';
+        return result == '0' && 1 / value == -INFINITY ? '-0' : result;
+      }
+      function toSource(func) {
+        if (func != null) {
+          try {
+            return funcToString.call(func);
+          } catch (e) {}
+          try {
+            return func + '';
+          } catch (e) {}
+        }
+        return '';
+      }
+      function updateWrapDetails(details, bitmask) {
+        arrayEach(wrapFlags, function (pair) {
+          var value = '_.' + pair[0];
+          if (bitmask & pair[1] && !arrayIncludes(details, value)) {
+            details.push(value);
+          }
+        });
+        return details.sort();
+      }
+      function wrapperClone(wrapper) {
+        if (wrapper instanceof LazyWrapper) {
+          return wrapper.clone();
+        }
+        var result = new LodashWrapper(wrapper.__wrapped__, wrapper.__chain__);
+        result.__actions__ = copyArray(wrapper.__actions__);
+        result.__index__ = wrapper.__index__;
+        result.__values__ = wrapper.__values__;
+        return result;
+      }
+      function chunk(array, size, guard) {
+        if (guard ? isIterateeCall(array, size, guard) : size === undefined$1) {
+          size = 1;
+        } else {
+          size = nativeMax(toInteger(size), 0);
+        }
+        var length = array == null ? 0 : array.length;
+        if (!length || size < 1) {
+          return [];
+        }
+        var index = 0,
+          resIndex = 0,
+          result = Array(nativeCeil(length / size));
+        while (index < length) {
+          result[resIndex++] = baseSlice(array, index, index += size);
+        }
+        return result;
+      }
+      function compact(array) {
+        var index = -1,
+          length = array == null ? 0 : array.length,
+          resIndex = 0,
+          result = [];
+        while (++index < length) {
+          var value = array[index];
+          if (value) {
+            result[resIndex++] = value;
+          }
+        }
+        return result;
+      }
+      function concat() {
+        var length = arguments.length;
+        if (!length) {
+          return [];
+        }
+        var args = Array(length - 1),
+          array = arguments[0],
+          index = length;
+        while (index--) {
+          args[index - 1] = arguments[index];
+        }
+        return arrayPush(isArray(array) ? copyArray(array) : [array], baseFlatten(args, 1));
+      }
+      var difference = baseRest(function (array, values) {
+        return isArrayLikeObject(array) ? baseDifference(array, baseFlatten(values, 1, isArrayLikeObject, true)) : [];
+      });
+      var differenceBy = baseRest(function (array, values) {
+        var iteratee = last(values);
+        if (isArrayLikeObject(iteratee)) {
+          iteratee = undefined$1;
+        }
+        return isArrayLikeObject(array) ? baseDifference(array, baseFlatten(values, 1, isArrayLikeObject, true), getIteratee(iteratee, 2)) : [];
+      });
+      var differenceWith = baseRest(function (array, values) {
+        var comparator = last(values);
+        if (isArrayLikeObject(comparator)) {
+          comparator = undefined$1;
+        }
+        return isArrayLikeObject(array) ? baseDifference(array, baseFlatten(values, 1, isArrayLikeObject, true), undefined$1, comparator) : [];
+      });
+      function drop(array, n, guard) {
+        var length = array == null ? 0 : array.length;
+        if (!length) {
+          return [];
+        }
+        n = guard || n === undefined$1 ? 1 : toInteger(n);
+        return baseSlice(array, n < 0 ? 0 : n, length);
+      }
+      function dropRight(array, n, guard) {
+        var length = array == null ? 0 : array.length;
+        if (!length) {
+          return [];
+        }
+        n = guard || n === undefined$1 ? 1 : toInteger(n);
+        n = length - n;
+        return baseSlice(array, 0, n < 0 ? 0 : n);
+      }
+      function dropRightWhile(array, predicate) {
+        return array && array.length ? baseWhile(array, getIteratee(predicate, 3), true, true) : [];
+      }
+      function dropWhile(array, predicate) {
+        return array && array.length ? baseWhile(array, getIteratee(predicate, 3), true) : [];
+      }
+      function fill(array, value, start, end) {
+        var length = array == null ? 0 : array.length;
+        if (!length) {
+          return [];
+        }
+        if (start && typeof start != 'number' && isIterateeCall(array, value, start)) {
+          start = 0;
+          end = length;
+        }
+        return baseFill(array, value, start, end);
+      }
+      function findIndex(array, predicate, fromIndex) {
+        var length = array == null ? 0 : array.length;
+        if (!length) {
+          return -1;
+        }
+        var index = fromIndex == null ? 0 : toInteger(fromIndex);
+        if (index < 0) {
+          index = nativeMax(length + index, 0);
+        }
+        return baseFindIndex(array, getIteratee(predicate, 3), index);
+      }
+      function findLastIndex(array, predicate, fromIndex) {
+        var length = array == null ? 0 : array.length;
+        if (!length) {
+          return -1;
+        }
+        var index = length - 1;
+        if (fromIndex !== undefined$1) {
+          index = toInteger(fromIndex);
+          index = fromIndex < 0 ? nativeMax(length + index, 0) : nativeMin(index, length - 1);
+        }
+        return baseFindIndex(array, getIteratee(predicate, 3), index, true);
+      }
+      function flatten(array) {
+        var length = array == null ? 0 : array.length;
+        return length ? baseFlatten(array, 1) : [];
+      }
+      function flattenDeep(array) {
+        var length = array == null ? 0 : array.length;
+        return length ? baseFlatten(array, INFINITY) : [];
+      }
+      function flattenDepth(array, depth) {
+        var length = array == null ? 0 : array.length;
+        if (!length) {
+          return [];
+        }
+        depth = depth === undefined$1 ? 1 : toInteger(depth);
+        return baseFlatten(array, depth);
+      }
+      function fromPairs(pairs) {
+        var index = -1,
+          length = pairs == null ? 0 : pairs.length,
+          result = {};
+        while (++index < length) {
+          var pair = pairs[index];
+          result[pair[0]] = pair[1];
+        }
+        return result;
+      }
+      function head(array) {
+        return array && array.length ? array[0] : undefined$1;
+      }
+      function indexOf(array, value, fromIndex) {
+        var length = array == null ? 0 : array.length;
+        if (!length) {
+          return -1;
+        }
+        var index = fromIndex == null ? 0 : toInteger(fromIndex);
+        if (index < 0) {
+          index = nativeMax(length + index, 0);
+        }
+        return baseIndexOf(array, value, index);
+      }
+      function initial(array) {
+        var length = array == null ? 0 : array.length;
+        return length ? baseSlice(array, 0, -1) : [];
+      }
+      var intersection = baseRest(function (arrays) {
+        var mapped = arrayMap(arrays, castArrayLikeObject);
+        return mapped.length && mapped[0] === arrays[0] ? baseIntersection(mapped) : [];
+      });
+      var intersectionBy = baseRest(function (arrays) {
+        var iteratee = last(arrays),
+          mapped = arrayMap(arrays, castArrayLikeObject);
+        if (iteratee === last(mapped)) {
+          iteratee = undefined$1;
+        } else {
+          mapped.pop();
+        }
+        return mapped.length && mapped[0] === arrays[0] ? baseIntersection(mapped, getIteratee(iteratee, 2)) : [];
+      });
+      var intersectionWith = baseRest(function (arrays) {
+        var comparator = last(arrays),
+          mapped = arrayMap(arrays, castArrayLikeObject);
+        comparator = typeof comparator == 'function' ? comparator : undefined$1;
+        if (comparator) {
+          mapped.pop();
+        }
+        return mapped.length && mapped[0] === arrays[0] ? baseIntersection(mapped, undefined$1, comparator) : [];
+      });
+      function join(array, separator) {
+        return array == null ? '' : nativeJoin.call(array, separator);
+      }
+      function last(array) {
+        var length = array == null ? 0 : array.length;
+        return length ? array[length - 1] : undefined$1;
+      }
+      function lastIndexOf(array, value, fromIndex) {
+        var length = array == null ? 0 : array.length;
+        if (!length) {
+          return -1;
+        }
+        var index = length;
+        if (fromIndex !== undefined$1) {
+          index = toInteger(fromIndex);
+          index = index < 0 ? nativeMax(length + index, 0) : nativeMin(index, length - 1);
+        }
+        return value === value ? strictLastIndexOf(array, value, index) : baseFindIndex(array, baseIsNaN, index, true);
+      }
+      function nth(array, n) {
+        return array && array.length ? baseNth(array, toInteger(n)) : undefined$1;
+      }
+      var pull = baseRest(pullAll);
+      function pullAll(array, values) {
+        return array && array.length && values && values.length ? basePullAll(array, values) : array;
+      }
+      function pullAllBy(array, values, iteratee) {
+        return array && array.length && values && values.length ? basePullAll(array, values, getIteratee(iteratee, 2)) : array;
+      }
+      function pullAllWith(array, values, comparator) {
+        return array && array.length && values && values.length ? basePullAll(array, values, undefined$1, comparator) : array;
+      }
+      var pullAt = flatRest(function (array, indexes) {
+        var length = array == null ? 0 : array.length,
+          result = baseAt(array, indexes);
+        basePullAt(array, arrayMap(indexes, function (index) {
+          return isIndex(index, length) ? +index : index;
+        }).sort(compareAscending));
+        return result;
+      });
+      function remove(array, predicate) {
+        var result = [];
+        if (!(array && array.length)) {
+          return result;
+        }
+        var index = -1,
+          indexes = [],
+          length = array.length;
+        predicate = getIteratee(predicate, 3);
+        while (++index < length) {
+          var value = array[index];
+          if (predicate(value, index, array)) {
+            result.push(value);
+            indexes.push(index);
+          }
+        }
+        basePullAt(array, indexes);
+        return result;
+      }
+      function reverse(array) {
+        return array == null ? array : nativeReverse.call(array);
+      }
+      function slice(array, start, end) {
+        var length = array == null ? 0 : array.length;
+        if (!length) {
+          return [];
+        }
+        if (end && typeof end != 'number' && isIterateeCall(array, start, end)) {
+          start = 0;
+          end = length;
+        } else {
+          start = start == null ? 0 : toInteger(start);
+          end = end === undefined$1 ? length : toInteger(end);
+        }
+        return baseSlice(array, start, end);
+      }
+      function sortedIndex(array, value) {
+        return baseSortedIndex(array, value);
+      }
+      function sortedIndexBy(array, value, iteratee) {
+        return baseSortedIndexBy(array, value, getIteratee(iteratee, 2));
+      }
+      function sortedIndexOf(array, value) {
+        var length = array == null ? 0 : array.length;
+        if (length) {
+          var index = baseSortedIndex(array, value);
+          if (index < length && eq(array[index], value)) {
+            return index;
+          }
+        }
+        return -1;
+      }
+      function sortedLastIndex(array, value) {
+        return baseSortedIndex(array, value, true);
+      }
+      function sortedLastIndexBy(array, value, iteratee) {
+        return baseSortedIndexBy(array, value, getIteratee(iteratee, 2), true);
+      }
+      function sortedLastIndexOf(array, value) {
+        var length = array == null ? 0 : array.length;
+        if (length) {
+          var index = baseSortedIndex(array, value, true) - 1;
+          if (eq(array[index], value)) {
+            return index;
+          }
+        }
+        return -1;
+      }
+      function sortedUniq(array) {
+        return array && array.length ? baseSortedUniq(array) : [];
+      }
+      function sortedUniqBy(array, iteratee) {
+        return array && array.length ? baseSortedUniq(array, getIteratee(iteratee, 2)) : [];
+      }
+      function tail(array) {
+        var length = array == null ? 0 : array.length;
+        return length ? baseSlice(array, 1, length) : [];
+      }
+      function take(array, n, guard) {
+        if (!(array && array.length)) {
+          return [];
+        }
+        n = guard || n === undefined$1 ? 1 : toInteger(n);
+        return baseSlice(array, 0, n < 0 ? 0 : n);
+      }
+      function takeRight(array, n, guard) {
+        var length = array == null ? 0 : array.length;
+        if (!length) {
+          return [];
+        }
+        n = guard || n === undefined$1 ? 1 : toInteger(n);
+        n = length - n;
+        return baseSlice(array, n < 0 ? 0 : n, length);
+      }
+      function takeRightWhile(array, predicate) {
+        return array && array.length ? baseWhile(array, getIteratee(predicate, 3), false, true) : [];
+      }
+      function takeWhile(array, predicate) {
+        return array && array.length ? baseWhile(array, getIteratee(predicate, 3)) : [];
+      }
+      var union = baseRest(function (arrays) {
+        return baseUniq(baseFlatten(arrays, 1, isArrayLikeObject, true));
+      });
+      var unionBy = baseRest(function (arrays) {
+        var iteratee = last(arrays);
+        if (isArrayLikeObject(iteratee)) {
+          iteratee = undefined$1;
+        }
+        return baseUniq(baseFlatten(arrays, 1, isArrayLikeObject, true), getIteratee(iteratee, 2));
+      });
+      var unionWith = baseRest(function (arrays) {
+        var comparator = last(arrays);
+        comparator = typeof comparator == 'function' ? comparator : undefined$1;
+        return baseUniq(baseFlatten(arrays, 1, isArrayLikeObject, true), undefined$1, comparator);
+      });
+      function uniq(array) {
+        return array && array.length ? baseUniq(array) : [];
+      }
+      function uniqBy(array, iteratee) {
+        return array && array.length ? baseUniq(array, getIteratee(iteratee, 2)) : [];
+      }
+      function uniqWith(array, comparator) {
+        comparator = typeof comparator == 'function' ? comparator : undefined$1;
+        return array && array.length ? baseUniq(array, undefined$1, comparator) : [];
+      }
+      function unzip(array) {
+        if (!(array && array.length)) {
+          return [];
+        }
+        var length = 0;
+        array = arrayFilter(array, function (group) {
+          if (isArrayLikeObject(group)) {
+            length = nativeMax(group.length, length);
+            return true;
+          }
+        });
+        return baseTimes(length, function (index) {
+          return arrayMap(array, baseProperty(index));
+        });
+      }
+      function unzipWith(array, iteratee) {
+        if (!(array && array.length)) {
+          return [];
+        }
+        var result = unzip(array);
+        if (iteratee == null) {
+          return result;
+        }
+        return arrayMap(result, function (group) {
+          return apply(iteratee, undefined$1, group);
+        });
+      }
+      var without = baseRest(function (array, values) {
+        return isArrayLikeObject(array) ? baseDifference(array, values) : [];
+      });
+      var xor = baseRest(function (arrays) {
+        return baseXor(arrayFilter(arrays, isArrayLikeObject));
+      });
+      var xorBy = baseRest(function (arrays) {
+        var iteratee = last(arrays);
+        if (isArrayLikeObject(iteratee)) {
+          iteratee = undefined$1;
+        }
+        return baseXor(arrayFilter(arrays, isArrayLikeObject), getIteratee(iteratee, 2));
+      });
+      var xorWith = baseRest(function (arrays) {
+        var comparator = last(arrays);
+        comparator = typeof comparator == 'function' ? comparator : undefined$1;
+        return baseXor(arrayFilter(arrays, isArrayLikeObject), undefined$1, comparator);
+      });
+      var zip = baseRest(unzip);
+      function zipObject(props, values) {
+        return baseZipObject(props || [], values || [], assignValue);
+      }
+      function zipObjectDeep(props, values) {
+        return baseZipObject(props || [], values || [], baseSet);
+      }
+      var zipWith = baseRest(function (arrays) {
+        var length = arrays.length,
+          iteratee = length > 1 ? arrays[length - 1] : undefined$1;
+        iteratee = typeof iteratee == 'function' ? (arrays.pop(), iteratee) : undefined$1;
+        return unzipWith(arrays, iteratee);
+      });
+      function chain(value) {
+        var result = lodash(value);
+        result.__chain__ = true;
+        return result;
+      }
+      function tap(value, interceptor) {
+        interceptor(value);
+        return value;
+      }
+      function thru(value, interceptor) {
+        return interceptor(value);
+      }
+      var wrapperAt = flatRest(function (paths) {
+        var length = paths.length,
+          start = length ? paths[0] : 0,
+          value = this.__wrapped__,
+          interceptor = function (object) {
+            return baseAt(object, paths);
+          };
+        if (length > 1 || this.__actions__.length || !(value instanceof LazyWrapper) || !isIndex(start)) {
+          return this.thru(interceptor);
+        }
+        value = value.slice(start, +start + (length ? 1 : 0));
+        value.__actions__.push({
+          'func': thru,
+          'args': [interceptor],
+          'thisArg': undefined$1
+        });
+        return new LodashWrapper(value, this.__chain__).thru(function (array) {
+          if (length && !array.length) {
+            array.push(undefined$1);
+          }
+          return array;
+        });
+      });
+      function wrapperChain() {
+        return chain(this);
+      }
+      function wrapperCommit() {
+        return new LodashWrapper(this.value(), this.__chain__);
+      }
+      function wrapperNext() {
+        if (this.__values__ === undefined$1) {
+          this.__values__ = toArray(this.value());
+        }
+        var done = this.__index__ >= this.__values__.length,
+          value = done ? undefined$1 : this.__values__[this.__index__++];
+        return {
+          'done': done,
+          'value': value
+        };
+      }
+      function wrapperToIterator() {
+        return this;
+      }
+      function wrapperPlant(value) {
+        var result,
+          parent = this;
+        while (parent instanceof baseLodash) {
+          var clone = wrapperClone(parent);
+          clone.__index__ = 0;
+          clone.__values__ = undefined$1;
+          if (result) {
+            previous.__wrapped__ = clone;
+          } else {
+            result = clone;
+          }
+          var previous = clone;
+          parent = parent.__wrapped__;
+        }
+        previous.__wrapped__ = value;
+        return result;
+      }
+      function wrapperReverse() {
+        var value = this.__wrapped__;
+        if (value instanceof LazyWrapper) {
+          var wrapped = value;
+          if (this.__actions__.length) {
+            wrapped = new LazyWrapper(this);
+          }
+          wrapped = wrapped.reverse();
+          wrapped.__actions__.push({
+            'func': thru,
+            'args': [reverse],
+            'thisArg': undefined$1
+          });
+          return new LodashWrapper(wrapped, this.__chain__);
+        }
+        return this.thru(reverse);
+      }
+      function wrapperValue() {
+        return baseWrapperValue(this.__wrapped__, this.__actions__);
+      }
+      var countBy = createAggregator(function (result, value, key) {
+        if (hasOwnProperty.call(result, key)) {
+          ++result[key];
+        } else {
+          baseAssignValue(result, key, 1);
+        }
+      });
+      function every(collection, predicate, guard) {
+        var func = isArray(collection) ? arrayEvery : baseEvery;
+        if (guard && isIterateeCall(collection, predicate, guard)) {
+          predicate = undefined$1;
+        }
+        return func(collection, getIteratee(predicate, 3));
+      }
+      function filter(collection, predicate) {
+        var func = isArray(collection) ? arrayFilter : baseFilter;
+        return func(collection, getIteratee(predicate, 3));
+      }
+      var find = createFind(findIndex);
+      var findLast = createFind(findLastIndex);
+      function flatMap(collection, iteratee) {
+        return baseFlatten(map(collection, iteratee), 1);
+      }
+      function flatMapDeep(collection, iteratee) {
+        return baseFlatten(map(collection, iteratee), INFINITY);
+      }
+      function flatMapDepth(collection, iteratee, depth) {
+        depth = depth === undefined$1 ? 1 : toInteger(depth);
+        return baseFlatten(map(collection, iteratee), depth);
+      }
+      function forEach(collection, iteratee) {
+        var func = isArray(collection) ? arrayEach : baseEach;
+        return func(collection, getIteratee(iteratee, 3));
+      }
+      function forEachRight(collection, iteratee) {
+        var func = isArray(collection) ? arrayEachRight : baseEachRight;
+        return func(collection, getIteratee(iteratee, 3));
+      }
+      var groupBy = createAggregator(function (result, value, key) {
+        if (hasOwnProperty.call(result, key)) {
+          result[key].push(value);
+        } else {
+          baseAssignValue(result, key, [value]);
+        }
+      });
+      function includes(collection, value, fromIndex, guard) {
+        collection = isArrayLike(collection) ? collection : values(collection);
+        fromIndex = fromIndex && !guard ? toInteger(fromIndex) : 0;
+        var length = collection.length;
+        if (fromIndex < 0) {
+          fromIndex = nativeMax(length + fromIndex, 0);
+        }
+        return isString(collection) ? fromIndex <= length && collection.indexOf(value, fromIndex) > -1 : !!length && baseIndexOf(collection, value, fromIndex) > -1;
+      }
+      var invokeMap = baseRest(function (collection, path, args) {
+        var index = -1,
+          isFunc = typeof path == 'function',
+          result = isArrayLike(collection) ? Array(collection.length) : [];
+        baseEach(collection, function (value) {
+          result[++index] = isFunc ? apply(path, value, args) : baseInvoke(value, path, args);
+        });
+        return result;
+      });
+      var keyBy = createAggregator(function (result, value, key) {
+        baseAssignValue(result, key, value);
+      });
+      function map(collection, iteratee) {
+        var func = isArray(collection) ? arrayMap : baseMap;
+        return func(collection, getIteratee(iteratee, 3));
+      }
+      function orderBy(collection, iteratees, orders, guard) {
+        if (collection == null) {
+          return [];
+        }
+        if (!isArray(iteratees)) {
+          iteratees = iteratees == null ? [] : [iteratees];
+        }
+        orders = guard ? undefined$1 : orders;
+        if (!isArray(orders)) {
+          orders = orders == null ? [] : [orders];
+        }
+        return baseOrderBy(collection, iteratees, orders);
+      }
+      var partition = createAggregator(function (result, value, key) {
+        result[key ? 0 : 1].push(value);
+      }, function () {
+        return [[], []];
+      });
+      function reduce(collection, iteratee, accumulator) {
+        var func = isArray(collection) ? arrayReduce : baseReduce,
+          initAccum = arguments.length < 3;
+        return func(collection, getIteratee(iteratee, 4), accumulator, initAccum, baseEach);
+      }
+      function reduceRight(collection, iteratee, accumulator) {
+        var func = isArray(collection) ? arrayReduceRight : baseReduce,
+          initAccum = arguments.length < 3;
+        return func(collection, getIteratee(iteratee, 4), accumulator, initAccum, baseEachRight);
+      }
+      function reject(collection, predicate) {
+        var func = isArray(collection) ? arrayFilter : baseFilter;
+        return func(collection, negate(getIteratee(predicate, 3)));
+      }
+      function sample(collection) {
+        var func = isArray(collection) ? arraySample : baseSample;
+        return func(collection);
+      }
+      function sampleSize(collection, n, guard) {
+        if (guard ? isIterateeCall(collection, n, guard) : n === undefined$1) {
+          n = 1;
+        } else {
+          n = toInteger(n);
+        }
+        var func = isArray(collection) ? arraySampleSize : baseSampleSize;
+        return func(collection, n);
+      }
+      function shuffle(collection) {
+        var func = isArray(collection) ? arrayShuffle : baseShuffle;
+        return func(collection);
+      }
+      function size(collection) {
+        if (collection == null) {
+          return 0;
+        }
+        if (isArrayLike(collection)) {
+          return isString(collection) ? stringSize(collection) : collection.length;
+        }
+        var tag = getTag(collection);
+        if (tag == mapTag || tag == setTag) {
+          return collection.size;
+        }
+        return baseKeys(collection).length;
+      }
+      function some(collection, predicate, guard) {
+        var func = isArray(collection) ? arraySome : baseSome;
+        if (guard && isIterateeCall(collection, predicate, guard)) {
+          predicate = undefined$1;
+        }
+        return func(collection, getIteratee(predicate, 3));
+      }
+      var sortBy = baseRest(function (collection, iteratees) {
+        if (collection == null) {
+          return [];
+        }
+        var length = iteratees.length;
+        if (length > 1 && isIterateeCall(collection, iteratees[0], iteratees[1])) {
+          iteratees = [];
+        } else if (length > 2 && isIterateeCall(iteratees[0], iteratees[1], iteratees[2])) {
+          iteratees = [iteratees[0]];
+        }
+        return baseOrderBy(collection, baseFlatten(iteratees, 1), []);
+      });
+      var now = ctxNow || function () {
+        return root.Date.now();
+      };
+      function after(n, func) {
+        if (typeof func != 'function') {
+          throw new TypeError(FUNC_ERROR_TEXT);
+        }
+        n = toInteger(n);
+        return function () {
+          if (--n < 1) {
+            return func.apply(this, arguments);
+          }
+        };
+      }
+      function ary(func, n, guard) {
+        n = guard ? undefined$1 : n;
+        n = func && n == null ? func.length : n;
+        return createWrap(func, WRAP_ARY_FLAG, undefined$1, undefined$1, undefined$1, undefined$1, n);
+      }
+      function before(n, func) {
+        var result;
+        if (typeof func != 'function') {
+          throw new TypeError(FUNC_ERROR_TEXT);
+        }
+        n = toInteger(n);
+        return function () {
+          if (--n > 0) {
+            result = func.apply(this, arguments);
+          }
+          if (n <= 1) {
+            func = undefined$1;
+          }
+          return result;
+        };
+      }
+      var bind = baseRest(function (func, thisArg, partials) {
+        var bitmask = WRAP_BIND_FLAG;
+        if (partials.length) {
+          var holders = replaceHolders(partials, getHolder(bind));
+          bitmask |= WRAP_PARTIAL_FLAG;
+        }
+        return createWrap(func, bitmask, thisArg, partials, holders);
+      });
+      var bindKey = baseRest(function (object, key, partials) {
+        var bitmask = WRAP_BIND_FLAG | WRAP_BIND_KEY_FLAG;
+        if (partials.length) {
+          var holders = replaceHolders(partials, getHolder(bindKey));
+          bitmask |= WRAP_PARTIAL_FLAG;
+        }
+        return createWrap(key, bitmask, object, partials, holders);
+      });
+      function curry(func, arity, guard) {
+        arity = guard ? undefined$1 : arity;
+        var result = createWrap(func, WRAP_CURRY_FLAG, undefined$1, undefined$1, undefined$1, undefined$1, undefined$1, arity);
+        result.placeholder = curry.placeholder;
+        return result;
+      }
+      function curryRight(func, arity, guard) {
+        arity = guard ? undefined$1 : arity;
+        var result = createWrap(func, WRAP_CURRY_RIGHT_FLAG, undefined$1, undefined$1, undefined$1, undefined$1, undefined$1, arity);
+        result.placeholder = curryRight.placeholder;
+        return result;
+      }
+      function debounce(func, wait, options) {
+        var lastArgs,
+          lastThis,
+          maxWait,
+          result,
+          timerId,
+          lastCallTime,
+          lastInvokeTime = 0,
+          leading = false,
+          maxing = false,
+          trailing = true;
+        if (typeof func != 'function') {
+          throw new TypeError(FUNC_ERROR_TEXT);
+        }
+        wait = toNumber(wait) || 0;
+        if (isObject(options)) {
+          leading = !!options.leading;
+          maxing = 'maxWait' in options;
+          maxWait = maxing ? nativeMax(toNumber(options.maxWait) || 0, wait) : maxWait;
+          trailing = 'trailing' in options ? !!options.trailing : trailing;
+        }
+        function invokeFunc(time) {
+          var args = lastArgs,
+            thisArg = lastThis;
+          lastArgs = lastThis = undefined$1;
+          lastInvokeTime = time;
+          result = func.apply(thisArg, args);
+          return result;
+        }
+        function leadingEdge(time) {
+          lastInvokeTime = time;
+          timerId = setTimeout(timerExpired, wait);
+          return leading ? invokeFunc(time) : result;
+        }
+        function remainingWait(time) {
+          var timeSinceLastCall = time - lastCallTime,
+            timeSinceLastInvoke = time - lastInvokeTime,
+            timeWaiting = wait - timeSinceLastCall;
+          return maxing ? nativeMin(timeWaiting, maxWait - timeSinceLastInvoke) : timeWaiting;
+        }
+        function shouldInvoke(time) {
+          var timeSinceLastCall = time - lastCallTime,
+            timeSinceLastInvoke = time - lastInvokeTime;
+          return lastCallTime === undefined$1 || timeSinceLastCall >= wait || timeSinceLastCall < 0 || maxing && timeSinceLastInvoke >= maxWait;
+        }
+        function timerExpired() {
+          var time = now();
+          if (shouldInvoke(time)) {
+            return trailingEdge(time);
+          }
+          timerId = setTimeout(timerExpired, remainingWait(time));
+        }
+        function trailingEdge(time) {
+          timerId = undefined$1;
+          if (trailing && lastArgs) {
+            return invokeFunc(time);
+          }
+          lastArgs = lastThis = undefined$1;
+          return result;
+        }
+        function cancel() {
+          if (timerId !== undefined$1) {
+            clearTimeout(timerId);
+          }
+          lastInvokeTime = 0;
+          lastArgs = lastCallTime = lastThis = timerId = undefined$1;
+        }
+        function flush() {
+          return timerId === undefined$1 ? result : trailingEdge(now());
+        }
+        function debounced() {
+          var time = now(),
+            isInvoking = shouldInvoke(time);
+          lastArgs = arguments;
+          lastThis = this;
+          lastCallTime = time;
+          if (isInvoking) {
+            if (timerId === undefined$1) {
+              return leadingEdge(lastCallTime);
+            }
+            if (maxing) {
+              clearTimeout(timerId);
+              timerId = setTimeout(timerExpired, wait);
+              return invokeFunc(lastCallTime);
+            }
+          }
+          if (timerId === undefined$1) {
+            timerId = setTimeout(timerExpired, wait);
+          }
+          return result;
+        }
+        debounced.cancel = cancel;
+        debounced.flush = flush;
+        return debounced;
+      }
+      var defer = baseRest(function (func, args) {
+        return baseDelay(func, 1, args);
+      });
+      var delay = baseRest(function (func, wait, args) {
+        return baseDelay(func, toNumber(wait) || 0, args);
+      });
+      function flip(func) {
+        return createWrap(func, WRAP_FLIP_FLAG);
+      }
+      function memoize(func, resolver) {
+        if (typeof func != 'function' || resolver != null && typeof resolver != 'function') {
+          throw new TypeError(FUNC_ERROR_TEXT);
+        }
+        var memoized = function () {
+          var args = arguments,
+            key = resolver ? resolver.apply(this, args) : args[0],
+            cache = memoized.cache;
+          if (cache.has(key)) {
+            return cache.get(key);
+          }
+          var result = func.apply(this, args);
+          memoized.cache = cache.set(key, result) || cache;
+          return result;
+        };
+        memoized.cache = new (memoize.Cache || MapCache)();
+        return memoized;
+      }
+      memoize.Cache = MapCache;
+      function negate(predicate) {
+        if (typeof predicate != 'function') {
+          throw new TypeError(FUNC_ERROR_TEXT);
+        }
+        return function () {
+          var args = arguments;
+          switch (args.length) {
+            case 0:
+              return !predicate.call(this);
+            case 1:
+              return !predicate.call(this, args[0]);
+            case 2:
+              return !predicate.call(this, args[0], args[1]);
+            case 3:
+              return !predicate.call(this, args[0], args[1], args[2]);
+          }
+          return !predicate.apply(this, args);
+        };
+      }
+      function once(func) {
+        return before(2, func);
+      }
+      var overArgs = castRest(function (func, transforms) {
+        transforms = transforms.length == 1 && isArray(transforms[0]) ? arrayMap(transforms[0], baseUnary(getIteratee())) : arrayMap(baseFlatten(transforms, 1), baseUnary(getIteratee()));
+        var funcsLength = transforms.length;
+        return baseRest(function (args) {
+          var index = -1,
+            length = nativeMin(args.length, funcsLength);
+          while (++index < length) {
+            args[index] = transforms[index].call(this, args[index]);
+          }
+          return apply(func, this, args);
+        });
+      });
+      var partial = baseRest(function (func, partials) {
+        var holders = replaceHolders(partials, getHolder(partial));
+        return createWrap(func, WRAP_PARTIAL_FLAG, undefined$1, partials, holders);
+      });
+      var partialRight = baseRest(function (func, partials) {
+        var holders = replaceHolders(partials, getHolder(partialRight));
+        return createWrap(func, WRAP_PARTIAL_RIGHT_FLAG, undefined$1, partials, holders);
+      });
+      var rearg = flatRest(function (func, indexes) {
+        return createWrap(func, WRAP_REARG_FLAG, undefined$1, undefined$1, undefined$1, indexes);
+      });
+      function rest(func, start) {
+        if (typeof func != 'function') {
+          throw new TypeError(FUNC_ERROR_TEXT);
+        }
+        start = start === undefined$1 ? start : toInteger(start);
+        return baseRest(func, start);
+      }
+      function spread(func, start) {
+        if (typeof func != 'function') {
+          throw new TypeError(FUNC_ERROR_TEXT);
+        }
+        start = start == null ? 0 : nativeMax(toInteger(start), 0);
+        return baseRest(function (args) {
+          var array = args[start],
+            otherArgs = castSlice(args, 0, start);
+          if (array) {
+            arrayPush(otherArgs, array);
+          }
+          return apply(func, this, otherArgs);
+        });
+      }
+      function throttle(func, wait, options) {
+        var leading = true,
+          trailing = true;
+        if (typeof func != 'function') {
+          throw new TypeError(FUNC_ERROR_TEXT);
+        }
+        if (isObject(options)) {
+          leading = 'leading' in options ? !!options.leading : leading;
+          trailing = 'trailing' in options ? !!options.trailing : trailing;
+        }
+        return debounce(func, wait, {
+          'leading': leading,
+          'maxWait': wait,
+          'trailing': trailing
+        });
+      }
+      function unary(func) {
+        return ary(func, 1);
+      }
+      function wrap(value, wrapper) {
+        return partial(castFunction(wrapper), value);
+      }
+      function castArray() {
+        if (!arguments.length) {
+          return [];
+        }
+        var value = arguments[0];
+        return isArray(value) ? value : [value];
+      }
+      function clone(value) {
+        return baseClone(value, CLONE_SYMBOLS_FLAG);
+      }
+      function cloneWith(value, customizer) {
+        customizer = typeof customizer == 'function' ? customizer : undefined$1;
+        return baseClone(value, CLONE_SYMBOLS_FLAG, customizer);
+      }
+      function cloneDeep(value) {
+        return baseClone(value, CLONE_DEEP_FLAG | CLONE_SYMBOLS_FLAG);
+      }
+      function cloneDeepWith(value, customizer) {
+        customizer = typeof customizer == 'function' ? customizer : undefined$1;
+        return baseClone(value, CLONE_DEEP_FLAG | CLONE_SYMBOLS_FLAG, customizer);
+      }
+      function conformsTo(object, source) {
+        return source == null || baseConformsTo(object, source, keys(source));
+      }
+      function eq(value, other) {
+        return value === other || value !== value && other !== other;
+      }
+      var gt = createRelationalOperation(baseGt);
+      var gte = createRelationalOperation(function (value, other) {
+        return value >= other;
+      });
+      var isArguments = baseIsArguments(function () {
+        return arguments;
+      }()) ? baseIsArguments : function (value) {
+        return isObjectLike(value) && hasOwnProperty.call(value, 'callee') && !propertyIsEnumerable.call(value, 'callee');
+      };
+      var isArray = Array.isArray;
+      var isArrayBuffer = nodeIsArrayBuffer ? baseUnary(nodeIsArrayBuffer) : baseIsArrayBuffer;
+      function isArrayLike(value) {
+        return value != null && isLength(value.length) && !isFunction(value);
+      }
+      function isArrayLikeObject(value) {
+        return isObjectLike(value) && isArrayLike(value);
+      }
+      function isBoolean(value) {
+        return value === true || value === false || isObjectLike(value) && baseGetTag(value) == boolTag;
+      }
+      var isBuffer = nativeIsBuffer || stubFalse;
+      var isDate = nodeIsDate ? baseUnary(nodeIsDate) : baseIsDate;
+      function isElement(value) {
+        return isObjectLike(value) && value.nodeType === 1 && !isPlainObject(value);
+      }
+      function isEmpty(value) {
+        if (value == null) {
+          return true;
+        }
+        if (isArrayLike(value) && (isArray(value) || typeof value == 'string' || typeof value.splice == 'function' || isBuffer(value) || isTypedArray(value) || isArguments(value))) {
+          return !value.length;
+        }
+        var tag = getTag(value);
+        if (tag == mapTag || tag == setTag) {
+          return !value.size;
+        }
+        if (isPrototype(value)) {
+          return !baseKeys(value).length;
+        }
+        for (var key in value) {
+          if (hasOwnProperty.call(value, key)) {
+            return false;
+          }
+        }
+        return true;
+      }
+      function isEqual(value, other) {
+        return baseIsEqual(value, other);
+      }
+      function isEqualWith(value, other, customizer) {
+        customizer = typeof customizer == 'function' ? customizer : undefined$1;
+        var result = customizer ? customizer(value, other) : undefined$1;
+        return result === undefined$1 ? baseIsEqual(value, other, undefined$1, customizer) : !!result;
+      }
+      function isError(value) {
+        if (!isObjectLike(value)) {
+          return false;
+        }
+        var tag = baseGetTag(value);
+        return tag == errorTag || tag == domExcTag || typeof value.message == 'string' && typeof value.name == 'string' && !isPlainObject(value);
+      }
+      function isFinite(value) {
+        return typeof value == 'number' && nativeIsFinite(value);
+      }
+      function isFunction(value) {
+        if (!isObject(value)) {
+          return false;
+        }
+        var tag = baseGetTag(value);
+        return tag == funcTag || tag == genTag || tag == asyncTag || tag == proxyTag;
+      }
+      function isInteger(value) {
+        return typeof value == 'number' && value == toInteger(value);
+      }
+      function isLength(value) {
+        return typeof value == 'number' && value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
+      }
+      function isObject(value) {
+        var type = typeof value;
+        return value != null && (type == 'object' || type == 'function');
+      }
+      function isObjectLike(value) {
+        return value != null && typeof value == 'object';
+      }
+      var isMap = nodeIsMap ? baseUnary(nodeIsMap) : baseIsMap;
+      function isMatch(object, source) {
+        return object === source || baseIsMatch(object, source, getMatchData(source));
+      }
+      function isMatchWith(object, source, customizer) {
+        customizer = typeof customizer == 'function' ? customizer : undefined$1;
+        return baseIsMatch(object, source, getMatchData(source), customizer);
+      }
+      function isNaN(value) {
+        return isNumber(value) && value != +value;
+      }
+      function isNative(value) {
+        if (isMaskable(value)) {
+          throw new Error(CORE_ERROR_TEXT);
+        }
+        return baseIsNative(value);
+      }
+      function isNull(value) {
+        return value === null;
+      }
+      function isNil(value) {
+        return value == null;
+      }
+      function isNumber(value) {
+        return typeof value == 'number' || isObjectLike(value) && baseGetTag(value) == numberTag;
+      }
+      function isPlainObject(value) {
+        if (!isObjectLike(value) || baseGetTag(value) != objectTag) {
+          return false;
+        }
+        var proto = getPrototype(value);
+        if (proto === null) {
+          return true;
+        }
+        var Ctor = hasOwnProperty.call(proto, 'constructor') && proto.constructor;
+        return typeof Ctor == 'function' && Ctor instanceof Ctor && funcToString.call(Ctor) == objectCtorString;
+      }
+      var isRegExp = nodeIsRegExp ? baseUnary(nodeIsRegExp) : baseIsRegExp;
+      function isSafeInteger(value) {
+        return isInteger(value) && value >= -MAX_SAFE_INTEGER && value <= MAX_SAFE_INTEGER;
+      }
+      var isSet = nodeIsSet ? baseUnary(nodeIsSet) : baseIsSet;
+      function isString(value) {
+        return typeof value == 'string' || !isArray(value) && isObjectLike(value) && baseGetTag(value) == stringTag;
+      }
+      function isSymbol(value) {
+        return typeof value == 'symbol' || isObjectLike(value) && baseGetTag(value) == symbolTag;
+      }
+      var isTypedArray = nodeIsTypedArray ? baseUnary(nodeIsTypedArray) : baseIsTypedArray;
+      function isUndefined(value) {
+        return value === undefined$1;
+      }
+      function isWeakMap(value) {
+        return isObjectLike(value) && getTag(value) == weakMapTag;
+      }
+      function isWeakSet(value) {
+        return isObjectLike(value) && baseGetTag(value) == weakSetTag;
+      }
+      var lt = createRelationalOperation(baseLt);
+      var lte = createRelationalOperation(function (value, other) {
+        return value <= other;
+      });
+      function toArray(value) {
+        if (!value) {
+          return [];
+        }
+        if (isArrayLike(value)) {
+          return isString(value) ? stringToArray(value) : copyArray(value);
+        }
+        if (symIterator && value[symIterator]) {
+          return iteratorToArray(value[symIterator]());
+        }
+        var tag = getTag(value),
+          func = tag == mapTag ? mapToArray : tag == setTag ? setToArray : values;
+        return func(value);
+      }
+      function toFinite(value) {
+        if (!value) {
+          return value === 0 ? value : 0;
+        }
+        value = toNumber(value);
+        if (value === INFINITY || value === -INFINITY) {
+          var sign = value < 0 ? -1 : 1;
+          return sign * MAX_INTEGER;
+        }
+        return value === value ? value : 0;
+      }
+      function toInteger(value) {
+        var result = toFinite(value),
+          remainder = result % 1;
+        return result === result ? remainder ? result - remainder : result : 0;
+      }
+      function toLength(value) {
+        return value ? baseClamp(toInteger(value), 0, MAX_ARRAY_LENGTH) : 0;
+      }
+      function toNumber(value) {
+        if (typeof value == 'number') {
+          return value;
+        }
+        if (isSymbol(value)) {
+          return NAN;
+        }
+        if (isObject(value)) {
+          var other = typeof value.valueOf == 'function' ? value.valueOf() : value;
+          value = isObject(other) ? other + '' : other;
+        }
+        if (typeof value != 'string') {
+          return value === 0 ? value : +value;
+        }
+        value = baseTrim(value);
+        var isBinary = reIsBinary.test(value);
+        return isBinary || reIsOctal.test(value) ? freeParseInt(value.slice(2), isBinary ? 2 : 8) : reIsBadHex.test(value) ? NAN : +value;
+      }
+      function toPlainObject(value) {
+        return copyObject(value, keysIn(value));
+      }
+      function toSafeInteger(value) {
+        return value ? baseClamp(toInteger(value), -MAX_SAFE_INTEGER, MAX_SAFE_INTEGER) : value === 0 ? value : 0;
+      }
+      function toString(value) {
+        return value == null ? '' : baseToString(value);
+      }
+      var assign = createAssigner(function (object, source) {
+        if (isPrototype(source) || isArrayLike(source)) {
+          copyObject(source, keys(source), object);
+          return;
+        }
+        for (var key in source) {
+          if (hasOwnProperty.call(source, key)) {
+            assignValue(object, key, source[key]);
+          }
+        }
+      });
+      var assignIn = createAssigner(function (object, source) {
+        copyObject(source, keysIn(source), object);
+      });
+      var assignInWith = createAssigner(function (object, source, srcIndex, customizer) {
+        copyObject(source, keysIn(source), object, customizer);
+      });
+      var assignWith = createAssigner(function (object, source, srcIndex, customizer) {
+        copyObject(source, keys(source), object, customizer);
+      });
+      var at = flatRest(baseAt);
+      function create(prototype, properties) {
+        var result = baseCreate(prototype);
+        return properties == null ? result : baseAssign(result, properties);
+      }
+      var defaults = baseRest(function (object, sources) {
+        object = Object(object);
+        var index = -1;
+        var length = sources.length;
+        var guard = length > 2 ? sources[2] : undefined$1;
+        if (guard && isIterateeCall(sources[0], sources[1], guard)) {
+          length = 1;
+        }
+        while (++index < length) {
+          var source = sources[index];
+          var props = keysIn(source);
+          var propsIndex = -1;
+          var propsLength = props.length;
+          while (++propsIndex < propsLength) {
+            var key = props[propsIndex];
+            var value = object[key];
+            if (value === undefined$1 || eq(value, objectProto[key]) && !hasOwnProperty.call(object, key)) {
+              object[key] = source[key];
+            }
+          }
+        }
+        return object;
+      });
+      var defaultsDeep = baseRest(function (args) {
+        args.push(undefined$1, customDefaultsMerge);
+        return apply(mergeWith, undefined$1, args);
+      });
+      function findKey(object, predicate) {
+        return baseFindKey(object, getIteratee(predicate, 3), baseForOwn);
+      }
+      function findLastKey(object, predicate) {
+        return baseFindKey(object, getIteratee(predicate, 3), baseForOwnRight);
+      }
+      function forIn(object, iteratee) {
+        return object == null ? object : baseFor(object, getIteratee(iteratee, 3), keysIn);
+      }
+      function forInRight(object, iteratee) {
+        return object == null ? object : baseForRight(object, getIteratee(iteratee, 3), keysIn);
+      }
+      function forOwn(object, iteratee) {
+        return object && baseForOwn(object, getIteratee(iteratee, 3));
+      }
+      function forOwnRight(object, iteratee) {
+        return object && baseForOwnRight(object, getIteratee(iteratee, 3));
+      }
+      function functions(object) {
+        return object == null ? [] : baseFunctions(object, keys(object));
+      }
+      function functionsIn(object) {
+        return object == null ? [] : baseFunctions(object, keysIn(object));
+      }
+      function get(object, path, defaultValue) {
+        var result = object == null ? undefined$1 : baseGet(object, path);
+        return result === undefined$1 ? defaultValue : result;
+      }
+      function has(object, path) {
+        return object != null && hasPath(object, path, baseHas);
+      }
+      function hasIn(object, path) {
+        return object != null && hasPath(object, path, baseHasIn);
+      }
+      var invert = createInverter(function (result, value, key) {
+        if (value != null && typeof value.toString != 'function') {
+          value = nativeObjectToString.call(value);
+        }
+        result[value] = key;
+      }, constant(identity));
+      var invertBy = createInverter(function (result, value, key) {
+        if (value != null && typeof value.toString != 'function') {
+          value = nativeObjectToString.call(value);
+        }
+        if (hasOwnProperty.call(result, value)) {
+          result[value].push(key);
+        } else {
+          result[value] = [key];
+        }
+      }, getIteratee);
+      var invoke = baseRest(baseInvoke);
+      function keys(object) {
+        return isArrayLike(object) ? arrayLikeKeys(object) : baseKeys(object);
+      }
+      function keysIn(object) {
+        return isArrayLike(object) ? arrayLikeKeys(object, true) : baseKeysIn(object);
+      }
+      function mapKeys(object, iteratee) {
+        var result = {};
+        iteratee = getIteratee(iteratee, 3);
+        baseForOwn(object, function (value, key, object) {
+          baseAssignValue(result, iteratee(value, key, object), value);
+        });
+        return result;
+      }
+      function mapValues(object, iteratee) {
+        var result = {};
+        iteratee = getIteratee(iteratee, 3);
+        baseForOwn(object, function (value, key, object) {
+          baseAssignValue(result, key, iteratee(value, key, object));
+        });
+        return result;
+      }
+      var merge = createAssigner(function (object, source, srcIndex) {
+        baseMerge(object, source, srcIndex);
+      });
+      var mergeWith = createAssigner(function (object, source, srcIndex, customizer) {
+        baseMerge(object, source, srcIndex, customizer);
+      });
+      var omit = flatRest(function (object, paths) {
+        var result = {};
+        if (object == null) {
+          return result;
+        }
+        var isDeep = false;
+        paths = arrayMap(paths, function (path) {
+          path = castPath(path, object);
+          isDeep || (isDeep = path.length > 1);
+          return path;
+        });
+        copyObject(object, getAllKeysIn(object), result);
+        if (isDeep) {
+          result = baseClone(result, CLONE_DEEP_FLAG | CLONE_FLAT_FLAG | CLONE_SYMBOLS_FLAG, customOmitClone);
+        }
+        var length = paths.length;
+        while (length--) {
+          baseUnset(result, paths[length]);
+        }
+        return result;
+      });
+      function omitBy(object, predicate) {
+        return pickBy(object, negate(getIteratee(predicate)));
+      }
+      var pick = flatRest(function (object, paths) {
+        return object == null ? {} : basePick(object, paths);
+      });
+      function pickBy(object, predicate) {
+        if (object == null) {
+          return {};
+        }
+        var props = arrayMap(getAllKeysIn(object), function (prop) {
+          return [prop];
+        });
+        predicate = getIteratee(predicate);
+        return basePickBy(object, props, function (value, path) {
+          return predicate(value, path[0]);
+        });
+      }
+      function result(object, path, defaultValue) {
+        path = castPath(path, object);
+        var index = -1,
+          length = path.length;
+        if (!length) {
+          length = 1;
+          object = undefined$1;
+        }
+        while (++index < length) {
+          var value = object == null ? undefined$1 : object[toKey(path[index])];
+          if (value === undefined$1) {
+            index = length;
+            value = defaultValue;
+          }
+          object = isFunction(value) ? value.call(object) : value;
+        }
+        return object;
+      }
+      function set(object, path, value) {
+        return object == null ? object : baseSet(object, path, value);
+      }
+      function setWith(object, path, value, customizer) {
+        customizer = typeof customizer == 'function' ? customizer : undefined$1;
+        return object == null ? object : baseSet(object, path, value, customizer);
+      }
+      var toPairs = createToPairs(keys);
+      var toPairsIn = createToPairs(keysIn);
+      function transform(object, iteratee, accumulator) {
+        var isArr = isArray(object),
+          isArrLike = isArr || isBuffer(object) || isTypedArray(object);
+        iteratee = getIteratee(iteratee, 4);
+        if (accumulator == null) {
+          var Ctor = object && object.constructor;
+          if (isArrLike) {
+            accumulator = isArr ? new Ctor() : [];
+          } else if (isObject(object)) {
+            accumulator = isFunction(Ctor) ? baseCreate(getPrototype(object)) : {};
+          } else {
+            accumulator = {};
+          }
+        }
+        (isArrLike ? arrayEach : baseForOwn)(object, function (value, index, object) {
+          return iteratee(accumulator, value, index, object);
+        });
+        return accumulator;
+      }
+      function unset(object, path) {
+        return object == null ? true : baseUnset(object, path);
+      }
+      function update(object, path, updater) {
+        return object == null ? object : baseUpdate(object, path, castFunction(updater));
+      }
+      function updateWith(object, path, updater, customizer) {
+        customizer = typeof customizer == 'function' ? customizer : undefined$1;
+        return object == null ? object : baseUpdate(object, path, castFunction(updater), customizer);
+      }
+      function values(object) {
+        return object == null ? [] : baseValues(object, keys(object));
+      }
+      function valuesIn(object) {
+        return object == null ? [] : baseValues(object, keysIn(object));
+      }
+      function clamp(number, lower, upper) {
+        if (upper === undefined$1) {
+          upper = lower;
+          lower = undefined$1;
+        }
+        if (upper !== undefined$1) {
+          upper = toNumber(upper);
+          upper = upper === upper ? upper : 0;
+        }
+        if (lower !== undefined$1) {
+          lower = toNumber(lower);
+          lower = lower === lower ? lower : 0;
+        }
+        return baseClamp(toNumber(number), lower, upper);
+      }
+      function inRange(number, start, end) {
+        start = toFinite(start);
+        if (end === undefined$1) {
+          end = start;
+          start = 0;
+        } else {
+          end = toFinite(end);
+        }
+        number = toNumber(number);
+        return baseInRange(number, start, end);
+      }
+      function random(lower, upper, floating) {
+        if (floating && typeof floating != 'boolean' && isIterateeCall(lower, upper, floating)) {
+          upper = floating = undefined$1;
+        }
+        if (floating === undefined$1) {
+          if (typeof upper == 'boolean') {
+            floating = upper;
+            upper = undefined$1;
+          } else if (typeof lower == 'boolean') {
+            floating = lower;
+            lower = undefined$1;
+          }
+        }
+        if (lower === undefined$1 && upper === undefined$1) {
+          lower = 0;
+          upper = 1;
+        } else {
+          lower = toFinite(lower);
+          if (upper === undefined$1) {
+            upper = lower;
+            lower = 0;
+          } else {
+            upper = toFinite(upper);
+          }
+        }
+        if (lower > upper) {
+          var temp = lower;
+          lower = upper;
+          upper = temp;
+        }
+        if (floating || lower % 1 || upper % 1) {
+          var rand = nativeRandom();
+          return nativeMin(lower + rand * (upper - lower + freeParseFloat('1e-' + ((rand + '').length - 1))), upper);
+        }
+        return baseRandom(lower, upper);
+      }
+      var camelCase = createCompounder(function (result, word, index) {
+        word = word.toLowerCase();
+        return result + (index ? capitalize(word) : word);
+      });
+      function capitalize(string) {
+        return upperFirst(toString(string).toLowerCase());
+      }
+      function deburr(string) {
+        string = toString(string);
+        return string && string.replace(reLatin, deburrLetter).replace(reComboMark, '');
+      }
+      function endsWith(string, target, position) {
+        string = toString(string);
+        target = baseToString(target);
+        var length = string.length;
+        position = position === undefined$1 ? length : baseClamp(toInteger(position), 0, length);
+        var end = position;
+        position -= target.length;
+        return position >= 0 && string.slice(position, end) == target;
+      }
+      function escape(string) {
+        string = toString(string);
+        return string && reHasUnescapedHtml.test(string) ? string.replace(reUnescapedHtml, escapeHtmlChar) : string;
+      }
+      function escapeRegExp(string) {
+        string = toString(string);
+        return string && reHasRegExpChar.test(string) ? string.replace(reRegExpChar, '\\$&') : string;
+      }
+      var kebabCase = createCompounder(function (result, word, index) {
+        return result + (index ? '-' : '') + word.toLowerCase();
+      });
+      var lowerCase = createCompounder(function (result, word, index) {
+        return result + (index ? ' ' : '') + word.toLowerCase();
+      });
+      var lowerFirst = createCaseFirst('toLowerCase');
+      function pad(string, length, chars) {
+        string = toString(string);
+        length = toInteger(length);
+        var strLength = length ? stringSize(string) : 0;
+        if (!length || strLength >= length) {
+          return string;
+        }
+        var mid = (length - strLength) / 2;
+        return createPadding(nativeFloor(mid), chars) + string + createPadding(nativeCeil(mid), chars);
+      }
+      function padEnd(string, length, chars) {
+        string = toString(string);
+        length = toInteger(length);
+        var strLength = length ? stringSize(string) : 0;
+        return length && strLength < length ? string + createPadding(length - strLength, chars) : string;
+      }
+      function padStart(string, length, chars) {
+        string = toString(string);
+        length = toInteger(length);
+        var strLength = length ? stringSize(string) : 0;
+        return length && strLength < length ? createPadding(length - strLength, chars) + string : string;
+      }
+      function parseInt(string, radix, guard) {
+        if (guard || radix == null) {
+          radix = 0;
+        } else if (radix) {
+          radix = +radix;
+        }
+        return nativeParseInt(toString(string).replace(reTrimStart, ''), radix || 0);
+      }
+      function repeat(string, n, guard) {
+        if (guard ? isIterateeCall(string, n, guard) : n === undefined$1) {
+          n = 1;
+        } else {
+          n = toInteger(n);
+        }
+        return baseRepeat(toString(string), n);
+      }
+      function replace() {
+        var args = arguments,
+          string = toString(args[0]);
+        return args.length < 3 ? string : string.replace(args[1], args[2]);
+      }
+      var snakeCase = createCompounder(function (result, word, index) {
+        return result + (index ? '_' : '') + word.toLowerCase();
+      });
+      function split(string, separator, limit) {
+        if (limit && typeof limit != 'number' && isIterateeCall(string, separator, limit)) {
+          separator = limit = undefined$1;
+        }
+        limit = limit === undefined$1 ? MAX_ARRAY_LENGTH : limit >>> 0;
+        if (!limit) {
+          return [];
+        }
+        string = toString(string);
+        if (string && (typeof separator == 'string' || separator != null && !isRegExp(separator))) {
+          separator = baseToString(separator);
+          if (!separator && hasUnicode(string)) {
+            return castSlice(stringToArray(string), 0, limit);
+          }
+        }
+        return string.split(separator, limit);
+      }
+      var startCase = createCompounder(function (result, word, index) {
+        return result + (index ? ' ' : '') + upperFirst(word);
+      });
+      function startsWith(string, target, position) {
+        string = toString(string);
+        position = position == null ? 0 : baseClamp(toInteger(position), 0, string.length);
+        target = baseToString(target);
+        return string.slice(position, position + target.length) == target;
+      }
+      function template(string, options, guard) {
+        var settings = lodash.templateSettings;
+        if (guard && isIterateeCall(string, options, guard)) {
+          options = undefined$1;
+        }
+        string = toString(string);
+        options = assignInWith({}, options, settings, customDefaultsAssignIn);
+        var imports = assignInWith({}, options.imports, settings.imports, customDefaultsAssignIn),
+          importsKeys = keys(imports),
+          importsValues = baseValues(imports, importsKeys);
+        var isEscaping,
+          isEvaluating,
+          index = 0,
+          interpolate = options.interpolate || reNoMatch,
+          source = "__p += '";
+        var reDelimiters = RegExp((options.escape || reNoMatch).source + '|' + interpolate.source + '|' + (interpolate === reInterpolate ? reEsTemplate : reNoMatch).source + '|' + (options.evaluate || reNoMatch).source + '|$', 'g');
+        var sourceURL = '//# sourceURL=' + (hasOwnProperty.call(options, 'sourceURL') ? (options.sourceURL + '').replace(/\s/g, ' ') : 'lodash.templateSources[' + ++templateCounter + ']') + '\n';
+        string.replace(reDelimiters, function (match, escapeValue, interpolateValue, esTemplateValue, evaluateValue, offset) {
+          interpolateValue || (interpolateValue = esTemplateValue);
+          source += string.slice(index, offset).replace(reUnescapedString, escapeStringChar);
+          if (escapeValue) {
+            isEscaping = true;
+            source += "' +\n__e(" + escapeValue + ") +\n'";
+          }
+          if (evaluateValue) {
+            isEvaluating = true;
+            source += "';\n" + evaluateValue + ";\n__p += '";
+          }
+          if (interpolateValue) {
+            source += "' +\n((__t = (" + interpolateValue + ")) == null ? '' : __t) +\n'";
+          }
+          index = offset + match.length;
+          return match;
+        });
+        source += "';\n";
+        var variable = hasOwnProperty.call(options, 'variable') && options.variable;
+        if (!variable) {
+          source = 'with (obj) {\n' + source + '\n}\n';
+        } else if (reForbiddenIdentifierChars.test(variable)) {
+          throw new Error(INVALID_TEMPL_VAR_ERROR_TEXT);
+        }
+        source = (isEvaluating ? source.replace(reEmptyStringLeading, '') : source).replace(reEmptyStringMiddle, '$1').replace(reEmptyStringTrailing, '$1;');
+        source = 'function(' + (variable || 'obj') + ') {\n' + (variable ? '' : 'obj || (obj = {});\n') + "var __t, __p = ''" + (isEscaping ? ', __e = _.escape' : '') + (isEvaluating ? ', __j = Array.prototype.join;\n' + "function print() { __p += __j.call(arguments, '') }\n" : ';\n') + source + 'return __p\n}';
+        var result = attempt(function () {
+          return Function(importsKeys, sourceURL + 'return ' + source).apply(undefined$1, importsValues);
+        });
+        result.source = source;
+        if (isError(result)) {
+          throw result;
+        }
+        return result;
+      }
+      function toLower(value) {
+        return toString(value).toLowerCase();
+      }
+      function toUpper(value) {
+        return toString(value).toUpperCase();
+      }
+      function trim(string, chars, guard) {
+        string = toString(string);
+        if (string && (guard || chars === undefined$1)) {
+          return baseTrim(string);
+        }
+        if (!string || !(chars = baseToString(chars))) {
+          return string;
+        }
+        var strSymbols = stringToArray(string),
+          chrSymbols = stringToArray(chars),
+          start = charsStartIndex(strSymbols, chrSymbols),
+          end = charsEndIndex(strSymbols, chrSymbols) + 1;
+        return castSlice(strSymbols, start, end).join('');
+      }
+      function trimEnd(string, chars, guard) {
+        string = toString(string);
+        if (string && (guard || chars === undefined$1)) {
+          return string.slice(0, trimmedEndIndex(string) + 1);
+        }
+        if (!string || !(chars = baseToString(chars))) {
+          return string;
+        }
+        var strSymbols = stringToArray(string),
+          end = charsEndIndex(strSymbols, stringToArray(chars)) + 1;
+        return castSlice(strSymbols, 0, end).join('');
+      }
+      function trimStart(string, chars, guard) {
+        string = toString(string);
+        if (string && (guard || chars === undefined$1)) {
+          return string.replace(reTrimStart, '');
+        }
+        if (!string || !(chars = baseToString(chars))) {
+          return string;
+        }
+        var strSymbols = stringToArray(string),
+          start = charsStartIndex(strSymbols, stringToArray(chars));
+        return castSlice(strSymbols, start).join('');
+      }
+      function truncate(string, options) {
+        var length = DEFAULT_TRUNC_LENGTH,
+          omission = DEFAULT_TRUNC_OMISSION;
+        if (isObject(options)) {
+          var separator = 'separator' in options ? options.separator : separator;
+          length = 'length' in options ? toInteger(options.length) : length;
+          omission = 'omission' in options ? baseToString(options.omission) : omission;
+        }
+        string = toString(string);
+        var strLength = string.length;
+        if (hasUnicode(string)) {
+          var strSymbols = stringToArray(string);
+          strLength = strSymbols.length;
+        }
+        if (length >= strLength) {
+          return string;
+        }
+        var end = length - stringSize(omission);
+        if (end < 1) {
+          return omission;
+        }
+        var result = strSymbols ? castSlice(strSymbols, 0, end).join('') : string.slice(0, end);
+        if (separator === undefined$1) {
+          return result + omission;
+        }
+        if (strSymbols) {
+          end += result.length - end;
+        }
+        if (isRegExp(separator)) {
+          if (string.slice(end).search(separator)) {
+            var match,
+              substring = result;
+            if (!separator.global) {
+              separator = RegExp(separator.source, toString(reFlags.exec(separator)) + 'g');
+            }
+            separator.lastIndex = 0;
+            while (match = separator.exec(substring)) {
+              var newEnd = match.index;
+            }
+            result = result.slice(0, newEnd === undefined$1 ? end : newEnd);
+          }
+        } else if (string.indexOf(baseToString(separator), end) != end) {
+          var index = result.lastIndexOf(separator);
+          if (index > -1) {
+            result = result.slice(0, index);
+          }
+        }
+        return result + omission;
+      }
+      function unescape(string) {
+        string = toString(string);
+        return string && reHasEscapedHtml.test(string) ? string.replace(reEscapedHtml, unescapeHtmlChar) : string;
+      }
+      var upperCase = createCompounder(function (result, word, index) {
+        return result + (index ? ' ' : '') + word.toUpperCase();
+      });
+      var upperFirst = createCaseFirst('toUpperCase');
+      function words(string, pattern, guard) {
+        string = toString(string);
+        pattern = guard ? undefined$1 : pattern;
+        if (pattern === undefined$1) {
+          return hasUnicodeWord(string) ? unicodeWords(string) : asciiWords(string);
+        }
+        return string.match(pattern) || [];
+      }
+      var attempt = baseRest(function (func, args) {
+        try {
+          return apply(func, undefined$1, args);
+        } catch (e) {
+          return isError(e) ? e : new Error(e);
+        }
+      });
+      var bindAll = flatRest(function (object, methodNames) {
+        arrayEach(methodNames, function (key) {
+          key = toKey(key);
+          baseAssignValue(object, key, bind(object[key], object));
+        });
+        return object;
+      });
+      function cond(pairs) {
+        var length = pairs == null ? 0 : pairs.length,
+          toIteratee = getIteratee();
+        pairs = !length ? [] : arrayMap(pairs, function (pair) {
+          if (typeof pair[1] != 'function') {
+            throw new TypeError(FUNC_ERROR_TEXT);
+          }
+          return [toIteratee(pair[0]), pair[1]];
+        });
+        return baseRest(function (args) {
+          var index = -1;
+          while (++index < length) {
+            var pair = pairs[index];
+            if (apply(pair[0], this, args)) {
+              return apply(pair[1], this, args);
+            }
+          }
+        });
+      }
+      function conforms(source) {
+        return baseConforms(baseClone(source, CLONE_DEEP_FLAG));
+      }
+      function constant(value) {
+        return function () {
+          return value;
+        };
+      }
+      function defaultTo(value, defaultValue) {
+        return value == null || value !== value ? defaultValue : value;
+      }
+      var flow = createFlow();
+      var flowRight = createFlow(true);
+      function identity(value) {
+        return value;
+      }
+      function iteratee(func) {
+        return baseIteratee(typeof func == 'function' ? func : baseClone(func, CLONE_DEEP_FLAG));
+      }
+      function matches(source) {
+        return baseMatches(baseClone(source, CLONE_DEEP_FLAG));
+      }
+      function matchesProperty(path, srcValue) {
+        return baseMatchesProperty(path, baseClone(srcValue, CLONE_DEEP_FLAG));
+      }
+      var method = baseRest(function (path, args) {
+        return function (object) {
+          return baseInvoke(object, path, args);
+        };
+      });
+      var methodOf = baseRest(function (object, args) {
+        return function (path) {
+          return baseInvoke(object, path, args);
+        };
+      });
+      function mixin(object, source, options) {
+        var props = keys(source),
+          methodNames = baseFunctions(source, props);
+        if (options == null && !(isObject(source) && (methodNames.length || !props.length))) {
+          options = source;
+          source = object;
+          object = this;
+          methodNames = baseFunctions(source, keys(source));
+        }
+        var chain = !(isObject(options) && 'chain' in options) || !!options.chain,
+          isFunc = isFunction(object);
+        arrayEach(methodNames, function (methodName) {
+          var func = source[methodName];
+          object[methodName] = func;
+          if (isFunc) {
+            object.prototype[methodName] = function () {
+              var chainAll = this.__chain__;
+              if (chain || chainAll) {
+                var result = object(this.__wrapped__),
+                  actions = result.__actions__ = copyArray(this.__actions__);
+                actions.push({
+                  'func': func,
+                  'args': arguments,
+                  'thisArg': object
+                });
+                result.__chain__ = chainAll;
+                return result;
+              }
+              return func.apply(object, arrayPush([this.value()], arguments));
+            };
+          }
+        });
+        return object;
+      }
+      function noConflict() {
+        if (root._ === this) {
+          root._ = oldDash;
+        }
+        return this;
+      }
+      function noop() {}
+      function nthArg(n) {
+        n = toInteger(n);
+        return baseRest(function (args) {
+          return baseNth(args, n);
+        });
+      }
+      var over = createOver(arrayMap);
+      var overEvery = createOver(arrayEvery);
+      var overSome = createOver(arraySome);
+      function property(path) {
+        return isKey(path) ? baseProperty(toKey(path)) : basePropertyDeep(path);
+      }
+      function propertyOf(object) {
+        return function (path) {
+          return object == null ? undefined$1 : baseGet(object, path);
+        };
+      }
+      var range = createRange();
+      var rangeRight = createRange(true);
+      function stubArray() {
+        return [];
+      }
+      function stubFalse() {
+        return false;
+      }
+      function stubObject() {
+        return {};
+      }
+      function stubString() {
+        return '';
+      }
+      function stubTrue() {
+        return true;
+      }
+      function times(n, iteratee) {
+        n = toInteger(n);
+        if (n < 1 || n > MAX_SAFE_INTEGER) {
+          return [];
+        }
+        var index = MAX_ARRAY_LENGTH,
+          length = nativeMin(n, MAX_ARRAY_LENGTH);
+        iteratee = getIteratee(iteratee);
+        n -= MAX_ARRAY_LENGTH;
+        var result = baseTimes(length, iteratee);
+        while (++index < n) {
+          iteratee(index);
+        }
+        return result;
+      }
+      function toPath(value) {
+        if (isArray(value)) {
+          return arrayMap(value, toKey);
+        }
+        return isSymbol(value) ? [value] : copyArray(stringToPath(toString(value)));
+      }
+      function uniqueId(prefix) {
+        var id = ++idCounter;
+        return toString(prefix) + id;
+      }
+      var add = createMathOperation(function (augend, addend) {
+        return augend + addend;
+      }, 0);
+      var ceil = createRound('ceil');
+      var divide = createMathOperation(function (dividend, divisor) {
+        return dividend / divisor;
+      }, 1);
+      var floor = createRound('floor');
+      function max(array) {
+        return array && array.length ? baseExtremum(array, identity, baseGt) : undefined$1;
+      }
+      function maxBy(array, iteratee) {
+        return array && array.length ? baseExtremum(array, getIteratee(iteratee, 2), baseGt) : undefined$1;
+      }
+      function mean(array) {
+        return baseMean(array, identity);
+      }
+      function meanBy(array, iteratee) {
+        return baseMean(array, getIteratee(iteratee, 2));
+      }
+      function min(array) {
+        return array && array.length ? baseExtremum(array, identity, baseLt) : undefined$1;
+      }
+      function minBy(array, iteratee) {
+        return array && array.length ? baseExtremum(array, getIteratee(iteratee, 2), baseLt) : undefined$1;
+      }
+      var multiply = createMathOperation(function (multiplier, multiplicand) {
+        return multiplier * multiplicand;
+      }, 1);
+      var round = createRound('round');
+      var subtract = createMathOperation(function (minuend, subtrahend) {
+        return minuend - subtrahend;
+      }, 0);
+      function sum(array) {
+        return array && array.length ? baseSum(array, identity) : 0;
+      }
+      function sumBy(array, iteratee) {
+        return array && array.length ? baseSum(array, getIteratee(iteratee, 2)) : 0;
+      }
+      lodash.after = after;
+      lodash.ary = ary;
+      lodash.assign = assign;
+      lodash.assignIn = assignIn;
+      lodash.assignInWith = assignInWith;
+      lodash.assignWith = assignWith;
+      lodash.at = at;
+      lodash.before = before;
+      lodash.bind = bind;
+      lodash.bindAll = bindAll;
+      lodash.bindKey = bindKey;
+      lodash.castArray = castArray;
+      lodash.chain = chain;
+      lodash.chunk = chunk;
+      lodash.compact = compact;
+      lodash.concat = concat;
+      lodash.cond = cond;
+      lodash.conforms = conforms;
+      lodash.constant = constant;
+      lodash.countBy = countBy;
+      lodash.create = create;
+      lodash.curry = curry;
+      lodash.curryRight = curryRight;
+      lodash.debounce = debounce;
+      lodash.defaults = defaults;
+      lodash.defaultsDeep = defaultsDeep;
+      lodash.defer = defer;
+      lodash.delay = delay;
+      lodash.difference = difference;
+      lodash.differenceBy = differenceBy;
+      lodash.differenceWith = differenceWith;
+      lodash.drop = drop;
+      lodash.dropRight = dropRight;
+      lodash.dropRightWhile = dropRightWhile;
+      lodash.dropWhile = dropWhile;
+      lodash.fill = fill;
+      lodash.filter = filter;
+      lodash.flatMap = flatMap;
+      lodash.flatMapDeep = flatMapDeep;
+      lodash.flatMapDepth = flatMapDepth;
+      lodash.flatten = flatten;
+      lodash.flattenDeep = flattenDeep;
+      lodash.flattenDepth = flattenDepth;
+      lodash.flip = flip;
+      lodash.flow = flow;
+      lodash.flowRight = flowRight;
+      lodash.fromPairs = fromPairs;
+      lodash.functions = functions;
+      lodash.functionsIn = functionsIn;
+      lodash.groupBy = groupBy;
+      lodash.initial = initial;
+      lodash.intersection = intersection;
+      lodash.intersectionBy = intersectionBy;
+      lodash.intersectionWith = intersectionWith;
+      lodash.invert = invert;
+      lodash.invertBy = invertBy;
+      lodash.invokeMap = invokeMap;
+      lodash.iteratee = iteratee;
+      lodash.keyBy = keyBy;
+      lodash.keys = keys;
+      lodash.keysIn = keysIn;
+      lodash.map = map;
+      lodash.mapKeys = mapKeys;
+      lodash.mapValues = mapValues;
+      lodash.matches = matches;
+      lodash.matchesProperty = matchesProperty;
+      lodash.memoize = memoize;
+      lodash.merge = merge;
+      lodash.mergeWith = mergeWith;
+      lodash.method = method;
+      lodash.methodOf = methodOf;
+      lodash.mixin = mixin;
+      lodash.negate = negate;
+      lodash.nthArg = nthArg;
+      lodash.omit = omit;
+      lodash.omitBy = omitBy;
+      lodash.once = once;
+      lodash.orderBy = orderBy;
+      lodash.over = over;
+      lodash.overArgs = overArgs;
+      lodash.overEvery = overEvery;
+      lodash.overSome = overSome;
+      lodash.partial = partial;
+      lodash.partialRight = partialRight;
+      lodash.partition = partition;
+      lodash.pick = pick;
+      lodash.pickBy = pickBy;
+      lodash.property = property;
+      lodash.propertyOf = propertyOf;
+      lodash.pull = pull;
+      lodash.pullAll = pullAll;
+      lodash.pullAllBy = pullAllBy;
+      lodash.pullAllWith = pullAllWith;
+      lodash.pullAt = pullAt;
+      lodash.range = range;
+      lodash.rangeRight = rangeRight;
+      lodash.rearg = rearg;
+      lodash.reject = reject;
+      lodash.remove = remove;
+      lodash.rest = rest;
+      lodash.reverse = reverse;
+      lodash.sampleSize = sampleSize;
+      lodash.set = set;
+      lodash.setWith = setWith;
+      lodash.shuffle = shuffle;
+      lodash.slice = slice;
+      lodash.sortBy = sortBy;
+      lodash.sortedUniq = sortedUniq;
+      lodash.sortedUniqBy = sortedUniqBy;
+      lodash.split = split;
+      lodash.spread = spread;
+      lodash.tail = tail;
+      lodash.take = take;
+      lodash.takeRight = takeRight;
+      lodash.takeRightWhile = takeRightWhile;
+      lodash.takeWhile = takeWhile;
+      lodash.tap = tap;
+      lodash.throttle = throttle;
+      lodash.thru = thru;
+      lodash.toArray = toArray;
+      lodash.toPairs = toPairs;
+      lodash.toPairsIn = toPairsIn;
+      lodash.toPath = toPath;
+      lodash.toPlainObject = toPlainObject;
+      lodash.transform = transform;
+      lodash.unary = unary;
+      lodash.union = union;
+      lodash.unionBy = unionBy;
+      lodash.unionWith = unionWith;
+      lodash.uniq = uniq;
+      lodash.uniqBy = uniqBy;
+      lodash.uniqWith = uniqWith;
+      lodash.unset = unset;
+      lodash.unzip = unzip;
+      lodash.unzipWith = unzipWith;
+      lodash.update = update;
+      lodash.updateWith = updateWith;
+      lodash.values = values;
+      lodash.valuesIn = valuesIn;
+      lodash.without = without;
+      lodash.words = words;
+      lodash.wrap = wrap;
+      lodash.xor = xor;
+      lodash.xorBy = xorBy;
+      lodash.xorWith = xorWith;
+      lodash.zip = zip;
+      lodash.zipObject = zipObject;
+      lodash.zipObjectDeep = zipObjectDeep;
+      lodash.zipWith = zipWith;
+      lodash.entries = toPairs;
+      lodash.entriesIn = toPairsIn;
+      lodash.extend = assignIn;
+      lodash.extendWith = assignInWith;
+      mixin(lodash, lodash);
+      lodash.add = add;
+      lodash.attempt = attempt;
+      lodash.camelCase = camelCase;
+      lodash.capitalize = capitalize;
+      lodash.ceil = ceil;
+      lodash.clamp = clamp;
+      lodash.clone = clone;
+      lodash.cloneDeep = cloneDeep;
+      lodash.cloneDeepWith = cloneDeepWith;
+      lodash.cloneWith = cloneWith;
+      lodash.conformsTo = conformsTo;
+      lodash.deburr = deburr;
+      lodash.defaultTo = defaultTo;
+      lodash.divide = divide;
+      lodash.endsWith = endsWith;
+      lodash.eq = eq;
+      lodash.escape = escape;
+      lodash.escapeRegExp = escapeRegExp;
+      lodash.every = every;
+      lodash.find = find;
+      lodash.findIndex = findIndex;
+      lodash.findKey = findKey;
+      lodash.findLast = findLast;
+      lodash.findLastIndex = findLastIndex;
+      lodash.findLastKey = findLastKey;
+      lodash.floor = floor;
+      lodash.forEach = forEach;
+      lodash.forEachRight = forEachRight;
+      lodash.forIn = forIn;
+      lodash.forInRight = forInRight;
+      lodash.forOwn = forOwn;
+      lodash.forOwnRight = forOwnRight;
+      lodash.get = get;
+      lodash.gt = gt;
+      lodash.gte = gte;
+      lodash.has = has;
+      lodash.hasIn = hasIn;
+      lodash.head = head;
+      lodash.identity = identity;
+      lodash.includes = includes;
+      lodash.indexOf = indexOf;
+      lodash.inRange = inRange;
+      lodash.invoke = invoke;
+      lodash.isArguments = isArguments;
+      lodash.isArray = isArray;
+      lodash.isArrayBuffer = isArrayBuffer;
+      lodash.isArrayLike = isArrayLike;
+      lodash.isArrayLikeObject = isArrayLikeObject;
+      lodash.isBoolean = isBoolean;
+      lodash.isBuffer = isBuffer;
+      lodash.isDate = isDate;
+      lodash.isElement = isElement;
+      lodash.isEmpty = isEmpty;
+      lodash.isEqual = isEqual;
+      lodash.isEqualWith = isEqualWith;
+      lodash.isError = isError;
+      lodash.isFinite = isFinite;
+      lodash.isFunction = isFunction;
+      lodash.isInteger = isInteger;
+      lodash.isLength = isLength;
+      lodash.isMap = isMap;
+      lodash.isMatch = isMatch;
+      lodash.isMatchWith = isMatchWith;
+      lodash.isNaN = isNaN;
+      lodash.isNative = isNative;
+      lodash.isNil = isNil;
+      lodash.isNull = isNull;
+      lodash.isNumber = isNumber;
+      lodash.isObject = isObject;
+      lodash.isObjectLike = isObjectLike;
+      lodash.isPlainObject = isPlainObject;
+      lodash.isRegExp = isRegExp;
+      lodash.isSafeInteger = isSafeInteger;
+      lodash.isSet = isSet;
+      lodash.isString = isString;
+      lodash.isSymbol = isSymbol;
+      lodash.isTypedArray = isTypedArray;
+      lodash.isUndefined = isUndefined;
+      lodash.isWeakMap = isWeakMap;
+      lodash.isWeakSet = isWeakSet;
+      lodash.join = join;
+      lodash.kebabCase = kebabCase;
+      lodash.last = last;
+      lodash.lastIndexOf = lastIndexOf;
+      lodash.lowerCase = lowerCase;
+      lodash.lowerFirst = lowerFirst;
+      lodash.lt = lt;
+      lodash.lte = lte;
+      lodash.max = max;
+      lodash.maxBy = maxBy;
+      lodash.mean = mean;
+      lodash.meanBy = meanBy;
+      lodash.min = min;
+      lodash.minBy = minBy;
+      lodash.stubArray = stubArray;
+      lodash.stubFalse = stubFalse;
+      lodash.stubObject = stubObject;
+      lodash.stubString = stubString;
+      lodash.stubTrue = stubTrue;
+      lodash.multiply = multiply;
+      lodash.nth = nth;
+      lodash.noConflict = noConflict;
+      lodash.noop = noop;
+      lodash.now = now;
+      lodash.pad = pad;
+      lodash.padEnd = padEnd;
+      lodash.padStart = padStart;
+      lodash.parseInt = parseInt;
+      lodash.random = random;
+      lodash.reduce = reduce;
+      lodash.reduceRight = reduceRight;
+      lodash.repeat = repeat;
+      lodash.replace = replace;
+      lodash.result = result;
+      lodash.round = round;
+      lodash.runInContext = runInContext;
+      lodash.sample = sample;
+      lodash.size = size;
+      lodash.snakeCase = snakeCase;
+      lodash.some = some;
+      lodash.sortedIndex = sortedIndex;
+      lodash.sortedIndexBy = sortedIndexBy;
+      lodash.sortedIndexOf = sortedIndexOf;
+      lodash.sortedLastIndex = sortedLastIndex;
+      lodash.sortedLastIndexBy = sortedLastIndexBy;
+      lodash.sortedLastIndexOf = sortedLastIndexOf;
+      lodash.startCase = startCase;
+      lodash.startsWith = startsWith;
+      lodash.subtract = subtract;
+      lodash.sum = sum;
+      lodash.sumBy = sumBy;
+      lodash.template = template;
+      lodash.times = times;
+      lodash.toFinite = toFinite;
+      lodash.toInteger = toInteger;
+      lodash.toLength = toLength;
+      lodash.toLower = toLower;
+      lodash.toNumber = toNumber;
+      lodash.toSafeInteger = toSafeInteger;
+      lodash.toString = toString;
+      lodash.toUpper = toUpper;
+      lodash.trim = trim;
+      lodash.trimEnd = trimEnd;
+      lodash.trimStart = trimStart;
+      lodash.truncate = truncate;
+      lodash.unescape = unescape;
+      lodash.uniqueId = uniqueId;
+      lodash.upperCase = upperCase;
+      lodash.upperFirst = upperFirst;
+      lodash.each = forEach;
+      lodash.eachRight = forEachRight;
+      lodash.first = head;
+      mixin(lodash, function () {
+        var source = {};
+        baseForOwn(lodash, function (func, methodName) {
+          if (!hasOwnProperty.call(lodash.prototype, methodName)) {
+            source[methodName] = func;
+          }
+        });
+        return source;
+      }(), {
+        'chain': false
+      });
+      lodash.VERSION = VERSION;
+      arrayEach(['bind', 'bindKey', 'curry', 'curryRight', 'partial', 'partialRight'], function (methodName) {
+        lodash[methodName].placeholder = lodash;
+      });
+      arrayEach(['drop', 'take'], function (methodName, index) {
+        LazyWrapper.prototype[methodName] = function (n) {
+          n = n === undefined$1 ? 1 : nativeMax(toInteger(n), 0);
+          var result = this.__filtered__ && !index ? new LazyWrapper(this) : this.clone();
+          if (result.__filtered__) {
+            result.__takeCount__ = nativeMin(n, result.__takeCount__);
+          } else {
+            result.__views__.push({
+              'size': nativeMin(n, MAX_ARRAY_LENGTH),
+              'type': methodName + (result.__dir__ < 0 ? 'Right' : '')
+            });
+          }
+          return result;
+        };
+        LazyWrapper.prototype[methodName + 'Right'] = function (n) {
+          return this.reverse()[methodName](n).reverse();
+        };
+      });
+      arrayEach(['filter', 'map', 'takeWhile'], function (methodName, index) {
+        var type = index + 1,
+          isFilter = type == LAZY_FILTER_FLAG || type == LAZY_WHILE_FLAG;
+        LazyWrapper.prototype[methodName] = function (iteratee) {
+          var result = this.clone();
+          result.__iteratees__.push({
+            'iteratee': getIteratee(iteratee, 3),
+            'type': type
+          });
+          result.__filtered__ = result.__filtered__ || isFilter;
+          return result;
+        };
+      });
+      arrayEach(['head', 'last'], function (methodName, index) {
+        var takeName = 'take' + (index ? 'Right' : '');
+        LazyWrapper.prototype[methodName] = function () {
+          return this[takeName](1).value()[0];
+        };
+      });
+      arrayEach(['initial', 'tail'], function (methodName, index) {
+        var dropName = 'drop' + (index ? '' : 'Right');
+        LazyWrapper.prototype[methodName] = function () {
+          return this.__filtered__ ? new LazyWrapper(this) : this[dropName](1);
+        };
+      });
+      LazyWrapper.prototype.compact = function () {
+        return this.filter(identity);
+      };
+      LazyWrapper.prototype.find = function (predicate) {
+        return this.filter(predicate).head();
+      };
+      LazyWrapper.prototype.findLast = function (predicate) {
+        return this.reverse().find(predicate);
+      };
+      LazyWrapper.prototype.invokeMap = baseRest(function (path, args) {
+        if (typeof path == 'function') {
+          return new LazyWrapper(this);
+        }
+        return this.map(function (value) {
+          return baseInvoke(value, path, args);
+        });
+      });
+      LazyWrapper.prototype.reject = function (predicate) {
+        return this.filter(negate(getIteratee(predicate)));
+      };
+      LazyWrapper.prototype.slice = function (start, end) {
+        start = toInteger(start);
+        var result = this;
+        if (result.__filtered__ && (start > 0 || end < 0)) {
+          return new LazyWrapper(result);
+        }
+        if (start < 0) {
+          result = result.takeRight(-start);
+        } else if (start) {
+          result = result.drop(start);
+        }
+        if (end !== undefined$1) {
+          end = toInteger(end);
+          result = end < 0 ? result.dropRight(-end) : result.take(end - start);
+        }
+        return result;
+      };
+      LazyWrapper.prototype.takeRightWhile = function (predicate) {
+        return this.reverse().takeWhile(predicate).reverse();
+      };
+      LazyWrapper.prototype.toArray = function () {
+        return this.take(MAX_ARRAY_LENGTH);
+      };
+      baseForOwn(LazyWrapper.prototype, function (func, methodName) {
+        var checkIteratee = /^(?:filter|find|map|reject)|While$/.test(methodName),
+          isTaker = /^(?:head|last)$/.test(methodName),
+          lodashFunc = lodash[isTaker ? 'take' + (methodName == 'last' ? 'Right' : '') : methodName],
+          retUnwrapped = isTaker || /^find/.test(methodName);
+        if (!lodashFunc) {
+          return;
+        }
+        lodash.prototype[methodName] = function () {
+          var value = this.__wrapped__,
+            args = isTaker ? [1] : arguments,
+            isLazy = value instanceof LazyWrapper,
+            iteratee = args[0],
+            useLazy = isLazy || isArray(value);
+          var interceptor = function (value) {
+            var result = lodashFunc.apply(lodash, arrayPush([value], args));
+            return isTaker && chainAll ? result[0] : result;
+          };
+          if (useLazy && checkIteratee && typeof iteratee == 'function' && iteratee.length != 1) {
+            isLazy = useLazy = false;
+          }
+          var chainAll = this.__chain__,
+            isHybrid = !!this.__actions__.length,
+            isUnwrapped = retUnwrapped && !chainAll,
+            onlyLazy = isLazy && !isHybrid;
+          if (!retUnwrapped && useLazy) {
+            value = onlyLazy ? value : new LazyWrapper(this);
+            var result = func.apply(value, args);
+            result.__actions__.push({
+              'func': thru,
+              'args': [interceptor],
+              'thisArg': undefined$1
+            });
+            return new LodashWrapper(result, chainAll);
+          }
+          if (isUnwrapped && onlyLazy) {
+            return func.apply(this, args);
+          }
+          result = this.thru(interceptor);
+          return isUnwrapped ? isTaker ? result.value()[0] : result.value() : result;
+        };
+      });
+      arrayEach(['pop', 'push', 'shift', 'sort', 'splice', 'unshift'], function (methodName) {
+        var func = arrayProto[methodName],
+          chainName = /^(?:push|sort|unshift)$/.test(methodName) ? 'tap' : 'thru',
+          retUnwrapped = /^(?:pop|shift)$/.test(methodName);
+        lodash.prototype[methodName] = function () {
+          var args = arguments;
+          if (retUnwrapped && !this.__chain__) {
+            var value = this.value();
+            return func.apply(isArray(value) ? value : [], args);
+          }
+          return this[chainName](function (value) {
+            return func.apply(isArray(value) ? value : [], args);
+          });
+        };
+      });
+      baseForOwn(LazyWrapper.prototype, function (func, methodName) {
+        var lodashFunc = lodash[methodName];
+        if (lodashFunc) {
+          var key = lodashFunc.name + '';
+          if (!hasOwnProperty.call(realNames, key)) {
+            realNames[key] = [];
+          }
+          realNames[key].push({
+            'name': methodName,
+            'func': lodashFunc
+          });
+        }
+      });
+      realNames[createHybrid(undefined$1, WRAP_BIND_KEY_FLAG).name] = [{
+        'name': 'wrapper',
+        'func': undefined$1
+      }];
+      LazyWrapper.prototype.clone = lazyClone;
+      LazyWrapper.prototype.reverse = lazyReverse;
+      LazyWrapper.prototype.value = lazyValue;
+      lodash.prototype.at = wrapperAt;
+      lodash.prototype.chain = wrapperChain;
+      lodash.prototype.commit = wrapperCommit;
+      lodash.prototype.next = wrapperNext;
+      lodash.prototype.plant = wrapperPlant;
+      lodash.prototype.reverse = wrapperReverse;
+      lodash.prototype.toJSON = lodash.prototype.valueOf = lodash.prototype.value = wrapperValue;
+      lodash.prototype.first = lodash.prototype.head;
+      if (symIterator) {
+        lodash.prototype[symIterator] = wrapperToIterator;
+      }
+      return lodash;
+    };
+    var _ = runInContext();
+    if (freeModule) {
+      (freeModule.exports = _)._ = _;
+      freeExports._ = _;
+    } else {
+      root._ = _;
+    }
+  }).call(commonjsGlobal);
+});
+
+const EmployeeSideBar = () => {
+  var _data$actions, _data$actions$filter;
+  const sidebarRef = React.useRef(null);
+  const {
+    isLoading,
+    data
+  } = Digit.Hooks.useAccessControl();
+  const [search, setSearch] = React.useState("");
+  const {
+    t
+  } = reactI18next.useTranslation();
+  React.useEffect(() => {
+    if (isLoading) {
+      return /*#__PURE__*/React__default.createElement(digitUiReactComponents.Loader, null);
+    }
+    sidebarRef.current.style.cursor = "pointer";
+    collapseNav();
+  }, [isLoading]);
+  const expandNav = () => {
+    sidebarRef.current.style.width = "260px";
+    sidebarRef.current.style.overflow = "auto";
+    sidebarRef.current.querySelectorAll(".dropdown-link").forEach(element => {
+      element.style.display = "flex";
+    });
+  };
+  const collapseNav = () => {
+    sidebarRef.current.style.width = "55px";
+    sidebarRef.current.style.overflow = "hidden";
+    sidebarRef.current.querySelectorAll(".dropdown-link").forEach(element => {
+      element.style.display = "none";
+    });
+    sidebarRef.current.querySelectorAll(".actions").forEach(element => {
+      element.style.padding = "0";
+    });
+  };
+  const configEmployeeSideBar = {};
+  let configEmployeeSideBar1 = {};
+  data === null || data === void 0 ? void 0 : (_data$actions = data.actions) === null || _data$actions === void 0 ? void 0 : (_data$actions$filter = _data$actions.filter(e => e.url === "url")) === null || _data$actions$filter === void 0 ? void 0 : _data$actions$filter.forEach(item => {
+    lodash.set(configEmployeeSideBar1, item.path, {
+      ...item
+    });
+  });
+  data === null || data === void 0 ? void 0 : data.actions.filter(e => e.url === "url").forEach(item => {
+    var _t, _index, _index$toUpperCase;
+    let index = item.path.split(".")[0];
+    if (search == "" && item.path !== "") {
+      index = item.path.split(".")[0];
+      if (index === "TradeLicense") index = "Trade License";
+      if (!configEmployeeSideBar[index]) {
+        configEmployeeSideBar[index] = [item];
+      } else {
+        configEmployeeSideBar[index].push(item);
+      }
+    } else if (item.path !== "" && (_t = t("ACTION_TEST_" + ((_index = index) === null || _index === void 0 ? void 0 : (_index$toUpperCase = _index.toUpperCase()) === null || _index$toUpperCase === void 0 ? void 0 : _index$toUpperCase.replace(/[ -]/g, "_")))) !== null && _t !== void 0 && _t.toLowerCase().includes(search.toLowerCase())) {
+      index = item.path.split(".")[0];
+      if (index === "TradeLicense") index = "Trade License";
+      if (!configEmployeeSideBar[index]) {
+        configEmployeeSideBar[index] = [item];
+      } else {
+        configEmployeeSideBar[index].push(item);
+      }
+    }
+  });
+  let res = [];
+  const splitKeyValue = () => {
+    var _res3;
+    const keys = Object.keys(configEmployeeSideBar);
+    keys.sort((a, b) => a.orderNumber - b.orderNumber);
+    for (let i = 0; i < keys.length; i++) {
+      if (configEmployeeSideBar[keys[i]][0].path.indexOf(".") === -1) {
+        if (configEmployeeSideBar[keys[i]][0].displayName === "Home") {
+          const homeURL = "/digit-ui/employee";
+          res.unshift({
+            moduleName: keys[i].toUpperCase(),
+            icon: configEmployeeSideBar[keys[i]][0],
+            navigationURL: homeURL,
+            type: "single"
+          });
+        } else {
+          var _configEmployeeSideBa;
+          res.push({
+            moduleName: (_configEmployeeSideBa = configEmployeeSideBar[keys[i]][0]) === null || _configEmployeeSideBa === void 0 ? void 0 : _configEmployeeSideBa.displayName.toUpperCase(),
+            type: "single",
+            icon: configEmployeeSideBar[keys[i]][0],
+            navigationURL: configEmployeeSideBar[keys[i]][0].navigationURL
+          });
+        }
+      } else {
+        res.push({
+          moduleName: keys[i].toUpperCase(),
+          links: configEmployeeSideBar[keys[i]],
+          icon: configEmployeeSideBar[keys[i]][0],
+          orderNumber: configEmployeeSideBar[keys[i]][0].orderNumber
+        });
+      }
+    }
+    if (res.find(a => a.moduleName === "HOME")) {
+      var _res, _res2;
+      const indx = res.findIndex(a => a.moduleName === "HOME");
+      const home = (_res = res) === null || _res === void 0 ? void 0 : _res.filter(ob => (ob === null || ob === void 0 ? void 0 : ob.moduleName) === "HOME");
+      let res1 = (_res2 = res) === null || _res2 === void 0 ? void 0 : _res2.filter(ob => (ob === null || ob === void 0 ? void 0 : ob.moduleName) !== "HOME");
+      res = res1.sort((a, b) => a.moduleName.localeCompare(b.moduleName));
+      (home === null || home === void 0 ? void 0 : home[0]) && res.unshift(home[0]);
+    } else {
+      res.sort((a, b) => a.moduleName.localeCompare(b.moduleName));
+    }
+    return (_res3 = res) === null || _res3 === void 0 ? void 0 : _res3.map((item, index) => {
+      return /*#__PURE__*/React__default.createElement(SubMenu, {
+        item: item,
+        key: index + 1
+      });
+    });
+  };
+  if (isLoading) {
+    return /*#__PURE__*/React__default.createElement(digitUiReactComponents.Loader, null);
+  }
+  if (!res) {
+    return "";
+  }
+  const renderSearch = () => {
+    return /*#__PURE__*/React__default.createElement("div", {
+      className: "submenu-container"
+    }, /*#__PURE__*/React__default.createElement("div", {
+      className: "sidebar-link"
+    }, /*#__PURE__*/React__default.createElement("div", {
+      className: "actions search-icon-wrapper"
+    }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.SearchIcon, {
+      className: "search-icon"
+    }), /*#__PURE__*/React__default.createElement("input", {
+      className: "employee-search-input",
+      type: "text",
+      placeholder: t("ACTION_TEST_SEARCH"),
+      name: "search",
+      value: search,
+      onChange: e => setSearch(e.target.value)
+    }))));
+  };
+  return /*#__PURE__*/React__default.createElement("div", {
+    className: "sidebar",
+    ref: sidebarRef,
+    onMouseOver: expandNav,
+    onMouseLeave: collapseNav
+  }, renderSearch(), splitKeyValue());
+};
+
+const SideBar = _ref => {
+  let {
+    t,
+    CITIZEN,
+    isSidebarOpen,
+    toggleSidebar,
+    handleLogout,
+    mobileView,
+    userDetails,
+    modules,
+    linkData,
+    islinkDataLoading,
+    isSideBarScroll,
+    setSideBarScrollTop
+  } = _ref;
+  if (CITIZEN) return /*#__PURE__*/React__default.createElement(CitizenSideBar, {
+    isOpen: isSidebarOpen,
+    isSideBarScroll: isSideBarScroll,
+    setSideBarScrollTop: setSideBarScrollTop,
+    isMobile: true,
+    toggleSidebar: toggleSidebar,
+    onLogout: handleLogout,
+    linkData: linkData,
+    islinkDataLoading: islinkDataLoading
+  });else {
+    if (!mobileView && userDetails !== null && userDetails !== void 0 && userDetails.access_token) return /*#__PURE__*/React__default.createElement(EmployeeSideBar, {
+      mobileView,
+      userDetails,
+      modules
+    });else return /*#__PURE__*/React__default.createElement(CitizenSideBar, {
+      isOpen: isSidebarOpen,
+      isMobile: true,
+      toggleSidebar: toggleSidebar,
+      onLogout: handleLogout,
+      isEmployee: true
+    });
+  }
+};
+
+const TopBarSideBar = _ref => {
+  let {
+    t,
+    stateInfo,
+    userDetails,
+    CITIZEN,
+    cityDetails,
+    mobileView,
+    handleUserDropdownSelection,
+    logoUrl,
+    showSidebar = true,
+    showLanguageChange,
+    linkData,
+    islinkDataLoading
+  } = _ref;
+  const [isSidebarOpen, toggleSidebar] = React.useState(false);
+  const [isSideBarScroll, setSideBarScrollTop] = React.useState(false);
+  const history = reactRouterDom.useHistory();
+  const [showDialog, setShowDialog] = React.useState(false);
+  const handleLogout = () => {
+    toggleSidebar(false);
+    setShowDialog(true);
+  };
+  const handleOnSubmit = () => {
+    Digit.UserService.logout();
+    setShowDialog(false);
+  };
+  const handleOnCancel = () => {
+    setShowDialog(false);
+  };
+  const userProfile = () => {
+    history.push("/digit-ui/employee/user/profile");
+  };
+  const userOptions = [{
+    name: t("EDIT_PROFILE"),
+    icon: /*#__PURE__*/React__default.createElement(digitUiReactComponents.EditPencilIcon, {
+      className: "icon"
+    }),
+    func: userProfile
+  }, {
+    name: t("CORE_COMMON_LOGOUT"),
+    icon: /*#__PURE__*/React__default.createElement(digitUiReactComponents.LogoutIcon, {
+      className: "icon"
+    }),
+    func: handleLogout
+  }];
+  return /*#__PURE__*/React__default.createElement(React__default.Fragment, null, /*#__PURE__*/React__default.createElement(TopBar, {
+    t: t,
+    stateInfo: stateInfo,
+    toggleSidebar: toggleSidebar,
+    setSideBarScrollTop: setSideBarScrollTop,
+    isSidebarOpen: isSidebarOpen,
+    isSideBarScroll: isSideBarScroll,
+    handleLogout: handleLogout,
+    userDetails: userDetails,
+    CITIZEN: CITIZEN,
+    cityDetails: cityDetails,
+    mobileView: mobileView,
+    userOptions: userOptions,
+    handleUserDropdownSelection: handleUserDropdownSelection,
+    logoUrl: logoUrl,
+    showLanguageChange: showLanguageChange
+  }), showDialog && /*#__PURE__*/React__default.createElement(LogoutDialog, {
+    onSelect: handleOnSubmit,
+    onCancel: handleOnCancel,
+    onDismiss: handleOnCancel
+  }), showSidebar && /*#__PURE__*/React__default.createElement(SideBar, {
+    t: t,
+    CITIZEN: CITIZEN,
+    isSidebarOpen: isSidebarOpen,
+    toggleSidebar: toggleSidebar,
+    isSideBarScroll: isSideBarScroll,
+    setSideBarScrollTop: setSideBarScrollTop,
+    handleLogout: handleLogout,
+    mobileView: mobileView,
+    userDetails: userDetails,
+    linkData: linkData,
+    islinkDataLoading: islinkDataLoading
+  }));
+};
+
+function UploadDrawer(_ref) {
+  let {
+    setProfilePic,
+    closeDrawer,
+    userType,
+    removeProfilePic,
+    showToast
+  } = _ref;
+  const [uploadedFile, setUploadedFile] = React.useState(null);
+  const [file, setFile] = React.useState("");
+  const [error, setError] = React.useState(null);
+  const {
+    t
+  } = reactI18next.useTranslation();
+  const selectfile = e => setFile(e.target.files[0]);
+  const removeimg = () => {
+    removeProfilePic();
+    closeDrawer();
+  };
+  const onOverlayBodyClick = () => closeDrawer();
+  React.useEffect(() => {
+    (function () {
+      try {
+        setError(null);
+        const _temp3 = function () {
+          if (file) {
+            const _temp2 = function () {
+              if (file.size >= 1000000) {
+                showToast("error", t("CORE_COMMON_PROFILE_MAXIMUM_UPLOAD_SIZE_EXCEEDED"));
+                setError(t("CORE_COMMON_PROFILE_MAXIMUM_UPLOAD_SIZE_EXCEEDED"));
+              } else {
+                const _temp = _catch(function () {
+                  return Promise.resolve(Digit.UploadServices.Filestorage(userType + "-profile", file, Digit.ULBService.getStateId())).then(function (response) {
+                    var _response$data, _response$data$files;
+                    if ((response === null || response === void 0 ? void 0 : (_response$data = response.data) === null || _response$data === void 0 ? void 0 : (_response$data$files = _response$data.files) === null || _response$data$files === void 0 ? void 0 : _response$data$files.length) > 0) {
+                      var _response$data2, _response$data2$files;
+                      const fileStoreId = response === null || response === void 0 ? void 0 : (_response$data2 = response.data) === null || _response$data2 === void 0 ? void 0 : (_response$data2$files = _response$data2.files[0]) === null || _response$data2$files === void 0 ? void 0 : _response$data2$files.fileStoreId;
+                      setUploadedFile(fileStoreId);
+                      setProfilePic(fileStoreId);
+                    } else {
+                      showToast("error", t("CORE_COMMON_PROFILE_FILE_UPLOAD_ERROR"));
+                      setError(t("CORE_COMMON_PROFILE_FILE_UPLOAD_ERROR"));
+                    }
+                  });
+                }, function () {
+                  showToast("error", t("CORE_COMMON_PROFILE_INVALID_FILE_INPUT"));
+                });
+                if (_temp && _temp.then) return _temp.then(function () {});
+              }
+            }();
+            if (_temp2 && _temp2.then) return _temp2.then(function () {});
+          }
+        }();
+        return _temp3 && _temp3.then ? _temp3.then(function () {}) : void 0;
+      } catch (e) {
+        Promise.reject(e);
+      }
+    })();
+  }, [file]);
+  return /*#__PURE__*/React__default.createElement(React__default.Fragment, null, /*#__PURE__*/React__default.createElement("div", {
+    style: {
+      position: "fixed",
+      top: "0",
+      left: "0",
+      right: "0",
+      bottom: "0",
+      width: "100%",
+      height: "100vh",
+      backgroundColor: "rgba(0,0,0,.5)"
+    },
+    onClick: onOverlayBodyClick
+  }), /*#__PURE__*/React__default.createElement("div", {
+    style: {
+      width: "100%",
+      justifyContent: "space-between",
+      display: "flex",
+      backgroundColor: "white",
+      alignItems: "center",
+      position: "fixed",
+      left: "0",
+      right: "0",
+      height: "20%",
+      bottom: userType === "citizen" ? "2.5rem" : "0",
+      zIndex: "2"
+    }
+  }, /*#__PURE__*/React__default.createElement("div", {
+    style: {
+      display: "flex",
+      flex: "1",
+      flexDirection: "column",
+      width: "100%",
+      justifyContent: "center",
+      alignItems: "center",
+      gap: "8px 0"
+    }
+  }, /*#__PURE__*/React__default.createElement("label", {
+    for: "file",
+    style: {
+      cursor: "pointer"
+    }
+  }, " ", /*#__PURE__*/React__default.createElement(digitUiReactComponents.GalleryIcon, null)), /*#__PURE__*/React__default.createElement("label", {
+    style: {
+      cursor: "pointer"
+    }
+  }, " Gallery"), /*#__PURE__*/React__default.createElement("input", {
+    type: "file",
+    id: "file",
+    accept: "image/*, .png, .jpeg, .jpg",
+    onChange: selectfile,
+    style: {
+      display: "none"
+    }
+  })), /*#__PURE__*/React__default.createElement("div", {
+    style: {
+      display: "flex",
+      flex: "1",
+      width: "100%",
+      justifyContent: "center",
+      alignItems: "center",
+      flexDirection: "column",
+      gap: "8px 0"
+    }
+  }, /*#__PURE__*/React__default.createElement("button", {
+    onClick: removeimg
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.RemoveIcon, null)), /*#__PURE__*/React__default.createElement("label", {
+    style: {
+      cursor: "pointer"
+    }
+  }, "Remove"))));
+}
+
+const defaultImage$2 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAO4AAADUCAMAAACs0e/bAAAAM1BMVEXK0eL" + "/" + "/" + "/" + "/Dy97GzuD4+fvL0uPg5O7T2efb4OvR1+Xr7vTk5/Df4+37/P3v8fbO1eTt8PUsnq5FAAAGqElEQVR4nO2d25ajIBBFCajgvf/" + "/a0eMyZgEjcI5xgt7Hmatme507UaxuJXidiDqjmSgeVIMlB1ZR1WZAf2gbdu0QwixSYzjOJPmHurfEGEfY9XzjNGG9whQCeVAuv5xQEySLtR9hPuIcwj0EeroN5m3D1IbsbgHK0esiQ9MKs" + "qXVr8Hm/a/Pulk6wihpCIXBw3dh7bTvRBt9+dC5NfS1VH3xETdM3MxXRN1T0zUPTNR98xcS1dlV9NNfx3DhkTdM6PKqHteVBF1z0vU5f0sKdpc2zWLKutXrjJjdLvpesRmukqYonauPhXpds" + "Lb6CppmpnltsYIuY2yavi6Mi2/rzAWm1zUfF0limVLqkZyA+mDYevKBS37aGC+L1lX5e7uyU1Cv565uiua9k5LFqbqqrnu2I3m+jJ11ZoLeRtfmdB0Uw/ZDsP0VTxdn7a1VERfmq7Xl" + "Xyn5D2QWLoq8bZlPoBJumphJjVBw/Ll6CoTZGsTDs4NrGqKbqBth8ZHJUi6cn168QmleSm6GmB7Kxm+6obXlf7PoDHosCwM3QpiS2legi6ocSl3L0G3BdneDDgwQdENfeY+SfDJBkF37Z" + "B+GvwzA6/rMaafAn8143VhPZWdjMWG1oHXhdnemgPoAvLlB/iZyRTfVeF06wPoQhJmlm4bdcOAZRlRN5gcPc5SoPEQR1fDdbOo6wn+uYvXxY0QCLom6gYROKH+Aj5nvphuFXWDiLpRdxl" + "/19LFT95k6CHCrnW7pCDqBn1i1PUFvii2c11oZOJ6usWeH0RRNzC4Zs+6FTi2nevCVwCjbugnXklX5fkfTldL8PEilUB1kfNyN1u9MME2sATr4lbuB7AjfLAuvsRm1A0g6gYRdcPAjvBlje" + "2Z8brI8OC68AcRdlCkwLohx2mcZMjw9q+LzarQurjtnwPYAydX08WecECO/u6Ad0GBdYG7jO5gB4Ap+PwKcA9ZT43dn4/W9TyiPAn4OAJaF7h3uwe8StSCddFdM3jqFa2LvnnB5zzhuuBBAj" + "Y4gi50cg694gnXhTYvfMdrjtcFZhrwE9r41gUem8IXWMC3LrBzxh+a0gRd1N1LOK7M0IUUGuggvEmHoStA2/MJh7MpupiDU4TzjhxdzLAoO4ouZvqVURbFMHQlZD6SUeWHoguZsSLUGegreh" + "A+FZFowPdUWTi6iMoZlIpGGUUXkDbjj/9ZOLqAQS/+GIKl5BQOCn/ycqpzkXSDm5dU7ZWkG7wUyGlcmm7g5Ux56AqirgoaJ7BeokPTDbp9CbVunjFxPrl7+HqnkrSq1Da7JX20f3dV8yJi6v" + "oO81mX8vV0mx3qUsZCPRfTlVRdz2EvdufYGDvNQvvwqHtmXd+a1ITinwNcXc+lT6JuzdT1XDyBn/x7wtX1HCQQdW9MXc8xArGrirowfLeUEbMqqq6f7TF1lfRdOuGNiGi6SpT+WxY06xUfNN" + "2wBfyE9I4tlm7w5hvOPDNJN3yNiLMipji6gE3chKhouoCtN5x3QlF0EZt8OW/8ougitqJQlk1aii7iFC9l0MvRReyao7xNjKML2Z/PuHlzhi5mFxljiZeiC9rPTEisNEMX9KYAwo5Xhi7qaA" + "3hamboYm7dG+NVrXhdaYDv5zFaQZsYrCtbbAGnjkQDX2+J1FXCwOsqWOpKoIQNTFdqYBWydxqNqUoG0pVpCS+H8kaJaGKErlIaXj7CRRE+gRWuKwW9YZ80oVOUgbpdT0zpnSZJTIiwCtJVelv" + "Xntr4P5j6BWfPb5Wcx84C4cq3hb11lco2u2Mdwp6XdJ/Ne3wb8DWdfiRenZaXrhLwOj4e+GQeHroy3YOspS7TlU28Wle2m2QUS0mqdcbrdNW+ZHsSsyK7tBfm0q/dWcv+Z3mytVx3t7KWulq" + "Ue6ilunu8jF8pFwgv1FXp3mUt35OtRbr7eM4u4Gs6vUBXgeuHc5kfE/cbvWZtkROLm1DMtLCy80tzsu2PRj0hTI8fvrQuvsjlJkyutszq+m423wHaLTyniy/XuiGZ84LuT+m5ZfNfRxyGs7L" + "XZOvia7VujatUwVTrIt+Q/Csc7Tuhe+BOakT10b4TuoiiJjvgU9emTO42PwEfBa+cuodKkuf42DXr1D3JpXz73Hnn0j10evHKe+nufgfUm+7B84sX9FfdEzXux2DBpWuKokkCqN/5pa/8pmvn" + "L+RGKCddCGmatiPyPB/+ekO/M/q/7uvbt22kTt3zEnXPzCV13T3Gel4/6NduDu66xRvlPNkM1RjjxUdv+4WhGx6TftD19Q/dfzpwcHO+rE3fAAAAAElFTkSuQmCC";
+const UserProfile = _ref => {
+  var _Digit$UserService$ge, _errors$userName, _errors$userName2, _errors$mobileNumber, _errors$currentPasswo, _errors$newPassword, _errors$confirmPasswo;
+  let {
+    stateCode,
+    userType,
+    cityDetails
+  } = _ref;
+  const history = reactRouterDom.useHistory();
+  const {
+    t
+  } = reactI18next.useTranslation();
+  const url = window.location.href;
+  const stateId = Digit.ULBService.getStateId();
+  const tenant = Digit.ULBService.getCurrentTenantId();
+  const userInfo = ((_Digit$UserService$ge = Digit.UserService.getUser()) === null || _Digit$UserService$ge === void 0 ? void 0 : _Digit$UserService$ge.info) || {};
+  const [userDetails, setUserDetails] = React.useState(null);
+  const [name, setName] = React.useState(userInfo !== null && userInfo !== void 0 && userInfo.name ? userInfo.name : "");
+  const [email, setEmail] = React.useState(userInfo !== null && userInfo !== void 0 && userInfo.emailId ? userInfo.emailId : "");
+  const [gender, setGender] = React.useState(userDetails === null || userDetails === void 0 ? void 0 : userDetails.gender);
+  const [city, setCity] = React.useState(userInfo !== null && userInfo !== void 0 && userInfo.permanentCity ? userInfo.permanentCity : cityDetails.name);
+  const [mobileNumber, setMobileNo] = React.useState(userInfo !== null && userInfo !== void 0 && userInfo.mobileNumber ? userInfo.mobileNumber : "");
+  const [profilePic, setProfilePic] = React.useState(null);
+  const [profileImg, setProfileImg] = React.useState("");
+  const [openUploadSlide, setOpenUploadSide] = React.useState(false);
+  const [changepassword, setChangepassword] = React.useState(false);
+  const [currentPassword, setCurrentPassword] = React.useState("");
+  const [newPassword, setNewPassword] = React.useState("");
+  const [confirmPassword, setConfirmPassword] = React.useState("");
+  const [toast, setToast] = React.useState(null);
+  const [loading, setLoading] = React.useState(false);
+  const [windowWidth, setWindowWidth] = React__default.useState(window.innerWidth);
+  const [errors, setErrors] = React__default.useState({});
+  const isMobile = window.Digit.Utils.browser.isMobile();
+  const getUserInfo = function () {
+    try {
+      const uuid = userInfo === null || userInfo === void 0 ? void 0 : userInfo.uuid;
+      const _temp = function () {
+        if (uuid) {
+          return Promise.resolve(Digit.UserService.userSearch(tenant, {
+            uuid: [uuid]
+          }, {})).then(function (usersResponse) {
+            usersResponse && usersResponse.user && usersResponse.user.length && setUserDetails(usersResponse.user[0]);
+          });
+        }
+      }();
+      return Promise.resolve(_temp && _temp.then ? _temp.then(function () {}) : void 0);
+    } catch (e) {
+      return Promise.reject(e);
+    }
+  };
+  React__default.useEffect(() => {
+    window.addEventListener("resize", () => setWindowWidth(window.innerWidth));
+    return () => {
+      window.removeEventListener("resize", () => setWindowWidth(window.innerWidth));
+    };
+  });
+  React.useEffect(() => {
+    var _userDetails$photo;
+    setLoading(true);
+    getUserInfo();
+    setGender({
+      i18nKey: undefined,
+      code: userDetails === null || userDetails === void 0 ? void 0 : userDetails.gender,
+      value: userDetails === null || userDetails === void 0 ? void 0 : userDetails.gender
+    });
+    const thumbs = userDetails === null || userDetails === void 0 ? void 0 : (_userDetails$photo = userDetails.photo) === null || _userDetails$photo === void 0 ? void 0 : _userDetails$photo.split(",");
+    setProfileImg(thumbs === null || thumbs === void 0 ? void 0 : thumbs.at(0));
+    setLoading(false);
+  }, [userDetails !== null]);
+  let validation = {};
+  const editScreen = false;
+  const onClickAddPic = () => setOpenUploadSide(!openUploadSlide);
+  const TogleforPassword = () => setChangepassword(!changepassword);
+  const setGenderName = value => setGender(value);
+  const closeFileUploadDrawer = () => setOpenUploadSide(false);
+  const setUserName = value => {
+    setName(value);
+    if (!new RegExp(/^[a-zA-Z ]+$/i).test(value) || value.length === 0 || value.length > 50) {
+      setErrors({
+        ...errors,
+        userName: {
+          type: "pattern",
+          message: t("CORE_COMMON_PROFILE_NAME_INVALID")
+        }
+      });
+    } else {
+      setErrors({
+        ...errors,
+        userName: null
+      });
+    }
+  };
+  const setUserMobileNumber = value => {
+    setMobileNo(value);
+    if (userType === "employee" && !new RegExp(/^[6-9]{1}[0-9]{9}$/).test(value)) {
+      setErrors({
+        ...errors,
+        mobileNumber: {
+          type: 'pattern',
+          message: t("CORE_COMMON_PROFILE_MOBILE_NUMBER_INVALID")
+        }
+      });
+    } else {
+      setErrors({
+        ...errors,
+        mobileNumber: null
+      });
+    }
+  };
+  const setUserCurrentPassword = value => {
+    setCurrentPassword(value);
+    if (!new RegExp(/^([a-zA-Z0-9@#$%]{8,15})$/i).test(value)) {
+      setErrors({
+        ...errors,
+        currentPassword: {
+          type: "pattern",
+          message: t("CORE_COMMON_PROFILE_PASSWORD_INVALID")
+        }
+      });
+    } else {
+      setErrors({
+        ...errors,
+        currentPassword: null
+      });
+    }
+  };
+  const setUserNewPassword = value => {
+    setNewPassword(value);
+    if (!new RegExp(/^([a-zA-Z0-9@#$%]{8,15})$/i).test(value)) {
+      setErrors({
+        ...errors,
+        newPassword: {
+          type: "pattern",
+          message: t("CORE_COMMON_PROFILE_PASSWORD_INVALID")
+        }
+      });
+    } else {
+      setErrors({
+        ...errors,
+        newPassword: null
+      });
+    }
+  };
+  const setUserConfirmPassword = value => {
+    setConfirmPassword(value);
+    if (!new RegExp(/^([a-zA-Z0-9@#$%]{8,15})$/i).test(value)) {
+      setErrors({
+        ...errors,
+        confirmPassword: {
+          type: "pattern",
+          message: t("CORE_COMMON_PROFILE_PASSWORD_INVALID")
+        }
+      });
+    } else {
+      setErrors({
+        ...errors,
+        confirmPassword: null
+      });
+    }
+  };
+  const removeProfilePic = () => {
+    setProfilePic(null);
+    setProfileImg(null);
+  };
+  const showToast = function (type, message, duration) {
+    if (duration === void 0) {
+      duration = 5000;
+    }
+    setToast({
+      key: type,
+      action: message
+    });
+    setTimeout(() => {
+      setToast(null);
+    }, duration);
+  };
+  const updateProfile = function () {
+    try {
+      let _exit = false;
+      function _temp3(_result) {
+        if (_exit) return _result;
+        setLoading(false);
+      }
+      setLoading(true);
+      const _temp2 = _catch(function () {
+        const requestData = {
+          ...userInfo,
+          name,
+          gender: gender === null || gender === void 0 ? void 0 : gender.value,
+          emailId: email,
+          photo: profilePic
+        };
+        if (!new RegExp(/^([a-zA-Z ])*$/).test(name) || name === "" || name.length > 50 || name.length < 1) {
+          throw JSON.stringify({
+            type: "error",
+            message: t("CORE_COMMON_PROFILE_NAME_INVALID")
+          });
+        }
+        if (userType === "employee" && !new RegExp(/^[6-9]{1}[0-9]{9}$/).test(mobileNumber)) {
+          throw JSON.stringify({
+            type: "error",
+            message: t("CORE_COMMON_PROFILE_MOBILE_NUMBER_INVALID")
+          });
+        }
+        if (email.length && !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+          throw JSON.stringify({
+            type: "error",
+            message: t("CORE_COMMON_PROFILE_EMAIL_INVALID")
+          });
+        }
+        if (currentPassword.length || newPassword.length || confirmPassword.length) {
+          if (newPassword !== confirmPassword) {
+            throw JSON.stringify({
+              type: "error",
+              message: t("CORE_COMMON_PROFILE_PASSWORD_MISMATCH")
+            });
+          }
+          if (!(currentPassword.length && newPassword.length && confirmPassword.length)) {
+            throw JSON.stringify({
+              type: "error",
+              message: t("CORE_COMMON_PROFILE_PASSWORD_INVALID")
+            });
+          }
+          if (!new RegExp(/^([a-zA-Z0-9@#$%]{8,15})$/i).test(newPassword) && !new RegExp(/^([a-zA-Z0-9@#$%]{8,15})$/i).test(confirmPassword)) {
+            throw JSON.stringify({
+              type: "error",
+              message: t("CORE_COMMON_PROFILE_PASSWORD_INVALID")
+            });
+          }
+        }
+        requestData["locale"] = Digit.StoreData.getCurrentLanguage();
+        return Promise.resolve(Digit.UserService.updateUser(requestData, stateCode)).then(function (_ref2) {
+          let {
+            responseInfo,
+            user
+          } = _ref2;
+          if (responseInfo && responseInfo.status === "200") {
+            const user = Digit.UserService.getUser();
+            if (user) {
+              Digit.UserService.setUser({
+                ...user,
+                info: {
+                  ...user.info,
+                  name,
+                  mobileNumber,
+                  emailId: email,
+                  permanentCity: city
+                }
+              });
+            }
+          }
+          return function () {
+            if (currentPassword.length && newPassword.length && confirmPassword.length) {
+              const requestData = {
+                existingPassword: currentPassword,
+                newPassword: newPassword,
+                tenantId: tenant,
+                type: "EMPLOYEE",
+                username: userInfo === null || userInfo === void 0 ? void 0 : userInfo.userName,
+                confirmPassword: confirmPassword
+              };
+              return function () {
+                if (newPassword === confirmPassword) {
+                  return _catch(function () {
+                    return Promise.resolve(Digit.UserService.changePassword(requestData, tenant)).then(function (res) {
+                      const {
+                        responseInfo: changePasswordResponseInfo
+                      } = res;
+                      if (changePasswordResponseInfo !== null && changePasswordResponseInfo !== void 0 && changePasswordResponseInfo.status && changePasswordResponseInfo.status === "200") {
+                        showToast("success", t("CORE_COMMON_PROFILE_UPDATE_SUCCESS_WITH_PASSWORD"), 5000);
+                      } else {
+                        throw "";
+                      }
+                    });
+                  }, function (error) {
+                    var _error$Errors, _error$Errors$at;
+                    throw JSON.stringify({
+                      type: "error",
+                      message: (_error$Errors = error.Errors) !== null && _error$Errors !== void 0 && (_error$Errors$at = _error$Errors.at(0)) !== null && _error$Errors$at !== void 0 && _error$Errors$at.description ? error.Errors.at(0).description : t("CORE_COMMON_PROFILE_UPDATE_ERROR_WITH_PASSWORD")
+                    });
+                  });
+                } else {
+                  throw JSON.stringify({
+                    type: "error",
+                    message: t("CORE_COMMON_PROFILE_ERROR_PASSWORD_NOT_MATCH")
+                  });
+                }
+              }();
+            } else if (responseInfo !== null && responseInfo !== void 0 && responseInfo.status && responseInfo.status === "200") {
+              showToast("success", t("CORE_COMMON_PROFILE_UPDATE_SUCCESS"), 5000);
+            }
+          }();
+        });
+      }, function (error) {
+        const errorObj = JSON.parse(error);
+        showToast(errorObj.type, t(errorObj.message), 5000);
+      });
+      return Promise.resolve(_temp2 && _temp2.then ? _temp2.then(_temp3) : _temp3(_temp2));
+    } catch (e) {
+      return Promise.reject(e);
+    }
+  };
+  let menu = [];
+  const {
+    data: Menu
+  } = Digit.Hooks.pt.useGenderMDMS(stateId, "common-masters", "GenderType");
+  Menu && Menu.map(genderDetails => {
+    menu.push({
+      i18nKey: "PT_COMMON_GENDER_" + genderDetails.code,
+      code: "" + genderDetails.code,
+      value: "" + genderDetails.code
+    });
+  });
+  const setFileStoreId = function (fileStoreId) {
+    try {
+      function _temp4(thumbnails) {
+        setProfileImg(thumbnails === null || thumbnails === void 0 ? void 0 : thumbnails.thumbs[0]);
+        closeFileUploadDrawer();
+      }
+      setProfilePic(fileStoreId);
+      return Promise.resolve(fileStoreId ? Promise.resolve(getThumbnails([fileStoreId], stateId)).then(_temp4) : _temp4(null));
+    } catch (e) {
+      return Promise.reject(e);
+    }
+  };
+  const getThumbnails = function (ids, tenantId) {
+    try {
+      return Promise.resolve(Digit.UploadServices.Filefetch(ids, tenantId)).then(function (res) {
+        if (res.data.fileStoreIds && res.data.fileStoreIds.length !== 0) {
+          return {
+            thumbs: res.data.fileStoreIds.map(o => o.url.split(",")[3]),
+            images: res.data.fileStoreIds.map(o => Digit.Utils.getFileUrl(o.url))
+          };
+        } else {
+          return null;
+        }
+      });
+    } catch (e) {
+      return Promise.reject(e);
+    }
+  };
+  if (loading) return /*#__PURE__*/React__default.createElement(digitUiReactComponents.Loader, null);
+  return /*#__PURE__*/React__default.createElement("div", {
+    className: "user-profile"
+  }, /*#__PURE__*/React__default.createElement("section", {
+    style: {
+      margin: userType === "citizen" ? "8px" : "24px",
+      position: "relative"
+    }
+  }, userType === "citizen" ? /*#__PURE__*/React__default.createElement(digitUiReactComponents.BackButton, null) : /*#__PURE__*/React__default.createElement(digitUiReactComponents.BreadCrumb, {
+    crumbs: [{
+      path: "/digit-ui/employee",
+      content: t("ES_COMMON_HOME"),
+      show: true
+    }, {
+      path: "/digit-ui/employee/user/profile",
+      content: t("ES_COMMON_PAGE_1"),
+      show: url.includes("/user/profile")
+    }]
+  })), /*#__PURE__*/React__default.createElement("div", {
+    style: {
+      display: "flex",
+      flex: 1,
+      flexDirection: windowWidth < 768 || userType === "citizen" ? "column" : "row",
+      margin: userType === "citizen" ? "8px" : "16px",
+      gap: userType === "citizen" ? "" : "0 24px",
+      boxShadow: userType === "citizen" ? "1px 1px 4px 0px rgba(0,0,0,0.2)" : "",
+      background: userType === "citizen" ? "white" : "",
+      borderRadius: userType === "citizen" ? "4px" : "",
+      maxWidth: userType === "citizen" ? "960px" : ""
+    }
+  }, /*#__PURE__*/React__default.createElement("section", {
+    style: {
+      position: "relative",
+      display: "flex",
+      flex: userType === "citizen" ? 1 : 2.5,
+      justifyContent: "center",
+      alignItems: "center",
+      maxWidth: "100%",
+      height: "320px",
+      borderRadius: "4px",
+      boxShadow: userType === "citizen" ? "" : "1px 1px 4px 0px rgba(0,0,0,0.2)",
+      border: (userType === "citizen" ? "8px" : "24px") + " solid #fff",
+      background: "#EEEEEE",
+      padding: userType === "citizen" ? "8px" : "16px"
+    }
+  }, /*#__PURE__*/React__default.createElement("div", {
+    style: {
+      position: "relative",
+      height: userType === "citizen" ? "114px" : "150px",
+      width: userType === "citizen" ? "114px" : "150px",
+      margin: "16px"
+    }
+  }, /*#__PURE__*/React__default.createElement("img", {
+    style: {
+      margin: "auto",
+      borderRadius: "300px",
+      justifyContent: "center",
+      height: "100%",
+      width: "100%"
+    },
+    src: !profileImg || profileImg === "" ? defaultImage$2 : profileImg
+  }), /*#__PURE__*/React__default.createElement("button", {
+    style: {
+      position: "absolute",
+      left: "50%",
+      bottom: "-24px",
+      transform: "translateX(-50%)"
+    },
+    onClick: onClickAddPic
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.CameraIcon, null)))), /*#__PURE__*/React__default.createElement("section", {
+    style: {
+      display: "flex",
+      flexDirection: "column",
+      flex: userType === "citizen" ? 1 : 7.5,
+      width: "100%",
+      borderRadius: "4px",
+      height: "fit-content",
+      boxShadow: userType === "citizen" ? "" : "1px 1px 4px 0px rgba(0,0,0,0.2)",
+      background: "white",
+      padding: userType === "citizen" ? "8px" : "24px",
+      paddingBottom: "20px"
+    }
+  }, userType === "citizen" ? /*#__PURE__*/React__default.createElement(React__default.Fragment, null, /*#__PURE__*/React__default.createElement(digitUiReactComponents.LabelFieldPair, null, /*#__PURE__*/React__default.createElement(digitUiReactComponents.CardLabel, {
+    style:  {}
+  }, "" + t("CORE_COMMON_PROFILE_NAME"), "*"), /*#__PURE__*/React__default.createElement("div", {
+    style: {
+      width: "100%",
+      maxWidth: "960px"
+    }
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.TextInput, _extends({
+    t: t,
+    style: {
+      width: "100%"
+    },
+    type: "text",
+    isMandatory: false,
+    name: "name",
+    value: name,
+    onChange: e => setUserName(e.target.value)
+  }, validation = {
+    isRequired: true,
+    pattern: "^[a-zA-Z-.`' ]*$",
+    type: "tel",
+    title: t("CORE_COMMON_PROFILE_NAME_ERROR_MESSAGE")
+  }, {
+    disable: editScreen
+  })), (errors === null || errors === void 0 ? void 0 : errors.userName) && /*#__PURE__*/React__default.createElement(digitUiReactComponents.CardLabelError, null, " ", errors === null || errors === void 0 ? void 0 : (_errors$userName = errors.userName) === null || _errors$userName === void 0 ? void 0 : _errors$userName.message, " "))), /*#__PURE__*/React__default.createElement(digitUiReactComponents.LabelFieldPair, null, /*#__PURE__*/React__default.createElement(digitUiReactComponents.CardLabel, {
+    style:  {}
+  }, "" + t("CORE_COMMON_PROFILE_GENDER")), /*#__PURE__*/React__default.createElement(digitUiReactComponents.Dropdown, {
+    style: {
+      width: "100%"
+    },
+    className: "form-field",
+    selected: (gender === null || gender === void 0 ? void 0 : gender.length) === 1 ? gender[0] : gender,
+    disable: (gender === null || gender === void 0 ? void 0 : gender.length) === 1 || editScreen,
+    option: menu,
+    select: setGenderName,
+    value: gender,
+    optionKey: "code",
+    t: t,
+    name: "gender"
+  })), /*#__PURE__*/React__default.createElement("button", {
+    onClick: updateProfile,
+    style: {
+      marginTop: "24px",
+      backgroundColor: "#a82227",
+      width: "100%",
+      height: "40px",
+      color: "white",
+      maxWidth: isMobile ? "100%" : "240px",
+      borderBottom: "1px solid black"
+    }
+  }, t("CORE_COMMON_SAVE"))) : /*#__PURE__*/React__default.createElement(React__default.Fragment, null, /*#__PURE__*/React__default.createElement(digitUiReactComponents.LabelFieldPair, {
+    style: {
+      display: "flex"
+    }
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.CardLabel, {
+    className: "profile-label-margin",
+    style:  {
+      width: "300px"
+    }
+  }, "" + t("CORE_COMMON_PROFILE_NAME"), "*"), /*#__PURE__*/React__default.createElement("div", {
+    style: {
+      width: "100%"
+    }
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.TextInput, _extends({
+    t: t,
+    type: "text",
+    isMandatory: false,
+    name: "name",
+    value: name,
+    onChange: e => setUserName(e.target.value),
+    placeholder: "Enter Your Name"
+  }, validation = {
+    isRequired: true,
+    pattern: "^[a-zA-Z-.`' ]*$",
+    type: "text",
+    title: t("CORE_COMMON_PROFILE_NAME_ERROR_MESSAGE")
+  }, {
+    disable: editScreen
+  })), (errors === null || errors === void 0 ? void 0 : errors.userName) && /*#__PURE__*/React__default.createElement(digitUiReactComponents.CardLabelError, {
+    style: {
+      margin: 0,
+      padding: 0
+    }
+  }, " ", errors === null || errors === void 0 ? void 0 : (_errors$userName2 = errors.userName) === null || _errors$userName2 === void 0 ? void 0 : _errors$userName2.message, " "))), /*#__PURE__*/React__default.createElement(digitUiReactComponents.LabelFieldPair, {
+    style: {
+      display: "flex"
+    }
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.CardLabel, {
+    className: "profile-label-margin",
+    style:  {
+      width: "300px"
+    }
+  }, "" + t("CORE_COMMON_PROFILE_GENDER")), /*#__PURE__*/React__default.createElement(digitUiReactComponents.Dropdown, {
+    style: {
+      width: "100%"
+    },
+    selected: (gender === null || gender === void 0 ? void 0 : gender.length) === 1 ? gender[0] : gender,
+    disable: (gender === null || gender === void 0 ? void 0 : gender.length) === 1 || editScreen,
+    option: menu,
+    select: setGenderName,
+    value: gender,
+    optionKey: "code",
+    t: t,
+    name: "gender"
+  })), /*#__PURE__*/React__default.createElement(digitUiReactComponents.LabelFieldPair, {
+    style: {
+      display: "flex"
+    }
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.CardLabel, {
+    className: "profile-label-margin",
+    style:  {
+      width: "300px"
+    }
+  }, "" + t("CORE_COMMON_PROFILE_CITY")), /*#__PURE__*/React__default.createElement("div", {
+    style: {
+      width: "100%"
+    }
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.TextInput, _extends({
+    t: t,
+    type: "text",
+    isMandatory: false,
+    name: "city",
+    value: t(city),
+    onChange: e => setCity(e.target.value),
+    placeholder: "Enter Your City Name"
+  }, validation = {
+    isRequired: true,
+    type: "text",
+    title: t("CORE_COMMON_PROFILE_CITY_ERROR_MESSAGE")
+  }, {
+    disable: true
+  })), /*#__PURE__*/React__default.createElement(digitUiReactComponents.CardLabelError, null))), /*#__PURE__*/React__default.createElement(digitUiReactComponents.LabelFieldPair, {
+    style: {
+      display: "flex"
+    }
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.CardLabel, {
+    className: "profile-label-margin",
+    style: {
+      width: "300px"
+    }
+  }, t("CORE_COMMON_PROFILE_MOBILE_NUMBER") + "*"), /*#__PURE__*/React__default.createElement("div", {
+    style: {
+      width: "100%"
+    }
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.MobileNumber, {
+    value: mobileNumber,
+    style: {
+      width: "100%"
+    },
+    name: "mobileNumber",
+    placeholder: "Enter a valid Mobile No.",
+    onChange: value => setUserMobileNumber(value),
+    disable: true,
+    required: true,
+    pattern: "[6-9]{1}[0-9]{9}",
+    type: "tel",
+    title: t("CORE_COMMON_PROFILE_MOBILE_NUMBER_INVALID")
+  }), (errors === null || errors === void 0 ? void 0 : errors.mobileNumber) && /*#__PURE__*/React__default.createElement(digitUiReactComponents.CardLabelError, {
+    style: {
+      margin: 0,
+      padding: 0
+    }
+  }, " ", errors === null || errors === void 0 ? void 0 : (_errors$mobileNumber = errors.mobileNumber) === null || _errors$mobileNumber === void 0 ? void 0 : _errors$mobileNumber.message, " "))), /*#__PURE__*/React__default.createElement(digitUiReactComponents.LabelFieldPair, null, /*#__PURE__*/React__default.createElement("div", null, /*#__PURE__*/React__default.createElement("a", {
+    style: {
+      color: "#a82227",
+      cursor: "default",
+      marginBottom: "5",
+      cursor: "pointer",
+      position: "relative"
+    },
+    onClick: TogleforPassword
+  }, t("CORE_COMMON_CHANGE_PASSWORD")), changepassword ? /*#__PURE__*/React__default.createElement("div", {
+    style: {
+      marginTop: "10px"
+    }
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.LabelFieldPair, {
+    style: {
+      display: "flex"
+    }
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.CardLabel, {
+    className: "profile-label-margin",
+    style:  {
+      width: "300px"
+    }
+  }, "" + t("CORE_COMMON_PROFILE_CURRENT_PASSWORD")), /*#__PURE__*/React__default.createElement("div", {
+    style: {
+      width: "100%"
+    }
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.TextInput, {
+    t: t,
+    type: "password",
+    isMandatory: false,
+    name: "name",
+    pattern: "^([a-zA-Z0-9@#$%])+$",
+    onChange: e => setUserCurrentPassword(e.target.value),
+    disable: editScreen
+  }), (errors === null || errors === void 0 ? void 0 : errors.currentPassword) && /*#__PURE__*/React__default.createElement(digitUiReactComponents.CardLabelError, null, errors === null || errors === void 0 ? void 0 : (_errors$currentPasswo = errors.currentPassword) === null || _errors$currentPasswo === void 0 ? void 0 : _errors$currentPasswo.message))), /*#__PURE__*/React__default.createElement(digitUiReactComponents.LabelFieldPair, {
+    style: {
+      display: "flex"
+    }
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.CardLabel, {
+    className: "profile-label-margin",
+    style:  {
+      width: "300px"
+    }
+  }, "" + t("CORE_COMMON_PROFILE_NEW_PASSWORD")), /*#__PURE__*/React__default.createElement("div", {
+    style: {
+      width: "100%"
+    }
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.TextInput, {
+    t: t,
+    type: "password",
+    isMandatory: false,
+    name: "name",
+    pattern: "^([a-zA-Z0-9@#$%])+$",
+    onChange: e => setUserNewPassword(e.target.value),
+    disable: editScreen
+  }), (errors === null || errors === void 0 ? void 0 : errors.newPassword) && /*#__PURE__*/React__default.createElement(digitUiReactComponents.CardLabelError, null, errors === null || errors === void 0 ? void 0 : (_errors$newPassword = errors.newPassword) === null || _errors$newPassword === void 0 ? void 0 : _errors$newPassword.message))), /*#__PURE__*/React__default.createElement(digitUiReactComponents.LabelFieldPair, {
+    style: {
+      display: "flex"
+    }
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.CardLabel, {
+    className: "profile-label-margin",
+    style:  {
+      width: "300px"
+    }
+  }, "" + t("CORE_COMMON_PROFILE_CONFIRM_PASSWORD")), /*#__PURE__*/React__default.createElement("div", {
+    style: {
+      width: "100%"
+    }
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.TextInput, {
+    t: t,
+    type: "password",
+    isMandatory: false,
+    name: "name",
+    pattern: "^([a-zA-Z0-9@#$%])+$",
+    onChange: e => setUserConfirmPassword(e.target.value),
+    disable: editScreen
+  }), (errors === null || errors === void 0 ? void 0 : errors.confirmPassword) && /*#__PURE__*/React__default.createElement(digitUiReactComponents.CardLabelError, null, errors === null || errors === void 0 ? void 0 : (_errors$confirmPasswo = errors.confirmPassword) === null || _errors$confirmPasswo === void 0 ? void 0 : _errors$confirmPasswo.message)))) : ""))))), userType === "employee" ? /*#__PURE__*/React__default.createElement("div", {
+    style: {
+      height: "88px",
+      backgroundColor: "#FFFFFF",
+      display: "flex",
+      justifyContent: "flex-end",
+      marginTop: "64px",
+      alignItems: "center"
+    }
+  }, /*#__PURE__*/React__default.createElement("button", {
+    onClick: updateProfile,
+    style: {
+      marginTop: "24px",
+      backgroundColor: "#a82227",
+      width: windowWidth < 768 ? "100%" : "248px",
+      height: "40px",
+      float: "right",
+      margin: windowWidth < 768 ? "0 16px" : "",
+      marginRight: windowWidth < 768 ? "16px" : "31px",
+      color: "white",
+      borderBottom: "1px solid black",
+      cursor: "pointer",
+      "zIndex": "999"
+    }
+  }, t("CORE_COMMON_SAVE"))) : "", toast && /*#__PURE__*/React__default.createElement(digitUiReactComponents.Toast, {
+    error: toast.key === "error",
+    label: t(toast.key === "success" ? "CORE_COMMON_PROFILE_UPDATE_SUCCESS" : toast.action),
+    onClose: () => setToast(null),
+    style: {
+      maxWidth: "670px"
+    }
+  }), openUploadSlide == true ? /*#__PURE__*/React__default.createElement(UploadDrawer, {
+    setProfilePic: setFileStoreId,
+    closeDrawer: closeFileUploadDrawer,
+    userType: userType,
+    removeProfilePic: removeProfilePic,
+    showToast: showToast
+  }) : "");
+};
+
+const userScreensExempted = ["user/profile", "user/error"];
+const EmployeeApp = _ref => {
+  var _location$pathname;
+  let {
+    stateInfo,
+    userDetails,
+    CITIZEN,
+    cityDetails,
+    mobileView,
+    handleUserDropdownSelection,
+    logoUrl,
+    DSO,
+    stateCode,
+    modules,
+    appTenants,
+    sourceUrl,
+    pathname,
+    initData
+  } = _ref;
+  const history = reactRouterDom.useHistory();
+  const {
+    t
+  } = reactI18next.useTranslation();
+  const {
+    path
+  } = reactRouterDom.useRouteMatch();
+  const location = reactRouterDom.useLocation();
+  const showLanguageChange = location === null || location === void 0 ? void 0 : (_location$pathname = location.pathname) === null || _location$pathname === void 0 ? void 0 : _location$pathname.includes("language-selection");
+  const isUserProfile = userScreensExempted.some(url => {
+    var _location$pathname2;
+    return location === null || location === void 0 ? void 0 : (_location$pathname2 = location.pathname) === null || _location$pathname2 === void 0 ? void 0 : _location$pathname2.includes(url);
+  });
+  React.useEffect(() => {
+    console.log("isMobile", window.Digit.Utils.browser.isMobile(), window.innerWidth);
+    Digit.UserService.setType("employee");
+  }, []);
+  sourceUrl = "https://s3.ap-south-1.amazonaws.com/egov-qa-assets";
+  return /*#__PURE__*/React__default.createElement("div", {
+    className: "employee"
+  }, /*#__PURE__*/React__default.createElement(reactRouterDom.Switch, null, /*#__PURE__*/React__default.createElement(reactRouterDom.Route, {
+    path: path + "/user"
+  }, isUserProfile && /*#__PURE__*/React__default.createElement(TopBarSideBar, {
+    t: t,
+    stateInfo: stateInfo,
+    userDetails: userDetails,
+    CITIZEN: CITIZEN,
+    cityDetails: cityDetails,
+    mobileView: mobileView,
+    handleUserDropdownSelection: handleUserDropdownSelection,
+    logoUrl: logoUrl,
+    showSidebar: isUserProfile ? true : false,
+    showLanguageChange: !showLanguageChange
+  }), /*#__PURE__*/React__default.createElement("div", {
+    className: isUserProfile ? "grounded-container" : "loginContainer",
+    style: isUserProfile ? {
+      padding: 0,
+      paddingTop: "80px",
+      marginLeft: mobileView ? "" : "64px"
+    } : {
+      "--banner-url": "url(" + (stateInfo === null || stateInfo === void 0 ? void 0 : stateInfo.bannerUrl) + ")",
+      padding: "0px"
+    }
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "loginnn"
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "login-logo-wrapper"
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "logoNiua"
+  })), /*#__PURE__*/React__default.createElement("picture", null, /*#__PURE__*/React__default.createElement("source", {
+    id: "backgroung-login",
+    media: "(min-width: 950px)",
+    srcset: "https://nugp-assets.s3.ap-south-1.amazonaws.com/nugp+asset/Banner+UPYOG+(1920x1080).jpg",
+    style: {
+      "position": "absolute",
+      "height": "100%",
+      "width": "100%"
+    }
+  }), /*#__PURE__*/React__default.createElement("source", {
+    media: "(min-width: 250px)",
+    srcset: "https://nugp-assets.s3.ap-south-1.amazonaws.com/nugp+asset/Banner+UPYOG+%28500x900%29.jpg"
+  }), /*#__PURE__*/React__default.createElement("img", {
+    src: "https://nugp-assets.s3.ap-south-1.amazonaws.com/nugp+asset/Banner+UPYOG+(1920x1080).jpg",
+    alt: "imagealttext",
+    style: {
+      "position": "absolute",
+      "height": "100%",
+      "width": "100%",
+      "zIndex": "1",
+      "display": window.location.href.includes("user/profile") ? "none" : ""
+    }
+  })), /*#__PURE__*/React__default.createElement(reactRouterDom.Switch, null, /*#__PURE__*/React__default.createElement(reactRouterDom.Route, {
+    path: path + "/user/login"
+  }, /*#__PURE__*/React__default.createElement(EmployeeLogin, null)), /*#__PURE__*/React__default.createElement(reactRouterDom.Route, {
+    path: path + "/user/forgot-password"
+  }, /*#__PURE__*/React__default.createElement(EmployeeForgotPassword, null)), /*#__PURE__*/React__default.createElement(reactRouterDom.Route, {
+    path: path + "/user/change-password"
+  }, /*#__PURE__*/React__default.createElement(EmployeeChangePassword, null)), /*#__PURE__*/React__default.createElement(digitUiReactComponents.PrivateRoute, {
+    path: path + "/user/profile"
+  }, /*#__PURE__*/React__default.createElement(UserProfile, {
+    stateCode: stateCode,
+    userType: "employee",
+    cityDetails: cityDetails
+  })), /*#__PURE__*/React__default.createElement(reactRouterDom.Route, {
+    path: path + "/user/error"
+  }, /*#__PURE__*/React__default.createElement(ErrorComponent, {
+    initData: initData,
+    goToHome: () => {
+      history.push("/digit-ui/employee");
+    }
+  })), /*#__PURE__*/React__default.createElement(reactRouterDom.Route, {
+    path: path + "/user/language-selection"
+  }, /*#__PURE__*/React__default.createElement(LanguageSelection, null)), /*#__PURE__*/React__default.createElement(reactRouterDom.Route, null, /*#__PURE__*/React__default.createElement(reactRouterDom.Redirect, {
+    to: path + "/user/language-selection"
+  })))))), /*#__PURE__*/React__default.createElement(reactRouterDom.Route, null, /*#__PURE__*/React__default.createElement(TopBarSideBar, {
+    t: t,
+    stateInfo: stateInfo,
+    userDetails: userDetails,
+    CITIZEN: CITIZEN,
+    cityDetails: cityDetails,
+    mobileView: mobileView,
+    handleUserDropdownSelection: handleUserDropdownSelection,
+    logoUrl: logoUrl,
+    modules: modules
+  }), /*#__PURE__*/React__default.createElement("div", {
+    className: "main " + (DSO ? "m-auto" : "")
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "employee-app-wrapper"
+  }, /*#__PURE__*/React__default.createElement(ErrorBoundary, {
+    initData: initData
+  }, /*#__PURE__*/React__default.createElement(AppModules, {
+    stateCode: stateCode,
+    userType: "employee",
+    modules: modules,
+    appTenants: appTenants
+  }))), /*#__PURE__*/React__default.createElement("div", {
+    style: {
+      width: '100%',
+      position: 'fixed',
+      bottom: 0,
+      backgroundColor: "white",
+      textAlign: "center"
+    }
+  }, /*#__PURE__*/React__default.createElement("div", {
+    style: {
+      display: 'flex',
+      justifyContent: 'center',
+      color: "black"
+    }
+  }, /*#__PURE__*/React__default.createElement("span", {
+    style: {
+      cursor: "pointer",
+      fontSize: window.Digit.Utils.browser.isMobile() ? "12px" : "14px",
+      fontWeight: "400"
+    },
+    onClick: () => {
+      window.open('https://www.digit.org/', '_blank').focus();
+    }
+  }, "Powered by DIGIT"), /*#__PURE__*/React__default.createElement("span", {
+    style: {
+      margin: "0 10px",
+      fontSize: window.Digit.Utils.browser.isMobile() ? "12px" : "14px"
+    }
+  }, "|"), /*#__PURE__*/React__default.createElement("a", {
+    style: {
+      cursor: "pointer",
+      fontSize: window.Digit.Utils.browser.isMobile() ? "12px" : "14px",
+      fontWeight: "400"
+    },
+    href: "#",
+    target: "_blank"
+  }, "UPYOG License"), /*#__PURE__*/React__default.createElement("span", {
+    className: "upyog-copyright-footer",
+    style: {
+      margin: "0 10px",
+      fontSize: window.Digit.Utils.browser.isMobile() ? "12px" : "14px"
+    }
+  }, "|"), /*#__PURE__*/React__default.createElement("span", {
+    className: "upyog-copyright-footer",
+    style: {
+      cursor: "pointer",
+      fontSize: window.Digit.Utils.browser.isMobile() ? "12px" : "14px",
+      fontWeight: "400"
+    },
+    onClick: () => {
+      window.open('https://niua.in/', '_blank').focus();
+    }
+  }, "Copyright \xA9 2022 National Institute of Urban Affairs")), /*#__PURE__*/React__default.createElement("div", {
+    className: "upyog-copyright-footer-web"
+  }, /*#__PURE__*/React__default.createElement("span", {
+    className: "",
+    style: {
+      cursor: "pointer",
+      fontSize: window.Digit.Utils.browser.isMobile() ? "12px" : "14px",
+      fontWeight: "400"
+    },
+    onClick: () => {
+      window.open('https://niua.in/', '_blank').focus();
+    }
+  }, "Copyright \xA9 2022 National Institute of Urban Affairs"))))), /*#__PURE__*/React__default.createElement(reactRouterDom.Route, null, /*#__PURE__*/React__default.createElement(reactRouterDom.Redirect, {
+    to: path + "/user/language-selection"
+  }))));
+};
+
+const Home = () => {
+  var _citizenServicesObj$s, _citizenServicesObj$p, _citizenServicesObj$p2, _citizenServicesObj$p5, _citizenServicesObj$p6, _citizenServicesObj$p9, _citizenServicesObj$p10, _citizenServicesObj$p13, _citizenServicesObj$p14, _infoAndUpdatesObj$si, _infoAndUpdatesObj$pr, _infoAndUpdatesObj$pr2, _infoAndUpdatesObj$pr5, _infoAndUpdatesObj$pr6, _infoAndUpdatesObj$pr9, _infoAndUpdatesObj$pr10, _infoAndUpdatesObj$pr13, _infoAndUpdatesObj$pr14, _whatsNewSectionObj$s2;
+  const {
+    t
+  } = reactI18next.useTranslation();
+  const history = reactRouterDom.useHistory();
+  const tenantId = Digit.ULBService.getCitizenCurrentTenant(true);
+  const {
+    data: {
+      stateInfo,
+      uiHomePage
+    } = {},
+    isLoading
+  } = Digit.Hooks.useStore.getInitData();
+  let isMobile = window.Digit.Utils.browser.isMobile();
+  if (window.Digit.SessionStorage.get("TL_CREATE_TRADE")) window.Digit.SessionStorage.set("TL_CREATE_TRADE", {});
+  const conditionsToDisableNotificationCountTrigger = () => {
+    var _Digit$UserService, _Digit$UserService$ge, _Digit$UserService$ge2, _Digit$UserService2, _Digit$UserService2$g;
+    if (((_Digit$UserService = Digit.UserService) === null || _Digit$UserService === void 0 ? void 0 : (_Digit$UserService$ge = _Digit$UserService.getUser()) === null || _Digit$UserService$ge === void 0 ? void 0 : (_Digit$UserService$ge2 = _Digit$UserService$ge.info) === null || _Digit$UserService$ge2 === void 0 ? void 0 : _Digit$UserService$ge2.type) === "EMPLOYEE") return false;
+    if (!((_Digit$UserService2 = Digit.UserService) !== null && _Digit$UserService2 !== void 0 && (_Digit$UserService2$g = _Digit$UserService2.getUser()) !== null && _Digit$UserService2$g !== void 0 && _Digit$UserService2$g.access_token)) return false;
+    return true;
+  };
+  const {
+    data: EventsData,
+    isLoading: EventsDataLoading
+  } = Digit.Hooks.useEvents({
+    tenantId,
+    variant: "whats-new",
+    config: {
+      enabled: conditionsToDisableNotificationCountTrigger()
+    }
+  });
+  if (!tenantId) {
+    Digit.SessionStorage.get("locale") === null ? history.push("/digit-ui/citizen/select-language") : history.push("/digit-ui/citizen/select-location");
+  }
+  const citizenServicesObj = uiHomePage === null || uiHomePage === void 0 ? void 0 : uiHomePage.citizenServicesCard;
+  const infoAndUpdatesObj = uiHomePage === null || uiHomePage === void 0 ? void 0 : uiHomePage.informationAndUpdatesCard;
+  const whatsNewSectionObj = uiHomePage === null || uiHomePage === void 0 ? void 0 : uiHomePage.whatsNewSection;
+  const citizenDesludgingService = {
+    header: t("CS_COMMON_CITIZEN_DESLUDGING_SERVICE"),
+    options: [{
+      name: t("CS_HOME_APPLY_FOR_DESLUDGING"),
+      link: '/digit-ui/citizen/fsm/new-application',
+      src: 'https://velocity-upyog-assets.s3.ap-south-1.amazonaws.com/Septic+Tank__80x80.png'
+    }, {
+      name: t("CS_HOME_MY_APPLICATIONS"),
+      link: '/digit-ui/citizen/fsm/my-applications',
+      src: 'https://velocity-upyog-assets.s3.ap-south-1.amazonaws.com/Applications_80x80.png'
+    }, {
+      name: t("CS_LINK_LOGIN_DSO"),
+      link: '/digit-ui/citizen/login',
+      src: 'https://velocity-upyog-assets.s3.ap-south-1.amazonaws.com/Login__80x80.png'
+    }]
+  };
+  const allCitizenServicesProps = {
+    header: t(citizenServicesObj === null || citizenServicesObj === void 0 ? void 0 : citizenServicesObj.headerLabel),
+    sideOption: {
+      name: t(citizenServicesObj === null || citizenServicesObj === void 0 ? void 0 : (_citizenServicesObj$s = citizenServicesObj.sideOption) === null || _citizenServicesObj$s === void 0 ? void 0 : _citizenServicesObj$s.name),
+      onClick: () => {
+        var _citizenServicesObj$s2;
+        return history.push(citizenServicesObj === null || citizenServicesObj === void 0 ? void 0 : (_citizenServicesObj$s2 = citizenServicesObj.sideOption) === null || _citizenServicesObj$s2 === void 0 ? void 0 : _citizenServicesObj$s2.navigationUrl);
+      }
+    },
+    options: [{
+      name: t(citizenServicesObj === null || citizenServicesObj === void 0 ? void 0 : (_citizenServicesObj$p = citizenServicesObj.props) === null || _citizenServicesObj$p === void 0 ? void 0 : (_citizenServicesObj$p2 = _citizenServicesObj$p[0]) === null || _citizenServicesObj$p2 === void 0 ? void 0 : _citizenServicesObj$p2.label),
+      Icon: /*#__PURE__*/React__default.createElement(digitUiReactComponents.ComplaintIcon, null),
+      onClick: () => {
+        var _citizenServicesObj$p3, _citizenServicesObj$p4;
+        return history.push(citizenServicesObj === null || citizenServicesObj === void 0 ? void 0 : (_citizenServicesObj$p3 = citizenServicesObj.props) === null || _citizenServicesObj$p3 === void 0 ? void 0 : (_citizenServicesObj$p4 = _citizenServicesObj$p3[0]) === null || _citizenServicesObj$p4 === void 0 ? void 0 : _citizenServicesObj$p4.navigationUrl);
+      }
+    }, {
+      name: t(citizenServicesObj === null || citizenServicesObj === void 0 ? void 0 : (_citizenServicesObj$p5 = citizenServicesObj.props) === null || _citizenServicesObj$p5 === void 0 ? void 0 : (_citizenServicesObj$p6 = _citizenServicesObj$p5[1]) === null || _citizenServicesObj$p6 === void 0 ? void 0 : _citizenServicesObj$p6.label),
+      Icon: /*#__PURE__*/React__default.createElement(digitUiReactComponents.PTIcon, {
+        className: "fill-path-primary-main"
+      }),
+      onClick: () => {
+        var _citizenServicesObj$p7, _citizenServicesObj$p8;
+        return history.push(citizenServicesObj === null || citizenServicesObj === void 0 ? void 0 : (_citizenServicesObj$p7 = citizenServicesObj.props) === null || _citizenServicesObj$p7 === void 0 ? void 0 : (_citizenServicesObj$p8 = _citizenServicesObj$p7[1]) === null || _citizenServicesObj$p8 === void 0 ? void 0 : _citizenServicesObj$p8.navigationUrl);
+      }
+    }, {
+      name: t(citizenServicesObj === null || citizenServicesObj === void 0 ? void 0 : (_citizenServicesObj$p9 = citizenServicesObj.props) === null || _citizenServicesObj$p9 === void 0 ? void 0 : (_citizenServicesObj$p10 = _citizenServicesObj$p9[2]) === null || _citizenServicesObj$p10 === void 0 ? void 0 : _citizenServicesObj$p10.label),
+      Icon: /*#__PURE__*/React__default.createElement(digitUiReactComponents.CaseIcon, {
+        className: "fill-path-primary-main"
+      }),
+      onClick: () => {
+        var _citizenServicesObj$p11, _citizenServicesObj$p12;
+        return history.push(citizenServicesObj === null || citizenServicesObj === void 0 ? void 0 : (_citizenServicesObj$p11 = citizenServicesObj.props) === null || _citizenServicesObj$p11 === void 0 ? void 0 : (_citizenServicesObj$p12 = _citizenServicesObj$p11[2]) === null || _citizenServicesObj$p12 === void 0 ? void 0 : _citizenServicesObj$p12.navigationUrl);
+      }
+    }, {
+      name: t(citizenServicesObj === null || citizenServicesObj === void 0 ? void 0 : (_citizenServicesObj$p13 = citizenServicesObj.props) === null || _citizenServicesObj$p13 === void 0 ? void 0 : (_citizenServicesObj$p14 = _citizenServicesObj$p13[3]) === null || _citizenServicesObj$p14 === void 0 ? void 0 : _citizenServicesObj$p14.label),
+      Icon: /*#__PURE__*/React__default.createElement(digitUiReactComponents.WSICon, null),
+      onClick: () => {
+        var _citizenServicesObj$p15, _citizenServicesObj$p16;
+        return history.push(citizenServicesObj === null || citizenServicesObj === void 0 ? void 0 : (_citizenServicesObj$p15 = citizenServicesObj.props) === null || _citizenServicesObj$p15 === void 0 ? void 0 : (_citizenServicesObj$p16 = _citizenServicesObj$p15[3]) === null || _citizenServicesObj$p16 === void 0 ? void 0 : _citizenServicesObj$p16.navigationUrl);
+      }
+    }],
+    styles: {
+      display: "flex",
+      flexWrap: "wrap",
+      justifyContent: "flex-start",
+      width: "100%"
+    }
+  };
+  const allInfoAndUpdatesProps = {
+    header: t(infoAndUpdatesObj === null || infoAndUpdatesObj === void 0 ? void 0 : infoAndUpdatesObj.headerLabel),
+    sideOption: {
+      name: t(infoAndUpdatesObj === null || infoAndUpdatesObj === void 0 ? void 0 : (_infoAndUpdatesObj$si = infoAndUpdatesObj.sideOption) === null || _infoAndUpdatesObj$si === void 0 ? void 0 : _infoAndUpdatesObj$si.name),
+      onClick: () => {
+        var _infoAndUpdatesObj$si2;
+        return history.push(infoAndUpdatesObj === null || infoAndUpdatesObj === void 0 ? void 0 : (_infoAndUpdatesObj$si2 = infoAndUpdatesObj.sideOption) === null || _infoAndUpdatesObj$si2 === void 0 ? void 0 : _infoAndUpdatesObj$si2.navigationUrl);
+      }
+    },
+    options: [{
+      name: t(infoAndUpdatesObj === null || infoAndUpdatesObj === void 0 ? void 0 : (_infoAndUpdatesObj$pr = infoAndUpdatesObj.props) === null || _infoAndUpdatesObj$pr === void 0 ? void 0 : (_infoAndUpdatesObj$pr2 = _infoAndUpdatesObj$pr[0]) === null || _infoAndUpdatesObj$pr2 === void 0 ? void 0 : _infoAndUpdatesObj$pr2.label),
+      Icon: /*#__PURE__*/React__default.createElement(digitUiReactComponents.HomeIcon, null),
+      onClick: () => {
+        var _infoAndUpdatesObj$pr3, _infoAndUpdatesObj$pr4;
+        return history.push(infoAndUpdatesObj === null || infoAndUpdatesObj === void 0 ? void 0 : (_infoAndUpdatesObj$pr3 = infoAndUpdatesObj.props) === null || _infoAndUpdatesObj$pr3 === void 0 ? void 0 : (_infoAndUpdatesObj$pr4 = _infoAndUpdatesObj$pr3[0]) === null || _infoAndUpdatesObj$pr4 === void 0 ? void 0 : _infoAndUpdatesObj$pr4.navigationUrl);
+      }
+    }, {
+      name: t(infoAndUpdatesObj === null || infoAndUpdatesObj === void 0 ? void 0 : (_infoAndUpdatesObj$pr5 = infoAndUpdatesObj.props) === null || _infoAndUpdatesObj$pr5 === void 0 ? void 0 : (_infoAndUpdatesObj$pr6 = _infoAndUpdatesObj$pr5[1]) === null || _infoAndUpdatesObj$pr6 === void 0 ? void 0 : _infoAndUpdatesObj$pr6.label),
+      Icon: /*#__PURE__*/React__default.createElement(digitUiReactComponents.Calender, null),
+      onClick: () => {
+        var _infoAndUpdatesObj$pr7, _infoAndUpdatesObj$pr8;
+        return history.push(infoAndUpdatesObj === null || infoAndUpdatesObj === void 0 ? void 0 : (_infoAndUpdatesObj$pr7 = infoAndUpdatesObj.props) === null || _infoAndUpdatesObj$pr7 === void 0 ? void 0 : (_infoAndUpdatesObj$pr8 = _infoAndUpdatesObj$pr7[1]) === null || _infoAndUpdatesObj$pr8 === void 0 ? void 0 : _infoAndUpdatesObj$pr8.navigationUrl);
+      }
+    }, {
+      name: t(infoAndUpdatesObj === null || infoAndUpdatesObj === void 0 ? void 0 : (_infoAndUpdatesObj$pr9 = infoAndUpdatesObj.props) === null || _infoAndUpdatesObj$pr9 === void 0 ? void 0 : (_infoAndUpdatesObj$pr10 = _infoAndUpdatesObj$pr9[2]) === null || _infoAndUpdatesObj$pr10 === void 0 ? void 0 : _infoAndUpdatesObj$pr10.label),
+      Icon: /*#__PURE__*/React__default.createElement(digitUiReactComponents.DocumentIcon, null),
+      onClick: () => {
+        var _infoAndUpdatesObj$pr11, _infoAndUpdatesObj$pr12;
+        return history.push(infoAndUpdatesObj === null || infoAndUpdatesObj === void 0 ? void 0 : (_infoAndUpdatesObj$pr11 = infoAndUpdatesObj.props) === null || _infoAndUpdatesObj$pr11 === void 0 ? void 0 : (_infoAndUpdatesObj$pr12 = _infoAndUpdatesObj$pr11[2]) === null || _infoAndUpdatesObj$pr12 === void 0 ? void 0 : _infoAndUpdatesObj$pr12.navigationUrl);
+      }
+    }, {
+      name: t(infoAndUpdatesObj === null || infoAndUpdatesObj === void 0 ? void 0 : (_infoAndUpdatesObj$pr13 = infoAndUpdatesObj.props) === null || _infoAndUpdatesObj$pr13 === void 0 ? void 0 : (_infoAndUpdatesObj$pr14 = _infoAndUpdatesObj$pr13[3]) === null || _infoAndUpdatesObj$pr14 === void 0 ? void 0 : _infoAndUpdatesObj$pr14.label),
+      Icon: /*#__PURE__*/React__default.createElement(digitUiReactComponents.DocumentIcon, null),
+      onClick: () => {
+        var _infoAndUpdatesObj$pr15, _infoAndUpdatesObj$pr16;
+        return history.push(infoAndUpdatesObj === null || infoAndUpdatesObj === void 0 ? void 0 : (_infoAndUpdatesObj$pr15 = infoAndUpdatesObj.props) === null || _infoAndUpdatesObj$pr15 === void 0 ? void 0 : (_infoAndUpdatesObj$pr16 = _infoAndUpdatesObj$pr15[3]) === null || _infoAndUpdatesObj$pr16 === void 0 ? void 0 : _infoAndUpdatesObj$pr16.navigationUrl);
+      }
+    }],
+    styles: {
+      display: "flex",
+      flexWrap: "wrap",
+      justifyContent: "flex-start",
+      width: "100%"
+    }
+  };
+  return isLoading ? /*#__PURE__*/React__default.createElement(digitUiReactComponents.Loader, null) : /*#__PURE__*/React__default.createElement("div", {
+    className: "HomePageContainer",
+    style: {
+      width: "100%"
+    }
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "HomePageWrapper"
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "BannerWithSearch"
+  }, isMobile ? /*#__PURE__*/React__default.createElement("img", {
+    src: "https://velocity-upyog-assets.s3.ap-south-1.amazonaws.com/mobile_banner_3.png"
+  }) : /*#__PURE__*/React__default.createElement("img", {
+    src: "https://velocity-upyog-assets.s3.ap-south-1.amazonaws.com/home_banner_3.png"
+  }), /*#__PURE__*/React__default.createElement("div", {
+    className: "ServicesSection"
+  }), /*#__PURE__*/React__default.createElement("div", {
+    className: "citizen-desludging-content"
+  }, /*#__PURE__*/React__default.createElement("h2", null, citizenDesludgingService === null || citizenDesludgingService === void 0 ? void 0 : citizenDesludgingService.header), citizenDesludgingService === null || citizenDesludgingService === void 0 ? void 0 : citizenDesludgingService.options.map((props, index) => /*#__PURE__*/React__default.createElement("div", {
+    className: "citizen-desludging-conten-wrapper"
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "citizen-desludging-conten-wrapper-inner-img"
+  }, /*#__PURE__*/React__default.createElement("img", {
+    src: props.src,
+    style: {
+      width: "70%"
+    }
+  })), /*#__PURE__*/React__default.createElement(reactRouterDom.Link, {
+    key: index,
+    to: props.link
+  }, /*#__PURE__*/React__default.createElement("p", null, props.name)))))), conditionsToDisableNotificationCountTrigger() ? EventsDataLoading ? /*#__PURE__*/React__default.createElement(digitUiReactComponents.Loader, null) : /*#__PURE__*/React__default.createElement("div", {
+    className: "WhatsNewSection"
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "headSection"
+  }, /*#__PURE__*/React__default.createElement("h2", null, t(whatsNewSectionObj === null || whatsNewSectionObj === void 0 ? void 0 : whatsNewSectionObj.headerLabel)), /*#__PURE__*/React__default.createElement("p", {
+    onClick: () => {
+      var _whatsNewSectionObj$s;
+      return history.push(whatsNewSectionObj === null || whatsNewSectionObj === void 0 ? void 0 : (_whatsNewSectionObj$s = whatsNewSectionObj.sideOption) === null || _whatsNewSectionObj$s === void 0 ? void 0 : _whatsNewSectionObj$s.navigationUrl);
+    }
+  }, t(whatsNewSectionObj === null || whatsNewSectionObj === void 0 ? void 0 : (_whatsNewSectionObj$s2 = whatsNewSectionObj.sideOption) === null || _whatsNewSectionObj$s2 === void 0 ? void 0 : _whatsNewSectionObj$s2.name))), /*#__PURE__*/React__default.createElement(digitUiReactComponents.WhatsNewCard, EventsData === null || EventsData === void 0 ? void 0 : EventsData[0])) : null));
+};
+
+const LanguageSelection$1 = () => {
+  const {
+    t
+  } = reactI18next.useTranslation();
+  const history = reactRouterDom.useHistory();
+  const {
+    data: {
+      languages,
+      stateInfo
+    } = {},
+    isLoading
+  } = Digit.Hooks.useStore.getInitData();
+  const selectedLanguage = Digit.StoreData.getCurrentLanguage();
+  const texts = React.useMemo(() => ({
+    header: t("CS_COMMON_CHOOSE_LANGUAGE"),
+    submitBarLabel: t("CORE_COMMON_CONTINUE")
+  }), [t]);
+  const RadioButtonProps = React.useMemo(() => ({
+    options: languages,
+    optionsKey: "label",
+    additionalWrapperClass: "reverse-radio-selection-wrapper",
+    onSelect: language => Digit.LocalizationService.changeLanguage(language.value, stateInfo.code),
+    selectedOption: languages === null || languages === void 0 ? void 0 : languages.filter(i => i.value === selectedLanguage)[0]
+  }), [selectedLanguage, languages]);
+  function onSubmit() {
+    history.push("/digit-ui/citizen/select-location");
+  }
+  return isLoading ? /*#__PURE__*/React__default.createElement(digitUiReactComponents.Loader, null) : /*#__PURE__*/React__default.createElement("div", {
+    className: "selection-card-wrapper"
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "main-banner-image",
+    style: window.innerWidth <= 565 ? {
+      marginBottom: "30px"
+    } : {
+      float: "left",
+      width: "80%"
+    }
+  }, /*#__PURE__*/React__default.createElement("img", {
+    className: "city",
+    id: "topbar-logo",
+    src: window.innerWidth <= 565 ? "https://velocity-upyog-assets.s3.ap-south-1.amazonaws.com/mobile_banner_3.png" : "https://velocity-upyog-assets.s3.ap-south-1.amazonaws.com/desktop_banner_2.png" ,
+    alt: "unicef",
+    style: {
+      width: "100%"
+    }
+  })), /*#__PURE__*/React__default.createElement("div", {
+    className: "left-side_content",
+    style: window.innerWidth <= 565 ? {} : {
+      float: "right",
+      marginRight: "-200px",
+      width: "35%"
+    }
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.PageBasedInput, {
+    texts: texts,
+    onSubmit: onSubmit
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.CardHeader, null, t("CS_COMMON_CHOOSE_LANGUAGE")), /*#__PURE__*/React__default.createElement(digitUiReactComponents.RadioButtons, RadioButtonProps))));
+};
+
+const LocationSelection = () => {
+  const {
+    t
+  } = reactI18next.useTranslation();
+  const history = reactRouterDom.useHistory();
+  const location = reactRouterDom.useLocation();
+  const {
+    data: cities,
+    isLoading
+  } = Digit.Hooks.useTenants();
+  const [selectedCity, setSelectedCity] = React.useState(() => ({
+    code: Digit.ULBService.getCitizenCurrentTenant(true)
+  }));
+  const [showError, setShowError] = React.useState(false);
+  const texts = React.useMemo(() => ({
+    header: t("CS_COMMON_CHOOSE_LOCATION"),
+    submitBarLabel: t("CORE_COMMON_CONTINUE")
+  }), [t]);
+  function selectCity(city) {
+    setSelectedCity(city);
+    setShowError(false);
+  }
+  const RadioButtonProps = React.useMemo(() => {
+    return {
+      options: cities,
+      optionsKey: "i18nKey",
+      additionalWrapperClass: "reverse-radio-selection-wrapper",
+      onSelect: selectCity,
+      selectedOption: selectedCity
+    };
+  }, [cities, t, selectedCity]);
+  function onSubmit() {
+    if (selectedCity) {
+      var _location$state;
+      Digit.SessionStorage.set("CITIZEN.COMMON.HOME.CITY", selectedCity);
+      const redirectBackTo = (_location$state = location.state) === null || _location$state === void 0 ? void 0 : _location$state.redirectBackTo;
+      if (redirectBackTo) {
+        history.replace(redirectBackTo);
+      } else history.push("/digit-ui/citizen");
+    } else {
+      setShowError(true);
+    }
+  }
+  return isLoading ? /*#__PURE__*/React__default.createElement("loader", null) : /*#__PURE__*/React__default.createElement("div", {
+    className: "selection-card-wrapper"
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.BackButton, null), /*#__PURE__*/React__default.createElement("div", {
+    className: "main-banner-image",
+    style: window.innerWidth <= 565 ? {
+      marginBottom: "30px"
+    } : {
+      float: "left",
+      width: "80%"
+    }
+  }, /*#__PURE__*/React__default.createElement("img", {
+    className: "city",
+    id: "topbar-logo",
+    src: window.innerWidth <= 565 ? "https://velocity-upyog-assets.s3.ap-south-1.amazonaws.com/mobile_banner_3.png" : "https://velocity-upyog-assets.s3.ap-south-1.amazonaws.com/desktop_banner_2.png" ,
+    alt: "unicef",
+    style: {
+      width: "100%"
+    }
+  })), /*#__PURE__*/React__default.createElement("div", {
+    className: "left-side_content",
+    style: window.innerWidth <= 565 ? {} : {
+      float: "right",
+      marginRight: "-200px",
+      width: "35%"
+    }
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.PageBasedInput, {
+    texts: texts,
+    onSubmit: onSubmit,
+    className: "location-selection-container"
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.CardHeader, null, t("CS_COMMON_CHOOSE_LOCATION")), /*#__PURE__*/React__default.createElement(digitUiReactComponents.SearchOnRadioButtons, _extends({}, RadioButtonProps, {
+    placeholder: t("COMMON_TABLE_SEARCH")
+  })), showError ? /*#__PURE__*/React__default.createElement(digitUiReactComponents.CardLabelError, null, t("CS_COMMON_LOCATION_SELECTION_ERROR")) : null)));
+};
+
+const FaqComponent = props => {
+  const {
+    question,
+    answer,
+    subAnswer,
+    lastIndex
+  } = props;
+  const [isOpen, toggleOpen] = React.useState(false);
+  const {
+    t
+  } = reactI18next.useTranslation();
+  const isMobile = window.Digit.Utils.browser.isMobile();
+  return /*#__PURE__*/React__default.createElement("div", {
+    className: "faqs border-none",
+    onClick: () => toggleOpen(!isOpen)
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "faq-question",
+    style: {
+      justifyContent: t(question).length > 30 && isOpen ? "revert" : "space-between",
+      display: Digit.Utils.browser.isMobile() && t(question).length > 30 && isOpen ? "block" : "flex"
+    }
+  }, /*#__PURE__*/React__default.createElement("span", null, t(question)), /*#__PURE__*/React__default.createElement("span", {
+    className: isOpen ? "faqicon rotate" : "faqicon",
+    style: isMobile ? {
+      float: "right"
+    } : {
+      float: "right"
+    }
+  }, isOpen ? /*#__PURE__*/React__default.createElement(digitUiReactComponents.ArrowForward, null) : /*#__PURE__*/React__default.createElement(digitUiReactComponents.ArrowForward, null))), /*#__PURE__*/React__default.createElement("div", {
+    className: "faq-answer",
+    style: isOpen ? {
+      display: "block"
+    } : {
+      display: "none"
+    }
+  }, /*#__PURE__*/React__default.createElement("span", null, t(answer) + t(subAnswer))), !lastIndex ? /*#__PURE__*/React__default.createElement("div", {
+    className: "cs-box-border"
+  }) : null);
+};
+
+const FAQsSection = _ref => {
+  var _user$info, _data$MdmsRes$common, _data$MdmsRes$common$;
+  let {
+    module
+  } = _ref;
+  const user = Digit.UserService.getUser();
+  const tenantId = (user === null || user === void 0 ? void 0 : (_user$info = user.info) === null || _user$info === void 0 ? void 0 : _user$info.tenantId) || Digit.ULBService.getCurrentTenantId();
+  const {
+    t
+  } = reactI18next.useTranslation();
+  const {
+    isLoading,
+    data
+  } = Digit.Hooks.useGetFAQsJSON(Digit.ULBService.getStateId());
+  const moduleFaqs = data === null || data === void 0 ? void 0 : (_data$MdmsRes$common = data.MdmsRes["common-masters"]) === null || _data$MdmsRes$common === void 0 ? void 0 : (_data$MdmsRes$common$ = _data$MdmsRes$common.faqs[0]) === null || _data$MdmsRes$common$ === void 0 ? void 0 : _data$MdmsRes$common$["" + module].faqs;
+  if (isLoading) {
+    return /*#__PURE__*/React__default.createElement(digitUiReactComponents.Loader, null);
+  }
+  return /*#__PURE__*/React__default.createElement(React.Fragment, null, /*#__PURE__*/React__default.createElement("div", {
+    className: "faq-page"
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.BackButton, {
+    style: {
+      marginLeft: "unset"
+    }
+  }), /*#__PURE__*/React__default.createElement("div", {
+    style: {
+      marginBottom: "15px"
+    }
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.Header, {
+    styles: {
+      marginLeft: "0px",
+      paddingTop: "10px",
+      fontSize: "32px"
+    }
+  }, t("FAQ_S"))), /*#__PURE__*/React__default.createElement("div", {
+    className: "faq-list"
+  }, moduleFaqs.map((faq, i) => /*#__PURE__*/React__default.createElement(FaqComponent, {
+    key: "faq_" + i,
+    question: faq.question,
+    answer: faq.answer,
+    subAnswer: faq.subAnswer ? faq.subAnswer : "",
+    lastIndex: i === (moduleFaqs === null || moduleFaqs === void 0 ? void 0 : moduleFaqs.length) - 1
+  })))));
+};
+
+const HowItWorks = _ref => {
+  var _user$info, _data$MdmsRes$common, _data$MdmsRes$common$;
+  let {
+    module
+  } = _ref;
+  const isMobile = window.Digit.Utils.browser.isMobile();
+  const user = Digit.UserService.getUser();
+  const tenantId = (user === null || user === void 0 ? void 0 : (_user$info = user.info) === null || _user$info === void 0 ? void 0 : _user$info.tenantId) || Digit.ULBService.getCurrentTenantId();
+  const {
+    t
+  } = reactI18next.useTranslation();
+  const storeData = Digit.SessionStorage.get("initData");
+  const stateInfo = storeData.stateInfo;
+  const selectedLanguage = Digit.StoreData.getCurrentLanguage();
+  const [selected, setselected] = React.useState(selectedLanguage);
+  const handleChangeLanguage = language => {
+    setselected(language.value);
+    Digit.LocalizationService.changeLanguage(language.value, stateInfo.code);
+  };
+  const [videoPlay, setVideoPlay] = React.useState(false);
+  const [vidSrc, setVidSrc] = React.useState("");
+  const ViDSvg = () => /*#__PURE__*/React__default.createElement("svg", {
+    width: "24",
+    height: "24",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, /*#__PURE__*/React__default.createElement("path", {
+    d: "M12 24C5.38053 24 0 18.6143 0 12C0 5.38054 5.38053 1.90735e-06 12 1.90735e-06C18.6143 1.90735e-06 24 5.38054 24 12C24 18.6143 18.6143 24 12 24ZM16.3488 10.7852L11.3855 7.25251C11.1263 7.0701 10.8238 6.97889 10.5214 6.97889C10.291 6.97889 10.0557 7.03172 9.83976 7.14202C9.34054 7.40118 9.02857 7.91006 9.02857 8.46694L9.02877 15.5323C9.02877 16.0892 9.34076 16.5979 9.83996 16.8572C10.3344 17.1116 10.9296 17.0732 11.3857 16.7467L16.349 13.214C16.7426 12.9356 16.9778 12.4795 16.9778 11.9996C16.9776 11.5197 16.7426 11.0636 16.3489 10.7852L16.3488 10.7852Z",
+    fill: "white"
+  }));
+  function CloseVidSvg(_ref2) {
+    let {
+      onClick
+    } = _ref2;
+    return /*#__PURE__*/React__default.createElement("svg", {
+      width: "14",
+      height: "14",
+      viewBox: "0 0 14 14",
+      fill: "none",
+      xmlns: "http://www.w3.org/2000/svg",
+      onClick: onClick
+    }, /*#__PURE__*/React__default.createElement("path", {
+      d: "M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z",
+      fill: "white"
+    }));
+  }
+  const onClickVideo = vidObj => {
+    if (selected === "hi_IN") {
+      setVidSrc(vidObj["hi_IN"]);
+    } else {
+      setVidSrc(vidObj["en_IN"]);
+    }
+    setVideoPlay(true);
+  };
+  const onClose = () => {
+    setVideoPlay(false);
+  };
+  const {
+    isLoading,
+    data
+  } = Digit.Hooks.useGetHowItWorksJSON(Digit.ULBService.getStateId());
+  const mdmsConfigResult = data === null || data === void 0 ? void 0 : (_data$MdmsRes$common = data.MdmsRes["common-masters"]) === null || _data$MdmsRes$common === void 0 ? void 0 : (_data$MdmsRes$common$ = _data$MdmsRes$common.howItWorks[0]) === null || _data$MdmsRes$common$ === void 0 ? void 0 : _data$MdmsRes$common$["" + module];
+  const languages = [{
+    label: "ENGLISH",
+    value: "en_IN"
+  }, {
+    label: "हिंदी",
+    value: "hi_IN"
+  }];
+  if (isLoading) {
+    return /*#__PURE__*/React__default.createElement(digitUiReactComponents.Loader, null);
+  }
+  return /*#__PURE__*/React__default.createElement(React.Fragment, null, /*#__PURE__*/React__default.createElement("div", {
+    className: "how-it-works-page"
+  }, /*#__PURE__*/React__default.createElement("div", {
+    style: {
+      marginLeft: "-10px"
+    }
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.BackButton, null)), /*#__PURE__*/React__default.createElement("div", {
+    className: "how-it-works-page-header"
+  }, /*#__PURE__*/React__default.createElement("div", {
+    style: {
+      marginLeft: isMobile ? "-15px" : ""
+    }
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.Header, null, t("HOW_IT_WORKS")))), /*#__PURE__*/React__default.createElement("div", {
+    className: "language-selector",
+    style: {
+      marginBottom: "10px"
+    }
+  }, languages.map((language, index) => /*#__PURE__*/React__default.createElement("div", {
+    className: "language-button-container",
+    key: index
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.CustomButton, {
+    selected: language.value === selected,
+    text: language.label,
+    onClick: () => handleChangeLanguage(language)
+  })))), mdmsConfigResult.videosJson.map((videos, index) => /*#__PURE__*/React__default.createElement("div", null, /*#__PURE__*/React__default.createElement("div", {
+    className: "WhatsNewCard",
+    style: {
+      float: "left",
+      position: "relative",
+      width: "100%",
+      marginBottom: 10
+    }
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "video-icon",
+    onClick: () => onClickVideo(videos)
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "vid-svg"
+  }, /*#__PURE__*/React__default.createElement(ViDSvg, null))), /*#__PURE__*/React__default.createElement("div", {
+    className: "how-it-works-header-description"
+  }, /*#__PURE__*/React__default.createElement("h2", null, t(videos.headerLabel)), /*#__PURE__*/React__default.createElement("p", null, t(videos.description)))))), /*#__PURE__*/React__default.createElement("div", {
+    className: "WhatsNewCard",
+    style: {
+      position: "relative",
+      width: "100%",
+      marginBottom: 10,
+      display: "inline-block"
+    }
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "how-it-works-pdf-section"
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "pdf-icon-header-desc"
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "pdf-icon"
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.PDFSvg, null)), /*#__PURE__*/React__default.createElement("div", {
+    className: "pdf-header-desc"
+  }, /*#__PURE__*/React__default.createElement("h2", null, t(mdmsConfigResult.pdfHeader)), /*#__PURE__*/React__default.createElement("p", null, t(mdmsConfigResult.pdfDesc)))), /*#__PURE__*/React__default.createElement("div", {
+    className: "download-icon"
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.DownloadImgIcon, null)))), videoPlay && /*#__PURE__*/React__default.createElement("div", {
+    className: "how-it-works-video-play"
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "close-button",
+    style: {
+      position: "absolute",
+      right: "15px",
+      top: "10%",
+      zIndex: "1"
+    }
+  }, /*#__PURE__*/React__default.createElement(CloseVidSvg, {
+    onClick: onClose
+  })), /*#__PURE__*/React__default.createElement("video", {
+    width: 500,
+    height: 500,
+    controls: true,
+    autoPlay: true,
+    muted: true,
+    style: {
+      position: "fixed",
+      top: "0",
+      left: "0",
+      minWidth: "100%",
+      minHeight: "100%",
+      backgroundColor: "rgba(0,0,0,0.5)"
+    }
+  }, /*#__PURE__*/React__default.createElement("source", {
+    src: vidSrc,
+    type: "video/mp4"
+  })))));
+};
+
+const StaticDynamicCard = _ref => {
+  var _mdmsData$MdmsRes$com, _mdmsData$MdmsRes$com2, _mdmsConfigResult$hel, _mdmsConfigResult$hel2, _mdmsConfigResult$hel3, _mdmsConfigResult$hel4, _mdmsConfigResult$hel5, _mdmsConfigResult$hel6, _staticData, _staticData2, _staticData3, _staticData4, _staticData5, _staticContent, _staticContent2, _staticContent3;
+  let {
+    moduleCode
+  } = _ref;
+  const {
+    t
+  } = reactI18next.useTranslation();
+  const tenantId = Digit.ULBService.getCitizenCurrentTenant();
+  const {
+    isLoading: isMdmsLoading,
+    data: mdmsData
+  } = Digit.Hooks.useStaticData(Digit.ULBService.getStateId());
+  const {
+    isLoading: isSearchLoading,
+    error,
+    data: dynamicData,
+    isSuccess
+  } = Digit.Hooks.useDynamicData({
+    moduleCode,
+    tenantId: tenantId,
+    filters: {},
+    t
+  });
+  const isMobile = window.Digit.Utils.browser.isMobile();
+  const handleClickOnWhatsApp = obj => {
+    window.open(obj);
+  };
+  if (window.location.href.includes("tl") && window.Digit.SessionStorage.get("TL_CREATE_TRADE")) window.Digit.SessionStorage.set("TL_CREATE_TRADE", {});
+  const IconComponent = _ref2 => {
+    let {
+      module,
+      styles
+    } = _ref2;
+    switch (module) {
+      case 'TL':
+        return /*#__PURE__*/React__default.createElement(digitUiReactComponents.CaseIcon, {
+          className: "fill-path-primary-main",
+          styles: styles
+        });
+      case 'PT':
+        return /*#__PURE__*/React__default.createElement(digitUiReactComponents.PTIcon, {
+          className: "fill-path-primary-main",
+          styles: styles
+        });
+      case 'MCOLLECT':
+        return /*#__PURE__*/React__default.createElement(digitUiReactComponents.MCollectIcon, {
+          className: "fill-path-primary-main",
+          styles: styles
+        });
+      case 'PGR':
+        return /*#__PURE__*/React__default.createElement(digitUiReactComponents.PTIcon, {
+          className: "fill-path-primary-main",
+          styles: styles
+        });
+      case 'WS':
+        return /*#__PURE__*/React__default.createElement(digitUiReactComponents.WSICon, {
+          className: "fill-path-primary-main",
+          styles: styles
+        });
+      case 'OBPS':
+        return /*#__PURE__*/React__default.createElement(digitUiReactComponents.BPAHomeIcon, {
+          className: "fill-path-primary-main",
+          styles: styles
+        });
+      default:
+        return /*#__PURE__*/React__default.createElement(digitUiReactComponents.CaseIcon, {
+          className: "fill-path-primary-main",
+          styles: styles
+        });
+    }
+  };
+  const mdmsConfigResult = mdmsData === null || mdmsData === void 0 ? void 0 : (_mdmsData$MdmsRes$com = mdmsData.MdmsRes["common-masters"]) === null || _mdmsData$MdmsRes$com === void 0 ? void 0 : (_mdmsData$MdmsRes$com2 = _mdmsData$MdmsRes$com.StaticData[0]) === null || _mdmsData$MdmsRes$com2 === void 0 ? void 0 : _mdmsData$MdmsRes$com2["" + moduleCode];
+  const StaticDataIconComponentOne = _ref3 => {
+    let {
+      module
+    } = _ref3;
+    switch (module) {
+      case 'PT':
+      case 'WS':
+        return /*#__PURE__*/React__default.createElement("span", {
+          className: "timerIcon"
+        }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.TimerIcon, null));
+      default:
+        return null;
+    }
+  };
+  const StaticDataIconComponentTwo = _ref4 => {
+    let {
+      module
+    } = _ref4;
+    switch (module) {
+      case 'PT':
+        return /*#__PURE__*/React__default.createElement("span", {
+          className: "rupeeSymbol"
+        }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.RupeeSymbol, null));
+      case 'WS':
+        return /*#__PURE__*/React__default.createElement("span", {
+          className: "timerIcon"
+        }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.TimerIcon, null));
+      default:
+        return null;
+    }
+  };
+  const staticContent = module => {
+    switch (module) {
+      case 'TL':
+        return {
+          staticCommonContent: t("TL_VALIDITY")
+        };
+      case 'MCOLLECT':
+        return {
+          staticCommonContent: t("CHALLAN_VALIDITY")
+        };
+      case 'PGR':
+        return {
+          staticCommonContent: t("CATEGORIES_OF_COMPLAINT_TYPES_CAN_BE_SUBMITTED_ON_GRIEVANCE_PORTAL")
+        };
+      case 'OBPS':
+        return {
+          staticCommonContent: t("BUILDING_PLAN_PERMIT_VALIDITY"),
+          validity: (mdmsConfigResult === null || mdmsConfigResult === void 0 ? void 0 : mdmsConfigResult.validity) + " " + ((mdmsConfigResult === null || mdmsConfigResult === void 0 ? void 0 : mdmsConfigResult.validity) === "1" ? t("COMMON_DAY") : t("COMMON_DAYS"))
+        };
+      default:
+        return {
+          staticCommonContent: ""
+        };
+    }
+  };
+  const staticData = module => {
+    switch (module) {
+      case 'PT':
+        return {
+          staticDataOne: (mdmsConfigResult === null || mdmsConfigResult === void 0 ? void 0 : mdmsConfigResult.staticDataOne) + " " + t("COMMON_DAYS"),
+          staticDataOneHeader: t("APPLICATION_PROCESSING_TIME"),
+          staticDataTwo: mdmsConfigResult === null || mdmsConfigResult === void 0 ? void 0 : mdmsConfigResult.staticDataTwo,
+          staticDataTwoHeader: t("APPLICATION_PROCESSING_FEE")
+        };
+      case 'WS':
+        return {
+          staticDataOne: "",
+          staticDataOneHeader: t("PAY_WATER_CHARGES_BY") + " " + (mdmsConfigResult === null || mdmsConfigResult === void 0 ? void 0 : mdmsConfigResult.staticDataOne) + " " + t("COMMON_DAYS") + " " + t("OF_BILL_GEN_TO_AVOID_LATE_FEE"),
+          staticDataTwo: (mdmsConfigResult === null || mdmsConfigResult === void 0 ? void 0 : mdmsConfigResult.staticDataTwo) + " " + t("COMMON_DAYS"),
+          staticDataTwoHeader: t("APPLICATION_PROCESSING_TIME")
+        };
+      default:
+        return {};
+    }
+  };
+  if (isMdmsLoading || isSearchLoading) {
+    return /*#__PURE__*/React__default.createElement(digitUiReactComponents.Loader, null);
+  }
+  return mdmsConfigResult ? /*#__PURE__*/React__default.createElement(React__default.Fragment, null, mdmsConfigResult && mdmsConfigResult !== null && mdmsConfigResult !== void 0 && mdmsConfigResult.payViaWhatsApp ? /*#__PURE__*/React__default.createElement(digitUiReactComponents.Card, {
+    style: {
+      margin: "16px",
+      padding: "16px",
+      maxWidth: "unset"
+    }
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "pay-whatsapp-card",
+    onClick: () => handleClickOnWhatsApp(mdmsConfigResult === null || mdmsConfigResult === void 0 ? void 0 : mdmsConfigResult.payViaWhatsApp)
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "pay-whatsapp-text"
+  }, t("PAY_VIA_WHATSAPP")), /*#__PURE__*/React__default.createElement("div", {
+    className: "whatsAppIconG"
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.WhatsappIconGreen, null)))) : null, mdmsConfigResult && mdmsConfigResult !== null && mdmsConfigResult !== void 0 && mdmsConfigResult.helpline ? /*#__PURE__*/React__default.createElement(digitUiReactComponents.Card, {
+    style: {
+      margin: "16px",
+      padding: "16px",
+      maxWidth: "unset"
+    }
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "static-home-Card"
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "static-home-Card-header"
+  }, t("CALL_CENTER_HELPLINE")), /*#__PURE__*/React__default.createElement("div", {
+    className: "helplineIcon"
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.HelpLineIcon, null))), /*#__PURE__*/React__default.createElement("div", {
+    className: "call-center-card-text"
+  }, mdmsConfigResult !== null && mdmsConfigResult !== void 0 && (_mdmsConfigResult$hel = mdmsConfigResult.helpline) !== null && _mdmsConfigResult$hel !== void 0 && _mdmsConfigResult$hel.contactOne ? /*#__PURE__*/React__default.createElement("div", {
+    className: "call-center-card-content"
+  }, /*#__PURE__*/React__default.createElement("a", {
+    href: "tel:" + (mdmsConfigResult === null || mdmsConfigResult === void 0 ? void 0 : (_mdmsConfigResult$hel2 = mdmsConfigResult.helpline) === null || _mdmsConfigResult$hel2 === void 0 ? void 0 : _mdmsConfigResult$hel2.contactOne)
+  }, mdmsConfigResult === null || mdmsConfigResult === void 0 ? void 0 : (_mdmsConfigResult$hel3 = mdmsConfigResult.helpline) === null || _mdmsConfigResult$hel3 === void 0 ? void 0 : _mdmsConfigResult$hel3.contactOne)) : null, mdmsConfigResult !== null && mdmsConfigResult !== void 0 && (_mdmsConfigResult$hel4 = mdmsConfigResult.helpline) !== null && _mdmsConfigResult$hel4 !== void 0 && _mdmsConfigResult$hel4.contactTwo ? /*#__PURE__*/React__default.createElement("div", {
+    className: "call-center-card-content"
+  }, /*#__PURE__*/React__default.createElement("a", {
+    href: "tel:" + (mdmsConfigResult === null || mdmsConfigResult === void 0 ? void 0 : (_mdmsConfigResult$hel5 = mdmsConfigResult.helpline) === null || _mdmsConfigResult$hel5 === void 0 ? void 0 : _mdmsConfigResult$hel5.contactTwo)
+  }, mdmsConfigResult === null || mdmsConfigResult === void 0 ? void 0 : (_mdmsConfigResult$hel6 = mdmsConfigResult.helpline) === null || _mdmsConfigResult$hel6 === void 0 ? void 0 : _mdmsConfigResult$hel6.contactTwo)) : null)) : null, mdmsConfigResult && mdmsConfigResult !== null && mdmsConfigResult !== void 0 && mdmsConfigResult.serviceCenter ? /*#__PURE__*/React__default.createElement(digitUiReactComponents.Card, {
+    style: {
+      margin: "16px",
+      padding: "16px",
+      maxWidth: "unset"
+    }
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "static-home-Card"
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "static-home-Card-header"
+  }, t("CITIZEN_SERVICE_CENTER")), /*#__PURE__*/React__default.createElement("div", {
+    className: "serviceCentrIcon"
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.ServiceCenterIcon, null))), /*#__PURE__*/React__default.createElement("div", {
+    className: "service-center-details-card"
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "service-center-details-text"
+  }, mdmsConfigResult === null || mdmsConfigResult === void 0 ? void 0 : mdmsConfigResult.serviceCenter)), mdmsConfigResult !== null && mdmsConfigResult !== void 0 && mdmsConfigResult.viewMapLocation ? /*#__PURE__*/React__default.createElement("div", {
+    className: "link"
+  }, /*#__PURE__*/React__default.createElement("a", {
+    href: mdmsConfigResult === null || mdmsConfigResult === void 0 ? void 0 : mdmsConfigResult.viewMapLocation
+  }, t("VIEW_ON_MAP"))) : null) : /*#__PURE__*/React__default.createElement("div", null), /*#__PURE__*/React__default.createElement(digitUiReactComponents.Card, {
+    style: {
+      margin: "16px",
+      padding: "16px",
+      maxWidth: "unset"
+    }
+  }, error || dynamicData == null || (dynamicData === null || dynamicData === void 0 ? void 0 : dynamicData.dynamicDataOne) === null ? /*#__PURE__*/React__default.createElement("div", null) : /*#__PURE__*/React__default.createElement("div", {
+    className: "dynamicDataCard",
+    style: isMobile ? {
+      maxHeight: "fit-content"
+    } : {}
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "dynamicData"
+  }, /*#__PURE__*/React__default.createElement("span", {
+    style: {
+      paddingTop: "2px"
+    }
+  }, /*#__PURE__*/React__default.createElement(IconComponent, {
+    module: moduleCode,
+    styles: {
+      width: "18px",
+      height: "24px"
+    }
+  })), /*#__PURE__*/React__default.createElement("span", {
+    className: "dynamicData-content"
+  }, dynamicData === null || dynamicData === void 0 ? void 0 : dynamicData.dynamicDataOne))), error || dynamicData == null || (dynamicData === null || dynamicData === void 0 ? void 0 : dynamicData.dynamicDataTwo) === null ? /*#__PURE__*/React__default.createElement("div", null) : /*#__PURE__*/React__default.createElement("div", {
+    className: "dynamicDataCard",
+    style: isMobile ? {
+      maxHeight: "fit-content"
+    } : {}
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "dynamicData"
+  }, /*#__PURE__*/React__default.createElement("span", {
+    style: {
+      paddingTop: "2px"
+    }
+  }, /*#__PURE__*/React__default.createElement(IconComponent, {
+    module: moduleCode,
+    styles: {
+      width: "18px",
+      height: "24px"
+    }
+  })), /*#__PURE__*/React__default.createElement("span", {
+    className: "dynamicData-content"
+  }, dynamicData === null || dynamicData === void 0 ? void 0 : dynamicData.dynamicDataTwo))), mdmsConfigResult && mdmsConfigResult !== null && mdmsConfigResult !== void 0 && mdmsConfigResult.staticDataOne ? /*#__PURE__*/React__default.createElement("div", {
+    className: "staticDataCard"
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "staticData"
+  }, /*#__PURE__*/React__default.createElement(StaticDataIconComponentOne, {
+    module: moduleCode
+  }), /*#__PURE__*/React__default.createElement("span", {
+    className: "static-data-content"
+  }, /*#__PURE__*/React__default.createElement("span", {
+    className: "static-data-content-first",
+    style: {
+      marginTop: ((_staticData = staticData(moduleCode)) === null || _staticData === void 0 ? void 0 : _staticData.staticDataOne) === "" ? "8px" : "unset"
+    }
+  }, (_staticData2 = staticData(moduleCode)) === null || _staticData2 === void 0 ? void 0 : _staticData2.staticDataOneHeader), /*#__PURE__*/React__default.createElement("span", {
+    className: "static-data-content-second"
+  }, "" + ((_staticData3 = staticData(moduleCode)) === null || _staticData3 === void 0 ? void 0 : _staticData3.staticDataOne))))) : /*#__PURE__*/React__default.createElement("div", null), mdmsConfigResult && mdmsConfigResult !== null && mdmsConfigResult !== void 0 && mdmsConfigResult.staticDataTwo ? /*#__PURE__*/React__default.createElement("div", {
+    className: "staticDataCard"
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "staticData"
+  }, /*#__PURE__*/React__default.createElement(StaticDataIconComponentTwo, {
+    module: moduleCode
+  }), /*#__PURE__*/React__default.createElement("span", {
+    className: "static-data-content"
+  }, /*#__PURE__*/React__default.createElement("span", {
+    className: "static-data-content-first"
+  }, (_staticData4 = staticData(moduleCode)) === null || _staticData4 === void 0 ? void 0 : _staticData4.staticDataTwoHeader), /*#__PURE__*/React__default.createElement("span", {
+    className: "static-data-content-second"
+  }, (_staticData5 = staticData(moduleCode)) === null || _staticData5 === void 0 ? void 0 : _staticData5.staticDataTwo)))) : /*#__PURE__*/React__default.createElement("div", null), mdmsConfigResult && mdmsConfigResult !== null && mdmsConfigResult !== void 0 && mdmsConfigResult.validity ? /*#__PURE__*/React__default.createElement("div", {
+    className: "staticDataCard"
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "staticData"
+  }, /*#__PURE__*/React__default.createElement("span", {
+    className: "validityIcon"
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.ValidityTimeIcon, null)), /*#__PURE__*/React__default.createElement("span", {
+    className: "static-data-content"
+  }, /*#__PURE__*/React__default.createElement("span", {
+    className: "static-data-content-first"
+  }, (_staticContent = staticContent(moduleCode)) === null || _staticContent === void 0 ? void 0 : _staticContent.staticCommonContent), /*#__PURE__*/React__default.createElement("span", {
+    className: "static-data-content-second"
+  }, (_staticContent2 = staticContent(moduleCode)) === null || _staticContent2 === void 0 ? void 0 : _staticContent2.validity)))) : /*#__PURE__*/React__default.createElement("div", null), error || dynamicData == null || !(dynamicData !== null && dynamicData !== void 0 && dynamicData.staticData) || (dynamicData === null || dynamicData === void 0 ? void 0 : dynamicData.staticData) === null ? /*#__PURE__*/React__default.createElement("div", null) : /*#__PURE__*/React__default.createElement("div", {
+    className: "staticDataCard"
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "staticData"
+  }, moduleCode === "PGR" ? /*#__PURE__*/React__default.createElement("span", {
+    style: {
+      paddingTop: "15px"
+    }
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.TimerIcon, {
+    module: moduleCode,
+    styles: {
+      width: "18px",
+      height: "24px",
+      marginLeft: "13px"
+    }
+  })) : /*#__PURE__*/React__default.createElement("span", {
+    className: "validityIcon"
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.ValidityTimeIcon, null)), /*#__PURE__*/React__default.createElement("span", {
+    className: "static-data-content"
+  }, /*#__PURE__*/React__default.createElement("span", {
+    className: "static-data-content-first"
+  }, (_staticContent3 = staticContent(moduleCode)) === null || _staticContent3 === void 0 ? void 0 : _staticContent3.staticCommonContent), /*#__PURE__*/React__default.createElement("span", {
+    className: "static-data-content-second"
+  }, dynamicData === null || dynamicData === void 0 ? void 0 : dynamicData.staticData)))))) : /*#__PURE__*/React__default.createElement(React__default.Fragment, null);
+};
+
+const GetActionMessage = props => {
+  const {
+    t
+  } = reactI18next.useTranslation();
+  if (props !== null && props !== void 0 && props.isSuccess) {
+    return t("CS_PROPERTY_FEEDBACK_SUCCESS");
+  } else {
+    return t("CS_PROPERTY_FEEDBACK_FAILED");
+  }
+};
+const BannerPicker = props => {
+  return /*#__PURE__*/React__default.createElement(digitUiReactComponents.Banner, {
+    message: GetActionMessage(props),
+    applicationNumber: "",
+    style: props.isMobile ? {
+      width: "unset"
+    } : {
+      width: "740px"
+    },
+    successful: props === null || props === void 0 ? void 0 : props.isSuccess
+  });
+};
+const AcknowledgementCF = _ref => {
+  var _location$state, _location$state$resul, _location$state$resul2, _location$state2, _location$state2$resu, _location$state2$resu2, _location$state3, _location$state3$resu, _location$state3$resu2;
+  const {
+    t
+  } = reactI18next.useTranslation();
+  const tenantId = Digit.ULBService.getCurrentTenantId();
+  const location = reactRouterDom.useLocation();
+  const {
+    data: storeData
+  } = Digit.Hooks.useStore.getInitData();
+  const isMobile = window.Digit.Utils.browser.isMobile();
+  return /*#__PURE__*/React__default.createElement("form", null, /*#__PURE__*/React__default.createElement(digitUiReactComponents.Card, {
+    style: isMobile ? {
+      padding: "unset"
+    } : {}
+  }, /*#__PURE__*/React__default.createElement(BannerPicker, {
+    t: t,
+    data: location.state,
+    isSuccess: (_location$state = location.state) !== null && _location$state !== void 0 && (_location$state$resul = _location$state.result) !== null && _location$state$resul !== void 0 && (_location$state$resul2 = _location$state$resul.Service) !== null && _location$state$resul2 !== void 0 && _location$state$resul2[0] ? true : false,
+    isMobile: isMobile,
+    isLoading: false
+  }), ((_location$state2 = location.state) === null || _location$state2 === void 0 ? void 0 : (_location$state2$resu = _location$state2.result) === null || _location$state2$resu === void 0 ? void 0 : (_location$state2$resu2 = _location$state2$resu.Service) === null || _location$state2$resu2 === void 0 ? void 0 : _location$state2$resu2[0]) && /*#__PURE__*/React__default.createElement(digitUiReactComponents.CardText, {
+    style: {
+      padding: "0px 10px 0px 10px"
+    }
+  }, t("CS_CF_FEEDBACK_RESPONSE")), !((_location$state3 = location.state) !== null && _location$state3 !== void 0 && (_location$state3$resu = _location$state3.result) !== null && _location$state3$resu !== void 0 && (_location$state3$resu2 = _location$state3$resu.Service) !== null && _location$state3$resu2 !== void 0 && _location$state3$resu2[0]) && /*#__PURE__*/React__default.createElement(digitUiReactComponents.CardText, null, t("CS_FILE_PROPERTY_FAILED_RESPONSE")), /*#__PURE__*/React__default.createElement("div", {
+    style: {
+      padding: "0px 10px 20px 10px"
+    }
+  }, /*#__PURE__*/React__default.createElement(reactRouterDom.Link, {
+    to: "/digit-ui/citizen"
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.SubmitBar, {
+    label: t("CS_COMMON_GO_BACK_TO_HOME")
+  })))));
+};
+
+var isHTMLElement = value => value instanceof HTMLElement;
+const EVENTS = {
+  BLUR: 'blur',
+  CHANGE: 'change',
+  INPUT: 'input'
+};
+const VALIDATION_MODE = {
+  onBlur: 'onBlur',
+  onChange: 'onChange',
+  onSubmit: 'onSubmit',
+  onTouched: 'onTouched',
+  all: 'all'
+};
+const SELECT = 'select';
+const UNDEFINED = 'undefined';
+const INPUT_VALIDATION_RULES = {
+  max: 'max',
+  min: 'min',
+  maxLength: 'maxLength',
+  minLength: 'minLength',
+  pattern: 'pattern',
+  required: 'required',
+  validate: 'validate'
+};
+function attachEventListeners(_ref, shouldAttachChangeEvent, handleChange) {
+  let {
+    ref
+  } = _ref;
+  if (isHTMLElement(ref) && handleChange) {
+    ref.addEventListener(shouldAttachChangeEvent ? EVENTS.CHANGE : EVENTS.INPUT, handleChange);
+    ref.addEventListener(EVENTS.BLUR, handleChange);
+  }
+}
+var isNullOrUndefined = value => value == null;
+const isObjectType = value => typeof value === 'object';
+var isObject = value => !isNullOrUndefined(value) && !Array.isArray(value) && isObjectType(value) && !(value instanceof Date);
+var isKey = value => /^\w*$/.test(value);
+var compact = value => value.filter(Boolean);
+var stringToPath = input => compact(input.replace(/["|']/g, '').replace(/\[/g, '.').replace(/\]/g, '').split('.'));
+function set(object, path, value) {
+  let index = -1;
+  const tempPath = isKey(path) ? [path] : stringToPath(path);
+  const length = tempPath.length;
+  const lastIndex = length - 1;
+  while (++index < length) {
+    const key = tempPath[index];
+    let newValue = value;
+    if (index !== lastIndex) {
+      const objValue = object[key];
+      newValue = isObject(objValue) || Array.isArray(objValue) ? objValue : !isNaN(+tempPath[index + 1]) ? [] : {};
+    }
+    object[key] = newValue;
+    object = object[key];
+  }
+  return object;
+}
+var transformToNestObject = function (data, value) {
+  if (value === void 0) {
+    value = {};
+  }
+  for (const key in data) {
+    !isKey(key) ? set(value, key, data[key]) : value[key] = data[key];
+  }
+  return value;
+};
+var isUndefined = val => val === undefined;
+var get = function (obj, path, defaultValue) {
+  if (obj === void 0) {
+    obj = {};
+  }
+  const result = compact(path.split(/[,[\].]+?/)).reduce((result, key) => isNullOrUndefined(result) ? result : result[key], obj);
+  return isUndefined(result) || result === obj ? isUndefined(obj[path]) ? defaultValue : obj[path] : result;
+};
+var focusOnErrorField = (fields, fieldErrors) => {
+  for (const key in fields) {
+    if (get(fieldErrors, key)) {
+      const field = fields[key];
+      if (field) {
+        if (field.ref.focus && isUndefined(field.ref.focus())) {
+          break;
+        } else if (field.options) {
+          field.options[0].ref.focus();
+          break;
+        }
+      }
+    }
+  }
+};
+var removeAllEventListeners = (ref, validateWithStateUpdate) => {
+  if (isHTMLElement(ref) && ref.removeEventListener) {
+    ref.removeEventListener(EVENTS.INPUT, validateWithStateUpdate);
+    ref.removeEventListener(EVENTS.CHANGE, validateWithStateUpdate);
+    ref.removeEventListener(EVENTS.BLUR, validateWithStateUpdate);
+  }
+};
+const defaultReturn = {
+  isValid: false,
+  value: null
+};
+var getRadioValue = options => Array.isArray(options) ? options.reduce((previous, option) => option && option.ref.checked ? {
+  isValid: true,
+  value: option.ref.value
+} : previous, defaultReturn) : defaultReturn;
+var getMultipleSelectValue = options => [...options].filter(_ref2 => {
+  let {
+    selected
+  } = _ref2;
+  return selected;
+}).map(_ref3 => {
+  let {
+    value
+  } = _ref3;
+  return value;
+});
+var isRadioInput = element => element.type === 'radio';
+var isFileInput = element => element.type === 'file';
+var isCheckBoxInput = element => element.type === 'checkbox';
+var isMultipleSelect = element => element.type === SELECT + "-multiple";
+const defaultResult = {
+  value: false,
+  isValid: false
+};
+const validResult = {
+  value: true,
+  isValid: true
+};
+var getCheckboxValue = options => {
+  if (Array.isArray(options)) {
+    if (options.length > 1) {
+      const values = options.filter(option => option && option.ref.checked).map(_ref4 => {
+        let {
+          ref: {
+            value
+          }
+        } = _ref4;
+        return value;
+      });
+      return {
+        value: values,
+        isValid: !!values.length
+      };
+    }
+    const {
+      checked,
+      value,
+      attributes
+    } = options[0].ref;
+    return checked ? attributes && !isUndefined(attributes.value) ? isUndefined(value) || value === '' ? validResult : {
+      value: value,
+      isValid: true
+    } : validResult : defaultResult;
+  }
+  return defaultResult;
+};
+function getFieldValue(fieldsRef, name, shallowFieldsStateRef, excludeDisabled, shouldKeepRawValue) {
+  const field = fieldsRef.current[name];
+  if (field) {
+    const {
+      ref: {
+        value,
+        disabled
+      },
+      ref,
+      valueAsNumber,
+      valueAsDate,
+      setValueAs
+    } = field;
+    if (disabled && excludeDisabled) {
+      return;
+    }
+    if (isFileInput(ref)) {
+      return ref.files;
+    }
+    if (isRadioInput(ref)) {
+      return getRadioValue(field.options).value;
+    }
+    if (isMultipleSelect(ref)) {
+      return getMultipleSelectValue(ref.options);
+    }
+    if (isCheckBoxInput(ref)) {
+      return getCheckboxValue(field.options).value;
+    }
+    return shouldKeepRawValue ? value : valueAsNumber ? value === '' ? NaN : +value : valueAsDate ? ref.valueAsDate : setValueAs ? setValueAs(value) : value;
+  }
+  if (shallowFieldsStateRef) {
+    return get(shallowFieldsStateRef.current, name);
+  }
+}
+function isDetached(element) {
+  if (!element) {
+    return true;
+  }
+  if (!(element instanceof HTMLElement) || element.nodeType === Node.DOCUMENT_NODE) {
+    return false;
+  }
+  return isDetached(element.parentNode);
+}
+var isEmptyObject = value => isObject(value) && !Object.keys(value).length;
+var isBoolean = value => typeof value === 'boolean';
+function baseGet(object, updatePath) {
+  const length = updatePath.slice(0, -1).length;
+  let index = 0;
+  while (index < length) {
+    object = isUndefined(object) ? index++ : object[updatePath[index++]];
+  }
+  return object;
+}
+function unset(object, path) {
+  const updatePath = isKey(path) ? [path] : stringToPath(path);
+  const childObject = updatePath.length == 1 ? object : baseGet(object, updatePath);
+  const key = updatePath[updatePath.length - 1];
+  let previousObjRef;
+  if (childObject) {
+    delete childObject[key];
+  }
+  for (let k = 0; k < updatePath.slice(0, -1).length; k++) {
+    let index = -1;
+    let objectRef;
+    const currentPaths = updatePath.slice(0, -(k + 1));
+    const currentPathsLength = currentPaths.length - 1;
+    if (k > 0) {
+      previousObjRef = object;
+    }
+    while (++index < currentPaths.length) {
+      const item = currentPaths[index];
+      objectRef = objectRef ? objectRef[item] : object[item];
+      if (currentPathsLength === index && (isObject(objectRef) && isEmptyObject(objectRef) || Array.isArray(objectRef) && !objectRef.filter(data => isObject(data) && !isEmptyObject(data) || isBoolean(data)).length)) {
+        previousObjRef ? delete previousObjRef[item] : delete object[item];
+      }
+      previousObjRef = objectRef;
+    }
+  }
+  return object;
+}
+const isSameRef = (fieldValue, ref) => fieldValue && fieldValue.ref === ref;
+function findRemovedFieldAndRemoveListener(fieldsRef, handleChange, field, shallowFieldsStateRef, shouldUnregister, forceDelete) {
+  const {
+    ref,
+    ref: {
+      name
+    }
+  } = field;
+  const fieldRef = fieldsRef.current[name];
+  if (!shouldUnregister) {
+    const value = getFieldValue(fieldsRef, name, shallowFieldsStateRef);
+    !isUndefined(value) && set(shallowFieldsStateRef.current, name, value);
+  }
+  if (!ref.type || !fieldRef) {
+    delete fieldsRef.current[name];
+    return;
+  }
+  if (isRadioInput(ref) || isCheckBoxInput(ref)) {
+    if (Array.isArray(fieldRef.options) && fieldRef.options.length) {
+      compact(fieldRef.options).forEach(function (option, index) {
+        if (option === void 0) {
+          option = {};
+        }
+        if (isDetached(option.ref) && isSameRef(option, option.ref) || forceDelete) {
+          removeAllEventListeners(option.ref, handleChange);
+          unset(fieldRef.options, "[" + index + "]");
+        }
+      });
+      if (fieldRef.options && !compact(fieldRef.options).length) {
+        delete fieldsRef.current[name];
+      }
+    } else {
+      delete fieldsRef.current[name];
+    }
+  } else if (isDetached(ref) && isSameRef(fieldRef, ref) || forceDelete) {
+    removeAllEventListeners(ref, handleChange);
+    delete fieldsRef.current[name];
+  }
+}
+var isPrimitive = value => isNullOrUndefined(value) || !isObjectType(value);
+function deepMerge(target, source) {
+  if (isPrimitive(target) || isPrimitive(source)) {
+    return source;
+  }
+  for (const key in source) {
+    const targetValue = target[key];
+    const sourceValue = source[key];
+    try {
+      target[key] = isObject(targetValue) && isObject(sourceValue) || Array.isArray(targetValue) && Array.isArray(sourceValue) ? deepMerge(targetValue, sourceValue) : sourceValue;
+    } catch (_a) {}
+  }
+  return target;
+}
+function deepEqual(object1, object2, isErrorObject) {
+  if (isPrimitive(object1) || isPrimitive(object2) || object1 instanceof Date || object2 instanceof Date) {
+    return object1 === object2;
+  }
+  if (!React.isValidElement(object1)) {
+    const keys1 = Object.keys(object1);
+    const keys2 = Object.keys(object2);
+    if (keys1.length !== keys2.length) {
+      return false;
+    }
+    for (const key of keys1) {
+      const val1 = object1[key];
+      if (!(isErrorObject && key === 'ref')) {
+        const val2 = object2[key];
+        if ((isObject(val1) || Array.isArray(val1)) && (isObject(val2) || Array.isArray(val2)) ? !deepEqual(val1, val2, isErrorObject) : val1 !== val2) {
+          return false;
+        }
+      }
+    }
+  }
+  return true;
+}
+function setDirtyFields(values, defaultValues, dirtyFields, parentNode, parentName) {
+  let index = -1;
+  while (++index < values.length) {
+    for (const key in values[index]) {
+      if (Array.isArray(values[index][key])) {
+        !dirtyFields[index] && (dirtyFields[index] = {});
+        dirtyFields[index][key] = [];
+        setDirtyFields(values[index][key], get(defaultValues[index] || {}, key, []), dirtyFields[index][key], dirtyFields[index], key);
+      } else {
+        deepEqual(get(defaultValues[index] || {}, key), values[index][key]) ? set(dirtyFields[index] || {}, key) : dirtyFields[index] = Object.assign(Object.assign({}, dirtyFields[index]), {
+          [key]: true
+        });
+      }
+    }
+    parentNode && !dirtyFields.length && delete parentNode[parentName];
+  }
+  return dirtyFields;
+}
+var setFieldArrayDirtyFields = (values, defaultValues, dirtyFields) => deepMerge(setDirtyFields(values, defaultValues, dirtyFields.slice(0, values.length)), setDirtyFields(defaultValues, values, dirtyFields.slice(0, values.length)));
+var isString = value => typeof value === 'string';
+var getFieldsValues = (fieldsRef, shallowFieldsState, shouldUnregister, excludeDisabled, search) => {
+  const output = {};
+  for (const name in fieldsRef.current) {
+    if (isUndefined(search) || (isString(search) ? name.startsWith(search) : Array.isArray(search) && search.find(data => name.startsWith(data)))) {
+      output[name] = getFieldValue(fieldsRef, name, undefined, excludeDisabled);
+    }
+  }
+  return shouldUnregister ? transformToNestObject(output) : deepMerge(shallowFieldsState, transformToNestObject(output));
+};
+var isErrorStateChanged = _ref5 => {
+  let {
+    errors,
+    name,
+    error,
+    validFields,
+    fieldsWithValidation
+  } = _ref5;
+  const isValid = isUndefined(error);
+  const previousError = get(errors, name);
+  return isValid && !!previousError || !isValid && !deepEqual(previousError, error, true) || isValid && get(fieldsWithValidation, name) && !get(validFields, name);
+};
+var isRegex = value => value instanceof RegExp;
+var getValueAndMessage = validationData => isObject(validationData) && !isRegex(validationData) ? validationData : {
+  value: validationData,
+  message: ''
+};
+var isFunction = value => typeof value === 'function';
+var isMessage = value => isString(value) || React.isValidElement(value);
+function getValidateError(result, ref, type) {
+  if (type === void 0) {
+    type = 'validate';
+  }
+  if (isMessage(result) || isBoolean(result) && !result) {
+    return {
+      type,
+      message: isMessage(result) ? result : '',
+      ref
+    };
+  }
+}
+var appendErrors = (name, validateAllFieldCriteria, errors, type, message) => validateAllFieldCriteria ? Object.assign(Object.assign({}, errors[name]), {
+  types: Object.assign(Object.assign({}, errors[name] && errors[name].types ? errors[name].types : {}), {
+    [type]: message || true
+  })
+}) : {};
+var validateField = function (fieldsRef, validateAllFieldCriteria, _ref6, shallowFieldsStateRef) {
+  let {
+    ref,
+    ref: {
+      value
+    },
+    options,
+    required,
+    maxLength,
+    minLength,
+    min,
+    max,
+    pattern,
+    validate
+  } = _ref6;
+  try {
+    let _exit = false;
+    const name = ref.name;
+    const error = {};
+    const isRadio = isRadioInput(ref);
+    const isCheckBox = isCheckBoxInput(ref);
+    const isRadioOrCheckbox = isRadio || isCheckBox;
+    const isEmpty = value === '';
+    const appendErrorsCurry = appendErrors.bind(null, name, validateAllFieldCriteria, error);
+    const getMinMaxMessage = function (exceedMax, maxLengthMessage, minLengthMessage, maxType, minType) {
+      if (maxType === void 0) {
+        maxType = INPUT_VALIDATION_RULES.maxLength;
+      }
+      if (minType === void 0) {
+        minType = INPUT_VALIDATION_RULES.minLength;
+      }
+      const message = exceedMax ? maxLengthMessage : minLengthMessage;
+      error[name] = Object.assign({
+        type: exceedMax ? maxType : minType,
+        message,
+        ref
+      }, exceedMax ? appendErrorsCurry(maxType, message) : appendErrorsCurry(minType, message));
+    };
+    if (required && (!isRadio && !isCheckBox && (isEmpty || isNullOrUndefined(value)) || isBoolean(value) && !value || isCheckBox && !getCheckboxValue(options).isValid || isRadio && !getRadioValue(options).isValid)) {
+      const {
+        value,
+        message
+      } = isMessage(required) ? {
+        value: !!required,
+        message: required
+      } : getValueAndMessage(required);
+      if (value) {
+        error[name] = Object.assign({
+          type: INPUT_VALIDATION_RULES.required,
+          message,
+          ref: isRadioOrCheckbox ? ((fieldsRef.current[name].options || [])[0] || {}).ref : ref
+        }, appendErrorsCurry(INPUT_VALIDATION_RULES.required, message));
+        if (!validateAllFieldCriteria) {
+          return Promise.resolve(error);
+        }
+      }
+    }
+    if ((!isNullOrUndefined(min) || !isNullOrUndefined(max)) && value !== '') {
+      let exceedMax;
+      let exceedMin;
+      const maxOutput = getValueAndMessage(max);
+      const minOutput = getValueAndMessage(min);
+      if (!isNaN(value)) {
+        const valueNumber = ref.valueAsNumber || parseFloat(value);
+        if (!isNullOrUndefined(maxOutput.value)) {
+          exceedMax = valueNumber > maxOutput.value;
+        }
+        if (!isNullOrUndefined(minOutput.value)) {
+          exceedMin = valueNumber < minOutput.value;
+        }
+      } else {
+        const valueDate = ref.valueAsDate || new Date(value);
+        if (isString(maxOutput.value)) {
+          exceedMax = valueDate > new Date(maxOutput.value);
+        }
+        if (isString(minOutput.value)) {
+          exceedMin = valueDate < new Date(minOutput.value);
+        }
+      }
+      if (exceedMax || exceedMin) {
+        getMinMaxMessage(!!exceedMax, maxOutput.message, minOutput.message, INPUT_VALIDATION_RULES.max, INPUT_VALIDATION_RULES.min);
+        if (!validateAllFieldCriteria) {
+          return Promise.resolve(error);
+        }
+      }
+    }
+    if (isString(value) && !isEmpty && (maxLength || minLength)) {
+      const maxLengthOutput = getValueAndMessage(maxLength);
+      const minLengthOutput = getValueAndMessage(minLength);
+      const exceedMax = !isNullOrUndefined(maxLengthOutput.value) && value.length > maxLengthOutput.value;
+      const exceedMin = !isNullOrUndefined(minLengthOutput.value) && value.length < minLengthOutput.value;
+      if (exceedMax || exceedMin) {
+        getMinMaxMessage(exceedMax, maxLengthOutput.message, minLengthOutput.message);
+        if (!validateAllFieldCriteria) {
+          return Promise.resolve(error);
+        }
+      }
+    }
+    if (isString(value) && pattern && !isEmpty) {
+      const {
+        value: patternValue,
+        message
+      } = getValueAndMessage(pattern);
+      if (isRegex(patternValue) && !patternValue.test(value)) {
+        error[name] = Object.assign({
+          type: INPUT_VALIDATION_RULES.pattern,
+          message,
+          ref
+        }, appendErrorsCurry(INPUT_VALIDATION_RULES.pattern, message));
+        if (!validateAllFieldCriteria) {
+          return Promise.resolve(error);
+        }
+      }
+    }
+    const _temp3 = function () {
+      if (validate) {
+        const fieldValue = getFieldValue(fieldsRef, name, shallowFieldsStateRef, false, true);
+        const validateRef = isRadioOrCheckbox && options ? options[0].ref : ref;
+        return function () {
+          if (isFunction(validate)) {
+            return Promise.resolve(validate(fieldValue)).then(function (result) {
+              const validateError = getValidateError(result, validateRef);
+              if (validateError) {
+                error[name] = Object.assign(Object.assign({}, validateError), appendErrorsCurry(INPUT_VALIDATION_RULES.validate, validateError.message));
+                if (!validateAllFieldCriteria) {
+                  _exit = true;
+                  return error;
+                }
+              }
+            });
+          } else return function () {
+            if (isObject(validate)) {
+              let _interrupt = false;
+              function _temp2() {
+                if (!isEmptyObject(validationResult)) {
+                  error[name] = Object.assign({
+                    ref: validateRef
+                  }, validationResult);
+                  if (!validateAllFieldCriteria) {
+                    _exit = true;
+                    return error;
+                  }
+                }
+              }
+              let validationResult = {};
+              const _temp = _forOf(Object.entries(validate), function (_ref7) {
+                let [key, validateFunction] = _ref7;
+                if (!isEmptyObject(validationResult) && !validateAllFieldCriteria) {
+                  _interrupt = true;
+                  return;
+                }
+                return Promise.resolve(validateFunction(fieldValue)).then(function (validateResult) {
+                  const validateError = getValidateError(validateResult, validateRef, key);
+                  if (validateError) {
+                    validationResult = Object.assign(Object.assign({}, validateError), appendErrorsCurry(key, validateError.message));
+                    if (validateAllFieldCriteria) {
+                      error[name] = validationResult;
+                    }
+                  }
+                });
+              }, function () {
+                return _interrupt;
+              });
+              return _temp && _temp.then ? _temp.then(_temp2) : _temp2(_temp);
+            }
+          }();
+        }();
+      }
+    }();
+    return Promise.resolve(_temp3 && _temp3.then ? _temp3.then(function (_result3) {
+      return _exit ? _result3 : error;
+    }) : _exit ? _temp3 : error);
+  } catch (e) {
+    return Promise.reject(e);
+  }
+};
+const getPath = function (rootPath, values, paths) {
+  if (paths === void 0) {
+    paths = [];
+  }
+  for (const property in values) {
+    const rootName = rootPath + (isObject(values) ? "." + property : "[" + property + "]");
+    isPrimitive(values[property]) ? paths.push(rootName) : getPath(rootName, values[property], paths);
+  }
+  return paths;
+};
+var assignWatchFields = (fieldValues, fieldName, watchFields, inputValue, isSingleField) => {
+  let value = undefined;
+  watchFields.add(fieldName);
+  if (!isEmptyObject(fieldValues)) {
+    value = get(fieldValues, fieldName);
+    if (isObject(value) || Array.isArray(value)) {
+      getPath(fieldName, value).forEach(name => watchFields.add(name));
+    }
+  }
+  return isUndefined(value) ? isSingleField ? inputValue : get(inputValue, fieldName) : value;
+};
+var skipValidation = _ref8 => {
+  let {
+    isOnBlur,
+    isOnChange,
+    isOnTouch,
+    isTouched,
+    isReValidateOnBlur,
+    isReValidateOnChange,
+    isBlurEvent,
+    isSubmitted,
+    isOnAll
+  } = _ref8;
+  if (isOnAll) {
+    return false;
+  } else if (!isSubmitted && isOnTouch) {
+    return !(isTouched || isBlurEvent);
+  } else if (isSubmitted ? isReValidateOnBlur : isOnBlur) {
+    return !isBlurEvent;
+  } else if (isSubmitted ? isReValidateOnChange : isOnChange) {
+    return isBlurEvent;
+  }
+  return true;
+};
+var getFieldArrayParentName = name => name.substring(0, name.indexOf('['));
+const isMatchFieldArrayName = (name, searchName) => RegExp(("^" + searchName + "([|.)\\d+").replace(/\[/g, '\\[').replace(/\]/g, '\\]')).test(name);
+var isNameInFieldArray = (names, name) => [...names].some(current => isMatchFieldArrayName(name, current));
+var isSelectInput = element => element.type === SELECT + "-one";
+function onDomRemove(fieldsRef, removeFieldEventListenerAndRef) {
+  const observer = new MutationObserver(() => {
+    for (const field of Object.values(fieldsRef.current)) {
+      if (field && field.options) {
+        for (const option of field.options) {
+          if (option && option.ref && isDetached(option.ref)) {
+            removeFieldEventListenerAndRef(field);
+          }
+        }
+      } else if (field && isDetached(field.ref)) {
+        removeFieldEventListenerAndRef(field);
+      }
+    }
+  });
+  observer.observe(window.document, {
+    childList: true,
+    subtree: true
+  });
+  return observer;
+}
+var isWeb = typeof window !== UNDEFINED && typeof document !== UNDEFINED;
+function cloneObject(data) {
+  var _a;
+  let copy;
+  if (isPrimitive(data) || isWeb && (data instanceof File || isHTMLElement(data))) {
+    return data;
+  }
+  if (!['Set', 'Map', 'Object', 'Date', 'Array'].includes((_a = data.constructor) === null || _a === void 0 ? void 0 : _a.name)) {
+    return data;
+  }
+  if (data instanceof Date) {
+    copy = new Date(data.getTime());
+    return copy;
+  }
+  if (data instanceof Set) {
+    copy = new Set();
+    for (const item of data) {
+      copy.add(item);
+    }
+    return copy;
+  }
+  if (data instanceof Map) {
+    copy = new Map();
+    for (const key of data.keys()) {
+      copy.set(key, cloneObject(data.get(key)));
+    }
+    return copy;
+  }
+  copy = Array.isArray(data) ? [] : {};
+  for (const key in data) {
+    copy[key] = cloneObject(data[key]);
+  }
+  return copy;
+}
+var modeChecker = mode => ({
+  isOnSubmit: !mode || mode === VALIDATION_MODE.onSubmit,
+  isOnBlur: mode === VALIDATION_MODE.onBlur,
+  isOnChange: mode === VALIDATION_MODE.onChange,
+  isOnAll: mode === VALIDATION_MODE.all,
+  isOnTouch: mode === VALIDATION_MODE.onTouched
+});
+var isRadioOrCheckboxFunction = ref => isRadioInput(ref) || isCheckBoxInput(ref);
+const isWindowUndefined = typeof window === UNDEFINED;
+const isProxyEnabled = isWeb ? 'Proxy' in window : typeof Proxy !== UNDEFINED;
+function useForm(_temp4) {
+  let {
+    mode = VALIDATION_MODE.onSubmit,
+    reValidateMode = VALIDATION_MODE.onChange,
+    resolver,
+    context,
+    defaultValues = {},
+    shouldFocusError = true,
+    shouldUnregister = true,
+    criteriaMode
+  } = _temp4 === void 0 ? {} : _temp4;
+  const fieldsRef = React.useRef({});
+  const fieldArrayDefaultValuesRef = React.useRef({});
+  const fieldArrayValuesRef = React.useRef({});
+  const watchFieldsRef = React.useRef(new Set());
+  const useWatchFieldsRef = React.useRef({});
+  const useWatchRenderFunctionsRef = React.useRef({});
+  const fieldsWithValidationRef = React.useRef({});
+  const validFieldsRef = React.useRef({});
+  const defaultValuesRef = React.useRef(defaultValues);
+  const isUnMount = React.useRef(false);
+  const isWatchAllRef = React.useRef(false);
+  const handleChangeRef = React.useRef();
+  const shallowFieldsStateRef = React.useRef({});
+  const resetFieldArrayFunctionRef = React.useRef({});
+  const contextRef = React.useRef(context);
+  const resolverRef = React.useRef(resolver);
+  const fieldArrayNamesRef = React.useRef(new Set());
+  const modeRef = React.useRef(modeChecker(mode));
+  const {
+    isOnSubmit,
+    isOnTouch
+  } = modeRef.current;
+  const isValidateAllFieldCriteria = criteriaMode === VALIDATION_MODE.all;
+  const [formState, setFormState] = React.useState({
+    isDirty: false,
+    isValidating: false,
+    dirtyFields: {},
+    isSubmitted: false,
+    submitCount: 0,
+    touched: {},
+    isSubmitting: false,
+    isSubmitSuccessful: false,
+    isValid: !isOnSubmit,
+    errors: {}
+  });
+  const readFormStateRef = React.useRef({
+    isDirty: !isProxyEnabled,
+    dirtyFields: !isProxyEnabled,
+    touched: !isProxyEnabled || isOnTouch,
+    isValidating: !isProxyEnabled,
+    isSubmitting: !isProxyEnabled,
+    isValid: !isProxyEnabled
+  });
+  const formStateRef = React.useRef(formState);
+  const observerRef = React.useRef();
+  const {
+    isOnBlur: isReValidateOnBlur,
+    isOnChange: isReValidateOnChange
+  } = React.useRef(modeChecker(reValidateMode)).current;
+  contextRef.current = context;
+  resolverRef.current = resolver;
+  formStateRef.current = formState;
+  shallowFieldsStateRef.current = shouldUnregister ? {} : isEmptyObject(shallowFieldsStateRef.current) ? cloneObject(defaultValues) : shallowFieldsStateRef.current;
+  const updateFormState = React.useCallback(function (state) {
+    if (state === void 0) {
+      state = {};
+    }
+    if (!isUnMount.current) {
+      formStateRef.current = Object.assign(Object.assign({}, formStateRef.current), state);
+      setFormState(formStateRef.current);
+    }
+  }, []);
+  const updateIsValidating = () => readFormStateRef.current.isValidating && updateFormState({
+    isValidating: true
+  });
+  const shouldRenderBaseOnError = React.useCallback(function (name, error, shouldRender, state, isValid) {
+    if (shouldRender === void 0) {
+      shouldRender = false;
+    }
+    if (state === void 0) {
+      state = {};
+    }
+    let shouldReRender = shouldRender || isErrorStateChanged({
+      errors: formStateRef.current.errors,
+      error,
+      name,
+      validFields: validFieldsRef.current,
+      fieldsWithValidation: fieldsWithValidationRef.current
+    });
+    const previousError = get(formStateRef.current.errors, name);
+    if (error) {
+      unset(validFieldsRef.current, name);
+      shouldReRender = shouldReRender || !previousError || !deepEqual(previousError, error, true);
+      set(formStateRef.current.errors, name, error);
+    } else {
+      if (get(fieldsWithValidationRef.current, name) || resolverRef.current) {
+        set(validFieldsRef.current, name, true);
+        shouldReRender = shouldReRender || previousError;
+      }
+      unset(formStateRef.current.errors, name);
+    }
+    if (shouldReRender && !isNullOrUndefined(shouldRender) || !isEmptyObject(state) || readFormStateRef.current.isValidating) {
+      updateFormState(Object.assign(Object.assign(Object.assign({}, state), resolverRef.current ? {
+        isValid: !!isValid
+      } : {}), {
+        isValidating: false
+      }));
+    }
+  }, []);
+  const setFieldValue = React.useCallback((name, rawValue) => {
+    const {
+      ref,
+      options
+    } = fieldsRef.current[name];
+    const value = isWeb && isHTMLElement(ref) && isNullOrUndefined(rawValue) ? '' : rawValue;
+    if (isRadioInput(ref)) {
+      (options || []).forEach(_ref9 => {
+        let {
+          ref: radioRef
+        } = _ref9;
+        return radioRef.checked = radioRef.value === value;
+      });
+    } else if (isFileInput(ref) && !isString(value)) {
+      ref.files = value;
+    } else if (isMultipleSelect(ref)) {
+      [...ref.options].forEach(selectRef => selectRef.selected = value.includes(selectRef.value));
+    } else if (isCheckBoxInput(ref) && options) {
+      options.length > 1 ? options.forEach(_ref10 => {
+        let {
+          ref: checkboxRef
+        } = _ref10;
+        return checkboxRef.checked = Array.isArray(value) ? !!value.find(data => data === checkboxRef.value) : value === checkboxRef.value;
+      }) : options[0].ref.checked = !!value;
+    } else {
+      ref.value = value;
+    }
+  }, []);
+  const isFormDirty = React.useCallback((name, data) => {
+    if (readFormStateRef.current.isDirty) {
+      const formValues = getValues();
+      name && data && set(formValues, name, data);
+      return !deepEqual(formValues, defaultValuesRef.current);
+    }
+    return false;
+  }, []);
+  const updateAndGetDirtyState = React.useCallback(function (name, shouldRender) {
+    if (shouldRender === void 0) {
+      shouldRender = true;
+    }
+    if (readFormStateRef.current.isDirty || readFormStateRef.current.dirtyFields) {
+      const isFieldDirty = !deepEqual(get(defaultValuesRef.current, name), getFieldValue(fieldsRef, name, shallowFieldsStateRef));
+      const isDirtyFieldExist = get(formStateRef.current.dirtyFields, name);
+      const previousIsDirty = formStateRef.current.isDirty;
+      isFieldDirty ? set(formStateRef.current.dirtyFields, name, true) : unset(formStateRef.current.dirtyFields, name);
+      const state = {
+        isDirty: isFormDirty(),
+        dirtyFields: formStateRef.current.dirtyFields
+      };
+      const isChanged = readFormStateRef.current.isDirty && previousIsDirty !== state.isDirty || readFormStateRef.current.dirtyFields && isDirtyFieldExist !== get(formStateRef.current.dirtyFields, name);
+      isChanged && shouldRender && updateFormState(state);
+      return isChanged ? state : {};
+    }
+    return {};
+  }, []);
+  const executeValidation = React.useCallback(function (name, skipReRender) {
+    try {
+      if (process.env.NODE_ENV !== 'production') {
+        if (!fieldsRef.current[name]) {
+          console.warn('📋 Field is missing with `name` attribute: ', name);
+          return Promise.resolve(false);
+        }
+      }
+      return Promise.resolve(validateField(fieldsRef, isValidateAllFieldCriteria, fieldsRef.current[name], shallowFieldsStateRef)).then(function (_validateField) {
+        const error = _validateField[name];
+        shouldRenderBaseOnError(name, error, skipReRender);
+        return isUndefined(error);
+      });
+    } catch (e) {
+      return Promise.reject(e);
+    }
+  }, [shouldRenderBaseOnError, isValidateAllFieldCriteria]);
+  const executeSchemaOrResolverValidation = React.useCallback(function (names) {
+    try {
+      return Promise.resolve(resolverRef.current(getValues(), contextRef.current, isValidateAllFieldCriteria)).then(function (_ref11) {
+        let {
+          errors
+        } = _ref11;
+        const previousFormIsValid = formStateRef.current.isValid;
+        if (Array.isArray(names)) {
+          const isInputsValid = names.map(name => {
+            const error = get(errors, name);
+            error ? set(formStateRef.current.errors, name, error) : unset(formStateRef.current.errors, name);
+            return !error;
+          }).every(Boolean);
+          updateFormState({
+            isValid: isEmptyObject(errors),
+            isValidating: false
+          });
+          return isInputsValid;
+        } else {
+          const error = get(errors, names);
+          shouldRenderBaseOnError(names, error, previousFormIsValid !== isEmptyObject(errors), {}, isEmptyObject(errors));
+          return !error;
+        }
+      });
+    } catch (e) {
+      return Promise.reject(e);
+    }
+  }, [shouldRenderBaseOnError, isValidateAllFieldCriteria]);
+  const trigger = React.useCallback(function (name) {
+    try {
+      let _exit2 = false;
+      function _temp6(_result4) {
+        return _exit2 ? _result4 : Promise.resolve(executeValidation(fields));
+      }
+      const fields = name || Object.keys(fieldsRef.current);
+      updateIsValidating();
+      if (resolverRef.current) {
+        return Promise.resolve(executeSchemaOrResolverValidation(fields));
+      }
+      const _temp5 = function () {
+        if (Array.isArray(fields)) {
+          !name && (formStateRef.current.errors = {});
+          return Promise.resolve(Promise.all(fields.map(function (data) {
+            try {
+              return Promise.resolve(executeValidation(data, null));
+            } catch (e) {
+              return Promise.reject(e);
+            }
+          }))).then(function (result) {
+            updateFormState({
+              isValidating: false
+            });
+            const _result$every = result.every(Boolean);
+            _exit2 = true;
+            return _result$every;
+          });
+        }
+      }();
+      return Promise.resolve(_temp5 && _temp5.then ? _temp5.then(_temp6) : _temp6(_temp5));
+    } catch (e) {
+      return Promise.reject(e);
+    }
+  }, [executeSchemaOrResolverValidation, executeValidation]);
+  const setInternalValues = React.useCallback((name, value, _ref12) => {
+    let {
+      shouldDirty,
+      shouldValidate
+    } = _ref12;
+    const data = {};
+    set(data, name, value);
+    for (const fieldName of getPath(name, value)) {
+      if (fieldsRef.current[fieldName]) {
+        setFieldValue(fieldName, get(data, fieldName));
+        shouldDirty && updateAndGetDirtyState(fieldName);
+        shouldValidate && trigger(fieldName);
+      }
+    }
+  }, [trigger, setFieldValue, updateAndGetDirtyState]);
+  const setInternalValue = React.useCallback((name, value, config) => {
+    !shouldUnregister && !isPrimitive(value) && set(shallowFieldsStateRef.current, name, Array.isArray(value) ? [...value] : Object.assign({}, value));
+    if (fieldsRef.current[name]) {
+      setFieldValue(name, value);
+      config.shouldDirty && updateAndGetDirtyState(name);
+      config.shouldValidate && trigger(name);
+    } else if (!isPrimitive(value)) {
+      setInternalValues(name, value, config);
+      if (fieldArrayNamesRef.current.has(name)) {
+        const parentName = getFieldArrayParentName(name) || name;
+        set(fieldArrayDefaultValuesRef.current, name, value);
+        resetFieldArrayFunctionRef.current[parentName]({
+          [parentName]: get(fieldArrayDefaultValuesRef.current, parentName)
+        });
+        if ((readFormStateRef.current.isDirty || readFormStateRef.current.dirtyFields) && config.shouldDirty) {
+          set(formStateRef.current.dirtyFields, name, setFieldArrayDirtyFields(value, get(defaultValuesRef.current, name, []), get(formStateRef.current.dirtyFields, name, [])));
+          updateFormState({
+            isDirty: !deepEqual(Object.assign(Object.assign({}, getValues()), {
+              [name]: value
+            }), defaultValuesRef.current)
+          });
+        }
+      }
+    }
+    !shouldUnregister && set(shallowFieldsStateRef.current, name, value);
+  }, [updateAndGetDirtyState, setFieldValue, setInternalValues]);
+  const isFieldWatched = name => isWatchAllRef.current || watchFieldsRef.current.has(name) || watchFieldsRef.current.has((name.match(/\w+/) || [])[0]);
+  const renderWatchedInputs = name => {
+    let found = true;
+    if (!isEmptyObject(useWatchFieldsRef.current)) {
+      for (const key in useWatchFieldsRef.current) {
+        if (!name || !useWatchFieldsRef.current[key].size || useWatchFieldsRef.current[key].has(name) || useWatchFieldsRef.current[key].has(getFieldArrayParentName(name))) {
+          useWatchRenderFunctionsRef.current[key]();
+          found = false;
+        }
+      }
+    }
+    return found;
+  };
+  function setValue(name, value, config) {
+    setInternalValue(name, value, config || {});
+    isFieldWatched(name) && updateFormState();
+    renderWatchedInputs(name);
+  }
+  handleChangeRef.current = handleChangeRef.current ? handleChangeRef.current : function (_ref13) {
+    let {
+      type,
+      target
+    } = _ref13;
+    try {
+      let name = target.name;
+      const field = fieldsRef.current[name];
+      let error;
+      let isValid;
+      return Promise.resolve(function () {
+        if (field) {
+          function _temp8() {
+            !isBlurEvent && renderWatchedInputs(name);
+            shouldRenderBaseOnError(name, error, shouldRender, state, isValid);
+          }
+          const isBlurEvent = type === EVENTS.BLUR;
+          const shouldSkipValidation = skipValidation(Object.assign({
+            isBlurEvent,
+            isReValidateOnChange,
+            isReValidateOnBlur,
+            isTouched: !!get(formStateRef.current.touched, name),
+            isSubmitted: formStateRef.current.isSubmitted
+          }, modeRef.current));
+          let state = updateAndGetDirtyState(name, false);
+          let shouldRender = !isEmptyObject(state) || !isBlurEvent && isFieldWatched(name);
+          if (isBlurEvent && !get(formStateRef.current.touched, name) && readFormStateRef.current.touched) {
+            set(formStateRef.current.touched, name, true);
+            state = Object.assign(Object.assign({}, state), {
+              touched: formStateRef.current.touched
+            });
+          }
+          if (!shouldUnregister && isCheckBoxInput(target)) {
+            set(shallowFieldsStateRef.current, name, getFieldValue(fieldsRef, name));
+          }
+          if (shouldSkipValidation) {
+            !isBlurEvent && renderWatchedInputs(name);
+            return (!isEmptyObject(state) || shouldRender && isEmptyObject(state)) && updateFormState(state);
+          }
+          updateIsValidating();
+          const _temp7 = function () {
+            if (resolverRef.current) {
+              return Promise.resolve(resolverRef.current(getValues(), contextRef.current, isValidateAllFieldCriteria)).then(function (_ref14) {
+                let {
+                  errors
+                } = _ref14;
+                const previousFormIsValid = formStateRef.current.isValid;
+                error = get(errors, name);
+                if (isCheckBoxInput(target) && !error && resolverRef.current) {
+                  const parentNodeName = getFieldArrayParentName(name);
+                  const currentError = get(errors, parentNodeName, {});
+                  currentError.type && currentError.message && (error = currentError);
+                  if (parentNodeName && (currentError || get(formStateRef.current.errors, parentNodeName))) {
+                    name = parentNodeName;
+                  }
+                }
+                isValid = isEmptyObject(errors);
+                previousFormIsValid !== isValid && (shouldRender = true);
+              });
+            } else {
+              return Promise.resolve(validateField(fieldsRef, isValidateAllFieldCriteria, field, shallowFieldsStateRef)).then(function (_validateField2) {
+                error = _validateField2[name];
+              });
+            }
+          }();
+          return _temp7 && _temp7.then ? _temp7.then(_temp8) : _temp8(_temp7);
+        }
+      }());
+    } catch (e) {
+      return Promise.reject(e);
+    }
+  };
+  function setFieldArrayDefaultValues(data) {
+    if (!shouldUnregister) {
+      let copy = cloneObject(data);
+      for (const value of fieldArrayNamesRef.current) {
+        if (isKey(value) && !copy[value]) {
+          copy = Object.assign(Object.assign({}, copy), {
+            [value]: []
+          });
+        }
+      }
+      return copy;
+    }
+    return data;
+  }
+  function getValues(payload) {
+    if (isString(payload)) {
+      return getFieldValue(fieldsRef, payload, shallowFieldsStateRef);
+    }
+    if (Array.isArray(payload)) {
+      const data = {};
+      for (const name of payload) {
+        set(data, name, getFieldValue(fieldsRef, name, shallowFieldsStateRef));
+      }
+      return data;
+    }
+    return setFieldArrayDefaultValues(getFieldsValues(fieldsRef, cloneObject(shallowFieldsStateRef.current), shouldUnregister));
+  }
+  const validateResolver = React.useCallback(function (values) {
+    if (values === void 0) {
+      values = {};
+    }
+    try {
+      const newDefaultValues = isEmptyObject(fieldsRef.current) ? defaultValuesRef.current : {};
+      return Promise.resolve(resolverRef.current(Object.assign(Object.assign(Object.assign({}, newDefaultValues), getValues()), values), contextRef.current, isValidateAllFieldCriteria)).then(function (_ref15) {
+        let {
+          errors
+        } = _ref15;
+        const isValid = isEmptyObject(errors);
+        formStateRef.current.isValid !== isValid && updateFormState({
+          isValid
+        });
+      });
+    } catch (e) {
+      return Promise.reject(e);
+    }
+  }, [isValidateAllFieldCriteria]);
+  const removeFieldEventListener = React.useCallback((field, forceDelete) => {
+    findRemovedFieldAndRemoveListener(fieldsRef, handleChangeRef.current, field, shallowFieldsStateRef, shouldUnregister, forceDelete);
+    if (shouldUnregister) {
+      unset(validFieldsRef.current, field.ref.name);
+      unset(fieldsWithValidationRef.current, field.ref.name);
+    }
+  }, [shouldUnregister]);
+  const updateWatchedValue = React.useCallback(name => {
+    if (isWatchAllRef.current) {
+      updateFormState();
+    } else {
+      for (const watchField of watchFieldsRef.current) {
+        if (watchField.startsWith(name)) {
+          updateFormState();
+          break;
+        }
+      }
+      renderWatchedInputs(name);
+    }
+  }, []);
+  const removeFieldEventListenerAndRef = React.useCallback((field, forceDelete) => {
+    if (field) {
+      removeFieldEventListener(field, forceDelete);
+      if (shouldUnregister && !compact(field.options || []).length) {
+        unset(formStateRef.current.errors, field.ref.name);
+        set(formStateRef.current.dirtyFields, field.ref.name, true);
+        updateFormState({
+          isDirty: isFormDirty()
+        });
+        readFormStateRef.current.isValid && resolverRef.current && validateResolver();
+        updateWatchedValue(field.ref.name);
+      }
+    }
+  }, [validateResolver, removeFieldEventListener]);
+  function clearErrors(name) {
+    name && (Array.isArray(name) ? name : [name]).forEach(inputName => fieldsRef.current[inputName] && isKey(inputName) ? delete formStateRef.current.errors[inputName] : unset(formStateRef.current.errors, inputName));
+    updateFormState({
+      errors: name ? formStateRef.current.errors : {}
+    });
+  }
+  function setError(name, error) {
+    const ref = (fieldsRef.current[name] || {}).ref;
+    set(formStateRef.current.errors, name, Object.assign(Object.assign({}, error), {
+      ref
+    }));
+    updateFormState({
+      isValid: false
+    });
+    error.shouldFocus && ref && ref.focus && ref.focus();
+  }
+  const watchInternal = React.useCallback((fieldNames, defaultValue, watchId) => {
+    const watchFields = watchId ? useWatchFieldsRef.current[watchId] : watchFieldsRef.current;
+    let fieldValues = getFieldsValues(fieldsRef, cloneObject(shallowFieldsStateRef.current), shouldUnregister, false, fieldNames);
+    if (isString(fieldNames)) {
+      const parentNodeName = getFieldArrayParentName(fieldNames) || fieldNames;
+      if (fieldArrayNamesRef.current.has(parentNodeName)) {
+        fieldValues = Object.assign(Object.assign({}, fieldArrayValuesRef.current), fieldValues);
+      }
+      return assignWatchFields(fieldValues, fieldNames, watchFields, isUndefined(get(defaultValuesRef.current, fieldNames)) ? defaultValue : get(defaultValuesRef.current, fieldNames), true);
+    }
+    const combinedDefaultValues = isUndefined(defaultValue) ? defaultValuesRef.current : defaultValue;
+    if (Array.isArray(fieldNames)) {
+      return fieldNames.reduce((previous, name) => Object.assign(Object.assign({}, previous), {
+        [name]: assignWatchFields(fieldValues, name, watchFields, combinedDefaultValues)
+      }), {});
+    }
+    isWatchAllRef.current = isUndefined(watchId);
+    return transformToNestObject(!isEmptyObject(fieldValues) && fieldValues || combinedDefaultValues);
+  }, []);
+  function watch(fieldNames, defaultValue) {
+    return watchInternal(fieldNames, defaultValue);
+  }
+  function unregister(name) {
+    for (const fieldName of Array.isArray(name) ? name : [name]) {
+      removeFieldEventListenerAndRef(fieldsRef.current[fieldName], true);
+    }
+  }
+  function registerFieldRef(ref, options) {
+    if (options === void 0) {
+      options = {};
+    }
+    if (process.env.NODE_ENV !== 'production') {
+      if (!ref.name) {
+        return console.warn('📋 Field is missing `name` attribute', ref, "https://react-hook-form.com/api#useForm");
+      }
+      if (fieldArrayNamesRef.current.has(ref.name.split(/\[\d+\]$/)[0]) && !RegExp(("^" + ref.name.split(/\[\d+\]$/)[0] + "[\\d+].\\w+").replace(/\[/g, '\\[').replace(/\]/g, '\\]')).test(ref.name)) {
+        return console.warn('📋 `name` prop should be in object shape: name="test[index].name"', ref, 'https://react-hook-form.com/api#useFieldArray');
+      }
+    }
+    const {
+      name,
+      type,
+      value
+    } = ref;
+    const fieldRefAndValidationOptions = Object.assign({
+      ref
+    }, options);
+    const fields = fieldsRef.current;
+    const isRadioOrCheckbox = isRadioOrCheckboxFunction(ref);
+    const isFieldArray = isNameInFieldArray(fieldArrayNamesRef.current, name);
+    const compareRef = currentRef => isWeb && (!isHTMLElement(ref) || currentRef === ref);
+    let field = fields[name];
+    let isEmptyDefaultValue = true;
+    let defaultValue;
+    if (field && (isRadioOrCheckbox ? Array.isArray(field.options) && compact(field.options).find(option => {
+      return value === option.ref.value && compareRef(option.ref);
+    }) : compareRef(field.ref))) {
+      fields[name] = Object.assign(Object.assign({}, field), options);
+      return;
+    }
+    if (type) {
+      field = isRadioOrCheckbox ? Object.assign({
+        options: [...compact(field && field.options || []), {
+          ref
+        }],
+        ref: {
+          type,
+          name
+        }
+      }, options) : Object.assign({}, fieldRefAndValidationOptions);
+    } else {
+      field = fieldRefAndValidationOptions;
+    }
+    fields[name] = field;
+    const isEmptyUnmountFields = isUndefined(get(shallowFieldsStateRef.current, name));
+    if (!isEmptyObject(defaultValuesRef.current) || !isEmptyUnmountFields) {
+      defaultValue = get(isEmptyUnmountFields ? defaultValuesRef.current : shallowFieldsStateRef.current, name);
+      isEmptyDefaultValue = isUndefined(defaultValue);
+      if (!isEmptyDefaultValue && !isFieldArray) {
+        setFieldValue(name, defaultValue);
+      }
+    }
+    if (!isEmptyObject(options)) {
+      set(fieldsWithValidationRef.current, name, true);
+      if (!isOnSubmit && readFormStateRef.current.isValid) {
+        validateField(fieldsRef, isValidateAllFieldCriteria, field, shallowFieldsStateRef).then(error => {
+          const previousFormIsValid = formStateRef.current.isValid;
+          isEmptyObject(error) ? set(validFieldsRef.current, name, true) : unset(validFieldsRef.current, name);
+          previousFormIsValid !== isEmptyObject(error) && updateFormState();
+        });
+      }
+    }
+    if (shouldUnregister && !(isFieldArray && isEmptyDefaultValue)) {
+      !isFieldArray && unset(formStateRef.current.dirtyFields, name);
+    }
+    if (type) {
+      attachEventListeners(isRadioOrCheckbox && field.options ? field.options[field.options.length - 1] : field, isRadioOrCheckbox || isSelectInput(ref), handleChangeRef.current);
+    }
+  }
+  function register(refOrRegisterOptions, options) {
+    if (!isWindowUndefined) {
+      if (isString(refOrRegisterOptions)) {
+        registerFieldRef({
+          name: refOrRegisterOptions
+        }, options);
+      } else if (isObject(refOrRegisterOptions) && 'name' in refOrRegisterOptions) {
+        registerFieldRef(refOrRegisterOptions, options);
+      } else {
+        return ref => ref && registerFieldRef(ref, refOrRegisterOptions);
+      }
+    }
+  }
+  const handleSubmit = React.useCallback((onValid, onInvalid) => function (e) {
+    try {
+      if (e && e.preventDefault) {
+        e.preventDefault();
+        e.persist();
+      }
+      let fieldErrors = {};
+      let fieldValues = setFieldArrayDefaultValues(getFieldsValues(fieldsRef, cloneObject(shallowFieldsStateRef.current), shouldUnregister, true));
+      readFormStateRef.current.isSubmitting && updateFormState({
+        isSubmitting: true
+      });
+      return Promise.resolve(_finallyRethrows(function () {
+        function _temp13() {
+          const _temp11 = function () {
+            if (isEmptyObject(fieldErrors) && Object.keys(formStateRef.current.errors).every(name => name in fieldsRef.current)) {
+              updateFormState({
+                errors: {},
+                isSubmitting: true
+              });
+              return Promise.resolve(onValid(fieldValues, e)).then(function () {});
+            } else {
+              function _temp10(_onInvalid) {
+                _onInvalid;
+                shouldFocusError && focusOnErrorField(fieldsRef.current, formStateRef.current.errors);
+              }
+              formStateRef.current.errors = Object.assign(Object.assign({}, formStateRef.current.errors), fieldErrors);
+              return onInvalid ? Promise.resolve(onInvalid(formStateRef.current.errors, e)).then(_temp10) : _temp10(onInvalid);
+            }
+          }();
+          if (_temp11 && _temp11.then) return _temp11.then(function () {});
+        }
+        const _temp12 = function () {
+          if (resolverRef.current) {
+            return Promise.resolve(resolverRef.current(fieldValues, contextRef.current, isValidateAllFieldCriteria)).then(function (_ref16) {
+              let {
+                errors,
+                values
+              } = _ref16;
+              formStateRef.current.errors = fieldErrors = errors;
+              fieldValues = values;
+            });
+          } else {
+            return _forOf(Object.values(fieldsRef.current), function (field) {
+              const _temp9 = function () {
+                if (field) {
+                  const {
+                    name
+                  } = field.ref;
+                  return Promise.resolve(validateField(fieldsRef, isValidateAllFieldCriteria, field, shallowFieldsStateRef)).then(function (fieldError) {
+                    if (fieldError[name]) {
+                      set(fieldErrors, name, fieldError[name]);
+                      unset(validFieldsRef.current, name);
+                    } else if (get(fieldsWithValidationRef.current, name)) {
+                      unset(formStateRef.current.errors, name);
+                      set(validFieldsRef.current, name, true);
+                    }
+                  });
+                }
+              }();
+              if (_temp9 && _temp9.then) return _temp9.then(function () {});
+            });
+          }
+        }();
+        return _temp12 && _temp12.then ? _temp12.then(_temp13) : _temp13(_temp12);
+      }, function (_wasThrown, _result6) {
+        formStateRef.current.isSubmitting = false;
+        updateFormState({
+          isSubmitted: true,
+          isSubmitting: false,
+          isSubmitSuccessful: isEmptyObject(formStateRef.current.errors),
+          submitCount: formStateRef.current.submitCount + 1
+        });
+        if (_wasThrown) throw _result6;
+        return _result6;
+      }));
+    } catch (e) {
+      return Promise.reject(e);
+    }
+  }, [shouldFocusError, isValidateAllFieldCriteria]);
+  const resetRefs = _ref17 => {
+    let {
+      errors,
+      isDirty,
+      isSubmitted,
+      touched,
+      isValid,
+      submitCount,
+      dirtyFields
+    } = _ref17;
+    if (!isValid) {
+      validFieldsRef.current = {};
+      fieldsWithValidationRef.current = {};
+    }
+    fieldArrayDefaultValuesRef.current = {};
+    watchFieldsRef.current = new Set();
+    isWatchAllRef.current = false;
+    updateFormState({
+      submitCount: submitCount ? formStateRef.current.submitCount : 0,
+      isDirty: isDirty ? formStateRef.current.isDirty : false,
+      isSubmitted: isSubmitted ? formStateRef.current.isSubmitted : false,
+      isValid: isValid ? formStateRef.current.isValid : false,
+      dirtyFields: dirtyFields ? formStateRef.current.dirtyFields : {},
+      touched: touched ? formStateRef.current.touched : {},
+      errors: errors ? formStateRef.current.errors : {},
+      isSubmitting: false,
+      isSubmitSuccessful: false
+    });
+  };
+  const reset = function (values, omitResetState) {
+    if (omitResetState === void 0) {
+      omitResetState = {};
+    }
+    if (isWeb) {
+      for (const field of Object.values(fieldsRef.current)) {
+        if (field) {
+          const {
+            ref,
+            options
+          } = field;
+          const inputRef = isRadioOrCheckboxFunction(ref) && Array.isArray(options) ? options[0].ref : ref;
+          if (isHTMLElement(inputRef)) {
+            try {
+              inputRef.closest('form').reset();
+              break;
+            } catch (_a) {}
+          }
+        }
+      }
+    }
+    fieldsRef.current = {};
+    defaultValuesRef.current = Object.assign({}, values || defaultValuesRef.current);
+    values && renderWatchedInputs('');
+    Object.values(resetFieldArrayFunctionRef.current).forEach(resetFieldArray => isFunction(resetFieldArray) && resetFieldArray());
+    shallowFieldsStateRef.current = shouldUnregister ? {} : cloneObject(values || defaultValuesRef.current);
+    resetRefs(omitResetState);
+  };
+  React.useEffect(() => {
+    resolver && readFormStateRef.current.isValid && validateResolver();
+    observerRef.current = observerRef.current || !isWeb ? observerRef.current : onDomRemove(fieldsRef, removeFieldEventListenerAndRef);
+  }, [removeFieldEventListenerAndRef, defaultValuesRef.current]);
+  React.useEffect(() => () => {
+    observerRef.current && observerRef.current.disconnect();
+    isUnMount.current = true;
+    if (process.env.NODE_ENV !== 'production') {
+      return;
+    }
+    Object.values(fieldsRef.current).forEach(field => removeFieldEventListenerAndRef(field, true));
+  }, []);
+  if (!resolver && readFormStateRef.current.isValid) {
+    formState.isValid = deepEqual(validFieldsRef.current, fieldsWithValidationRef.current) && isEmptyObject(formStateRef.current.errors);
+  }
+  const commonProps = {
+    trigger,
+    setValue: React.useCallback(setValue, [setInternalValue, trigger]),
+    getValues: React.useCallback(getValues, []),
+    register: React.useCallback(register, [defaultValuesRef.current]),
+    unregister: React.useCallback(unregister, []),
+    formState: isProxyEnabled ? new Proxy(formState, {
+      get: (obj, prop) => {
+        if (process.env.NODE_ENV !== 'production') {
+          if (prop === 'isValid' && isOnSubmit) {
+            console.warn('📋 `formState.isValid` is applicable with `onTouched`, `onChange` or `onBlur` mode. https://react-hook-form.com/api#formState');
+          }
+        }
+        if (prop in obj) {
+          readFormStateRef.current[prop] = true;
+          return obj[prop];
+        }
+        return undefined;
+      }
+    }) : formState
+  };
+  const control = React.useMemo(() => Object.assign({
+    isFormDirty,
+    updateWatchedValue,
+    shouldUnregister,
+    updateFormState,
+    removeFieldEventListener,
+    watchInternal,
+    mode: modeRef.current,
+    reValidateMode: {
+      isReValidateOnBlur,
+      isReValidateOnChange
+    },
+    validateResolver: resolver ? validateResolver : undefined,
+    fieldsRef,
+    resetFieldArrayFunctionRef,
+    useWatchFieldsRef,
+    useWatchRenderFunctionsRef,
+    fieldArrayDefaultValuesRef,
+    validFieldsRef,
+    fieldsWithValidationRef,
+    fieldArrayNamesRef,
+    readFormStateRef,
+    formStateRef,
+    defaultValuesRef,
+    shallowFieldsStateRef,
+    fieldArrayValuesRef
+  }, commonProps), [defaultValuesRef.current, updateWatchedValue, shouldUnregister, removeFieldEventListener, watchInternal]);
+  return Object.assign({
+    watch,
+    control,
+    handleSubmit,
+    reset: React.useCallback(reset, []),
+    clearErrors: React.useCallback(clearErrors, []),
+    setError: React.useCallback(setError, []),
+    errors: formState.errors
+  }, commonProps);
+}
+function __rest(s, e) {
+  var t = {};
+  for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
+  if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+    if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i])) t[p[i]] = s[p[i]];
+  }
+  return t;
+}
+const FormContext = React.createContext(null);
+FormContext.displayName = 'RHFContext';
+const useFormContext = () => React.useContext(FormContext);
+var getInputValue = event => isPrimitive(event) || !isObject(event.target) || isObject(event.target) && !event.type ? event : isUndefined(event.target.value) ? event.target.checked : event.target.value;
+function useController(_ref19) {
+  let {
+    name,
+    rules,
+    defaultValue,
+    control,
+    onFocus
+  } = _ref19;
+  const methods = useFormContext();
+  if (process.env.NODE_ENV !== 'production') {
+    if (!control && !methods) {
+      throw new Error('📋 Controller is missing `control` prop. https://react-hook-form.com/api#Controller');
+    }
+  }
+  const {
+    defaultValuesRef,
+    setValue,
+    register,
+    unregister,
+    trigger,
+    mode,
+    reValidateMode: {
+      isReValidateOnBlur,
+      isReValidateOnChange
+    },
+    formState,
+    formStateRef: {
+      current: {
+        isSubmitted,
+        touched,
+        errors
+      }
+    },
+    updateFormState,
+    readFormStateRef,
+    fieldsRef,
+    fieldArrayNamesRef,
+    shallowFieldsStateRef
+  } = control || methods.control;
+  const isNotFieldArray = !isNameInFieldArray(fieldArrayNamesRef.current, name);
+  const getInitialValue = () => !isUndefined(get(shallowFieldsStateRef.current, name)) && isNotFieldArray ? get(shallowFieldsStateRef.current, name) : isUndefined(defaultValue) ? get(defaultValuesRef.current, name) : defaultValue;
+  const [value, setInputStateValue] = React.useState(getInitialValue());
+  const valueRef = React.useRef(value);
+  const ref = React.useRef({
+    focus: () => null
+  });
+  const onFocusRef = React.useRef(onFocus || (() => {
+    if (isFunction(ref.current.focus)) {
+      ref.current.focus();
+    }
+    if (process.env.NODE_ENV !== 'production') {
+      if (!isFunction(ref.current.focus)) {
+        console.warn("\uD83D\uDCCB 'ref' from Controller render prop must be attached to a React component or a DOM Element whose ref provides a 'focus()' method");
+      }
+    }
+  }));
+  const shouldValidate = React.useCallback(isBlurEvent => !skipValidation(Object.assign({
+    isBlurEvent,
+    isReValidateOnBlur,
+    isReValidateOnChange,
+    isSubmitted,
+    isTouched: !!get(touched, name)
+  }, mode)), [isReValidateOnBlur, isReValidateOnChange, isSubmitted, touched, name, mode]);
+  const commonTask = React.useCallback(_ref20 => {
+    let [event] = _ref20;
+    const data = getInputValue(event);
+    setInputStateValue(data);
+    valueRef.current = data;
+    return data;
+  }, []);
+  const registerField = React.useCallback(shouldUpdateValue => {
+    if (process.env.NODE_ENV !== 'production') {
+      if (!name) {
+        return console.warn('📋 Field is missing `name` prop. https://react-hook-form.com/api#Controller');
+      }
+    }
+    if (fieldsRef.current[name]) {
+      fieldsRef.current[name] = Object.assign({
+        ref: fieldsRef.current[name].ref
+      }, rules);
+    } else {
+      register(Object.defineProperties({
+        name,
+        focus: onFocusRef.current
+      }, {
+        value: {
+          set(data) {
+            setInputStateValue(data);
+            valueRef.current = data;
+          },
+          get() {
+            return valueRef.current;
+          }
+        }
+      }), rules);
+      shouldUpdateValue = isUndefined(get(defaultValuesRef.current, name));
+    }
+    shouldUpdateValue && isNotFieldArray && setInputStateValue(getInitialValue());
+  }, [rules, name, register]);
+  React.useEffect(() => () => unregister(name), [name]);
+  React.useEffect(() => {
+    if (process.env.NODE_ENV !== 'production') {
+      if (isUndefined(value)) {
+        console.warn("\uD83D\uDCCB " + name + " is missing in the 'defaultValue' prop of either its Controller (https://react-hook-form.com/api#Controller) or useForm (https://react-hook-form.com/api#useForm)");
+      }
+      if (!isNotFieldArray && isUndefined(defaultValue)) {
+        console.warn('📋 Controller is missing `defaultValue` prop when using `useFieldArray`. https://react-hook-form.com/api#Controller');
+      }
+    }
+    registerField();
+  }, [registerField]);
+  React.useEffect(() => {
+    !fieldsRef.current[name] && registerField(true);
+  });
+  const onBlur = React.useCallback(() => {
+    if (readFormStateRef.current.touched && !get(touched, name)) {
+      set(touched, name, true);
+      updateFormState({
+        touched
+      });
+    }
+    shouldValidate(true) && trigger(name);
+  }, [name, updateFormState, shouldValidate, trigger, readFormStateRef]);
+  const onChange = React.useCallback(function () {
+    for (var _len = arguments.length, event = new Array(_len), _key = 0; _key < _len; _key++) {
+      event[_key] = arguments[_key];
+    }
+    return setValue(name, commonTask(event), {
+      shouldValidate: shouldValidate(),
+      shouldDirty: true
+    });
+  }, [setValue, name, shouldValidate]);
+  return {
+    field: {
+      onChange,
+      onBlur,
+      name,
+      value,
+      ref
+    },
+    meta: Object.defineProperties({
+      invalid: !!get(errors, name)
+    }, {
+      isDirty: {
+        get() {
+          return !!get(formState.dirtyFields, name);
+        }
+      },
+      isTouched: {
+        get() {
+          return !!get(formState.touched, name);
+        }
+      }
+    })
+  };
+}
+const Controller = props => {
+  const {
+      rules,
+      as,
+      render,
+      defaultValue,
+      control,
+      onFocus
+    } = props,
+    rest = __rest(props, ["rules", "as", "render", "defaultValue", "control", "onFocus"]);
+  const {
+    field,
+    meta
+  } = useController(props);
+  const componentProps = Object.assign(Object.assign({}, rest), field);
+  return as ? React.isValidElement(as) ? React.cloneElement(as, componentProps) : React.createElement(as, componentProps) : render ? render(field, meta) : null;
+};
+
+const CitizenFeedback = _ref => {
+  var _data$Properties8, _data$Properties8$, _data$Properties9, _data$Properties9$;
+  let {
+    popup = false,
+    onClose,
+    setShowToast,
+    data
+  } = _ref;
+  const {
+    t
+  } = reactI18next.useTranslation();
+  const history = reactRouterDom.useHistory();
+  const user = Digit.UserService.getUser();
+  let {
+    redirectedFrom,
+    propertyId,
+    acknowldgementNumber,
+    creationReason,
+    tenantId,
+    locality
+  } = Digit.Hooks.useQueryParams();
+  const isMobile = window.Digit.Utils.browser.isMobile();
+  tenantId = tenantId || Digit.ULBService.getCurrentTenantId();
+  const stateId = Digit.ULBService.getStateId();
+  const {
+    data: RatingAndFeedBack,
+    isLoading: RatingAndFeedBackLoading
+  } = Digit.Hooks.pt.useRatingAndFeedbackMDMS.RatingAndFeedBack(stateId);
+  const [comment, setComment] = React.useState("");
+  const [rating, setRating] = React.useState(0);
+  if (RatingAndFeedBackLoading) {
+    return /*#__PURE__*/React__default.createElement(digitUiReactComponents.Loader, null);
+  }
+  const onComments = e => {
+    setComment(e.target.value);
+  };
+  const feedback = (e, ref, index) => {
+    setRating(index);
+  };
+  const onSubmit = () => {
+    var _data$Properties, _data$Properties$, _data$Properties2, _data$Properties2$;
+    let formData = {};
+    let ServiceDefinitionCriteria = {
+      "tenantId": (data === null || data === void 0 ? void 0 : (_data$Properties = data.Properties) === null || _data$Properties === void 0 ? void 0 : (_data$Properties$ = _data$Properties[0]) === null || _data$Properties$ === void 0 ? void 0 : _data$Properties$.tenantId) || tenantId,
+      "code": ["PT_" + (redirectedFrom !== null && redirectedFrom !== void 0 && redirectedFrom.includes("payment") ? "PAYMENT" : creationReason || (data === null || data === void 0 ? void 0 : (_data$Properties2 = data.Properties) === null || _data$Properties2 === void 0 ? void 0 : (_data$Properties2$ = _data$Properties2[0]) === null || _data$Properties2$ === void 0 ? void 0 : _data$Properties2$.creationReason))],
+      "module": ["PT"]
+    };
+    Digit.PTService.cfdefinitionsearch({
+      filters: {
+        ServiceDefinitionCriteria
+      }
+    }).then((result1, err) => {
+      var _result1$ServiceDefin;
+      if ((result1 === null || result1 === void 0 ? void 0 : (_result1$ServiceDefin = result1.ServiceDefinition) === null || _result1$ServiceDefin === void 0 ? void 0 : _result1$ServiceDefin.length) > 0) {
+        var _data$Properties3, _data$Properties3$, _result1$ServiceDefin2, _result1$ServiceDefin3, _data$Properties4, _data$Properties4$, _data$Properties5, _data$Properties5$, _data$Properties5$$ad, _data$Properties5$$ad2, _user$info, _data$Properties6, _data$Properties6$;
+        formData = {
+          "tenantId": (data === null || data === void 0 ? void 0 : (_data$Properties3 = data.Properties) === null || _data$Properties3 === void 0 ? void 0 : (_data$Properties3$ = _data$Properties3[0]) === null || _data$Properties3$ === void 0 ? void 0 : _data$Properties3$.tenantId) || tenantId,
+          "serviceDefId": result1 === null || result1 === void 0 ? void 0 : (_result1$ServiceDefin2 = result1.ServiceDefinition) === null || _result1$ServiceDefin2 === void 0 ? void 0 : (_result1$ServiceDefin3 = _result1$ServiceDefin2[0]) === null || _result1$ServiceDefin3 === void 0 ? void 0 : _result1$ServiceDefin3.id,
+          "isActive": true,
+          "attributes": [{
+            "attributeCode": "consumerCode",
+            "value": propertyId || (data === null || data === void 0 ? void 0 : (_data$Properties4 = data.Properties) === null || _data$Properties4 === void 0 ? void 0 : (_data$Properties4$ = _data$Properties4[0]) === null || _data$Properties4$ === void 0 ? void 0 : _data$Properties4$.propertyId),
+            "additionalDetails": {}
+          }, {
+            "attributeCode": "rating",
+            "value": rating,
+            "additionalDetails": {}
+          }, {
+            "attributeCode": "comments",
+            "value": comment,
+            "additionalDetails": {}
+          }, {
+            "attributeCode": "channel",
+            "value": "Online",
+            "additionalDetails": {}
+          }],
+          "additionalDetails": {
+            locality: locality || (data === null || data === void 0 ? void 0 : (_data$Properties5 = data.Properties) === null || _data$Properties5 === void 0 ? void 0 : (_data$Properties5$ = _data$Properties5[0]) === null || _data$Properties5$ === void 0 ? void 0 : (_data$Properties5$$ad = _data$Properties5$.address) === null || _data$Properties5$$ad === void 0 ? void 0 : (_data$Properties5$$ad2 = _data$Properties5$$ad.locality) === null || _data$Properties5$$ad2 === void 0 ? void 0 : _data$Properties5$$ad2.code) || ""
+          },
+          "accountId": user === null || user === void 0 ? void 0 : (_user$info = user.info) === null || _user$info === void 0 ? void 0 : _user$info.uuid
+        };
+        formData = {
+          ...formData,
+          referenceId: acknowldgementNumber || (data === null || data === void 0 ? void 0 : (_data$Properties6 = data.Properties) === null || _data$Properties6 === void 0 ? void 0 : (_data$Properties6$ = _data$Properties6[0]) === null || _data$Properties6$ === void 0 ? void 0 : _data$Properties6$.acknowldgementNumber)
+        };
+        Digit.PTService.cfcreate({
+          Service: {
+            ...formData
+          }
+        }, tenantId).then((result, err) => {
+          var _result$Service;
+          if ((result === null || result === void 0 ? void 0 : (_result$Service = result.Service) === null || _result$Service === void 0 ? void 0 : _result$Service.length) > 0) {
+            if (popup) {
+              onClose(false);
+              setShowToast({
+                key: false,
+                label: "PT_FEEDBACK_SUBMITTED_SUCCESSFULLY"
+              });
+            } else history.push({
+              pathname: "/digit-ui/citizen/feedback-acknowledgement",
+              state: {
+                rating,
+                comment,
+                result
+              }
+            });
+          }
+        }).catch(e => {
+          var _e$response, _e$response$data, _e$response$data$Erro;
+          setShowToast({
+            key: "error",
+            label: "" + (e === null || e === void 0 ? void 0 : (_e$response = e.response) === null || _e$response === void 0 ? void 0 : (_e$response$data = _e$response.data) === null || _e$response$data === void 0 ? void 0 : (_e$response$data$Erro = _e$response$data.Errors[0]) === null || _e$response$data$Erro === void 0 ? void 0 : _e$response$data$Erro.message)
+          });
+        });
+      }
+    });
+  };
+  const getCardHeaderAndText = type => {
+    var _RatingAndFeedBack$en, _RatingAndFeedBack$en2;
+    let tempObject = RatingAndFeedBack === null || RatingAndFeedBack === void 0 ? void 0 : (_RatingAndFeedBack$en = RatingAndFeedBack.enabledScreensList) === null || _RatingAndFeedBack$en === void 0 ? void 0 : (_RatingAndFeedBack$en2 = _RatingAndFeedBack$en.filter(ob => {
+      var _ob$bussinessService, _data$Properties7, _data$Properties7$;
+      return (ob === null || ob === void 0 ? void 0 : ob.module) === "PT" && ((redirectedFrom === null || redirectedFrom === void 0 ? void 0 : redirectedFrom.includes(ob === null || ob === void 0 ? void 0 : ob.screenfrom)) || (ob === null || ob === void 0 ? void 0 : (_ob$bussinessService = ob.bussinessService) === null || _ob$bussinessService === void 0 ? void 0 : _ob$bussinessService.includes(data === null || data === void 0 ? void 0 : (_data$Properties7 = data.Properties) === null || _data$Properties7 === void 0 ? void 0 : (_data$Properties7$ = _data$Properties7[0]) === null || _data$Properties7$ === void 0 ? void 0 : _data$Properties7$.creationReason)));
+    })) === null || _RatingAndFeedBack$en2 === void 0 ? void 0 : _RatingAndFeedBack$en2[0];
+    if (type === "Header") return tempObject === null || tempObject === void 0 ? void 0 : tempObject.cardHeader;else if (type === "Text") {
+      return tempObject === null || tempObject === void 0 ? void 0 : tempObject.cardText;
+    }
+  };
+  const getCommentHeader = () => {
+    var _RatingAndFeedBack$he, _RatingAndFeedBack$he2, _RatingAndFeedBack$he3;
+    return (RatingAndFeedBack === null || RatingAndFeedBack === void 0 ? void 0 : (_RatingAndFeedBack$he = RatingAndFeedBack.headerByRating) === null || _RatingAndFeedBack$he === void 0 ? void 0 : (_RatingAndFeedBack$he2 = _RatingAndFeedBack$he.filter(ob => rating >= (ob === null || ob === void 0 ? void 0 : ob.minvalue) && rating <= (ob === null || ob === void 0 ? void 0 : ob.maxvalue))) === null || _RatingAndFeedBack$he2 === void 0 ? void 0 : (_RatingAndFeedBack$he3 = _RatingAndFeedBack$he2[0]) === null || _RatingAndFeedBack$he3 === void 0 ? void 0 : _RatingAndFeedBack$he3.code) || t("CS_WHAT_WENT_WRONG");
+  };
+  const getCommentCheck = () => {
+    if (comment && (comment === null || comment === void 0 ? void 0 : comment.length) < 64) return true;else if (rating) return false;else return true;
+  };
+  return /*#__PURE__*/React__default.createElement(React__default.Fragment, null, /*#__PURE__*/React__default.createElement("form", null, /*#__PURE__*/React__default.createElement(digitUiReactComponents.Card, null, /*#__PURE__*/React__default.createElement("div", {
+    style: popup ? {
+      display: "flex",
+      justifyContent: "space-between"
+    } : {}
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.CardHeader, null, t(getCardHeaderAndText("Header")) || t("PT_RATE_HELP_TEXT")), popup && /*#__PURE__*/React__default.createElement("span", {
+    style: {
+      marginTop: "8px"
+    },
+    onClick: () => onClose(false)
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.CloseSvg, null))), /*#__PURE__*/React__default.createElement(digitUiReactComponents.CardText, null, t(getCardHeaderAndText("Text"), {
+    acknowldgementNumber: acknowldgementNumber || (data === null || data === void 0 ? void 0 : (_data$Properties8 = data.Properties) === null || _data$Properties8 === void 0 ? void 0 : (_data$Properties8$ = _data$Properties8[0]) === null || _data$Properties8$ === void 0 ? void 0 : _data$Properties8$.acknowldgementNumber),
+    propertyId: propertyId || (data === null || data === void 0 ? void 0 : (_data$Properties9 = data.Properties) === null || _data$Properties9 === void 0 ? void 0 : (_data$Properties9$ = _data$Properties9[0]) === null || _data$Properties9$ === void 0 ? void 0 : _data$Properties9$.propertyId)
+  }) || t("PT_RATE_TEXT")), /*#__PURE__*/React__default.createElement(digitUiReactComponents.Rating, {
+    styles: {
+      justifyContent: "center"
+    },
+    currentRating: rating,
+    maxRating: 5,
+    onFeedback: (e, ref, i) => feedback(e, ref, i)
+  }), rating !== 0 && /*#__PURE__*/React__default.createElement("div", null, /*#__PURE__*/React__default.createElement(digitUiReactComponents.CardLabel, null, t(getCommentHeader())), /*#__PURE__*/React__default.createElement(digitUiReactComponents.TextArea, {
+    name: "",
+    minLength: "64",
+    onChange: onComments
+  }), comment && (comment === null || comment === void 0 ? void 0 : comment.length) < 64 && /*#__PURE__*/React__default.createElement(digitUiReactComponents.CardLabelError, {
+    style: {
+      marginTop: "-20px",
+      marginBottom: "25px"
+    }
+  }, t("CS_MIN_LENGTH_64"))), /*#__PURE__*/React__default.createElement(digitUiReactComponents.SubmitBar, {
+    label: t("PT" + "_SUBMIT"),
+    onSubmit: onSubmit,
+    disabled: getCommentCheck()
+  }), !popup && /*#__PURE__*/React__default.createElement("div", {
+    className: "link",
+    style: isMobile ? {
+      marginTop: "8px",
+      width: "100%",
+      textAlign: "center"
+    } : {
+      marginTop: "8px"
+    }
+  }, /*#__PURE__*/React__default.createElement(reactRouterDom.Link, {
+    to: "/digit-ui/citizen"
+  }, t("CS_GO_BACK_HOME"))))));
+};
+
+const SearchFields = _ref => {
+  let {
+    register,
+    control,
+    reset,
+    tenantId,
+    t,
+    previousPage,
+    formState,
+    isLoading
+  } = _ref;
+  const isMobile = window.Digit.Utils.browser.isMobile();
+  return /*#__PURE__*/React__default.createElement(React.Fragment, null, /*#__PURE__*/React__default.createElement(digitUiReactComponents.SearchField, {
+    className: "pt-form-field"
+  }, /*#__PURE__*/React__default.createElement("label", null, t("AUDIT_FROM_DATE_LABEL")), /*#__PURE__*/React__default.createElement(Controller, {
+    render: props => /*#__PURE__*/React__default.createElement(digitUiReactComponents.DatePicker, {
+      date: props.value,
+      onChange: props.onChange
+    }),
+    name: "fromDate",
+    control: control
+  })), /*#__PURE__*/React__default.createElement(digitUiReactComponents.SearchField, {
+    className: "pt-form-field"
+  }, /*#__PURE__*/React__default.createElement("label", null, t("AUDIT_TO_DATE_LABEL")), /*#__PURE__*/React__default.createElement(Controller, {
+    render: props => /*#__PURE__*/React__default.createElement(digitUiReactComponents.DatePicker, {
+      date: props.value,
+      onChange: props.onChange
+    }),
+    name: "toDate",
+    control: control
+  })), /*#__PURE__*/React__default.createElement(digitUiReactComponents.SearchField, {
+    className: "pt-search-action-submit"
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.SubmitBar, {
+    style: {
+      marginTop: isMobile ? "510px" : "25px",
+      marginLeft: isMobile ? "0" : "-30px",
+      maxWidth: isMobile ? "100%" : "240px"
+    },
+    label: t("ES_COMMON_APPLY"),
+    submit: true
+  })));
+};
+
+const MobileSearchApplication = _ref => {
+  var _data$roles;
+  let {
+    Controller,
+    register,
+    control,
+    t,
+    reset,
+    previousPage,
+    handleSubmit,
+    tenantId,
+    data,
+    onSubmit,
+    isLoading
+  } = _ref;
+  function activateModal(state, action) {
+    switch (action.type) {
+      case "set":
+        return action.payload;
+      case "remove":
+        return false;
+    }
+  }
+  const [tabledata, settabledata] = React.useState([]);
+  const DownloadBtn = props => {
+    return /*#__PURE__*/React__default.createElement("div", {
+      onClick: props.onClick
+    }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.DownloadBtnCommon, null));
+  };
+  const handleExcelDownload = tabData => {
+    if ((tabData === null || tabData === void 0 ? void 0 : tabData[0]) !== undefined) {
+      return Digit.Download.Excel(tabData === null || tabData === void 0 ? void 0 : tabData[0], "AuditReport");
+    }
+  };
+  React.useEffect(() => {
+    if ((data === null || data === void 0 ? void 0 : data.length) > 0) {
+      settabledata([data === null || data === void 0 ? void 0 : data.map(obj => {
+        var _obj$dataView, _obj$roles;
+        let returnObject = {};
+        returnObject[t("AUDIT_DATE_LABEL")] = convertEpochToDate(obj === null || obj === void 0 ? void 0 : obj.timestamp) || "-";
+        returnObject[t("AUDIT_TIME_LABEL")] = convertEpochToTimeInHours(obj === null || obj === void 0 ? void 0 : obj.timestamp) || "-";
+        returnObject[t("AUDIT_DATAVIEWED_LABEL")] = (obj === null || obj === void 0 ? void 0 : (_obj$dataView = obj.dataView) === null || _obj$dataView === void 0 ? void 0 : _obj$dataView.join(", ")) || "-";
+        returnObject[t("AUDIT_DATAVIEWED_BY_LABEL")] = (obj === null || obj === void 0 ? void 0 : obj.dataViewedBy) || "-";
+        returnObject[t("AUDIT_ROLE_LABEL")] = (obj === null || obj === void 0 ? void 0 : (_obj$roles = obj.roles) === null || _obj$roles === void 0 ? void 0 : _obj$roles.map(obj => obj.name).join(", ")) || "-";
+        return {
+          ...returnObject
+        };
+      })]);
+    }
+  }, [data]);
+  const convertEpochToDate = dateEpoch => {
+    if (dateEpoch == null || dateEpoch == undefined || dateEpoch == "") {
+      return "NA";
+    }
+    const dateFromApi = new Date(dateEpoch);
+    let month = dateFromApi.getMonth() + 1;
+    let day = dateFromApi.getDate();
+    let year = dateFromApi.getFullYear();
+    month = (month > 9 ? "" : "0") + month;
+    day = (day > 9 ? "" : "0") + day;
+    return day + "/" + month + "/" + year;
+  };
+  const convertEpochToTimeInHours = dateEpoch => {
+    if (dateEpoch == null || dateEpoch == undefined || dateEpoch == "") {
+      return "NA";
+    }
+    const dateFromApi = new Date(dateEpoch);
+    let hour = dateFromApi.getHours();
+    let min = dateFromApi.getMinutes();
+    let period = hour > 12 ? "PM" : "AM";
+    hour = hour > 12 ? hour - 12 : hour;
+    hour = (hour > 9 ? "" : "0") + hour;
+    min = (min > 9 ? "" : "0") + min;
+    return hour + ":" + min + " " + period;
+  };
+  const [currentlyActiveMobileModal, setActiveMobileModal] = React.useReducer(activateModal, false);
+  const closeMobilePopupModal = () => {
+    setActiveMobileModal({
+      type: "remove"
+    });
+  };
+  const MobilePopUpCloseButton = () => /*#__PURE__*/React__default.createElement("div", {
+    className: "InboxMobilePopupCloseButtonWrapper",
+    onClick: closeMobilePopupModal
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.CloseSvg, null));
+  const searchFormFieldsComponentProps = {
+    Controller,
+    register,
+    control,
+    t,
+    reset,
+    previousPage
+  };
+  const MobileComponentDirectory = _ref2 => {
+    let {
+      currentlyActiveMobileModal,
+      searchFormFieldsComponentProps,
+      tenantId,
+      ...props
+    } = _ref2;
+    const {
+      closeMobilePopupModal
+    } = props;
+    switch (currentlyActiveMobileModal) {
+      case "SearchFormComponent":
+        return /*#__PURE__*/React__default.createElement(digitUiReactComponents.SearchForm, props, /*#__PURE__*/React__default.createElement(MobilePopUpCloseButton, null), /*#__PURE__*/React__default.createElement("div", {
+          className: "MobilePopupHeadingWrapper"
+        }, /*#__PURE__*/React__default.createElement("h2", null, t("PRIVACY_AUDIT_REPORT"), ":")), /*#__PURE__*/React__default.createElement(SearchFields, _extends({}, searchFormFieldsComponentProps, {
+          closeMobilePopupModal,
+          tenantId,
+          t
+        })));
+      default:
+        return /*#__PURE__*/React__default.createElement("span", null);
+    }
+  };
+  const CurrentMobileModalComponent = React.useCallback(_ref3 => {
+    let {
+      currentlyActiveMobileModal,
+      searchFormFieldsComponentProps,
+      tenantId,
+      ...props
+    } = _ref3;
+    return MobileComponentDirectory({
+      currentlyActiveMobileModal,
+      searchFormFieldsComponentProps,
+      tenantId,
+      ...props
+    });
+  }, [currentlyActiveMobileModal]);
+  data === null || data === void 0 ? void 0 : (_data$roles = data.roles) === null || _data$roles === void 0 ? void 0 : _data$roles.forEach(item => {
+  });
+  const propsMobileInboxCards = React.useMemo(() => {
+    if (data !== null && data !== void 0 && data.display) {
+      return [];
+    }
+    if (data === "") {
+      return [];
+    }
+    return data === null || data === void 0 ? void 0 : data.map(data => {
+      var _data$dataView, _data$roles2, _data$roles2$slice;
+      return {
+        [t("AUDIT_DATE_LABEL")]: convertEpochToDate(data.timestamp) || "-",
+        [t("AUDIT_TIME_LABEL")]: convertEpochToTimeInHours(data.timestamp) || "-",
+        [t("AUDIT_DATAVIEWED_LABEL")]: ((_data$dataView = data.dataView) === null || _data$dataView === void 0 ? void 0 : _data$dataView.join(", ")) || "-",
+        [t("AUDIT_DATAVIEWED_BY_LABEL")]: data.dataViewedBy || "-",
+        [t("AUDIT_ROLE_LABEL")]: ((_data$roles2 = data.roles) === null || _data$roles2 === void 0 ? void 0 : (_data$roles2$slice = _data$roles2.slice(0, 3)) === null || _data$roles2$slice === void 0 ? void 0 : _data$roles2$slice.map(e => e.name).join(", ")) || "-"
+      };
+    });
+  }, [data]);
+  return /*#__PURE__*/React__default.createElement(React__default.Fragment, null, /*#__PURE__*/React__default.createElement(digitUiReactComponents.BackButton, null), /*#__PURE__*/React__default.createElement("div", {
+    className: "sideContent",
+    style: {
+      marginLeft: "65%",
+      marginTop: "-12%"
+    }
+  }, /*#__PURE__*/React__default.createElement(DownloadBtn, {
+    className: "mrlg cursorPointer",
+    onClick: () => handleExcelDownload(tabledata)
+  })), /*#__PURE__*/React__default.createElement(digitUiReactComponents.Header, null, t("PRIVACY_AUDIT_REPORT"), ":"), /*#__PURE__*/React__default.createElement("div", {
+    className: "searchBox"
+  }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.SearchAction, {
+    text: t("ES_COMMON_SEARCH"),
+    handleActionClick: () => setActiveMobileModal({
+      type: "set",
+      payload: "SearchFormComponent"
+    }),
+    tenantId,
+    t
+  })), currentlyActiveMobileModal ? /*#__PURE__*/React__default.createElement(digitUiReactComponents.PopUp, null, /*#__PURE__*/React__default.createElement(CurrentMobileModalComponent, {
+    onSubmit: data => {
+      setActiveMobileModal({
+        type: "remove"
+      });
+      onSubmit(data);
+    },
+    handleSubmit: handleSubmit,
+    id: "search-form",
+    className: "rm-mb form-field-flex-one inboxPopupMobileWrapper",
+    searchFormFieldsComponentProps,
+    currentlyActiveMobileModal,
+    closeMobilePopupModal,
+    tenantId
+  })) : null, isLoading && /*#__PURE__*/React__default.createElement(digitUiReactComponents.Loader, null), /*#__PURE__*/React__default.createElement(digitUiReactComponents.DetailsCard, {
+    data: propsMobileInboxCards
+  }));
+};
+
+const SearchApplication = _ref => {
+  let {
+    showLoader,
+    isLoading,
+    tenantId,
+    t,
+    onSubmit,
+    data,
+    count
+  } = _ref;
+  const initialValues = Digit.SessionStorage.get("AUDIT_APPLICATION_DETAIL") || {
+    offset: 0,
+    limit: 10,
+    sortOrder: "ASC"
+  };
+  const {
+    register,
+    control,
+    handleSubmit,
+    setValue,
+    getValues,
+    reset
+  } = useForm({
+    defaultValues: initialValues
+  });
+  const convertEpochToDate = dateEpoch => {
+    if (dateEpoch == null || dateEpoch == undefined || dateEpoch == "") {
+      return "NA";
+    }
+    const dateFromApi = new Date(dateEpoch);
+    let month = dateFromApi.getMonth() + 1;
+    let day = dateFromApi.getDate();
+    let year = dateFromApi.getFullYear();
+    month = (month > 9 ? "" : "0") + month;
+    day = (day > 9 ? "" : "0") + day;
+    return day + "/" + month + "/" + year;
+  };
+  const convertEpochToTimeInHours = dateEpoch => {
+    if (dateEpoch == null || dateEpoch == undefined || dateEpoch == "") {
+      return "NA";
+    }
+    const dateFromApi = new Date(dateEpoch);
+    let hour = dateFromApi.getHours();
+    let min = dateFromApi.getMinutes();
+    let period = hour > 12 ? "PM" : "AM";
+    hour = hour > 12 ? hour - 12 : hour;
+    hour = (hour > 9 ? "" : "0") + hour;
+    min = (min > 9 ? "" : "0") + min;
+    return hour + ":" + min + " " + period;
+  };
+  const [tabledata, settabledata] = React.useState([]);
+  const DownloadBtn = props => {
+    return /*#__PURE__*/React__default.createElement("div", {
+      onClick: props.onClick
+    }, /*#__PURE__*/React__default.createElement(digitUiReactComponents.DownloadBtnCommon, null));
+  };
+  const handleExcelDownload = tabData => {
+    if ((tabData === null || tabData === void 0 ? void 0 : tabData[0]) !== undefined) {
+      return Digit.Download.Excel(tabData === null || tabData === void 0 ? void 0 : tabData[0], "AuditReport");
+    }
+  };
+  React.useEffect(() => {
+    register("offset", 0);
+    register("limit", 10);
+  }, [register]);
+  React.useEffect(() => {
+    if ((data === null || data === void 0 ? void 0 : data.length) > 0) {
+      settabledata([data === null || data === void 0 ? void 0 : data.map(obj => {
+        var _obj$dataView, _obj$roles;
+        let returnObject = {};
+        returnObject[t("AUDIT_DATE_LABEL")] = convertEpochToDate(obj === null || obj === void 0 ? void 0 : obj.timestamp) || "-";
+        returnObject[t("AUDIT_TIME_LABEL")] = convertEpochToTimeInHours(obj === null || obj === void 0 ? void 0 : obj.timestamp) || "-";
+        returnObject[t("AUDIT_DATAVIEWED_LABEL")] = (obj === null || obj === void 0 ? void 0 : (_obj$dataView = obj.dataView) === null || _obj$dataView === void 0 ? void 0 : _obj$dataView.join(", ")) || "-";
+        returnObject[t("AUDIT_DATAVIEWED_BY_LABEL")] = obj === null || obj === void 0 ? void 0 : obj.dataViewedBy;
+        returnObject[t("AUDIT_ROLE_LABEL")] = (obj === null || obj === void 0 ? void 0 : (_obj$roles = obj.roles) === null || _obj$roles === void 0 ? void 0 : _obj$roles.map(obj => obj.name).join(", ")) || "-";
+        return {
+          ...returnObject
+        };
+      })]);
+    }
+  }, [data]);
+  const onSort = React.useCallback(args => {
+    if (args.length === 0) return;
+    setValue("sortBy", args.id);
+    setValue("sortOrder", args.desc ? "DESC" : "ASC");
+  }, []);
+  function onPageSizeChange(e) {
+    setValue("limit", Number(e.target.value));
+    handleSubmit(onSubmit)();
+  }
+  function nextPage() {
+    setValue("offset", getValues("offset") + getValues("limit"));
+    handleSubmit(onSubmit)();
+  }
+  function previousPage() {
+    setValue("offset", getValues("offset") - getValues("limit"));
+    handleSubmit(onSubmit)();
+  }
+  const isMobile = window.Digit.Utils.browser.isMobile();
+  if (isMobile) {
+    return /*#__PURE__*/React__default.createElement(MobileSearchApplication, {
+      Controller,
+      isLoading,
+      showLoader,
+      register,
+      control,
+      t,
+      reset,
+      previousPage,
+      handleSubmit,
+      tenantId,
+      data,
+      onSubmit
+    });
+  }
+  const GetCell = value => /*#__PURE__*/React__default.createElement("span", {
+    className: "cell-text"
+  }, value);
+  const columns = React.useMemo(() => [{
+    Header: t("AUDIT_DATE_LABEL"),
+    disableSortBy: true,
+    accessor: row => {
+      const timestamp = row.timestamp === "NA" ? t("WS_NA") : convertEpochToDate(row.timestamp);
+      return GetCell("" + (timestamp || "-"));
+    }
+  }, {
+    Header: t("AUDIT_TIME_LABEL"),
+    disableSortBy: true,
+    accessor: row => {
+      const timestamp = row.timestamp === "NA" ? t("WS_NA") : convertEpochToTimeInHours(row.timestamp);
+      return GetCell("" + (timestamp || "-"));
+    }
+  }, {
+    Header: isMobile ? t("AUDIT_DATAVIEWED_LABEL") : t("AUDIT_DATAVIEWED_PRIVACY"),
+    disableSortBy: true,
+    accessor: row => {
+      var _row$dataView;
+      return GetCell("" + ((row === null || row === void 0 ? void 0 : (_row$dataView = row.dataView) === null || _row$dataView === void 0 ? void 0 : _row$dataView.join(", ")) || "-"));
+    }
+  }, {
+    Header: isMobile ? t("AUDIT_DATAVIEWED_BY_LABEL") : t("AUDIT_DATAVIEWED_BY_PRIVACY"),
+    disableSortBy: true,
+    accessor: row => {
+      return GetCell("" + ((row === null || row === void 0 ? void 0 : row.dataViewedBy) || "-"));
+    }
+  }, {
+    Header: t("AUDIT_ROLE_LABEL"),
+    disableSortBy: true,
+    accessor: row => {
+      var _row$roles, _row$roles$slice, _row$roles$slice$map;
+      return GetCell("" + ((row === null || row === void 0 ? void 0 : (_row$roles = row.roles) === null || _row$roles === void 0 ? void 0 : (_row$roles$slice = _row$roles.slice(0, 3)) === null || _row$roles$slice === void 0 ? void 0 : (_row$roles$slice$map = _row$roles$slice.map(e => e.name)) === null || _row$roles$slice$map === void 0 ? void 0 : _row$roles$slice$map.join(", ")) || "-"));
+    }
+  }], []);
+  return /*#__PURE__*/React__default.createElement(React__default.Fragment, null, /*#__PURE__*/React__default.createElement("div", {
+    style: {
+      marginRight: "-70px"
+    }
+  }, " ", /*#__PURE__*/React__default.createElement(digitUiReactComponents.BackButton, null), " "), /*#__PURE__*/React__default.createElement("div", {
+    style: {
+      marginTop: "30px",
+      marginLeft: "30px"
+    }
+  }, "  ", /*#__PURE__*/React__default.createElement(digitUiReactComponents.Header, null, t("PRIVACY_AUDIT_REPORT")), " "), /*#__PURE__*/React__default.createElement(digitUiReactComponents.SearchForm, {
+    className: "audit-card",
+    onSubmit: onSubmit,
+    handleSubmit: handleSubmit
+  }, /*#__PURE__*/React__default.createElement(SearchFields, {
+    register,
+    control,
+    reset,
+    tenantId,
+    t,
+    previousPage
+  })), /*#__PURE__*/React__default.createElement("div", {
+    style: {
+      marginTop: "240px",
+      marginLeft: "-55%",
+      width: "80%"
+    }
+  }, data !== null && data !== void 0 && data.display ? /*#__PURE__*/React__default.createElement("div", {
+    style: {
+      marginTop: "20x",
+      maxWidth: "680%",
+      marginLeft: "60px",
+      backgroundColor: "white",
+      height: "60px"
+    }
+  }, t(data.display).split("\\n").map((text, index) => /*#__PURE__*/React__default.createElement("p", {
+    key: index,
+    style: {
+      textAlign: "center",
+      paddingTop: "12px"
+    }
+  }, text))) : data !== "" ? /*#__PURE__*/React__default.createElement("div", {
+    style: {
+      backgroundColor: "white",
+      marginRight: "200px",
+      marginLeft: "2.5%",
+      width: "100%"
+    }
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "sideContent",
+    style: {
+      float: "right",
+      padding: "10px 30px"
+    }
+  }, /*#__PURE__*/React__default.createElement(DownloadBtn, {
+    className: "mrlg cursorPointer",
+    onClick: () => handleExcelDownload(tabledata)
+  })), /*#__PURE__*/React__default.createElement(digitUiReactComponents.Table, {
+    t: t,
+    data: data.sort((a, b) => a.timestamp - b.timestamp),
+    totalRecords: count,
+    columns: columns,
+    getCellProps: cellInfo => {
+      return {
+        style: {
+          minWidth: cellInfo.column.Header === t("ES_INBOX_APPLICATION_NO") ? "240px" : "",
+          padding: "20px 18px",
+          fontSize: "16px"
+        }
+      };
+    },
+    onPageSizeChange: onPageSizeChange,
+    currentPage: getValues("offset") / getValues("limit"),
+    onNextPage: nextPage,
+    onPrevPage: previousPage,
+    pageSizeLimit: getValues("limit"),
+    onSort: onSort,
+    disableSort: false,
+    sortParams: [{
+      id: getValues("sortBy"),
+      desc: getValues("sortOrder") === "DESC" ? true : false
+    }]
+  })) : /*#__PURE__*/React__default.createElement(digitUiReactComponents.Loader, null)));
+};
+
+const Search = _ref => {
+  var _data$ElasticSearchDa, _data$ElasticSearchDa2, _data$ElasticSearchDa3, _data$ElasticSearchDa4, _data$ElasticSearchDa5, _data$ElasticSearchDa6, _data$ElasticSearchDa7, _data$ElasticSearchDa8, _data$ElasticSearchDa9, _data$ElasticSearchDa10;
+  const {
+    t
+  } = reactI18next.useTranslation();
+  const tenantId = Digit.ULBService.getCitizenCurrentTenant();
+  const [payload, setPayload] = React.useState({});
+  const isMobile = window.Digit.Utils.browser.isMobile();
+  const convertDateToEpoch = function (dateString, dayStartOrEnd) {
+    if (dayStartOrEnd === void 0) {
+      dayStartOrEnd = "dayend";
+    }
+    try {
+      const parts = dateString.match(/(\d{4})-(\d{1,2})-(\d{1,2})/);
+      const DateObj = new Date(Date.UTC(parts[1], parts[2] - 1, parts[3]));
+      DateObj.setMinutes(DateObj.getMinutes() + DateObj.getTimezoneOffset());
+      if (dayStartOrEnd === "dayend") {
+        DateObj.setHours(DateObj.getHours() + 24);
+        DateObj.setSeconds(DateObj.getSeconds() - 1);
+      }
+      if (dayStartOrEnd === "daystart") {
+        DateObj.setHours(DateObj.getHours());
+        DateObj.setSeconds(DateObj.getSeconds() + 1);
+      }
+      return DateObj.getTime();
+    } catch (e) {
+      return dateString;
+    }
+  };
+  function onSubmit(_data) {
+    Digit.SessionStorage.set("AUDIT_APPLICATION_DETAIL", {
+      offset: 0,
+      limit: 10
+    });
+    let data = {
+      ..._data,
+      fromDate: convertDateToEpoch(_data === null || _data === void 0 ? void 0 : _data.fromDate, (_data === null || _data === void 0 ? void 0 : _data.fromDate) == (_data === null || _data === void 0 ? void 0 : _data.toDate) ? "daystart" : ""),
+      toDate: convertDateToEpoch(_data === null || _data === void 0 ? void 0 : _data.toDate, (_data === null || _data === void 0 ? void 0 : _data.fromDate) == (_data === null || _data === void 0 ? void 0 : _data.toDate) ? "dayend" : "")
+    };
+    setPayload(Object.keys(data).filter(k => data[k]).reduce((acc, key) => ({
+      ...acc,
+      [key]: typeof data[key] === "object" ? data[key] : data[key]
+    }), {}));
+  }
+  React.useEffect(() => {
+    const storedPayload = Digit.SessionStorage.get("AUDIT_APPLICATION_DETAIL") || {};
+    if (storedPayload) {
+      const data = {
+        ...storedPayload
+      };
+      setPayload(Object.keys(data).filter(k => data[k]).reduce((acc, key) => ({
+        ...acc,
+        [key]: typeof data[key] === "object" ? data[key].code : data[key]
+      }), {}));
+    }
+  }, []);
+  const config = {
+    enabled: !!(payload && Object.keys(payload).length > 0)
+  };
+  let curoffset = window.location.href.split("/").pop();
+  let previousoffset;
+  let currentoffset;
+  if (!isNaN(parseInt(curoffset))) {
+    currentoffset = curoffset;
+    previousoffset = parseInt(curoffset) + 10;
+  } else {
+    previousoffset = 10;
+  }
+  const newObj = isMobile ? {
+    ...payload,
+    offset: !isNaN(parseInt(curoffset)) ? parseInt(currentoffset) : 0
+  } : {
+    ...payload
+  };
+  const {
+    isLoading,
+    data
+  } = Digit.Hooks.useAudit({
+    tenantId,
+    filters: {
+      ...newObj
+    },
+    config
+  });
+  return /*#__PURE__*/React__default.createElement(React__default.Fragment, null, /*#__PURE__*/React__default.createElement(SearchApplication, {
+    t: t,
+    tenantId: tenantId,
+    onSubmit: onSubmit,
+    data: !isLoading ? (data === null || data === void 0 ? void 0 : (_data$ElasticSearchDa = data.ElasticSearchData) === null || _data$ElasticSearchDa === void 0 ? void 0 : (_data$ElasticSearchDa2 = _data$ElasticSearchDa.filter(e => !e.total)) === null || _data$ElasticSearchDa2 === void 0 ? void 0 : _data$ElasticSearchDa2.length) > 0 ? data === null || data === void 0 ? void 0 : (_data$ElasticSearchDa3 = data.ElasticSearchData) === null || _data$ElasticSearchDa3 === void 0 ? void 0 : _data$ElasticSearchDa3.filter(e => !e.total) : {
+      display: "ES_COMMON_NO_DATA"
+    } : "",
+    count: data === null || data === void 0 ? void 0 : (_data$ElasticSearchDa4 = data.ElasticSearchData) === null || _data$ElasticSearchDa4 === void 0 ? void 0 : (_data$ElasticSearchDa5 = _data$ElasticSearchDa4.filter(e => e.total)) === null || _data$ElasticSearchDa5 === void 0 ? void 0 : (_data$ElasticSearchDa6 = _data$ElasticSearchDa5[0]) === null || _data$ElasticSearchDa6 === void 0 ? void 0 : _data$ElasticSearchDa6.total,
+    isLoading: isLoading
+  }), isMobile && (data === null || data === void 0 ? void 0 : (_data$ElasticSearchDa7 = data.ElasticSearchData) === null || _data$ElasticSearchDa7 === void 0 ? void 0 : (_data$ElasticSearchDa8 = _data$ElasticSearchDa7.filter(e => !e.total)) === null || _data$ElasticSearchDa8 === void 0 ? void 0 : _data$ElasticSearchDa8.length) && (data === null || data === void 0 ? void 0 : (_data$ElasticSearchDa9 = data.ElasticSearchData) === null || _data$ElasticSearchDa9 === void 0 ? void 0 : (_data$ElasticSearchDa10 = _data$ElasticSearchDa9.filter(e => !e.total)) === null || _data$ElasticSearchDa10 === void 0 ? void 0 : _data$ElasticSearchDa10.length) !== 0 && /*#__PURE__*/React__default.createElement("div", null, /*#__PURE__*/React__default.createElement("p", {
+    style: {
+      marginLeft: "16px",
+      marginBottom: "40px"
+    }
+  }, /*#__PURE__*/React__default.createElement("span", {
+    className: "link"
+  }, /*#__PURE__*/React__default.createElement(reactRouterDom.Link, {
+    to: "/digit-ui/citizen/Audit/" + previousoffset
+  }, t("PT_LOAD_MORE_MSG"))))));
+};
+
+const sidebarHiddenFor = ["digit-ui/citizen/register/name", "/digit-ui/citizen/select-language", "/digit-ui/citizen/select-location", "/digit-ui/citizen/login", "/digit-ui/citizen/register/otp"];
+const getTenants$1 = (codes, tenants) => {
+  return tenants.filter(tenant => codes.map(item => item.code).includes(tenant.code));
+};
+const Home$1 = _ref => {
+  let {
+    stateInfo,
+    userDetails,
+    CITIZEN,
+    cityDetails,
+    mobileView,
+    handleUserDropdownSelection,
+    logoUrl,
+    DSO,
+    stateCode,
+    modules,
+    appTenants,
+    sourceUrl,
+    pathname,
+    initData
+  } = _ref;
+  const {
+    isLoading: islinkDataLoading,
+    data: linkData,
+    isFetched: isLinkDataFetched
+  } = Digit.Hooks.useCustomMDMS(Digit.ULBService.getStateId(), "ACCESSCONTROL-ACTIONS-TEST", [{
+    name: "actions-test",
+    filter: "[?(@.url == 'digit-ui-card')]"
+  }], {
+    select: data => {
+      var _data$ACCESSCONTROLA, _data$ACCESSCONTROLA$;
+      const formattedData = data === null || data === void 0 ? void 0 : (_data$ACCESSCONTROLA = data["ACCESSCONTROL-ACTIONS-TEST"]) === null || _data$ACCESSCONTROLA === void 0 ? void 0 : (_data$ACCESSCONTROLA$ = _data$ACCESSCONTROLA["actions-test"]) === null || _data$ACCESSCONTROLA$ === void 0 ? void 0 : _data$ACCESSCONTROLA$.filter(el => el.enabled === true).reduce((a, b) => {
+        var _a$b$parentModule;
+        a[b.parentModule] = ((_a$b$parentModule = a[b.parentModule]) === null || _a$b$parentModule === void 0 ? void 0 : _a$b$parentModule.length) > 0 ? [b, ...a[b.parentModule]] : [b];
+        return a;
+      }, {});
+      return formattedData;
+    }
+  });
+  const classname = Digit.Hooks.fsm.useRouteSubscription(pathname);
+  const {
+    t
+  } = reactI18next.useTranslation();
+  const {
+    path
+  } = reactRouterDom.useRouteMatch();
+  sourceUrl = "https://s3.ap-south-1.amazonaws.com/egov-qa-assets";
+  const history = reactRouterDom.useHistory();
+  const hideSidebar = sidebarHiddenFor.some(e => window.location.href.includes(e));
+  const appRoutes = modules.map((_ref2, index) => {
+    let {
+      code,
+      tenants
+    } = _ref2;
+    const Module = Digit.ComponentRegistryService.getComponent(code + "Module");
+    return Module ? /*#__PURE__*/React__default.createElement(reactRouterDom.Route, {
+      key: index,
+      path: path + "/" + code.toLowerCase()
+    }, /*#__PURE__*/React__default.createElement(Module, {
+      stateCode: stateCode,
+      moduleCode: code,
+      userType: "citizen",
+      tenants: getTenants$1(tenants, appTenants)
+    })) : null;
+  });
+  const ModuleLevelLinkHomePages = modules.map((_ref3, index) => {
+    let {
+      code,
+      bannerImage
+    } = _ref3;
+    let Links = Digit.ComponentRegistryService.getComponent(code + "Links") || (() => /*#__PURE__*/React__default.createElement(React__default.Fragment, null));
+    let mdmsDataObj = isLinkDataFetched ? processLinkData(linkData, code, t) : undefined;
+    (mdmsDataObj === null || mdmsDataObj === void 0 ? void 0 : mdmsDataObj.links) && (mdmsDataObj === null || mdmsDataObj === void 0 ? void 0 : mdmsDataObj.links.sort((a, b) => {
+      return a.orderNumber - b.orderNumber;
+    }));
+    return /*#__PURE__*/React__default.createElement(React__default.Fragment, null, /*#__PURE__*/React__default.createElement(reactRouterDom.Route, {
+      key: index,
+      path: path + "/" + code.toLowerCase() + "-home"
+    }, /*#__PURE__*/React__default.createElement("div", {
+      className: "moduleLinkHomePage"
+    }, /*#__PURE__*/React__default.createElement("img", {
+      src: "https://nugp-assets.s3.ap-south-1.amazonaws.com/nugp+asset/Banner+UPYOG+%281920x500%29B+%282%29.jpg"  ,
+      alt: "noimagefound"
+    }), /*#__PURE__*/React__default.createElement(digitUiReactComponents.BackButton, {
+      className: "moduleLinkHomePageBackButton"
+    }), /*#__PURE__*/React__default.createElement("h1", null, t("MODULE_" + code.toUpperCase())), /*#__PURE__*/React__default.createElement("div", {
+      className: "moduleLinkHomePageModuleLinks"
+    }, mdmsDataObj && /*#__PURE__*/React__default.createElement(digitUiReactComponents.CitizenHomeCard, {
+      header: t(mdmsDataObj === null || mdmsDataObj === void 0 ? void 0 : mdmsDataObj.header),
+      links: mdmsDataObj === null || mdmsDataObj === void 0 ? void 0 : mdmsDataObj.links,
+      Icon: () => /*#__PURE__*/React__default.createElement("span", null),
+      Info: code === "OBPS" ? () => /*#__PURE__*/React__default.createElement(digitUiReactComponents.CitizenInfoLabel, {
+        style: {
+          margin: "0px",
+          padding: "10px"
+        },
+        info: t("CS_FILE_APPLICATION_INFO_LABEL"),
+        text: t("BPA_CITIZEN_HOME_STAKEHOLDER_INCLUDES_INFO_LABEL")
+      }) : null,
+      isInfo: code === "OBPS" ? true : false
+    })), /*#__PURE__*/React__default.createElement(StaticDynamicCard, {
+      moduleCode: code === null || code === void 0 ? void 0 : code.toUpperCase()
+    }))), /*#__PURE__*/React__default.createElement(reactRouterDom.Route, {
+      key: "faq" + index,
+      path: path + "/" + code.toLowerCase() + "-faq"
+    }, /*#__PURE__*/React__default.createElement(FAQsSection, {
+      module: code === null || code === void 0 ? void 0 : code.toUpperCase()
+    })), /*#__PURE__*/React__default.createElement(reactRouterDom.Route, {
+      key: "hiw" + index,
+      path: path + "/" + code.toLowerCase() + "-how-it-works"
+    }, /*#__PURE__*/React__default.createElement(HowItWorks, {
+      module: code === null || code === void 0 ? void 0 : code.toUpperCase()
+    })));
+  });
+  return /*#__PURE__*/React__default.createElement("div", {
+    className: classname
+  }, /*#__PURE__*/React__default.createElement(TopBarSideBar, {
+    t: t,
+    stateInfo: stateInfo,
+    userDetails: userDetails,
+    CITIZEN: CITIZEN,
+    cityDetails: cityDetails,
+    mobileView: mobileView,
+    handleUserDropdownSelection: handleUserDropdownSelection,
+    logoUrl: logoUrl,
+    showSidebar: true,
+    linkData: linkData,
+    islinkDataLoading: islinkDataLoading
+  }), /*#__PURE__*/React__default.createElement("div", {
+    className: "main center-container citizen-home-container mb-25"
+  }, hideSidebar ? null : /*#__PURE__*/React__default.createElement("div", {
+    className: "SideBarStatic"
+  }, /*#__PURE__*/React__default.createElement(StaticCitizenSideBar, {
+    linkData: linkData,
+    islinkDataLoading: islinkDataLoading
+  })), /*#__PURE__*/React__default.createElement(reactRouterDom.Switch, null, /*#__PURE__*/React__default.createElement(reactRouterDom.Route, {
+    exact: true,
+    path: path
+  }, /*#__PURE__*/React__default.createElement(Home, null)), /*#__PURE__*/React__default.createElement(digitUiReactComponents.PrivateRoute, {
+    path: path + "/feedback",
+    component: CitizenFeedback
+  }), /*#__PURE__*/React__default.createElement(digitUiReactComponents.PrivateRoute, {
+    path: path + "/feedback-acknowledgement",
+    component: AcknowledgementCF
+  }), /*#__PURE__*/React__default.createElement(reactRouterDom.Route, {
+    exact: true,
+    path: path + "/select-language"
+  }, /*#__PURE__*/React__default.createElement(LanguageSelection$1, null)), /*#__PURE__*/React__default.createElement(reactRouterDom.Route, {
+    exact: true,
+    path: path + "/select-location"
+  }, /*#__PURE__*/React__default.createElement(LocationSelection, null)), /*#__PURE__*/React__default.createElement(reactRouterDom.Route, {
+    path: path + "/error"
+  }, /*#__PURE__*/React__default.createElement(ErrorComponent, {
+    initData: initData,
+    goToHome: () => {
+      history.push("/digit-ui/citizen");
+    }
+  })), /*#__PURE__*/React__default.createElement(reactRouterDom.Route, {
+    path: path + "/all-services"
+  }, /*#__PURE__*/React__default.createElement(AppHome, {
+    userType: "citizen",
+    modules: modules,
+    getCitizenMenu: linkData,
+    fetchedCitizen: isLinkDataFetched,
+    isLoading: islinkDataLoading
+  })), /*#__PURE__*/React__default.createElement(reactRouterDom.Route, {
+    path: path + "/login"
+  }, /*#__PURE__*/React__default.createElement(Login, {
+    stateCode: stateCode
+  })), /*#__PURE__*/React__default.createElement(reactRouterDom.Route, {
+    path: path + "/register"
+  }, /*#__PURE__*/React__default.createElement(Login, {
+    stateCode: stateCode,
+    isUserRegistered: false
+  })), /*#__PURE__*/React__default.createElement(digitUiReactComponents.PrivateRoute, {
+    path: path + "/user/profile"
+  }, /*#__PURE__*/React__default.createElement(UserProfile, {
+    stateCode: stateCode,
+    userType: "citizen",
+    cityDetails: cityDetails
+  })), /*#__PURE__*/React__default.createElement(reactRouterDom.Route, {
+    path: path + "/Audit"
+  }, /*#__PURE__*/React__default.createElement(Search, null)), /*#__PURE__*/React__default.createElement(ErrorBoundary, {
+    initData: initData
+  }, appRoutes, ModuleLevelLinkHomePages))), /*#__PURE__*/React__default.createElement("div", {
+    style: {
+      width: '100%',
+      position: 'fixed',
+      bottom: 0,
+      backgroundColor: "white",
+      textAlign: "center"
+    }
+  }, /*#__PURE__*/React__default.createElement("div", {
+    style: {
+      display: 'flex',
+      justifyContent: 'center',
+      color: "black"
+    }
+  }, /*#__PURE__*/React__default.createElement("span", {
+    style: {
+      cursor: "pointer",
+      fontSize: window.Digit.Utils.browser.isMobile() ? "12px" : "14px",
+      fontWeight: "400"
+    },
+    onClick: () => {
+      window.open('https://www.digit.org/', '_blank').focus();
+    }
+  }, "Powered by DIGIT"), /*#__PURE__*/React__default.createElement("span", {
+    style: {
+      margin: "0 10px",
+      fontSize: window.Digit.Utils.browser.isMobile() ? "12px" : "14px"
+    }
+  }, "|"), /*#__PURE__*/React__default.createElement("a", {
+    style: {
+      cursor: "pointer",
+      fontSize: window.Digit.Utils.browser.isMobile() ? "12px" : "14px",
+      fontWeight: "400"
+    },
+    href: "#",
+    target: "_blank"
+  }, "UPYOG License"), /*#__PURE__*/React__default.createElement("span", {
+    className: "upyog-copyright-footer",
+    style: {
+      margin: "0 10px",
+      fontSize: window.Digit.Utils.browser.isMobile() ? "12px" : "14px"
+    }
+  }, "|"), /*#__PURE__*/React__default.createElement("span", {
+    className: "upyog-copyright-footer",
+    style: {
+      cursor: "pointer",
+      fontSize: window.Digit.Utils.browser.isMobile() ? "12px" : "14px",
+      fontWeight: "400"
+    },
+    onClick: () => {
+      window.open('https://niua.in/', '_blank').focus();
+    }
+  }, "Copyright \xA9 2022 National Institute of Urban Affairs1")), /*#__PURE__*/React__default.createElement("div", {
+    className: "upyog-copyright-footer-web"
+  }, /*#__PURE__*/React__default.createElement("span", {
+    className: "",
+    style: {
+      cursor: "pointer",
+      fontSize: window.Digit.Utils.browser.isMobile() ? "12px" : "14px",
+      fontWeight: "400"
+    },
+    onClick: () => {
+      window.open('https://niua.in/', '_blank').focus();
+    }
+  }, "Copyright \xA9 2022 National Institute of Urban Affairs"))));
+};
+
+const DigitApp = _ref => {
+  var _userDetails$info;
+  let {
+    stateCode,
+    modules,
+    appTenants,
+    logoUrl,
+    initData
+  } = _ref;
+  const history = reactRouterDom.useHistory();
+  const {
+    pathname
+  } = reactRouterDom.useLocation();
+  const innerWidth = window.innerWidth;
+  const cityDetails = Digit.ULBService.getCurrentUlb();
+  const userDetails = Digit.UserService.getUser();
+  const {
+    data: storeData
+  } = Digit.Hooks.useStore.getInitData();
+  const {
+    stateInfo
+  } = storeData || {};
+  const DSO = Digit.UserService.hasAccess(["FSM_DSO"]);
+  let CITIZEN = (userDetails === null || userDetails === void 0 ? void 0 : (_userDetails$info = userDetails.info) === null || _userDetails$info === void 0 ? void 0 : _userDetails$info.type) === "CITIZEN" || !window.location.pathname.split("/").includes("employee") ? true : false;
+  if (window.location.pathname.split("/").includes("employee")) CITIZEN = false;
+  React.useEffect(() => {
+    if (!(pathname !== null && pathname !== void 0 && pathname.includes("application-details"))) {
+      if (!(pathname !== null && pathname !== void 0 && pathname.includes("inbox"))) {
+        Digit.SessionStorage.del("fsm/inbox/searchParams");
+      }
+      if (pathname !== null && pathname !== void 0 && pathname.includes("search")) {
+        Digit.SessionStorage.del("fsm/search/searchParams");
+      }
+    }
+    if (!(pathname !== null && pathname !== void 0 && pathname.includes("dss"))) {
+      Digit.SessionStorage.del("DSS_FILTERS");
+    }
+    if ((pathname === null || pathname === void 0 ? void 0 : pathname.toString()) === "/digit-ui/employee") {
+      Digit.SessionStorage.del("SEARCH_APPLICATION_DETAIL");
+      Digit.SessionStorage.del("WS_EDIT_APPLICATION_DETAILS");
+    }
+    if ((pathname === null || pathname === void 0 ? void 0 : pathname.toString()) === "/digit-ui/citizen" || (pathname === null || pathname === void 0 ? void 0 : pathname.toString()) === "/digit-ui/employee") {
+      Digit.SessionStorage.del("WS_DISCONNECTION");
+    }
+  }, [pathname]);
+  history.listen(() => {
+    var _window;
+    (_window = window) === null || _window === void 0 ? void 0 : _window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth"
+    });
+  });
+  const handleUserDropdownSelection = option => {
+    option.func();
+  };
+  const mobileView = innerWidth <= 640;
+  let sourceUrl = window.location.origin + "/citizen";
+  const commonProps = {
+    stateInfo,
+    userDetails,
+    CITIZEN,
+    cityDetails,
+    mobileView,
+    handleUserDropdownSelection,
+    logoUrl,
+    DSO,
+    stateCode,
+    modules,
+    appTenants,
+    sourceUrl,
+    pathname,
+    initData
+  };
+  return /*#__PURE__*/React__default.createElement(reactRouterDom.Switch, null, /*#__PURE__*/React__default.createElement(reactRouterDom.Route, {
+    path: "/digit-ui/employee"
+  }, /*#__PURE__*/React__default.createElement(EmployeeApp, commonProps)), /*#__PURE__*/React__default.createElement(reactRouterDom.Route, {
+    path: "/digit-ui/citizen"
+  }, /*#__PURE__*/React__default.createElement(Home$1, commonProps)), /*#__PURE__*/React__default.createElement(reactRouterDom.Route, null, /*#__PURE__*/React__default.createElement(reactRouterDom.Redirect, {
+    to: "/digit-ui/citizen"
+  })));
+};
+
+const commonReducer = defaultData => function (state, action) {
+  if (state === void 0) {
+    state = defaultData;
+  }
+  switch (action.type) {
+    case "LANGUAGE_SELECT":
+      return {
+        ...state,
+        selectedLanguage: action.payload
+      };
+    default:
+      return state;
+  }
+};
+
+const getRootReducer = (defaultStore, moduleReducers) => redux.combineReducers({
+  common: commonReducer(defaultStore),
+  ...moduleReducers
+});
+const middleware = [thunk];
+const composeEnhancers = typeof window === "object" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({}) : redux.compose;
+const enhancer = composeEnhancers(redux.applyMiddleware(...middleware));
+const getStore = function (defaultStore, moduleReducers) {
+  if (moduleReducers === void 0) {
+    moduleReducers = {};
+  }
+  return redux.createStore(getRootReducer(defaultStore, moduleReducers), enhancer);
+};
+
+const DigitUIWrapper = _ref => {
+  var _initData$stateInfo;
+  let {
+    stateCode,
+    enabledModules,
+    moduleReducers
+  } = _ref;
+  const {
+    isLoading,
+    data: initData
+  } = Digit.Hooks.useInitStore(stateCode, enabledModules);
+  if (isLoading) {
+    return /*#__PURE__*/React__default.createElement(digitUiReactComponents.Loader, {
+      page: true
+    });
+  }
+  const i18n = reactI18next.getI18n();
+  return /*#__PURE__*/React__default.createElement(reactRedux.Provider, {
+    store: getStore(initData, moduleReducers(initData))
+  }, /*#__PURE__*/React__default.createElement(reactRouterDom.BrowserRouter, null, /*#__PURE__*/React__default.createElement(digitUiReactComponents.Body, null, /*#__PURE__*/React__default.createElement(DigitApp, {
+    initData: initData,
+    stateCode: stateCode,
+    modules: initData === null || initData === void 0 ? void 0 : initData.modules,
+    appTenants: initData.tenants,
+    logoUrl: initData === null || initData === void 0 ? void 0 : (_initData$stateInfo = initData.stateInfo) === null || _initData$stateInfo === void 0 ? void 0 : _initData$stateInfo.logoUrl
+  }))));
+};
+const DigitUI = _ref2 => {
+  let {
+    stateCode,
+    registry,
+    enabledModules,
+    moduleReducers
+  } = _ref2;
+  const [privacy, setPrivacy] = React.useState(Digit.Utils.getPrivacyObject() || {});
+  const userType = Digit.UserService.getType();
+  const queryClient = new reactQuery.QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: 15 * 60 * 1000,
+        cacheTime: 50 * 60 * 1000,
+        retryDelay: attemptIndex => Infinity,
+        retry: false
+      }
+    }
+  });
+  const ComponentProvider = Digit.Contexts.ComponentProvider;
+  const PrivacyProvider = Digit.Contexts.PrivacyProvider;
+  const DSO = Digit.UserService.hasAccess(["FSM_DSO"]);
+  return /*#__PURE__*/React__default.createElement("div", null, /*#__PURE__*/React__default.createElement(ErrorBoundary, null, /*#__PURE__*/React__default.createElement(reactQuery.QueryClientProvider, {
+    client: queryClient
+  }, /*#__PURE__*/React__default.createElement(ComponentProvider.Provider, {
+    value: registry
+  }, /*#__PURE__*/React__default.createElement(PrivacyProvider.Provider, {
+    value: {
+      privacy: privacy === null || privacy === void 0 ? void 0 : privacy[window.location.pathname],
+      resetPrivacy: _data => {
+        Digit.Utils.setPrivacyObject({});
+        setPrivacy({});
+      },
+      getPrivacy: () => {
+        const privacyObj = Digit.Utils.getPrivacyObject();
+        setPrivacy(privacyObj);
+        return privacyObj;
+      },
+      updatePrivacyDescoped: _data => {
+        const privacyObj = Digit.Utils.getAllPrivacyObject();
+        const newObj = {
+          ...privacyObj,
+          [window.location.pathname]: _data
+        };
+        Digit.Utils.setPrivacyObject({
+          ...newObj
+        });
+        setPrivacy((privacyObj === null || privacyObj === void 0 ? void 0 : privacyObj[window.location.pathname]) || {});
+      },
+      updatePrivacy: (uuid, fieldName) => {
+        setPrivacy(Digit.Utils.updatePrivacy(uuid, fieldName) || {});
+      }
+    }
+  }, /*#__PURE__*/React__default.createElement(DigitUIWrapper, {
+    stateCode: stateCode,
+    enabledModules: enabledModules,
+    moduleReducers: moduleReducers
+  }))))));
+};
+const componentsToRegister = {
+  SelectOtp,
+  AcknowledgementCF,
+  CitizenFeedback
+};
+const initCoreComponents = () => {
+  Object.entries(componentsToRegister).forEach(_ref3 => {
+    let [key, value] = _ref3;
+    Digit.ComponentRegistryService.setComponent(key, value);
+  });
+};
+
+exports.DigitUI = DigitUI;
+exports.initCoreComponents = initCoreComponents;
+//# sourceMappingURL=index.js.map

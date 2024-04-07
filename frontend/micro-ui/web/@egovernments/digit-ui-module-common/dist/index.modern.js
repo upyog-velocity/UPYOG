@@ -2017,6 +2017,100 @@ const ChequeDetailsComponent = props => {
   }))))));
 };
 
+const useUpiPaymentDetails = (props, t) => {
+  const config = [{
+    head: t("PAYMENT_UPI_HEAD"),
+    headId: "paymentInfo",
+    body: [{
+      withoutLabel: true,
+      type: "custom",
+      populators: {
+        name: "paymentModeDetails",
+        customProps: {},
+        defaultValue: {},
+        component: (props, customProps) => /*#__PURE__*/React.createElement(UpiDetailsComponent, Object.assign({
+          onChange: props.onChange,
+          value: props.value
+        }, customProps))
+      }
+    }]
+  }];
+  return {
+    upiConfig: config
+  };
+};
+const UpiDetailsComponent = ({
+  ...props
+}) => {
+  var _props$value, _props$value2, _props$value3;
+  const {
+    t
+  } = useTranslation();
+  const [last4Digits, setLast4Digits] = useState(props === null || props === void 0 ? void 0 : (_props$value = props.value) === null || _props$value === void 0 ? void 0 : _props$value.last4Digits);
+  const [transactionNumber, setTransactionNumber] = useState(props === null || props === void 0 ? void 0 : (_props$value2 = props.value) === null || _props$value2 === void 0 ? void 0 : _props$value2.transactionNumber);
+  const [reTransanctionNumber, setReTransanctionNumber] = useState(props === null || props === void 0 ? void 0 : (_props$value3 = props.value) === null || _props$value3 === void 0 ? void 0 : _props$value3.reTransanctionNumber);
+  useEffect(() => {
+    if (props.onChange) {
+      let errorObj = {};
+      if (!last4Digits) errorObj.last4Digits = "ES_COMMON_LAST_UPI";
+      if (!transactionNumber) errorObj.transactionNumber = "ES_COMMON_TRANSANCTION_NO";
+      if (!reTransanctionNumber) errorObj.reTransanctionNumber = "ES_COMMON_RE_TRANSANCTION_NO";
+      props.onChange({
+        transactionNumber,
+        reTransanctionNumber,
+        instrumentNumber: last4Digits,
+        errorObj
+      });
+    }
+  }, [last4Digits, transactionNumber, reTransanctionNumber]);
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+    className: "label-field-pair"
+  }, /*#__PURE__*/React.createElement("h2", {
+    className: "card-label"
+  }, `${t("NOC_PAYMENT_UPI_DIGITS_LABEL")} *`), /*#__PURE__*/React.createElement("div", {
+    className: "field"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "field-container"
+  }, /*#__PURE__*/React.createElement("input", {
+    className: "employee-card-input",
+    value: last4Digits,
+    type: "text",
+    name: "instrumentNumber",
+    required: true,
+    onChange: e => setLast4Digits(e.target.value)
+  })))), /*#__PURE__*/React.createElement("div", {
+    className: "label-field-pair"
+  }, /*#__PURE__*/React.createElement("h2", {
+    className: "card-label"
+  }, `${t("NOC_PAYMENT_TRANS_NO_LABEL")} *`), /*#__PURE__*/React.createElement("div", {
+    className: "field"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "field-container"
+  }, /*#__PURE__*/React.createElement("input", {
+    className: "employee-card-input",
+    value: transactionNumber,
+    type: "text",
+    name: "instrumentNumber",
+    required: true,
+    onChange: e => setTransactionNumber(e.target.value)
+  })))), /*#__PURE__*/React.createElement("div", {
+    className: "label-field-pair"
+  }, /*#__PURE__*/React.createElement("h2", {
+    className: "card-label"
+  }, `${t("NOC_PAYMENT_RENTR_TRANS_LABEL")} *`), /*#__PURE__*/React.createElement("div", {
+    className: "field"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "field-container"
+  }, /*#__PURE__*/React.createElement("input", {
+    className: "employee-card-input",
+    value: reTransanctionNumber,
+    type: "text",
+    name: "instrumentNumber",
+    required: true,
+    onChange: e => setReTransanctionNumber(e.target.value)
+  })))));
+};
+
 function listCacheClear() {
   this.__data__ = [];
   this.size = 0;
@@ -3360,7 +3454,7 @@ const BillDetails$1 = ({
   _amount,
   onChange
 }) => {
-  var _businessService$toUp, _bill$billDetails, _bill$billDetails2, _bill$billDetails2$so, _billDetails$billAcco, _arrears$toFixed, _arrears$toFixed2, _yearWiseBills$filter6, _yearWiseBills$filter7, _yearWiseBills$filter8, _yearWiseBills$filter9, _yearWiseBills$filter10;
+  var _businessService$toUp, _bill$billDetails, _application$addition, _application$addition2, _bill$billDetails2, _bill$billDetails2$so, _billDetails$billAcco, _arrears$toFixed, _arrears$toFixed2, _yearWiseBills$filter6, _yearWiseBills$filter7, _yearWiseBills$filter8, _yearWiseBills$filter9, _yearWiseBills$filter10;
   const {
     t
   } = useTranslation();
@@ -3401,12 +3495,16 @@ const BillDetails$1 = ({
   const yearWiseBills = bill === null || bill === void 0 ? void 0 : (_bill$billDetails = bill.billDetails) === null || _bill$billDetails === void 0 ? void 0 : _bill$billDetails.sort((a, b) => b.fromPeriod - a.fromPeriod);
   const billDetails = (yearWiseBills === null || yearWiseBills === void 0 ? void 0 : yearWiseBills[0]) || [];
   const getTotal = () => bill !== null && bill !== void 0 && bill.totalAmount ? bill === null || bill === void 0 ? void 0 : bill.totalAmount : 0;
+  const [totalFSM, setTotalFSM] = useState(application !== null && application !== void 0 && application.totalAmount ? application === null || application === void 0 ? void 0 : application.totalAmount : 0);
   const getTotalFSM = () => application !== null && application !== void 0 && application.totalAmount ? application === null || application === void 0 ? void 0 : application.totalAmount : 0;
+  const [advanceAmount, setAdvanceAmount] = useState(applicationData !== null && applicationData !== void 0 && applicationData.advanceAmount ? applicationData === null || applicationData === void 0 ? void 0 : applicationData.advanceAmount : 0);
   const getAdvanceAmount = () => applicationData !== null && applicationData !== void 0 && applicationData.advanceAmount ? applicationData === null || applicationData === void 0 ? void 0 : applicationData.advanceAmount : 0;
+  const [dueAmount, setDueAmount] = useState(bill !== null && bill !== void 0 && bill.totalAmount ? bill === null || bill === void 0 ? void 0 : bill.totalAmount : 0);
   const dueAmountTobePaid = () => bill !== null && bill !== void 0 && bill.totalAmount ? bill === null || bill === void 0 ? void 0 : bill.totalAmount : 0;
+  const [amountPerTrip, setAmountPerTrip] = useState(application !== null && application !== void 0 && (_application$addition = application.additionalDetails) !== null && _application$addition !== void 0 && _application$addition.tripAmount ? application === null || application === void 0 ? void 0 : (_application$addition2 = application.additionalDetails) === null || _application$addition2 === void 0 ? void 0 : _application$addition2.tripAmount : 0);
   const getAmountPerTrip = () => {
-    var _application$addition, _application$addition2;
-    return application !== null && application !== void 0 && (_application$addition = application.additionalDetails) !== null && _application$addition !== void 0 && _application$addition.tripAmount ? application === null || application === void 0 ? void 0 : (_application$addition2 = application.additionalDetails) === null || _application$addition2 === void 0 ? void 0 : _application$addition2.tripAmount : 0;
+    var _application$addition3, _application$addition4;
+    return application !== null && application !== void 0 && (_application$addition3 = application.additionalDetails) !== null && _application$addition3 !== void 0 && _application$addition3.tripAmount ? application === null || application === void 0 ? void 0 : (_application$addition4 = application.additionalDetails) === null || _application$addition4 === void 0 ? void 0 : _application$addition4.tripAmount : 0;
   };
   const arrears = (bill === null || bill === void 0 ? void 0 : (_bill$billDetails2 = bill.billDetails) === null || _bill$billDetails2 === void 0 ? void 0 : (_bill$billDetails2$so = _bill$billDetails2.sort((a, b) => b.fromPeriod - a.fromPeriod)) === null || _bill$billDetails2$so === void 0 ? void 0 : _bill$billDetails2$so.reduce((total, current, index) => index === 0 ? total : total + current.amount, 0)) || 0;
   const {
@@ -3558,6 +3656,34 @@ const BillDetails$1 = ({
       }, year_bill.amount));
     })));
   };
+  const handleAmountPerTrip = event => {
+    const {
+      value
+    } = event.target;
+    setAmountPerTrip(value);
+    application.additionalDetails.tripAmount = value;
+  };
+  const handleTotalFSM = event => {
+    const {
+      value
+    } = event.target;
+    setTotalFSM(value);
+    application.totalAmount = value;
+  };
+  const handleAdvanceAmount = event => {
+    const {
+      value
+    } = event.target;
+    setAdvanceAmount(value);
+    applicationData.advanceAmount = value;
+  };
+  const handleAmountTobePaid = event => {
+    const {
+      value
+    } = event.target;
+    setDueAmount(value);
+    bill.totalAmount = value;
+  };
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(StatusTable, null, !checkFSM && bill && config.details.map((obj, index) => {
     const value = obj.keyPath.reduce((acc, key) => {
       if (typeof key === "function") acc = key(acc);else acc = acc[key];
@@ -3574,34 +3700,84 @@ const BillDetails$1 = ({
       textAlign: "left"
     },
     text: "₹ " + Number(getAmountPerTrip()).toFixed(2)
+  }), /*#__PURE__*/React.createElement("label", null, t("ES_PAYMENT_DETAILS_AMOUNT_PER_TRIP"), " : "), /*#__PURE__*/React.createElement(TextInput, {
+    style: {
+      width: "30%"
+    },
+    className: "amountPrTrip",
+    key: "1",
+    name: "amountPrTrip",
+    value: Number(getAmountPerTrip()),
+    onChange: handleAmountPerTrip,
+    title: t("ES_PAYMENT_DETAILS_AMOUNT_PER_TRIP")
   }), /*#__PURE__*/React.createElement(Row, {
     label: t("ES_PAYMENT_DETAILS_TOTAL_AMOUNT"),
     textStyle: {
       textAlign: "left"
     },
     text: !(applicationData !== null && applicationData !== void 0 && applicationData.paymentPreference) ? "₹ " + Number(getTotalFSM()).toFixed(2) : "₹ " + Number(bill === null || bill === void 0 ? void 0 : bill.totalAmount).toFixed(2)
-  }), !(applicationData !== null && applicationData !== void 0 && applicationData.paymentPreference) && (getAdvanceAmountPaid ? /*#__PURE__*/React.createElement(Row, {
+  }), /*#__PURE__*/React.createElement("label", null, t("ES_PAYMENT_DETAILS_TOTAL_AMOUNT"), " : "), /*#__PURE__*/React.createElement(TextInput, {
+    style: {
+      width: "30%"
+    },
+    className: "amountTotalAmount",
+    key: "2",
+    name: "amountTotalAmount",
+    value: Number(getTotalFSM()),
+    onChange: handleTotalFSM,
+    title: t("ES_PAYMENT_DETAILS_TOTAL_AMOUNT")
+  }), !(applicationData !== null && applicationData !== void 0 && applicationData.paymentPreference) && (getAdvanceAmountPaid ? /*#__PURE__*/React.createElement(Fragment, null, /*#__PURE__*/React.createElement(Row, {
     label: t("ES_PAYMENT_DETAILS_ADV_AMOUNT_PAID"),
     textStyle: {
       fontWeight: "bold",
       textAlign: "left"
     },
     text: "₹ " + Number(getAdvanceAmount()).toFixed(2)
-  }) : /*#__PURE__*/React.createElement(Row, {
+  }), /*#__PURE__*/React.createElement("label", null, t("ES_PAYMENT_DETAILS_ADV_AMOUNT_PAID"), " : "), /*#__PURE__*/React.createElement(TextInput, {
+    style: {
+      width: "30%"
+    },
+    className: "amountTotalPaid",
+    key: "3",
+    name: "amountTotalPaid",
+    value: Number(getAdvanceAmount()),
+    onChange: handleAdvanceAmount,
+    title: t("ES_PAYMENT_DETAILS_ADV_AMOUNT_PAID")
+  })) : /*#__PURE__*/React.createElement(Fragment, null, /*#__PURE__*/React.createElement(Row, {
     label: t("ES_PAYMENT_DETAILS_ADV_AMOUNT_DUE"),
     textStyle: {
       fontWeight: "bold",
       textAlign: "left"
     },
     text: "₹ " + Number(getAdvanceAmount()).toFixed(2)
-  })), (applicationData === null || applicationData === void 0 ? void 0 : applicationData.applicationStatus) !== "PENDING_APPL_FEE_PAYMENT" ? /*#__PURE__*/React.createElement(Row, {
+  }), /*#__PURE__*/React.createElement("label", null, t("ES_PAYMENT_DETAILS_ADV_AMOUNT_DUE"), " : "), /*#__PURE__*/React.createElement(TextInput, {
+    style: {
+      width: "30%"
+    },
+    className: "amountTotalDue",
+    key: "4",
+    name: "amountTotalDue",
+    value: Number(getAdvanceAmount()),
+    onChange: handleAdvanceAmount,
+    title: t("ES_PAYMENT_DETAILS_ADV_AMOUNT_DUE")
+  }))), (applicationData === null || applicationData === void 0 ? void 0 : applicationData.applicationStatus) !== "PENDING_APPL_FEE_PAYMENT" ? /*#__PURE__*/React.createElement(Fragment, null, /*#__PURE__*/React.createElement(Row, {
     label: t("FSM_DUE_AMOUNT_TO_BE_PAID"),
     textStyle: {
       fontWeight: "bold",
       textAlign: "left"
     },
     text: "₹ " + Number(dueAmountTobePaid()).toFixed(2)
-  }) : null) : /*#__PURE__*/React.createElement(StatusTable, {
+  }), /*#__PURE__*/React.createElement("label", null, t("FSM_DUE_AMOUNT_TO_BE_PAID"), " : "), /*#__PURE__*/React.createElement(TextInput, {
+    style: {
+      width: "30%"
+    },
+    className: "amountTotalDuePaid",
+    key: "4",
+    name: "amountTotalDuePaid",
+    value: Number(dueAmountTobePaid()),
+    onChange: handleAmountTobePaid,
+    title: t("FSM_DUE_AMOUNT_TO_BE_PAID")
+  })) : null) : /*#__PURE__*/React.createElement(StatusTable, {
     style: {
       paddingTop: "46px"
     }
@@ -3826,6 +4002,9 @@ const CollectPayment = props => {
     cardConfig
   } = useCardPaymentDetails(props, t);
   const {
+    upiConfig
+  } = useUpiPaymentDetails(props, t);
+  const {
     chequeConfig
   } = useChequeDetails(props, t);
   const {
@@ -3850,10 +4029,14 @@ const CollectPayment = props => {
   }, {
     code: "CARD",
     label: t("COMMON_MASTERS_PAYMENTMODE_CREDIT/DEBIT CARD")
+  }, {
+    code: "UPI",
+    label: t("COMMON_MASTERS_PAYMENTMODE_UPI")
   }];
   const formConfigMap = {
     CHEQUE: chequeConfig,
-    CARD: cardConfig
+    CARD: cardConfig,
+    UPI: upiConfig
   };
   useEffect(() => {
     props.setLink(t("PAYMENT_COLLECT_LABEL"));

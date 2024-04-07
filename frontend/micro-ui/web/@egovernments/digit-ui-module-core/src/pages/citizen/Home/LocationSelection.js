@@ -52,11 +52,22 @@ const LocationSelection = () => {
   ) : (
     <div className="selection-card-wrapper">
       <BackButton />
+      <div className="main-banner-image"  style={window.innerWidth <= 565 ? {marginBottom: "30px"} : {float:"left",width:"80%"}}>
+        <img
+            className="city"
+            id="topbar-logo" 
+            src={window.innerWidth <= 565 ? "https://velocity-upyog-assets.s3.ap-south-1.amazonaws.com/mobile_banner_3.png" : "https://velocity-upyog-assets.s3.ap-south-1.amazonaws.com/desktop_banner_2.png" || "https://in-egov-assets.s3.ap-south-1.amazonaws.com/images/Upyog-logo.png"}
+            alt="unicef"
+            style={{width:"100%"}}
+          />
+      </div>
+      <div className="left-side_content" style={window.innerWidth <= 565 ? {} : {float:"right",marginRight:"-200px",width:"35%"}}>
       <PageBasedInput texts={texts} onSubmit={onSubmit} className="location-selection-container">
         <CardHeader>{t("CS_COMMON_CHOOSE_LOCATION")}</CardHeader>
         <SearchOnRadioButtons {...RadioButtonProps} placeholder={t("COMMON_TABLE_SEARCH")} />
         {showError ? <CardLabelError>{t("CS_COMMON_LOCATION_SELECTION_ERROR")}</CardLabelError> : null}
       </PageBasedInput>
+      </div>
     </div>
   );
 };

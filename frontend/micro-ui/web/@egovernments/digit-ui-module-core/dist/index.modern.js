@@ -3,7 +3,7 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { Provider } from 'react-redux';
 import { useLocation, useRouteMatch, useHistory, Switch, Route, Redirect, Link, BrowserRouter } from 'react-router-dom';
 import { useTranslation, getI18n } from 'react-i18next';
-import { Loader, BackButton, CitizenHomeCard, CitizenInfoLabel, PTIcon, BillsIcon, OBPSIcon, TLIcon, PGRIcon, MCollectIcon, FSMIcon, WSICon, FormStep, CheckBox, CitizenConsentForm, OTPInput, CardText, CardLabelError, AppContainer, Toast, Dropdown, FormComposer, CardSubHeader, Card, CustomButton, SubmitBar, TopBar as TopBar$1, Hamburger, Modal, CloseSvg, PropertyHouse, CaseIcon, CollectionIcon, BirthIcon, DeathIcon, FirenocIcon, HomeIcon, EditPencilIcon, LogoutIcon, Phone, LoginIcon, NavBar, ArrowVectorDown, ArrowForward, ComplaintIcon, BPAHomeIcon, ReceiptIcon, PersonIcon, DocumentIconSolid, DropIcon, CollectionsBookmarIcons, FinanceChartIcon, SearchIcon, GalleryIcon, RemoveIcon, BreadCrumb, CameraIcon, LabelFieldPair, CardLabel, TextInput, MobileNumber, PrivateRoute, Calender, DocumentIcon, CardBasedOptions, WhatsNewCard, PageBasedInput, CardHeader, RadioButtons, SearchOnRadioButtons, Header as Header$1, PDFSvg, DownloadImgIcon, WhatsappIconGreen, HelpLineIcon, ServiceCenterIcon, ValidityTimeIcon, TimerIcon, RupeeSymbol, Banner, Rating, TextArea, SearchField, DatePicker, SearchAction, PopUp, DetailsCard, DownloadBtnCommon, SearchForm, Table, Body } from '@egovernments/digit-ui-react-components';
+import { Loader, BackButton, CitizenHomeCard, CitizenInfoLabel, PTIcon, BillsIcon, OBPSIcon, TLIcon, PGRIcon, MCollectIcon, FSMIcon, WSICon, FormStep, CheckBox, CitizenConsentForm, OTPInput, CardText, CardLabelError, AppContainer, Toast, Dropdown, FormComposer, CardSubHeader, Card, CustomButton, SubmitBar, TopBar as TopBar$1, Hamburger, Modal, CloseSvg, PropertyHouse, CaseIcon, CollectionIcon, BirthIcon, DeathIcon, FirenocIcon, HomeIcon, EditPencilIcon, LogoutIcon, Phone, LoginIcon, NavBar, ArrowVectorDown, ArrowForward, ComplaintIcon, BPAHomeIcon, ReceiptIcon, PersonIcon, DocumentIconSolid, DropIcon, CollectionsBookmarIcons, FinanceChartIcon, SearchIcon, GalleryIcon, RemoveIcon, BreadCrumb, CameraIcon, LabelFieldPair, CardLabel, TextInput, MobileNumber, PrivateRoute, Calender, DocumentIcon, WhatsNewCard, PageBasedInput, CardHeader, RadioButtons, SearchOnRadioButtons, Header as Header$1, PDFSvg, DownloadImgIcon, WhatsappIconGreen, HelpLineIcon, ServiceCenterIcon, ValidityTimeIcon, TimerIcon, RupeeSymbol, Banner, Rating, TextArea, SearchField, DatePicker, SearchAction, PopUp, DetailsCard, DownloadBtnCommon, SearchForm, Table, Body } from '@egovernments/digit-ui-react-components';
 import ReactTooltip from 'react-tooltip';
 import { compose, applyMiddleware, createStore, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
@@ -187,16 +187,6 @@ const loginSteps = [{
     submitBarLabel: "CS_COMMONS_NEXT"
   },
   inputs: [{
-    label: "CORE_COMMON_HOLDING_ID",
-    type: "text",
-    name: "holdingId",
-    error: "ERR_HRMS_INVALID_HOLDING_ID",
-    validation: {
-      required: true,
-      minLength: 15,
-      maxLength: 15
-    }
-  }, {
     label: "CORE_COMMON_MOBILE_NUMBER",
     type: "text",
     name: "mobileNumber",
@@ -10880,6 +10870,22 @@ const Home = () => {
   const citizenServicesObj = uiHomePage === null || uiHomePage === void 0 ? void 0 : uiHomePage.citizenServicesCard;
   const infoAndUpdatesObj = uiHomePage === null || uiHomePage === void 0 ? void 0 : uiHomePage.informationAndUpdatesCard;
   const whatsNewSectionObj = uiHomePage === null || uiHomePage === void 0 ? void 0 : uiHomePage.whatsNewSection;
+  const citizenDesludgingService = {
+    header: t("CS_COMMON_CITIZEN_DESLUDGING_SERVICE"),
+    options: [{
+      name: t("CS_HOME_APPLY_FOR_DESLUDGING"),
+      link: '/digit-ui/citizen/fsm/new-application',
+      src: 'https://velocity-upyog-assets.s3.ap-south-1.amazonaws.com/Septic+Tank__80x80.png'
+    }, {
+      name: t("CS_HOME_MY_APPLICATIONS"),
+      link: '/digit-ui/citizen/fsm/my-applications',
+      src: 'https://velocity-upyog-assets.s3.ap-south-1.amazonaws.com/Applications_80x80.png'
+    }, {
+      name: t("CS_LINK_LOGIN_DSO"),
+      link: '/digit-ui/citizen/login',
+      src: 'https://velocity-upyog-assets.s3.ap-south-1.amazonaws.com/Login__80x80.png'
+    }]
+  };
   const allCitizenServicesProps = {
     header: t(citizenServicesObj === null || citizenServicesObj === void 0 ? void 0 : citizenServicesObj.headerLabel),
     sideOption: {
@@ -10984,22 +10990,26 @@ const Home = () => {
   }, /*#__PURE__*/React.createElement("div", {
     className: "BannerWithSearch"
   }, isMobile ? /*#__PURE__*/React.createElement("img", {
-    src: "https://nugp-assets.s3.ap-south-1.amazonaws.com/nugp+asset/Banner+UPYOG+%281920x500%29B+%282%29.jpg"
+    src: "https://velocity-upyog-assets.s3.ap-south-1.amazonaws.com/mobile_banner_3.png"
   }) : /*#__PURE__*/React.createElement("img", {
-    src: "https://velocity-upyog-assets.s3.ap-south-1.amazonaws.com/upyog-banner.png"
+    src: "https://velocity-upyog-assets.s3.ap-south-1.amazonaws.com/home_banner_3.png"
   }), /*#__PURE__*/React.createElement("div", {
     className: "ServicesSection"
-  }, /*#__PURE__*/React.createElement(CardBasedOptions, Object.assign({
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "citizen-desludging-content"
+  }, /*#__PURE__*/React.createElement("h2", null, citizenDesludgingService === null || citizenDesludgingService === void 0 ? void 0 : citizenDesludgingService.header), citizenDesludgingService === null || citizenDesludgingService === void 0 ? void 0 : citizenDesludgingService.options.map((props, index) => /*#__PURE__*/React.createElement("div", {
+    className: "citizen-desludging-conten-wrapper"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "citizen-desludging-conten-wrapper-inner-img"
+  }, /*#__PURE__*/React.createElement("img", {
+    src: props.src,
     style: {
-      marginTop: "-30px"
+      width: "70%"
     }
-  }, allCitizenServicesProps)), /*#__PURE__*/React.createElement(CardBasedOptions, Object.assign({
-    style: isMobile ? {
-      marginTop: "-30px"
-    } : {
-      marginTop: "-30px"
-    }
-  }, allInfoAndUpdatesProps)))), conditionsToDisableNotificationCountTrigger() ? EventsDataLoading ? /*#__PURE__*/React.createElement(Loader, null) : /*#__PURE__*/React.createElement("div", {
+  })), /*#__PURE__*/React.createElement(Link, {
+    key: index,
+    to: props.link
+  }, /*#__PURE__*/React.createElement("p", null, props.name)))))), conditionsToDisableNotificationCountTrigger() ? EventsDataLoading ? /*#__PURE__*/React.createElement(Loader, null) : /*#__PURE__*/React.createElement("div", {
     className: "WhatsNewSection"
   }, /*#__PURE__*/React.createElement("div", {
     className: "headSection"
@@ -11040,10 +11050,33 @@ const LanguageSelection$1 = () => {
   }
   return isLoading ? /*#__PURE__*/React.createElement(Loader, null) : /*#__PURE__*/React.createElement("div", {
     className: "selection-card-wrapper"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "main-banner-image",
+    style: window.innerWidth <= 565 ? {
+      marginBottom: "30px"
+    } : {
+      float: "left",
+      width: "80%"
+    }
+  }, /*#__PURE__*/React.createElement("img", {
+    className: "city",
+    id: "topbar-logo",
+    src: window.innerWidth <= 565 ? "https://velocity-upyog-assets.s3.ap-south-1.amazonaws.com/mobile_banner_3.png" : "https://velocity-upyog-assets.s3.ap-south-1.amazonaws.com/desktop_banner_2.png" ,
+    alt: "unicef",
+    style: {
+      width: "100%"
+    }
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "left-side_content",
+    style: window.innerWidth <= 565 ? {} : {
+      float: "right",
+      marginRight: "-200px",
+      width: "35%"
+    }
   }, /*#__PURE__*/React.createElement(PageBasedInput, {
     texts: texts,
     onSubmit: onSubmit
-  }, /*#__PURE__*/React.createElement(CardHeader, null, t("CS_COMMON_CHOOSE_LANGUAGE")), /*#__PURE__*/React.createElement(RadioButtons, RadioButtonProps)));
+  }, /*#__PURE__*/React.createElement(CardHeader, null, t("CS_COMMON_CHOOSE_LANGUAGE")), /*#__PURE__*/React.createElement(RadioButtons, RadioButtonProps))));
 };
 
 const LocationSelection = () => {
@@ -11091,13 +11124,36 @@ const LocationSelection = () => {
   }
   return isLoading ? /*#__PURE__*/React.createElement("loader", null) : /*#__PURE__*/React.createElement("div", {
     className: "selection-card-wrapper"
-  }, /*#__PURE__*/React.createElement(BackButton, null), /*#__PURE__*/React.createElement(PageBasedInput, {
+  }, /*#__PURE__*/React.createElement(BackButton, null), /*#__PURE__*/React.createElement("div", {
+    className: "main-banner-image",
+    style: window.innerWidth <= 565 ? {
+      marginBottom: "30px"
+    } : {
+      float: "left",
+      width: "80%"
+    }
+  }, /*#__PURE__*/React.createElement("img", {
+    className: "city",
+    id: "topbar-logo",
+    src: window.innerWidth <= 565 ? "https://velocity-upyog-assets.s3.ap-south-1.amazonaws.com/mobile_banner_3.png" : "https://velocity-upyog-assets.s3.ap-south-1.amazonaws.com/desktop_banner_2.png" ,
+    alt: "unicef",
+    style: {
+      width: "100%"
+    }
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "left-side_content",
+    style: window.innerWidth <= 565 ? {} : {
+      float: "right",
+      marginRight: "-200px",
+      width: "35%"
+    }
+  }, /*#__PURE__*/React.createElement(PageBasedInput, {
     texts: texts,
     onSubmit: onSubmit,
     className: "location-selection-container"
   }, /*#__PURE__*/React.createElement(CardHeader, null, t("CS_COMMON_CHOOSE_LOCATION")), /*#__PURE__*/React.createElement(SearchOnRadioButtons, Object.assign({}, RadioButtonProps, {
     placeholder: t("COMMON_TABLE_SEARCH")
-  })), showError ? /*#__PURE__*/React.createElement(CardLabelError, null, t("CS_COMMON_LOCATION_SELECTION_ERROR")) : null));
+  })), showError ? /*#__PURE__*/React.createElement(CardLabelError, null, t("CS_COMMON_LOCATION_SELECTION_ERROR")) : null)));
 };
 
 const FaqComponent = props => {
@@ -14166,7 +14222,7 @@ const Home$1 = ({
     onClick: () => {
       window.open('https://niua.in/', '_blank').focus();
     }
-  }, "Copyright \xA9 2022 National Institute of Urban Affairs")), /*#__PURE__*/React.createElement("div", {
+  }, "Copyright \xA9 2022 National Institute of Urban Affairs1")), /*#__PURE__*/React.createElement("div", {
     className: "upyog-copyright-footer-web"
   }, /*#__PURE__*/React.createElement("span", {
     className: "",
