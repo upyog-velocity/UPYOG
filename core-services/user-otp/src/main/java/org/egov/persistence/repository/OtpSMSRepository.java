@@ -62,9 +62,9 @@ public class OtpSMSRepository {
         if (localisedMsgs.isEmpty()) {
             
             log.info("Localization Service didn't return any msgs so using default...");
-            localisedMsgs.put(LOCALIZATION_KEY_REGISTER_SMS, "Your OTP for account verification to Bal Pitara is %s ICDLKO.");
-            localisedMsgs.put(LOCALIZATION_KEY_LOGIN_SMS, "Your OTP for account verification to Bal Pitara is %s ICDLKO.");
-            localisedMsgs.put(LOCALIZATION_KEY_PWD_RESET_SMS, "Your OTP for account verification to Bal Pitara is %s ICDLKO.");
+            localisedMsgs.put(LOCALIZATION_KEY_REGISTER_SMS, "Dear Citizen, Your OTP to register is %s-Prowtext");
+            localisedMsgs.put(LOCALIZATION_KEY_LOGIN_SMS, "Dear Citizen, Your OTP to login is %s-Prowtext");
+            localisedMsgs.put(LOCALIZATION_KEY_PWD_RESET_SMS, "Dear Citizen, Your OTP to password reset is %s-Prowtext");
         }
         String message = null;
 
