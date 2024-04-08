@@ -2,6 +2,7 @@ package org.egov.fsm.calculator.repository.querybuilder;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Locale;
 
 import org.egov.fsm.calculator.config.BillingSlabConfig;
 import org.egov.fsm.calculator.web.models.BillingSlabSearchCriteria;
@@ -81,7 +82,8 @@ public class BillingSlabQueryBuilder {
 		}
 		if (criteria.getWard() != null) {
 			query.append(" AND ward=?");
-			preparedStmtList.add(criteria.getWard().toString());
+			String wardOrg = criteria.getWard().replaceAll("\\+", " ").toLowerCase(Locale.ROOT);
+			preparedStmtList.add(wardOrg.toString());
 		}
 		return addPaginationWrapper(query.toString(), preparedStmtList, criteria);
 	}
