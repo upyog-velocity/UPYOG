@@ -207,12 +207,11 @@ abstract public class BaseSMSService implements SMSService, SMSBodyBuilder {
     public MultiValueMap<String, String> getExternalSmsRequestBody(Sms sms) {
         MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
         map.add("apikey", "sdciSVe9db94fd57de01fc34");
+        map.add("sender", "PROWTX");
         map.add("type", "TEXT");
         map.add("mobile", sms.getMobileNumber());
-        map.add("sdciSVe9db94fd57de01fc34","");
-        map.add("sender", "ICDSLK");
         map.add("PEID", "1101468910000013829");
-        map.add("TemplateId", "1207165693137020223");
+        map.add("TemplateId", "1207162280399068341");
         map.add("message", sms.getMessage());
 
         return map;
