@@ -85,9 +85,9 @@
   @media (min-width: 780px) {
     width: calc(100% - 219px);
   }
-  margin-top: -25px;
+  /*margin-top: -25px;*/
   img {
-    height: 33vw;
+    /*height: 33vw;*/
     background: linear-gradient(#000000,#000000);
     @apply w-full object-cover;
   }
@@ -143,8 +143,8 @@
   }
   .moduleLinkHomePage {
     img {
-      min-width: 100vw;
-      height: 20vw;
+      /*min-width: 100vw;
+      height: 20vw;*/
     }
     h1 {
       top: calc(10vw + 40px);

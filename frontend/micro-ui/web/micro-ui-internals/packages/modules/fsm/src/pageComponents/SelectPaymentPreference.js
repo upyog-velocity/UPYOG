@@ -49,6 +49,7 @@ const SelectPaymentPreference = ({ config, formData, t, onSelect, userType }) =>
 
   useEffect(() => {
     (async () => {
+      let ward = formData?.address?.locality?.code;
       if (formData?.propertyType && formData?.subtype && formData?.address && formData?.selectTripNo?.vehicleCapacity.capacity) {
         const capacity = formData?.selectTripNo?.vehicleCapacity.capacity;
         const { slum: slumDetails } = formData.address;
@@ -57,6 +58,7 @@ const SelectPaymentPreference = ({ config, formData, t, onSelect, userType }) =>
           propertyType: formData?.subtype?.code,
           capacity,
           slum,
+          ward: ward.toLowerCase(),
         });
 
         const billSlab = billingDetails?.billingSlab?.length && billingDetails?.billingSlab[0];
