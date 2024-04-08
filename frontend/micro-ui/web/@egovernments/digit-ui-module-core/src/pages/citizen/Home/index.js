@@ -73,12 +73,12 @@ const Home = () => {
         name: t("CS_HOME_MY_APPLICATIONS"),
         link: '/digit-ui/citizen/fsm/my-applications',
         src: 'https://velocity-upyog-assets.s3.ap-south-1.amazonaws.com/Applications_80x80.png'
+      },
+      {
+        name: t("CS_LINK_LOGIN_DSO"),
+        link: '/digit-ui/citizen/login',
+        src: 'https://velocity-upyog-assets.s3.ap-south-1.amazonaws.com/Login__80x80.png'
       }
-      // {
-      //   name: t("CS_LINK_LOGIN_DSO"),
-      //   link: '/digit-ui/citizen/login',
-      //   src: 'https://velocity-upyog-assets.s3.ap-south-1.amazonaws.com/Login__80x80.png'
-      // }
     ]
   }
 

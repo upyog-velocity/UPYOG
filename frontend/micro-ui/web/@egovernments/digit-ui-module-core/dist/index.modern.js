@@ -10880,6 +10880,10 @@ const Home = () => {
       name: t("CS_HOME_MY_APPLICATIONS"),
       link: '/digit-ui/citizen/fsm/my-applications',
       src: 'https://velocity-upyog-assets.s3.ap-south-1.amazonaws.com/Applications_80x80.png'
+    }, {
+      name: t("CS_LINK_LOGIN_DSO"),
+      link: '/digit-ui/citizen/login',
+      src: 'https://velocity-upyog-assets.s3.ap-south-1.amazonaws.com/Login__80x80.png'
     }]
   };
   const allCitizenServicesProps = {
@@ -14062,14 +14066,12 @@ const Home$1 = ({
       path: `${path}/${code.toLowerCase()}-home`
     }, /*#__PURE__*/React.createElement("div", {
       className: "moduleLinkHomePage"
-    }, /*#__PURE__*/React.createElement(BackButton, {
-      className: "moduleLinkHomePageBackButton"
-    }), window.innerWidth <= 660 ? /*#__PURE__*/React.createElement("img", {
-      src: "https://velocity-upyog-assets.s3.ap-south-1.amazonaws.com/mobile_banner_3.png"
-    }) : /*#__PURE__*/React.createElement("img", {
-      src: "https://velocity-upyog-assets.s3.ap-south-1.amazonaws.com/home_banner_3.png"   ,
+    }, /*#__PURE__*/React.createElement("img", {
+      src: "https://nugp-assets.s3.ap-south-1.amazonaws.com/nugp+asset/Banner+UPYOG+%281920x500%29B+%282%29.jpg"  ,
       alt: "noimagefound"
-    }), /*#__PURE__*/React.createElement("div", {
+    }), /*#__PURE__*/React.createElement(BackButton, {
+      className: "moduleLinkHomePageBackButton"
+    }), /*#__PURE__*/React.createElement("h1", null, t("MODULE_" + code.toUpperCase())), /*#__PURE__*/React.createElement("div", {
       className: "moduleLinkHomePageModuleLinks"
     }, mdmsDataObj && /*#__PURE__*/React.createElement(CitizenHomeCard, {
       header: t(mdmsDataObj === null || mdmsDataObj === void 0 ? void 0 : mdmsDataObj.header),
@@ -14191,13 +14193,7 @@ const Home$1 = ({
     onClick: () => {
       window.open('https://www.digit.org/', '_blank').focus();
     }
-  }, "Developed & Supported by: ", /*#__PURE__*/React.createElement("br", null), " ", /*#__PURE__*/React.createElement("a", {
-    href: "https://www.velsof.com/",
-    target: "_blank",
-    style: {
-      textDecoration: "underline"
-    }
-  }, "Velocity Software Solutions Pvt. Ltd.")), /*#__PURE__*/React.createElement("span", {
+  }, "Powered by DIGIT"), /*#__PURE__*/React.createElement("span", {
     style: {
       margin: "0 10px",
       fontSize: window.Digit.Utils.browser.isMobile() ? "12px" : "14px"
@@ -14210,7 +14206,7 @@ const Home$1 = ({
     },
     href: "#",
     target: "_blank"
-  }, "Platform ", /*#__PURE__*/React.createElement("b", null, "UPYOG")), /*#__PURE__*/React.createElement("span", {
+  }, "UPYOG License"), /*#__PURE__*/React.createElement("span", {
     className: "upyog-copyright-footer",
     style: {
       margin: "0 10px",
@@ -14226,20 +14222,7 @@ const Home$1 = ({
     onClick: () => {
       window.open('https://niua.in/', '_blank').focus();
     }
-  }, "Supported by: ", /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("img", {
-    className: "city unicef-logo",
-    src: "https://velocity-upyog-assets.s3.ap-south-1.amazonaws.com/unicef_logo_3.png" ,
-    alt: "unicef",
-    style: window.innerWidth <= 660 ? {
-      backgroundColor: "#00AEEF",
-      minWidth: "61px",
-      minHeight: "50px",
-      height: "50px"
-    } : {
-      backgroundColor: "#00AEEF",
-      height: "25px"
-    }
-  }))), /*#__PURE__*/React.createElement("div", {
+  }, "Copyright \xA9 2022 National Institute of Urban Affairs1")), /*#__PURE__*/React.createElement("div", {
     className: "upyog-copyright-footer-web"
   }, /*#__PURE__*/React.createElement("span", {
     className: "",
