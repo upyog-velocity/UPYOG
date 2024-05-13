@@ -211,7 +211,7 @@ abstract public class BaseSMSService implements SMSService, SMSBodyBuilder {
         map.add("type", "TEXT");
         map.add("mobile", sms.getMobileNumber());
         map.add("PEID", "1101468910000013829");
-        map.add("TemplateId", "1207162280399068341");
+        map.add("TemplateId", "1207163214105988151");
         map.add("message", sms.getMessage());
 
         return map;
