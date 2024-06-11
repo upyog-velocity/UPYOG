@@ -4,9 +4,10 @@ import { FormStep, Dropdown, Loader, RadioOrSelect, CardText } from "@egovernmen
 const SelectTripNo = ({ config, formData, t, onSelect, userType }) => {
   const state = Digit.ULBService.getStateId();
   const tenantId = Digit.ULBService.getCurrentTenantId();
+  const current_city = JSON.parse(sessionStorage.getItem('Digit.CITIZEN.COMMON.HOME.CITY'));  
   const stateId = Digit.ULBService.getStateId();
   const { data: tripNumberData, isLoading } = Digit.Hooks.fsm.useMDMS(stateId, "FSM", "TripNumber");
-  const { data: dsoData, isLoading: isDsoLoading, isSuccess: isDsoSuccess, error: dsoError } = Digit.Hooks.fsm.useDsoSearch(tenantId, {
+  const { data: dsoData, isLoading: isDsoLoading, isSuccess: isDsoSuccess, error: dsoError } = Digit.Hooks.fsm.useDsoSearch((current_city?.value?.code !== '' ? current_city?.value?.code : tenantId), {
     limit: -1,
     status: "ACTIVE",
   });

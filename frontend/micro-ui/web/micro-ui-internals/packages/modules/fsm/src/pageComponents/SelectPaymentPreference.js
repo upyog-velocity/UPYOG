@@ -58,7 +58,7 @@ const SelectPaymentPreference = ({ config, formData, t, onSelect, userType }) =>
           propertyType: formData?.subtype?.code,
           capacity,
           slum,
-          ward: ward.toLowerCase(),
+          // ward: ward.toLowerCase(),
         });
 
         const billSlab = billingDetails?.billingSlab?.length && billingDetails?.billingSlab[0];
