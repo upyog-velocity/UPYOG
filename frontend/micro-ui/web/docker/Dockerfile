@@ -17,8 +17,8 @@ RUN cd web/ \
     &&  ./install-deps.sh \
     && yarn install \
     && rm -rf node_modules/@egovernments \
-    && cp -rpf @egovernments node_modules/ \
-    && rm -rf @egovernments \
+    && cp -rpf @egovernments-update node_modules/ \
+    && rm -rf @egovernments-update \
     && yarn build 
     
 
