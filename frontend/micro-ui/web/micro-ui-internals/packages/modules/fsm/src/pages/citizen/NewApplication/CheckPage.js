@@ -52,6 +52,12 @@ const CheckPage = ({ onSubmit, value }) => {
         <CardText>{t("CS_CHECK_CHECK_YOUR_ANSWERS_TEXT")}</CardText>
         <CardSubHeader>{t("CS_CHECK_PROPERTY_DETAILS")}</CardSubHeader>
         <StatusTable>
+          {address && address?.holdingId && (
+            <Row
+              label={t("ES_FSM_ACTION_HOLDING_ID")}
+              text={t(address?.holdingId)}              
+            />
+          )}
           {selectTripNo && selectTripNo?.tripNo && (
             <Row
               label={t("ES_FSM_ACTION_NUMBER_OF_TRIPS")}

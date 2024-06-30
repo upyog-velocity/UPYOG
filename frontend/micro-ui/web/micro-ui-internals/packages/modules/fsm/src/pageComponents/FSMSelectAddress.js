@@ -76,7 +76,8 @@ const FSMSelectAddress = ({ t, config, onSelect, userType, formData }) => {
   }
 
   function onSubmit() {
-    onSelect(config.key, { city: selectedCity, locality: selectedLocality });
+    let holdingId = localStorage.getItem("holdingId");
+    onSelect(config.key, { city: selectedCity, locality: selectedLocality, holdingId: holdingId?holdingId:null});
   }
 
   if (userType === "employee") {

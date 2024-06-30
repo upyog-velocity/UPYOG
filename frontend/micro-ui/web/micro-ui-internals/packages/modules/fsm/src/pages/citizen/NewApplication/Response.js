@@ -56,7 +56,7 @@ const Response = ({ data, onSuccess }) => {
         const amount = Digit.SessionStorage.get("total_amount");
         const amountPerTrip = Digit.SessionStorage.get("amount_per_trip");
         const { subtype, pitDetail, address, pitType, source, selectGender, selectPaymentPreference, selectTripNo } = data;
-        const { city, locality, geoLocation, pincode, street, doorNo, landmark, slum } = address;
+        const { city, locality, geoLocation, pincode, street, doorNo, landmark, slum, holdingId } = address;
         setPaymentPreference(selectPaymentPreference?.code);
         const advanceAmount = amount === 0 ? null : selectPaymentPreference?.advanceAmount;
         amount === 0 ? setZeroPay(true) : setZeroPay(false);
@@ -100,6 +100,7 @@ const Response = ({ data, onSuccess }) => {
             paymentPreference: amount === 0 ? null : selectPaymentPreference?.paymentType ? selectPaymentPreference?.paymentType?.code : null,
             noOfTrips: selectTripNo ? selectTripNo?.tripNo?.code : 1,
             vehicleCapacity: selectTripNo ? selectTripNo?.vehicleCapacity?.capacity : "",
+            propertyId: holdingId?.trim(),
             additionalDetails: {
               totalAmount: amount,
               tripAmount: amountPerTrip,

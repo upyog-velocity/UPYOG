@@ -59,6 +59,7 @@ const FileComplaint = ({ parentRoute }) => {
   const handleSUccess = () => {
     clearParams();
     queryClient.invalidateQueries("FSM_CITIZEN_SEARCH");
+    localStorage.removeItem("holdingId");
     setMutationHappened(true);
   };
 

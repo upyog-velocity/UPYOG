@@ -6,7 +6,18 @@ export const loginSteps = [
       nextText: "CS_COMMONS_NEXT",
       submitBarLabel: "CS_COMMONS_NEXT",
     },
-    inputs: [      
+    inputs: [ 
+      {
+        label: "CORE_COMMON_HOLDING_ID",
+        type: "text",
+        name: "holdingId",
+        error: "ERR_HRMS_INVALID_HOLDING_ID",        
+        validation: {
+          required: true,
+          minLength: 15,
+          maxLength: 15,
+        },
+      },     
       {
         label: "CORE_COMMON_MOBILE_NUMBER",
         type: "text",

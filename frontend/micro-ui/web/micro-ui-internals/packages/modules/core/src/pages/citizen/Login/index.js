@@ -105,6 +105,7 @@ const Login = ({ stateCode, isUserRegistered = true }) => {
     const { value } = event.target;    
     if(event.target.name === 'holdingId'){
       setParmas({ ...params, holdingId: value });
+      localStorage.setItem("holdingId", value);
     }else{
       setParmas({ ...params, mobileNumber: value });
     }   
