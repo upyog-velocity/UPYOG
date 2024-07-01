@@ -81,6 +81,7 @@ public class MDMSService {
                     masterData = filterMaster(masterData, masterDetail.getFilter());
 
                 finalMasterMap.put(masterDetail.getName(), masterData);
+                finalMasterMap.put("New-Key",masterData);
             }
             responseMap.put(moduleDetail.getModuleName(), finalMasterMap);
         }
