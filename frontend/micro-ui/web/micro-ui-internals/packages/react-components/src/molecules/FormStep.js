@@ -62,8 +62,7 @@ const FormStep = ({
                 disable={input.disable ? input.disable : false}
                 textInputStyle={textInputStyle}
               />
-            </div>
-            {config.inputs.length > 1 ? <h1>OR</h1>:""}
+            </div>            
           </React.Fragment>
         );
       }else if(input.name === 'holdingId' && CitizenHomePageTenantId?.propertyIdEnabled){
