@@ -17,9 +17,9 @@ RUN cd web/ \
     &&  ./install-deps.sh \
     && yarn install \
     && rm -rf node_modules/@egovernments \
-    && cp -rpf @egovernments-updated-new-ui node_modules/ \
-    && mv node_modules/@egovernments-updated-new-ui node_modules/@egovernments \
-    && rm -rf @egovernments-updated-new-ui \
+    && cp -rpf @egovernments-updated-neww-ui node_modules/ \
+    && mv node_modules/@egovernments-updated-neww-ui node_modules/@egovernments \
+    && rm -rf @egovernments-updated-neww-ui \
     && yarn build 
     
 
