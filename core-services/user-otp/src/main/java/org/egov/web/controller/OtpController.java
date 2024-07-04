@@ -31,7 +31,14 @@ public class OtpController {
     @ResponseStatus(HttpStatus.CREATED)
     public OtpResponse sendOtp(@RequestBody OtpRequest otpRequest) throws IOException {
         if (otpRequest.getOtp() != null) {
-            if (otpRequest.getOtp().getHoldingId() != null && otpRequest.getOtp().isPropertyIdEnabled()) {
+            if (otpRequest.getOtp().getMobileNumber() != "") {
+                otpService.sendOtp(otpRequest.toDomain());
+                return OtpResponse.builder()
+                        .responseInfo(null)
+                        .successful(true)
+                        .build();
+            }
+            if (otpRequest.getOtp().getHoldingId() != "" && otpRequest.getOtp().isPropertyIdEnabled()) {
                 log.info("Holding Id is :::: " + otpRequest.getOtp().getHoldingId());
                 RestTemplate restTemplate = new RestTemplate();
                 ObjectMapper objectMapper = new ObjectMapper();
@@ -54,6 +61,7 @@ public class OtpController {
                     }
                 }
             }
+            
         }
         otpService.sendOtp(otpRequest.toDomain());
         return OtpResponse.builder().
