@@ -26,7 +26,8 @@ const FormStep = ({
   showErrorBelowChildren = false,
   childrenAtTheBottom = true,
   textInputStyle,
-  CitizenHomePageTenantId
+  CitizenHomePageTenantId,
+  inValidHoldingId
 }) => {
   const { register, watch, errors, handleSubmit } = useForm({
     defaultValues: _defaultValues,
@@ -62,12 +63,14 @@ const FormStep = ({
                 textInputStyle={textInputStyle}
               />
             </div>
+            {config.inputs.length > 1 ? <h1>OR</h1>:""}
           </React.Fragment>
         );
-      }else if(input.name === 'holdingId'){
+      }else if(input.name === 'holdingId' && CitizenHomePageTenantId?.propertyIdEnabled){
         return (
           <React.Fragment key={index}>
             <CardLabel>{t(input.label)} {input.labelChildren && input.labelChildren}</CardLabel>
+            {inValidHoldingId && <CardLabelError>{"Invalid Holding Id. Please provide the correct Holding Id Or Login with the Mobile Number"}</CardLabelError>}
             {errors[input.name] && <CardLabelError>{t(input.error)}</CardLabelError>}
             <div className="field-container" style={{ justifyContent: "left" }}>
               {input?.componentInFront ? <span className="citizen-card-input citizen-card-input--front">{componentInFront}</span> : null}
@@ -86,9 +89,10 @@ const FormStep = ({
                 textInputStyle={textInputStyle}
               />
             </div>
+            {config.inputs.length > 1 ? <h1>OR</h1>:""}
           </React.Fragment>
         );
-      }else if(input.name === 'mobileNumber' && !CitizenHomePageTenantId?.propertyIdEnabled){
+      }else if(input.name === 'mobileNumber'){
         return (
           <React.Fragment key={index}>
             <CardLabel>{t(input.label)} {input.labelChildren && input.labelChildren}</CardLabel>

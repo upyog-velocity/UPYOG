@@ -13,7 +13,7 @@ export const loginSteps = [
         name: "holdingId",
         error: "ERR_HRMS_INVALID_HOLDING_ID",        
         validation: {
-          required: true,
+          required: false,
           minLength: 10,
           maxLength: 25,
         },
@@ -25,7 +25,7 @@ export const loginSteps = [
         error: "ERR_HRMS_INVALID_MOB_NO",
         componentInFront : "+91",
         validation: {
-          required: true,
+          required: false,
           minLength: 10,
           maxLength: 10,
         },

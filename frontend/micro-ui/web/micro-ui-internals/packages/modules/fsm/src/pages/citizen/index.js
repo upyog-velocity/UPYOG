@@ -19,7 +19,6 @@ const CitizenApp = ({ path }) => {
   return (
     <React.Fragment>
       <div className="fsm-citizen-wrapper">
-        <h1>Hello</h1>
         {location.pathname.includes("/response") || location.pathname.split("/").includes("check") ? null : <BackButton>{t("CS_COMMON_BACK")}</BackButton>}
         <Switch>
           <PrivateRoute

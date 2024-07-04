@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { CardText, FormStep, CitizenConsentForm, Loader, CheckBox } from "@egovernments/digit-ui-react-components";
 import { Link } from "react-router-dom";
 
-const SelectMobileNumber = ({ t, onSelect, showRegisterLink, mobileNumber, holdingId, onMobileChange, config, canSubmit, CitizenHomePageTenantId }) => {
+const SelectMobileNumber = ({ t, onSelect, showRegisterLink, mobileNumber, holdingId, onMobileChange, config, canSubmit, CitizenHomePageTenantId,inValidHoldingId }) => {
 
   const [isCheckBox, setIsCheckBox] = useState(false);
   const [isCCFEnabled, setisCCFEnabled] = useState(false);
@@ -15,8 +15,8 @@ const SelectMobileNumber = ({ t, onSelect, showRegisterLink, mobileNumber, holdi
   }
 
   const checkDisbaled = () => {
-    if (CitizenHomePageTenantId?.propertyIdEnabled){
-      return !(holdingId.length >= 13 && holdingId.length <= 20 && canSubmit && isCheckBox)
+    if (holdingId.length > 0){
+      return !(holdingId.length >= 10 && holdingId.length <= 25 && canSubmit && isCheckBox)
     }
     if (isCCFEnabled?.isCitizenConsentFormEnabled) {
       return !(mobileNumber.length === 10 && canSubmit && isCheckBox)
@@ -64,6 +64,7 @@ const SelectMobileNumber = ({ t, onSelect, showRegisterLink, mobileNumber, holdi
       value={mobileNumber}
       holdingId={holdingId}
       CitizenHomePageTenantId={CitizenHomePageTenantId}
+      inValidHoldingId={inValidHoldingId}
     >
       {isCCFEnabled?.isCitizenConsentFormEnabled && <div>
         <CheckBox

@@ -82,6 +82,7 @@ const Login = ({ stateCode, isUserRegistered = true }) => {
   }, [user]);
 
   const CitizenHomePageTenantId = Digit.SessionStorage.get("CITIZEN.COMMON.HOME.CITY");
+  const [inValidHoldingId, setInValidHoldingId] = useState(false);
   const stepItems = useMemo(() =>
     loginSteps.map(
       (step) => {
@@ -121,15 +122,21 @@ const Login = ({ stateCode, isUserRegistered = true }) => {
       propertyIdEnabled: CitizenHomePageTenantId?.propertyIdEnabled
     };
     if (isUserRegistered) {
-      const [res, err] = await sendOtp({ otp: { ...data, ...TYPE_LOGIN } });
-      if (!err) {
+      const response = await sendOtp({ otp: { ...data, ...TYPE_LOGIN } });
+      if (response.length > 0 && response[0]) {
         setCanSubmitNo(true);
         history.replace(`${path}/otp`, { from: getFromLocation(location.state, searchParams), role: location.state?.role });
         return;
       } else {
         setCanSubmitNo(true);
-        if (!(location.state && location.state.role === "FSM_DSO")) {
-          history.push(`/digit-ui/citizen/register/name`, { from: getFromLocation(location.state, searchParams), data: data });
+        console.log(response);
+        let isregister = response[1]?.response?.data?.error?.message === 'Invalid Holding Id. Please provide the correct Holding Id.' ? true : false;
+        if(isregister){
+          setInValidHoldingId(true);
+        }else{
+          if (!(location.state && location.state.role === "FSM_DSO")) {
+            history.push(`/digit-ui/citizen/register/name`, { from: getFromLocation(location.state, searchParams), data: data });
+          }
         }
       }
       if (location.state?.role) {
@@ -254,6 +261,7 @@ const Login = ({ stateCode, isUserRegistered = true }) => {
               canSubmit={canSubmitNo}
               showRegisterLink={isUserRegistered && !location.state?.role}
               CitizenHomePageTenantId={CitizenHomePageTenantId}
+              inValidHoldingId={inValidHoldingId}
               t={t}
             />
             {/* <SelectHoldingId
