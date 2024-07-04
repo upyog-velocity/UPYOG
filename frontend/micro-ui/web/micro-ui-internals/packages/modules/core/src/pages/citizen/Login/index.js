@@ -118,6 +118,7 @@ const Login = ({ stateCode, isUserRegistered = true }) => {
       ...mobileNumber,
       tenantId: stateCode,
       userType: getUserType(),
+      propertyIdEnabled: CitizenHomePageTenantId?.propertyIdEnabled
     };
     if (isUserRegistered) {
       const [res, err] = await sendOtp({ otp: { ...data, ...TYPE_LOGIN } });
@@ -152,6 +153,7 @@ const Login = ({ stateCode, isUserRegistered = true }) => {
       tenantId: stateCode,
       userType: getUserType(),
       ...name,
+      propertyIdEnabled: CitizenHomePageTenantId?.propertyIdEnabled
     };
     setParmas({ ...params, ...name });
     setCanSubmitName(true);
@@ -219,6 +221,7 @@ const Login = ({ stateCode, isUserRegistered = true }) => {
       mobileNumber,
       tenantId: stateCode,
       userType: getUserType(),
+      propertyIdEnabled: CitizenHomePageTenantId?.propertyIdEnabled
     };
     if (!isUserRegistered) {
       const [res, err] = await sendOtp({ otp: { ...data, ...TYPE_REGISTER } });
