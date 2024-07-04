@@ -1,5 +1,6 @@
 package org.egov.web.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.egov.domain.service.OtpService;
 import org.egov.web.contract.*;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Objects;
+import java.io.IOException;
 
 @RestController
 @Slf4j
@@ -27,21 +28,27 @@ public class OtpController {
 
     @PostMapping("/v1/_send")
     @ResponseStatus(HttpStatus.CREATED)
-    public OtpResponse sendOtp(@RequestBody OtpRequest otpRequest) {
-        if(otpRequest.getOtp() != null)
-        {
-            if(otpRequest.getOtp().getHoldingId() != null)
-            {
+    public OtpResponse sendOtp(@RequestBody OtpRequest otpRequest) throws IOException {
+        if (otpRequest.getOtp() != null) {
+            if (otpRequest.getOtp().getHoldingId() != null) {
                 log.info("Holding Id is :::: " + otpRequest.getOtp().getHoldingId());
                 RestTemplate restTemplate = new RestTemplate();
+                ObjectMapper objectMapper = new ObjectMapper();
                 String holdingIdResourceURL
-                        = "https://service.assamurban.in/api/propertytax/holdingdetails?holding_number="+otpRequest.getOtp().getHoldingId();
-                ResponseEntity<HoldingResponse> holdingResponse
-                        = restTemplate.getForEntity(holdingIdResourceURL, HoldingResponse.class);
-                if(Objects.requireNonNull(holdingResponse.getBody()).getMessage().equalsIgnoreCase("success"))
-                {
-                    log.info("Holding setting up the mobile number :::: " + holdingResponse.getBody().getData().getMobileNumber());
-                    otpRequest.getOtp().setMobileNumber(holdingResponse.getBody().getData().getMobileNumber());
+                        = "https://service.assamurban.in/api/propertytax/holdingdetails?holding_number=" + otpRequest.getOtp().getHoldingId();
+                ResponseEntity<DataWrapper> holdingResponseData
+                        = restTemplate.getForEntity(holdingIdResourceURL, DataWrapper.class);
+                DataWrapper holdingDataWrapper = holdingResponseData.getBody();
+                if (holdingDataWrapper != null) {
+                    Object data = holdingDataWrapper.getData();
+                    String holdingResponseDataStr = objectMapper.writeValueAsString(data);
+                    if (!holdingResponseDataStr.equalsIgnoreCase("[]")) {
+                        Data responseData = objectMapper.readValue(holdingResponseDataStr, Data.class);
+                        if (holdingDataWrapper.getMessage().equalsIgnoreCase("success")) {
+                            log.info("Holding setting up the mobile number :::: " + responseData.getMobileNumber());
+                            otpRequest.getOtp().setMobileNumber(responseData.getMobileNumber());
+                        }
+                    }
                 }
             }
         }

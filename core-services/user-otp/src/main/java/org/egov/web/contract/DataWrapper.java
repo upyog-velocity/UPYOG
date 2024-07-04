@@ -7,8 +7,9 @@ import lombok.*;
 @NoArgsConstructor
 @Setter
 @Builder
-public class HoldingResponse {
+public class DataWrapper {
     private String message;
-    private Data data;
+    private Object data;
 
 }
+
