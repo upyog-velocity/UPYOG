@@ -159,6 +159,7 @@ const Home = () => {
       {/* <div className="SideBarStatic">
         <StaticCitizenSideBar />
       </div> */}
+      <h1>Hello2</h1>
       <div className="HomePageWrapper">
         {<div className="BannerWithSearch">
           {isMobile ? <img src={"https://velocity-upyog-assets.s3.ap-south-1.amazonaws.com/mobile_banner_3.png"} /> : <img src={"https://velocity-upyog-assets.s3.ap-south-1.amazonaws.com/home_banner_3.png"} />}

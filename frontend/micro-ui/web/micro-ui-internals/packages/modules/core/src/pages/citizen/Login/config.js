@@ -14,8 +14,8 @@ export const loginSteps = [
         error: "ERR_HRMS_INVALID_HOLDING_ID",        
         validation: {
           required: true,
-          minLength: 15,
-          maxLength: 15,
+          minLength: 10,
+          maxLength: 25,
         },
       },     
       {

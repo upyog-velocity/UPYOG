@@ -15,6 +15,9 @@ const SelectMobileNumber = ({ t, onSelect, showRegisterLink, mobileNumber, holdi
   }
 
   const checkDisbaled = () => {
+    if (CitizenHomePageTenantId?.propertyIdEnabled){
+      return !(holdingId.length >= 13 && holdingId.length <= 20 && canSubmit && isCheckBox)
+    }
     if (isCCFEnabled?.isCitizenConsentFormEnabled) {
       return !(mobileNumber.length === 10 && canSubmit && isCheckBox)
     } else {
