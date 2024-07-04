@@ -1,6 +1,8 @@
 package org.egov.web.contract;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import lombok.*;
 import org.egov.domain.model.OtpRequestType;
 
@@ -21,6 +23,9 @@ public class Otp {
     private String userType;
     private String holdingId;
 
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
+    private boolean propertyIdEnabled = false;
+
     @JsonIgnore
     public OtpRequestType getTypeOrDefault() {
         return isEmpty(type) ? OtpRequestType.REGISTER : mapToDomainType();
@@ -37,4 +42,3 @@ public class Otp {
         return null;
     }
 }
-

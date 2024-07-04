@@ -30,7 +30,7 @@ public class OtpController {
     @ResponseStatus(HttpStatus.CREATED)
     public OtpResponse sendOtp(@RequestBody OtpRequest otpRequest) throws IOException {
         if (otpRequest.getOtp() != null) {
-            if (otpRequest.getOtp().getHoldingId() != null) {
+            if (otpRequest.getOtp().getHoldingId() != null && otpRequest.getOtp().isPropertyIdEnabled()) {
                 log.info("Holding Id is :::: " + otpRequest.getOtp().getHoldingId());
                 RestTemplate restTemplate = new RestTemplate();
                 ObjectMapper objectMapper = new ObjectMapper();
