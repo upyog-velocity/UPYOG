@@ -8,10 +8,13 @@ import lombok.*;
 @NoArgsConstructor
 @Setter
 @Builder
-public class OtpResponse {
-    private ResponseInfo responseInfo;
-    @JsonProperty("isSuccessful")
-    private boolean successful;
+public class OtpErrorResponse {
+
+    private int code;
+    private String message;
+
+    @JsonProperty("isHoldingID")
+    private boolean isHoldingId;
 }
 
 

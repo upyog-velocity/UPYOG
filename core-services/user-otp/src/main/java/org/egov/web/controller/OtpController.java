@@ -57,7 +57,7 @@ public class OtpController {
         }
         otpService.sendOtp(otpRequest.toDomain());
         return OtpResponse.builder().
-                responseInfo(null).successful(true).isHoldingId(true).message("Holding Id is Valid").build();
+                responseInfo(null).successful(true).build();
     }
 
     @PostMapping("/holding/v1/_send")
