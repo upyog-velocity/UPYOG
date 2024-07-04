@@ -15,9 +15,6 @@ RUN cd web/ \
     && node envs.js \
     && node -e 'console.log(v8.getHeapStatistics().heap_size_limit/(4096*4096))' \
     &&  ./install-deps.sh \
-    && rm -rf micro-ui-internals/node_modules/@egovernments \
-    && cp -rpf micro-ui-internals/@egovernments-updated-ui micro-ui-internals/node_modules/ \
-    && mv micro-ui-internals/node_modules/@egovernments-updated-ui micro-ui-internals/node_modules/@egovernments \
     && yarn install \
     && rm -rf node_modules/@egovernments \
     && cp -rpf @egovernments-updated-new-ui node_modules/ \
