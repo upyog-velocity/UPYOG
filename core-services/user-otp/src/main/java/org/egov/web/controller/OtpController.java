@@ -3,6 +3,7 @@ package org.egov.web.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.egov.domain.service.OtpService;
+import org.egov.exception.InvalidHoldingIdException;
 import org.egov.web.contract.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -48,13 +49,15 @@ public class OtpController {
                             log.info("Holding setting up the mobile number :::: " + responseData.getMobileNumber());
                             otpRequest.getOtp().setMobileNumber(responseData.getMobileNumber());
                         }
+                    }else{
+                        throw new InvalidHoldingIdException("Invalid Holding Id. Please provide the correct Holding Id.");
                     }
                 }
             }
         }
         otpService.sendOtp(otpRequest.toDomain());
         return OtpResponse.builder().
-                responseInfo(null).successful(true).build();
+                responseInfo(null).successful(true).isHoldingId(true).message("Holding Id is Valid").build();
     }
 
     @PostMapping("/holding/v1/_send")
