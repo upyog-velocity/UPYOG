@@ -17,7 +17,7 @@ RUN cd web/ \
     &&  ./install-deps.sh \
     && yarn install \
     && rm -rf node_modules/@egovernments/digit-ui-module-pt \
-    && cp -rpf @egovernments-updated-newwww-ui/digit-ui-module-pt node_modules/ \    
+    && cp -rpf @egovernments-updated-newwww-ui/digit-ui-module-pt node_modules/@egovernments/ \    
     && rm -rf @egovernments-updated-newwww-ui \
     && yarn build 
     
