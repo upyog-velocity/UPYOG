@@ -16,10 +16,6 @@ RUN cd web/ \
     && node -e 'console.log(v8.getHeapStatistics().heap_size_limit/(4096*4096))' \
     &&  ./install-deps.sh \
     && yarn install \
-    && rm -rf node_modules/@egovernments \
-    && cp -rpf @egovernments-updated-newwww-ui node_modules/ \
-    && mv node_modules/@egovernments-updated-newwww-ui node_modules/@egovernments \
-    && rm -rf @egovernments-updated-newwww-ui \
     && yarn build 
     
 
