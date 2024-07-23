@@ -14,6 +14,7 @@ import org.egov.tracer.model.CustomException;
 import org.egov.user.domain.exception.*;
 import org.egov.user.domain.model.LoggedInUserUpdatePasswordRequest;
 import org.egov.user.domain.model.NonLoggedInUserUpdatePasswordRequest;
+import org.egov.user.domain.model.Role;
 import org.egov.user.domain.model.User;
 import org.egov.user.domain.model.UserSearchCriteria;
 import org.egov.user.domain.model.enums.UserType;
@@ -653,6 +654,29 @@ public class UserService {
         if (!CollectionUtils.isEmpty(errorMap.keySet())) {
             throw new CustomException(errorMap);
         }
+    }
+
+    public boolean userHasValidRoles(String uuid, List<org.egov.common.contract.request.Role> requestRoles) {
+        List<String> dbRoleCodes = new ArrayList<>();
+        dbRoleCodes.add("INTERNAL_MICROSERVICE_ROLE");
+        dbRoleCodes.add("CITIZEN");
+        dbRoleCodes.add("FSM_DSO");
+        dbRoleCodes.add("EMPLOYEE");
+        dbRoleCodes.add("FSM_DRIVER");
+        User user = getUserByUuid(uuid);
+        if (user == null) {
+            throw new UnauthorizedRoleException("User not found");
+        }
+        if (requestRoles == null) {
+            throw new UnauthorizedRoleException("Role codes not provided");
+        }
+        Set<String> userRoleCodes = user.getRoles().stream().map(Role::getCode).collect(Collectors.toSet());
+        log.info("Roles from database:$$$$$$$$$$$$$$ -------------------" + userRoleCodes);
+        boolean isValid = requestRoles.stream().allMatch(role -> userRoleCodes.contains(role.getCode()) || userRoleCodes.contains(dbRoleCodes.get(0)) || userRoleCodes.contains(dbRoleCodes.get(1)) || userRoleCodes.contains(dbRoleCodes.get(2)) || userRoleCodes.contains(dbRoleCodes.get(3)) || userRoleCodes.contains(dbRoleCodes.get(4)) );
+        if (!isValid) {
+            throw new UnauthorizedRoleException("User does not have the required roles");
+        }
+        return true;
     }
 
 
