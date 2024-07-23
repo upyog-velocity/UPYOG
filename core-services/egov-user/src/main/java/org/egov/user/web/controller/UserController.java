@@ -3,14 +3,12 @@ package org.egov.user.web.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.time.DateFormatUtils;
 import org.egov.common.contract.response.ResponseInfo;
+import org.egov.user.domain.exception.UnauthorizedRoleException;
 import org.egov.user.domain.model.*;
 
 import org.apache.commons.lang3.StringUtils;
 import org.egov.common.contract.response.ResponseInfo;
 import org.egov.tracer.model.CustomException;
-import org.egov.user.domain.model.User;
-import org.egov.user.domain.model.UserDetail;
-import org.egov.user.domain.model.UserSearchCriteria;
 import org.egov.user.domain.service.TokenService;
 import org.egov.user.domain.service.UserService;
 import org.egov.user.web.contract.*;
@@ -114,11 +112,32 @@ public class UserController {
     @PostMapping("/_search")
     public UserSearchResponse get(@RequestBody @Valid UserSearchRequest request, @RequestHeader HttpHeaders headers) {
 
-        log.info("Received User search Request  " + request);
-        if (request.getActive() == null) {
-            request.setActive(true);
+        if (request.getUuid() != null && !request.getUuid().isEmpty() && request.getUuid().get(0) != null) {
+            String requestedUuid = request.getUuid().get(0);
+            log.info("User UUID from request: -----------------" + requestedUuid);
+        
+            List<org.egov.common.contract.request.Role> requestRoles = request.getRequestInfo().getUserInfo().getRoles();
+            log.info("Roles from request: ------------------" + requestRoles);
+        
+            // Validate user roles from the database
+            boolean validUser = userService.userHasValidRoles(requestedUuid, requestRoles);
+        
+            if (request.getActive() == null) {
+                request.setActive(true);
+            }
+        
+            if (validUser) {
+                return searchUsers(request, headers);
+            } else {
+                throw new UnauthorizedRoleException("User does not have the required roles");
+            }
+        } else {
+            if (request.getActive() == null) {
+                request.setActive(true);
+            }
+            return searchUsers(request, headers);
         }
-        return searchUsers(request, headers);
+        
     }
 
     /**
