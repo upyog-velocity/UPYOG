@@ -5,7 +5,8 @@ WORKDIR /app
 
 # copy the project files
 COPY ${WORK_DIR}/pom.xml ./pom.xml
-COPY bussiness-services/billing-service/start.sh ./start.sh
+RUN pwd
+COPY ${WORK_DIR}start.sh ./start.sh
 
 # not useful for stateless builds
 # RUN mvn -B dependency:go-offline
