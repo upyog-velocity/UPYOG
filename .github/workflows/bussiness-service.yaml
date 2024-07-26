@@ -1,0 +1,28 @@
+name: Docker Build
+on:
+  push:
+    branches:
+      - 2.0-velsof-fsm
+
+jobs:
+  # Docker Build APP
+  Docker_Build_APP:
+    uses: upyog-velocity/upyog-github-actions/.github/workflows/docker_build.yaml@main
+    secrets:
+      DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+      DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+    with:
+      FILE: build/maven/Dockerfile
+      CONTEXT: business-services/billing-service
+      DOCKER_REPO: velsof/velsof-billing-service-app
+      
+  # Docker Build DB
+  Docker_Build_DB:
+    uses: upyog-velocity/upyog-github-actions/.github/workflows/docker_build.yaml@main
+    secrets:
+      DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+      DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+    with:
+      FILE: src/main/resources/db/Dockerfile
+      CONTEXT: business-services/billing-service/src/main/resources/db
+      DOCKER_REPO: velsof/velsof-billing-service-db
