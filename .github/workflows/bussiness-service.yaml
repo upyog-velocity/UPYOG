@@ -39,7 +39,7 @@ jobs:
         with:
           push: true
           tags: velsof/velsof-billing-service-app:${{ steps.commit.outputs.short }}
-          file: build/maven/Dockerfile
+          file: business-services/build/maven/Dockerfile
           context: business-services/billing-service
 
       - name: Build and push
