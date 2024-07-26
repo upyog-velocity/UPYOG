@@ -47,5 +47,5 @@ jobs:
         with:
           push: true
           tags: velsof/velsof-billing-service-db:${{ steps.commit.outputs.short }}
-          file: business-services/billing-service/src/main/resources/db
+          file: business-services/billing-service/src/main/resources/db/Dockerfile
           context: business-services/billing-service
