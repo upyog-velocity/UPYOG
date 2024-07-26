@@ -1,11 +1,11 @@
 
 FROM egovio/alpine-maven-builder-jdk-8:1-master-NA-6036091e AS build
 ARG WORK_DIR
+RUN pwd
 WORKDIR /app
 
 # copy the project files
 COPY ${WORK_DIR}/pom.xml ./pom.xml
-RUN pwd
 COPY ${WORK_DIR}start.sh ./start.sh
 
 # not useful for stateless builds
