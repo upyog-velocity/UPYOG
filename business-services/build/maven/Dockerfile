@@ -2,11 +2,12 @@
 FROM egovio/alpine-maven-builder-jdk-8:1-master-NA-6036091e AS build
 ARG WORK_DIR
 RUN pwd
+RUN ls
 WORKDIR /app
 
 # copy the project files
-COPY ${WORK_DIR}/pom.xml ./pom.xml
-COPY ${WORK_DIR}start.sh ./start.sh
+COPY ${WORK_DIRR}/pom.xml ./pom.xml
+COPY ${WORK_DIRR}/start.sh ./start.sh
 
 # not useful for stateless builds
 # RUN mvn -B dependency:go-offline
