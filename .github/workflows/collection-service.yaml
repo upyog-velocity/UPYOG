@@ -1,0 +1,44 @@
+name: Docker Build
+on:
+  push:
+    branches:
+      - 2.0-velsof-fsm
+  
+jobs:
+  # Docker Build
+  Docker_Build_App:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      # Extract branch for docker tag
+      - name: Get branch name
+        run: echo "BRANCH=${GITHUB_REF##*/}" >> $GITHUB_ENV
+
+      # Setup Docker Buildx
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@4fd812986e6c8c2a69e18311145f9371337f27d4 # v3.4.0
+
+      # Login To Dockerhub
+      - name: Login to DockerHub
+        uses: docker/login-action@0d4c9c5ea7693da7b068278f7b52bda2a190a446 # v3.2.0
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      # Get Short commit
+      - name: Get short commit
+        id: commit
+        uses: prompt/actions-commit-hash@v3
+      
+  Docker_Build_APP:
+    uses: upyog-velocity/UPYOG/.github/workflows/docker_build.yaml@main
+    secrets:
+      DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+      DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+    with:
+      FILE: business-services/build/maven/Dockerfile
+      CONTEXT: business-services/billing-service
+      DOCKER_REPO: velsof/velsof-billing-service-app
