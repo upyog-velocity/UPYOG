@@ -34,7 +34,7 @@ jobs:
         uses: prompt/actions-commit-hash@v3
       
   Docker_Build_APP:
-    uses: upyog-velocity/UPYOG/.github/workflows/docker_build.yaml@main
+    uses: upyog-velocity/UPYOG/.github/workflows/docker_build.yaml@2.0-velsof-fsm
     secrets:
       DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
       DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
