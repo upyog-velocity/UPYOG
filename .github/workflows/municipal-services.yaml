@@ -33,24 +33,23 @@ jobs:
         id: commit
         uses: prompt/actions-commit-hash@v3
       
-      
       # Get Short commit
       - name: Copy start.sh
-        run: sudo cp core-services/build/maven/start.sh core-services/egov-location
+        run: sudo cp municipal-services/build/maven/start.sh municipal-services/bpa-calculator
       
       # Build the Docker image
       - name: Build and push
         uses: docker/build-push-action@1a162644f9a7e87d8f4b053101d1d9a712edc18c # v6.3.0
         with:
           push: true
-          tags: velsof/velsof-egov-location-app:${{ steps.commit.outputs.short }}
-          file: core-services/build/maven/Dockerfile
-          context: core-services/egov-location
+          tags: velsof/velsof-bpa-calculator-app:${{ steps.commit.outputs.short }}
+          file: municipal-services/build/maven/Dockerfile
+          context: municipal-services/bpa-calculator
 
       - name: Build and push
         uses: docker/build-push-action@1a162644f9a7e87d8f4b053101d1d9a712edc18c # v6.3.0
         with:
           push: true
-          tags: velsof/velsof-egov-location-db:${{ steps.commit.outputs.short }}
-          file: core-services/egov-location/src/main/resources/db/Dockerfile
-          context: core-services/egov-location/src/main/resources/db
+          tags: velsof/velsof-bpa-calculator-db:${{ steps.commit.outputs.short }}
+          file: municipal-services/bpa-calculator/src/main/resources/db/Dockerfile
+          context: municipal-services/bpa-calculator/src/main/resources/db
