@@ -17,7 +17,7 @@ on:
 
 
 jobs:
-  Docker_Build_App:
+  Docker_Build:
     uses: ./.github/workflows/docker-build.yaml
     with:
       app_docker_file: municipal-services/build/maven/Dockerfile
@@ -31,24 +31,13 @@ jobs:
       DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
           
       
-  # kubectl_deployment_app:
-  #   needs: Docker_Build_App
-  #   if: ${{ needs.Docker_Build_App.outputs.db_path == 'absent' }}
-  #   uses: ./.github/workflows/k8-deploy.yaml
-  #   with:
-  #     DEPLOYMENT_NAME: ${{ inputs.micro-service }}
-  #     DOCKER_REPO: velsof/velsof-${{ inputs.micro-service }}-app:${{ needs.Docker_Build_App.outputs.tag }}
-  #   secrets:
-  #     K3D_KUBE_CONFIG: ${{ secrets.K3D_KUBE_CONFIG }}
-      
-  # kubectl_deployment_db:
-  #   needs: Docker_Build_App
-  #   if: ${{ needs.Docker_Build_App.outputs.db_path == 'present' }}
-  #   uses: ./.github/workflows/k8-deploy.yaml
-  #   with:
-  #     DEPLOYMENT_NAME: ${{ inputs.micro-service }}
-  #     DB_DEPLOYMENT: true
-  #     DOCKER_REPO: velsof/velsof-${{inputs.micro-service}}-app:${{ needs.Docker_Build_App.outputs.tag }}
-  #     DB_DOCKER_REPO: velsof/velsof-${{inputs.micro-service}}-db:${{ needs.Docker_Build_App.outputs.tag }}
-  #   secrets:
-  #     K3D_KUBE_CONFIG: ${{ secrets.K3D_KUBE_CONFIG }}
+  kubectl_deployment_app:
+    needs: Docker_Build_App
+    uses: ./.github/workflows/k8-deploy.yaml
+    with:
+      DEPLOYMENT_NAME: ${{ inputs.micro-service }}
+      DB_DEPLOYMENT: ${{ needs.Docker_Build.outputs.db_path == 'present' }}
+      DOCKER_REPO: velsof/velsof-${{ inputs.micro-service }}-app:${{ needs.Docker_Build.outputs.tag }}
+      DB_DOCKER_REPO: velsof/velsof-${{inputs.micro-service}}-db:${{ needs.Docker_Build.outputs.tag }}
+    secrets:
+      K3D_KUBE_CONFIG: ${{ secrets.K3D_KUBE_CONFIG }}

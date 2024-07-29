@@ -35,7 +35,7 @@ jobs:
           args: set image deployment/${{ inputs.DEPLOYMENT_NAME}} ${{ inputs.DEPLOYMENT_NAME}}=${{ inputs.DOCKER_REPO }} -n egov
 
   Deploy_To_K8_DB:
-    if: ${{ inputs.DB_DEPLOYMENT == 'true'}}
+    if: ${{ inputs.DB_DEPLOYMENT == 'present'}}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
