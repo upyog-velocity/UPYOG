@@ -15,85 +15,36 @@ on:
         - echallan-calculator
         - fsm-calculator
 
+
 jobs:
   Docker_Build_App:
-    runs-on: ubuntu-latest
-    outputs: 
-      tag: ${{ steps.commit.outputs.short }}
-      db_path: ${{ steps.db_path.outputs.path }}
-
-    steps:
-      # Checkout
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      # Extract branch for docker tag
-      - name: Get branch name
-        run: echo "BRANCH=${GITHUB_REF##*/}" >> $GITHUB_ENV
-
-      # Setup Docker Buildx
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@4fd812986e6c8c2a69e18311145f9371337f27d4 # v3.4.0
-
-      # Login To Dockerhub
-      - name: Login to DockerHub
-        uses: docker/login-action@0d4c9c5ea7693da7b068278f7b52bda2a190a446 # v3.2.0
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-      # Get Short commit
-      - name: Get short commit
-        id: commit
-        uses: prompt/actions-commit-hash@v3
+    uses: ./.github/workflows/docker-build.yaml
+    app_docker_file: municipal-services/build/maven/Dockerfile
+    app_docker_context: municipal-services/${{inputs.micro-service}}
+    service: municipal-services
+    micro-service: ${{inputs.micro-service}}
+    db_docker_file: municipal-services/${{inputs.micro-service}}/src/main/resources/db/Dockerfile
+    db_docker_context: municipal-services/${{inputs.micro-service}}/src/main/resources/db
+          
       
-      # Copy start.sh
-      - name: Copy start.sh
-        run: sudo cp municipal-services/build/maven/start.sh municipal-services/${{inputs.micro-service}}
+  # kubectl_deployment_app:
+  #   needs: Docker_Build_App
+  #   if: ${{ needs.Docker_Build_App.outputs.db_path == 'absent' }}
+  #   uses: ./.github/workflows/k8-deploy.yaml
+  #   with:
+  #     DEPLOYMENT_NAME: ${{ inputs.micro-service }}
+  #     DOCKER_REPO: velsof/velsof-${{ inputs.micro-service }}-app:${{ needs.Docker_Build_App.outputs.tag }}
+  #   secrets:
+  #     K3D_KUBE_CONFIG: ${{ secrets.K3D_KUBE_CONFIG }}
       
-      # Build the Docker image
-      - name: Build and push App image
-        uses: docker/build-push-action@1a162644f9a7e87d8f4b053101d1d9a712edc18c # v6.3.0
-        with:
-          push: true
-          tags: velsof/velsof-${{inputs.micro-service}}-app:${{ steps.commit.outputs.short }}
-          file: municipal-services/build/maven/Dockerfile
-          context: municipal-services/${{inputs.micro-service}}
-      
-
-      - name: Check DB docker file path
-        id: db_path
-        run: |
-          if [ -d "municipal-services/${{inputs.micro-service}}/src/main/resources/db" ]; then echo "path=present" >> $GITHUB_OUTPUT; else echo "path=absent" >> $GITHUB_OUTPUT; fi
-
-      # Build and push DB image if path is present
-      - name: Build and push DB image
-        if: ${{ steps.db_path.outputs.path == 'present' }}
-        uses: docker/build-push-action@1a162644f9a7e87d8f4b053101d1d9a712edc18c # v6.3.0
-        with:
-          push: true
-          tags: velsof/velsof-${{inputs.micro-service}}-db:${{ steps.commit.outputs.short }}
-          file: municipal-services/${{inputs.micro-service}}/src/main/resources/db/Dockerfile
-          context: municipal-services/${{inputs.micro-service}}/src/main/resources/db
-      
-  kubectl_deployment_app:
-    needs: Docker_Build_App
-    if: ${{ needs.Docker_Build_App.outputs.db_path == 'absent' }}
-    uses: ./.github/workflows/k8-deploy.yaml
-    with:
-      DEPLOYMENT_NAME: ${{ inputs.micro-service }}
-      DOCKER_REPO: velsof/velsof-${{ inputs.micro-service }}-app:${{ needs.Docker_Build_App.outputs.tag }}
-    secrets:
-      K3D_KUBE_CONFIG: ${{ secrets.K3D_KUBE_CONFIG }}
-      
-  kubectl_deployment_db:
-    needs: Docker_Build_App
-    if: ${{ needs.Docker_Build_App.outputs.db_path == 'present' }}
-    uses: ./.github/workflows/k8-deploy.yaml
-    with:
-      DEPLOYMENT_NAME: ${{ inputs.micro-service }}
-      DB_DEPLOYMENT: true
-      DOCKER_REPO: velsof/velsof-${{inputs.micro-service}}-app:${{ needs.Docker_Build_App.outputs.tag }}
-      DB_DOCKER_REPO: velsof/velsof-${{inputs.micro-service}}-db:${{ needs.Docker_Build_App.outputs.tag }}
-    secrets:
-      K3D_KUBE_CONFIG: ${{ secrets.K3D_KUBE_CONFIG }}
+  # kubectl_deployment_db:
+  #   needs: Docker_Build_App
+  #   if: ${{ needs.Docker_Build_App.outputs.db_path == 'present' }}
+  #   uses: ./.github/workflows/k8-deploy.yaml
+  #   with:
+  #     DEPLOYMENT_NAME: ${{ inputs.micro-service }}
+  #     DB_DEPLOYMENT: true
+  #     DOCKER_REPO: velsof/velsof-${{inputs.micro-service}}-app:${{ needs.Docker_Build_App.outputs.tag }}
+  #     DB_DOCKER_REPO: velsof/velsof-${{inputs.micro-service}}-db:${{ needs.Docker_Build_App.outputs.tag }}
+  #   secrets:
+  #     K3D_KUBE_CONFIG: ${{ secrets.K3D_KUBE_CONFIG }}

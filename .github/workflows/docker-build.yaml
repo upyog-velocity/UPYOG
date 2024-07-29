@@ -2,39 +2,44 @@ name: Docker Build
 on:
   workflow_call:
     inputs:
-      FILE:
+      app_docker_file:
         required: true
         type: string
-      CONTEXT: 
+      app_docker_context: 
         required: true
+        type: string 
+      db_docker_file:
+        required: false
         type: string
-      DOCKER_REPO:
+      db_docker_context: 
+        required: false
+        type: string
+      service:
         required: true
-        type: string
-               
+        type: false
+      micro-service:
+        required: true
+        type: false
     secrets:
       DOCKERHUB_USERNAME:
        required: true
       DOCKERHUB_TOKEN:
        required: true
-       
-env: 
-  FILE: ${{ inputs.FILE }}
-  CONTEXT: ${{ inputs.CONTEXT }}
-  DOCKER_REPO: ${{ inputs.DOCKER_REPO }}
+    outputs: 
+      tag: ${{ needs.Docker_Build_App.outputs.tag }}
+      db_path: ${{ needs.Docker_Build_App.outputs.path }}
   
 jobs:
   # Docker Build
   Docker_Build:
     runs-on: ubuntu-latest
+    outputs: 
+      tag: ${{ steps.commit.outputs.short }}
+      db_path: ${{ steps.db_path.outputs.path }}
     steps:
       # Checkout
       - name: Checkout
         uses: actions/checkout@v4
-      
-      # Extract branch for docker tag
-      - name: Get branch name
-        run: echo "BRANCH=${GITHUB_REF##*/}" >> $GITHUB_ENV
 
       # Setup Docker Buildx
       - name: Set up Docker Buildx
@@ -51,12 +56,31 @@ jobs:
       - name: Get short commit
         id: commit
         uses: prompt/actions-commit-hash@v3
+
+      # Copy start.sh
+      - name: Copy start.sh
+        run: sudo cp ${{inputs.service}}/build/maven/start.sh ${{inputs.service}}/${{inputs.micro-service}}
+      
+      - name: Check DB docker file path
+        id: db_path
+        run: |
+          if [ -d "${{inputs.service}}/${{inputs.micro-service}}/src/main/resources/db" ]; then echo "path=present" >> $GITHUB_OUTPUT; else echo "path=absent" >> $GITHUB_OUTPUT; fi
       
       # Build the Docker image
       - name: Build and push
         uses: docker/build-push-action@1a162644f9a7e87d8f4b053101d1d9a712edc18c # v6.3.0
         with:
           push: true
-          tags: ${{ env.DOCKER_REPO}}:${{ steps.commit.outputs.short }}
-          file: ${{ env.FILE}}
-          context: ${{ env.CONTEXT}}
+          tags: velsof/velsof-${{inputs.micro-service}}-app:${{ steps.commit.outputs.short }}
+          file: ${{ inputs.app_docker_file}}
+          context: ${{ env.app_docker_context}}
+      
+            # Build and push DB image if path is present
+      - name: Build and push DB image
+        if: ${{ steps.db_path.outputs.path == 'present' }}
+        uses: docker/build-push-action@1a162644f9a7e87d8f4b053101d1d9a712edc18c # v6.3.0
+        with:
+          push: true
+          tags: velsof/velsof-${{inputs.micro-service}}-db:${{ steps.commit.outputs.short }}
+          file: ${{ inputs.db_docker_file}}
+          context: ${{ env.db_docker_context}}
