@@ -71,17 +71,19 @@ jobs:
           file: municipal-services/${{inputs.micro-service}}/src/main/resources/db/Dockerfile
           context: municipal-services/${{inputs.micro-service}}/src/main/resources/db
       
-      - name: kubectl deployment app
-        uses: ./.github/workflows/k8-deploy.yaml@2.0-velsof-fsm
-        with:
-          DEPLOYMENT_NAME: ${{inputs.micro-service}}
-          DOCKER_REPO: velsof/velsof-${{inputs.micro-service}}-app:${{ steps.commit.outputs.short }}
+  kubectl deployment app:
+    needs: Docker_Build_App
+    uses: ./.github/workflows/k8-deploy.yaml@2.0-velsof-fsm
+    with:
+      DEPLOYMENT_NAME: ${{inputs.micro-service}}
+      DOCKER_REPO: velsof/velsof-${{inputs.micro-service}}-app:latest
       
-      - name: kubectl deployment db
-        if: ${{ steps.db_path.outputs.path == 'present' }}
-        uses: ./.github/workflows/k8-deploy.yaml@2.0-velsof-fsm
-        with:
-          DEPLOYMENT_NAME: ${{inputs.micro-service}}
-          DB_DEPLOYMENT: true
-          DOCKER_REPO: velsof/velsof-${{inputs.micro-service}}-app:${{ steps.commit.outputs.short }}
-          DB_DOCKER_REPO: velsof/velsof-${{inputs.micro-service}}-db:${{ steps.commit.outputs.short }}
+  kubectl deployment db:
+    needs: Docker_Build_App
+    if: ${{ steps.db_path.outputs.path == 'present' }}
+    uses: ./.github/workflows/k8-deploy.yaml@2.0-velsof-fsm
+    with:
+      DEPLOYMENT_NAME: ${{inputs.micro-service}}
+      DB_DEPLOYMENT: true
+      DOCKER_REPO: velsof/velsof-${{inputs.micro-service}}-app:latest
+      DB_DOCKER_REPO: velsof/velsof-${{inputs.micro-service}}-db:latest
