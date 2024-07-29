@@ -48,7 +48,11 @@ jobs:
 
       - name: Check DB docker file path
         id: db_path
-        run: if [ -d "municipal-services/bpa-calculator/src/main/resources/db" ]; then echo "path=present" >> $GITHUB_OUTPUT; fi
+        run: | 
+          if [ -d "municipal-services/bpa-calculator/src/main/resources/db" ]; then echo "path=present"; fi
+
+      - name: echo
+        run: echo ${{ steps.db_path.outputs.path }}
 
       - name: Build and push
         if: ${{ steps.db_path.outputs.path }} == 'present' 
