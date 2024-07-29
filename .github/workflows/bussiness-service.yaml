@@ -36,7 +36,7 @@ jobs:
       
       # Get Short commit
       - name: Copy start.sh
-        run: bussiness-service/build/mavem/start.sh bussiness-service/billing-service/start.sh 
+        run: ./bussiness-service/build/mavem/start.sh ./bussiness-service/billing-service/start.sh 
       
       # Build the Docker image
       - name: Build and push

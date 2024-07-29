@@ -33,9 +33,9 @@ jobs:
         id: commit
         uses: prompt/actions-commit-hash@v3
       
-      # Get Short commit
-      - name: Copy start.sh
-        run: dx-service/build/mavem/start.sh dx-services/pt-services-dx/start.sh 
+      # # Get Short commit
+      # - name: Copy start.sh
+      #   run: dx-service/build/mavem/start.sh dx-services/pt-services-dx/start.sh 
       
       # Build the Docker image
       - name: Build and push
