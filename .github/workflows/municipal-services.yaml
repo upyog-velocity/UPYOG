@@ -64,7 +64,8 @@ jobs:
 
       # Build and push DB image if path is present
       - name: Build and push DB image
-        if: ${{ steps.db_path.outputs.path == 'present' }}
+        needs: 
+        if: ${{ needs.db_path.outputs.path == 'present' }}
         uses: docker/build-push-action@1a162644f9a7e87d8f4b053101d1d9a712edc18c # v6.3.0
         with:
           push: true
@@ -79,12 +80,12 @@ jobs:
       DEPLOYMENT_NAME: ${{inputs.micro-service}}
       DOCKER_REPO: velsof/velsof-${{inputs.micro-service}}-app:latest
       
-  kubectl deployment db:
-    needs: Docker_Build_App
-    if: ${{ steps.db_path.outputs.path == 'present' }}
-    uses: ./.github/workflows/k8-deploy.yaml
-    with:
-      DEPLOYMENT_NAME: ${{inputs.micro-service}}
-      DB_DEPLOYMENT: true
-      DOCKER_REPO: velsof/velsof-${{inputs.micro-service}}-app:latest
-      DB_DOCKER_REPO: velsof/velsof-${{inputs.micro-service}}-db:latest
+  # kubectl deployment db:
+  #   needs: Docker_Build_App
+  #   if: ${{ needs.db_path.outputs.path == 'present' }}
+  #   uses: ./.github/workflows/k8-deploy.yaml
+  #   with:
+  #     DEPLOYMENT_NAME: ${{inputs.micro-service}}
+  #     DB_DEPLOYMENT: true
+  #     DOCKER_REPO: velsof/velsof-${{inputs.micro-service}}-app:latest
+  #     DB_DOCKER_REPO: velsof/velsof-${{inputs.micro-service}}-db:latest
