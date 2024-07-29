@@ -26,8 +26,8 @@ on:
       DOCKERHUB_TOKEN:
        required: true
     outputs: 
-      tag: ${{ needs.Docker_Build_App.outputs.tag }}
-      db_path: ${{ needs.Docker_Build_App.outputs.path }}
+      tag: ${{ needs.Docker_Build.outputs.tag }}
+      db_path: ${{ needs.Docker_Build.outputs.path }}
   
 jobs:
   # Docker Build
