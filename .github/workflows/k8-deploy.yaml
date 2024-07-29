@@ -15,6 +15,7 @@ on:
       DB_DEPLOYMENT:
         required: false
         type: string
+        default: false
         
     secrets:
       K3D_KUBE_CONFIG:
@@ -23,6 +24,7 @@ on:
 jobs:
   Deploy_To_K8:
     runs-on: ubuntu-latest
+    if: ${{ inputs.DB_DEPLOYMENT == 'false'}}
     steps:
       - name: Checkout
         uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633 # v4.1.2
