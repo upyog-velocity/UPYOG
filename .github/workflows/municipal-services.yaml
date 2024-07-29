@@ -1,18 +1,27 @@
 name: Docker Build
+
 on:
-  push:
-    branches:
-      - 2.0-velsof-fsm
-  
+  workflow_dispatch:
+    inputs:
+      micro-service:
+        description: 'micro-services'
+        required: true
+        type: choice
+        options: 
+        - birth-death-services
+        - bpa-calculator
+        - bpa-services
+        - echallan-services
+        - echallan-calculator
+
 jobs:
-  # Docker Build
   Docker_Build_App:
     runs-on: ubuntu-latest
     steps:
       # Checkout
       - name: Checkout
         uses: actions/checkout@v4
-      
+
       # Extract branch for docker tag
       - name: Get branch name
         run: echo "BRANCH=${GITHUB_REF##*/}" >> $GITHUB_ENV
@@ -33,32 +42,31 @@ jobs:
         id: commit
         uses: prompt/actions-commit-hash@v3
       
-      # Get Short commit
+      # Copy start.sh
       - name: Copy start.sh
-        run: sudo cp municipal-services/build/maven/start.sh municipal-services/bpa-calculator
+        run: sudo cp municipal-services/build/maven/start.sh municipal-services/${{inputs.micro-service}}
       
       # Build the Docker image
-      - name: Build and push
+      - name: Build and push App image
         uses: docker/build-push-action@1a162644f9a7e87d8f4b053101d1d9a712edc18c # v6.3.0
         with:
           push: true
-          tags: velsof/velsof-bpa-calculator-app:${{ steps.commit.outputs.short }}
+          tags: velsof/velsof-${{inputs.micro-service}}-app:${{ steps.commit.outputs.short }}
           file: municipal-services/build/maven/Dockerfile
-          context: municipal-services/bpa-calculator
+          context: municipal-services/${{inputs.micro-service}}
 
+      # Check DB docker file path
       - name: Check DB docker file path
         id: db_path
         run: | 
-          if [ -d "municipal-services/bpa-calculator/src/main/resources/db" ]; then echo "path=present" >> $GITHUB_OUTPUT; else echo "path=absent" >> $GITHUB_OUTPUT; fi
+          if [ -d "municipal-services/${{inputs.micro-service}}/src/main/resources/db" ]; then echo "path=present" >> $GITHUB_OUTPUT; else echo "path=absent" >> $GITHUB_OUTPUT; fi
 
-      - name: echo
-        run: echo ${{ steps.db_path.outputs.path }}
-        
-      - name: Build and push
-        if: ${{ steps.db_path.outputs.path  == 'present' }}
+      # Build and push DB image if path is present
+      - name: Build and push DB image
+        if: ${{ steps.db_path.outputs.path == 'present' }}
         uses: docker/build-push-action@1a162644f9a7e87d8f4b053101d1d9a712edc18c # v6.3.0
         with:
           push: true
-          tags: velsof/velsof-bpa-calculator-db:${{ steps.commit.outputs.short }}
-          file: municipal-services/bpa-calculator/src/main/resources/db/Dockerfile
-          context: municipal-services/bpa-calculator/src/main/resources/db
+          tags: velsof/velsof-${{inputs.micro-service}}-db:${{ steps.commit.outputs.short }}
+          file: municipal-services/${{inputs.micro-service}}/src/main/resources/db/Dockerfile
+          context: municipal-services/${{inputs.micro-service}}/src/main/resources/db
