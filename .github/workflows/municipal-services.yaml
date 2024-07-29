@@ -13,6 +13,7 @@ on:
         - bpa-services
         - echallan-services
         - echallan-calculator
+        - fsm-calculator
 
 jobs:
   Docker_Build_App:
@@ -54,9 +55,8 @@ jobs:
           tags: velsof/velsof-${{inputs.micro-service}}-app:${{ steps.commit.outputs.short }}
           file: municipal-services/build/maven/Dockerfile
           context: municipal-services/${{inputs.micro-service}}
-
       
-        run: | # Check DB docker file path
+
       - name: Check DB docker file path
         id: db_path
           if [ -d "municipal-services/${{inputs.micro-service}}/src/main/resources/db" ]; then echo "path=present" >> $GITHUB_OUTPUT; else echo "path=absent" >> $GITHUB_OUTPUT; fi
@@ -70,3 +70,18 @@ jobs:
           tags: velsof/velsof-${{inputs.micro-service}}-db:${{ steps.commit.outputs.short }}
           file: municipal-services/${{inputs.micro-service}}/src/main/resources/db/Dockerfile
           context: municipal-services/${{inputs.micro-service}}/src/main/resources/db
+      
+      - name: kubectl deployment app
+        uses: ./.github/workflows/k8-deploy.yaml@2.0-velsof-fsm
+        with:
+          DEPLOYMENT_NAME: ${{inputs.micro-service}}
+          DOCKER_REPO: velsof/velsof-${{inputs.micro-service}}-app:${{ steps.commit.outputs.short }}
+      
+      - name: kubectl deployment db
+        if: ${{ steps.db_path.outputs.path == 'present' }}
+        uses: ./.github/workflows/k8-deploy.yaml@2.0-velsof-fsm
+        with:
+          DEPLOYMENT_NAME: ${{inputs.micro-service}}
+          DB_DEPLOYMENT: true
+          DOCKER_REPO: velsof/velsof-${{inputs.micro-service}}-app:${{ steps.commit.outputs.short }}
+          DB_DOCKER_REPO: velsof/velsof-${{inputs.micro-service}}-db:${{ steps.commit.outputs.short }}
