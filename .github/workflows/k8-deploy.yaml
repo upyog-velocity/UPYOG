@@ -55,7 +55,9 @@ jobs:
       - uses: actions-hub/kubectl@master
         env:
           KUBE_CONFIG: ${{ secrets.K3D_KUBE_CONFIG }}
-      # Deploy the Docker image to the GKE cluster
-      - name: Deploy
-        run: |-
-          kubectl get pod -A
+        with:
+          args: get pods
+      # # Deploy the Docker image to the GKE cluster
+      # - name: Deploy
+      #   run: |-
+      #     kubectl get pod -A
