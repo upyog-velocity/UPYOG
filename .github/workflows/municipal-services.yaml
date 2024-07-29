@@ -53,11 +53,12 @@ jobs:
 
       - name: echo
         run: echo ${{ steps.db_path.outputs.path }}
-      # - name: Build and push
-      #   if: ${{ steps.db_path.outputs.path }} == 'present' 
-      #   uses: docker/build-push-action@1a162644f9a7e87d8f4b053101d1d9a712edc18c # v6.3.0
-      #   with:
-      #     push: true
-      #     tags: velsof/velsof-bpa-calculator-db:${{ steps.commit.outputs.short }}
-      #     file: municipal-services/bpa-calculator/src/main/resources/db/Dockerfile
-      #     context: municipal-services/bpa-calculator/src/main/resources/db
+        
+      - name: Build and push
+        if: ${{ steps.db_path.outputs.path }} == 'present' 
+        uses: docker/build-push-action@1a162644f9a7e87d8f4b053101d1d9a712edc18c # v6.3.0
+        with:
+          push: true
+          tags: velsof/velsof-bpa-calculator-db:${{ steps.commit.outputs.short }}
+          file: municipal-services/bpa-calculator/src/main/resources/db/Dockerfile
+          context: municipal-services/bpa-calculator/src/main/resources/db
