@@ -46,7 +46,12 @@ jobs:
           file: municipal-services/build/maven/Dockerfile
           context: municipal-services/bpa-calculator
 
+      - name: Check DB docker file path
+        id: db_path
+        run: if [ -e municipal-services/bpa-calculator/src/main/resources/db ]; then echo "path=present" >> "$GITHUB_OUTPUT"
+
       - name: Build and push
+        if: ${{ needs.db_path.output.path}} == 'present' 
         uses: docker/build-push-action@1a162644f9a7e87d8f4b053101d1d9a712edc18c # v6.3.0
         with:
           push: true
