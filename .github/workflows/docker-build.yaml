@@ -79,7 +79,7 @@ jobs:
           push: true
           tags: velsof/velsof-${{inputs.micro-service}}-app:${{ steps.commit.outputs.short }}
           file: ${{ inputs.app_docker_file}}
-          context: ${{ env.app_docker_context}}
+          context: ${{ inputs.app_docker_context}}
       
             # Build and push DB image if path is present
       - name: Build and push DB image
@@ -89,4 +89,4 @@ jobs:
           push: true
           tags: velsof/velsof-${{inputs.micro-service}}-db:${{ steps.commit.outputs.short }}
           file: ${{ inputs.db_docker_file}}
-          context: ${{ env.db_docker_context}}
+          context: ${{ inputs.db_docker_context}}
