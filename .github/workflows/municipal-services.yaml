@@ -74,15 +74,14 @@ jobs:
       
   kubectl deployment app:
     needs: Docker_Build_App
-    uses: ./.github/workflows/k8-deploy.yaml@2.0-velsof-fsm
-    with:
+    uses: ./.github/workflows/k8-deploy.yaml
       DEPLOYMENT_NAME: ${{inputs.micro-service}}
       DOCKER_REPO: velsof/velsof-${{inputs.micro-service}}-app:latest
       
   kubectl deployment db:
     needs: Docker_Build_App
     if: ${{ steps.db_path.outputs.path == 'present' }}
-    uses: ./.github/workflows/k8-deploy.yaml@2.0-velsof-fsm
+    uses: ./.github/workflows/k8-deploy.yaml
     with:
       DEPLOYMENT_NAME: ${{inputs.micro-service}}
       DB_DEPLOYMENT: true
