@@ -36,7 +36,7 @@ jobs:
       
       # Get Short commit
       - name: Copy start.sh
-        run: ./core-service/build/mavem/start.sh ./core-services/egov-location/start.sh 
+        run: core-services/build/maven/start.sh core-services/egov-location/start.sh 
       
       # Build the Docker image
       - name: Build and push
