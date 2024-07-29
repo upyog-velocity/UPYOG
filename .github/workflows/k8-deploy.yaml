@@ -15,7 +15,7 @@ on:
       DB_DEPLOYMENT:
         required: false
         type: string
-        default: false
+        default: absent
         
     secrets:
       K3D_KUBE_CONFIG:

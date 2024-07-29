@@ -36,7 +36,7 @@ jobs:
     uses: ./.github/workflows/k8-deploy.yaml
     with:
       DEPLOYMENT_NAME: ${{ inputs.micro-service }}
-      DB_DEPLOYMENT: ${{ needs.Docker_Build.outputs.db_path == 'present' }}
+      DB_DEPLOYMENT: ${{ needs.Docker_Build.outputs.db_path }}
       DOCKER_REPO: velsof/velsof-${{ inputs.micro-service }}-app:${{ needs.Docker_Build.outputs.tag }}
       DB_DOCKER_REPO: velsof/velsof-${{inputs.micro-service}}-db:${{ needs.Docker_Build.outputs.tag }}
     secrets:
