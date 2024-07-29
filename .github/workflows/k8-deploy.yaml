@@ -36,7 +36,6 @@ jobs:
           args: set image deployment/${{ inputs.DEPLOYMENT_NAME}} db-migration=${{ inputs.DB_DOCKER_REPO }} -n egov
 
   Deploy_To_K8_APP:
-    needs: Deploy_To_K8_DB
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
