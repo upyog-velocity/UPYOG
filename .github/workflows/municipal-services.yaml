@@ -78,6 +78,8 @@ jobs:
     with:
       DEPLOYMENT_NAME: ${{inputs.micro-service}}
       DOCKER_REPO: velsof/velsof-${{inputs.micro-service}}-app:latest
+    secrets:
+      K3D_KUBE_CONFIG: ${{ secrets.K3D_KUBE_CONFIG }}
       
   # kubectl deployment db:
   #   needs: Docker_Build_App
