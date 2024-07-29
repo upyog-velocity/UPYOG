@@ -35,7 +35,7 @@ jobs:
       
       # Get Short commit
       - name: Copy start.sh
-        run: municipal-services/build/maven/start.sh municipal-services/bpa-calculator/start.sh 
+        run: sudo cp municipal-services/build/maven/start.sh municipal-services/bpa-calculator/start.sh 
       
       # Build the Docker image
       - name: Build and push

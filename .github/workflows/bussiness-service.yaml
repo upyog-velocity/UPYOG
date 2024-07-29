@@ -36,7 +36,7 @@ jobs:
       
       # Get Short commit
       - name: Copy start.sh
-        run: bussiness-services/build/maven/start.sh bussiness-services/billing-service/start.sh 
+        run: sudo cp bussiness-services/build/maven/start.sh bussiness-services/billing-service/start.sh 
       
       # Build the Docker image
       - name: Build and push
