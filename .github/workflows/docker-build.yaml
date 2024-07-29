@@ -25,9 +25,11 @@ on:
        required: true
       DOCKERHUB_TOKEN:
        required: true
-    # outputs: 
-    #   tag: ${{ needs.Docker_Build.outputs.tag }}
-    #   db_path: ${{ needs.Docker_Build.outputs.db_path }}
+    outputs: 
+      tag: 
+        value: ${{ jobs.Docker_Build.outputs.tag }}
+      db_path: 
+        value: ${{ jobs.Docker_Build.outputs.db_path }}
   
 jobs:
   # Docker Build
@@ -40,6 +42,10 @@ jobs:
       # Checkout
       - name: Checkout
         uses: actions/checkout@v4
+
+            # Extract branch for docker tag
+      - name: Get branch name
+        run: echo "BRANCH=${GITHUB_REF##*/}" >> $GITHUB_ENV
 
       # Setup Docker Buildx
       - name: Set up Docker Buildx
