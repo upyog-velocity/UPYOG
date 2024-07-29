@@ -16,10 +16,10 @@ on:
         type: string
       service:
         required: true
-        type: false
+        type: string
       micro-service:
         required: true
-        type: false
+        type: string
     secrets:
       DOCKERHUB_USERNAME:
        required: true
