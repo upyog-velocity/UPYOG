@@ -28,7 +28,7 @@ on:
     outputs: 
       tag: 
         value: ${{ jobs.Docker_Build.outputs.tag }}
-      db_path: 
+      db_build: 
         value: ${{ jobs.Docker_Build.outputs.db_path }}
   
 jobs:
@@ -42,10 +42,6 @@ jobs:
       # Checkout
       - name: Checkout
         uses: actions/checkout@v4
-
-            # Extract branch for docker tag
-      - name: Get branch name
-        run: echo "BRANCH=${GITHUB_REF##*/}" >> $GITHUB_ENV
 
       # Setup Docker Buildx
       - name: Set up Docker Buildx
@@ -70,10 +66,10 @@ jobs:
       - name: Check DB docker file path
         id: db_path
         run: |
-          if [ -d "${{inputs.service}}/${{inputs.micro-service}}/src/main/resources/db" ]; then echo "path=present" >> $GITHUB_OUTPUT; else echo "path=absent" >> $GITHUB_OUTPUT; fi
+          if [ -d "${{inputs.service}}/${{inputs.micro-service}}/src/main/resources/db" ]; then echo "path=db_true" >> $GITHUB_OUTPUT; else echo "path=db_false" >> $GITHUB_OUTPUT; fi
       
       # Build the Docker image
-      - name: Build and push
+      - name: Build and push app
         uses: docker/build-push-action@1a162644f9a7e87d8f4b053101d1d9a712edc18c # v6.3.0
         with:
           push: true
@@ -83,7 +79,7 @@ jobs:
       
             # Build and push DB image if path is present
       - name: Build and push DB image
-        if: ${{ steps.db_path.outputs.path == 'present' }}
+        if: ${{ steps.db_path.outputs.path == 'db_true' }}
         uses: docker/build-push-action@1a162644f9a7e87d8f4b053101d1d9a712edc18c # v6.3.0
         with:
           push: true

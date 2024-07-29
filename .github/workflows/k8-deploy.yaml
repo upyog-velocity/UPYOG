@@ -3,7 +3,7 @@ name: Deploy to K8
 on:
   workflow_call:
     inputs:
-      DOCKER_REPO:
+      APP_DOCKER_REPO:
         required: true
         type: string 
       DEPLOYMENT_NAME:
@@ -22,20 +22,8 @@ on:
         required: true  
 
 jobs:
-  Deploy_To_K8:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633 # v4.1.2
-
-      - uses: actions-hub/kubectl@master
-        env:
-          KUBE_CONFIG: ${{ secrets.K3D_KUBE_CONFIG }}
-        with:
-          args: set image deployment/${{ inputs.DEPLOYMENT_NAME}} ${{ inputs.DEPLOYMENT_NAME}}=${{ inputs.DOCKER_REPO }} -n egov
-
   Deploy_To_K8_DB:
-    if: ${{ inputs.DB_DEPLOYMENT == 'present'}}
+    if: ${{ inputs.DB_DEPLOYMENT == 'db_true'}}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -46,3 +34,16 @@ jobs:
           KUBE_CONFIG: ${{ secrets.K3D_KUBE_CONFIG }}
         with:
           args: set image deployment/${{ inputs.DEPLOYMENT_NAME}} db-migration=${{ inputs.DB_DOCKER_REPO }} -n egov
+
+  Deploy_To_K8_APP:
+    needs: Deploy_To_K8_DB
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633 # v4.1.2
+
+      - uses: actions-hub/kubectl@master
+        env:
+          KUBE_CONFIG: ${{ secrets.K3D_KUBE_CONFIG }}
+        with:
+          args: set image deployment/${{ inputs.DEPLOYMENT_NAME}} ${{ inputs.DEPLOYMENT_NAME}}=${{ inputs.APP_DOCKER_REPO }} -n egov

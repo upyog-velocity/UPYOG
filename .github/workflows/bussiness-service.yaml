@@ -32,8 +32,8 @@ jobs:
     uses: ./.github/workflows/k8-deploy.yaml
     with:
       DEPLOYMENT_NAME: ${{ inputs.micro-service }}
-      DB_DEPLOYMENT: ${{ needs.Docker_Build.outputs.db_path == 'present' }}
-      DOCKER_REPO: velsof/velsof-${{ inputs.micro-service }}-app:${{ needs.Docker_Build.outputs.tag }}
+      DB_DEPLOYMENT: ${{ needs.Docker_Build.outputs.db_build }}
+      APP_DOCKER_REPO: velsof/velsof-${{ inputs.micro-service }}-app:${{ needs.Docker_Build.outputs.tag }}
       DB_DOCKER_REPO: velsof/velsof-${{inputs.micro-service}}-db:${{ needs.Docker_Build.outputs.tag }}
     secrets:
       K3D_KUBE_CONFIG: ${{ secrets.K3D_KUBE_CONFIG }}
