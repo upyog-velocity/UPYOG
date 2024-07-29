@@ -1,8 +1,16 @@
-name: Docker Build
+name: Docker Build Business Service
 on:
-  push:
-    branches:
-      - 2.0-velsof-fsm
+  workflow_dispatch:
+    inputs:
+      micro-service:
+        description: 'micro-services'
+        required: true
+        type: choice
+        options: 
+        - business-service
+        - collection-service
+        - dashboard-analytics
+        - egf-instrument
   
 jobs:
   # Docker Build
@@ -37,22 +45,28 @@ jobs:
       # Get Short commit
       - name: Copy start.sh
         run: |
-          sudo cp business-services/build/maven/start.sh business-services/billing-service
-          ls business-services/billing-service
+          sudo cp business-services/build/maven/start.sh business-services/${{inputs.micro-service}}
+          ls business-services/${{inputs.micro-service}}
+      
+      # Check DB docker file path
+      - name: Check DB docker file path
+        id: db_path
+        run: | 
+          if [ -d "business-services/${{inputs.micro-service}}/src/main/resources/db" ]; then echo "path=present" >> $GITHUB_OUTPUT; else echo "path=absent" >> $GITHUB_OUTPUT; fi
       
       # Build the Docker image
       - name: Build and push
         uses: docker/build-push-action@1a162644f9a7e87d8f4b053101d1d9a712edc18c # v6.3.0
         with:
           push: true
-          tags: velsof/velsof-billing-service-app:${{ steps.commit.outputs.short }}
+          tags: velsof/velsof-${{inputs.micro-service}}-app:${{ steps.commit.outputs.short }}
           file: business-services/build/maven/Dockerfile
-          context: business-services/billing-service
+          context: business-services/${{inputs.micro-service}}
 
       - name: Build and push
         uses: docker/build-push-action@1a162644f9a7e87d8f4b053101d1d9a712edc18c # v6.3.0
         with:
           push: true
-          tags: velsof/velsof-billing-service-db:${{ steps.commit.outputs.short }}
-          file: business-services/billing-service/src/main/resources/db/Dockerfile
-          context: business-services/billing-service/src/main/resources/db
+          tags: velsof/velsof-${{inputs.micro-service}}-db:${{ steps.commit.outputs.short }}
+          file: business-services/${{inputs.micro-service}}/src/main/resources/db/Dockerfile
+          context: business-services/${{inputs.micro-service}}/src/main/resources/db

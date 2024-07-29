@@ -1,0 +1,61 @@
+
+name: Deploy to K8
+on:
+  push:
+    branches: 2.0-velsof-fsm
+#   workflow_call:
+#     inputs:
+#       DOCKER_REPO:
+#         required: true
+#         type: string 
+#       NAMESPACE:
+#         required: true
+#         type: string 
+#       ENVIRONMENT:
+#         required: true
+#         type: string 
+#       IMAGE_NAME:
+#         required: true
+#         type: string 
+#       DEPLOYMENT_NAME:
+#         required: true
+#         type: string
+        
+#     secrets:
+#       K3D_KUBE_CONFIG:
+#         required: true  
+
+
+# env: 
+#   GKE_SA_KEY: ${{ inputs.GKE_SA_KEY }} 
+#   GKE_CLUSTER: ${{ inputs.GKE_CLUSTER }} 
+#   GKE_ZONE: ${{ inputs.GKE_ZONE }} 
+#   DEPLOYMENT_NAME: ${{ inputs.DEPLOYMENT_NAME }} 
+#   IMAGE_NAME: ${{ inputs.IMAGE_NAME }} 
+#   DOCKER_REPO: ${{ inputs.DOCKER_REPO }}
+#   ENVIRONMENT: ${{ inputs.ENVIRONMENT }}
+#   NAMESPACE: ${{ inputs.NAMESPACE }}
+
+jobs:
+  Deploy_To_K8:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633 # v4.1.2
+        
+      # Extract branch for docker tag
+      - name: Get branch name
+        run: echo "BRANCH=${GITHUB_REF##*/}" >> $GITHUB_ENV
+
+      - uses: azure/setup-kubectl@v3
+        with:
+          version: default # default is latest stable
+        id: install
+
+      - uses: actions-hub/kubectl@master
+        env:
+          KUBE_CONFIG: ${{ secrets.K3D_KUBE_CONFIG }}
+      # Deploy the Docker image to the GKE cluster
+      - name: Deploy
+        run: |-
+          kubectl get pod -A

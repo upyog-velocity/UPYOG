@@ -1,6 +1,5 @@
-name: Docker Build Muncipal service
+name: Docker Build Frontend
 
-on:
   workflow_dispatch:
     inputs:
       micro-service:
@@ -8,20 +7,19 @@ on:
         required: true
         type: choice
         options: 
-        - birth-death-services
-        - bpa-calculator
-        - bpa-services
-        - echallan-services
-        - echallan-calculator
-
+        - micro-ui
+        - mono-ui
+        - upyog-ui
+  
 jobs:
+  # Docker Build
   Docker_Build_App:
     runs-on: ubuntu-latest
     steps:
       # Checkout
       - name: Checkout
         uses: actions/checkout@v4
-
+      
       # Extract branch for docker tag
       - name: Get branch name
         run: echo "BRANCH=${GITHUB_REF##*/}" >> $GITHUB_ENV
@@ -42,31 +40,32 @@ jobs:
         id: commit
         uses: prompt/actions-commit-hash@v3
       
-      # Copy start.sh
-      - name: Copy start.sh
-        run: sudo cp municipal-services/build/maven/start.sh municipal-services/${{inputs.micro-service}}
-      
       # Build the Docker image
-      - name: Build and push App image
+      - name: Build and push upyog
         uses: docker/build-push-action@1a162644f9a7e87d8f4b053101d1d9a712edc18c # v6.3.0
         with:
           push: true
           tags: velsof/velsof-${{inputs.micro-service}}-app:${{ steps.commit.outputs.short }}
-          file: municipal-services/build/maven/Dockerfile
-          context: municipal-services/${{inputs.micro-service}}
+          file: frontend/${{inputs.micro-service}}/web/docker/Dockerfile
+          context: frontend/${{inputs.micro-service}}/web/
 
       
-        run: | # Check DB docker file path
-      - name: Check DB docker file path
-        id: db_path
-          if [ -d "municipal-services/${{inputs.micro-service}}/src/main/resources/db" ]; then echo "path=present" >> $GITHUB_OUTPUT; else echo "path=absent" >> $GITHUB_OUTPUT; fi
-
-      # Build and push DB image if path is present
-      - name: Build and push DB image
-        if: ${{ steps.db_path.outputs.path == 'present' }}
+      # Build the Docker image
+      - name: Build and push
         uses: docker/build-push-action@1a162644f9a7e87d8f4b053101d1d9a712edc18c # v6.3.0
         with:
           push: true
-          tags: velsof/velsof-${{inputs.micro-service}}-db:${{ steps.commit.outputs.short }}
-          file: municipal-services/${{inputs.micro-service}}/src/main/resources/db/Dockerfile
-          context: municipal-services/${{inputs.micro-service}}/src/main/resources/db
+          tags: velsof/velsof-${{inputs.micro-service}}-app:${{ steps.commit.outputs.short }}
+          file: frontend/${{inputs.micro-service}}/web/docker/Dockerfile
+          context: frontend/${{inputs.micro-service}}/web/
+
+
+      
+      # Build the Docker image
+      - name: Build and push
+        uses: docker/build-push-action@1a162644f9a7e87d8f4b053101d1d9a712edc18c # v6.3.0
+        with:
+          push: true
+          tags: velsof/velsof-${{inputs.micro-service}}-app:${{ steps.commit.outputs.short }}
+          file: frontend/${{inputs.micro-service}}/web/docker/Dockerfile
+          context: frontend/${{inputs.micro-service}}/web/
