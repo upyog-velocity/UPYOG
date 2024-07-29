@@ -11,9 +11,30 @@ on:
         - birth-death-services
         - bpa-calculator
         - bpa-services
-        - echallan-services
         - echallan-calculator
+        - echallan-services
+        - egov-user-event
+        - firenoc-calculator
+        - firenoc-services
         - fsm-calculator
+        - fsm
+        - inbox
+        - land-services
+        - noc-services
+        - pgr-services
+        - property-services
+        - pt-calculator-v2
+        - pt-services-v2
+        - rainmaker-pgr
+        - sw-calculator
+        - sw-services
+        - tl-calculator
+        - tl-services
+        - turn-io-adapter
+        - vehicle
+        - vendor
+        - ws-calculator
+        - ws-services
 
 
 jobs:

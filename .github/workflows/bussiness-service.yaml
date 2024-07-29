@@ -11,6 +11,41 @@ on:
         - collection-service
         - dashboard-analytics
         - egf-instrument
+        - billing-service
+        - dashboard-analytics
+        - dashboard-ingest
+        - egov-hrms
+        - egov-accesscontrol
+        - egov-common-masters
+        - egov-data-uploader
+        - egov-document-uploader
+        - egov-enc-service
+        - egov-filestore
+        - egov-idgen
+        - egov-indexer
+        - egov-localization
+        - egov-location
+        - egov-mdms-service
+        - egov-notification-mail
+        - egov-notification-sms
+        - egov-otp
+        - egov-persister
+        - egov-pg-service
+        - egov-searcher
+        - egov-survey-services
+        - egov-telemetry
+        - egov-url-shortening
+        - egov-user
+        - egov-workflow-v2
+        - national-dashboard-ingest
+        - national-dashboard-kafka-pipeline
+        - nlp-engine
+        - pdf-service
+        - report
+        - service-request
+        - user-otp
+        - zuul
+
   
 jobs:
   Docker_Build:
