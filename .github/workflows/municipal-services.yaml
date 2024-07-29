@@ -59,6 +59,7 @@ jobs:
 
       - name: Check DB docker file path
         id: db_path
+        run: |
           if [ -d "municipal-services/${{inputs.micro-service}}/src/main/resources/db" ]; then echo "path=present" >> $GITHUB_OUTPUT; else echo "path=absent" >> $GITHUB_OUTPUT; fi
 
       # Build and push DB image if path is present
