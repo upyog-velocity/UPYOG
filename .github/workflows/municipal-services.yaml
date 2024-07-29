@@ -19,12 +19,16 @@ on:
 jobs:
   Docker_Build_App:
     uses: ./.github/workflows/docker-build.yaml
-    app_docker_file: municipal-services/build/maven/Dockerfile
-    app_docker_context: municipal-services/${{inputs.micro-service}}
-    service: municipal-services
-    micro-service: ${{inputs.micro-service}}
-    db_docker_file: municipal-services/${{inputs.micro-service}}/src/main/resources/db/Dockerfile
-    db_docker_context: municipal-services/${{inputs.micro-service}}/src/main/resources/db
+    with:
+      app_docker_file: municipal-services/build/maven/Dockerfile
+      app_docker_context: municipal-services/${{inputs.micro-service}}
+      service: municipal-services
+      micro-service: ${{inputs.micro-service}}
+      db_docker_file: municipal-services/${{inputs.micro-service}}/src/main/resources/db/Dockerfile
+      db_docker_context: municipal-services/${{inputs.micro-service}}/src/main/resources/db
+    secrets:
+      DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+      DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
           
       
   # kubectl_deployment_app:
