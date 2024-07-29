@@ -75,6 +75,7 @@ jobs:
   kubectl deployment app:
     needs: Docker_Build_App
     uses: ./.github/workflows/k8-deploy.yaml
+    with:
       DEPLOYMENT_NAME: ${{inputs.micro-service}}
       DOCKER_REPO: velsof/velsof-${{inputs.micro-service}}-app:latest
       
