@@ -72,7 +72,7 @@ jobs:
           file: municipal-services/${{inputs.micro-service}}/src/main/resources/db/Dockerfile
           context: municipal-services/${{inputs.micro-service}}/src/main/resources/db
       
-  kubectl deployment app:
+  kubectl_deployment_app:
     needs: Docker_Build_App
     uses: ./.github/workflows/k8-deploy.yaml
     with:
