@@ -29,7 +29,7 @@ jobs:
   Deploy_To_K8_DB:
     if: ${{ inputs.DB_DEPLOYMENT == 'db_true'}}
     runs-on: ubuntu-latest
-    environmnet: ${{inputs.env}}
+    environment: ${{inputs.env}}
     steps:
       - name: Checkout
         uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633 # v4.1.2
@@ -42,7 +42,7 @@ jobs:
 
   Deploy_To_K8_APP:
     runs-on: ubuntu-latest
-    environmnet: ${{inputs.env}}
+    environment: ${{inputs.env}}
     steps:
       - name: Checkout
         uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633 # v4.1.2
