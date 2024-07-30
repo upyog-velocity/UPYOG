@@ -41,6 +41,7 @@ on:
         type: choice
         options:
           - dev
+          - test
 
 
 jobs:
