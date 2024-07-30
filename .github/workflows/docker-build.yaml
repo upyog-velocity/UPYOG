@@ -20,6 +20,9 @@ on:
       micro-service:
         required: true
         type: string
+      env:
+        required: true
+        type: string
     secrets:
       DOCKERHUB_USERNAME:
        required: true
@@ -35,6 +38,7 @@ jobs:
   # Docker Build
   Docker_Build:
     runs-on: ubuntu-latest
+    environmnet: ${{inputs.env}}
     outputs: 
       tag: ${{ steps.commit.outputs.short }}
       db_path: ${{ steps.db_path.outputs.path }}

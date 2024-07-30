@@ -35,6 +35,12 @@ on:
         - vendor
         - ws-calculator
         - ws-services
+      deploy_to:
+        description: "env"
+        required: true
+        type: choice
+        options:
+          - dev
 
 
 jobs:
@@ -45,6 +51,7 @@ jobs:
       app_docker_context: municipal-services/${{inputs.micro-service}}
       service: municipal-services
       micro-service: ${{inputs.micro-service}}
+      env: ${{inputs.deploy_to}}
       db_docker_file: municipal-services/${{inputs.micro-service}}/src/main/resources/db/Dockerfile
       db_docker_context: municipal-services/${{inputs.micro-service}}/src/main/resources/db
     secrets:
@@ -57,6 +64,7 @@ jobs:
     uses: ./.github/workflows/k8-deploy.yaml
     with:
       DEPLOYMENT_NAME: ${{ inputs.micro-service }}
+      env: ${{inputs.deploy_to}}
       DB_DEPLOYMENT: ${{ needs.Docker_Build.outputs.db_build }}
       APP_DOCKER_REPO: velsof/velsof-${{ inputs.micro-service }}-app:${{ needs.Docker_Build.outputs.tag }}
       DB_DOCKER_REPO: velsof/velsof-${{inputs.micro-service}}-db:${{ needs.Docker_Build.outputs.tag }}
