@@ -6,7 +6,7 @@
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
     <version>2.2.6.RELEASE</version>
-    <relativePath></relativePath>
+    <relativePath/>
   </parent>
   <groupId>pt-services-dx</groupId>
   <artifactId>pt-services-dx</artifactId>
@@ -46,7 +46,7 @@
     <dependency>
   <groupId>com.thoughtworks.xstream</groupId>
   <artifactId>xstream</artifactId>
-  <version>1.4.19</version>
+  <version>1.4.21</version>
 </dependency>
     <dependency>
       <groupId>org.postgresql</groupId>
@@ -220,7 +220,7 @@
     								</goals>
     							</pluginExecutionFilter>
     							<action>
-    								<ignore></ignore>
+    								<ignore/>
     							</action>
     						</pluginExecution>
     					</pluginExecutions>
